@@ -4,8 +4,8 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 
 const metadata = {
-  title: 'Changelog — PSI Monitor',
-  description: 'Release notes and version history for PSI Monitor. Stay up to date with the latest improvements and fixes.',
+  title: 'Changelog — Meridian',
+  description: 'Release notes and version history for Meridian. Stay up to date with the latest improvements and fixes.',
 };
 
 const allEntries = await getCollection('changelog');
@@ -22,7 +22,7 @@ const typeBadge: Record<string, string> = {
 <Layout metadata={metadata}>
   <HeroText
     title="Changelog"
-    subtitle="Release notes and version history for PSI Monitor."
+    subtitle="Release notes and version history for Meridian."
   />
 
   <section class="max-w-3xl mx-auto px-6 pb-20">

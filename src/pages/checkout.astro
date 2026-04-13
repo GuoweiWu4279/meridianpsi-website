@@ -6,19 +6,19 @@ import Button from '~/components/ui/Button.astro';
 import products from '~/data/products.json';
 
 const metadata = {
-  title: 'Start Free Trial — PSI Monitor',
-  description: 'Start your 7-day free trial of PSI Monitor. Full access. Then $24.99/month. Cancel any time.',
+  title: 'Start Free Trial — Meridian',
+  description: 'Start your 7-day free trial of Meridian. Full access. Then $24.99/month. Cancel any time.',
 };
 
 const { price, currency, trialDays } = products.pricing;
-const salesMail = `mailto:${products.purchase.salesEmail}?subject=${encodeURIComponent('PSI Monitor — free trial')}&body=${encodeURIComponent('I would like to start my 7-day free trial of PSI Monitor.\n')}`;
+const salesMail = `mailto:${products.purchase.salesEmail}?subject=${encodeURIComponent('Meridian — free trial')}&body=${encodeURIComponent('I would like to start my 7-day free trial of Meridian.\n')}`;
 ---
 
 <Layout metadata={metadata}>
   <HeroText
     tagline="Free trial"
     title="Start your 7-day free trial"
-    subtitle={`Full access to PSI Monitor. Then ${currency} $${price}/month — cancel any time.`}
+    subtitle={`Full access to Meridian. Then ${currency} $${price}/month — cancel any time.`}
   />
 
   <section class="max-w-xl mx-auto px-6 pb-20 text-center">

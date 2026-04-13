@@ -1,8 +1,8 @@
 {
-  "name": "PSI Monitor",
+  "name": "Meridian",
   "legalNameNote": "Marketing name for the PSI TradeMonitor NinjaTrader 8 add-on. In-product labels may differ.",
-  "tagline": "Real-time psychological stability for NinjaTrader 8",
-  "description": "PSI Monitor tracks seven behavioral dimensions and computes your Psychological Stability Index (PSI) during live and playback sessions — locally on your PC, with no cloud uploads.",
+  "tagline": "The first real-time psychological stability index — built for active traders",
+  "description": "Meridian is the first real-time psychological stability index for active traders. It tracks seven behavioral dimensions during your live NinjaTrader 8 session and distills them into a live PSI score — entirely on your PC, no cloud.",
   "version": "1.0.0",
   "platform": "NinjaTrader 8 (64-bit)",
   "category": "Trading psychology monitor",

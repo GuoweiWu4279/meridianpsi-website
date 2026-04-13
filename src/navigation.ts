@@ -58,7 +58,7 @@ export const headerData = {
       ],
     },
   ],
-  actions: [{ text: 'Buy — $24.99', href: getPermalink('/checkout'), variant: 'primary' }],
+  actions: [{ text: 'Start free trial', href: getPermalink('/checkout'), variant: 'primary' }],
 };
 
 export const footerData = {
@@ -99,7 +99,7 @@ export const footerData = {
   ],
   socialLinks: [{ ariaLabel: 'Website', icon: 'tabler:world', href: 'https://psimonitor.com' }],
   footNote: `
-    &copy; ${new Date().getFullYear()} PSI Monitor. All rights reserved. &nbsp;·&nbsp;
+    &copy; ${new Date().getFullYear()} Meridian. All rights reserved. &nbsp;·&nbsp;
     <span class="text-xs text-muted">Trading involves substantial risk of loss. Past performance is not indicative of future results.</span>
   `,
 };

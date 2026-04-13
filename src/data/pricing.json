@@ -3,7 +3,7 @@
   "subhead": "7-day free trial. Then $24.99/month. Cancel any time.",
   "singleTier": {
     "id": "standard",
-    "name": "PSI Monitor",
+    "name": "Meridian",
     "price": 24.99,
     "currency": "USD",
     "billingPeriod": "/month",
@@ -21,5 +21,5 @@
       "Email support"
     ]
   },
-  "footnote": "Subscription billed monthly at $24.99 USD after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. PSI Monitor does not provide trading signals or investment advice. Results may vary."
+  "footnote": "Subscription billed monthly at $24.99 USD after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }

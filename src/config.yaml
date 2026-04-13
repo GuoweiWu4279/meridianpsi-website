@@ -1,5 +1,5 @@
 site:
-  name: PSI Monitor
+  name: Meridian
   site: 'https://psimonitor.com'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: PSI Monitor
-    template: '%s — PSI Monitor'
-  description: "PSI Monitor measures your trading psychology stability in real time inside NinjaTrader 8 — seven behavioral dimensions, local-only data, no signals."
+    default: Meridian — Real-Time Psychological Stability Index for Traders
+    template: '%s — Meridian'
+  description: "Meridian is the first real-time psychological stability index for active traders — built for NinjaTrader 8. Track seven behavioral dimensions, entirely on your PC."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: PSI Monitor
+    site_name: Meridian
     images:
       - url: '~/assets/images/default.png'
         width: 1200

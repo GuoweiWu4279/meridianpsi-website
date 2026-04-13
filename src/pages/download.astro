@@ -6,9 +6,9 @@ import HeroText from '~/components/widgets/HeroText.astro';
 import products from '~/data/products.json';
 
 const metadata = {
-  title: 'Download PSI Monitor',
+  title: 'Download Meridian',
   description:
-    'Download PSI Monitor for NinjaTrader 8. Confirm the risk disclaimer before downloading. Introductory license $24.99.',
+    'Download Meridian for NinjaTrader 8. Confirm the risk disclaimer before downloading.',
 };
 
 const allEntries = await getCollection('changelog');
@@ -21,7 +21,7 @@ const req = products.systemRequirements;
 
 <Layout metadata={metadata}>
   <HeroText
-    title="Download PSI Monitor"
+    title="Download Meridian"
     subtitle={`Current build: v${latest?.data.version ?? '1.0.0'} · For licensed users and approved beta testers.`}
   />
 
@@ -51,7 +51,7 @@ const req = products.systemRequirements;
         <ol class="space-y-2 text-sm text-zinc-600 list-decimal list-inside leading-relaxed">
           <li>Purchase a license, then download the build package from the link below.</li>
           <li>Copy the add-on sources into your NinjaTrader 8 custom folder and compile (see vendor README).</li>
-          <li>Restart NinjaTrader 8 and launch <strong>PSI Monitor</strong> from the Control Center add-ons menu.</li>
+          <li>Restart NinjaTrader 8 and launch <strong>Meridian</strong> from the Control Center add-ons menu.</li>
           <li>Configure session window, risk limits, and dimension weights in Settings.</li>
         </ol>
         <p class="mt-4 text-xs text-zinc-500">
@@ -69,7 +69,7 @@ const req = products.systemRequirements;
         >
           Latest — v{latest?.data.version}
         </div>
-        <h2 class="text-2xl font-bold mb-2 text-zinc-900">PSI Monitor {latest?.data.version}</h2>
+        <h2 class="text-2xl font-bold mb-2 text-zinc-900">Meridian {latest?.data.version}</h2>
         <p class="text-zinc-600 mb-6 text-sm">
           Released {
             latest?.data.publishDate.toLocaleDateString('en-US', {
@@ -90,7 +90,7 @@ const req = products.systemRequirements;
             />
             <span class="text-sm text-zinc-600">
               I have read the <a href="/disclaimer" class="text-emerald-800 underline font-medium">risk disclaimer</a>.
-              I understand PSI Monitor is a behavioral monitor only, does not provide trading advice, and that futures and
+              I understand Meridian is a behavioral monitor only, does not provide trading advice, and that futures and
               forex trading involve substantial risk of loss.
             </span>
           </label>
@@ -112,7 +112,7 @@ const req = products.systemRequirements;
           Download v{latest?.data.version} (.zip)
         </a>
         <p class="text-xs text-zinc-500 mt-3">
-          Need a license? <a href="/checkout" class="text-emerald-800 font-medium underline">Buy for $24.99</a>
+          Need a license? <a href="/checkout" class="text-emerald-800 font-medium underline">Start free trial</a>
         </p>
       </div>
     </div>

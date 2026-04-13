@@ -10,7 +10,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'PSI Monitor — Real-time trading psychology stability for NinjaTrader 8',
+  title: 'Meridian — The First Real-Time Psychological Stability Index for Active Traders',
   ignoreTitleTemplate: true,
 };
 ---
@@ -34,8 +34,8 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      <strong>PSI Monitor</strong> is a real-time behavioral stability instrument for NinjaTrader 8.
-      It measures how your psychology is holding up — session by session, fill by fill —
+      <strong>Meridian</strong> is the first real-time psychological stability index for NinjaTrader 8.
+      It tracks seven behavioral dimensions during your live session and distills them into a live PSI score —
       so you know where you stand before the next trade.
     </Fragment>
   </Hero>
@@ -80,7 +80,7 @@ const metadata = {
         ))}
       </ul>
       <p class="text-lg font-semibold text-zinc-900 max-w-xl mx-auto">
-        PSI Monitor doesn't tell you what to trade.<br />
+        Meridian doesn't tell you what to trade.<br />
         It tells you <em>where you are</em> — so you can decide whether to continue.
       </p>
     </div>
@@ -90,7 +90,7 @@ const metadata = {
     id="features"
     tagline="What's inside"
     title="A live instrument, not a journal."
-    subtitle="Most psychology tools work after the fact. PSI Monitor works during — updating your stability index in real time, inside NinjaTrader 8."
+    subtitle="Most psychology tools work after the fact. Meridian works during — updating your stability index in real time, inside NinjaTrader 8."
     items={[
       {
         title: 'A live PSI — from 0 to 100, in real time',
@@ -125,7 +125,7 @@ const metadata = {
       {
         title: 'Test it in Market Replay first',
         description:
-          'Use PSI Monitor in NinjaTrader\'s Market Replay to understand your behavioral patterns before going live. Your real baseline is never affected.',
+          'Use Meridian in NinjaTrader\'s Market Replay to understand your behavioral patterns before going live. Your real baseline is never affected.',
         icon: 'tabler:player-play',
       },
     ]}
@@ -172,7 +172,7 @@ const metadata = {
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Does PSI Monitor place or block trades?',
+        title: 'Does Meridian place or block trades?',
         description:
           'No. It observes executions and positions to compute PSI. It does not send orders or prevent you from trading.',
       },
@@ -184,7 +184,7 @@ const metadata = {
       {
         title: 'Is my data private?',
         description:
-          'Yes. PSI Monitor has zero network calls. All data is stored locally on your machine in XML files — it never leaves your PC.',
+          'Yes. Meridian has zero network calls. All data is stored locally on your machine in XML files — it never leaves your PC.',
       },
       {
         title: 'How does the free trial work?',
@@ -211,11 +211,11 @@ const metadata = {
     <Fragment slot="title">Every session starts with the best intentions.</Fragment>
 
     <Fragment slot="subtitle">
-      PSI Monitor helps you keep them.
+      Meridian helps you keep them.
       <br />
       <span class="text-sm text-muted italic mt-2 block">
         $24.99/month after 7-day trial · cancel any time · NinjaTrader 8 required.
-        Trading involves substantial risk of loss. PSI Monitor does not guarantee trading results.
+        Trading involves substantial risk of loss. Meridian does not guarantee trading results.
       </span>
     </Fragment>
   </CallToAction>
