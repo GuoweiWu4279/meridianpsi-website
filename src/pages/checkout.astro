@@ -6,32 +6,35 @@ import Button from '~/components/ui/Button.astro';
 import products from '~/data/products.json';
 
 const metadata = {
-  title: 'Checkout — PSI Monitor',
-  description: 'Complete your PSI Monitor purchase. Secure checkout will be connected here.',
+  title: 'Start Free Trial — PSI Monitor',
+  description: 'Start your 7-day free trial of PSI Monitor. Full access. Then $24.99/month. Cancel any time.',
 };
 
-const { salePrice, msrp, currency } = products.pricing;
-const salesMail = `mailto:${products.purchase.salesEmail}?subject=${encodeURIComponent('PSI Monitor — purchase ($' + salePrice + ')')}&body=${encodeURIComponent('Please send payment instructions or confirm my order.\n')}`;
+const { price, currency, trialDays } = products.pricing;
+const salesMail = `mailto:${products.purchase.salesEmail}?subject=${encodeURIComponent('PSI Monitor — free trial')}&body=${encodeURIComponent('I would like to start my 7-day free trial of PSI Monitor.\n')}`;
 ---
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Purchase"
-    title="Complete your purchase"
-    subtitle={`PSI Monitor — introductory ${currency} $${salePrice} (MSRP $${msrp}).`}
+    tagline="Free trial"
+    title="Start your 7-day free trial"
+    subtitle={`Full access to PSI Monitor. Then ${currency} $${price}/month — cancel any time.`}
   />
 
   <section class="max-w-xl mx-auto px-6 pb-20 text-center">
     <div class="rounded-2xl border border-zinc-200 bg-white px-6 py-10 shadow-sm">
       <p class="text-zinc-700 text-sm leading-relaxed mb-6">
-        Online checkout (Stripe or similar) will be connected on this page. For now, you can email our sales inbox to
-        arrange payment and receive your license instructions.
+        Stripe checkout will be connected on this page. For now, email us to get started — we will send trial access
+        instructions within one business day.
       </p>
       <Button variant="primary" href={salesMail} class="w-full sm:w-auto px-8 py-3 rounded-full font-semibold">
-        Email to buy — ${salePrice}
+        Email to start free trial
       </Button>
-      <p class="mt-6 text-xs text-zinc-500">
-        Replace this flow with your payment link in <code class="text-zinc-700">src/data/products.json</code> when ready.
+      <p class="mt-4 text-xs text-zinc-500">
+        {trialDays}-day free trial · ${price}/month after · cancel any time
+      </p>
+      <p class="mt-6 text-xs text-zinc-400">
+        Payment gateway connection instructions live in <code class="text-zinc-500">src/data/products.json</code>.
       </p>
     </div>
   </section>

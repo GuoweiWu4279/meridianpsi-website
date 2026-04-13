@@ -15,10 +15,10 @@
   },
   "pricing": {
     "currency": "USD",
-    "msrp": 39.99,
-    "salePrice": 24.99,
-    "billing": "one-time license",
-    "msrpLabel": "MSRP"
+    "price": 24.99,
+    "billing": "monthly subscription",
+    "trialDays": 7,
+    "cancelAnytime": true
   },
   "purchase": {
     "checkoutPath": "/checkout",

@@ -1,15 +1,15 @@
 {
-  "headline": "One license. Full product.",
-  "subhead": "Introductory pricing for early supporters. MSRP shown for reference.",
+  "headline": "See yourself clearly. Every session.",
+  "subhead": "7-day free trial. Then $24.99/month. Cancel any time.",
   "singleTier": {
     "id": "standard",
-    "name": "PSI Monitor — Full License",
-    "msrp": 39.99,
+    "name": "PSI Monitor",
     "price": 24.99,
     "currency": "USD",
-    "billingPeriod": "one-time",
-    "badge": "Intro pricing",
-    "cta": "Buy for $24.99",
+    "billingPeriod": "/month",
+    "trialDays": 7,
+    "badge": "7-day free trial",
+    "cta": "Start free trial",
     "ctaHref": "/checkout",
     "features": [
       "Real-time PSI (0–100) with Stable / Caution / Critical zones",
@@ -17,8 +17,9 @@
       "Floating HUD overlay + multi-page hub (session, history, profile, settings)",
       "Adaptive baselines — learns your rhythm locally (Market Replay excluded from baseline writes)",
       "100% local storage — no network calls, no cloud account",
+      "Cancel any time — no lock-in",
       "Email support"
     ]
   },
-  "footnote": "MSRP is the manufacturer’s suggested retail price. Introductory price may change. Trading involves substantial risk of loss. PSI Monitor does not provide trading signals or investment advice. Results may vary."
+  "footnote": "Subscription billed monthly at $24.99 USD after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. PSI Monitor does not provide trading signals or investment advice. Results may vary."
 }

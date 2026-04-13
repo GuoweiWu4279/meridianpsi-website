@@ -10,7 +10,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'PSI Monitor — Trading psychology stability for NinjaTrader 8',
+  title: 'PSI Monitor — Real-time trading psychology stability for NinjaTrader 8',
   ignoreTitleTemplate: true,
 };
 ---
@@ -20,84 +20,112 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Buy — $24.99',
+        text: 'Start free trial — 7 days',
         href: '/checkout',
-        icon: 'tabler:shopping-cart',
+        icon: 'tabler:player-play',
       },
       { text: 'See pricing', href: '/pricing' },
     ]}
   >
     <Fragment slot="title">
-      See your stability
+      Every trader has a plan.
       <br />
-      <span class="text-accent dark:text-emerald-700">before the next click.</span>
+      <span class="text-accent dark:text-emerald-700">The market's job is to make you forget it.</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      <strong>PSI Monitor</strong> is a NinjaTrader 8 add-on that computes your <strong>Psychological Stability Index (PSI)</strong>
-      from seven behavioral dimensions — in real time, entirely on your PC.
-      <br /><br />
-      <span class="text-sm text-muted italic">
-        Monitoring only. No signals, no investment advice, no order blocking.
-        <a href="/disclaimer" class="underline">Risk disclaimer</a>.
-      </span>
+      <strong>PSI Monitor</strong> is a real-time behavioral stability instrument for NinjaTrader 8.
+      It measures how your psychology is holding up — session by session, fill by fill —
+      so you know where you stand before the next trade.
     </Fragment>
   </Hero>
 
   <Note
-    title="Built for traders who want clarity, not noise:"
-    description="Futures and forex traders on NinjaTrader 8 who care about discipline, session rhythm, and privacy."
+    title="Strategy is the easy part."
+    description="The traders who actually profit have learned to execute it without emotion — every single time."
   />
 
   <Stats
     stats={[
-      { title: 'Behavioral dimensions', amount: '7' },
-      { title: 'PSI zones', amount: '3' },
-      { title: 'Cloud uploads', amount: '0' },
-      { title: 'Intro license', amount: '$24.99' },
+      { title: 'Behavioral patterns tracked', amount: '7' },
+      { title: 'Cloud uploads — ever', amount: '0' },
+      { title: 'Free trial', amount: '7 days' },
+      { title: 'Per month after trial', amount: '$24.99' },
     ]}
   />
 
+  <!-- Problem recognition section -->
+  <section class="py-16 px-6 bg-zinc-50/60">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+        You know what you should have done.
+      </h2>
+      <p class="text-lg text-zinc-600 mb-12 max-w-2xl mx-auto">
+        Every trader walks away from a bad session knowing exactly where it went wrong.
+        The problem isn't knowledge — it's that in the middle of a live session, you can't see yourself clearly.
+      </p>
+      <ul class="text-left max-w-lg mx-auto space-y-4 mb-12">
+        {[
+          'Added size right after a loss',
+          'Moved the stop to "give it a little more room"',
+          'Took the next trade too fast — still feeling the last one',
+          'Held a loser longer than your plan ever allowed',
+          'Broke your session rule — just this once',
+          'Hit your daily limit and took one more anyway',
+        ].map((item) => (
+          <li class="flex items-start gap-3 text-base text-zinc-700">
+            <span class="mt-2 h-2 w-2 rounded-full bg-red-400 shrink-0"></span>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p class="text-lg font-semibold text-zinc-900 max-w-xl mx-auto">
+        PSI Monitor doesn't tell you what to trade.<br />
+        It tells you <em>where you are</em> — so you can decide whether to continue.
+      </p>
+    </div>
+  </section>
+
   <Features
     id="features"
-    tagline="Inside the product"
-    title="What PSI Monitor does"
-    subtitle="Every feature exists to make your emotional load visible — without sending your trades to the internet."
+    tagline="What's inside"
+    title="A live instrument, not a journal."
+    subtitle="Most psychology tools work after the fact. PSI Monitor works during — updating your stability index in real time, inside NinjaTrader 8."
     items={[
       {
-        title: 'Psychological Stability Index',
+        title: 'A live PSI — from 0 to 100, in real time',
         description:
-          'A 0–100 PSI with Stable, Caution, and Critical bands so you can spot rising behavioral pressure during the session.',
+          'A single score updated after every execution: Stable (≥88), Caution (72–87), or Critical (<72). Spot rising behavioral pressure before it compounds.',
         icon: 'tabler:gauge',
       },
       {
-        title: 'Seven weighted dimensions',
+        title: 'The seven patterns that quietly cost traders the most',
         description:
-          'Revenge-style re-entry, stop manipulation, size outliers, hold-time collapse, prolonged loss holds, rule compliance, and overtrading — each explained in-session.',
+          'Revenge entries, stop manipulation, size outliers, hold-time collapse, prolonged loss holds, session rule violations, and overtrading — each tracked independently.',
         icon: 'tabler:binary-tree',
       },
       {
-        title: 'HUD + full hub',
+        title: 'A live overlay that stays out of your way',
         description:
-          'A floating overlay while you trade, plus Session, History, Profile, and Settings views for deeper review.',
+          'A floating HUD shows PSI and all seven dimension bars while you trade. Open the full hub for session timelines, history, and a detailed behavioral breakdown.',
         icon: 'tabler:layout-dashboard',
       },
       {
-        title: 'Adaptive local baselines',
+        title: 'It learns what normal looks like for you',
         description:
-          'Learns your timing and size habits on-device. Market Replay sessions do not write to your live baseline.',
+          'Adaptive baselines calibrate to your own trading history using statistical modeling — not someone else\'s standard. Market Replay sessions train your awareness without affecting your live baseline.',
         icon: 'tabler:chart-dots',
       },
       {
-        title: 'Local-only data',
+        title: 'Your data stays on your machine — always',
         description:
-          'Configuration and history are stored in local files on your machine — built for traders who want control of their data.',
+          'No accounts, no cloud sync, no network calls. Configuration and session history are stored in local files only you can access.',
         icon: 'tabler:cloud-off',
       },
       {
-        title: 'Live & playback',
+        title: 'Test it in Market Replay first',
         description:
-          'Use the same tooling in live markets or Market Replay to rehearse routines without polluting production stats.',
+          'Use PSI Monitor in NinjaTrader\'s Market Replay to understand your behavioral patterns before going live. Your real baseline is never affected.',
         icon: 'tabler:player-play',
       },
     ]}
@@ -107,27 +135,27 @@ const metadata = {
     title="How it fits into your day"
     items={[
       {
-        title: 'Step 1: <span class="font-normal">Install in NinjaTrader 8</span>',
+        title: 'Step 1: <span class="font-normal">Install into NinjaTrader 8</span>',
         description:
-          'Deploy the add-on through your NinjaTrader 8 custom assembly workflow, then launch PSI Monitor from the Control Center.',
+          'Add the plugin to your NinjaTrader 8 installation — it lives inside NinjaTrader and starts the moment you connect an account. No separate app to manage.',
         icon: 'tabler:download',
       },
       {
-        title: 'Step 2: <span class="font-normal">Tune profile & weights</span>',
+        title: 'Step 2: <span class="font-normal">Configure your profile</span>',
         description:
-          'Set session windows, risk limits, and how much each behavioral dimension influences PSI — match your playbook.',
+          'Set your session window, risk limits, and how much each behavioral dimension influences your PSI — match it to your own playbook.',
         icon: 'tabler:adjustments',
       },
       {
         title: 'Step 3: <span class="font-normal">Trade with the HUD</span>',
         description:
-          'Watch PSI and dimension bars update after each fill. Use alerts as a prompt to pause — not as a signal.',
+          'Watch PSI and the seven dimension bars update after each fill. Use alerts as a prompt to pause and reassess — not as a trading signal.',
         icon: 'tabler:eye',
       },
       {
         title: 'Step 4: <span class="font-normal">Review the session</span>',
         description:
-          'Open the hub to study timelines, session stats, and how each dimension contributed — then iterate deliberately.',
+          'Open the hub after the session to study timelines, behavioral breakdowns, and how each dimension contributed. Iterate deliberately.',
         icon: 'tabler:report-analytics',
       },
     ]}
@@ -139,7 +167,7 @@ const metadata = {
 
   <FAQs
     title="Quick answers"
-    subtitle="Full FAQ lives on the FAQ page."
+    subtitle="Full FAQ on the FAQ page."
     tagline="FAQ"
     classes={{ container: 'max-w-6xl' }}
     items={[
@@ -151,17 +179,17 @@ const metadata = {
       {
         title: 'Will a higher PSI make me profitable?',
         description:
-          'Not necessarily. PSI describes behavioral pressure, not market outcomes. Results vary; trading involves substantial risk of loss.',
+          'PSI measures behavioral stability, not market outcomes. A stable mindset supports disciplined execution — but trading results depend on many factors. Results vary; trading involves substantial risk of loss.',
       },
       {
         title: 'Is my data private?',
         description:
-          'Yes. The add-on stores data locally in XML on your computer and does not upload your trades to our servers.',
+          'Yes. PSI Monitor has zero network calls. All data is stored locally on your machine in XML files — it never leaves your PC.',
       },
       {
-        title: 'Which NinjaTrader versions work?',
+        title: 'How does the free trial work?',
         description:
-          'NinjaTrader 8 (64-bit) is required — we recommend the latest stable build. NT7 is not supported; very old NT8 builds may work but are not guaranteed.',
+          'You get 7 days of full access. After the trial, the subscription is $24.99/month. Cancel any time — no lock-in.',
       },
     ]}
   />
@@ -170,22 +198,23 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Buy — $24.99',
+        text: 'Start free trial — 7 days',
         href: '/checkout',
-        icon: 'tabler:shopping-cart',
+        icon: 'tabler:player-play',
       },
       {
-        text: 'Download area',
-        href: '/download',
+        text: 'See pricing',
+        href: '/pricing',
       },
     ]}
   >
-    <Fragment slot="title">Bring calm data to a loud market</Fragment>
+    <Fragment slot="title">Every session starts with the best intentions.</Fragment>
 
     <Fragment slot="subtitle">
-      Introductory pricing · one-time license · built for NinjaTrader 8.
+      PSI Monitor helps you keep them.
       <br />
       <span class="text-sm text-muted italic mt-2 block">
+        $24.99/month after 7-day trial · cancel any time · NinjaTrader 8 required.
         Trading involves substantial risk of loss. PSI Monitor does not guarantee trading results.
       </span>
     </Fragment>
