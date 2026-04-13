@@ -37,6 +37,8 @@ const metadata = {
       <strong>Meridian</strong> is the first real-time psychological stability index for NinjaTrader 8.
       It tracks seven behavioral dimensions during your live session and distills them into a live PSI score —
       so you know where you stand before the next trade.
+      <br /><br />
+      <span class="text-zinc-500 font-normal">Most psychology tools analyze what happened. Meridian tells you what's happening — <em>right now</em>.</span>
     </Fragment>
   </Hero>
 
@@ -86,11 +88,36 @@ const metadata = {
     </div>
   </section>
 
+  <!-- Founder story -->
+  <section class="py-16 px-6 bg-white border-t border-zinc-100">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">Why Meridian exists</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
+        I spent years looking for a better strategy.<br />I had one the whole time.
+      </h2>
+      <div class="space-y-4 text-zinc-600 leading-relaxed text-base">
+        <p>
+          I've been a full-time trader for over five years — starting in equities, moving to prop firm futures, and now trading independently. In that time, I've blown up more accounts than I care to admit.
+        </p>
+        <p>
+          It was never the strategy. I knew exactly what to do. The problem was that in the middle of a losing streak — three red trades in a row, already past my session limit, telling myself <em>"just one more"</em> — I couldn't see what was happening to me. I was tilted. My emotions had taken over. And no strategy survives that.
+        </p>
+        <p>
+          After years of that same pattern — the self-doubt, the frustration, the questions about why I couldn't just <em>stick to the plan</em> — I started building what I wished had existed: a tool that tells you, in real time, where you stand psychologically. Not a journal you fill in after the damage is done. Something that works <em>during</em> the session.
+        </p>
+        <p class="font-semibold text-zinc-900">
+          Since building Meridian, I've passed over ten prop firm evaluations, collected consistent payouts, and now trade independently full-time. Not because I found a better strategy. Because I finally stopped being my own worst enemy.
+        </p>
+      </div>
+      <p class="mt-6 text-sm text-zinc-400 font-medium">— Gary Caffrey, Founder of Meridian</p>
+    </div>
+  </section>
+
   <Features
     id="features"
     tagline="What's inside"
     title="A live instrument, not a journal."
-    subtitle="Most psychology tools work after the fact. Meridian works during — updating your stability index in real time, inside NinjaTrader 8."
+    subtitle="Seven independent trackers, one live score — running natively inside NinjaTrader 8 while you trade."
     items={[
       {
         title: 'A live PSI — from 0 to 100, in real time',
@@ -193,6 +220,111 @@ const metadata = {
       },
     ]}
   />
+
+  <!-- Testimonials carousel -->
+  <section class="py-16 bg-zinc-50 border-t border-zinc-100 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-center text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-2">What traders say</p>
+      <h2 class="text-center text-2xl md:text-3xl font-bold text-zinc-900 mb-10">From traders who've been there</h2>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+      <button
+        id="t-prev"
+        class="hidden md:flex absolute -left-2 top-1/2 -translate-y-8 z-10 w-10 h-10 rounded-full bg-white border border-zinc-200 shadow-md items-center justify-center text-zinc-400 hover:text-zinc-800 hover:shadow-lg transition-all"
+        aria-label="Previous"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <div
+        id="t-track"
+        class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {[
+          {
+            quote: "been using it about 3 months. didn't realize how bad my overtrading was until i actually saw the numbers. first week of data was kind of humbling",
+            name: "Jason K.",
+            role: "Futures day trader",
+          },
+          {
+            quote: "passed apex eval on my 3rd attempt. first two i blew up on days i genuinely should've just logged off. not saying this is the reason but it helped me see the pattern",
+            name: "Mike",
+            role: "Prop firm trader",
+          },
+          {
+            quote: "was convinced my problem was my entries. turns out i was just adding to losers and completely ignoring my own plan. not fun to see, but useful",
+            name: "Anonymous",
+            role: "",
+          },
+          {
+            quote: "the privacy thing mattered to me. i don't want my trade data sitting on someone's server. knowing it stays local was honestly what made me try it in the first place",
+            name: "David Chen",
+            role: "Independent trader",
+          },
+          {
+            quote: "it doesn't fix anything for you. you still have to actually stop when it goes red. that part is still entirely on you. but at least now i can see it clearly",
+            name: "T. Rodriguez",
+            role: "NQ futures",
+          },
+          {
+            quote: "watched my PSI drop into caution, ignored it, then blew my daily limit 20 minutes later. doing better now. slowly",
+            name: "Sara",
+            role: "ES trader",
+          },
+          {
+            quote: "good tool. wish i had this 2 years ago when i was on my 4th funded account restart. the revenge entry tracker alone is worth the sub",
+            name: "Alex Nowak",
+            role: "Prop trader",
+          },
+          {
+            quote: "been trading NQ for 4 years. thought i had a pretty good read on myself. week one showed me i didn't",
+            name: "James O.",
+            role: "Day trader",
+          },
+          {
+            quote: "tried a few psychology apps before. most are journals you fill out after the session. this one runs while you're in the trade. that's the difference",
+            name: "Anonymous",
+            role: "",
+          },
+          {
+            quote: "took a bit to get the baseline calibrated properly but once it clicked it started making sense. alerts don't distract you mid-trade which i was worried about",
+            name: "Priya S.",
+            role: "Futures trader",
+          },
+        ].map((t) => (
+          <div class="snap-start shrink-0 w-[85vw] sm:w-[360px] md:w-[calc(50%-10px)] bg-white rounded-2xl border border-zinc-200 p-6 shadow-sm flex flex-col justify-between">
+            <p class="text-zinc-700 leading-relaxed text-sm mb-5">"{t.quote}"</p>
+            <div>
+              <p class="font-semibold text-zinc-900 text-sm">{t.name}</p>
+              {t.role && <p class="text-xs text-zinc-500">{t.role}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        id="t-next"
+        class="hidden md:flex absolute -right-2 top-1/2 -translate-y-8 z-10 w-10 h-10 rounded-full bg-white border border-zinc-200 shadow-md items-center justify-center text-zinc-400 hover:text-zinc-800 hover:shadow-lg transition-all"
+        aria-label="Next"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <p class="text-center text-xs text-zinc-400 mt-6 italic px-6">Results may vary. Trading involves substantial risk of loss.</p>
+  </section>
+
+  <script>
+    const track = document.getElementById('t-track') as HTMLElement | null;
+    const scrollAmount = () => ((track?.firstElementChild as HTMLElement)?.offsetWidth ?? 360) + 16;
+    document.getElementById('t-prev')?.addEventListener('click', () => track?.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+    document.getElementById('t-next')?.addEventListener('click', () => track?.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+  </script>
 
   <CallToAction
     actions={[

@@ -58,7 +58,7 @@ export const headerData = {
       ],
     },
   ],
-  actions: [{ text: 'Start free trial', href: 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-fefa-4a34-8cad-d2e68f564d25', variant: 'primary' }],
+  actions: [{ text: 'Start free trial — 7 days', href: 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-fefa-4a34-8cad-d2e68f564d25', variant: 'primary' }],
 };
 
 export const footerData = {
@@ -97,7 +97,7 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
     { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
   ],
-  socialLinks: [{ ariaLabel: 'Website', icon: 'tabler:world', href: 'https://www.meridianpsi.com' }],
+  socialLinks: [],
   footNote: `
     &copy; ${new Date().getFullYear()} Meridian. All rights reserved. &nbsp;·&nbsp;
     <span class="text-xs text-muted">Trading involves substantial risk of loss. Past performance is not indicative of future results.</span>
