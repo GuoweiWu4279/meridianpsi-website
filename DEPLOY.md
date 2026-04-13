@@ -4,10 +4,10 @@
 
 ### Step 1: Push to GitHub
 
-1. Create a new repository on GitHub (e.g., `psimonitor-website`)
+1. Create a new repository on GitHub (e.g., `meridian-website`)
 2. Push this project:
    ```bash
-   git remote set-url origin https://github.com/YOUR_USERNAME/psimonitor-website.git
+   git remote set-url origin https://github.com/YOUR_USERNAME/meridian-website.git
    git add .
    git commit -m "Initial site setup"
    git push -u origin main
@@ -26,7 +26,7 @@ Your site is live in ~30 seconds at a `*.vercel.app` URL.
 ### Step 3: Custom Domain (Optional)
 
 1. In Vercel project → **Settings → Domains**
-2. Add your domain (e.g., `psimonitor.com`)
+2. Add your domain (e.g., `meridianpsi.com`)
 3. Follow the DNS instructions (add CNAME or A records)
 
 ---

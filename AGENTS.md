@@ -72,7 +72,7 @@ title: "vX.Y.Z - Brief description"
 version: "X.Y.Z"
 publishDate: 2026-01-01
 type: patch   # must be: major | minor | patch | hotfix
-downloadUrl: "/downloads/psimonitor-vX.Y.Z.zip"
+downloadUrl: "/downloads/meridian-vX.Y.Z.zip"
 isLatest: false   # set true only for the newest release, set previous latest to false
 ---
 

@@ -1,6 +1,6 @@
 site:
   name: Meridian
-  site: 'https://psimonitor.com'
+  site: 'https://meridianpsi.com'
   base: '/'
   trailingSlash: false
 
@@ -23,8 +23,8 @@ metadata:
         height: 628
     type: website
   twitter:
-    handle: '@psimonitor'
-    site: '@psimonitor'
+    handle: null
+    site: null
     cardType: summary_large_image
 
 i18n:

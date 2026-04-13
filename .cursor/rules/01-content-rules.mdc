@@ -16,7 +16,7 @@ title: "vX.Y.Z - Brief one-line description"
 version: "X.Y.Z"              # Semantic version string
 publishDate: YYYY-MM-DD       # ISO date (no time)
 type: patch                   # ONLY: major | minor | patch | hotfix
-downloadUrl: "/downloads/psimonitor-vX.Y.Z.zip"
+downloadUrl: "/downloads/meridian-vX.Y.Z.zip"
 isLatest: false               # Only ONE file may have true at any time
 ---
 ```

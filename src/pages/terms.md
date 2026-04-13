@@ -62,4 +62,4 @@ These Terms are governed by the laws of [Jurisdiction TBD — consult legal coun
 
 ## 13. Contact
 
-For questions about these Terms, email: **support@psimonitor.com**
+For questions about these Terms, email: **contactmeridianpsi@gmail.com**

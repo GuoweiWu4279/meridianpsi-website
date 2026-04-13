@@ -56,7 +56,7 @@ Depending on your jurisdiction (GDPR, CCPA, etc.), you may have the right to:
 - Request a copy of any data associated with your account
 - Opt out of communications
 
-To exercise these rights, email: **support@psimonitor.com**
+To exercise these rights, email: **contactmeridianpsi@gmail.com**
 
 ## 7. Children's Privacy
 
@@ -68,4 +68,4 @@ We may update this Privacy Policy. We will notify users of significant changes v
 
 ## 9. Contact
 
-Privacy questions: **support@psimonitor.com**
+Privacy questions: **contactmeridianpsi@gmail.com**

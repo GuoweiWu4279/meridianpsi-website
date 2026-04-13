@@ -77,7 +77,7 @@ export const footerData = {
       title: 'Support',
       links: [
         { text: 'FAQ', href: getPermalink('/faq') },
-        { text: 'Contact support', href: 'mailto:support@psimonitor.com' },
+        { text: 'Contact support', href: 'mailto:contactmeridianpsi@gmail.com' },
         { text: 'System requirements', href: getPermalink('/download#requirements') },
         { text: 'Installation', href: getPermalink('/download#install') },
       ],
@@ -97,7 +97,7 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
     { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
   ],
-  socialLinks: [{ ariaLabel: 'Website', icon: 'tabler:world', href: 'https://psimonitor.com' }],
+  socialLinks: [{ ariaLabel: 'Website', icon: 'tabler:world', href: 'https://meridianpsi.com' }],
   footNote: `
     &copy; ${new Date().getFullYear()} Meridian. All rights reserved. &nbsp;·&nbsp;
     <span class="text-xs text-muted">Trading involves substantial risk of loss. Past performance is not indicative of future results.</span>
