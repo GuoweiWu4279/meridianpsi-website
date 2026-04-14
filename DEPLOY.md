@@ -72,6 +72,13 @@ When you release a new version, just tell Cursor AI:
 The AI will create `src/data/changelog/v1.1.0.md` with the correct schema.
 Then push, and Vercel auto-deploys.
 
+### Changelog “Download” button (avoid 404)
+
+Each changelog entry can set `downloadUrl` in its frontmatter. That URL is used as-is on the site.
+
+- **Before you have a public zip:** use `/download` so the button goes to the download page (trial, install, requirements) instead of a missing file.
+- **When you ship a build:** add the file under `public/downloads/` (e.g. `public/downloads/meridian-v1.0.0.zip`) and set `downloadUrl` to `/downloads/meridian-v1.0.0.zip`. Anything in `public/` is served from the domain root after deploy.
+
 ---
 
 ## URL Structure
