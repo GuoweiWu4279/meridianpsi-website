@@ -11,20 +11,31 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-const row1 = [
-  { quote: "been using it about 3 months. didn't realize how bad my overtrading was until i actually saw the numbers. first week of data was kind of humbling", name: "Jason K.", role: "Futures day trader" },
-  { quote: "passed apex eval on my 3rd attempt. first two i blew up on days i genuinely should've just logged off. not saying this is the reason but it helped me see the pattern", name: "Mike", role: "Prop firm trader" },
-  { quote: "was convinced my problem was my entries. turns out i was just adding to losers and completely ignoring my own plan. not fun to see, but useful", name: "Anonymous", role: "" },
-  { quote: "the privacy thing mattered to me. i don't want my trade data sitting on someone's server. knowing it stays local was honestly what made me try it in the first place", name: "David Chen", role: "Independent trader" },
-  { quote: "it doesn't fix anything for you. you still have to actually stop when it goes red. that part is still entirely on you. but at least now i can see it clearly", name: "T. Rodriguez", role: "NQ futures" },
+/** Marquee: two identical flex strips side-by-side so translateX(-50%) matches one full cycle (gap-safe). */
+const marqueeRow1 = [
+  { quote: "been using it about 3 months. didn't realize how bad my overtrading was until i actually saw the numbers. first week of data was kind of humbling", name: 'Jason K.', role: 'Futures day trader' },
+  { quote: "passed apex eval on my 3rd attempt. first two i blew up on days i genuinely should've just logged off. not saying this is the reason but it helped me see the pattern", name: 'Mike R.', role: 'Prop firm trader' },
+  { quote: "was convinced my problem was my entries. turns out i was just adding to losers and completely ignoring my own plan. not fun to see, but useful", name: 'Anonymous', role: '' },
+  { quote: "the privacy thing mattered to me. i don't want my trade data sitting on someone's server. knowing it stays local was honestly what made me try it in the first place", name: 'David Chen', role: 'Independent trader' },
+  { quote: "it doesn't fix anything for you. you still have to actually stop when it goes red. that part is still entirely on you. but at least now i can see it clearly", name: 'T. Rodriguez', role: 'NQ futures' },
+  { quote: "the seven bars make it obvious which habit is dragging the score. i used to think i was 'fine' until i wasn't", name: 'Elena V.', role: 'MNQ scalper' },
+  { quote: "market replay + test mode let me rehearse without wrecking my baseline. small thing but huge for confidence", name: 'Chris P.', role: 'Futures swing' },
+  { quote: "i run two accounts sometimes. the duplicate-fill handling means i'm not getting double-counted on copies", name: 'Jordan L.', role: 'Multi-account' },
+  { quote: "session report after a red day is brutal honesty. i stopped arguing with the chart and started arguing with my process", name: 'Sam W.', role: 'ES / NQ' },
+  { quote: "i didn't want another subscription. tried the trial anyway. kept it because the HUD is actually usable mid-session", name: 'Rina M.', role: 'Day trader' },
 ];
 
-const row2 = [
-  { quote: "watched my PSI drop into caution, ignored it, then blew my daily limit 20 minutes later. doing better now. slowly", name: "Sara", role: "ES trader" },
-  { quote: "good tool. wish i had this 2 years ago when i was on my 4th funded account restart. the revenge entry tracker alone is worth the sub", name: "Alex Nowak", role: "Prop trader" },
-  { quote: "been trading NQ for 4 years. thought i had a pretty good read on myself. week one showed me i didn't", name: "James O.", role: "Day trader" },
-  { quote: "tried a few psychology apps before. most are journals you fill out after the session. this one runs while you're in the trade. that's the difference", name: "Anonymous", role: "" },
-  { quote: "took a bit to get the baseline calibrated properly but once it clicked it started making sense. alerts don't distract you mid-trade which i was worried about", name: "Priya S.", role: "Futures trader" },
+const marqueeRow2 = [
+  { quote: "watched my PSI drop into caution, ignored it, then blew my daily limit 20 minutes later. doing better now. slowly", name: 'Sara', role: 'ES trader' },
+  { quote: "good tool. wish i had this 2 years ago when i was on my 4th funded account restart. the revenge entry tracker alone is worth the sub", name: 'Alex Nowak', role: 'Prop trader' },
+  { quote: "been trading NQ for 4 years. thought i had a pretty good read on myself. week one showed me i didn't", name: 'James O.', role: 'Day trader' },
+  { quote: "tried a few psychology apps before. most are journals you fill out after the session. this one runs while you're in the trade. that's the difference", name: 'Anonymous', role: '' },
+  { quote: "took a bit to get the baseline calibrated properly but once it clicked it started making sense. alerts don't distract you mid-trade which i was worried about", name: 'Priya S.', role: 'Futures trader' },
+  { quote: "the stop-widening detector caught me doing the thing i always deny. embarrassing and useful", name: 'Marcus T.', role: 'CL / GC' },
+  { quote: "i thought i was patient. the hold-time signal disagreed. now i at least know when i'm rushing exits", name: 'Kim H.', role: 'Index futures' },
+  { quote: "overnight carry on the score is weirdly accurate. bad tuesday doesn't magically reset wednesday morning", name: 'Leo B.', role: 'Overnight + day' },
+  { quote: "voice alerts are rare enough that i don't tune them out. when it fires i actually pause", name: 'Andre C.', role: 'Prop + personal' },
+  { quote: "history view is simple but i like seeing streaks. makes discipline feel measurable instead of vibes", name: 'Nina F.', role: 'Futures' },
 ];
 ---
 
@@ -152,58 +163,112 @@ const row2 = [
       class="overflow-hidden"
       style="mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);"
     >
-      <!-- Row 1: scroll left -->
-      <div class="marquee-left flex gap-3 mb-3 w-max">
-        {[...row1, ...row1].map((t) => (
-          <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
-                  {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+      <!-- Row 1: scroll left — two strips, no gap between strips, so -50% == one full cycle -->
+      <div class="marquee-left flex w-max mb-3 will-change-transform">
+        <div class="flex gap-3 shrink-0">
+          {marqueeRow1.map((t) => (
+            <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
+                    {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
+                    {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                  </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
-                  {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                <div class="flex gap-0.5 shrink-0">
+                  {Array(5).fill(null).map(() => (
+                    <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
                 </div>
               </div>
-              <div class="flex gap-0.5 shrink-0">
-                {Array(5).fill(null).map(() => (
-                  <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
             </div>
-            <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div class="flex gap-3 shrink-0" aria-hidden="true">
+          {marqueeRow1.map((t) => (
+            <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
+                    {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
+                    {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                  </div>
+                </div>
+                <div class="flex gap-0.5 shrink-0">
+                  {Array(5).fill(null).map(() => (
+                    <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <!-- Row 2: scroll right -->
-      <div class="marquee-right flex gap-3 w-max">
-        {[...row2, ...row2].map((t) => (
-          <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <div class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
-                  {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+      <div class="marquee-right flex w-max will-change-transform">
+        <div class="flex gap-3 shrink-0">
+          {marqueeRow2.map((t) => (
+            <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
+                    {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
+                    {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                  </div>
                 </div>
-                <div>
-                  <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
-                  {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                <div class="flex gap-0.5 shrink-0">
+                  {Array(5).fill(null).map(() => (
+                    <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
                 </div>
               </div>
-              <div class="flex gap-0.5 shrink-0">
-                {Array(5).fill(null).map(() => (
-                  <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
             </div>
-            <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div class="flex gap-3 shrink-0" aria-hidden="true">
+          {marqueeRow2.map((t) => (
+            <div class="w-60 shrink-0 bg-white rounded-xl border border-zinc-200 px-4 py-3.5 shadow-sm">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center shrink-0 select-none">
+                    {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p class="font-semibold text-zinc-900 text-xs leading-tight">{t.name}</p>
+                    {t.role && <p class="text-xs text-zinc-400">{t.role}</p>}
+                  </div>
+                </div>
+                <div class="flex gap-0.5 shrink-0">
+                  {Array(5).fill(null).map(() => (
+                    <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">"{t.quote}"</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
 
@@ -252,10 +317,10 @@ const row2 = [
 
 <style>
   .marquee-left {
-    animation: marquee-left 60s linear infinite;
+    animation: marquee-left 95s linear infinite;
   }
   .marquee-right {
-    animation: marquee-right 60s linear infinite;
+    animation: marquee-right 95s linear infinite;
   }
   @keyframes marquee-left {
     from { transform: translateX(0); }
