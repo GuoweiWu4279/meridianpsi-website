@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
@@ -136,7 +136,7 @@ const marqueeRow2 = [
     </Fragment>
 
     <Fragment slot="subtitle">
-      <strong>Meridian</strong> is the first real-time psychological stability index for active traders. It tracks seven behavioral dimensions, builds dynamic statistical baselines from your own session history and performance, and combines behavioral-finance and cognitive-science models with rigorous on-device mathematics to compute your PSI score — entirely on your PC, with no cloud uploads.
+      <strong>Meridian</strong> is the first real-time psychological stability monitor for active traders. It tracks seven behavioral patterns, learns your personal baseline, and updates your PSI score in less than 100ms during the session.
       <br /><br />
       <span class="text-zinc-500 font-normal">Most psychology tools analyze what happened. Meridian tells you what's happening — <em>right now</em>.</span>
     </Fragment>
@@ -184,10 +184,10 @@ const marqueeRow2 = [
   </section>
 
   <!-- ── Section 1: Live score — dark showcase ─────────────────────────────── -->
-  <section class="relative py-24 px-6 bg-zinc-950 overflow-hidden border-t border-zinc-900">
-    <!-- Subtle emerald radial glow behind the screenshot -->
+  <section class="relative py-24 px-6 bg-black overflow-hidden border-t border-zinc-900">
+    <!-- Subtle neutral glow behind the screenshot -->
     <div class="pointer-events-none absolute inset-0 flex items-center justify-start pl-8 md:pl-20">
-      <div class="w-[480px] h-[480px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+      <div class="w-[480px] h-[480px] rounded-full bg-white/5 blur-3xl"></div>
     </div>
 
     <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -211,23 +211,23 @@ const marqueeRow2 = [
       </div>
       <!-- Text (white on dark) -->
       <div class="order-2 md:order-2">
-        <p class="text-xs font-semibold tracking-widest text-emerald-400 uppercase mb-3">Live session view</p>
+        <p class="text-xs font-semibold tracking-widest text-zinc-400 uppercase mb-3">Live session view</p>
         <h2 class="text-3xl md:text-4xl font-bold text-white leading-snug mb-5">
-          A score that tells you exactly where you stand — before the next trade.
+          A live view of your trading stability.
         </h2>
         <p class="text-zinc-400 leading-relaxed text-base mb-6">
-          The circular gauge shows your PSI from 0 to 100, updated in under 100ms after every fill. The right panel shows seven behavioral signal bars — each one a separate dimension of pressure. You can see which habit is driving the score down, not just that it dropped.
+          Your PSI updates in real time during the session, with clear signals showing what is driving the score.
         </p>
         <ul class="space-y-3 text-sm text-zinc-300">
-          {['0–100 composite score, updated after every fill', 'Seven visible signal bars — each maps to a real behavioral pattern', 'Session stats: trades, win rate, alerts, duration', 'PSI timeline shows how pressure evolved across the session'].map(item => (
+          {['Updates during the session, not just after fills', 'Seven visible signal bars show what is driving the score', 'Session stats: trades, win rate, alerts, duration', 'PSI timeline shows how pressure evolved across the session'].map(item => (
             <li class="flex items-start gap-2.5">
-              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-zinc-500 shrink-0"></span>
               {item}
             </li>
           ))}
         </ul>
         <div class="mt-8">
-          <a href="/features" class="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">
+          <a href="/features" class="inline-flex items-center gap-1.5 text-sm font-medium text-white/75 hover:text-white transition-colors">
             See full feature breakdown →
           </a>
         </div>
