@@ -10,7 +10,7 @@ export const headerData = {
       links: [
         {
           text: 'Features',
-          href: getPermalink('/#features'),
+          href: getPermalink('/features'),
         },
         {
           text: 'Pricing',
@@ -73,7 +73,7 @@ export const footerData = {
     {
       title: 'Meridian',
       links: [
-        { text: 'Features', href: getPermalink('/#features') },
+        { text: 'Features', href: getPermalink('/features') },
         { text: 'Pricing', href: getPermalink('/pricing') },
         { text: 'Download', href: getPermalink('/download') },
         { text: 'Changelog', href: getPermalink('/changelog') },

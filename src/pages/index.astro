@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Features from '~/components/widgets/Features.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
@@ -137,9 +136,7 @@ const marqueeRow2 = [
     </Fragment>
 
     <Fragment slot="subtitle">
-      <strong>Meridian</strong> is the first real-time psychological stability index for active traders. It tracks seven behavioral dimensions, builds and updates dynamic statistical baselines from your own session history and performance, and combines behavioral-finance and cognitive-science models with rigorous on-device mathematics to compute your PSI score — entirely on your PC, with no cloud uploads.
-      <br /><br />
-      It tracks seven behavioral dimensions during your live session. Each dimension is scored on-device using statistical modeling — personalized baselines, asymmetric EWMA-style pressure dynamics, and patterns grounded in behavioral finance and trading psychology (informed by years of live futures experience) — then combined into one PSI score so you can see rising behavioral pressure before the next trade.
+      <strong>Meridian</strong> is the first real-time psychological stability index for active traders. It tracks seven behavioral dimensions, builds dynamic statistical baselines from your own session history and performance, and combines behavioral-finance and cognitive-science models with rigorous on-device mathematics to compute your PSI score — entirely on your PC, with no cloud uploads.
       <br /><br />
       <span class="text-zinc-500 font-normal">Most psychology tools analyze what happened. Meridian tells you what's happening — <em>right now</em>.</span>
     </Fragment>
@@ -186,50 +183,181 @@ const marqueeRow2 = [
     </div>
   </section>
 
-  <Features
-    id="features"
-    tagline="How it works"
-    title="Not a journal. Not a mood tracker. A precision instrument."
-    subtitle="Meridian applies a multi-dimensional behavioral model — drawing from trading psychology, cognitive science, and behavioral finance — to produce a single, mathematically rigorous score in real time."
-    items={[
-      {
-        title: 'A composite behavioral index — updated in under 100ms',
-        description:
-          'After every fill, Meridian recalculates PSI across all seven dimensions simultaneously — no artificial delay. The score reflects behavioral pressure inferred from your session activity (executions, holds, and rule compliance), so you get feedback before the next decision.',
-        icon: 'tabler:gauge',
-      },
-      {
-        title: 'Seven dimensions drawn from behavioral and cognitive research',
-        description:
-          'Revenge Entry · Stop Manipulation · Size Spike · Rushed Exit · Position Overstay · Rule Violations · Overtrading Pace — each dimension targets a distinct cognitive failure mode documented in trading psychology and behavioral finance literature. They run independently and compound into a single score.',
-        icon: 'tabler:brain',
-      },
-      {
-        title: 'Personalized statistical baseline — not a generic threshold',
-        description:
-          'Meridian builds a statistical model of your specific trading behavior using Welford online estimation — tracking your historical hold times, position sizes, and entry pace. The score is calibrated against your own history, not an industry average. It converges meaningfully around 30 sessions.',
-        icon: 'tabler:chart-dots',
-      },
-      {
-        title: 'EWMA-weighted scoring with asymmetric pressure dynamics',
-        description:
-          'Behavioral pressure accumulates fast and recovers slowly — mirroring how cognitive load actually works under stress. Each dimension uses exponential weighted decay, so a single bad decision doesn\'t define you, but a pattern absolutely does.',
-        icon: 'tabler:math-function',
-      },
-      {
-        title: 'Overnight carry: psychological debt doesn\'t reset overnight',
-        description:
-          'Unresolved behavioral pressure carries forward between sessions with a time-decay model. A bad Tuesday doesn\'t vanish from your score Wednesday morning. Markets rest — stress responses don\'t.',
-        icon: 'tabler:moon',
-      },
-      {
-        title: 'Completely local. Zero network calls. Ever.',
-        description:
-          'No accounts, no cloud sync, no telemetry. Your fills, session history, and behavioral baseline never leave your machine. Meridian runs entirely inside NinjaTrader 8 — a native add-on, not a connected service.',
-        icon: 'tabler:cloud-off',
-      },
-    ]}
-  />
+  <!-- ── Section 1: Live score (screenshot LEFT → text RIGHT) ─────────────── -->
+  <section class="py-20 px-6 bg-white border-t border-zinc-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <!-- Screenshot -->
+      <div class="order-1 md:order-1">
+        <div class="rounded-2xl overflow-hidden shadow-2xl shadow-zinc-900/20 border border-zinc-200">
+          <img
+            src="/screenshots/psi-critical.png"
+            alt="Meridian PSI Monitor showing a Critical score of 12 with behavioral signal bars"
+            class="w-full h-auto block"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <!-- Text -->
+      <div class="order-2 md:order-2">
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Live session view</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
+          A score that tells you exactly where you stand — before the next trade.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-base mb-6">
+          The circular gauge shows your PSI from 0 to 100, updated in under 100ms after every fill. The right panel shows seven behavioral signal bars — each one a separate dimension of pressure. You can see which habit is driving the score down, not just that it dropped.
+        </p>
+        <ul class="space-y-3 text-sm text-zinc-700">
+          {['0–100 composite score, updated after every fill', 'Seven visible signal bars — each maps to a real behavioral pattern', 'Session stats: trades, win rate, alerts, duration', 'PSI timeline shows how pressure evolved across the session'].map(item => (
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/features" class="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-900 transition-colors">
+            See full feature breakdown →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 2: Seven dimensions (text LEFT → placeholder RIGHT) ────────── -->
+  <section class="py-20 px-6 bg-zinc-50/60 border-t border-zinc-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <!-- Text -->
+      <div class="order-2 md:order-1">
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Behavioral signals</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
+          Seven patterns. Each one specific to a known failure mode.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-base mb-6">
+          Every signal tracks a distinct behavioral pattern documented in behavioral-finance research — from loss-aversion-driven revenge entries to disposition-effect stop widening. They run independently and combine into a single score.
+        </p>
+        <ul class="space-y-2 text-sm text-zinc-700">
+          {[
+            ['Revenge Entry', 'Re-entry after loss with elevated size'],
+            ['Stop Manipulation', 'Widening stops in the adverse direction'],
+            ['Size Spike', 'Position exceeds your declared rule'],
+            ['Rushed Exit', 'Hold-time collapse vs your own baseline'],
+            ['Position Overstay', 'Holding a loser past your 90th-pct time'],
+            ['Rule Violations', 'Trading outside your declared session rules'],
+            ['Overtrading Pace', 'Entry frequency accelerating vs your history'],
+          ].map(([name, desc]) => (
+            <li class="flex items-start gap-2.5">
+              <span class="mt-0.5 text-emerald-600 font-semibold text-xs w-36 shrink-0">{name}</span>
+              <span class="text-zinc-500">{desc}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/features#seven-dimensions" class="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-900 transition-colors">
+            Read the technical detail →
+          </a>
+        </div>
+      </div>
+      <!-- Placeholder -->
+      <div class="order-1 md:order-2">
+        <div class="rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-100/50 flex flex-col items-center justify-center py-24 px-8 text-center min-h-64">
+          <div class="w-12 h-12 rounded-full bg-zinc-200 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
+          <p class="text-xs text-zinc-400 mt-1">Seven-bar behavioral signal panel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 3: Personalized baselines (placeholder LEFT → text RIGHT) ──── -->
+  <section class="py-20 px-6 bg-white border-t border-zinc-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <!-- Placeholder -->
+      <div class="order-1 md:order-1">
+        <div class="rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-100/50 flex flex-col items-center justify-center py-24 px-8 text-center min-h-64">
+          <div class="w-12 h-12 rounded-full bg-zinc-200 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
+          <p class="text-xs text-zinc-400 mt-1">365-day history and session report view</p>
+        </div>
+      </div>
+      <!-- Text -->
+      <div class="order-2 md:order-2">
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Personalized baselines</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
+          Calibrated to your history. Not a global average.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-base mb-6">
+          Meridian builds a statistical model of your own trading — hold times, position sizes, entry pace — using Welford online estimation. The PSI score measures deviation from <em>your</em> baseline, not an industry threshold. It converges meaningfully around 30 sessions.
+        </p>
+        <ul class="space-y-3 text-sm text-zinc-700">
+          {[
+            'Online statistics — updates after every session, no raw history stored',
+            'Z-score gating against your personal standard deviation',
+            '365-day rolling history with automatic pruning',
+            'Session report with behavioral breakdown after every session',
+          ].map(item => (
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section 4: Overnight carry + local privacy (text LEFT → placeholder RIGHT) -->
+  <section class="py-20 px-6 bg-zinc-50/60 border-t border-zinc-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <!-- Text -->
+      <div class="order-2 md:order-1">
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Privacy and continuity</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
+          Psychological debt carries forward. Your data never leaves your machine.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-base mb-6">
+          A difficult session doesn't vanish overnight. Unresolved behavioral pressure carries forward with an exponential time-decay model — more recovery over a weekend, less after a single night. And all of it stays on your PC: zero network calls, no accounts, no cloud.
+        </p>
+        <ul class="space-y-3 text-sm text-zinc-700">
+          {[
+            'Overnight carry: exp(−hours/τ) decay model, weekend-aware',
+            'No HTTP calls — ever. Zero telemetry or analytics',
+            'All data in local files — configuration, history, baseline',
+            'Native NinjaTrader 8 add-on — not a connected service',
+          ].map(item => (
+            <li class="flex items-start gap-2.5">
+              <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8">
+          <a href="/features" class="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 hover:text-emerald-900 transition-colors">
+            Full technical breakdown →
+          </a>
+        </div>
+      </div>
+      <!-- Placeholder -->
+      <div class="order-1 md:order-2">
+        <div class="rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-100/50 flex flex-col items-center justify-center py-24 px-8 text-center min-h-64">
+          <div class="w-12 h-12 rounded-full bg-zinc-200 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
+          <p class="text-xs text-zinc-400 mt-1">Overnight carry and PSI history</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Testimonials — dual-row infinite marquee -->
   <section class="py-12 bg-zinc-50 border-t border-zinc-100">

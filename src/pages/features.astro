@@ -1,0 +1,208 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const checkoutUrl = 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-fefa-4a34-8cad-d2e68f564d25';
+
+const metadata = {
+  title: 'Features — Meridian',
+  description:
+    'How Meridian works: seven behavioral dimensions, personalized statistical baselines, EWMA-weighted scoring, overnight carry, and complete local privacy.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="How it works"
+    title="Not a journal. Not a mood tracker. A precision instrument."
+    subtitle="Meridian applies a multi-dimensional behavioral model — drawing from trading psychology, cognitive science, and behavioral finance — to produce a single, mathematically rigorous score in real time."
+  />
+
+  <Features
+    id="behavioral-index"
+    tagline="The score"
+    title="A composite behavioral index — refreshed in under 100ms"
+    subtitle="Every fill triggers a full recalculation across all seven dimensions simultaneously. The result is a 0–100 PSI score that reflects behavioral pressure inferred from your session activity."
+    items={[
+      {
+        title: 'Updated after every fill — no polling, no delay',
+        description:
+          'After every execution, Meridian recalculates PSI across all seven dimensions simultaneously. The score reflects behavioral pressure inferred from your session activity (executions, holds, and rule compliance), so you get feedback before the next decision.',
+        icon: 'tabler:gauge',
+      },
+      {
+        title: 'Stable · Caution · Warning · Critical — four precision zones',
+        description:
+          'Stable (≥88) means your behavioral patterns are consistent with your history. Caution (72–87) indicates emerging pressure. Warning (55–71) means multiple patterns are active. Critical (<55) is a clear signal to pause and reassess. Zone boundaries are color-interpolated — no sudden jumps.',
+        icon: 'tabler:alert-triangle',
+      },
+      {
+        title: 'Fully decomposable — every point has a cause',
+        description:
+          'PSI = 100 − C₁ − C₂ − C₃ − C₄ − C₅ − C₆ − C₇ − carryDebt. Each term maps to one behavioral dimension. You can see exactly which habit is pulling the score down — not just that it dropped.',
+        icon: 'tabler:math-function',
+      },
+    ]}
+  />
+
+  <Features
+    id="seven-dimensions"
+    tagline="The seven dimensions"
+    title="Seven patterns drawn from behavioral finance research"
+    subtitle="Each dimension targets a distinct cognitive failure mode documented in behavioral finance and trading-psychology literature. They run independently and compound into the PSI score."
+    columns={2}
+    items={[
+      {
+        title: 'Revenge Entry (D1)',
+        description:
+          'Detects re-entry shortly after a loss with elevated size in the same direction — the behavioral signature of loss aversion overriding your plan. Direction reversals are scored at a reduced weight to distinguish technical flips from emotional reactions.',
+        icon: 'tabler:arrow-back-up',
+      },
+      {
+        title: 'Stop Manipulation (D2)',
+        description:
+          'Tracks each order\'s stop distance over time and detects widening in the adverse direction — the disposition effect in action. Unlike simple stop-size checks, it looks at whether stops moved away from price after the position went against you.',
+        icon: 'tabler:arrows-maximize',
+      },
+      {
+        title: 'Size Spike (D3)',
+        description:
+          'Fires when position size exceeds your declared rule — weighted more heavily during losing streaks, where the psychological impulse to "make it back" is statistically strongest. Uses z-score gating against your personal history.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Rushed Exit (D4)',
+        description:
+          'Compares your current hold-time distribution against your historical baseline using log-ratio statistical testing. When winners are cut short and losers are held longer — the classic disposition pattern — this dimension registers pressure.',
+        icon: 'tabler:clock-bolt',
+      },
+      {
+        title: 'Position Overstay (D5)',
+        description:
+          'Monitors open positions every 30 seconds. When a losing position exceeds your 90th-percentile hold time, this dimension activates. MAE (Maximum Adverse Excursion) is tracked: even if the trade recovers, the psychological residue of a deep drawdown is recorded.',
+        icon: 'tabler:hourglass',
+      },
+      {
+        title: 'Rule Violations (D6)',
+        description:
+          'Hard-checks your declared session rules: trading outside your time window, stop losses outside your declared range, and consecutive losses without a size reduction. Each violation applies a scored penalty with a cooldown to prevent double-counting.',
+        icon: 'tabler:shield-x',
+      },
+      {
+        title: 'Overtrading Pace (D7)',
+        description:
+          'Dual-signal: measures both intra-session acceleration (recent pace vs session average) and deviation from your historical entry frequency baseline using Lambda Velocity modeling. A cold-start ramp prevents false positives on the first trade of the session.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <Features
+    id="baselines"
+    tagline="Personalization"
+    title="Your history. Your baseline. Your score."
+    subtitle="Meridian doesn't compare you to an industry average. It builds a statistical model from your own trading history and evaluates each session against it."
+    items={[
+      {
+        title: 'Welford online estimation — O(1) memory, always current',
+        description:
+          'Your behavioral baseline updates after every session using the Welford online algorithm — the same approach used in high-precision numerical computing. It tracks running mean and variance without storing raw history. Converges meaningfully around 30 sessions.',
+        icon: 'tabler:chart-dots',
+      },
+      {
+        title: 'Statistical significance gating',
+        description:
+          'Dimensions D1, D3, and D5 use z-score gating against your personal standard deviation. Signals are weighted by a confidence term (1 − 1/√n) that scales with your sample size — so early sessions are gentler, mature profiles are precise.',
+        icon: 'tabler:math-xy',
+      },
+      {
+        title: 'Test Mode and Market Replay — practice without polluting history',
+        description:
+          'Test Mode runs PSI in real time for up to 60 minutes without writing to your baseline. Market Replay sessions are automatically detected and excluded from baseline updates. Explore configurations or replay historical markets without touching your live profile.',
+        icon: 'tabler:player-play',
+      },
+    ]}
+  />
+
+  <Features
+    id="pressure-dynamics"
+    tagline="Scoring model"
+    title="Pressure accumulates fast. Recovery is slow. By design."
+    subtitle="Meridian models behavioral pressure the way cognitive science describes it — fast onset under stress, gradual recovery with time and consistent behavior."
+    items={[
+      {
+        title: 'Asymmetric EWMA — mirrors how cognitive load actually works',
+        description:
+          'Each dimension uses a separate attack and recovery time constant. Pressure from a violation builds quickly (τ_attack is short); recovery requires sustained discipline over time (τ_recover is long). A single mistake doesn\'t define you, but a pattern absolutely does.',
+        icon: 'tabler:wave-sine',
+      },
+      {
+        title: 'Overnight carry — psychological debt doesn\'t reset at midnight',
+        description:
+          'Unresolved behavioral pressure carries forward between sessions via exponential time-decay: openPSI = 100 − (100 − prevFinalPSI) × exp(−hours/τ). Weekend market closures allow more recovery. A rough Tuesday is still visible Wednesday morning.',
+        icon: 'tabler:moon',
+      },
+      {
+        title: 'Size Spike freezes recovery while the violation persists',
+        description:
+          'When position size exceeds your limit (D3), all seven dimension EWMA recovery values are frozen until you reduce size. The penalty persists as long as the behavioral violation persists — not just at the moment it was detected.',
+        icon: 'tabler:lock',
+      },
+    ]}
+  />
+
+  <Features
+    id="privacy"
+    tagline="Privacy and data"
+    title="Completely local. Zero network calls. Ever."
+    subtitle="Your fills, behavioral baseline, and session history never leave your machine. Meridian is a native NinjaTrader 8 add-on — not a connected service."
+    items={[
+      {
+        title: 'No accounts, no cloud, no telemetry',
+        description:
+          'There are zero HTTP calls in the codebase. No analytics, no crash reporting, no license-check pings. All computation happens on your PC. Configuration and history are stored in local XML files only you can access.',
+        icon: 'tabler:cloud-off',
+      },
+      {
+        title: 'Multi-account and Replikanto support',
+        description:
+          'Meridian monitors all connected NinjaTrader accounts simultaneously. Replikanto copy-fills are deduplicated within a 250ms window to prevent double-counting in the behavioral score. Prop firm accounts are handled gracefully even when they disconnect mid-session.',
+        icon: 'tabler:layout-grid',
+      },
+      {
+        title: '365-day rolling history. 200 trades per session. 600 PSI snapshots.',
+        description:
+          'Session history stores up to 365 days of daily summaries. Each session logs up to 200 trade executions and 600 PSI timeline snapshots for post-session review. The oldest entries are automatically pruned — no manual cleanup required.',
+        icon: 'tabler:database',
+      },
+    ]}
+  />
+
+  <section class="py-10 px-6 bg-zinc-50/80 border-t border-zinc-100">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-xs text-zinc-500 leading-relaxed text-center">
+        PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on many factors beyond psychology.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start free trial — 7 days',
+        href: checkoutUrl,
+        icon: 'tabler:player-play',
+      },
+      { text: 'See pricing', href: '/pricing' },
+    ]}
+  >
+    <Fragment slot="title">See it in your own sessions.</Fragment>
+    <Fragment slot="subtitle">
+      7-day free trial · $24.99/month after · cancel any time · NinjaTrader 8 required.
+      <span class="block text-xs text-muted mt-2">Trading involves substantial risk of loss. Meridian does not guarantee trading results.</span>
+    </Fragment>
+  </CallToAction>
+</Layout>
