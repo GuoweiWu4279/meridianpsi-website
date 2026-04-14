@@ -1,6 +1,6 @@
 {
   "headline": "See yourself clearly. Every session.",
-  "subhead": "7-day free trial. Then $24.99/month. Cancel any time.",
+  "subhead": "Monthly at $24.99. Annual pricing planned at $239.88/year (about $19.99/month).",
   "singleTier": {
     "id": "standard",
     "name": "Meridian",
@@ -20,5 +20,20 @@
       "Cancel any time — monthly billing, no long-term lock-in"
     ]
   },
-  "footnote": "Subscription billed monthly at $24.99 USD after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+  "annualPreview": {
+    "name": "Annual",
+    "price": 239.88,
+    "effectiveMonthly": 19.99,
+    "billingPeriod": "/year",
+    "savings": 60,
+    "badge": "Coming soon",
+    "cta": "Ask about annual access",
+    "features": [
+      "Planned annual pricing at $239.88/year",
+      "Equivalent to about $19.99/month",
+      "Save about $60/year versus monthly billing",
+      "Good fit for traders who want baseline history to build over time"
+    ]
+  },
+  "footnote": "Monthly subscriptions are billed at $24.99 USD after the 7-day free trial. Planned annual pricing is $239.88/year (about $19.99/month), subject to checkout availability. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }
