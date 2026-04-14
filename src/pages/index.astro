@@ -284,7 +284,7 @@ const marqueeRow2 = [
     </div>
   </section>
 
-  <!-- ── Section 3: Personalized baselines (placeholder LEFT → text RIGHT) ──── -->
+  <!-- ── Section 3: Session review and history (placeholder LEFT → text RIGHT) ── -->
   <section class="py-20 px-6 bg-white border-t border-zinc-100">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
       <!-- Placeholder -->
@@ -296,24 +296,24 @@ const marqueeRow2 = [
             </svg>
           </div>
           <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
-          <p class="text-xs text-zinc-400 mt-1">365-day history and session report view</p>
+          <p class="text-xs text-zinc-400 mt-1">Session history and behavioral review</p>
         </div>
       </div>
       <!-- Text -->
       <div class="order-2 md:order-2">
-        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Personalized baselines</p>
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Session review and history</p>
         <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
-          Calibrated to your history. Not a global average.
+          See more than P&amp;L after the session.
         </h2>
         <p class="text-zinc-600 leading-relaxed text-base mb-6">
-          Meridian builds a statistical model of your own trading — hold times, position sizes, entry pace — using Welford online estimation. The PSI score measures deviation from <em>your</em> baseline, not an industry threshold. It converges meaningfully around 30 sessions.
+          Meridian keeps a detailed history of each session, including PSI, discipline trends, alerts, and behavioral pressure. You can review not just whether you made money, but how stable and rule-aligned the session really was.
         </p>
         <ul class="space-y-3 text-sm text-zinc-700">
           {[
-            'Online statistics — updates after every session, no raw history stored',
-            'Z-score gating against your personal standard deviation',
-            '365-day rolling history with automatic pruning',
-            'Session report with behavioral breakdown after every session',
+            'Session-level PSI and discipline review',
+            'Behavioral pressure and alert history',
+            'See how stability changed across the session',
+            'Review behavior, not just outcomes',
           ].map(item => (
             <li class="flex items-start gap-2.5">
               <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></span>
@@ -325,24 +325,24 @@ const marqueeRow2 = [
     </div>
   </section>
 
-  <!-- ── Section 4: Overnight carry + local privacy (text LEFT → placeholder RIGHT) -->
+  <!-- ── Section 4: Personalized baselines (text LEFT → placeholder RIGHT) -->
   <section class="py-20 px-6 bg-zinc-50/60 border-t border-zinc-100">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
       <!-- Text -->
       <div class="order-2 md:order-1">
-        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Privacy and continuity</p>
+        <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-3">Personalized baselines</p>
         <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 leading-snug mb-5">
-          Psychological debt carries forward. Your data never leaves your machine.
+          Built around your behavior. Not a generic threshold.
         </h2>
         <p class="text-zinc-600 leading-relaxed text-base mb-6">
-          A difficult session doesn't vanish overnight. Unresolved behavioral pressure carries forward with an exponential time-decay model — more recovery over a weekend, less after a single night. And all of it stays on your PC: zero network calls, no accounts, no cloud.
+          Meridian learns what normal looks like for you, then makes drift visible when your behavior starts to change. The PSI score is built around your own history, so it stays useful across different trading styles instead of relying on a one-size-fits-all warning level.
         </p>
         <ul class="space-y-3 text-sm text-zinc-700">
           {[
-            'Overnight carry: exp(−hours/τ) decay model, weekend-aware',
-            'No HTTP calls — ever. Zero telemetry or analytics',
-            'All data in local files — configuration, history, baseline',
-            'Native NinjaTrader 8 add-on — not a connected service',
+            'Built from your own trading history',
+            'Personal baseline instead of a generic rule',
+            'Detailed profile settings for different styles, rules, and workflows',
+            'Becomes more useful as more sessions are recorded',
           ].map(item => (
             <li class="flex items-start gap-2.5">
               <span class="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0"></span>
@@ -365,7 +365,7 @@ const marqueeRow2 = [
             </svg>
           </div>
           <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
-          <p class="text-xs text-zinc-400 mt-1">Overnight carry and PSI history</p>
+          <p class="text-xs text-zinc-400 mt-1">Personal baseline and profile settings</p>
         </div>
       </div>
     </div>
