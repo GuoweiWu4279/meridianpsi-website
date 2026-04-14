@@ -3,108 +3,102 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Button from '~/components/ui/Button.astro';
 import { Icon } from 'astro-icon/components';
 
 import pricing from '~/data/pricing.json';
-import products from '~/data/products.json';
 
 const { singleTier, annualPreview, footnote, headline, subhead } = pricing;
-const supportEmail = products.purchase.supportEmail;
 
 const metadata = {
   title: 'Pricing — Meridian',
   description:
-    'Meridian pricing: $24.99/month after a 7-day trial. Annual pricing planned at $239.88/year. Trading involves substantial risk.',
+    'Meridian pricing: $24.99/month or $239.88/year after a 7-day free trial. Trading involves substantial risk.',
 };
+
+const features = singleTier.features;
 ---
 
 <Layout metadata={metadata}>
   <HeroText tagline="Pricing" title={headline} subtitle={subhead} />
 
-  <section class="max-w-5xl mx-auto px-6 pb-6">
-    <div class="grid gap-6 md:grid-cols-2">
-      <div
-        class="relative rounded-3xl border border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/40 shadow-lg shadow-emerald-900/5 px-8 py-10 text-center"
-      >
-        {singleTier.badge && (
-          <span class="inline-block rounded-full bg-emerald-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-4">
-            {singleTier.badge}
+  <section class="max-w-lg mx-auto px-6 pb-6">
+
+    <!-- Billing toggle -->
+    <div class="flex items-center justify-center mb-10">
+      <div class="relative flex items-center bg-zinc-100 rounded-full p-1 gap-1">
+        <button
+          id="btn-monthly"
+          class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm"
+        >
+          Monthly
+        </button>
+        <button
+          id="btn-annual"
+          class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 text-zinc-500"
+        >
+          Annual
+          <span
+            id="save-badge"
+            class="ml-2 inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5 transition-opacity duration-200 opacity-100"
+          >
+            Save $60/yr
           </span>
-        )}
-        <h2 class="text-2xl font-bold text-zinc-900 tracking-tight">{singleTier.name} Monthly</h2>
+        </button>
+      </div>
+    </div>
 
-        <div class="mt-8 flex flex-col items-center gap-1">
-          <div class="flex items-baseline justify-center">
-            <span class="text-3xl font-semibold text-zinc-900">$</span>
-            <span class="text-6xl font-extrabold tracking-tight text-zinc-900">{singleTier.price}</span>
-            <span class="ml-1 text-lg font-medium text-zinc-500">{singleTier.billingPeriod}</span>
-          </div>
-          <p class="text-sm text-zinc-500 mt-2">
-            After {singleTier.trialDays}-day free trial · cancel any time
-          </p>
+    <!-- Pricing card -->
+    <div class="relative rounded-3xl border border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/40 shadow-lg shadow-emerald-900/5 px-8 py-10 text-center">
+
+      <!-- Badge -->
+      <span class="inline-block rounded-full bg-emerald-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-4">
+        7-day free trial
+      </span>
+
+      <!-- Price block -->
+      <div class="mt-4 flex flex-col items-center gap-1 min-h-[96px]">
+        <div class="flex items-baseline justify-center">
+          <span class="text-3xl font-semibold text-zinc-900">$</span>
+          <span id="price-display" class="text-6xl font-extrabold tracking-tight text-zinc-900 tabular-nums transition-all duration-150">
+            {singleTier.price}
+          </span>
+          <span class="ml-1 text-lg font-medium text-zinc-500">/mo</span>
         </div>
-
-        <ul class="mt-10 space-y-3 text-left max-w-md mx-auto">
-          {
-            singleTier.features.map((line: string) => (
-              <li class="flex gap-3 text-sm text-zinc-700">
-                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500">
-                  <Icon name="tabler:check" class="h-3.5 w-3.5 text-white" />
-                </span>
-                <span>{line}</span>
-              </li>
-            ))
-          }
-        </ul>
-
-        <div class="mt-10 flex flex-col items-center gap-3">
-          <Button variant="primary" href={singleTier.ctaHref} class="px-8 py-3 text-base font-semibold rounded-full">
-            {singleTier.cta}
-          </Button>
-          <p class="text-xs text-zinc-500">No payment required during trial</p>
-          <a href="/download" class="text-sm text-emerald-700 font-medium hover:underline"> Already subscribed? Go to downloads → </a>
+        <div id="billing-note-monthly" class="text-sm text-zinc-500 mt-1">
+          After 7-day free trial · cancel any time
+        </div>
+        <div id="billing-note-annual" class="text-sm text-zinc-500 mt-1 hidden">
+          Billed at $239.88/year · <span class="text-emerald-700 font-semibold">save $60/year</span> vs monthly
         </div>
       </div>
 
-      <div class="relative rounded-3xl border border-zinc-200 bg-zinc-950 shadow-sm px-8 py-10 text-center">
-        {annualPreview.badge && (
-          <span class="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white mb-4">
-            {annualPreview.badge}
-          </span>
-        )}
-        <h2 class="text-2xl font-bold text-white tracking-tight">{annualPreview.name}</h2>
+      <!-- Features -->
+      <ul class="mt-8 space-y-3 text-left max-w-md mx-auto">
+        {
+          features.map((line: string) => (
+            <li class="flex gap-3 text-sm text-zinc-700">
+              <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500">
+                <Icon name="tabler:check" class="h-3.5 w-3.5 text-white" />
+              </span>
+              <span>{line}</span>
+            </li>
+          ))
+        }
+      </ul>
 
-        <div class="mt-8 flex flex-col items-center gap-1">
-          <div class="flex items-baseline justify-center">
-            <span class="text-3xl font-semibold text-white">$</span>
-            <span class="text-6xl font-extrabold tracking-tight text-white">{annualPreview.price}</span>
-            <span class="ml-1 text-lg font-medium text-zinc-400">{annualPreview.billingPeriod}</span>
-          </div>
-          <p class="text-sm text-zinc-400 mt-2">
-            About ${annualPreview.effectiveMonthly}/month · save ${annualPreview.savings}/year
-          </p>
-        </div>
-
-        <ul class="mt-10 space-y-3 text-left max-w-md mx-auto">
-          {
-            annualPreview.features.map((line: string) => (
-              <li class="flex gap-3 text-sm text-zinc-300">
-                <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/10">
-                  <Icon name="tabler:check" class="h-3.5 w-3.5 text-white" />
-                </span>
-                <span>{line}</span>
-              </li>
-            ))
-          }
-        </ul>
-
-        <div class="mt-10 flex flex-col items-center gap-3">
-          <Button variant="primary" href={annualPreview.ctaHref} class="px-8 py-3 text-base font-semibold rounded-full">
-            {annualPreview.cta}
-          </Button>
-          <p class="text-xs text-zinc-500">No payment required during trial</p>
-        </div>
+      <!-- CTA -->
+      <div class="mt-10 flex flex-col items-center gap-3">
+        <a
+          id="cta-btn"
+          href={singleTier.ctaHref}
+          class="inline-flex items-center justify-center rounded-full bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 text-base font-semibold transition-colors"
+        >
+          Start free trial
+        </a>
+        <p class="text-xs text-zinc-500">No payment required during trial</p>
+        <a href="/download" class="text-sm text-emerald-700 font-medium hover:underline">
+          Already subscribed? Go to downloads →
+        </a>
       </div>
     </div>
 
@@ -122,17 +116,17 @@ const metadata = {
       {
         title: 'How does the free trial work?',
         description:
-          'Your first seven days include full access to Meridian at no cost. If you choose to continue afterward, the plan is $24.99 per month. You may cancel during the trial at any time; in that case, no subscription charge applies.',
+          'Your first seven days include full access to Meridian at no cost. If you choose to continue afterward, you pay the plan rate you selected — monthly or annual. You may cancel during the trial at any time and no charge applies.',
       },
       {
-        title: 'Is there an annual plan?',
+        title: 'What is the difference between monthly and annual?',
         description:
-          'Yes. Annual pricing is $239.88 per year — about $19.99 per month — and saves around $60 per year versus monthly billing. A 7-day free trial is included on the annual plan as well.',
+          'Same full product, same features. Monthly is $24.99/month billed every month. Annual is $239.88 billed once per year — about $19.99/month — saving around $60 versus paying monthly. Both include a 7-day free trial.',
       },
       {
         title: 'Can I cancel at any time?',
         description:
-          'Yes. Meridian is billed month to month with no long-term commitment. Cancel during the trial if you decide it is not a fit, or cancel an active subscription whenever you like. If you cancel a paid subscription, you retain access through the end of the period you have already paid for.',
+          'Yes. Cancel during the trial and you will not be charged at all. Cancel an active subscription whenever you like and you retain access through the end of the period you have already paid for.',
       },
       {
         title: 'What payment methods are accepted?',
@@ -169,3 +163,42 @@ const metadata = {
     </Fragment>
   </CallToAction>
 </Layout>
+
+<script>
+  const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement;
+  const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement;
+  const priceDisplay = document.getElementById('price-display') as HTMLElement;
+  const noteMonthly  = document.getElementById('billing-note-monthly') as HTMLElement;
+  const noteAnnual   = document.getElementById('billing-note-annual')  as HTMLElement;
+  const ctaBtn = document.getElementById('cta-btn') as HTMLAnchorElement;
+
+  const MONTHLY_PRICE  = '24.99';
+  const ANNUAL_PRICE   = '19.99';
+  const MONTHLY_URL = 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-fefa-4a34-8cad-d2e68f564d25';
+  const ANNUAL_URL  = 'https://meridianpsi.lemonsqueezy.com/checkout/buy/04e32f4e-a20e-469f-ba4e-274d381739c6';
+
+  function setMonthly() {
+    priceDisplay.textContent = MONTHLY_PRICE;
+    ctaBtn.href = MONTHLY_URL;
+    noteMonthly.classList.remove('hidden');
+    noteAnnual.classList.add('hidden');
+    btnMonthly.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
+    btnMonthly.classList.remove('text-zinc-500');
+    btnAnnual.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
+    btnAnnual.classList.add('text-zinc-500');
+  }
+
+  function setAnnual() {
+    priceDisplay.textContent = ANNUAL_PRICE;
+    ctaBtn.href = ANNUAL_URL;
+    noteAnnual.classList.remove('hidden');
+    noteMonthly.classList.add('hidden');
+    btnAnnual.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
+    btnAnnual.classList.remove('text-zinc-500');
+    btnMonthly.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
+    btnMonthly.classList.add('text-zinc-500');
+  }
+
+  btnMonthly.addEventListener('click', setMonthly);
+  btnAnnual.addEventListener('click', setAnnual);
+</script>
