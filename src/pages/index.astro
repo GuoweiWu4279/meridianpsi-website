@@ -144,22 +144,21 @@ const marqueeRow2 = [
 
   <Stats
     stats={[
-      { title: 'Behavioral dimensions tracked', amount: '7' },
-      { title: 'PSI update after every fill', amount: '<100ms' },
-      { title: 'Free trial', amount: '7 days' },
-      { title: 'Per month after trial', amount: '$24.99' },
+      { title: 'Live behavioral signals', amount: '7' },
+      { title: 'Updated after and during session', amount: '<100ms' },
+      { title: 'Session history — Guard', amount: '5 years' },
+      { title: 'Free trial, no charge', amount: '7-day' },
     ]}
   />
 
-  <!-- Problem recognition section -->
+  <!-- Problem recognition section — institutional vs retail framing -->
   <section class="py-16 px-6 bg-zinc-50/60">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
-        You know what you should have done.
+        Institutional traders have risk managers.<br />You have yourself.
       </h2>
       <p class="text-lg text-zinc-600 mb-12 max-w-2xl mx-auto">
-        Every trader walks away from a bad session knowing exactly where it went wrong.
-        The problem isn't knowledge — it's that in the middle of a live session, you can't see yourself clearly.
+        They have compliance officers, position limits, and systems that enforce rules outside their control. Retail traders have experience, hard-won rules — and then the moment everything goes wrong, nothing stops them from breaking all of them.
       </p>
       <ul class="text-left max-w-lg mx-auto space-y-4 mb-12">
         {[
@@ -360,6 +359,52 @@ const marqueeRow2 = [
           <p class="text-sm font-medium text-zinc-500">Screenshot coming soon</p>
           <p class="text-xs text-zinc-400 mt-1">Personal baseline and profile settings</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guard System Teaser -->
+  <section class="py-24 px-6 bg-zinc-900 text-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-4">Meridian Guard</p>
+        <h2 class="text-3xl md:text-4xl font-bold leading-[1.15] mb-5">
+          You already know the rules.<br />Guard makes sure you follow them.
+        </h2>
+        <p class="text-zinc-400 text-base max-w-2xl mx-auto leading-relaxed">
+          When you're calm, you define the rules you want your future self to follow. When the moment comes — losing streak, tilt, blown daily limit — Guard enforces them automatically, without requiring a decision from you.
+        </p>
+        <p class="mt-3 text-sm text-zinc-500 italic">This is what behavioral economists call a commitment device.</p>
+      </div>
+
+      <!-- 5 Action Levels -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+        {[
+          { level: 'L1', name: 'Toast', desc: 'A quiet notification. Doesn\'t interrupt your flow.' },
+          { level: 'L2', name: 'Acknowledge', desc: 'You must type your own pre-written phrase to continue.' },
+          { level: 'L3', name: 'Countdown', desc: 'Forced wait timer. Cannot be skipped.' },
+          { level: 'L4', name: 'Risk Alert Mode', desc: 'Persistent banner. Every entry requires confirmation.' },
+          { level: 'L5', name: 'Disconnect', desc: 'Disconnects your broker connection. No positions closed by the system.' },
+        ].map((item) => (
+          <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-xl p-4 flex flex-col gap-2">
+            <span class="text-xs font-bold tracking-widest text-emerald-400">{item.level}</span>
+            <span class="font-semibold text-white">{item.name}</span>
+            <p class="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <p class="text-sm text-zinc-500 mb-6">Triggered by: PSI threshold · Consecutive losses · Daily P&L · Unrealized loss · Single trade loss · Session time</p>
+        <a
+          href="/features#guard"
+          class="inline-flex items-center gap-2 text-sm font-medium text-white border border-white/20 hover:border-white/40 rounded-full px-6 py-2.5 transition-all duration-200"
+        >
+          See the full Guard system
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>

@@ -33,9 +33,9 @@ const metadata = {
         icon: 'tabler:gauge',
       },
       {
-        title: 'Four zones with clear meaning',
+        title: 'Three zones with clear meaning',
         description:
-          'Stable means your behavior is consistent with your history. Caution signals emerging pressure. Warning means multiple patterns are active. Critical is a clear signal to pause and reassess before compounding mistakes.',
+          'Stable (PSI ≥ 88) means your behavior is consistent with your history. Caution (55–87) signals emerging pressure — one or more patterns are active. Critical (below 55) is a clear signal to pause and reassess before compounding mistakes.',
         icon: 'tabler:alert-triangle',
       },
       {
@@ -73,9 +73,9 @@ const metadata = {
         icon: 'tabler:trending-up',
       },
       {
-        title: 'Rushed Exit (D4) — cutting winners too quickly',
+        title: 'Hold Bias (D4) — abnormal hold duration',
         description:
-          'Compares current hold behavior with your baseline to detect exits that collapse too early relative to your normal process. It helps surface sessions where pressure is forcing you out of good trades too soon.',
+          'Compares your current hold times against your personal baseline to detect both cutting winners too early and holding losers too long. Both are behavioral signatures of pressure — and both are detected against your own history, not a generic benchmark.',
         icon: 'tabler:clock-bolt',
       },
       {
@@ -212,6 +212,192 @@ const metadata = {
       },
     ]}
   />
+
+  <section class="py-10 px-6 bg-zinc-50/80 border-t border-zinc-100">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-xs text-zinc-500 leading-relaxed text-center">
+        PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on many factors beyond psychology.
+      </p>
+    </div>
+  </section>
+
+  <!-- Composure vs PSI Clarification -->
+  <section class="py-20 px-6 bg-white border-t border-zinc-100">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs font-semibold tracking-[0.15em] text-emerald-600 uppercase mb-4">Two distinct metrics</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-4">PSI and Composure are not the same thing</h2>
+      <p class="text-zinc-600 leading-relaxed mb-10 max-w-2xl">
+        Meridian tracks two separate measures of your behavioral state. Understanding the difference helps you use both correctly.
+      </p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6">
+          <h3 class="font-bold text-zinc-900 text-lg mb-2">PSI — Real-time score</h3>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-4">
+            0–100. Updates live after every fill and continuously during the session as holds, time, and rule compliance change. Three zones: <strong>Stable (≥88)</strong>, <strong>Caution (55–87)</strong>, <strong>Critical (&lt;55)</strong>.
+          </p>
+          <p class="text-xs text-zinc-400">Used for in-session decisions. Visible in the HUD and as a Guard trigger condition.</p>
+        </div>
+        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6">
+          <h3 class="font-bold text-zinc-900 text-lg mb-2">Composure — Session quality score</h3>
+          <p class="text-zinc-600 text-sm leading-relaxed mb-4">
+            0–100%. Calculated at session end. It reflects how much time you spent in each PSI zone: time in Stable is weighted 1.0×, Caution 0.3×, Critical 0.05×. A long session in Caution will have low Composure even if your PSI looked acceptable.
+          </p>
+          <p class="text-xs text-zinc-400">Used in Intel Tab, session history, and monthly digest. Not displayed live during the session.</p>
+        </div>
+      </div>
+      <p class="text-xs text-zinc-400 mt-6">
+        Example: a trader whose PSI stayed around 75 (Caution) for a 4-hour session would show a Composure of approximately 30% — despite the PSI number looking moderate. The two metrics measure different things.
+      </p>
+    </div>
+  </section>
+
+  <!-- Guard System -->
+  <section id="guard" class="py-24 px-6 bg-zinc-900 text-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-14">
+        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-4">Meridian Guard — Commitment device</p>
+        <h2 class="text-3xl md:text-4xl font-bold leading-[1.15] mb-5">
+          Guard is a commitment device.
+        </h2>
+        <p class="text-zinc-400 text-base max-w-2xl leading-relaxed">
+          When you are calm, you define the rules you want your future self to follow. When the moment comes, Guard enforces them — without you having to decide in real time.
+        </p>
+      </div>
+
+      <!-- Trigger Conditions -->
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-5">6 Trigger conditions</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
+        {[
+          { name: 'PSI Below', desc: 'Psychological stability drops below a set threshold.' },
+          { name: 'Consecutive Losses', desc: 'N losses in a row within the session.' },
+          { name: 'Session P\u0026L Below', desc: 'Daily realized P\u0026L falls below your limit.' },
+          { name: 'Unrealized P\u0026L Below', desc: 'Open position floating loss exceeds threshold \u2014 before you close.' },
+          { name: 'Single Trade Loss Exceeds', desc: 'One trade loses more than a defined amount.' },
+          { name: 'Session Time Over', desc: 'You have been trading longer than planned.' },
+        ].map((item) => (
+          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-xl p-4">
+            <p class="font-semibold text-white text-sm mb-1">{item.name}</p>
+            <p class="text-zinc-400 text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Action Levels -->
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-5">5 Action levels — lightest to hardest</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
+        {[
+          { level: 'L1', name: 'Toast', desc: 'Quiet notification. No interruption.' },
+          { level: 'L2', name: 'Acknowledge', desc: 'Type your own pre-written phrase to continue. Written by you, when calm.' },
+          { level: 'L3', name: 'Countdown', desc: 'Forced waiting timer. Cannot be skipped.' },
+          { level: 'L4', name: 'Risk Alert Mode', desc: 'Persistent banner shown at all times. Every entry requires active confirmation.' },
+          { level: 'L5', name: 'Disconnect', desc: 'Disconnects your broker connection. Your positions are never closed by the system.' },
+        ].map((item) => (
+          <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-xl p-4 flex flex-col gap-2">
+            <span class="text-xs font-bold tracking-widest text-emerald-400">{item.level}</span>
+            <span class="font-semibold text-white">{item.name}</span>
+            <p class="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- L2 callout -->
+      <div class="bg-zinc-800/40 border border-zinc-700/40 rounded-2xl p-6 mb-14 max-w-2xl">
+        <p class="text-xs font-semibold tracking-widest text-emerald-400 uppercase mb-3">Why L2 works</p>
+        <p class="text-zinc-300 leading-relaxed text-sm">
+          You write the phrase yourself — when you're calm, before the session starts. In the moment, you have to type it to continue. Something like: <em class="text-white">"I will not revenge trade. My plan is my edge."</em> Typed in your own words, at the exact moment you need to hear them most.
+        </p>
+      </div>
+
+      <!-- Example Guard Setups -->
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-5">Example Guard setups</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        {[
+          { name: 'Daily Loss Limit', rule: 'P&L below \u2212$500', action: '\u2192 Disconnect' },
+          { name: 'Revenge Trade Check', rule: '3 consecutive losses', action: '\u2192 Countdown 60min + Acknowledge' },
+          { name: 'Tilt Early Warning', rule: 'PSI below 65', action: '\u2192 Toast' },
+          { name: 'Hard Tilt Stop', rule: 'PSI below 45 \u00b7 P&L below \u2212$300', action: '\u2192 Disconnect 30min' },
+          { name: 'Position Risk Monitor', rule: 'Unrealized below \u2212$400', action: '\u2192 Risk Alert Mode' },
+          { name: 'Session Length Rule', rule: 'Session over 180 minutes', action: '\u2192 Acknowledge required' },
+        ].map((item) => (
+          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-xl p-4">
+            <p class="font-semibold text-white text-sm mb-2">{item.name}</p>
+            <p class="text-zinc-400 text-xs font-mono">{item.rule}</p>
+            <p class="text-emerald-400 text-xs font-mono">{item.action}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Guard Architecture notes -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { name: 'Edge-trigger', desc: 'Each condition triggers once per entry, no repeated alerts.' },
+          { name: 'Cooldown', desc: 'Configurable cooldown period prevents rapid re-triggering.' },
+          { name: 'Emergency Reset', desc: 'One-click clears all active Guard state.' },
+          { name: 'Master switch', desc: 'Enable or disable Guard entirely without changing your rules.' },
+        ].map((item) => (
+          <div class="bg-zinc-800/30 border border-zinc-700/30 rounded-xl p-4">
+            <p class="font-semibold text-white text-sm mb-1">{item.name}</p>
+            <p class="text-zinc-500 text-xs">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Intel Layer (Meridian Guard exclusive) -->
+  <section id="intel" class="py-20 px-6 bg-white border-t border-zinc-100">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-xs font-semibold tracking-[0.15em] text-emerald-600 uppercase mb-4">Meridian Guard — Intel Layer</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-4">Your session data, turned into insight.</h2>
+      <p class="text-zinc-600 leading-relaxed mb-10 max-w-2xl">
+        Guard's Intel Layer surfaces patterns from your history that aren't visible in a single session — your weakest trading days, P&L by PSI zone, and a personalized risk brief before each session opens.
+      </p>
+
+      <!-- Feature list -->
+      <div class="grid sm:grid-cols-2 gap-6 mb-10">
+        {[
+          {
+            name: 'Monthly Digest',
+            desc: 'Composure trend, stable days count, win rate, avg P&L, best and worst days, strongest and weakest behavioral dimensions — delivered at month end.',
+          },
+          {
+            name: 'PSI × Performance Correlation',
+            desc: 'Maps your actual P&L against PSI zone. Shows what your Stable sessions average versus your Critical sessions. The clearest ROI argument for self-monitoring.',
+          },
+          {
+            name: 'Weekday Patterns & Composure Progress',
+            desc: 'Identifies your weakest trading days, 6-month Composure trend, and the behavioral patterns common across your worst sessions.',
+          },
+          {
+            name: "Today's Risk Brief",
+            desc: "A personalized opening brief based on yesterday's session and recent behavioral trends — generated before you place your first trade.",
+          },
+        ].map((item) => (
+          <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
+            <h3 class="font-bold text-zinc-900 mb-2">{item.name}</h3>
+            <p class="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Screenshot carousel placeholder -->
+      <div class="relative rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50/60 overflow-hidden" id="intel-carousel">
+        <div class="flex items-center justify-between px-6 py-3 border-b border-zinc-200">
+          <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest">Intel screenshots — coming soon</p>
+          <div class="flex gap-2">
+            <button class="w-7 h-7 rounded-full border border-zinc-300 flex items-center justify-center text-zinc-500 text-xs cursor-default">&#8249;</button>
+            <button class="w-7 h-7 rounded-full border border-zinc-300 flex items-center justify-center text-zinc-500 text-xs cursor-default">&#8250;</button>
+          </div>
+        </div>
+        <div class="flex h-52 items-center justify-center gap-3">
+          <svg class="w-8 h-8 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p class="text-sm text-zinc-400">Intel Layer screenshots will be added here</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="py-10 px-6 bg-zinc-50/80 border-t border-zinc-100">
     <div class="max-w-3xl mx-auto">
