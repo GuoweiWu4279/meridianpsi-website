@@ -745,15 +745,38 @@ const marqueeRow2 = [
     const dots   = Array.from(document.querySelectorAll<HTMLElement>(`[data-dot="${id}"]`));
     if (!slides.length) return;
     let current = 0;
+    let animating = false;
+
+    slides.forEach((s, i) => {
+      s.style.transition = 'opacity 0.25s ease';
+      s.style.opacity = i === 0 ? '1' : '0';
+    });
 
     function goTo(index: number) {
-      slides[current].classList.add('hidden');
-      dots[current]?.classList.remove('bg-white/90', 'w-4');
-      dots[current]?.classList.add('bg-white/40', 'w-1.5');
-      current = ((index % slides.length) + slides.length) % slides.length;
-      slides[current].classList.remove('hidden');
-      dots[current]?.classList.add('bg-white/90', 'w-4');
-      dots[current]?.classList.remove('bg-white/40', 'w-1.5');
+      if (animating) return;
+      const prev = current;
+      const next = ((index % slides.length) + slides.length) % slides.length;
+      if (prev === next) return;
+      animating = true;
+
+      dots[prev]?.classList.remove('bg-white/90', 'w-4');
+      dots[prev]?.classList.add('bg-white/40', 'w-1.5');
+      dots[next]?.classList.add('bg-white/90', 'w-4');
+      dots[next]?.classList.remove('bg-white/40', 'w-1.5');
+
+      slides[prev].style.opacity = '0';
+      setTimeout(() => {
+        slides[prev].classList.add('hidden');
+        current = next;
+        slides[current].classList.remove('hidden');
+        slides[current].style.opacity = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            slides[current].style.opacity = '1';
+            animating = false;
+          });
+        });
+      }, 250);
     }
 
     document.querySelector(`[data-prev="${id}"]`)?.addEventListener('click', () => goTo(current - 1));
