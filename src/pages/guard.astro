@@ -132,120 +132,91 @@ const metadata = {
         Guard stores 5 years of session history and surfaces patterns that are invisible in a single session.
       </p>
 
-      <!-- Feature cards — text first -->
-      <div class="grid sm:grid-cols-2 gap-4 mb-10">
-        {[
-          {
-            name: 'Monthly Digest',
-            desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days, strongest and weakest dimensions — every month.',
-          },
-          {
-            name: 'PSI x Performance Correlation',
-            desc: 'Your P&L mapped against PSI zone. See exactly what Stable sessions average versus Critical — the clearest argument for self-monitoring.',
-          },
-          {
-            name: 'Weekday Patterns',
-            desc: 'Find your weakest trading day, track 6-month Composure progress, and see which behavioral signals appear most in your worst sessions.',
-          },
-          {
-            name: "Today's Risk Brief",
-            desc: "A pre-session summary based on yesterday's performance and recent trends — personalized to you, before your first trade.",
-          },
-        ].map((item) => (
-          <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
-            <h3 class="font-semibold text-zinc-900 mb-1.5">{item.name}</h3>
-            <p class="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
-      </div>
+      <!-- Side-by-side: cards left (tab nav) + screenshot right -->
+      <div class="grid md:grid-cols-[2fr_3fr] gap-6 items-start">
 
-      <!-- Intel image carousel -->
-      <div class="relative group/carousel">
-        <!-- Slides container -->
-        <div class="rounded-2xl overflow-hidden">
-          <!-- Slide 1: PSI x Performance -->
-          <div data-carousel="intel">
-            <div class="bg-zinc-900">
-              <div class="px-6 pt-5 pb-3">
-                <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">PSI x Performance — live from your data</p>
-                <p class="text-zinc-300 text-sm">Stable PSI sessions averaged <span class="text-emerald-400 font-semibold">+$1,296</span>. Critical sessions averaged <span class="text-red-400 font-semibold">-$550</span>. That is a $1,846 difference — per session.</p>
-              </div>
-              <img
-                src="/screenshots/psi-performance.png"
-                alt="PSI x Performance Session-Level Correlation"
-                class="w-full max-h-72 object-cover object-top block"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Slide 2: Monthly Digest December -->
-          <div data-carousel="intel" class="hidden">
-            <div class="bg-white">
-              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
-                <p class="text-xs font-semibold text-zinc-500">Monthly Digest — December 2025 (Grade C)</p>
-              </div>
-              <img
-                src="/screenshots/digest-december.png"
-                alt="Monthly Digest December 2025 Grade C"
-                class="w-full max-h-72 object-cover object-top block"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Slide 3: Monthly Digest March -->
-          <div data-carousel="intel" class="hidden">
-            <div class="bg-white">
-              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
-                <p class="text-xs font-semibold text-zinc-500">Monthly Digest — March 2026 (Grade B+)</p>
-              </div>
-              <img
-                src="/screenshots/digest-march.png"
-                alt="Monthly Digest March 2026 Grade B+"
-                class="w-full max-h-72 object-cover object-top block"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <!-- Slide 4: Weekday Patterns -->
-          <div data-carousel="intel" class="hidden">
-            <div class="bg-white">
-              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
-                <p class="text-xs font-semibold text-zinc-500">Weekday patterns + 6-month Composure progress</p>
-              </div>
-              <img
-                src="/screenshots/weekday-patterns.png"
-                alt="Weekday Patterns and Composure Progress"
-                class="w-full max-h-72 object-cover object-top block"
-                loading="lazy"
-              />
-            </div>
-          </div>
+        <!-- Left: feature cards as clickable nav tabs -->
+        <div class="flex flex-col gap-3">
+          <button data-card-nav="intel" data-slide-idx="0"
+            class="text-left rounded-xl p-4 border border-emerald-400 bg-emerald-50 transition-all duration-200">
+            <h3 class="font-semibold text-zinc-900 mb-1">PSI × Performance</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">Your P&amp;L mapped against PSI zone — see exactly what Stable sessions average versus Critical.</p>
+          </button>
+          <button data-card-nav="intel" data-slide-idx="1"
+            class="text-left rounded-xl p-4 border border-zinc-200 bg-zinc-50 hover:border-zinc-300 transition-all duration-200">
+            <h3 class="font-semibold text-zinc-900 mb-1">Monthly Digest</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">Composure trend, stable days, win rate, avg P&amp;L, best and worst days — every month.</p>
+          </button>
+          <button data-card-nav="intel" data-slide-idx="2"
+            class="text-left rounded-xl p-4 border border-zinc-200 bg-zinc-50 hover:border-zinc-300 transition-all duration-200">
+            <h3 class="font-semibold text-zinc-900 mb-1">Weekday Patterns</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">Find your weakest trading day and track 6-month Composure progress over time.</p>
+          </button>
+          <button data-card-nav="intel" data-slide-idx="3"
+            class="text-left rounded-xl p-4 border border-zinc-200 bg-zinc-50 hover:border-zinc-300 transition-all duration-200">
+            <h3 class="font-semibold text-zinc-900 mb-1">Today's Risk Brief</h3>
+            <p class="text-zinc-500 text-xs leading-relaxed">A pre-session summary built from your own history — personalized before your first trade.</p>
+          </button>
         </div>
 
-        <!-- Overlay prev arrow — outside overflow-hidden so it's always clickable -->
-        <button
-          data-prev="intel"
-          class="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
-          aria-label="Previous"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
-        </button>
+        <!-- Right: screenshot carousel -->
+        <div class="relative group/carousel">
+          <div class="rounded-2xl overflow-hidden shadow-lg">
+            <!-- Slide 1: PSI x Performance -->
+            <div data-carousel="intel">
+              <div class="bg-zinc-900">
+                <div class="px-5 pt-4 pb-3">
+                  <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">PSI x Performance — live from your data</p>
+                  <p class="text-zinc-300 text-xs">Stable PSI sessions averaged <span class="text-emerald-400 font-semibold">+$1,296</span>. Critical sessions averaged <span class="text-red-400 font-semibold">-$550</span>. That is a $1,846 difference — per session.</p>
+                </div>
+                <img src="/screenshots/psi-performance.png" alt="PSI x Performance" class="w-full h-auto block" loading="lazy" />
+              </div>
+            </div>
+            <!-- Slide 2: Monthly Digest -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-white">
+                <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
+                  <p class="text-xs font-semibold text-zinc-500">Monthly Digest — March 2026 (Grade B+)</p>
+                </div>
+                <img src="/screenshots/digest-march.png" alt="Monthly Digest March 2026" class="w-full h-auto block" loading="lazy" />
+              </div>
+            </div>
+            <!-- Slide 3: Weekday Patterns -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-white">
+                <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
+                  <p class="text-xs font-semibold text-zinc-500">Weekday patterns + 6-month Composure progress</p>
+                </div>
+                <img src="/screenshots/weekday-patterns.png" alt="Weekday Patterns" class="w-full h-auto block" loading="lazy" />
+              </div>
+            </div>
+            <!-- Slide 4: Risk Brief -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-zinc-900">
+                <div class="px-5 pt-4 pb-3">
+                  <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">Today's Risk Brief — pre-session intelligence</p>
+                  <p class="text-zinc-300 text-xs">Built from your own session history. Delivered before your first trade, every morning.</p>
+                </div>
+                <img src="/screenshots/intel-risk-brief.png" alt="Today's Risk Brief" class="w-full h-auto block" loading="lazy" />
+              </div>
+            </div>
+          </div>
 
-        <!-- Overlay next arrow -->
-        <button
-          data-next="intel"
-          class="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
-          aria-label="Next"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
-        </button>
-
-        <!-- Dot indicators -->
-        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
-          <button data-dot="intel" class="h-1.5 w-4 rounded-full bg-white/90 transition-all" aria-label="Slide 1"></button>
-          <button data-dot="intel" class="h-1.5 w-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 2"></button>
-          <button data-dot="intel" class="h-1.5 w-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 3"></button>
-          <button data-dot="intel" class="h-1.5 w-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 4"></button>
+          <!-- Prev / Next arrows -->
+          <button
+            data-prev="intel"
+            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
+            aria-label="Previous"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
+          </button>
+          <button
+            data-next="intel"
+            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
+            aria-label="Next"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -314,23 +285,49 @@ const metadata = {
 <script>
   function initCarousel(id: string) {
     const slides = Array.from(document.querySelectorAll<HTMLElement>(`[data-carousel="${id}"]`));
-    const dots   = Array.from(document.querySelectorAll<HTMLElement>(`[data-dot="${id}"]`));
+    const cards  = Array.from(document.querySelectorAll<HTMLElement>(`[data-card-nav="${id}"]`));
     if (!slides.length) return;
     let current = 0;
+    let animating = false;
+
+    const activeCard   = ['border-emerald-400', 'bg-emerald-50'];
+    const inactiveCard = ['border-zinc-200', 'bg-zinc-50'];
+
+    slides.forEach((s, i) => {
+      s.style.transition = 'opacity 0.25s ease';
+      s.style.opacity = i === 0 ? '1' : '0';
+    });
 
     function goTo(index: number) {
-      slides[current].classList.add('hidden');
-      dots[current]?.classList.remove('bg-white/90', 'w-4');
-      dots[current]?.classList.add('bg-white/40', 'w-1.5');
-      current = ((index % slides.length) + slides.length) % slides.length;
-      slides[current].classList.remove('hidden');
-      dots[current]?.classList.add('bg-white/90', 'w-4');
-      dots[current]?.classList.remove('bg-white/40', 'w-1.5');
+      if (animating) return;
+      const prev = current;
+      const next = ((index % slides.length) + slides.length) % slides.length;
+      if (prev === next) return;
+      animating = true;
+
+      cards[prev]?.classList.remove(...activeCard);
+      cards[prev]?.classList.add(...inactiveCard);
+      cards[next]?.classList.add(...activeCard);
+      cards[next]?.classList.remove(...inactiveCard);
+
+      slides[prev].style.opacity = '0';
+      setTimeout(() => {
+        slides[prev].classList.add('hidden');
+        current = next;
+        slides[current].classList.remove('hidden');
+        slides[current].style.opacity = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            slides[current].style.opacity = '1';
+            animating = false;
+          });
+        });
+      }, 250);
     }
 
     document.querySelector(`[data-prev="${id}"]`)?.addEventListener('click', () => goTo(current - 1));
     document.querySelector(`[data-next="${id}"]`)?.addEventListener('click', () => goTo(current + 1));
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    cards.forEach((card, i) => card.addEventListener('click', () => goTo(i)));
   }
 
   document.addEventListener('DOMContentLoaded', () => {
