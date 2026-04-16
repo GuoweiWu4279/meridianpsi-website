@@ -182,22 +182,27 @@ const marqueeRow2 = [
     </div>
   </section>
 
-  <!-- ── Section 1: Live score — dark showcase ─────────────────────────────── -->
-  <section class="relative py-24 px-6 bg-black overflow-hidden border-t border-zinc-900">
-    <!-- Subtle neutral glow behind the screenshot -->
-    <div class="pointer-events-none absolute inset-0 flex items-center justify-start pl-8 md:pl-20">
-      <div class="w-[480px] h-[480px] rounded-full bg-white/5 blur-3xl"></div>
-    </div>
+  <!-- Live score — dark showcase -->
+  <section class="relative py-28 px-6 overflow-hidden">
+    <!-- Gradient fade from white above into dark, and back to white below -->
+    <div class="pointer-events-none absolute inset-0 bg-[#0a0a0a]"></div>
+    <div class="pointer-events-none absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white to-transparent z-10"></div>
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent z-10"></div>
 
-    <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-      <!-- Screenshot -->
+    <!-- Red ambient glow — matches the screenshot's critical alarm color -->
+    <div class="pointer-events-none absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-red-700/10 blur-[100px]"></div>
+    <!-- Subtle green counter-glow on the right for the green toggle -->
+    <div class="pointer-events-none absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-emerald-700/8 blur-[80px]"></div>
+
+    <div class="relative z-20 max-w-6xl mx-auto grid md:grid-cols-[55fr_45fr] gap-12 md:gap-20 items-center">
+      <!-- Screenshot — larger, floats with depth shadow -->
       <div class="order-1 md:order-1">
-        <div class="max-w-[420px] lg:max-w-[460px] rounded-2xl overflow-hidden shadow-2xl shadow-black/60">
+        <div class="rounded-2xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.06)]">
           <img
             src="/screenshots/psi-critical.png"
-            alt="Meridian PSI Monitor showing a Critical score of 12 with behavioral signal bars"
+            alt="Meridian PSI Monitor showing a Critical score of 47 with behavioral signal bars"
             class="w-full h-auto block"
-            loading="lazy"
+            loading="eager"
           />
         </div>
       </div>
@@ -220,7 +225,7 @@ const marqueeRow2 = [
         </ul>
         <div class="mt-8">
           <a href="/features" class="inline-flex items-center gap-1.5 text-sm font-medium text-white/75 hover:text-white transition-colors">
-            See full feature breakdown →
+            See full feature breakdown &rarr;
           </a>
         </div>
       </div>
