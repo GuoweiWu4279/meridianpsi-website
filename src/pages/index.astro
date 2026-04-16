@@ -273,7 +273,7 @@ const marqueeRow2 = [
   <section class="py-20 px-6 bg-white border-t border-zinc-100">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
       <!-- Left: image carousel -->
-      <div>
+      <div class="relative group/carousel">
         <!-- Slide 1: December -->
         <div data-carousel="history">
           <div class="rounded-2xl overflow-hidden shadow-xl border border-zinc-800">
@@ -308,14 +308,29 @@ const marqueeRow2 = [
             <span class="text-emerald-600 font-semibold text-sm">Avg P&amp;L +$997</span>
           </div>
         </div>
-        <!-- Controls -->
-        <div class="flex items-center justify-between mt-5 px-1">
-          <button data-prev="history" class="h-9 w-9 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 transition-colors text-base leading-none" aria-label="Previous">&#8592;</button>
-          <div class="flex gap-2">
-            <button data-dot="history" class="h-2 w-2 rounded-full bg-zinc-900 transition-all"></button>
-            <button data-dot="history" class="h-2 w-2 rounded-full bg-zinc-300 transition-all"></button>
-          </div>
-          <button data-next="history" class="h-9 w-9 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:border-zinc-400 hover:text-zinc-900 transition-colors text-base leading-none" aria-label="Next">&#8594;</button>
+
+        <!-- Overlay prev arrow — positioned over image area -->
+        <button
+          data-prev="history"
+          class="absolute left-3 top-[42%] -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/25 hover:bg-black/55 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
+          aria-label="Previous"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" /></svg>
+        </button>
+
+        <!-- Overlay next arrow -->
+        <button
+          data-next="history"
+          class="absolute right-3 top-[42%] -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/25 hover:bg-black/55 backdrop-blur-sm text-white flex items-center justify-center transition-all opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100"
+          aria-label="Next"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+        </button>
+
+        <!-- Dot indicators — inset bottom of image area -->
+        <div class="absolute bottom-[52px] left-1/2 -translate-x-1/2 z-10 flex gap-1.5 pointer-events-none group-hover/carousel:pointer-events-auto">
+          <button data-dot="history" class="h-1.5 w-4 rounded-full bg-white/90 transition-all" aria-label="Slide 1"></button>
+          <button data-dot="history" class="h-1.5 w-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-all" aria-label="Slide 2"></button>
         </div>
       </div>
       <!-- Right: text -->
@@ -636,12 +651,12 @@ const marqueeRow2 = [
 
     function goTo(index: number) {
       slides[current].classList.add('hidden');
-      dots[current]?.classList.remove('bg-zinc-900');
-      dots[current]?.classList.add('bg-zinc-300');
+      dots[current]?.classList.remove('bg-white/90', 'w-4');
+      dots[current]?.classList.add('bg-white/40', 'w-1.5');
       current = ((index % slides.length) + slides.length) % slides.length;
       slides[current].classList.remove('hidden');
-      dots[current]?.classList.add('bg-zinc-900');
-      dots[current]?.classList.remove('bg-zinc-300');
+      dots[current]?.classList.add('bg-white/90', 'w-4');
+      dots[current]?.classList.remove('bg-white/40', 'w-1.5');
     }
 
     document.querySelector(`[data-prev="${id}"]`)?.addEventListener('click', () => goTo(current - 1));
