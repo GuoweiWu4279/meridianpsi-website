@@ -369,26 +369,48 @@ const marqueeRow2 = [
   </section>
 
   <!-- Guard teaser -->
-  <section class="py-16 px-6 bg-zinc-900 text-white">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 justify-between">
-      <div>
-        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-3">Meridian Guard — Coming soon</p>
-        <h2 class="text-2xl md:text-3xl font-bold mb-3">
+  <section class="py-20 px-6 bg-zinc-900 text-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-4">Meridian Guard — Coming soon</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
           You already know the rules.<br />Guard makes sure you follow them.
         </h2>
-        <p class="text-zinc-400 text-sm leading-relaxed max-w-xl">
-          A commitment-device engine built into Meridian. Six trigger conditions, five action levels from a quiet toast to a full broker disconnect — enforced automatically, so you don't have to decide in the moment.
+        <p class="text-zinc-400 text-base max-w-2xl mx-auto leading-relaxed">
+          When you are calm, you write the rules. When the moment comes, Guard enforces them — automatically, without requiring a decision from you. This is what behavioral economists call a commitment device.
         </p>
       </div>
-      <a
-        href="/guard"
-        class="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/25 hover:border-white/50 rounded-full px-6 py-2.5 transition-all duration-200 whitespace-nowrap"
-      >
-        See Meridian Guard
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
+
+      <!-- 3 key feature callouts -->
+      <div class="grid sm:grid-cols-3 gap-4 mb-10">
+        <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-2xl p-5">
+          <p class="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Guard System</p>
+          <p class="text-white font-semibold mb-2">Rules that enforce themselves</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">6 trigger conditions. 5 action levels from a quiet toast to a full broker disconnect. Set once — active every session.</p>
+        </div>
+        <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-2xl p-5">
+          <p class="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Intel Layer</p>
+          <p class="text-white font-semibold mb-2">See patterns across months</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Monthly digest, PSI &times; P&amp;L correlation, weekday patterns, and a pre-session risk brief — built from your own history.</p>
+        </div>
+        <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-2xl p-5">
+          <p class="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Key finding</p>
+          <p class="text-white font-semibold mb-2">Stable PSI &rarr; +$1,402/session</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Critical PSI &rarr; &minus;$550/session. Guard shows you — and stops you — before you get there.</p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm rounded-full px-8 py-3 transition-colors duration-200"
+        >
+          See everything in Meridian Guard
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
