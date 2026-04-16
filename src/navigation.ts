@@ -5,12 +5,16 @@ const checkoutUrl = 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-
 export const headerData = {
   links: [
     {
-      text: 'PSI Monitor',
+      text: 'Meridian',
       href: getPermalink('/'),
       links: [
         {
-          text: 'Features',
+          text: 'Meridian',
           href: getPermalink('/features'),
+        },
+        {
+          text: 'Meridian Guard',
+          href: getPermalink('/guard'),
         },
         {
           text: 'Pricing',
@@ -52,7 +56,8 @@ export const footerData = {
     {
       title: 'Meridian',
       links: [
-        { text: 'Features', href: getPermalink('/features') },
+        { text: 'Meridian', href: getPermalink('/features') },
+        { text: 'Meridian Guard', href: getPermalink('/guard') },
         { text: 'Pricing', href: getPermalink('/pricing') },
         { text: 'Releases', href: getPermalink('/releases') },
       ],
