@@ -128,84 +128,67 @@ const metadata = {
     <div class="max-w-5xl mx-auto">
       <p class="text-xs font-semibold tracking-[0.15em] text-emerald-600 uppercase mb-3">Intel Layer — Guard exclusive</p>
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-3">Your session data, turned into insight.</h2>
-      <p class="text-zinc-500 text-sm leading-relaxed mb-12 max-w-2xl">
-        Guard's Intel Layer surfaces patterns from your history that are invisible in a single session.
+      <p class="text-zinc-500 text-sm leading-relaxed mb-10 max-w-2xl">
+        Guard stores 5 years of session history and surfaces patterns that are invisible in a single session.
       </p>
 
-      <div class="grid sm:grid-cols-2 gap-6 mb-12">
+      <!-- Feature cards — text first -->
+      <div class="grid sm:grid-cols-2 gap-4 mb-10">
         {[
           {
             name: 'Monthly Digest',
-            desc: 'At month end: Composure trend, stable days count, win rate, avg P&L, best and worst days, strongest and weakest behavioral dimensions.',
+            desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days, strongest and weakest dimensions — every month.',
           },
           {
             name: 'PSI x Performance Correlation',
-            desc: 'Your actual P&L mapped against PSI zone. See what your Stable sessions average versus your Critical sessions. The most direct evidence for why self-monitoring matters.',
+            desc: 'Your P&L mapped against PSI zone. See exactly what Stable sessions average versus Critical — the clearest argument for self-monitoring.',
           },
           {
             name: 'Weekday Patterns',
-            desc: 'Your worst trading day of the week, 6-month Composure trend, and the behavioral signals common across your worst sessions.',
+            desc: 'Find your weakest trading day, track 6-month Composure progress, and see which behavioral signals appear most in your worst sessions.',
           },
           {
             name: "Today's Risk Brief",
-            desc: "A personalized pre-session summary based on yesterday's performance and recent behavioral trends — before your first trade.",
+            desc: "A pre-session summary based on yesterday's performance and recent trends — personalized to you, before your first trade.",
           },
         ].map((item) => (
-          <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-5">
-            <h3 class="font-bold text-zinc-900 mb-2">{item.name}</h3>
+          <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
+            <h3 class="font-semibold text-zinc-900 mb-1.5">{item.name}</h3>
             <p class="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
 
-      <!-- PSI x Performance — hero screenshot -->
-      <div class="rounded-2xl overflow-hidden shadow-xl border border-zinc-700 mb-8">
+      <!-- PSI x Performance — single featured screenshot with callout -->
+      <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
+        <div class="px-6 pt-5 pb-3">
+          <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">PSI x Performance — live from your data</p>
+          <p class="text-zinc-300 text-sm">Stable PSI sessions averaged <span class="text-emerald-400 font-semibold">+$1,402</span>. Critical sessions averaged <span class="text-red-400 font-semibold">-$550</span>. That is a $1,952 difference — per session.</p>
+        </div>
         <img
           src="/screenshots/psi-performance.png"
-          alt="PSI x Performance Session-Level Correlation — Stable PSI sessions average +$1402, Critical average -$550"
+          alt="PSI x Performance Session-Level Correlation"
           class="w-full h-auto block"
           loading="lazy"
         />
       </div>
-      <p class="text-zinc-400 text-sm text-center mb-12">
-        Stable PSI sessions averaged <span class="text-emerald-400 font-semibold">+$1,402</span>. Critical sessions averaged <span class="text-red-400 font-semibold">-$550</span>. That is a $1,952 difference — per session.
-      </p>
 
-      <!-- Monthly digest before/after + Weekday patterns -->
-      <div class="grid md:grid-cols-2 gap-5">
-        <div>
-          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">Monthly Digest — progression</p>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-xl overflow-hidden border border-zinc-700">
-              <img
-                src="/screenshots/digest-december.png"
-                alt="Monthly Digest December 2025 — Grade C, Composure 49%, Avg P&L -$629"
-                class="w-full h-auto block"
-                loading="lazy"
-              />
-            </div>
-            <div class="rounded-xl overflow-hidden border border-zinc-700">
-              <img
-                src="/screenshots/digest-march.png"
-                alt="Monthly Digest March 2026 — Grade B+, Composure 74%, Avg P&L +$780"
-                class="w-full h-auto block"
-                loading="lazy"
-              />
-            </div>
+      <!-- Two smaller screenshots below -->
+      <div class="grid sm:grid-cols-2 gap-4 mt-4">
+        <div class="rounded-xl overflow-hidden border border-zinc-200">
+          <div class="bg-zinc-50 px-4 py-2 border-b border-zinc-200">
+            <p class="text-xs font-semibold text-zinc-500">Monthly Digest — December C &rarr; March B+</p>
           </div>
-          <p class="text-zinc-500 text-xs mt-2 text-center">From Grade C to B+ in 4 months. The score changes when the behavior does.</p>
+          <div class="grid grid-cols-2">
+            <img src="/screenshots/digest-december.png" alt="Monthly Digest December 2025 Grade C" class="w-full h-auto block border-r border-zinc-200" loading="lazy" />
+            <img src="/screenshots/digest-march.png" alt="Monthly Digest March 2026 Grade B+" class="w-full h-auto block" loading="lazy" />
+          </div>
         </div>
-        <div>
-          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-3">Weekday patterns + 6-month progress</p>
-          <div class="rounded-xl overflow-hidden border border-zinc-700">
-            <img
-              src="/screenshots/weekday-patterns.png"
-              alt="Weekday Patterns showing Wednesday as best day and Friday as hardest, plus 6-month Composure progress from 49% to 79%"
-              class="w-full h-auto block"
-              loading="lazy"
-            />
+        <div class="rounded-xl overflow-hidden border border-zinc-200">
+          <div class="bg-zinc-50 px-4 py-2 border-b border-zinc-200">
+            <p class="text-xs font-semibold text-zinc-500">Weekday patterns + 6-month progress</p>
           </div>
-          <p class="text-zinc-500 text-xs mt-2 text-center">30 pts improvement over 5 months &middot; Grade B+</p>
+          <img src="/screenshots/weekday-patterns.png" alt="Weekday Patterns and Composure Progress" class="w-full h-auto block" loading="lazy" />
         </div>
       </div>
     </div>
