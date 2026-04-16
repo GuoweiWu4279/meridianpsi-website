@@ -223,7 +223,7 @@ const metadata = {
   </section>
 
   <!-- Comparison table -->
-  <section class="py-20 px-6 bg-zinc-50 border-t border-zinc-100">
+  <section id="comparison" class="py-20 px-6 bg-zinc-50 border-t border-zinc-100">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">Meridian vs Meridian Guard</h2>
       <div class="rounded-2xl border border-zinc-200 overflow-hidden bg-white">
@@ -238,11 +238,11 @@ const metadata = {
           ['Personal baselines', true, true],
           ['Session history (5 years)', true, true],
           ['Local — no cloud, no telemetry', true, true],
+          ['Deep customization — adapts to any trading style', true, true],
           ['Guard System (6 triggers, 5 actions)', false, true],
           ['Intel Layer — monthly digest', false, true],
           ['PSI x P&L correlation', false, true],
           ["Today's Risk Brief", false, true],
-          ['Deep customization — adapts to any trading style', true, true],
         ].map(([feature, meridian, guard]) => (
           <div class="grid grid-cols-3 border-t border-zinc-100 text-sm">
             <div class="px-5 py-3.5 text-zinc-700">{feature}</div>
