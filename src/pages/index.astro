@@ -240,8 +240,8 @@ const signals = [
   <section id="step-detail" class="py-16 lg:py-24 px-6" style="background:#f4f4f5; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
     <div class="max-w-6xl mx-auto">
 
-      <!-- Badge + heading: full-width above the 2-col grid -->
-      <div class="max-w-xl mb-8">
+      <!-- Badge + heading (left); “Four core stages” stays on the left with copy -->
+      <div class="max-w-xl mb-6 lg:mb-8">
         <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full" style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
           <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
           <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">See it in action</span>
@@ -251,74 +251,68 @@ const signals = [
         </h2>
       </div>
 
-      <!-- Grid: left = image, right = subtitle + accordion (aligned together) -->
-      <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 items-start">
-
-        <!-- Left: image display — 16:9, black fill, object-contain, sticky on desktop -->
-        <div class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px]" style="background:#000; aspect-ratio:16/9; border:1px solid rgba(0,0,0,0.1);">
-          {steps.map((step, i) => (
-            <img
-              data-step-img={i}
-              src={step.image}
-              alt={step.imgAlt}
-              class="acc-img"
-              loading="lazy"
-            />
-          ))}
-        </div>
-
-        <!-- Right: subtitle at top + accordion (both start at image level) -->
-        <div>
-          <p class="text-sm leading-relaxed mb-5" style="color:#71717a;">
+      <!-- Grid: left = intro + image; right = accordion (top aligns with intro line) -->
+      <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start">
+        <div class="flex flex-col gap-6 lg:gap-8">
+          <p class="text-sm leading-relaxed max-w-xl" style="color:#71717a;">
             Four core stages. Each solves a distinct part of the psychological consistency problem.
           </p>
+          <!-- Image — 16:9, black fill, object-contain, sticky on desktop -->
+          <div class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px]" style="background:#000; aspect-ratio:16/9; border:1px solid rgba(0,0,0,0.1);">
+            {steps.map((step, i) => (
+              <img
+                data-step-img={i}
+                src={step.image}
+                alt={step.imgAlt}
+                class="acc-img"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div class="lg:self-start">
           <div class="space-y-1" role="list" aria-label="Product stages">
-          {steps.map((step, i) => (
-            <div
-              data-acc-item={i}
-              role="listitem"
-              class:list={['acc-item', { 'acc-item-active': i === 0 }]}
-              tabindex="0"
-            >
-              <div class="flex items-start gap-4 p-5">
-                <!-- Icon disc -->
-                <div class="acc-item-icon flex-shrink-0 p-2 rounded-lg mt-0.5" aria-hidden="true" set:html={step.icon} />
-                <!-- Text content -->
-                <div class="flex-1 min-w-0">
-                  <h3 class="acc-item-title text-base font-semibold">
-                    <span class="acc-item-num text-xs font-medium tracking-widest mr-1" style="opacity:0.35;">0{i + 1} —</span>
-                    {step.label}
-                  </h3>
-                  <!-- Expandable body -->
-                  <div class="acc-item-body overflow-hidden" style="max-height:0;">
-                    <p class="text-sm leading-relaxed mt-2 mb-3" style="color:#71717a;">{step.fullDesc}</p>
-                    <ul class="space-y-1.5 text-sm mb-2" style="color:#3f3f46;">
-                      {step.bullets.map((b) => (
-                        <li class="flex items-start gap-2.5">
-                          <span class="mt-[7px] w-1 h-1 rounded-full shrink-0" style="background:#059669;"></span>
-                          <span set:html={b} />
-                        </li>
-                      ))}
-                    </ul>
-                    {step.link && (
-                      <a href={step.link.href} class="inline-flex items-center gap-1.5 text-sm font-medium mt-3 transition-colors" style="color:#059669;">
-                        {step.link.text}
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                      </a>
-                    )}
+            {steps.map((step, i) => (
+              <div
+                data-acc-item={i}
+                role="listitem"
+                class:list={['acc-item', { 'acc-item-active': i === 0 }]}
+                tabindex="0"
+              >
+                <div class="flex items-start gap-4 p-5">
+                  <div class="acc-item-icon flex-shrink-0 p-2 rounded-lg mt-0.5" aria-hidden="true" set:html={step.icon} />
+                  <div class="flex-1 min-w-0">
+                    <h3 class="acc-item-title text-base font-semibold">
+                      <span class="acc-item-num text-xs font-medium tracking-widest mr-1" style="opacity:0.35;">0{i + 1} —</span>
+                      {step.label}
+                    </h3>
+                    <div class="acc-item-body overflow-hidden" style="max-height:0;">
+                      <p class="text-sm leading-relaxed mt-2 mb-3" style="color:#71717a;">{step.fullDesc}</p>
+                      <ul class="space-y-1.5 text-sm mb-2" style="color:#3f3f46;">
+                        {step.bullets.map((b) => (
+                          <li class="flex items-start gap-2.5">
+                            <span class="mt-[7px] w-1 h-1 rounded-full shrink-0" style="background:#059669;"></span>
+                            <span set:html={b} />
+                          </li>
+                        ))}
+                      </ul>
+                      {step.link && (
+                        <a href={step.link.href} class="inline-flex items-center gap-1.5 text-sm font-medium mt-3 transition-colors" style="color:#059669;">
+                          {step.link.text}
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
+                  <svg class="acc-chevron w-4 h-4 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
-                <!-- Chevron -->
-                <svg class="acc-chevron w-4 h-4 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-        </div>
-
       </div>
     </div>
   </section>
