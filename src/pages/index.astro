@@ -240,18 +240,19 @@ const signals = [
   <section id="step-detail" class="py-16 lg:py-24 px-6" style="background:#f4f4f5; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
     <div class="max-w-6xl mx-auto">
 
-      <!-- Grid: left = badge, title, intro, image; right = accordion (lg: top aligns with badge) -->
+      <!-- Eyebrow spans above both columns; grid aligns accordion top with H2 -->
+      <div class="max-w-xl mb-6 lg:mb-8">
+        <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full" style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">See it in action</span>
+        </div>
+      </div>
+
       <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start">
         <div class="flex flex-col gap-6 lg:gap-8">
-          <div class="max-w-xl">
-            <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full" style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
-              <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">See it in action</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight word-blur-target" style="color:#18181b;">
-              Pick a stage. See what you'd get.
-            </h2>
-          </div>
+          <h2 class="max-w-xl text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight word-blur-target" style="color:#18181b;">
+            Pick a stage. See what you'd get.
+          </h2>
           <p class="text-sm leading-relaxed max-w-xl" style="color:#71717a;">
             Four core stages. Each solves a distinct part of the psychological consistency problem.
           </p>
@@ -269,7 +270,7 @@ const signals = [
           </div>
         </div>
 
-        <div class="lg:self-start lg:-mt-5 max-lg:mt-8">
+        <div class="lg:self-start max-lg:mt-8">
           <div class="space-y-1" role="list" aria-label="Product stages">
             {steps.map((step, i) => (
               <div
