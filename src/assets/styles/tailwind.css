@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -49,19 +49,19 @@
     @apply inline-flex items-center justify-center rounded-lg font-medium text-center leading-snug transition-all duration-200 ease-out cursor-pointer
            text-sm px-5 py-2.5
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
-    --tw-ring-color: #059669;
+    --tw-ring-color: #b45309;
     --tw-ring-offset-color: white;
   }
 
   .btn-primary {
     @apply btn font-semibold hover:-translate-y-0.5 active:translate-y-0;
-    background: #059669;
+    background: #b45309;
     color: white;
-    border: 1px solid #059669;
+    border: 1px solid #b45309;
   }
   .btn-primary:hover {
-    background: #047857;
-    border-color: #047857;
+    background: #92400e;
+    border-color: #92400e;
   }
 
   .btn-secondary {
@@ -71,7 +71,7 @@
     border: 1px solid #e4e4e7;
   }
   .btn-secondary:hover {
-    background: #f4f4f5;
+    background: #fafaf9;
     border-color: #d4d4d8;
   }
   .dark .btn-secondary {
@@ -86,10 +86,10 @@
 
   .btn-tertiary {
     @apply inline-flex items-center gap-1 text-sm font-medium transition-colors;
-    color: #059669;
+    color: #b45309;
   }
-  .btn-tertiary:hover { color: #047857; }
-  .dark .btn-tertiary:hover { color: #6ee7b7; }
+  .btn-tertiary:hover { color: #92400e; }
+  .dark .btn-tertiary:hover { color: #fde68a; }
 
   .btn-lg {
     @apply px-7 py-3.5 text-base;
@@ -123,13 +123,13 @@
     @apply transition-all duration-200 hover:-translate-y-0.5;
   }
   .card-hover:hover {
-    border-color: #059669;
+    border-color: #b45309;
   }
 
   /* ——— Typography helpers ———————————————————— */
   .eyebrow {
     @apply text-xs font-semibold tracking-widest uppercase;
-    color: #059669;
+    color: #b45309;
   }
   .display {
     @apply text-4xl md:text-6xl font-bold tracking-tight;
