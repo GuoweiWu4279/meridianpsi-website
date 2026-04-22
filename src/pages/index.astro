@@ -109,11 +109,11 @@ const signals = [
 
 <Layout metadata={metadata}>
   <!-- ——— HERO — light, clean ——— -->
-  <section class="relative overflow-hidden md:-mt-[76px] not-prose" style="background: #EBE9E4;">
+  <section class="relative overflow-hidden md:-mt-[76px] not-prose" style="background: white;">
     <!-- Header spacer -->
     <div class="md:pt-[76px]"></div>
     <div class="relative max-w-6xl mx-auto px-6">
-      <div class="pt-20 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-40">
+      <div class="pt-14 pb-12 md:pt-20 md:pb-16 lg:pt-24 lg:pb-20">
         <div class="text-center max-w-4xl mx-auto">
           <!-- Eyebrow badge -->
           <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 fade-up rounded-full" style="border-color: rgba(221,185,24,0.7); background: rgba(221,185,24,0.1);">
@@ -130,18 +130,19 @@ const signals = [
           </p>
           <!-- CTAs -->
           <div class="flex flex-col sm:flex-row sm:justify-center gap-3 fade-up">
-            <a href="/pricing" class="btn btn-lg font-semibold" style="background:#073460; color:#EBE9E4; border:1px solid #073460;">Start free trial</a>
-            <a href="#how-it-works" class="btn btn-lg font-semibold" style="border:1px solid rgba(7,52,96,0.3); color:#073460; background:transparent;">How it works</a>
+            <a href="/pricing" class="btn btn-lg font-semibold" style="background:#073460; color:white; border:1px solid #073460;">Start free trial</a>
+            <a href="#how-it-works" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(7,52,96,0.5); color:#073460; background:transparent;">How it works</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats bar -->
-  <section class="px-6 fade-up">
-    <div class="max-w-6xl mx-auto">
+  <!-- Stats bar — tight strip, white background anchored to hero -->
+  <div class="fade-up" style="background:white; border-bottom:1px solid rgba(7,52,96,0.08);">
+    <div class="max-w-6xl mx-auto px-6">
       <Stats
+        classes={{ container: 'py-6 md:py-8 px-0' }}
         stats={[
           { title: 'Live behavioral signals', amount: '7' },
           { title: 'Update latency', amount: '<100ms' },
@@ -150,10 +151,10 @@ const signals = [
         ]}
       />
     </div>
-  </section>
+  </div>
 
-  <!-- ——— PROBLEM — light centered ——— -->
-  <section class="relative py-24 md:py-32 px-6" style="background:#E1DFDB; border-top:1px solid rgba(7,52,96,0.08); border-bottom:1px solid rgba(7,52,96,0.08);">
+  <!-- ——— PROBLEM — cream background ——— -->
+  <section class="relative py-24 md:py-32 px-6" style="background:#EBE9E4; border-top:1px solid rgba(7,52,96,0.08); border-bottom:1px solid rgba(7,52,96,0.08);">
     <div class="relative max-w-3xl mx-auto text-center">
       <!-- Eyebrow badge -->
       <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 rounded-full" style="border-color: rgba(221,185,24,0.7); background: rgba(221,185,24,0.1);">
@@ -172,21 +173,21 @@ const signals = [
       </p>
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-        <a href="/pricing" class="btn btn-lg font-semibold" style="background:#073460; color:#EBE9E4; border:1px solid #073460;">Start free trial</a>
-        <a href="#step-detail" class="btn btn-lg font-semibold" style="border:1px solid rgba(7,52,96,0.3); color:#073460; background:transparent;">See Meridian in action</a>
+        <a href="/pricing" class="btn btn-lg font-semibold" style="background:#073460; color:white; border:1px solid #073460;">Start free trial</a>
+        <a href="#step-detail" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(7,52,96,0.5); color:#073460; background:transparent;">See Meridian in action</a>
       </div>
     </div>
   </section>
 
   <!-- ——— ROADMAP / HOW IT WORKS ——— -->
-  <section id="how-it-works" class="section bg-zinc-50 dark:bg-zinc-900/40 border-y border-zinc-100 dark:border-zinc-800">
+  <section id="how-it-works" class="section border-y" style="background:white; border-color:rgba(7,52,96,0.08);">
     <div class="container-wide">
-      <div class="text-center mb-20 max-w-2xl mx-auto">
+      <div class="text-center mb-16 max-w-2xl mx-auto">
         <p class="eyebrow mb-4 fade-up">How it works</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5 fade-up">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 fade-up" style="color:#073460;">
           Before. During. After. Every session.
         </h2>
-        <p class="lead fade-up">
+        <p class="lead fade-up" style="color:#356197;">
           Meridian fits into every stage of how you trade — from setup, to real-time monitoring and
           automatic guardrails, to post-session review.
         </p>
@@ -196,7 +197,8 @@ const signals = [
       <div class="relative">
         <!-- dotted connector line (desktop) -->
         <div
-          class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] border-t border-dashed border-zinc-300 dark:border-zinc-700"
+          class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] border-t border-dashed"
+          style="border-color:rgba(7,52,96,0.15);"
           aria-hidden="true"
         ></div>
 
@@ -209,17 +211,17 @@ const signals = [
           ].map((step, i) => (
             <div class="fade-up" style={`transition-delay:${i * 80}ms`}>
               <!-- Number disc -->
-              <div class="relative z-10 mx-auto w-12 h-12 rounded-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center mb-5 text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+              <div class="relative z-10 mx-auto w-12 h-12 rounded-full bg-white border flex items-center justify-center mb-5 text-sm font-semibold tracking-tight" style="border-color:rgba(7,52,96,0.2); color:#073460;">
                 {step.num}
               </div>
               <div class="text-center mb-5">
-                <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-1">{step.title}</h3>
-                <p class="text-sm text-zinc-500 dark:text-zinc-400">{step.sub}</p>
+                <h3 class="text-base font-semibold mb-1" style="color:#073460;">{step.title}</h3>
+                <p class="text-sm" style="color:#356197;">{step.sub}</p>
               </div>
               <ul class="card card-hover p-5 space-y-2.5">
                 {step.bullets.map((b) => (
-                  <li class="flex items-start gap-2.5 text-sm text-zinc-600 dark:text-zinc-300">
-                    <svg class="mt-0.5 w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <li class="flex items-start gap-2.5 text-sm" style="color:#356197;">
+                    <svg class="mt-0.5 w-4 h-4 shrink-0" style="color:#DDB918;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{b}</span>
@@ -558,10 +560,10 @@ const signals = [
     outline: none;
   }
   .acc-item:focus-visible { box-shadow: 0 0 0 2px #DDB918; }
-  .acc-item-title { color: rgba(7,52,96,0.55); transition: color 0.2s ease; }
+  .acc-item-title { color: #356197; transition: color 0.2s ease; }
   .acc-item-icon {
-    background: rgba(221,185,24,0.12);
-    color: rgba(7,52,96,0.5);
+    background: rgba(7,52,96,0.07);
+    color: rgba(7,52,96,0.45);
     transition: background-color 0.2s ease, color 0.2s ease;
   }
   .acc-item-body {
@@ -584,7 +586,7 @@ const signals = [
   .acc-item-active .acc-item-icon { background: #DDB918; color: #073460; }
   .acc-item-active .acc-chevron { opacity: 1; transform: translateX(0); color: rgba(7,52,96,0.35); }
   /* Hover */
-  .acc-item:not(.acc-item-active):hover { background: rgba(7,52,96,0.03); }
+  .acc-item:not(.acc-item-active):hover { background: rgba(7,52,96,0.04); border-color: rgba(7,52,96,0.12); }
   .acc-item:not(.acc-item-active):hover .acc-item-title { color: #073460; }
 
   /* Image cross-fade — absolute stacking inside square container */
