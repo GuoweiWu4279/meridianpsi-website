@@ -11,14 +11,15 @@ const name = SITE?.name ?? 'Meridian';
 
 const sizeClass =
   variant === 'compact'
-    ? 'h-8 md:h-9 w-auto object-contain object-left'
-    : 'h-14 md:h-16 w-auto object-contain object-left';
+    ? 'h-7 md:h-8 w-auto object-contain object-left'
+    : 'h-9 md:h-10 w-auto object-contain object-left';
 ---
 
 <img
   src="/meridian-logo.png"
   alt={`${name} — home`}
   class:list={[sizeClass, 'self-center']}
+  style="mix-blend-mode: multiply;"
   loading="eager"
   decoding="async"
 />
