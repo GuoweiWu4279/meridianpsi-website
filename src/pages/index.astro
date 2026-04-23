@@ -1,5 +1,6 @@
 ﻿---
 import Layout from '~/layouts/PageLayout.astro';
+import heroBgImage from '~/assets/images/hero-bg.jpg';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Stats from '~/components/widgets/Stats.astro';
@@ -169,8 +170,11 @@ const signals = [
 
 <Layout metadata={metadata}>
   <!-- ——— HERO — light, clean ——— -->
-  <!-- Hero background: add public/hero-bg.jpg (see .hero-bg-home in tailwind.css). -->
-  <section class="relative overflow-hidden md:-mt-[76px] not-prose hero-bg-home">
+  <!-- Hero background: replace src/assets/images/hero-bg.jpg (imported so dev/build always resolve URL). -->
+  <section
+    class="relative overflow-hidden md:-mt-[76px] not-prose hero-bg-home"
+    style={`--hero-bg: url('${heroBgImage.src}')`}
+  >
     <!-- Header spacer -->
     <div class="md:pt-[76px]"></div>
     <div class="relative z-[1] max-w-6xl mx-auto px-6">
