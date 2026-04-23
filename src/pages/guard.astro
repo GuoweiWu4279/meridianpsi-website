@@ -1,7 +1,9 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import guardHeroBg from '~/assets/images/guard-hero-bg.jpg';
+
+/** Hero background: replace `public/guard-bg.jpg` (not hashed — easy to swap after AI export). */
+const guardBgUrl = '/guard-bg.jpg';
 
 const metadata = {
   title: 'Meridian Guard — Commitment Device for Active Traders',
@@ -46,7 +48,7 @@ const examples = [
        ═══════════════════════════════════════════════════════ -->
   <section
     class="relative overflow-hidden md:-mt-[84px] not-prose guard-hero-surface"
-    style={`--guard-hero-bg: url('${guardHeroBg.src}')`}
+    style={`--guard-hero-bg: url('${guardBgUrl}')`}
   >
     <!-- bottom fade into next section -->
     <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"

@@ -55,7 +55,7 @@
     background-repeat: no-repeat;
   }
 
-  /* Guard product page hero — slightly darker base, more visible texture */
+  /* Guard product page hero — background: public/guard-bg.jpg via --guard-hero-bg on section */
   .guard-hero-surface {
     background-color: #f0ede8;
     background-image:
