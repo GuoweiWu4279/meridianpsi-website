@@ -58,11 +58,10 @@ const intelFeatures = [
 
   <div class="md:pt-[84px]"></div>
 
-  <div class="relative z-[1] max-w-6xl mx-auto px-6 py-16 md:py-24">
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+  <div class="relative z-[1] max-w-3xl mx-auto px-6 py-16 md:py-24">
 
-      <!-- ── Left: copy on frosted surface ── -->
-      <div class="rounded-2xl px-7 py-8 md:px-9 md:py-10"
+      <!-- Frosted copy panel — centred single column -->
+      <div class="rounded-2xl px-7 py-8 md:px-10 md:py-10"
            style="background:rgba(248,246,242,0.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.6);">
         <!-- Eyebrow -->
         <p class="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-emerald-800 bg-emerald-50/80 border border-emerald-200/70 rounded-full px-3.5 py-1 mb-6">
@@ -109,66 +108,9 @@ const intelFeatures = [
         <p class="text-xs text-zinc-500 mt-4">$34.99/mo after trial · Cancel any time · Trading involves substantial risk of loss.</p>
       </div>
 
-      <!-- ── Right: CSS Guard trigger mockup ── -->
-      <div class="relative hidden lg:block">
-        <div class="absolute -inset-6 rounded-3xl blur-2xl opacity-20"
-             style="background:radial-gradient(ellipse at center,rgba(5,150,105,0.5) 0%,transparent 70%);" aria-hidden="true"></div>
-        <!-- Simulated Guard trigger card — no screenshot needed -->
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl"
-             style="background:#1a1e1a; border:1px solid rgba(255,255,255,0.1); box-shadow:0 32px 72px rgba(0,0,0,0.28),0 4px 16px rgba(0,0,0,0.12);">
+      <!-- Illustration slot — replace src with your AI-generated image -->
+      <!-- <img src="/illustrations/guard-flow.png" alt="Guard system overview" class="mt-10 rounded-2xl w-full shadow-xl" /> -->
 
-          <!-- Top bar -->
-          <div class="flex items-center justify-between px-5 py-3.5 border-b" style="border-color:rgba(255,255,255,0.07);">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span class="text-xs font-semibold text-zinc-400 tracking-wide">MERIDIAN GUARD · ACTIVE</span>
-            </div>
-            <span class="text-[10px] text-zinc-600 font-mono">SESSION 09:34</span>
-          </div>
-
-          <!-- Trigger fired -->
-          <div class="px-5 py-5">
-            <div class="rounded-xl mb-4 px-4 py-4" style="background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.3);">
-              <div class="flex items-center gap-2.5 mb-2">
-                <svg class="w-4 h-4 shrink-0" style="color:#ef4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-                </svg>
-                <span class="text-sm font-semibold" style="color:#fca5a5;">Guard Rule Triggered</span>
-              </div>
-              <p class="text-xs leading-relaxed" style="color:#fca5a5; opacity:0.85;">3 consecutive losses detected. Your rule requires acknowledgment before continuing.</p>
-            </div>
-
-            <!-- Acknowledge input area -->
-            <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2.5" style="color:#6b7280;">Type your phrase to continue:</p>
-            <div class="rounded-lg px-4 py-3 mb-4 text-sm font-medium" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:#d1d5db; font-style:italic;">
-              "I will not revenge trade. My plan is my edge."
-            </div>
-
-            <!-- Stats row -->
-            <div class="grid grid-cols-3 gap-2">
-              {[
-                { label: 'Session P&L', value: '-$312', neg: true },
-                { label: 'PSI Score',   value: '58',    neg: false },
-                { label: 'Losses',      value: '3 / 3', neg: true },
-              ].map((s) => (
-                <div class="rounded-lg px-3 py-2.5 text-center" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
-                  <p class="text-[10px] text-zinc-500 mb-1">{s.label}</p>
-                  <p class="text-sm font-semibold font-mono" style={s.neg ? 'color:#f87171' : 'color:#34d399'}>{s.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <!-- Bottom -->
-          <div class="px-5 pb-5">
-            <div class="rounded-lg px-4 py-2.5 text-center text-xs font-medium" style="background:rgba(5,150,105,0.15); border:1px solid rgba(5,150,105,0.3); color:#6ee7b7;">
-              Guard is watching. Your rules are enforced.
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </section>
 
