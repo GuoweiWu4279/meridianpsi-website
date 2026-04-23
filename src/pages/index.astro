@@ -17,14 +17,44 @@ const marqueeRow1 = [
     role: 'Futures day trader',
   },
   {
-    quote: "Passed my third Apex evaluation. The first two I blew up on days where, in hindsight, I should have just closed the platform.",
+    quote: "Passed my third Apex evaluation. The first two I blew up on days where, in hindsight, I should have just closed the platform. The pattern was obvious once I could see it.",
     name: 'Mike R.',
     role: 'Prop firm trader',
   },
   {
-    quote: "Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own rules.",
+    quote: "Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own rules. Took data to admit it.",
     name: 'Anonymous',
     role: '',
+  },
+  {
+    quote: "I don't use tools that send my fill data to the cloud. Local-only was non-negotiable for me.",
+    name: 'David Chen',
+    role: 'Independent trader',
+  },
+  {
+    quote: "It doesn't close your positions for you — that part is still on you. But I stopped pretending I didn't notice the score dropping while I was moving my stop around.",
+    name: 'T. Rodriguez',
+    role: 'NQ futures',
+  },
+  {
+    quote: "The seven bars make it immediately clear which habit is pulling the score down. I kept telling myself I was trading fine. The data disagreed consistently.",
+    name: 'Elena V.',
+    role: 'MNQ scalper',
+  },
+  {
+    quote: "Being able to use Market Replay without it touching my live baseline was more useful than I expected.",
+    name: 'Chris P.',
+    role: 'Futures swing',
+  },
+  {
+    quote: "I run two accounts with copy fills. I was expecting double-counting issues in the score. It handled it cleanly without any configuration.",
+    name: 'Jordan L.',
+    role: 'Multi-account',
+  },
+  {
+    quote: "After a losing session I used to review charts to explain what happened. Now I check the session report first. It's faster and more honest.",
+    name: 'Sam W.',
+    role: 'ES / NQ',
   },
   {
     quote: "Didn't want another subscription. Tried the trial anyway. Kept it — the overlay is actually readable mid-session without being in the way.",
@@ -40,25 +70,51 @@ const marqueeRow2 = [
     role: 'ES trader',
   },
   {
-    quote: "If someone had told me a revenge-entry detector would matter more than another indicator, I wouldn't have believed them.",
+    quote: "I've restarted funded accounts more times than I want to count. If someone had told me a revenge-entry detector would matter more than another indicator, I wouldn't have believed them.",
     name: 'Alex Nowak',
     role: 'Prop trader',
   },
   {
-    quote: "Four years trading NQ. Thought I had a solid read on my own behavior. First week of data showed me several habits I wasn't aware of.",
+    quote: "Four years trading NQ. Thought I had a solid read on my own behavior. First week of data showed me I had several habits I wasn't aware of.",
     name: 'James O.',
     role: 'Day trader',
+  },
+  {
+    quote: "Post-session journals have their place. This is different — the feedback arrives while the session is still running, not the next morning.",
+    name: 'Anonymous',
+    role: '',
   },
   {
     quote: "Took a few sessions to calibrate. Once it did, the alerts started making sense — I could trace each one back to a specific pattern.",
     name: 'Priya S.',
     role: 'Futures trader',
   },
+  {
+    quote: "The stop-widening flag caught me doing something I always denied — moving my stop out when a trade went against me. Useful confirmation, even if it wasn't comfortable.",
+    name: 'Marcus T.',
+    role: 'CL / GC',
+  },
+  {
+    quote: "Thought my exits were disciplined. Turns out there's a consistent pattern on certain days. I don't love it, but I can work with the information.",
+    name: 'Kim H.',
+    role: 'Index futures',
+  },
+  {
+    quote: "A rough Tuesday doesn't disappear from the score just because Wednesday started. That's accurate. That's how it actually feels.",
+    name: 'Leo B.',
+    role: 'Overnight + day',
+  },
+  {
+    quote: "The alerts are infrequent enough that I don't tune them out. When one fires, I actually pause before doing anything.",
+    name: 'Andre C.',
+    role: 'Prop + personal',
+  },
+  {
+    quote: "The history view is simple. I like that. Seeing consistent streaks makes discipline feel measurable instead of just a goal.",
+    name: 'Nina F.',
+    role: 'Futures',
+  },
 ];
-
-/** One full marquee segment must be wider than the viewport, or the duplicated strip shows the same card twice on screen (infinite-scroll math). */
-const marqueeAll = [...marqueeRow1, ...marqueeRow2];
-const marqueeAltOrder = [...marqueeRow2, ...marqueeRow1];
 
 const steps = [
   {
@@ -472,8 +528,8 @@ const signals = [
     >
       <!-- Row 1 -->
       <div class="marquee-left flex w-max mb-5 will-change-transform">
-        {[...marqueeAll, ...marqueeAll].map((t, idx) => (
-          <div class="testimonial-marquee-card w-[min(92vw,27rem)] shrink-0 mx-3 md:mx-3.5" aria-hidden={idx >= marqueeAll.length ? 'true' : 'false'}>
+        {[...marqueeRow1, ...marqueeRow1].map((t, idx) => (
+          <div class="w-80 shrink-0 mx-2 card p-5" aria-hidden={idx >= marqueeRow1.length ? 'true' : 'false'}>
             <div class="flex gap-0.5 mb-3 text-amber-600 dark:text-amber-400" aria-hidden="true">
               {[0, 1, 2, 3, 4].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
@@ -497,8 +553,8 @@ const signals = [
 
       <!-- Row 2 -->
       <div class="marquee-right flex w-max will-change-transform">
-        {[...marqueeAltOrder, ...marqueeAltOrder].map((t, idx) => (
-          <div class="testimonial-marquee-card w-[min(92vw,27rem)] shrink-0 mx-3 md:mx-3.5" aria-hidden={idx >= marqueeAltOrder.length ? 'true' : 'false'}>
+        {[...marqueeRow2, ...marqueeRow2].map((t, idx) => (
+          <div class="w-80 shrink-0 mx-2 card p-5" aria-hidden={idx >= marqueeRow2.length ? 'true' : 'false'}>
             <div class="flex gap-0.5 mb-3 text-amber-600 dark:text-amber-400" aria-hidden="true">
               {[0, 1, 2, 3, 4].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
@@ -546,20 +602,9 @@ const signals = [
 </Layout>
 
 <style>
-  /* ——— Testimonial cards (marquee) ——— */
-  .testimonial-marquee-card {
-    border-radius: 1rem;
-    padding: 1.25rem 1.35rem;
-    background: linear-gradient(165deg, #ffffff 0%, #f4f4f5 100%);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow:
-      0 14px 40px -18px rgba(15, 23, 42, 0.18),
-      0 0 0 1px rgba(0, 0, 0, 0.03);
-  }
-
   /* ——— Marquee ——— */
-  .marquee-left { animation: marquee-left 95s linear infinite; }
-  .marquee-right { animation: marquee-right 95s linear infinite; }
+  .marquee-left { animation: marquee-left 160s linear infinite; }
+  .marquee-right { animation: marquee-right 160s linear infinite; }
   @keyframes marquee-left {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
