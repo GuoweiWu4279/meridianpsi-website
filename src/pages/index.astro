@@ -56,6 +56,10 @@ const marqueeRow2 = [
   },
 ];
 
+/** One full marquee segment must be wider than the viewport, or the duplicated strip shows the same card twice on screen (infinite-scroll math). */
+const marqueeAll = [...marqueeRow1, ...marqueeRow2];
+const marqueeAltOrder = [...marqueeRow2, ...marqueeRow1];
+
 const steps = [
   {
     label: 'Configure',
@@ -468,8 +472,8 @@ const signals = [
     >
       <!-- Row 1 -->
       <div class="marquee-left flex w-max mb-5 will-change-transform">
-        {[...marqueeRow1, ...marqueeRow1].map((t, idx) => (
-          <div class="testimonial-marquee-card w-80 shrink-0 mx-2" aria-hidden={idx >= marqueeRow1.length ? 'true' : 'false'}>
+        {[...marqueeAll, ...marqueeAll].map((t, idx) => (
+          <div class="testimonial-marquee-card w-[min(92vw,27rem)] shrink-0 mx-3 md:mx-3.5" aria-hidden={idx >= marqueeAll.length ? 'true' : 'false'}>
             <div class="flex gap-0.5 mb-3 text-amber-600 dark:text-amber-400" aria-hidden="true">
               {[0, 1, 2, 3, 4].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
@@ -493,8 +497,8 @@ const signals = [
 
       <!-- Row 2 -->
       <div class="marquee-right flex w-max will-change-transform">
-        {[...marqueeRow2, ...marqueeRow2].map((t, idx) => (
-          <div class="testimonial-marquee-card w-80 shrink-0 mx-2" aria-hidden={idx >= marqueeRow2.length ? 'true' : 'false'}>
+        {[...marqueeAltOrder, ...marqueeAltOrder].map((t, idx) => (
+          <div class="testimonial-marquee-card w-[min(92vw,27rem)] shrink-0 mx-3 md:mx-3.5" aria-hidden={idx >= marqueeAltOrder.length ? 'true' : 'false'}>
             <div class="flex gap-0.5 mb-3 text-amber-600 dark:text-amber-400" aria-hidden="true">
               {[0, 1, 2, 3, 4].map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
