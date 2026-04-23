@@ -12,13 +12,17 @@ const name = SITE?.name ?? 'Meridian';
 const sizeClass =
   variant === 'compact'
     ? 'h-8 md:h-9 w-auto object-contain object-left'
-    : 'h-12 md:h-14 w-auto object-contain object-left';
+    : 'h-11 md:h-12 w-auto object-contain object-left';
+
+/** Header only: knocks out flat white in PNG so it sits on warm hero — user asked to keep this, only adjust size */
+const headerBlend = variant === 'header' ? 'mix-blend-mode: multiply;' : undefined;
 ---
 
 <img
   src="/meridian-logo.png"
   alt={`${name} — home`}
   class:list={[sizeClass, 'self-center']}
+  {...(headerBlend ? { style: headerBlend } : {})}
   loading="eager"
   decoding="async"
 />
