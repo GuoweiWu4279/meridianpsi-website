@@ -169,7 +169,19 @@ const signals = [
 
 <Layout metadata={metadata}>
   <!-- ——— HERO — light, clean ——— -->
-  <section class="relative overflow-hidden md:-mt-[76px] not-prose bg-gradient-to-b from-zinc-50 via-white to-white">
+  <section class="relative overflow-hidden md:-mt-[76px] not-prose">
+    <!-- Background image layer -->
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <img
+        src="/hero-bg.png"
+        alt=""
+        class="w-full h-full object-cover object-center"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <!-- very light overlay so text stays readable -->
+      <div class="absolute inset-0" style="background: rgba(255,255,255,0.18);"></div>
+    </div>
     <!-- Header spacer -->
     <div class="md:pt-[76px]"></div>
     <div class="relative max-w-6xl mx-auto px-6">
