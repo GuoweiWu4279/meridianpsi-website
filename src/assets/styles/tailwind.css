@@ -44,12 +44,12 @@
 }
 
 @layer components {
-  /* Homepage hero: place image at public/hero-bg.png. Missing file falls back to solid + gradient only (no broken <img> sliver). */
+  /* Homepage hero: place image at public/hero-bg.jpg (or .png). Missing file falls back to solid + gradient only. */
   .hero-bg-home {
     background-color: #fafafa;
     background-image:
       linear-gradient(to bottom, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.55)),
-      url('/hero-bg.png');
+      url('/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
