@@ -55,15 +55,35 @@
     background-repeat: no-repeat;
   }
 
-  /* Guard product page hero — replace src/assets/images/guard-hero-bg.jpg for a Guard-specific abstract image */
+  /* Guard product page hero — slightly darker base, more visible texture */
   .guard-hero-surface {
-    background-color: #faf7f2;
+    background-color: #f0ede8;
     background-image:
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.48)),
+      linear-gradient(to bottom, rgba(240, 237, 232, 0.18), rgba(240, 237, 232, 0.42)),
       var(--guard-hero-bg, none);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  /* CSS app-window frame for dark screenshots */
+  .app-frame {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+  .app-frame-bar {
+    background: #2d2d2d;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .app-frame-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
   }
 
   /* ——— Buttons ————————————————————————————————— */
