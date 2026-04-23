@@ -55,6 +55,17 @@
     background-repeat: no-repeat;
   }
 
+  /* Guard product page hero — replace src/assets/images/guard-hero-bg.jpg for a Guard-specific abstract image */
+  .guard-hero-surface {
+    background-color: #faf7f2;
+    background-image:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.48)),
+      var(--guard-hero-bg, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   /* ——— Buttons ————————————————————————————————— */
   .btn {
     @apply inline-flex items-center justify-center rounded-lg font-medium text-center leading-snug transition-all duration-200 ease-out cursor-pointer

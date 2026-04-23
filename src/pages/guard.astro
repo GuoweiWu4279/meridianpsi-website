@@ -1,42 +1,88 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
+import guardHeroBg from '~/assets/images/guard-hero-bg.jpg';
 
 const metadata = {
   title: 'Meridian Guard — Commitment Device for Active Traders',
   description:
     'Meridian Guard enforces the rules you set for yourself. Six trigger conditions, five action levels, and an Intel Layer that turns your session history into actionable insight.',
 };
+
+const guardCheckout =
+  'https://meridianpsi.lemonsqueezy.com/checkout/buy/baeaa0f5-ba08-4ca5-a4dd-a092be966879?enabled=1539460';
 ---
 
 <Layout metadata={metadata}>
-
-  <HeroText
-    tagline="Meridian Guard"
-    title="The rules you set for yourself. Enforced automatically."
-    subtitle="When you are calm, you define the rules you want your future self to follow. When the moment comes — losing streak, tilt, blown daily limit — Guard enforces them without requiring a decision from you."
-  />
-
-  <!-- What is a commitment device -->
-  <section class="py-12 px-6 bg-zinc-50 border-t border-zinc-100">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-zinc-600 leading-relaxed text-base">
-        Behavioral economists call this a <strong class="text-zinc-900">commitment device</strong> — a mechanism you set up in advance to constrain your future behavior. Institutional traders have compliance systems that do this automatically. Meridian Guard does the same for independent traders.
+  <!-- Hero — dedicated Guard atmosphere (replace guard-hero-bg.jpg with your own abstract art) -->
+  <section
+    class="relative overflow-hidden md:-mt-[84px] not-prose guard-hero-surface border-b border-zinc-200/60"
+    style={`--guard-hero-bg: url('${guardHeroBg.src}')`}
+  >
+    <div class="absolute bottom-0 left-0 right-0 h-28 pointer-events-none bg-gradient-to-b from-transparent to-[#f7f5f1]" aria-hidden="true"></div>
+    <div class="md:pt-[84px]"></div>
+    <div class="relative z-[1] max-w-4xl mx-auto px-6 text-center py-16 md:py-20 lg:py-24">
+      <div
+        class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 rounded-full"
+        style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.08);"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
+        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-700">Meridian Guard</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-[3.25rem] font-bold leading-[1.1] tracking-tight text-zinc-900 mb-6">
+        The rules you set for yourself.<br />
+        <span class="text-emerald-600">Enforced automatically.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-10 text-balance">
+        When you are calm, you define the rules you want your future self to follow. When the moment comes — losing streak, tilt, blown daily limit — Guard enforces them without requiring a decision from you.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <a href={guardCheckout} class="btn btn-lg btn-primary font-semibold">Start free trial — Guard</a>
+        <a href="#guard-system" class="btn btn-lg font-semibold border-[1.5px] border-zinc-300 text-zinc-900 bg-white/70 hover:bg-white">
+          How Guard works
+        </a>
+      </div>
+      <p class="text-xs text-zinc-500 max-w-xl mx-auto mt-8 leading-relaxed">
+        Trading involves substantial risk of loss. Guard is a behavioral enforcement tool; it does not guarantee trading outcomes.
       </p>
     </div>
   </section>
 
-  <!-- Guard System -->
-  <section class="py-20 px-6 bg-zinc-900 text-white">
-    <div class="max-w-5xl mx-auto">
+  <!-- Commitment device — editorial band -->
+  <section class="py-14 md:py-16 px-6 bg-[#f7f5f1] border-b border-zinc-200/50">
+    <div class="max-w-3xl mx-auto">
+      <div class="rounded-2xl border border-zinc-200/80 bg-white/90 shadow-sm shadow-zinc-900/5 px-8 py-8 md:px-10 md:py-10 text-center">
+        <p class="text-xs font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-4">Why it exists</p>
+        <p class="text-lg md:text-xl text-zinc-700 leading-relaxed">
+          Behavioral economists call this a <strong class="text-zinc-900 font-semibold">commitment device</strong> — a mechanism you set up in advance to constrain your future behavior. Institutional traders have compliance systems that do this automatically. Meridian Guard does the same for independent traders.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guard System — light, structured cards (same information hierarchy as before) -->
+  <section id="guard-system" class="py-20 md:py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14 md:mb-16">
+        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-700 uppercase mb-3">The Guard System</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">Triggers, actions, then review</h2>
+        <p class="text-zinc-600 leading-relaxed">
+          Six ways to detect when your plan is slipping. Five graduated responses — from a quiet alert to a full disconnect. You choose the pairing; Guard applies it in real time.
+        </p>
+      </div>
 
       <!-- Trigger Conditions -->
-      <div class="mb-16">
-        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-3">Step 1 — Define when to intervene</p>
-        <h2 class="text-2xl md:text-3xl font-bold mb-2">6 Trigger conditions</h2>
-        <p class="text-zinc-400 text-sm mb-8 max-w-xl">Each rule fires once when the condition is entered, then resets. No repeated alerts, no micromanagement.</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="mb-20 md:mb-24">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.15em] text-emerald-700 uppercase mb-2">Step 1</p>
+            <h3 class="text-2xl md:text-3xl font-bold text-zinc-900">6 Trigger conditions</h3>
+          </div>
+          <p class="text-sm text-zinc-600 max-w-md md:text-right leading-relaxed">
+            Each rule fires once when the condition is entered, then resets. No repeated alerts, no micromanagement.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {[
             { name: 'PSI Below', desc: 'Psychological stability drops under a threshold you set.' },
             { name: 'Consecutive Losses', desc: 'N losses in a row within the session.' },
@@ -45,20 +91,26 @@ const metadata = {
             { name: 'Single Trade Loss Exceeds', desc: 'One trade loses more than a defined amount.' },
             { name: 'Session Time Over', desc: 'You have been trading longer than you planned.' },
           ].map((item) => (
-            <div class="bg-zinc-800/60 border border-zinc-700/50 rounded-xl p-5">
-              <p class="font-semibold text-white mb-1">{item.name}</p>
-              <p class="text-zinc-400 text-sm leading-relaxed">{item.desc}</p>
+            <div class="rounded-xl border border-zinc-200/90 bg-zinc-50/80 p-5 md:p-6 shadow-sm shadow-zinc-900/[0.03] ring-1 ring-zinc-900/[0.02] hover:border-emerald-200/80 transition-colors">
+              <p class="font-semibold text-zinc-900 mb-2">{item.name}</p>
+              <p class="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       <!-- Action Levels -->
-      <div class="mb-16">
-        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-3">Step 2 — Choose what happens</p>
-        <h2 class="text-2xl md:text-3xl font-bold mb-2">5 Action levels</h2>
-        <p class="text-zinc-400 text-sm mb-8 max-w-xl">From a quiet nudge to a full broker disconnect. You pick the level that matches the severity of the rule.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+      <div class="mb-20 md:mb-24">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.15em] text-emerald-700 uppercase mb-2">Step 2</p>
+            <h3 class="text-2xl md:text-3xl font-bold text-zinc-900">5 Action levels</h3>
+          </div>
+          <p class="text-sm text-zinc-600 max-w-md md:text-right leading-relaxed">
+            From a quiet nudge to a full broker disconnect. You pick the level that matches the severity of the rule.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
           {[
             { level: 'L1', name: 'Alert', desc: 'A quiet notification. Does not interrupt your flow.' },
             { level: 'L2', name: 'Acknowledge', desc: 'Type your own pre-written phrase to continue trading.' },
@@ -66,29 +118,29 @@ const metadata = {
             { level: 'L4', name: 'Risk Alert Mode', desc: 'Persistent banner. Every entry requires active confirmation.' },
             { level: 'L5', name: 'Disconnect', desc: 'Disconnects your broker. Your positions are never closed by the system.' },
           ].map((item) => (
-            <div class="bg-zinc-800/50 border border-zinc-700/40 rounded-xl p-4 flex flex-col gap-2">
-              <span class="text-xs font-bold tracking-widest text-emerald-400">{item.level}</span>
-              <span class="font-semibold text-white text-sm">{item.name}</span>
-              <p class="text-zinc-400 text-xs leading-relaxed">{item.desc}</p>
+            <div class="rounded-xl border border-zinc-200 bg-white p-4 flex flex-col gap-2 shadow-sm">
+              <span class="text-xs font-bold tracking-widest text-emerald-700">{item.level}</span>
+              <span class="font-semibold text-zinc-900 text-sm">{item.name}</span>
+              <p class="text-zinc-600 text-xs leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       <!-- L2 callout -->
-      <div class="bg-zinc-800/40 border border-zinc-700/40 rounded-2xl p-6 mb-16 max-w-2xl">
-        <p class="text-xs font-semibold tracking-widest text-emerald-400 uppercase mb-3">Why L2 is the most powerful level</p>
-        <p class="text-zinc-300 leading-relaxed text-sm">
-          You write the phrase yourself — when you are calm, before the session starts. In the moment, you have to type it to continue. Something like: <em class="text-white not-italic font-medium">"I will not revenge trade. My plan is my edge."</em><br /><br />
+      <div class="rounded-2xl border border-emerald-200/70 bg-emerald-50/60 p-8 md:p-10 mb-16 md:mb-20 max-w-3xl mx-auto">
+        <p class="text-xs font-semibold tracking-widest text-emerald-800 uppercase mb-3">Why L2 is the most powerful level</p>
+        <p class="text-zinc-700 leading-relaxed text-sm md:text-base">
+          You write the phrase yourself — when you are calm, before the session starts. In the moment, you have to type it to continue. Something like: <em class="text-zinc-900 not-italic font-semibold">"I will not revenge trade. My plan is my edge."</em><br /><br />
           Typed in your own words, at the exact moment you need to hear them most.
         </p>
       </div>
 
       <!-- Example Guard Setups -->
       <div>
-        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-3">Example setups</p>
-        <h2 class="text-2xl font-bold mb-8">How traders use Guard</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-700 uppercase mb-2">Example setups</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-8">How traders use Guard</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {[
             { name: 'Daily Loss Limit', rule: 'P&L below -$500', action: 'Disconnect' },
             { name: 'Revenge Trade Check', rule: '3 consecutive losses', action: 'Countdown 60min + Acknowledge' },
@@ -97,34 +149,33 @@ const metadata = {
             { name: 'Position Risk Monitor', rule: 'Unrealized below -$400', action: 'Risk Alert Mode' },
             { name: 'Session Length Rule', rule: 'Session over 180 minutes', action: 'Acknowledge required' },
           ].map((item) => (
-            <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-xl p-4">
-              <p class="font-semibold text-white text-sm mb-3">{item.name}</p>
-              <p class="text-zinc-400 text-xs font-mono mb-1">When: {item.rule}</p>
-              <p class="text-emerald-400 text-xs font-mono">Action: {item.action}</p>
+            <div class="rounded-xl border border-zinc-200 bg-zinc-50/90 p-5">
+              <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
+              <p class="text-zinc-600 text-xs font-mono mb-1">When: {item.rule}</p>
+              <p class="text-emerald-700 text-xs font-mono font-medium">Action: {item.action}</p>
             </div>
           ))}
         </div>
 
-        <div class="grid sm:grid-cols-4 gap-4 mt-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mt-6">
           {[
             { name: 'Edge-trigger', desc: 'Each condition fires once per entry — no repeated alerts.' },
             { name: 'Cooldown', desc: 'Configurable cooldown prevents rapid re-triggering.' },
             { name: 'Emergency Reset', desc: 'One click clears all active Guard state.' },
             { name: 'Master switch', desc: 'Disable Guard entirely without losing your rules.' },
           ].map((item) => (
-            <div class="bg-zinc-800/30 border border-zinc-700/30 rounded-xl p-4">
-              <p class="font-semibold text-white text-sm mb-1">{item.name}</p>
-              <p class="text-zinc-500 text-xs">{item.desc}</p>
+            <div class="rounded-xl border border-dashed border-zinc-300 bg-white p-4">
+              <p class="font-semibold text-zinc-900 text-sm mb-1">{item.name}</p>
+              <p class="text-zinc-600 text-xs leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- Intel Layer -->
-  <section class="py-20 px-6 bg-white border-t border-zinc-100">
+  <section class="py-20 px-6 bg-[#faf9f7] border-t border-zinc-200/60">
     <div class="max-w-5xl mx-auto">
       <p class="text-xs font-semibold tracking-[0.15em] text-emerald-600 uppercase mb-3">Intel Layer — Guard exclusive</p>
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-3">Your session data, turned into insight.</h2>
@@ -223,7 +274,7 @@ const metadata = {
   </section>
 
   <!-- Comparison table -->
-  <section id="comparison" class="py-20 px-6 bg-zinc-50 border-t border-zinc-100">
+  <section id="comparison" class="py-20 px-6 bg-[#f7f5f1] border-t border-zinc-200/50">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-10 text-center">Meridian vs Meridian Guard</h2>
       <div class="rounded-2xl border border-zinc-200 overflow-hidden bg-white">
@@ -269,7 +320,7 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Start free trial — Meridian Guard',
-        href: 'https://meridianpsi.lemonsqueezy.com/checkout/buy/baeaa0f5-ba08-4ca5-a4dd-a092be966879?enabled=1539460',
+        href: guardCheckout,
         icon: 'tabler:player-play',
       },
       { text: 'See all pricing', href: '/pricing' },
