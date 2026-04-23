@@ -60,7 +60,7 @@ const metadata = {
         <p class="text-zinc-400 text-sm mb-8 max-w-xl">From a quiet nudge to a full broker disconnect. You pick the level that matches the severity of the rule.</p>
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
           {[
-            { level: 'L1', name: 'Toast', desc: 'A quiet notification. Does not interrupt your flow.' },
+            { level: 'L1', name: 'Alert', desc: 'A quiet notification. Does not interrupt your flow.' },
             { level: 'L2', name: 'Acknowledge', desc: 'Type your own pre-written phrase to continue trading.' },
             { level: 'L3', name: 'Countdown', desc: 'Forced waiting timer. Cannot be skipped.' },
             { level: 'L4', name: 'Risk Alert Mode', desc: 'Persistent banner. Every entry requires active confirmation.' },
@@ -92,7 +92,7 @@ const metadata = {
           {[
             { name: 'Daily Loss Limit', rule: 'P&L below -$500', action: 'Disconnect' },
             { name: 'Revenge Trade Check', rule: '3 consecutive losses', action: 'Countdown 60min + Acknowledge' },
-            { name: 'Tilt Early Warning', rule: 'PSI below 65', action: 'Toast' },
+            { name: 'Tilt Early Warning', rule: 'PSI below 65', action: 'Alert' },
             { name: 'Hard Tilt Stop', rule: 'PSI below 45 + P&L below -$300', action: 'Disconnect 30min' },
             { name: 'Position Risk Monitor', rule: 'Unrealized below -$400', action: 'Risk Alert Mode' },
             { name: 'Session Length Rule', rule: 'Session over 180 minutes', action: 'Acknowledge required' },

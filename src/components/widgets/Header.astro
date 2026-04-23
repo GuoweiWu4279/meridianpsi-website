@@ -158,3 +158,22 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   </div>
 </header>
 
+<style>
+  /* Smooth dropdown entrance — override the display:block toggle in tailwind.css */
+  @media (min-width: 768px) {
+    .dropdown-menu {
+      display: block !important;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px) scale(0.98);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
+

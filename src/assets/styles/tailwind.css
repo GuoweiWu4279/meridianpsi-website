@@ -188,6 +188,7 @@
 .dropdown:focus .dropdown-menu,
 .dropdown:focus-within .dropdown-menu,
 .dropdown:hover .dropdown-menu {
+  /* visibility now handled by opacity/pointer-events in Header.astro <style> */
   display: block;
 }
 

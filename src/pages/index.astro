@@ -139,7 +139,7 @@ const steps = [
     label: 'Guard',
     desc: 'Automated enforcement',
     fullDesc: 'Guard is a commitment device. When you are calm, you write the rules. When the moment comes, Guard enforces them automatically — no decision required from you.',
-    bullets: ['6 configurable trigger conditions', '5 response levels — quiet toast to full broker disconnect', 'Set once, active every session automatically', 'No manual override required in the heat of the moment'],
+    bullets: ['6 configurable trigger conditions', '5 response levels — quiet alert to full platform lockout', 'Set once, active every session automatically', 'No manual override required in the heat of the moment'],
     image: '/screenshots/psi-performance.png',
     imgAlt: 'Meridian PSI vs P&L correlation chart',
     link: { href: '/guard', text: 'Explore Meridian Guard' },
@@ -186,7 +186,7 @@ const signals = [
             <span style="color:#059669;">The market's job is to make you forget it.</span>
           </h1>
           <p class="text-sm md:text-base font-medium leading-snug max-w-xl mx-auto mb-6 fade-up" style="color:#3f3f46;">
-            Live PSI, seven behavioral signals, and optional guardrails — in NinjaTrader 8 on your PC, no cloud, updates in under 100ms.
+            Live PSI, seven behavioral signals, and optional automatic enforcement — in NinjaTrader 8 on your PC, no cloud, updates in under 100ms.
           </p>
           <!-- Subtitle -->
           <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 fade-up" style="color:#71717a;">
@@ -204,9 +204,9 @@ const signals = [
 
   <!-- Stats bar — tight strip, white background anchored to hero -->
   <div class="fade-up bg-white/80 backdrop-blur-[2px] border-b border-zinc-200/80">
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto px-6">
       <Stats
-        classes={{ container: 'py-6 md:py-8 px-0' }}
+        classes={{ container: 'py-4 md:py-5 px-0' }}
         stats={[
           { title: 'Live behavioral signals', amount: '7' },
           { title: 'Update latency', amount: '<100ms' },
@@ -218,28 +218,24 @@ const signals = [
   </div>
 
   <!-- ——— PROBLEM — light off-white ——— -->
-  <section class="relative py-24 md:py-32 px-6" style="background:#f4f4f5; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
-    <div class="relative max-w-3xl mx-auto text-center">
+  <section class="relative py-16 md:py-24 px-6" style="background:#f4f4f5; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
+    <div class="relative max-w-2xl mx-auto text-center">
       <!-- Eyebrow badge -->
-      <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
+      <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full fade-up" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
         <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
         <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">The Problem</span>
       </div>
-      <!-- Heading with word-blur animation -->
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 word-blur-target" style="color:#18181b;">
-        Institutional traders have risk managers. You have yourself.
+      <!-- Heading with word-blur animation + two-tone split -->
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
+        Institutional traders have risk managers.<br />
+        <span style="color:#059669;">You have yourself.</span>
       </h2>
       <!-- Body -->
-      <p class="text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto" style="color:#71717a;">
+      <p class="text-base leading-relaxed max-w-xl mx-auto fade-up" style="color:#71717a;">
         Compliance officers, position limits, systems enforcing rules outside their control.
         Retail traders have experience and hard-won rules — and nothing to stop them from breaking those rules
         the moment it matters most. Meridian is that system.
       </p>
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-        <a href="/pricing" class="btn btn-lg font-semibold" style="background:#059669; color:white; border:1px solid #059669;">Start free trial</a>
-        <a href="#step-detail" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.2); color:#18181b; background:transparent;">See Meridian in action</a>
-      </div>
     </div>
   </section>
 
@@ -252,7 +248,7 @@ const signals = [
           Before. During. After. Every session.
         </h2>
         <p class="lead fade-up max-w-3xl mx-auto text-balance" style="color:#71717a;">
-          Meridian fits into every stage of how you trade — setup, real-time monitoring and guardrails, and post-session review.
+          Meridian fits into every stage of how you trade — setup, real-time monitoring and automatic enforcement, and post-session review.
         </p>
       </div>
 
@@ -268,7 +264,7 @@ const signals = [
           {[
             { num: '01', title: 'Configure',     sub: 'Any strategy. Any style.',      bullets: ['Session rules & time windows', 'Size limits and stop conventions', 'Profile settings per account'] },
             { num: '02', title: 'Live Monitor',  sub: '7 signals. <100ms updates.',    bullets: ['PSI score updates in real time', 'Seven behavioral signal bars', 'Floating HUD overlay'] },
-            { num: '03', title: 'Guard',         sub: 'Rules that enforce themselves.', bullets: ['6 trigger conditions', '5 response levels', 'Toast to broker disconnect'] },
+            { num: '03', title: 'Guard',         sub: 'Rules that enforce themselves.', bullets: ['6 trigger conditions', '5 response levels', 'Quiet alert to full platform lockout'] },
             { num: '04', title: 'Review & Intel', sub: 'Every session. Every pattern.', bullets: ['PSI, Composure, and trade stats', 'Monthly digest & P&L correlation', "Today's Risk Brief"] },
           ].map((step, i) => (
             <div class="fade-up" style={`transition-delay:${i * 80}ms`}>
