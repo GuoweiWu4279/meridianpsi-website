@@ -175,6 +175,8 @@ const signals = [
     class="relative overflow-hidden md:-mt-[76px] not-prose hero-bg-home"
     style={`--hero-bg: url('${heroBgImage.src}')`}
   >
+    <!-- Bottom fade: blends hero into the section below -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style="background: linear-gradient(to bottom, transparent, #fafafa);" aria-hidden="true"></div>
     <!-- Header spacer -->
     <div class="md:pt-[76px]"></div>
     <div class="relative z-[1] max-w-6xl mx-auto px-6">
@@ -207,8 +209,8 @@ const signals = [
     </div>
   </section>
 
-  <!-- Stats bar — tight strip, white background anchored to hero -->
-  <div class="fade-up bg-white/80 backdrop-blur-[2px] border-b border-zinc-200/80">
+  <!-- Stats bar — tight strip, warm white background anchored to hero -->
+  <div class="fade-up border-b border-zinc-200/60" style="background: rgba(252,249,244,0.9); backdrop-filter: blur(4px);">
     <div class="max-w-6xl mx-auto px-6">
       <Stats
         classes={{ container: 'py-2 md:py-2.5 px-0' }}
@@ -223,7 +225,7 @@ const signals = [
   </div>
 
   <!-- ——— PROBLEM — light off-white ——— -->
-  <section class="relative py-16 md:py-24 px-6" style="background:#f4f4f5; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
+  <section class="relative py-16 md:py-24 px-6" style="background:#f7f5f1; border-top:1px solid rgba(0,0,0,0.05); border-bottom:1px solid rgba(0,0,0,0.05);">
     <div class="relative max-w-2xl mx-auto text-center">
       <!-- Eyebrow badge -->
       <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full fade-up" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
