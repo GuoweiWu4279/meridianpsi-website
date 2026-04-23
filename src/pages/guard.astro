@@ -1,5 +1,9 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+/** Hero background: replace `public/guard-bg.jpg` (not hashed — easy to swap after AI export). */
+const guardBgUrl = '/guard-bg.jpg';
 
 const metadata = {
   title: 'Meridian Guard — Commitment Device for Active Traders',
@@ -11,389 +15,456 @@ const guardCheckout =
   'https://meridianpsi.lemonsqueezy.com/checkout/buy/baeaa0f5-ba08-4ca5-a4dd-a092be966879?enabled=1539460';
 
 const triggers = [
-  { name: 'PSI Below',            desc: 'Psychological stability drops under a threshold you define.' },
-  { name: 'Consecutive Losses',   desc: 'N losses in a row within the same session.' },
-  { name: 'Session P&L Below',    desc: 'Daily realized P&L falls past your declared limit.' },
+  { name: 'PSI Below', desc: 'Psychological stability drops under a threshold you define.' },
+  { name: 'Consecutive Losses', desc: 'N losses in a row within the same session.' },
+  { name: 'Session P&L Below', desc: 'Daily realized P&L falls past your declared limit.' },
   { name: 'Unrealized P&L Below', desc: 'Open position floating loss exceeds your threshold — before you close.' },
-  { name: 'Single Trade Loss',    desc: 'One trade loses more than a defined amount.' },
-  { name: 'Session Time Over',    desc: 'You have traded longer than you planned for the day.' },
+  { name: 'Single Trade Loss', desc: 'One trade loses more than a defined amount.' },
+  { name: 'Session Time Over', desc: 'You have traded longer than you planned for the day.' },
 ];
 
 const levels = [
-  { level: 'L1', name: 'Alert',           accent: '#059669', desc: 'A quiet notification. Does not interrupt trading.' },
-  { level: 'L2', name: 'Acknowledge',     accent: '#0d9488', desc: 'Type your own pre-written phrase to continue.' },
-  { level: 'L3', name: 'Countdown',       accent: '#d97706', desc: 'Forced waiting period. Cannot be skipped.' },
-  { level: 'L4', name: 'Risk Alert Mode', accent: '#ea580c', desc: 'Persistent banner. Every entry requires active confirmation.' },
-  { level: 'L5', name: 'Disconnect',      accent: '#dc2626', desc: 'Disconnects your broker. Positions are never closed by the system.' },
+  { level: 'L1', name: 'Alert',          color: '#059669', desc: 'A quiet notification. Does not interrupt trading.' },
+  { level: 'L2', name: 'Acknowledge',    color: '#0d9488', desc: 'Type your own pre-written phrase before continuing.' },
+  { level: 'L3', name: 'Countdown',      color: '#d97706', desc: 'Forced waiting period. Cannot be skipped.' },
+  { level: 'L4', name: 'Risk Alert Mode',color: '#ea580c', desc: 'Persistent banner. Every entry requires active confirmation.' },
+  { level: 'L5', name: 'Disconnect',     color: '#dc2626', desc: 'Disconnects your broker. Positions are never closed by the system.' },
 ];
 
 const examples = [
-  { name: 'Daily Loss Limit',      rule: 'P&L below -$500',               action: 'Disconnect' },
-  { name: 'Revenge Trade Check',   rule: '3 consecutive losses',           action: 'Countdown + Acknowledge' },
-  { name: 'Tilt Early Warning',    rule: 'PSI below 65',                   action: 'Alert' },
-  { name: 'Hard Tilt Stop',        rule: 'PSI below 45 + P&L below -$300', action: 'Disconnect 30 min' },
-  { name: 'Position Risk Monitor', rule: 'Unrealized below -$400',         action: 'Risk Alert Mode' },
-  { name: 'Session Length Rule',   rule: 'Session over 180 minutes',       action: 'Acknowledge required' },
-];
-
-const intelFeatures = [
-  { title: 'PSI × Performance',  desc: 'Your P&L mapped against PSI zone. See exactly what Stable sessions average versus Critical.', img: '/screenshots/psi-performance.png',  alt: 'PSI × Performance' },
-  { title: 'Monthly Digest',     desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days — every month.',         img: '/screenshots/digest-march.png',       alt: 'Monthly Digest' },
-  { title: 'Weekday Patterns',   desc: 'Find your weakest trading day. Track 6-month Composure progress over time.',                  img: '/screenshots/weekday-patterns.png',   alt: 'Weekday Patterns' },
-  { title: "Today's Risk Brief", desc: 'Pre-session summary built from your own history — personalized before your first trade.',     img: '/screenshots/intel-risk-brief.png',   alt: "Today's Risk Brief" },
+  { name: 'Daily Loss Limit',       rule: 'P&L below -$500',                      action: 'Disconnect' },
+  { name: 'Revenge Trade Check',    rule: '3 consecutive losses',                  action: 'Countdown + Acknowledge' },
+  { name: 'Tilt Early Warning',     rule: 'PSI below 65',                          action: 'Alert' },
+  { name: 'Hard Tilt Stop',         rule: 'PSI below 45 + P&L below -$300',        action: 'Disconnect 30 min' },
+  { name: 'Position Risk Monitor',  rule: 'Unrealized below -$400',                action: 'Risk Alert Mode' },
+  { name: 'Session Length Rule',    rule: 'Session over 180 minutes',              action: 'Acknowledge required' },
 ];
 ---
 
 <Layout metadata={metadata}>
 
-<!-- ─────────────────────────────────────────────────────────────────
-     HERO
-───────────────────────────────────────────────────────────────── -->
-<section
-  class="relative overflow-hidden md:-mt-[84px] not-prose"
-  style="background-color:#f0ede8; background-image: linear-gradient(to bottom, rgba(240,237,232,0.15), rgba(240,237,232,0.5)), url('/guard-bg.jpg'); background-size:cover; background-position:center;"
->
-  <div class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-       style="background:linear-gradient(to bottom,transparent,#f0ede8);" aria-hidden="true"></div>
+  <!-- ═══════════════════════════════════════════════════════
+       HERO  —  Left text / right screenshot
+       ═══════════════════════════════════════════════════════ -->
+  <section
+    class="relative overflow-hidden md:-mt-[84px] not-prose guard-hero-surface"
+    style={`--guard-hero-bg: url('${guardBgUrl}')`}
+  >
+    <!-- bottom fade into next section -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+         style="background: linear-gradient(to bottom, transparent, #f0ede8);" aria-hidden="true"></div>
 
-  <div class="md:pt-[84px]"></div>
+    <div class="md:pt-[84px]"></div>
 
-  <div class="relative z-[1] max-w-3xl mx-auto px-6 py-16 md:py-24">
+    <div class="relative z-[1] max-w-6xl mx-auto px-6 py-14 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
 
-      <!-- Frosted copy panel — centred single column -->
-      <div class="rounded-2xl px-7 py-8 md:px-10 md:py-10"
-           style="background:rgba(248,246,242,0.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.6);">
-        <!-- Eyebrow -->
-        <p class="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-emerald-800 bg-emerald-50/80 border border-emerald-200/70 rounded-full px-3.5 py-1 mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
-          Meridian Guard
-        </p>
+        <!-- Left: frosted panel so copy stays readable on busy background -->
+        <div class="rounded-2xl bg-white/88 backdrop-blur-md px-6 py-7 md:px-8 md:py-9 shadow-sm ring-1 ring-zinc-900/[0.06]">
+          <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-7 rounded-full"
+               style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.1);">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
+            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Meridian Guard</span>
+          </div>
 
-        <!-- Headline -->
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.18] text-zinc-900 mb-5">
-          The rules you set for yourself.
-          <span class="text-emerald-600">Enforced automatically.</span>
-        </h1>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.18] text-zinc-900 mb-6">
+            The rules you set for yourself.<br />
+            <span class="text-emerald-600">Enforced automatically.</span>
+          </h1>
 
-        <p class="text-lg text-zinc-700 leading-relaxed mb-8">
-          When you are calm, you define the rules. When the moment comes — losing streak, tilt, blown limit — Guard enforces them without requiring a decision from you.
-        </p>
+          <p class="text-lg text-zinc-700 leading-relaxed mb-8 max-w-lg">
+            When you are calm, you define the rules. When the moment comes — losing streak, tilt, blown limit — Guard enforces them. No decision required from you.
+          </p>
 
-        <!-- 3-step flow -->
-        <div class="flex items-center gap-2 mb-8 text-xs text-zinc-700">
-          <span class="w-7 h-7 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center font-bold text-emerald-800 shrink-0">1</span>
-          <span>Set your rules</span>
-          <span class="flex-1 border-t border-dashed border-zinc-400/40 mx-2"></span>
-          <span class="w-7 h-7 rounded-full bg-white/60 border border-zinc-300 flex items-center justify-center font-bold text-zinc-600 shrink-0">2</span>
-          <span>Trade normally</span>
-          <span class="flex-1 border-t border-dashed border-zinc-400/40 mx-2"></span>
-          <span class="w-7 h-7 rounded-full bg-zinc-900 flex items-center justify-center font-bold text-white shrink-0">3</span>
-          <span>Guard acts for you</span>
-        </div>
-
-        <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a href={guardCheckout}
-             class="btn btn-lg font-semibold"
-             style="background:#059669;color:white;border:1px solid #059669;">
-            Start 7-day free trial
-          </a>
-          <a href="#guard-system"
-             class="btn btn-lg font-semibold"
-             style="border:1.5px solid rgba(0,0,0,0.2);color:#18181b;background:rgba(255,255,255,0.5);backdrop-filter:blur(4px);">
-            See how it works
-          </a>
-        </div>
-
-        <p class="text-xs text-zinc-500 mt-4">$34.99/mo after trial · Cancel any time · Trading involves substantial risk of loss.</p>
-      </div>
-
-      <!-- Illustration slot — replace src with your AI-generated image -->
-      <!-- <img src="/illustrations/guard-flow.png" alt="Guard system overview" class="mt-10 rounded-2xl w-full shadow-xl" /> -->
-
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────────────────────────
-     COMMITMENT DEVICE
-───────────────────────────────────────────────────────────────── -->
-<section class="py-16 px-6" style="background:#f0ede8;">
-  <div class="max-w-3xl mx-auto">
-    <div class="bg-white rounded-2xl border border-zinc-200 px-8 py-8 md:px-12 md:py-10 shadow-sm">
-      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-4">Why Guard exists</p>
-      <p class="text-xl md:text-2xl text-zinc-800 leading-[1.6]">
-        Behavioral economists call this a <strong class="text-zinc-900 font-semibold">commitment device</strong> — a mechanism you set up in advance to constrain your future behavior.<br /><br />
-        Institutional traders have compliance systems that do this automatically. Meridian Guard does the same for independent traders.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────────────────────────
-     GUARD SYSTEM
-───────────────────────────────────────────────────────────────── -->
-<section id="guard-system" class="py-20 md:py-28 px-6 bg-white border-t border-zinc-200/60">
-  <div class="max-w-6xl mx-auto">
-
-    <div class="max-w-2xl mb-16">
-      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-3">The Guard System</p>
-      <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">Six ways to detect. Five ways to respond.</h2>
-      <p class="text-lg text-zinc-600 leading-relaxed">
-        You set the pairing once. Guard watches every session and acts the moment a condition is met — no manual check-in required.
-      </p>
-    </div>
-
-    <!-- Step 1: Triggers -->
-    <div class="mb-20">
-      <div class="flex items-baseline gap-4 mb-8">
-        <div class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold shrink-0">1</div>
-        <div>
-          <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase mb-0.5">Step 1</p>
-          <h3 class="text-2xl font-bold text-zinc-900">Define when to intervene</h3>
-        </div>
-        <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
-          Each condition fires once on entry, then resets. No repeated nudges.
-        </p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {triggers.map((t) => (
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 hover:border-emerald-200 hover:bg-emerald-50/30 transition-colors">
-            <div class="flex items-center gap-2 mb-2">
-              <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-              <p class="font-semibold text-zinc-900 text-sm">{t.name}</p>
+          <!-- 3-step micro-flow -->
+          <div class="flex items-center gap-3 mb-9 text-sm text-zinc-700">
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-800 font-bold text-xs">1</div>
+              <span class="text-xs text-zinc-600 whitespace-nowrap">Set your rules</span>
             </div>
-            <p class="text-zinc-600 text-sm leading-relaxed pl-6">{t.desc}</p>
+            <div class="h-px flex-1 border-t border-dashed border-zinc-300"></div>
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 font-bold text-xs">2</div>
+              <span class="text-xs text-zinc-600 whitespace-nowrap">Trade normally</span>
+            </div>
+            <div class="h-px flex-1 border-t border-dashed border-zinc-300"></div>
+            <div class="flex flex-col items-center gap-1">
+              <div class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-white font-bold text-xs">3</div>
+              <span class="text-xs text-zinc-600 whitespace-nowrap">Guard acts for you</span>
+            </div>
           </div>
-        ))}
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href={guardCheckout} class="btn btn-lg btn-primary font-semibold">
+              Start 7-day free trial
+            </a>
+            <a href="#guard-system"
+               class="btn btn-lg font-semibold border-[1.5px] border-zinc-300 text-zinc-800 bg-white/80 hover:bg-white">
+              See how it works
+            </a>
+          </div>
+
+          <p class="text-xs text-zinc-600 mt-5 leading-relaxed">
+            $34.99/mo after trial · Cancel any time · Trading involves substantial risk of loss.
+          </p>
+        </div>
+
+        <!-- Right: illustration slot — replace src with your AI-generated image -->
+        <div class="relative hidden lg:block">
+          <div class="absolute -inset-4 rounded-3xl opacity-25 blur-2xl"
+               style="background: radial-gradient(ellipse at center, rgba(5,150,105,0.22) 0%, transparent 70%);"
+               aria-hidden="true"></div>
+          <!-- Uncomment and update src once you have the illustration:
+          <figure class="guard-media-frame relative m-0">
+            <img src="/illustrations/guard-flow.png"
+                 alt="Meridian Guard system overview"
+                 class="w-full h-auto block"
+                 loading="eager" />
+          </figure>
+          -->
+          <!-- Placeholder gradient until illustration is ready -->
+          <div class="guard-media-frame rounded-2xl flex items-center justify-center"
+               style="min-height:340px; background:linear-gradient(135deg,rgba(5,150,105,0.06) 0%,rgba(5,150,105,0.14) 100%); border:1px dashed rgba(5,150,105,0.3);">
+            <p class="text-sm text-emerald-700/60 font-medium">Illustration coming soon</p>
+          </div>
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <!-- Step 2: Action levels -->
-    <div class="mb-20">
-      <div class="flex items-baseline gap-4 mb-8">
-        <div class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold shrink-0">2</div>
-        <div>
-          <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase mb-0.5">Step 2</p>
-          <h3 class="text-2xl font-bold text-zinc-900">Choose the response level</h3>
-        </div>
-        <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
-          Severity increases from a quiet nudge to a full broker disconnect.
+
+  <!-- ═══════════════════════════════════════════════════════
+       COMMITMENT DEVICE  —  editorial pull-quote
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-16 px-6" style="background:#f0ede8;">
+    <div class="max-w-3xl mx-auto">
+      <div class="rounded-2xl border border-zinc-300/60 bg-white/80 shadow-sm px-8 py-8 md:px-12 md:py-10">
+        <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-5">Why Guard exists</p>
+        <p class="text-xl md:text-2xl font-medium text-zinc-800 leading-[1.55]">
+          Behavioral economists call this a <strong class="text-zinc-900">commitment device</strong> — a mechanism you set up in advance to constrain your future behavior.<br /><br />
+          Institutional traders have compliance systems that do this automatically. Meridian Guard does the same for independent traders.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       GUARD SYSTEM  —  Step 1 triggers + Step 2 levels
+       ═══════════════════════════════════════════════════════ -->
+  <section id="guard-system" class="py-20 md:py-28 px-6 bg-white border-t border-zinc-200/60">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section header -->
+      <div class="max-w-2xl mb-16">
+        <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-3">The Guard System</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
+          Six ways to detect. Five ways to respond.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-lg">
+          You set the pairing once. Guard watches every session and acts the moment a condition is met — no manual check-in required.
         </p>
       </div>
 
-      <!-- Severity gradient bar -->
-      <div class="flex h-1 rounded-full overflow-hidden mb-6">
-        {levels.map((l) => <div class="flex-1" style={`background:${l.accent}`}></div>)}
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        {levels.map((l) => (
-          <div class="rounded-xl border bg-white p-4 flex flex-col gap-2 shadow-sm" style={`border-color:${l.accent}44`}>
-            <span class="text-[10px] font-bold tracking-widest text-white rounded px-1.5 py-0.5 w-fit" style={`background:${l.accent}`}>{l.level}</span>
-            <p class="font-semibold text-zinc-900 text-sm">{l.name}</p>
-            <p class="text-zinc-600 text-xs leading-relaxed">{l.desc}</p>
+      <!-- STEP 1: Trigger conditions -->
+      <div class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-none w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold">1</div>
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase">Step 1</p>
+            <h3 class="text-xl md:text-2xl font-bold text-zinc-900">Define when to intervene</h3>
           </div>
-        ))}
-      </div>
-    </div>
+          <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
+            Each condition fires once on entry, then resets. No repeated nudges.
+          </p>
+        </div>
 
-    <!-- Example setups -->
-    <div>
-      <p class="text-[11px] font-semibold tracking-[0.2em] text-zinc-400 uppercase mb-2">Example setups</p>
-      <h3 class="text-2xl font-bold text-zinc-900 mb-8">How traders configure Guard</h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {examples.map((e) => (
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 hover:border-zinc-300 transition-colors">
-            <p class="font-semibold text-zinc-900 text-sm mb-3">{e.name}</p>
-            <p class="text-zinc-500 text-xs font-mono mb-1">When: <span class="text-zinc-700">{e.rule}</span></p>
-            <p class="text-xs font-mono font-semibold text-emerald-700">Action: {e.action}</p>
-          </div>
-        ))}
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
-        {[
-          { name: 'Edge-trigger',    desc: 'Fires once per condition entry — no repeated alerts.' },
-          { name: 'Cooldown',        desc: 'Prevents rapid re-triggering between conditions.' },
-          { name: 'Emergency Reset', desc: 'One click clears all active Guard state.' },
-          { name: 'Master switch',   desc: 'Disable Guard without losing your saved rules.' },
-        ].map((u) => (
-          <div class="rounded-xl border border-dashed border-zinc-300 bg-white p-4">
-            <p class="font-semibold text-zinc-900 text-sm mb-1">{u.name}</p>
-            <p class="text-zinc-500 text-xs leading-relaxed">{u.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────────────────────────
-     L2 CALLOUT (only dark section)
-───────────────────────────────────────────────────────────────── -->
-<section class="py-20 px-6" style="background:#18181b;">
-  <div class="max-w-2xl mx-auto text-center">
-    <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-400 uppercase mb-6">
-      Why L2 — Acknowledge — is the most powerful level
-    </p>
-    <blockquote class="text-2xl md:text-3xl font-semibold text-white leading-[1.45] mb-8">
-      "I will not revenge trade. My plan is my edge."
-    </blockquote>
-    <p class="text-zinc-400 leading-relaxed">
-      You write that phrase yourself — when you are calm, before the session. In the moment, you must type it before continuing. Your own words, exactly when you need them most.
-    </p>
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────────────────────────
-     INTEL LAYER
-───────────────────────────────────────────────────────────────── -->
-<section class="py-20 md:py-28 px-6 border-t border-zinc-200/60" style="background:#f7f5f2;">
-  <div class="max-w-6xl mx-auto">
-
-    <div class="max-w-2xl mb-14">
-      <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 bg-emerald-100 border border-emerald-200 rounded-full px-3 py-1 mb-5">
-        Guard exclusive
-      </span>
-      <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
-        Intel Layer — your history, turned into decisions.
-      </h2>
-      <p class="text-lg text-zinc-600 leading-relaxed">
-        Guard stores 5 years of session data locally and surfaces behavioral patterns that are invisible in any single session.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start">
-
-      <!-- Tab cards -->
-      <div class="flex flex-col gap-3">
-        {intelFeatures.map((f, i) => (
-          <button
-            data-card-nav="intel"
-            data-slide-idx={i}
-            class:list={[
-              'text-left rounded-xl p-4 border transition-colors duration-150',
-              i === 0
-                ? 'border-emerald-400 bg-white shadow-sm'
-                : 'border-zinc-200 bg-white/70 hover:border-zinc-300 hover:bg-white',
-            ]}
-          >
-            <p class="font-semibold text-zinc-900 text-sm mb-1">{f.title}</p>
-            <p class="text-zinc-600 text-xs leading-relaxed">{f.desc}</p>
-          </button>
-        ))}
-      </div>
-
-      <!-- Screenshot -->
-      <div class="relative group/intel">
-        <div class="rounded-2xl overflow-hidden"
-             style="box-shadow:0 20px 50px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.09);">
-          {intelFeatures.map((f, i) => (
-            <div data-carousel="intel" class:list={[i > 0 && 'hidden']}>
-              <img src={f.img} alt={f.alt} class="w-full h-auto block" loading="lazy" />
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {triggers.map((item) => (
+            <div class="group rounded-xl border border-zinc-200 bg-zinc-50/60 p-5 md:p-6 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-200">
+              <div class="flex items-start gap-3 mb-2">
+                <svg class="w-4 h-4 mt-0.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <p class="font-semibold text-zinc-900">{item.name}</p>
+              </div>
+              <p class="text-zinc-600 text-sm leading-relaxed pl-7">{item.desc}</p>
             </div>
           ))}
         </div>
-        <button data-prev="intel"
-          class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/intel:opacity-100 focus-visible:opacity-100 transition-opacity"
-          aria-label="Previous">
-          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/></svg>
-        </button>
-        <button data-next="intel"
-          class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/65 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/intel:opacity-100 focus-visible:opacity-100 transition-opacity"
-          aria-label="Next">
-          <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/></svg>
-        </button>
       </div>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- ─────────────────────────────────────────────────────────────────
-     COMPARISON TABLE
-───────────────────────────────────────────────────────────────── -->
-<section class="py-20 px-6 bg-white border-t border-zinc-200/60">
-  <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold text-zinc-900">Meridian vs Meridian Guard</h2>
-      <p class="text-zinc-600 mt-2">Guard includes everything in Core, plus the Guard System and Intel Layer.</p>
-    </div>
-    <div class="rounded-2xl border border-zinc-200 overflow-hidden shadow-sm">
-      <div class="grid grid-cols-3 text-sm font-semibold" style="background:#18181b;color:white;">
-        <div class="px-5 py-4 text-zinc-500"></div>
-        <div class="px-5 py-4 border-l border-zinc-700/50">
-          Meridian<br /><span class="font-normal text-zinc-400 text-xs">$24.99/mo</span>
+      <!-- STEP 2: Action levels with color spectrum -->
+      <div class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="flex-none w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold">2</div>
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase">Step 2</p>
+            <h3 class="text-xl md:text-2xl font-bold text-zinc-900">Choose the response level</h3>
+          </div>
+          <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
+            Severity increases from a quiet nudge to a full broker disconnect.
+          </p>
         </div>
-        <div class="px-5 py-4 border-l border-zinc-700/50 text-emerald-400">
-          Meridian Guard<br /><span class="font-normal text-emerald-600 text-xs">$34.99/mo</span>
+
+        <!-- Severity bar -->
+        <div class="flex h-1.5 rounded-full overflow-hidden mb-6 gap-0.5">
+          {levels.map((l) => (
+            <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
+          ))}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {levels.map((item) => (
+            <div class="rounded-xl border bg-white p-4 flex flex-col gap-2 shadow-sm hover:shadow-md transition-shadow"
+                 style={`border-color:${item.color}33;`}>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold tracking-widest px-1.5 py-0.5 rounded text-white"
+                      style={`background:${item.color};`}>{item.level}</span>
+                <span class="font-semibold text-zinc-900 text-sm">{item.name}</span>
+              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
-      {[
-        ['Real-time PSI score',                  true,  true],
-        ['7 behavioral signal bars',             true,  true],
-        ['Personal baselines',                   true,  true],
-        ['Session history (5 years)',            true,  true],
-        ['Local — no cloud, no telemetry',       true,  true],
-        ['Adapts to any trading style',          true,  true],
-        ['Guard System (6 triggers, 5 actions)', false, true],
-        ['Intel Layer — monthly digest',         false, true],
-        ['PSI × P&L correlation',                false, true],
-        ["Today's Risk Brief",                   false, true],
-      ].map(([feature, core, guard], i) => (
-        <div class="grid grid-cols-3 border-t border-zinc-100 text-sm" style={i % 2 === 1 ? 'background:#fafafa' : ''}>
-          <div class="px-5 py-3.5 text-zinc-700">{feature}</div>
-          <div class="px-5 py-3.5 border-l border-zinc-100">
-            {core  ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                   : <span class="text-zinc-300">—</span>}
+
+      <!-- Example setups -->
+      <div>
+        <p class="text-[11px] font-semibold tracking-[0.2em] text-zinc-500 uppercase mb-3">Example setups</p>
+        <h3 class="text-2xl font-bold text-zinc-900 mb-8">How traders configure Guard</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {examples.map((item) => (
+            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 hover:border-zinc-300 transition-colors">
+              <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
+              <div class="space-y-1">
+                <p class="text-zinc-500 text-xs font-mono">When: <span class="text-zinc-700">{item.rule}</span></p>
+                <p class="text-xs font-mono font-medium" style="color:#059669;">Action: {item.action}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Utility features -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
+          {[
+            { name: 'Edge-trigger',    desc: 'Fires once per condition entry — no repeated alerts.' },
+            { name: 'Cooldown',        desc: 'Prevents rapid re-triggering between conditions.' },
+            { name: 'Emergency Reset', desc: 'One click clears all active Guard state.' },
+            { name: 'Master switch',   desc: 'Disable Guard entirely without losing your rules.' },
+          ].map((item) => (
+            <div class="rounded-xl border border-dashed border-zinc-300 bg-white/80 p-4">
+              <p class="font-semibold text-zinc-900 text-sm mb-1">{item.name}</p>
+              <p class="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       L2 CALLOUT  —  Only deep-color section on the page
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-20 px-6" style="background:#18181b;">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-400 uppercase mb-6">
+        Why L2 — Acknowledge — is the most powerful level
+      </p>
+      <blockquote class="text-2xl md:text-3xl font-semibold text-white leading-[1.4] mb-8">
+        "I will not revenge trade.<br class="hidden sm:block" />
+        My plan is my edge."
+      </blockquote>
+      <p class="text-zinc-400 leading-relaxed max-w-xl mx-auto">
+        You write that phrase yourself — when you are calm, before the session starts. In the moment, you have to type it before the platform lets you continue. Your own words, at the exact moment you need them most.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTEL LAYER  —  Guard-exclusive feature
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-20 md:py-28 px-6 border-t border-zinc-200/60" style="background:#f7f5f2;">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="max-w-2xl mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 mb-5">
+          Guard exclusive
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
+          Intel Layer — your session history,<br class="hidden md:block" /> turned into decisions.
+        </h2>
+        <p class="text-zinc-600 leading-relaxed text-lg">
+          Guard stores 5 years of session history locally and surfaces behavioral patterns that are invisible in any single session.
+        </p>
+      </div>
+
+      <!-- Side-by-side: tab cards left + framed screenshot right -->
+      <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start">
+
+        <!-- Left: tab nav cards -->
+        <div class="flex flex-col gap-3">
+          {[
+            { idx: 0, title: 'PSI × Performance',  desc: 'Your P&L mapped against PSI zone — see exactly what Stable sessions average versus Critical.' },
+            { idx: 1, title: 'Monthly Digest',      desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days — every month.' },
+            { idx: 2, title: 'Weekday Patterns',    desc: 'Find your weakest trading day and track 6-month Composure progress.' },
+            { idx: 3, title: "Today's Risk Brief",  desc: 'Pre-session summary built from your own history — personalized before your first trade.' },
+          ].map((card) => (
+            <button
+              data-card-nav="intel"
+              data-slide-idx={card.idx}
+              class:list={[
+                'text-left rounded-xl p-4 border transition-all duration-200',
+                card.idx === 0
+                  ? 'border-emerald-400 bg-white shadow-sm shadow-emerald-100'
+                  : 'border-zinc-200 bg-white/60 hover:border-zinc-300 hover:bg-white',
+              ]}
+            >
+              <h3 class="font-semibold text-zinc-900 mb-1 text-sm">{card.title}</h3>
+              <p class="text-zinc-600 text-xs leading-relaxed">{card.desc}</p>
+            </button>
+          ))}
+        </div>
+
+        <!-- Right: carousel — rounded frame only (no fake OS chrome) -->
+        <div class="relative group/carousel">
+          <div class="guard-media-frame">
+            <!-- Slide 1 -->
+            <div data-carousel="intel">
+              <div class="bg-zinc-900 px-5 pt-4 pb-3">
+                <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">PSI × Performance</p>
+                <p class="text-zinc-400 text-xs">Stable sessions vs Critical sessions — the behavioral performance gap, measured from your own data.</p>
+              </div>
+              <img src="/screenshots/psi-performance.png" alt="PSI × Performance" class="w-full h-auto block" loading="lazy" />
+            </div>
+            <!-- Slide 2 -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
+                <p class="text-xs font-semibold text-zinc-500">Monthly Digest — March 2026</p>
+              </div>
+              <img src="/screenshots/digest-march.png" alt="Monthly Digest" class="w-full h-auto block" loading="lazy" />
+            </div>
+            <!-- Slide 3 -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
+                <p class="text-xs font-semibold text-zinc-500">Weekday patterns + 6-month Composure progress</p>
+              </div>
+              <img src="/screenshots/weekday-patterns.png" alt="Weekday Patterns" class="w-full h-auto block" loading="lazy" />
+            </div>
+            <!-- Slide 4 -->
+            <div data-carousel="intel" class="hidden">
+              <div class="bg-zinc-900 px-5 pt-4 pb-3">
+                <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">Today's Risk Brief</p>
+                <p class="text-zinc-400 text-xs">Personalized pre-session intelligence. Built from your own history, every morning.</p>
+              </div>
+              <img src="/screenshots/intel-risk-brief.png" alt="Today's Risk Brief" class="w-full h-auto block" loading="lazy" />
+            </div>
           </div>
-          <div class="px-5 py-3.5 border-l border-zinc-100">
-            {guard ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                   : <span class="text-zinc-300">—</span>}
+
+          <!-- Prev / Next -->
+          <button data-prev="intel"
+            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 transition-all"
+            aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <button data-next="intel"
+            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 transition-all"
+            aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       COMPARISON TABLE
+       ═══════════════════════════════════════════════════════ -->
+  <section id="comparison" class="py-20 px-6 bg-white border-t border-zinc-200/60">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-zinc-900">Meridian vs Meridian Guard</h2>
+        <p class="text-zinc-600 mt-3">Guard includes everything in Core, plus the Guard System and Intel Layer.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 overflow-hidden shadow-sm">
+        <!-- Header row -->
+        <div class="grid grid-cols-3 text-sm font-semibold" style="background:#18181b; color:white;">
+          <div class="px-5 py-4 text-zinc-400"></div>
+          <div class="px-5 py-4 border-l border-zinc-700/60">
+            Meridian<br />
+            <span class="font-normal text-zinc-400 text-xs">$24.99/mo</span>
+          </div>
+          <div class="px-5 py-4 border-l border-zinc-700/60" style="color:#34d399;">
+            Meridian Guard<br />
+            <span class="font-normal text-xs" style="color:#059669;">$34.99/mo</span>
           </div>
         </div>
-      ))}
+        <!-- Feature rows -->
+        {[
+          ['Real-time PSI score',                        true,  true],
+          ['7 behavioral signal bars',                   true,  true],
+          ['Personal baselines',                         true,  true],
+          ['Session history (5 years)',                  true,  true],
+          ['Local — no cloud, no telemetry',             true,  true],
+          ['Adapts to any trading style',                true,  true],
+          ['Guard System (6 triggers, 5 actions)',       false, true],
+          ['Intel Layer — monthly digest',               false, true],
+          ['PSI × P&L correlation',                      false, true],
+          ["Today's Risk Brief",                         false, true],
+        ].map(([feature, meridian, guard], i) => (
+          <div class="grid grid-cols-3 border-t border-zinc-100 text-sm" style={i % 2 === 1 ? 'background:#fafafa;' : ''}>
+            <div class="px-5 py-3.5 text-zinc-700">{feature}</div>
+            <div class="px-5 py-3.5 border-l border-zinc-100">
+              {meridian
+                ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                : <span class="text-zinc-300 text-base leading-none">—</span>}
+            </div>
+            <div class="px-5 py-3.5 border-l border-zinc-100">
+              {guard
+                ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                : <span class="text-zinc-300 text-base leading-none">—</span>}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- ─────────────────────────────────────────────────────────────────
-     FINAL CTA
-───────────────────────────────────────────────────────────────── -->
-<section class="py-20 px-6 border-t border-zinc-200/60" style="background:#f0ede8;">
-  <div class="max-w-xl mx-auto text-center">
-    <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-4">Available now</p>
-    <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
-      Meridian Guard is ready when you are.
-    </h2>
-    <p class="text-zinc-600 leading-relaxed mb-8">
-      Everything in Meridian Core, plus the Guard System and Intel Layer. 7-day free trial. Cancel any time.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href={guardCheckout}
-         class="btn btn-lg font-semibold"
-         style="background:#059669;color:white;border:1px solid #059669;">
-        Start free trial — $34.99/mo
-      </a>
-      <a href="/pricing"
-         class="btn btn-lg font-semibold"
-         style="border:1.5px solid rgba(0,0,0,0.18);color:#18181b;background:transparent;">
-        Compare all plans
-      </a>
+  <!-- ═══════════════════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════════════════ -->
+  <section class="py-20 px-6" style="background:#f0ede8; border-top:1px solid rgba(0,0,0,0.07);">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-4">Available now</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-5">
+        Meridian Guard is ready when you are.
+      </h2>
+      <p class="text-zinc-600 leading-relaxed mb-8 text-lg">
+        Everything in Meridian Core, plus the Guard System and Intel Layer. 7-day free trial. Cancel any time.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={guardCheckout} class="btn btn-lg btn-primary font-semibold">
+          Start free trial — $34.99/mo
+        </a>
+        <a href="/pricing" class="btn btn-lg font-semibold border-[1.5px] border-zinc-400/50 text-zinc-700 bg-transparent hover:bg-white/60">
+          Compare all plans
+        </a>
+      </div>
+      <p class="text-xs text-zinc-500 max-w-md mx-auto mt-6 leading-relaxed">
+        Trading involves substantial risk of loss. Meridian Guard is a behavioral enforcement tool and does not guarantee trading outcomes. Results may vary.
+      </p>
     </div>
-    <p class="text-xs text-zinc-500 max-w-md mx-auto mt-6 leading-relaxed">
-      Trading involves substantial risk of loss. Meridian Guard is a behavioral enforcement tool and does not guarantee trading outcomes. Results may vary.
-    </p>
-  </div>
-</section>
+  </section>
 
 </Layout>
 
@@ -402,46 +473,45 @@ const intelFeatures = [
     const slides = Array.from(document.querySelectorAll<HTMLElement>(`[data-carousel="${id}"]`));
     const cards  = Array.from(document.querySelectorAll<HTMLElement>(`[data-card-nav="${id}"]`));
     if (!slides.length) return;
-
     let current = 0;
     let animating = false;
 
+    const activeCard   = ['border-emerald-400', 'bg-white', 'shadow-sm', 'shadow-emerald-100'];
+    const inactiveCard = ['border-zinc-200', 'bg-white/60'];
+
     slides.forEach((s, i) => {
-      s.style.transition = 'opacity 0.2s ease';
+      s.style.transition = 'opacity 0.25s ease';
       s.style.opacity = i === 0 ? '1' : '0';
     });
 
-    const ON  = ['border-emerald-400', 'bg-white', 'shadow-sm'];
-    const OFF = ['border-zinc-200', 'bg-white/70'];
-
-    function goTo(n: number) {
+    function goTo(index: number) {
       if (animating) return;
-      const next = ((n % slides.length) + slides.length) % slides.length;
-      if (next === current) return;
+      const prev = current;
+      const next = ((index % slides.length) + slides.length) % slides.length;
+      if (prev === next) return;
       animating = true;
 
-      cards[current]?.classList.remove(...ON);
-      cards[current]?.classList.add(...OFF);
-      cards[next]?.classList.remove(...OFF);
-      cards[next]?.classList.add(...ON);
+      cards[prev]?.classList.remove(...activeCard);
+      cards[prev]?.classList.add(...inactiveCard);
+      cards[next]?.classList.remove(...inactiveCard);
+      cards[next]?.classList.add(...activeCard);
 
-      slides[current].style.opacity = '0';
-      const prev = current;
-      current = next;
+      slides[prev].style.opacity = '0';
       setTimeout(() => {
         slides[prev].classList.add('hidden');
+        current = next;
         slides[current].classList.remove('hidden');
         slides[current].style.opacity = '0';
         requestAnimationFrame(() => requestAnimationFrame(() => {
           slides[current].style.opacity = '1';
           animating = false;
         }));
-      }, 200);
+      }, 250);
     }
 
     document.querySelector(`[data-prev="${id}"]`)?.addEventListener('click', () => goTo(current - 1));
     document.querySelector(`[data-next="${id}"]`)?.addEventListener('click', () => goTo(current + 1));
-    cards.forEach((c, i) => c.addEventListener('click', () => goTo(i)));
+    cards.forEach((card, i) => card.addEventListener('click', () => goTo(i)));
   }
 
   document.addEventListener('DOMContentLoaded', () => initCarousel('intel'));
