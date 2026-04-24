@@ -47,7 +47,7 @@ All communications between the Software and our licensing server use HTTPS/TLS e
 We use the following third-party services:
 
 - **Vercel** — website hosting (see [Vercel Privacy Policy](https://vercel.com/legal/privacy-policy))
-- **Lemon Squeezy** — payment processing for purchase transactions. We do not store credit card information. See [Lemon Squeezy's Privacy Policy](https://www.lemonsqueezy.com/privacy).
+- **Whop** — payment processing for purchase transactions. We do not store credit card information. See [Whop's Privacy Policy](https://whop.com/privacy).
 
 ## 6. Your Rights
 

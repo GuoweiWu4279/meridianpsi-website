@@ -6,7 +6,7 @@ const metadata = {
   description: 'Manage your Meridian subscription — cancel, update payment, or download invoices.',
 };
 
-const portalUrl = 'https://app.lemonsqueezy.com/my-orders/';
+const portalUrl = 'https://whop.com/@me/settings/memberships';
 ---
 
 <Layout metadata={metadata}>
@@ -54,9 +54,8 @@ const portalUrl = 'https://app.lemonsqueezy.com/my-orders/';
         <ol class="space-y-3">
           {[
             'Click "Go to account portal" above.',
-            'Enter the email address you used when you subscribed.',
-            'Check your inbox for a sign-in link from Lemon Squeezy.',
-            'Click the link — you\'ll see your subscription, invoices, and options.',
+            'Log in with the email address you used when you subscribed.',
+            'You\'ll see your subscription, License Key, downloads, and billing options.',
           ].map((step, i) => (
             <li class="flex items-start gap-3 text-sm text-zinc-600">
               <span class="mt-0.5 w-5 h-5 rounded-full bg-zinc-100 text-zinc-500 text-xs font-bold flex items-center justify-center shrink-0">
