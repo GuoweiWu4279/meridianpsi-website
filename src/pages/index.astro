@@ -123,7 +123,7 @@ const steps = [
     desc: 'Set your rules once',
     fullDesc: 'Your profile defines how Meridian reads your behavior — position limits, session windows, stop conventions. Every alert is personalized to your declared rules, not a generic threshold.',
     bullets: ['Session rules & time windows', 'Position size limits and stop conventions', 'Profile settings per account', 'Personal baseline adapts with each session'],
-    image: '/configue-pic.jpg',
+    image: '/configue-pic.jpg?v=2',
     imgAlt: 'Meridian personal baseline configuration panel',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
   },
@@ -681,6 +681,10 @@ const signals = [
     object-fit: contain;
     transition: opacity 0.4s ease;
     opacity: 0;
+    z-index: 0;
+  }
+  .acc-img.acc-img-visible {
+    z-index: 1;
   }
 
   /* ——— Word-blur animation ——— */
@@ -784,9 +788,11 @@ const signals = [
     function activate(next: number) {
       if (next === current) return;
 
-      // Opacity-only crossfade (images are absolutely stacked)
-      if (images[current]) images[current].style.opacity = '0';
-      if (images[next]) images[next].style.opacity = '1';
+      // Opacity crossfade + z-index so the active image is always on top
+      images.forEach((img, i) => {
+        img.classList.toggle('acc-img-visible', i === next);
+        img.style.opacity = i === next ? '1' : '0';
+      });
 
       // Update accordion items
       items.forEach((item, i) => {
@@ -811,7 +817,10 @@ const signals = [
     });
 
     // Init: first image visible, rest hidden; first accordion body open
-    images.forEach((img, i) => { img.style.opacity = i === 0 ? '1' : '0'; });
+    images.forEach((img, i) => {
+      img.classList.toggle('acc-img-visible', i === 0);
+      img.style.opacity = i === 0 ? '1' : '0';
+    });
     const firstBody = items[0]?.querySelector<HTMLElement>('.acc-item-body');
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
   }
