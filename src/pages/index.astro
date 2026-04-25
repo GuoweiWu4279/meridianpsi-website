@@ -106,8 +106,8 @@ const steps = [
   {
     label: 'Configure',
     desc: 'Set your rules once',
-    fullDesc: 'Your profile defines how Meridian reads your behavior — position limits, session windows, stop conventions. Every alert is personalized to your declared rules, not a generic threshold.',
-    bullets: ['Session rules & time windows', 'Position size limits and stop conventions', 'Profile settings per account', 'Personal baseline adapts with each session'],
+    fullDesc: 'Your profile defines how Meridian reads your behavior — position limits, session windows, stop conventions. Everything is calibrated to your rules, so every signal means something.',
+    bullets: ['Session rules & time windows', 'Position size limits and stop conventions', 'Adaptive baseline learns your rhythm — updates every session'],
     image: '/configue-pic.jpg?v=2',
     imgAlt: 'Meridian personal baseline configuration panel',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
@@ -116,7 +116,7 @@ const steps = [
     label: 'Live Monitor',
     desc: 'PSI updates in <100ms',
     fullDesc: 'PSI updates within 100ms of every fill, every stop move, every size decision. Seven behavioral signal bars show exactly what is affecting the score right now.',
-    bullets: ['PSI score updates after every action in <100ms', 'Seven behavioral signal bars visible while trading', 'Floating HUD overlay — stays readable mid-session', 'Session stats: trades, win rate, alerts, duration'],
+    bullets: ['PSI score updates after every action in <100ms', 'Seven signal bars — see which pattern is driving the score', 'Session stats: trades, win rate, alerts, duration'],
     image: '/screenshots/psi-critical.png',
     imgAlt: 'Meridian PSI Monitor showing a Critical score with seven behavioral signal bars',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
@@ -124,7 +124,7 @@ const steps = [
   {
     label: 'Guard',
     desc: 'Automated enforcement',
-    fullDesc: 'Guard is a commitment device. When you are calm, you write the rules. When the moment comes, Guard enforces them automatically — no decision required from you.',
+    fullDesc: 'When you are calm, you write the rules. When the moment comes — losing streak, blown limit, tilt — Guard enforces them. No willpower required.',
     bullets: ['6 configurable trigger conditions', '5 response levels — quiet alert to full platform lockout', 'Set once, active every session automatically', 'When the moment comes, Guard acts — you don\'t have to decide'],
     image: '/screenshots/psi-performance.png',
     imgAlt: 'Meridian PSI vs P&L correlation chart',
@@ -134,7 +134,7 @@ const steps = [
   {
     label: 'Review & Intel',
     desc: 'Patterns across sessions',
-    fullDesc: 'Every session is saved with PSI score, Composure, and trade stats. Over months, behavioral patterns become visible — and so does the improvement.',
+    fullDesc: 'When you can finally see that your worst P&L always follows your highest-pressure sessions, the pattern is hard to ignore. Every session is saved — and over months, your behavioral fingerprint becomes visible.',
     bullets: ['Session log: PSI, Composure, and trade stats', 'Monthly behavioral grade and P&L correlation', "Today's Risk Brief — built from your own history", '5 years of session history stored locally'],
     image: '/screenshots/intel-session-calendar.png',
     imgAlt: 'Meridian session calendar showing PSI, Composure and P&L per session',
@@ -224,9 +224,9 @@ const signals = [
       </h2>
       <!-- Body -->
       <p class="text-base leading-relaxed max-w-xl mx-auto fade-up" style="color:#71717a;">
-        Compliance officers, position limits, systems enforcing rules outside their control.
-        Retail traders have experience and hard-won rules — and nothing to stop them from breaking those rules
-        the moment it matters most. Meridian is that risk manager.
+        Institutional traders operate inside systems designed to stop them from making emotional decisions — position limits, compliance rules, risk managers watching every move.
+        Retail traders have none of that. Just experience, a plan, and the very real ability to ignore both the moment it costs them most.
+        Meridian is that missing system.
       </p>
     </div>
   </section>
@@ -254,8 +254,8 @@ const signals = [
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { num: '01', title: 'Configure',     sub: 'Any strategy. Any style.',      bullets: ['Session rules & time windows', 'Size limits and stop conventions', 'Profile settings per account'] },
-            { num: '02', title: 'Live Monitor',  sub: '7 signals. <100ms updates.',    bullets: ['PSI score updates in real time', 'Seven behavioral signal bars', 'Floating HUD overlay'] },
+            { num: '01', title: 'Configure',     sub: 'Any strategy. Any style.',      bullets: ['Session rules & time windows', 'Size limits and stop conventions', 'Adaptive baseline learns your rhythm'] },
+            { num: '02', title: 'Live Monitor',  sub: '7 signals. <100ms updates.',    bullets: ['PSI score updates in real time', 'Seven behavioral signal bars', 'Live score — which signal is driving it'] },
             { num: '03', title: 'Guard',         sub: 'Rules that enforce themselves.', bullets: ['6 trigger conditions', '5 response levels', 'Quiet alert to full platform lockout'] },
             { num: '04', title: 'Review & Intel', sub: 'Every session. Every pattern.', bullets: ['PSI, Composure, and trade stats', 'Monthly digest & P&L correlation', "Today's Risk Brief"] },
           ].map((step, i) => (
@@ -458,8 +458,7 @@ const signals = [
           Seven patterns. Each tied to a known failure mode.
         </h2>
         <p class="lead fade-up">
-          Every signal tracks a behavioral pattern from behavioral-finance research. They run
-          independently and combine into a single PSI score.
+          Seven patterns that show up in every blown account, every missed rule, every session you wish you could take back. Each runs independently and feeds into a single PSI score.
         </p>
       </div>
 
