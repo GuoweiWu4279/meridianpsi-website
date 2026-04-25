@@ -158,18 +158,21 @@ const intelShowcaseTabs = [
     title: 'PSI × Performance',
     sub: 'See the exact P&L gap between your Stable and Critical sessions.',
     imgAlt: 'Meridian correlation view: PSI versus session outcomes and P&L',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
   },
   {
     img: '/screenshots/intel-risk-brief.png',
     title: "Today's Risk Brief",
     sub: 'Personalized pre-session intelligence before your first trade.',
     imgAlt: "Meridian Today's Risk Brief with session risk highlights",
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
   },
   {
     img: '/screenshots/intel-monthly-digest.png',
     title: 'Monthly digest',
     sub: 'Track your behavioral grade, long-term trends, and weak spots.',
     imgAlt: 'Meridian monthly digest with behavioral grade and trends',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
   },
 ];
 ---
@@ -428,7 +431,7 @@ const intelShowcaseTabs = [
     </div>
   </section>
 
-  <!-- ——— INTEL — same 2-col rhythm as step-detail: copy + sticky 16:9 left, tabs right ——— -->
+  <!-- ——— INTEL — step-detail visual language: left accordion-style tabs, right sticky 16:9 preview ——— -->
   <section
     id="intel-showcase"
     class="py-16 lg:py-24 px-6 border-y border-zinc-200/70 bg-gradient-to-b from-zinc-100/70 via-zinc-50/90 to-white dark:from-zinc-900 dark:via-zinc-900/90 dark:to-zinc-900 dark:border-zinc-800"
@@ -444,8 +447,11 @@ const intelShowcaseTabs = [
         </div>
       </div>
 
-      <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start fade-up" data-intel-showcase>
-        <!-- Left column: headline + lead + sticky preview (mirrors step-detail image column) -->
+      <div
+        class="lg:grid lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:gap-12 lg:items-start fade-up"
+        data-intel-showcase
+      >
+        <!-- Left: headline + lead + tab rows (same acc-item / icon / chevron pattern as 4 Stages) -->
         <div class="flex flex-col gap-6 lg:gap-8">
           <h2
             class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-zinc-900 dark:text-zinc-100 text-balance"
@@ -456,8 +462,46 @@ const intelShowcaseTabs = [
             No broker dashboard cross-references your psychological state with your P&amp;L. Meridian builds that
             connection from your own history — and shows you exactly where the gap is.
           </p>
+          <div class="space-y-1" role="tablist" aria-label="Intel views">
+            {intelShowcaseTabs.map((tab, i) => (
+              <button
+                type="button"
+                role="tab"
+                id={`intel-tab-${i}`}
+                data-intel-tab
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls="intel-showcase-panel"
+                tabindex={i === 0 ? 0 : -1}
+                class:list={['intel-tab-item acc-item w-full', { 'acc-item-active': i === 0 }]}
+              >
+                <span class="flex items-start gap-4 p-5">
+                  <span class="acc-item-icon flex-shrink-0 p-2 rounded-lg mt-0.5" aria-hidden="true" set:html={tab.icon} />
+                  <span class="flex-1 min-w-0 text-left">
+                    <span class="acc-item-title text-base font-semibold block">
+                      <span class="acc-item-num text-xs font-semibold tracking-widest mr-1">{String(i + 1).padStart(2, '0')} —</span>
+                      {tab.title}
+                    </span>
+                    <span class="intel-tab-sub mt-1 block text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{tab.sub}</span>
+                  </span>
+                  <svg
+                    class="acc-chevron w-4 h-4 shrink-0 mt-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right: sticky preview (mirrors 4 Stages image column) -->
+        <div class="lg:self-start max-lg:mt-8 w-full min-w-0">
           <div
-            class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px] shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 bg-zinc-100 dark:bg-zinc-800"
+            class="relative overflow-hidden rounded-xl lg:sticky lg:top-[92px] shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 bg-zinc-100 dark:bg-zinc-800"
             style="aspect-ratio: 16 / 9;"
             id="intel-showcase-panel"
             role="tabpanel"
@@ -472,30 +516,6 @@ const intelShowcaseTabs = [
                 loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
               />
-            ))}
-          </div>
-        </div>
-
-        <!-- Right column: tab list (mirrors step-detail accordion column) -->
-        <div class="lg:self-start max-lg:mt-8 w-full">
-          <div class="space-y-1.5" role="tablist" aria-label="Intel views">
-            {intelShowcaseTabs.map((tab, i) => (
-              <button
-                type="button"
-                role="tab"
-                id={`intel-tab-${i}`}
-                data-intel-tab
-                aria-selected={i === 0 ? 'true' : 'false'}
-                aria-controls="intel-showcase-panel"
-                tabindex={i === 0 ? 0 : -1}
-                class:list={[
-                  'intel-tab-btn w-full text-left rounded-xl border px-4 py-3.5 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-900',
-                  { 'intel-tab-active': i === 0 },
-                ]}
-              >
-                <span class="block text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tab.title}</span>
-                <span class="mt-1 block text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{tab.sub}</span>
-              </button>
             ))}
           </div>
         </div>
@@ -770,31 +790,18 @@ const intelShowcaseTabs = [
     z-index: 1;
   }
 
-  .intel-tab-btn {
-    border-color: rgba(228, 228, 231, 0.95);
-    background: rgba(255, 255, 255, 0.55);
+  .intel-tab-item {
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    margin: 0;
+    cursor: pointer;
   }
-  .intel-tab-btn:hover:not(.intel-tab-active) {
-    border-color: #d4d4d8;
-    background: #fff;
+  .acc-item-active .intel-tab-sub {
+    color: #52525b;
   }
-  .intel-tab-btn.intel-tab-active {
-    border-color: rgba(5, 150, 105, 0.45);
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  }
-  html.dark .intel-tab-btn {
-    border-color: rgba(63, 63, 70, 0.95);
-    background: rgba(24, 24, 27, 0.35);
-  }
-  html.dark .intel-tab-btn:hover:not(.intel-tab-active) {
-    border-color: #52525b;
-    background: rgba(39, 39, 42, 0.55);
-  }
-  html.dark .intel-tab-btn.intel-tab-active {
-    border-color: rgba(16, 185, 129, 0.45);
-    background: rgba(39, 39, 42, 0.85);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  html.dark .acc-item-active .intel-tab-sub {
+    color: #a1a1aa;
   }
 
   /* ——— Word-blur animation ——— */
@@ -954,7 +961,7 @@ const intelShowcaseTabs = [
         const on = i === next;
         tab.setAttribute('aria-selected', on ? 'true' : 'false');
         tab.tabIndex = on ? 0 : -1;
-        tab.classList.toggle('intel-tab-active', on);
+        tab.classList.toggle('acc-item-active', on);
       });
 
       imgs.forEach((img, i) => {
