@@ -440,83 +440,75 @@ const signals = [
     </div>
   </section>
 
-  <!-- ——— MERIDIAN GUARD — flagship: headline + 3-card grid ——— -->
-  <section id="meridian-guard" class="section bg-gradient-to-b from-white via-zinc-50/90 to-zinc-100/40 border-y border-zinc-200/60 dark:from-zinc-900 dark:via-zinc-900/95 dark:to-zinc-900 dark:border-zinc-800">
-    <div class="container-wide">
-      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-14">
-        <p class="eyebrow mb-4 fade-up">Meridian Guard</p>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-4 fade-up text-balance">
-          Your personal compliance system.<br class="hidden sm:block" /> <span class="text-zinc-800 dark:text-zinc-200">Enforced automatically.</span>
-        </h2>
-        <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed fade-up">
-          Set rules when you are objective. When conditions you define are met, Guard acts for you – no willpower, no “one more” decision in the red zone.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
-        {[
-          {
-            title: 'Automated enforcement',
-            lead: 'Rules you set while calm, executed the moment the market tests you.',
-            icon: 'shield',
-            points: [
-              { label: '6 triggers', text: 'PSI drops, consecutive losses, P&amp;L limits, and more — you choose what matters.' },
-              { label: '5 responses', text: 'From quiet in-app alerts to full platform lockout.' },
-            ],
-          },
-          {
-            title: 'The commitment device',
-            lead: 'At Level 2, Guard locks the platform until you type a phrase you wrote while calm — e.g. "My plan is my edge." It forces a pause when you need it most.',
-            icon: 'lock',
-            points: [
-              { label: 'Forced pause', text: 'Breaks the autopilot moment — exactly when you are most likely to override your plan.' },
-            ],
-          },
-          {
-            title: 'The intel layer',
-            lead: 'Guard sits on the same data Meridian already keeps — so consequences stay tied to your real behavior, not a guess.',
-            icon: 'chart',
-            points: [
-              { label: 'PSI &times; P&amp;L', text: 'See which psychological states line up with your best and worst outcomes.' },
-              { label: 'Ongoing', text: 'Behavioral trends, weak spots by day, and a personalized pre-session risk brief when you are ready to lean in.' },
-            ],
-          },
-        ].map((card) => (
-          <div class="card card-hover p-6 md:p-7 text-left h-full flex flex-col shadow-sm shadow-zinc-900/5 ring-1 ring-zinc-900/[0.06] bg-white dark:bg-zinc-900/50 dark:ring-zinc-800/80">
-            <div
-              class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-              style="background: rgba(5, 150, 105, 0.1); color: #047857;"
-              aria-hidden="true"
-            >
-              {card.icon === 'shield' && (
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              )}
-              {card.icon === 'lock' && (
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-              )}
-              {card.icon === 'chart' && (
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-              )}
-            </div>
-            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-2">{card.title}</h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">{card.lead}</p>
-            <ul class="space-y-2.5 mt-auto text-sm text-zinc-500 dark:text-zinc-400">
-              {card.points.map((p) => (
-                <li class="flex gap-2.5">
-                  <span class="shrink-0 font-semibold text-[#4b734e] dark:text-emerald-500/90">{p.label}:</span>
-                  <span set:html={p.text} />
-                </li>
-              ))}
-            </ul>
+  <!-- ——— MERIDIAN GUARD — mini-hero: hook + CTA, no product screenshots ——— -->
+  <section
+    id="meridian-guard"
+    class="section border-y border-zinc-200/60 dark:border-zinc-800 overflow-hidden bg-gradient-to-br from-zinc-50 via-zinc-100/90 to-emerald-50/50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-800/80"
+  >
+    <div class="container-wide max-w-6xl">
+      <div class="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-14 items-center">
+        <div class="text-center lg:text-left">
+          <div
+            class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full"
+            style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
+          >
+            <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Meridian Guard</span>
           </div>
-        ))}
-      </div>
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.12] mb-5 text-balance"
+          >
+            The <span class="text-emerald-700 dark:text-emerald-500">one layer</span> that still obeys your plan<br class="hidden sm:block" />
+            when you don&apos;t.
+          </h2>
+          <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6">
+            Rules you set when you are clear-eyed — enforced the moment the market goes after your discipline. The full story is on the next page.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-2 sm:gap-4 text-xs text-zinc-500 dark:text-zinc-500 mb-8"
+            aria-label="Guard at a glance"
+          >
+            <span class="font-medium text-zinc-600 dark:text-zinc-400">On your machine</span>
+            <span class="hidden sm:inline" aria-hidden="true">·</span>
+            <span class="font-medium text-zinc-600 dark:text-zinc-400">Automatic</span>
+            <span class="hidden sm:inline" aria-hidden="true">·</span>
+            <span class="font-medium text-zinc-600 dark:text-zinc-400">Yours to shape</span>
+          </div>
+          <a href="/guard" class="btn-primary btn-lg w-full sm:w-auto inline-flex justify-center">
+            Explore Guard
+            <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
 
-      <div class="text-center mt-10 md:mt-12">
-        <a href="/guard" class="btn-primary btn-lg">
-          See everything in Guard
-          <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </a>
+        <div
+          class="relative mx-auto w-full max-w-md aspect-[4/3] rounded-2xl border border-zinc-200/80 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900/40 shadow-lg shadow-zinc-900/5 ring-1 ring-zinc-900/[0.04] backdrop-blur-sm flex items-center justify-center overflow-hidden"
+          aria-hidden="true"
+        >
+          <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-emerald-500/20 blur-3xl"></div>
+          <div class="absolute -bottom-20 -left-16 w-56 h-56 rounded-full bg-zinc-400/15 blur-2xl"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative w-[min(55%,200px)] aspect-square flex items-center justify-center">
+              <div class="absolute inset-0 rounded-3xl border-2 border-emerald-500/20 rotate-6"></div>
+              <div class="absolute inset-2 rounded-3xl border border-zinc-200/80 dark:border-zinc-600 -rotate-3"></div>
+              <svg
+                class="w-[45%] text-emerald-600 dark:text-emerald-500 drop-shadow-sm"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.25"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
