@@ -105,9 +105,9 @@ const marqueeRow2 = [
 const steps = [
   {
     label: 'Configure',
-    desc: 'Set your rules once',
-    fullDesc: 'Your profile defines how Meridian reads your behavior — position limits, session windows, stop conventions. Everything is calibrated to your rules, so every signal means something.',
-    bullets: ['Session rules & time windows', 'Position size limits and stop conventions', 'Adaptive baseline learns your rhythm — updates every session'],
+    desc: 'Adapt the system to your strategy',
+    fullDesc: 'Adapt the system to any strategy or trading style. Meridian allows you to define a comprehensive set of operational boundaries, establishing a baseline customized to your specific execution methods.',
+    bullets: ['Universal compatibility: Configurable for any trading style and strategy.', 'Comprehensive parameters: Set exact session rules, position limits, and stop conventions.', 'Adaptive baseline: Machine learning updates your personal rhythm after every session.'],
     image: '/configue-pic.jpg?v=2',
     imgAlt: 'Meridian personal baseline configuration panel',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
@@ -115,8 +115,8 @@ const steps = [
   {
     label: 'Live Monitor',
     desc: 'PSI updates in <100ms',
-    fullDesc: 'PSI updates within 100ms of every fill, every stop move, every size decision. Seven behavioral signal bars show exactly what is affecting the score right now.',
-    bullets: ['Built on quantitative math models and behavioral/cognitive research', '7 behavioral signals. Tracks the most common psychological failure patterns in real-time.', 'Actionable live score. Instantly see exactly which habit is driving your current performance'],
+    fullDesc: 'Track your execution state instantly. Grounded in quantitative models and cognitive research, Meridian calculates your Psychological Stability Index (PSI) in real time.',
+    bullets: ['Actionable PSI score updates in &lt;100ms', '7 behavioral signal bars to isolate execution errors', 'Live session stats: trades, win rate, and duration'],
     image: '/screenshots/psi-critical.png',
     imgAlt: 'Meridian PSI Monitor showing a Critical score with seven behavioral signal bars',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
@@ -124,8 +124,8 @@ const steps = [
   {
     label: 'Guard',
     desc: 'Automated enforcement',
-    fullDesc: 'When you are calm, you write the rules. When the moment comes — losing streak, blown limit, tilt — Guard enforces them. No willpower required.',
-    bullets: ['6 configurable trigger conditions', '5 response levels — quiet alert to full platform lockout', 'Set once, active every session automatically', 'When the moment comes, Guard acts — you don\'t have to decide'],
+    fullDesc: 'Automated discipline. You set the rules when you are objective. Guard enforces them automatically when critical thresholds are breached.',
+    bullets: ['6 configurable behavioral trigger conditions', '5 automated response levels (from simple alerts to platform lockout)', 'Set once, active for every session'],
     image: '/screenshots/psi-performance.png',
     imgAlt: 'Meridian PSI vs P&L correlation chart',
     link: { href: '/guard', text: 'Explore Meridian Guard' },
@@ -134,8 +134,8 @@ const steps = [
   {
     label: 'Review & Intel',
     desc: 'Patterns across sessions',
-    fullDesc: 'When you can finally see that your worst P&L always follows your highest-pressure sessions, the pattern is hard to ignore. Every session is saved — and over months, your behavioral fingerprint becomes visible.',
-    bullets: ['Session log: PSI, Composure, and trade stats', 'Monthly behavioral grade and P&L correlation', "Today's Risk Brief — built from your own history", '5 years of session history stored locally'],
+    fullDesc: 'Analyze the direct correlation between your psychological state and your P&L. Meridian tracks your behavioral data across multiple timeframes to provide objective, actionable execution analysis.',
+    bullets: ['Daily: Daily journaling and detailed session reports.', 'Weekly: Execution analysis identifying repetitive composure patterns.', 'Monthly: Long-term performance tracking, behavioral correlation and very comprehensive analysis.', 'Local History: Up to 5 years of session data stored entirely on your PC.'],
     image: '/screenshots/intel-session-calendar.png',
     imgAlt: 'Meridian session calendar showing PSI, Composure and P&L per session',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
@@ -302,10 +302,10 @@ const signals = [
       <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start">
         <div class="flex flex-col gap-6 lg:gap-8">
           <h2 class="max-w-xl text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight word-blur-target" style="color:#18181b;">
-            From setup to review—what each stage does in your session.
+            The 4 Stages of Behavioral Risk Management.
           </h2>
           <p class="text-sm leading-relaxed max-w-xl" style="color:#71717a;">
-            Four core stages. Each solves a distinct part of the psychological consistency problem.
+            How Meridian integrates into your session to ensure consistent execution.
           </p>
           <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
           <div
