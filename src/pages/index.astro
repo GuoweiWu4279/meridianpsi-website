@@ -151,6 +151,27 @@ const signals = [
   { name: 'Rule Violations',   desc: 'Trading outside your declared session rules' },
   { name: 'Overtrading Pace',  desc: 'Entry frequency accelerating vs history' },
 ];
+
+const intelShowcaseTabs = [
+  {
+    img: '/screenshots/psi-performance.png',
+    title: 'PSI × Performance',
+    sub: 'See the exact P&L gap between your Stable and Critical sessions.',
+    imgAlt: 'Meridian correlation view: PSI versus session outcomes and P&L',
+  },
+  {
+    img: '/screenshots/intel-risk-brief.png',
+    title: "Today's Risk Brief",
+    sub: 'Personalized pre-session intelligence before your first trade.',
+    imgAlt: "Meridian Today's Risk Brief with session risk highlights",
+  },
+  {
+    img: '/screenshots/intel-monthly-digest.png',
+    title: 'Monthly digest',
+    sub: 'Track your behavioral grade, long-term trends, and weak spots.',
+    imgAlt: 'Meridian monthly digest with behavioral grade and trends',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
@@ -407,10 +428,10 @@ const signals = [
     </div>
   </section>
 
-  <!-- ——— INTEL — small grid, not full carousel ——— -->
+  <!-- ——— INTEL — tabs + single large preview (scheme A) ——— -->
   <section class="section bg-zinc-100/40 dark:bg-zinc-900/40 border-y border-zinc-200/70 dark:border-zinc-800">
-    <div class="container-wide">
-      <div class="text-center max-w-2xl mx-auto mb-16">
+    <div class="container-wide max-w-6xl">
+      <div class="text-center max-w-2xl mx-auto mb-10 md:mb-14">
         <p class="eyebrow mb-4 fade-up">Intel layer — Meridian Guard</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5 fade-up">
           Your Stable sessions and your Critical sessions don't just feel different. The P&amp;L proves it.
@@ -420,22 +441,48 @@ const signals = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-5 fade-up">
-        {[
-          { img: '/screenshots/psi-performance.png',       title: 'PSI × Performance',   sub: 'Stable sessions vs Critical sessions — the P&L gap, measured from your own data.' },
-          { img: '/screenshots/intel-monthly-digest.png',   title: 'Monthly digest',      sub: 'Behavioral grade, trend, best and worst sessions.' },
-          { img: '/screenshots/intel-risk-brief.png',       title: "Today's Risk Brief",  sub: 'Personalized pre-session intelligence, ready before your first trade.' },
-        ].map((card) => (
-          <div class="card card-hover overflow-hidden">
-            <div class="aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-              <img src={card.img} alt={card.title} class="w-full h-full object-cover object-top" loading="lazy" />
-            </div>
-            <div class="p-5">
-              <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">{card.title}</h3>
-              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{card.sub}</p>
-            </div>
-          </div>
-        ))}
+      <div
+        class="fade-up flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-10 xl:gap-12 items-start"
+        data-intel-showcase
+      >
+        <div class="w-full lg:max-w-none shrink-0" role="tablist" aria-label="Intel views">
+          {intelShowcaseTabs.map((tab, i) => (
+            <button
+              type="button"
+              role="tab"
+              id={`intel-tab-${i}`}
+              data-intel-tab
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls="intel-showcase-panel"
+              tabindex={i === 0 ? 0 : -1}
+              class:list={[
+                'intel-tab-btn w-full text-left rounded-xl border px-4 py-3.5 mb-2 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-900',
+                { 'intel-tab-active': i === 0 },
+              ]}
+            >
+              <span class="block text-sm font-semibold text-zinc-900 dark:text-zinc-100">{tab.title}</span>
+              <span class="mt-1 block text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{tab.sub}</span>
+            </button>
+          ))}
+        </div>
+
+        <div
+          class="relative w-full min-h-[220px] sm:min-h-[300px] lg:min-h-[min(52vw,440px)] xl:min-h-[480px] rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 shadow-md shadow-zinc-900/5"
+          id="intel-showcase-panel"
+          role="tabpanel"
+          aria-labelledby="intel-tab-0"
+        >
+          {intelShowcaseTabs.map((tab, i) => (
+            <img
+              data-intel-img={i}
+              src={tab.img}
+              alt={tab.imgAlt}
+              class:list={['intel-showcase-img', { 'is-active': i === 0 }]}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -689,6 +736,51 @@ const signals = [
     z-index: 1;
   }
 
+  /* ——— Intel showcase: stacked images + cross-fade ——— */
+  .intel-showcase-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+    transition: opacity 0.35s ease;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .intel-showcase-img.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .intel-tab-btn {
+    border-color: rgba(228, 228, 231, 0.95);
+    background: rgba(255, 255, 255, 0.55);
+  }
+  .intel-tab-btn:hover:not(.intel-tab-active) {
+    border-color: #d4d4d8;
+    background: #fff;
+  }
+  .intel-tab-btn.intel-tab-active {
+    border-color: rgba(5, 150, 105, 0.45);
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+  html.dark .intel-tab-btn {
+    border-color: rgba(63, 63, 70, 0.95);
+    background: rgba(24, 24, 27, 0.35);
+  }
+  html.dark .intel-tab-btn:hover:not(.intel-tab-active) {
+    border-color: #52525b;
+    background: rgba(39, 39, 42, 0.55);
+  }
+  html.dark .intel-tab-btn.intel-tab-active {
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(39, 39, 42, 0.85);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+
   /* ——— Word-blur animation ——— */
   .word-blur-word {
     display: inline-block;
@@ -827,10 +919,71 @@ const signals = [
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
   }
 
+  // ——— Intel showcase tabs (left labels, one large preview) ———
+  function initIntelTabs() {
+    const root = document.querySelector<HTMLElement>('[data-intel-showcase]');
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-intel-tab]'));
+    const imgs = Array.from(root.querySelectorAll<HTMLImageElement>('[data-intel-img]'));
+    const panel = root.querySelector<HTMLElement>('#intel-showcase-panel');
+    if (!tabs.length || !imgs.length) return;
+
+    let current = 0;
+
+    function activate(next: number) {
+      if (next < 0 || next >= tabs.length || next === current) return;
+      current = next;
+
+      tabs.forEach((tab, i) => {
+        const on = i === next;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        tab.classList.toggle('intel-tab-active', on);
+      });
+
+      imgs.forEach((img, i) => {
+        img.classList.toggle('is-active', i === next);
+      });
+
+      if (panel && tabs[next]) panel.setAttribute('aria-labelledby', tabs[next].id);
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => {
+        activate(i);
+        tab.focus();
+      });
+      tab.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          activate((i + 1) % tabs.length);
+          tabs[(i + 1) % tabs.length]?.focus();
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          activate((i - 1 + tabs.length) % tabs.length);
+          tabs[(i - 1 + tabs.length) % tabs.length]?.focus();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          activate(0);
+          tabs[0]?.focus();
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          activate(tabs.length - 1);
+          tabs[tabs.length - 1]?.focus();
+        }
+      });
+    });
+
+    imgs.forEach((img, i) => {
+      img.classList.toggle('is-active', i === 0);
+    });
+  }
+
   function boot() {
     initFadeUp();
     initWordBlur();
     initAccordion();
+    initIntelTabs();
   }
 
   if (document.readyState === 'loading') {
