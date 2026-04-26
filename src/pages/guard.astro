@@ -123,13 +123,16 @@ const examples = [
           <div class="absolute -inset-4 rounded-3xl opacity-30 blur-2xl"
                style="background: radial-gradient(ellipse at center, rgba(5,150,105,0.28) 0%, transparent 70%);"
                aria-hidden="true"></div>
-          <figure class="relative m-0 rounded-2xl overflow-hidden shadow-2xl"
-                  style="border:1px solid rgba(255,255,255,0.12); box-shadow:0 32px 64px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10); height:380px;">
-            <img src="/guard-hero.png"
-                 alt="Meridian Guard — broker disconnected after a rule breach, with reconnect instructions"
-                 class="w-full h-full block"
-                 style="object-fit:cover; object-position:center center; transform:scale(1.08);"
-                 loading="eager" />
+          <figure
+            class="relative m-0 w-full rounded-2xl overflow-hidden shadow-2xl bg-zinc-950 flex items-center justify-center"
+            style="border:1px solid rgba(255,255,255,0.12); box-shadow:0 32px 64px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10); aspect-ratio:1170/677; max-height:min(440px,56vh);"
+          >
+            <img
+              src="/guard-hero.png"
+              alt="Meridian Guard — broker disconnected after a rule breach, with reconnect instructions"
+              class="block w-full h-full object-contain"
+              loading="eager"
+            />
           </figure>
         </div>
 
