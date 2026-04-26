@@ -105,6 +105,7 @@ const marqueeRow2 = [
 const steps = [
   {
     label: 'Configure',
+    bg: '#f4f4f5',
     desc: 'Adapt the system to your strategy',
     fullDesc: 'Adapt the system to any strategy or trading style. Meridian allows you to define a comprehensive set of operational boundaries, establishing a baseline customized to your specific execution methods.',
     bullets: ['Universal compatibility: Configurable for any trading style and strategy.', 'Comprehensive parameters: Set exact session rules, position limits, and stop conventions.', 'Adaptive baseline: Machine learning updates your personal rhythm after every session.'],
@@ -114,6 +115,7 @@ const steps = [
   },
   {
     label: 'Live Monitor',
+    bg: '#1C1C1E',
     desc: 'PSI updates in <100ms',
     fullDesc: 'Track your execution state instantly. Grounded in quantitative models and cognitive research, Meridian calculates your Psychological Stability Index (PSI) in real time.',
     bullets: ['Actionable PSI score updates in &lt;100ms', '7 behavioral signal bars to isolate execution errors', 'Live session stats: trades, win rate, and duration'],
@@ -123,6 +125,7 @@ const steps = [
   },
   {
     label: 'Guard',
+    bg: '#1C1C1E',
     desc: 'Automated enforcement',
     fullDesc: 'Automated discipline. You set the rules when you are objective. Guard enforces them automatically when critical thresholds are breached.',
     bullets: ['6 configurable behavioral trigger conditions', '5 automated response levels (from simple alerts to platform lockout)', 'Set once, active for every session'],
@@ -133,6 +136,7 @@ const steps = [
   },
   {
     label: 'Review & Intel',
+    bg: '#1C1C1E',
     desc: 'Patterns across sessions',
     fullDesc: 'Analyze the direct correlation between your psychological state and your P&L. Meridian tracks your behavioral data across multiple timeframes to provide objective, actionable execution analysis.',
     bullets: ['Daily: Daily journaling and detailed session reports.', 'Weekly: Execution analysis identifying repetitive composure patterns.', 'Monthly: Long-term performance tracking, behavioral correlation and very comprehensive analysis.', 'Local History: Up to 5 years of session data stored entirely on your PC.'],
@@ -340,12 +344,14 @@ const intelShowcaseTabs = [
           </p>
           <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
           <div
+            id="step-img-panel"
             class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px] shadow-sm ring-1 ring-zinc-900/[0.06]"
-            style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #1C1C1E; aspect-ratio: 16/9;"
+            style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
           >
             {steps.map((step, i) => (
               <img
                 data-step-img={i}
+                data-step-bg={step.bg}
                 src={step.image}
                 alt={step.imgAlt}
                 class="acc-img"
@@ -960,21 +966,26 @@ const intelShowcaseTabs = [
 
   // ——— Accordion (step-detail) ———
   function initAccordion() {
-    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-acc-item]'));
+    const items  = Array.from(document.querySelectorAll<HTMLElement>('[data-acc-item]'));
     const images = Array.from(document.querySelectorAll<HTMLImageElement>('[data-step-img]'));
+    const panel  = document.getElementById('step-img-panel');
     if (!items.length) return;
     let current = 0;
+
+    function setPanelBg(idx: number) {
+      if (!panel) return;
+      const bg = images[idx]?.dataset.stepBg ?? '#f4f4f5';
+      panel.style.background = bg;
+    }
 
     function activate(next: number) {
       if (next === current) return;
 
-      // Opacity crossfade + z-index so the active image is always on top
       images.forEach((img, i) => {
         img.classList.toggle('acc-img-visible', i === next);
         img.style.opacity = i === next ? '1' : '0';
       });
 
-      // Update accordion items
       items.forEach((item, i) => {
         const isActive = i === next;
         item.classList.toggle('acc-item-active', isActive);
@@ -983,6 +994,7 @@ const intelShowcaseTabs = [
         if (body) body.style.maxHeight = isActive ? body.scrollHeight + 'px' : '0';
       });
 
+      setPanelBg(next);
       current = next;
     }
 
@@ -996,11 +1008,12 @@ const intelShowcaseTabs = [
       });
     });
 
-    // Init: first image visible, rest hidden; first accordion body open
+    // Init
     images.forEach((img, i) => {
       img.classList.toggle('acc-img-visible', i === 0);
       img.style.opacity = i === 0 ? '1' : '0';
     });
+    setPanelBg(0);
     const firstBody = items[0]?.querySelector<HTMLElement>('.acc-item-body');
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
   }
