@@ -118,8 +118,10 @@ const steps = [
     desc: 'PSI updates in <100ms',
     fullDesc: 'Track your execution state instantly. Grounded in quantitative models and cognitive research, Meridian calculates your Psychological Stability Index (PSI) in real time.',
     bullets: ['Actionable PSI score updates in &lt;100ms', '7 behavioral signal bars to isolate execution errors', 'Live session stats: trades, win rate, and duration'],
-    image: '/screenshots/psi-critical.png',
-    imgAlt: 'Meridian PSI Monitor showing a Critical score with seven behavioral signal bars',
+    carouselSlides: [
+      { src: '/screenshots/live-monitor-psi-hud.png', alt: 'Meridian live PSI HUD — stability readout and session context' },
+      { src: '/screenshots/live-monitor-psi-low.png', alt: 'Meridian live PSI HUD — elevated risk zone readout' },
+    ],
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
   },
   {
@@ -129,6 +131,8 @@ const steps = [
     fullDesc: 'Automated discipline. You set the rules when you are objective. Guard enforces them automatically when critical thresholds are breached.',
     bullets: ['6 configurable behavioral trigger conditions', '5 automated response levels (from simple alerts to platform lockout)', 'Set once, active for every session'],
     image: '/guard-hero.png',
+    /* Full asset visible in 16:9 panel (no crop); see .acc-img--guard-fit */
+    imgPanelFit: 'guard' as const,
     imgAlt: 'Meridian Guard — broker disconnected after a rule breach, with reconnect instructions',
     link: { href: '/guard', text: 'Explore Meridian Guard' },
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>',
@@ -163,7 +167,7 @@ const intelShowcaseTabs = [
     sub: 'Detailed breakdown of every trade session. Track your PSI fluctuations, time spent in critical zones, and exact behavioral signals triggered.',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
     slides: [
-      { src: '/screenshots/intel-session-calendar.png', alt: 'Meridian session calendar with PSI, composure, and P&L per session' },
+      { src: '/screenshots/intel-session-report-hud.png', alt: 'Meridian session report — session log, PSI, composure, and behavioral signals' },
     ],
   },
   {
@@ -351,16 +355,67 @@ const intelShowcaseTabs = [
             class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 shadow-sm ring-1 ring-zinc-900/[0.06]"
             style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
           >
-            {steps.map((step, i) => (
-              <img
-                data-step-img={i}
-                data-step-bg={step.bg}
-                src={step.image}
-                alt={step.imgAlt}
-                class:list={['acc-img', { 'acc-img--cover': 'imgObjectFit' in step && step.imgObjectFit === 'cover' }]}
-                loading="lazy"
-              />
-            ))}
+            {steps.map((step, i) =>
+              'carouselSlides' in step && Array.isArray(step.carouselSlides) && step.carouselSlides.length > 0 ? (
+                <div
+                  data-step-img={i}
+                  data-step-bg={step.bg}
+                  data-step-live-carousel
+                  class:list={['acc-img', 'acc-step-carousel-root', { 'acc-img-visible': i === 0 }]}
+                  style={i === 0 ? 'opacity:1' : 'opacity:0'}
+                >
+                  <div class="acc-step-carousel-inner">
+                    {step.carouselSlides.map((slide, si) => (
+                      <img
+                        data-step-carousel-slide
+                        src={slide.src}
+                        alt={slide.alt}
+                        class:list={['acc-step-slide', { 'is-active': si === 0 }]}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    data-step-carousel-prev
+                    aria-label="Previous Live Monitor view"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
+                  >
+                    <svg style="width:17px;height:17px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    data-step-carousel-next
+                    aria-label="Next Live Monitor view"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
+                  >
+                    <svg style="width:15px;height:15px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <img
+                  data-step-img={i}
+                  data-step-bg={step.bg}
+                  src={'image' in step ? step.image : ''}
+                  alt={'imgAlt' in step ? step.imgAlt : ''}
+                  class:list={[
+                    'acc-img',
+                    { 'acc-img--cover': 'imgObjectFit' in step && step.imgObjectFit === 'cover' },
+                    { 'acc-img--guard-fit': 'imgPanelFit' in step && step.imgPanelFit === 'guard' },
+                  ]}
+                  loading="lazy"
+                />
+              ),
+            )}
           </div>
         </div>
 
@@ -825,6 +880,43 @@ const intelShowcaseTabs = [
     object-fit: cover;
     object-position: center;
   }
+  /* Guard hero (~1170×677): center in 16:9 so rounded panel never clips the bitmap */
+  .acc-img.acc-img--guard-fit {
+    inset: 0;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Live Monitor (4 stages): in-panel carousel — same cross-fade pattern as Intel showcase */
+  .acc-step-carousel-root {
+    overflow: hidden;
+  }
+  .acc-step-carousel-inner {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .acc-step-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 0.35s ease;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .acc-step-slide.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
 
   /* ——— Intel showcase: stacked images + cross-fade ——— */
   .intel-showcase-img {
@@ -974,10 +1066,42 @@ const intelShowcaseTabs = [
   // ——— Accordion (step-detail) ———
   function initAccordion() {
     const items  = Array.from(document.querySelectorAll<HTMLElement>('[data-acc-item]'));
-    const images = Array.from(document.querySelectorAll<HTMLImageElement>('[data-step-img]'));
+    const images = Array.from(document.querySelectorAll<HTMLElement>('[data-step-img]'));
     const panel  = document.getElementById('step-img-panel');
     if (!items.length) return;
     let current = 0;
+
+    const prevBtn = panel?.querySelector<HTMLButtonElement>('[data-step-carousel-prev]');
+    const nextBtn = panel?.querySelector<HTMLButtonElement>('[data-step-carousel-next]');
+    const liveRoot = panel?.querySelector<HTMLElement>('[data-step-live-carousel]');
+    const liveCarouselStep = liveRoot?.dataset.stepImg != null ? Number(liveRoot.dataset.stepImg) : -1;
+    let liveIdx = 0;
+
+    function liveSlides() {
+      return Array.from(liveRoot?.querySelectorAll<HTMLElement>('[data-step-carousel-slide]') ?? []);
+    }
+
+    function setLiveNav(on: boolean) {
+      [prevBtn, nextBtn].forEach((btn) => {
+        if (!btn) return;
+        btn.style.visibility = on ? 'visible' : 'hidden';
+        btn.style.pointerEvents = on ? 'auto' : 'none';
+        btn.setAttribute('aria-hidden', on ? 'false' : 'true');
+        btn.tabIndex = on ? 0 : -1;
+      });
+    }
+
+    function showLiveCarousel(delta: number) {
+      const slides = liveSlides();
+      if (slides.length <= 1) return;
+      liveIdx = (liveIdx + delta + slides.length) % slides.length;
+      slides.forEach((el, si) => el.classList.toggle('is-active', si === liveIdx));
+    }
+
+    function syncLiveCarouselNav() {
+      const on = liveCarouselStep >= 0 && current === liveCarouselStep && liveSlides().length > 1;
+      setLiveNav(on);
+    }
 
     function setPanelBg(idx: number) {
       if (!panel) return;
@@ -987,6 +1111,11 @@ const intelShowcaseTabs = [
 
     function activate(next: number) {
       if (next === current) return;
+
+      if (liveCarouselStep >= 0 && current === liveCarouselStep && next !== liveCarouselStep) {
+        liveIdx = 0;
+        liveSlides().forEach((el, si) => el.classList.toggle('is-active', si === 0));
+      }
 
       images.forEach((img, i) => {
         img.classList.toggle('acc-img-visible', i === next);
@@ -1003,7 +1132,11 @@ const intelShowcaseTabs = [
 
       setPanelBg(next);
       current = next;
+      syncLiveCarouselNav();
     }
+
+    prevBtn?.addEventListener('click', () => showLiveCarousel(-1));
+    nextBtn?.addEventListener('click', () => showLiveCarousel(1));
 
     // Click & keyboard
     items.forEach((item, i) => {
@@ -1021,6 +1154,7 @@ const intelShowcaseTabs = [
       img.style.opacity = i === 0 ? '1' : '0';
     });
     setPanelBg(0);
+    syncLiveCarouselNav();
     const firstBody = items[0]?.querySelector<HTMLElement>('.acc-item-body');
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
   }
