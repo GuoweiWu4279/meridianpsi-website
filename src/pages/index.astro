@@ -154,25 +154,32 @@ const signals = [
 
 const intelShowcaseTabs = [
   {
-    img: '/screenshots/intel-session-calendar.png',
     title: 'Session Report',
     sub: 'Detailed breakdown of every trade session. Track your PSI fluctuations, time spent in critical zones, and exact behavioral signals triggered.',
-    imgAlt: 'Meridian session report with PSI, composure, and per-session stats',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
+    slides: [
+      { src: '/screenshots/intel-session-calendar.png', alt: 'Meridian session calendar with PSI, composure, and P&L per session' },
+    ],
   },
   {
-    img: '/screenshots/intel-monthly-digest.png',
     title: 'History & Progress',
     sub: 'Visualize your discipline over time. Track your monthly composure grades, daily streak stability, and long-term behavioral progress.',
-    imgAlt: 'Meridian monthly digest and behavioral progress over time',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
+    slides: [
+      { src: '/screenshots/homepage-intel/history/monthly-calendar-list.png', alt: 'Meridian monthly calendar in list view' },
+      { src: '/screenshots/homepage-intel/history/monthly-calendar.png',      alt: 'Meridian monthly calendar overview' },
+      { src: '/screenshots/homepage-intel/history/psi-trend-in-month.png',    alt: 'Meridian PSI trend for the month' },
+    ],
   },
   {
-    img: '/screenshots/psi-performance.png',
     title: 'Intel & Correlation',
     sub: 'Cross-reference your psychology with your P&L. Discover your weakest trading days and receive a personalized Pre-Session Risk Brief.',
-    imgAlt: 'Meridian PSI and P&L correlation with session-level outcomes',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
+    slides: [
+      { src: '/screenshots/homepage-intel/intel/regression.png',              alt: 'Meridian regression analysis: psychology vs outcomes' },
+      { src: '/screenshots/homepage-intel/intel/today-risk-and-analysis.png', alt: 'Meridian today risk and analysis' },
+      { src: '/screenshots/homepage-intel/intel/weekly-trending.png',         alt: 'Meridian weekly behavioral trending' },
+    ],
   },
 ];
 ---
@@ -505,16 +512,57 @@ const intelShowcaseTabs = [
             role="tabpanel"
             aria-labelledby="intel-tab-0"
           >
-            {intelShowcaseTabs.map((tab, i) => (
-              <img
-                data-intel-img={i}
-                src={tab.img}
-                alt={tab.imgAlt}
-                class:list={['intel-showcase-img', { 'is-active': i === 0 }]}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
+            {intelShowcaseTabs.map((tab, ti) => (
+              <div
+                class:list={['intel-tab-view', { 'is-active': ti === 0 }]}
+                style="position: absolute; inset: 0; overflow: hidden;"
+                data-intel-view={ti}
+                aria-hidden={ti === 0 ? 'false' : 'true'}
+              >
+                {tab.slides.map((slide, si) => (
+                  <img
+                    data-intel-slide
+                    src={slide.src}
+                    alt={slide.alt}
+                    class:list={['intel-showcase-img', { 'is-active': ti === 0 && si === 0 }]}
+                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: top center;"
+                    loading={ti === 0 && si === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                ))}
+              </div>
             ))}
+
+            <!-- Carousel prev/next — hidden when current tab has only 1 slide -->
+            <div
+              class="intel-carousel-nav"
+              data-intel-carousel-nav
+              style="position: absolute; bottom: 10px; left: 8px; right: 8px; z-index: 20; display: flex; align-items: center; justify-content: space-between; pointer-events: none; display: none;"
+              aria-hidden="true"
+            >
+              <button
+                type="button"
+                class="intel-carousel-btn"
+                data-intel-carousel-prev
+                aria-label="Previous screenshot"
+                style="pointer-events: auto; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.95); border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer; transition: background 0.15s ease;"
+              >
+                <svg style="width:18px;height:18px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="intel-carousel-btn"
+                data-intel-carousel-next
+                aria-label="Next screenshot"
+                style="pointer-events: auto; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.95); border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer; transition: background 0.15s ease;"
+              >
+                <svg style="width:18px;height:18px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -788,12 +836,23 @@ const intelShowcaseTabs = [
     z-index: 1;
   }
 
-  .intel-tab-item {
-    appearance: none;
-    -webkit-appearance: none;
-    font: inherit;
-    margin: 0;
-    cursor: pointer;
+  .intel-tab-view {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .intel-tab-view.is-active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .intel-carousel-btn:hover {
+    background: white !important;
   }
   .acc-item-active .intel-tab-sub {
     color: #52525b;
@@ -948,64 +1007,80 @@ const intelShowcaseTabs = [
     if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
   }
 
-  // ——— Intel showcase tabs (left labels, one large preview) ———
+  // ——— Intel showcase tabs (left labels, per-tab image carousel) ———
   function initIntelTabs() {
     const root = document.querySelector<HTMLElement>('[data-intel-showcase]');
     if (!root) return;
-    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-intel-tab]'));
-    const imgs = Array.from(root.querySelectorAll<HTMLImageElement>('[data-intel-img]'));
-    const panel = root.querySelector<HTMLElement>('#intel-showcase-panel');
-    if (!tabs.length || !imgs.length) return;
+    const tabs    = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-intel-tab]'));
+    const views   = Array.from(root.querySelectorAll<HTMLElement>('[data-intel-view]'));
+    const panel   = root.querySelector<HTMLElement>('#intel-showcase-panel');
+    const nav     = panel?.querySelector<HTMLElement>('[data-intel-carousel-nav]');
+    const prevBtn = panel?.querySelector<HTMLButtonElement>('[data-intel-carousel-prev]');
+    const nextBtn = panel?.querySelector<HTMLButtonElement>('[data-intel-carousel-next]');
+    if (!tabs.length || !views.length) return;
 
-    let current = 0;
+    // slideIndex[tabIdx] tracks which slide is active within that tab
+    const slideIndex = views.map(() => 0);
+    let currentTab = 0;
 
-    function activate(next: number) {
-      if (next < 0 || next >= tabs.length || next === current) return;
-      current = next;
+    function slideCount(tabIdx: number) {
+      return views[tabIdx]?.querySelectorAll<HTMLElement>('[data-intel-slide]').length ?? 0;
+    }
 
+    function showSlide(tabIdx: number) {
+      const view = views[tabIdx];
+      if (!view) return;
+      const imgs = Array.from(view.querySelectorAll<HTMLElement>('[data-intel-slide]'));
+      const n = imgs.length;
+      if (!n) return;
+      let idx = ((slideIndex[tabIdx] % n) + n) % n;
+      slideIndex[tabIdx] = idx;
+      imgs.forEach((img, si) => img.classList.toggle('is-active', si === idx));
+    }
+
+    function updateNav() {
+      if (!nav) return;
+      const show = slideCount(currentTab) > 1;
+      nav.style.display = show ? 'flex' : 'none';
+      nav.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+
+    function activateTab(next: number) {
+      if (next < 0 || next >= tabs.length) return;
+      currentTab = next;
       tabs.forEach((tab, i) => {
-        const on = i === next;
+        const on = i === currentTab;
         tab.setAttribute('aria-selected', on ? 'true' : 'false');
         tab.tabIndex = on ? 0 : -1;
         tab.classList.toggle('acc-item-active', on);
       });
-
-      imgs.forEach((img, i) => {
-        img.classList.toggle('is-active', i === next);
+      views.forEach((v, i) => {
+        const on = i === currentTab;
+        v.classList.toggle('is-active', on);
+        v.setAttribute('aria-hidden', on ? 'false' : 'true');
       });
-
-      if (panel && tabs[next]) panel.setAttribute('aria-labelledby', tabs[next].id);
+      showSlide(currentTab);
+      updateNav();
+      if (panel && tabs[currentTab]) panel.setAttribute('aria-labelledby', tabs[currentTab].id);
     }
 
     tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => {
-        activate(i);
-        tab.focus();
-      });
+      tab.addEventListener('click', () => { activateTab(i); tab.focus(); });
       tab.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-          e.preventDefault();
-          activate((i + 1) % tabs.length);
-          tabs[(i + 1) % tabs.length]?.focus();
+          e.preventDefault(); const n = (i + 1) % tabs.length; activateTab(n); tabs[n]?.focus();
         } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          activate((i - 1 + tabs.length) % tabs.length);
-          tabs[(i - 1 + tabs.length) % tabs.length]?.focus();
-        } else if (e.key === 'Home') {
-          e.preventDefault();
-          activate(0);
-          tabs[0]?.focus();
-        } else if (e.key === 'End') {
-          e.preventDefault();
-          activate(tabs.length - 1);
-          tabs[tabs.length - 1]?.focus();
-        }
+          e.preventDefault(); const n = (i - 1 + tabs.length) % tabs.length; activateTab(n); tabs[n]?.focus();
+        } else if (e.key === 'Home') { e.preventDefault(); activateTab(0); tabs[0]?.focus(); }
+          else if (e.key === 'End')  { e.preventDefault(); const l = tabs.length - 1; activateTab(l); tabs[l]?.focus(); }
       });
     });
 
-    imgs.forEach((img, i) => {
-      img.classList.toggle('is-active', i === 0);
-    });
+    prevBtn?.addEventListener('click', () => { slideIndex[currentTab]--; showSlide(currentTab); });
+    nextBtn?.addEventListener('click', () => { slideIndex[currentTab]++; showSlide(currentTab); });
+
+    // Init
+    activateTab(0);
   }
 
   function boot() {
