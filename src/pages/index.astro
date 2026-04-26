@@ -334,7 +334,7 @@ const intelShowcaseTabs = [
           <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
           <div
             class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px] shadow-sm ring-1 ring-zinc-900/[0.06]"
-            style="background:#f4f4f5; aspect-ratio:16/9;"
+            style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
           >
             {steps.map((step, i) => (
               <img
@@ -500,7 +500,7 @@ const intelShowcaseTabs = [
         <div class="min-w-0">
           <div
             class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 lg:sticky lg:top-[92px] shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80"
-            style="background:#f4f4f5; aspect-ratio:16/9;"
+            style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
             id="intel-showcase-panel"
             role="tabpanel"
             aria-labelledby="intel-tab-0"
@@ -837,9 +837,17 @@ const intelShowcaseTabs = [
           }
         });
       },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.01, rootMargin: '0px' }
     );
     els.forEach((el) => observer.observe(el));
+    requestAnimationFrame(() => {
+      els.forEach((el) => {
+        if (el.classList.contains('is-visible')) return;
+        const r = el.getBoundingClientRect();
+        const h = window.innerHeight || 0;
+        if (r.top < h + 1 && r.bottom > -1) el.classList.add('is-visible');
+      });
+    });
   }
 
   // ——— Word-blur animation ———
