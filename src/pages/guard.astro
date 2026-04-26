@@ -14,6 +14,15 @@ const metadata = {
 const guardCheckout =
   'https://whop.com/checkout/plan_ZHX4ySB65fahf';
 
+/** Intel Layer — black 16:9 frame, image only (no in-frame captions). Copy: Intel/Weekday Patterns.png → intel-weekdaypattern.png */
+const intelSlides = [
+  /** Full screenshot visible — `cover` was cropping too much on this asset */
+  { img: '/screenshots/psi-performance.png', alt: 'PSI × Performance' },
+  { img: '/screenshots/digest-march.png', alt: 'Monthly Digest' },
+  { img: '/screenshots/intel-weekdaypattern.png', alt: 'Weekday Patterns' },
+  { img: '/screenshots/intel-risk-brief.png', alt: "Today's Risk Brief" },
+];
+
 const triggers = [
   { name: 'PSI Below', desc: 'Psychological stability drops under a threshold you define.' },
   { name: 'Consecutive Losses', desc: 'N losses in a row within the same session.' },
@@ -298,11 +307,10 @@ const examples = [
         </p>
       </div>
 
-      <!-- Side-by-side: tab cards left + framed screenshot right -->
-      <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start">
-
+      <!-- Side-by-side: tab cards left + fixed 16:9 frame (same pattern as homepage Intel) -->
+      <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start" data-guard-intel>
         <!-- Left: tab nav cards -->
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3" role="tablist" aria-label="Intel Layer views">
           {[
             { idx: 0, title: 'PSI × Performance',  desc: 'Your P&L mapped against PSI zone — see exactly what Stable sessions average versus Critical.' },
             { idx: 1, title: 'Monthly Digest',      desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days — every month.' },
@@ -310,8 +318,12 @@ const examples = [
             { idx: 3, title: "Today's Risk Brief",  desc: 'Pre-session summary built from your own history — personalized before your first trade.' },
           ].map((card) => (
             <button
-              data-card-nav="intel"
-              data-slide-idx={card.idx}
+              type="button"
+              role="tab"
+              data-guard-intel-tab
+              data-guard-intel-idx={card.idx}
+              aria-selected={card.idx === 0 ? 'true' : 'false'}
+              tabindex={card.idx === 0 ? 0 : -1}
               class:list={[
                 'text-left rounded-xl p-4 border transition-all duration-200',
                 card.idx === 0
@@ -325,56 +337,53 @@ const examples = [
           ))}
         </div>
 
-        <!-- Right: carousel — rounded frame only (no fake OS chrome) -->
-        <div class="relative group/carousel">
-          <div class="guard-media-frame">
-            <!-- Slide 1 -->
-            <div data-carousel="intel">
-              <div class="bg-zinc-900 px-5 pt-4 pb-3">
-                <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">PSI × Performance</p>
-                <p class="text-zinc-400 text-xs">Stable sessions vs Critical sessions — the behavioral performance gap, measured from your own data.</p>
+        <!-- Right: fixed frame + stacked views (absolute), arrows inside frame -->
+        <div class="relative group/guard-intel min-w-0">
+          <div
+            id="guard-intel-panel"
+            class="guard-media-frame relative overflow-hidden rounded-xl shadow-sm ring-1 ring-zinc-900/[0.06] w-full"
+            style="position: relative; isolation: isolate; z-index: 0; width: 100%; aspect-ratio: 16 / 9; min-height: 0; background: #1C1C1E;"
+            role="tabpanel"
+          >
+            {intelSlides.map((slide, i) => (
+              <div
+                class:list={['guard-intel-view', { 'is-active': i === 0 }]}
+                data-guard-intel-view
+                style="position: absolute; inset: 0; overflow: hidden;"
+                aria-hidden={i === 0 ? 'false' : 'true'}
+              >
+                <img
+                  src={slide.img}
+                  alt={slide.alt}
+                  class="absolute inset-0 h-full w-full"
+                  style={`object-fit: ${slide.objectFit ?? 'contain'}; object-position: ${slide.objectPosition ?? 'center'};`}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
               </div>
-              <img src="/screenshots/psi-performance.png" alt="PSI × Performance" class="w-full h-auto block" loading="lazy" />
-            </div>
-            <!-- Slide 2 -->
-            <div data-carousel="intel" class="hidden">
-              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
-                <p class="text-xs font-semibold text-zinc-500">Monthly Digest — March 2026</p>
-              </div>
-              <img src="/screenshots/digest-march.png" alt="Monthly Digest" class="w-full h-auto block" loading="lazy" />
-            </div>
-            <!-- Slide 3 -->
-            <div data-carousel="intel" class="hidden">
-              <div class="bg-zinc-50 px-5 py-3 border-b border-zinc-200">
-                <p class="text-xs font-semibold text-zinc-500">Weekday patterns + 6-month Composure progress</p>
-              </div>
-              <img src="/screenshots/weekday-patterns.png" alt="Weekday Patterns" class="w-full h-auto block" loading="lazy" />
-            </div>
-            <!-- Slide 4 -->
-            <div data-carousel="intel" class="hidden">
-              <div class="bg-zinc-900 px-5 pt-4 pb-3">
-                <p class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-1">Today's Risk Brief</p>
-                <p class="text-zinc-400 text-xs">Personalized pre-session intelligence. Built from your own history, every morning.</p>
-              </div>
-              <img src="/screenshots/intel-risk-brief.png" alt="Today's Risk Brief" class="w-full h-auto block" loading="lazy" />
-            </div>
-          </div>
+            ))}
 
-          <!-- Prev / Next -->
-          <button data-prev="intel"
-            class="absolute left-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 transition-all"
-            aria-label="Previous slide">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-              <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
-            </svg>
-          </button>
-          <button data-next="intel"
-            class="absolute right-3 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 focus-visible:opacity-100 transition-all"
-            aria-label="Next slide">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
-            </svg>
-          </button>
+            <button
+              type="button"
+              data-guard-intel-prev
+              class="absolute left-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
+              aria-label="Previous Intel view"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              data-guard-intel-next
+              class="absolute right-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
+              aria-label="Next Intel view"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -461,53 +470,84 @@ const examples = [
     </div>
   </section>
 
-</Layout>
+  <style>
+    .guard-intel-view {
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 0.32s ease;
+      pointer-events: none;
+    }
+    .guard-intel-view.is-active {
+      opacity: 1;
+      z-index: 1;
+      pointer-events: auto;
+    }
+  </style>
 
-<script>
-  function initCarousel(id: string) {
-    const slides = Array.from(document.querySelectorAll<HTMLElement>(`[data-carousel="${id}"]`));
-    const cards  = Array.from(document.querySelectorAll<HTMLElement>(`[data-card-nav="${id}"]`));
-    if (!slides.length) return;
-    let current = 0;
-    let animating = false;
+  <script>
+    function initGuardIntel() {
+      const root = document.querySelector('[data-guard-intel]');
+      if (!root || root.dataset.guardIntelInit === '1') return;
+      root.dataset.guardIntelInit = '1';
 
-    const activeCard   = ['border-emerald-400', 'bg-white', 'shadow-sm', 'shadow-emerald-100'];
-    const inactiveCard = ['border-zinc-200', 'bg-white/60'];
+      const tabs = Array.from(root.querySelectorAll('[data-guard-intel-tab]'));
+      const views = Array.from(root.querySelectorAll('[data-guard-intel-view]'));
+      const prevBtn = root.querySelector('[data-guard-intel-prev]');
+      const nextBtn = root.querySelector('[data-guard-intel-next]');
+      if (!tabs.length || !views.length) return;
 
-    slides.forEach((s, i) => {
-      s.style.transition = 'opacity 0.25s ease';
-      s.style.opacity = i === 0 ? '1' : '0';
-    });
+      const activeCard = ['border-emerald-400', 'bg-white', 'shadow-sm', 'shadow-emerald-100'];
+      const inactiveCard = ['border-zinc-200', 'bg-white/60'];
 
-    function goTo(index: number) {
-      if (animating) return;
-      const prev = current;
-      const next = ((index % slides.length) + slides.length) % slides.length;
-      if (prev === next) return;
-      animating = true;
+      let current = 0;
 
-      cards[prev]?.classList.remove(...activeCard);
-      cards[prev]?.classList.add(...inactiveCard);
-      cards[next]?.classList.remove(...inactiveCard);
-      cards[next]?.classList.add(...activeCard);
+      function applyTabStyles(next) {
+        tabs.forEach((tab, i) => {
+          const on = i === next;
+          tab.setAttribute('aria-selected', on ? 'true' : 'false');
+          tab.tabIndex = on ? 0 : -1;
+          tab.classList.remove(...activeCard, ...inactiveCard, 'hover:border-zinc-300', 'hover:bg-white');
+          if (on) tab.classList.add(...activeCard);
+          else tab.classList.add(...inactiveCard, 'hover:border-zinc-300', 'hover:bg-white');
+        });
+      }
 
-      slides[prev].style.opacity = '0';
-      setTimeout(() => {
-        slides[prev].classList.add('hidden');
+      function goTo(index) {
+        const n = views.length;
+        const next = ((index % n) + n) % n;
+        if (next === current) return;
         current = next;
-        slides[current].classList.remove('hidden');
-        slides[current].style.opacity = '0';
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          slides[current].style.opacity = '1';
-          animating = false;
-        }));
-      }, 250);
+        applyTabStyles(current);
+        views.forEach((view, i) => {
+          const on = i === current;
+          view.classList.toggle('is-active', on);
+          view.setAttribute('aria-hidden', on ? 'false' : 'true');
+        });
+      }
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+          goTo(i);
+          tab.focus();
+        });
+      });
+      prevBtn?.addEventListener('click', () => goTo(current - 1));
+      nextBtn?.addEventListener('click', () => goTo(current + 1));
     }
 
-    document.querySelector(`[data-prev="${id}"]`)?.addEventListener('click', () => goTo(current - 1));
-    document.querySelector(`[data-next="${id}"]`)?.addEventListener('click', () => goTo(current + 1));
-    cards.forEach((card, i) => card.addEventListener('click', () => goTo(i)));
-  }
+    function bootGuardIntel() {
+      initGuardIntel();
+    }
 
-  document.addEventListener('DOMContentLoaded', () => initCarousel('intel'));
-</script>
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootGuardIntel);
+    } else {
+      bootGuardIntel();
+    }
+    if (!(window).hasOwnProperty('__meridianGuardIntelSwap')) {
+      (window).__meridianGuardIntelSwap = true;
+      document.addEventListener('astro:after-swap', bootGuardIntel);
+    }
+  </script>
+
+</Layout>
