@@ -506,22 +506,23 @@ const intelShowcaseTabs = [
         <!-- Right column: arrows sit outside 16:9 frame; sticky the whole row -->
         <div class="min-w-0">
           <div
-            class="mb-8 flex w-full min-w-0 items-stretch gap-1.5 self-start sm:gap-2 lg:mb-0 lg:sticky lg:top-[92px]"
+            class="mb-8 grid w-full min-w-0 grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-1.5 self-start sm:grid-cols-[2.75rem_minmax(0,1fr)_2.75rem] sm:gap-2 lg:mb-0 lg:sticky lg:top-[92px]"
             data-intel-carousel-row
             aria-label="Product screenshots"
           >
+            <!-- Fixed-width rail so the 16:9 frame never resizes when arrows show/hide -->
             <div
-              class="shrink-0 self-center py-0.5"
+              class="flex min-w-0 items-center justify-center self-center py-0.5"
               data-intel-carousel-prev-wrap
-              style="display: none"
-              aria-hidden="true"
             >
               <button
                 type="button"
                 data-intel-carousel-prev
-                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(5,150,105,0.32)] text-[#059669] transition hover:bg-[rgba(5,150,105,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:border-emerald-500/35 dark:text-emerald-400"
+                class="intel-carousel-ctrl inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(5,150,105,0.32)] text-[#059669] transition hover:bg-[rgba(5,150,105,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:border-emerald-500/35 dark:text-emerald-400 invisible pointer-events-none"
                 style="background: rgba(5, 150, 105, 0.08); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
                 aria-label="Previous screenshot"
+                aria-hidden="true"
+                tabindex="-1"
               >
                 <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -530,8 +531,8 @@ const intelShowcaseTabs = [
             </div>
 
             <div
-              class="relative min-w-0 flex-1 overflow-hidden rounded-xl shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80"
-              style="position: relative; isolation: isolate; z-index: 0; background: #f4f4f5; aspect-ratio: 16/9;"
+              class="relative min-h-0 min-w-0 w-full overflow-hidden rounded-xl shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80"
+              style="position: relative; isolation: isolate; z-index: 0; max-width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
               id="intel-showcase-panel"
               role="tabpanel"
               aria-labelledby="intel-tab-0"
@@ -559,17 +560,17 @@ const intelShowcaseTabs = [
             </div>
 
             <div
-              class="shrink-0 self-center py-0.5"
+              class="flex min-w-0 items-center justify-center self-center py-0.5"
               data-intel-carousel-next-wrap
-              style="display: none"
-              aria-hidden="true"
             >
               <button
                 type="button"
                 data-intel-carousel-next
-                class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(5,150,105,0.32)] text-[#059669] transition hover:bg-[rgba(5,150,105,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:border-emerald-500/35 dark:text-emerald-400"
+                class="intel-carousel-ctrl inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(5,150,105,0.32)] text-[#059669] transition hover:bg-[rgba(5,150,105,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 dark:border-emerald-500/35 dark:text-emerald-400 invisible pointer-events-none"
                 style="background: rgba(5, 150, 105, 0.08); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
                 aria-label="Next screenshot"
+                aria-hidden="true"
+                tabindex="-1"
               >
                 <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -1029,11 +1030,9 @@ const intelShowcaseTabs = [
     if (!root) return;
     const tabs    = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-intel-tab]'));
     const views   = Array.from(root.querySelectorAll<HTMLElement>('[data-intel-view]'));
-    const panel     = root.querySelector<HTMLElement>('#intel-showcase-panel');
-    const prevWrap  = root.querySelector<HTMLElement>('[data-intel-carousel-prev-wrap]');
-    const nextWrap  = root.querySelector<HTMLElement>('[data-intel-carousel-next-wrap]');
-    const prevBtn   = root.querySelector<HTMLButtonElement>('[data-intel-carousel-prev]');
-    const nextBtn   = root.querySelector<HTMLButtonElement>('[data-intel-carousel-next]');
+    const panel   = root.querySelector<HTMLElement>('#intel-showcase-panel');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-intel-carousel-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-intel-carousel-next]');
     if (!tabs.length || !views.length) return;
 
     // slideIndex[tabIdx] tracks which slide is active within that tab
@@ -1055,13 +1054,18 @@ const intelShowcaseTabs = [
       imgs.forEach((img, si) => img.classList.toggle('is-active', si === idx));
     }
 
+    function setCarouselBtn(btn: HTMLButtonElement | null | undefined, on: boolean) {
+      if (!btn) return;
+      btn.classList.toggle('invisible', !on);
+      btn.classList.toggle('pointer-events-none', !on);
+      btn.setAttribute('aria-hidden', on ? 'false' : 'true');
+      btn.tabIndex = on ? 0 : -1;
+    }
+
     function updateNav() {
       const show = slideCount(currentTab) > 1;
-      for (const el of [prevWrap, nextWrap]) {
-        if (!el) continue;
-        el.style.display = show ? 'flex' : 'none';
-        el.setAttribute('aria-hidden', show ? 'false' : 'true');
-      }
+      setCarouselBtn(prevBtn, show);
+      setCarouselBtn(nextBtn, show);
     }
 
     function activateTab(next: number) {
