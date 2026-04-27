@@ -21,65 +21,71 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
         </p>
       </div>
 
-      <!-- Step-by-step: get your license key -->
-      <div class="rounded-2xl border-2 border-emerald-200 bg-gradient-to-b from-white to-emerald-50/30 p-8 shadow-sm mb-6">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-            </svg>
-          </div>
-          <div>
-            <h2 class="text-base font-semibold text-zinc-900">Find your License Key</h2>
-            <p class="text-xs text-zinc-500 mt-0.5">You need this key to activate Meridian inside NinjaTrader</p>
-          </div>
+      <!-- Portal CTA — primary card -->
+      <div class="rounded-2xl border border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/30 p-8 text-center shadow-sm mb-6">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
         </div>
-        <ol class="space-y-4">
-          {[
-            { n: '1', title: 'Open your Whop account', detail: 'Go to whop.com and sign in with the email you used at checkout.' },
-            { n: '2', title: 'Open the Meridian hub', detail: 'Click "Access Meridian" in your confirmation email, or go to whop.com/@meridianpsi.' },
-            { n: '3', title: 'Click "Software" in the left sidebar', detail: 'This is where your License Key lives. You\'ll see it labelled "Meridian Core — Trading Risk Management & PSI Monitor".' },
-            { n: '4', title: 'Copy the key', detail: 'Click the Copy button next to your key (format: M-XXXXXX-XXXXXXXX-XXXXXXX). Paste it into Meridian when prompted.' },
-          ].map(({ n, title, detail }) => (
-            <li class="flex items-start gap-4">
-              <span class="mt-0.5 w-7 h-7 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center shrink-0">{n}</span>
-              <div>
-                <p class="text-sm font-semibold text-zinc-900">{title}</p>
-                <p class="text-sm text-zinc-500 mt-0.5">{detail}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <div class="mt-6 pt-5 border-t border-zinc-100 flex flex-col sm:flex-row gap-3">
-          <a
-            href="https://whop.com/@meridianpsi"
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors"
-          >
-            Go to Whop → Software tab
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Manage subscription -->
-      <div class="rounded-xl border border-zinc-200 bg-white p-6 mb-6">
-        <h3 class="text-sm font-semibold text-zinc-900 mb-4">Manage your subscription</h3>
-        <p class="text-sm text-zinc-500 mb-4">Cancel, update payment, switch plans, or download invoices — all inside your Whop account.</p>
+        <h2 class="text-lg font-semibold text-zinc-900 mb-2">Manage your subscription</h2>
+        <p class="text-sm text-zinc-500 mb-6 max-w-sm mx-auto">
+          Cancel, update your payment method, switch plans, download invoices, or view your License Key — all from your Whop account.
+        </p>
         <a
           href={portalUrl}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-300 hover:border-zinc-400 text-zinc-800 font-semibold text-sm transition-colors bg-white hover:bg-zinc-50"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors"
         >
-          Whop account settings
+          Go to account portal
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </a>
+        <p class="text-xs text-zinc-400 mt-4">
+          Opens Whop — sign in with the same email you used at checkout.
+        </p>
+      </div>
+
+      <!-- How to sign in -->
+      <div class="rounded-xl border border-zinc-200 bg-white p-6 mb-6">
+        <h3 class="text-sm font-semibold text-zinc-900 mb-4">How to access the portal</h3>
+        <ol class="space-y-3">
+          {[
+            'Click "Go to account portal" above.',
+            'Log in with the email address you used when you subscribed.',
+            'You\'ll see your subscription, License Key, downloads, and billing options.',
+          ].map((step, i) => (
+            <li class="flex items-start gap-3 text-sm text-zinc-600">
+              <span class="mt-0.5 w-5 h-5 rounded-full bg-zinc-100 text-zinc-500 text-xs font-bold flex items-center justify-center shrink-0">
+                {i + 1}
+              </span>
+              {step}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- What you can do in the portal -->
+      <div class="rounded-xl border border-zinc-200 bg-white p-6 mb-6">
+        <h3 class="text-sm font-semibold text-zinc-900 mb-4">What you can do in the portal</h3>
+        <ul class="space-y-2.5">
+          {[
+            ['Cancel subscription', 'Cancel any time — no fees. Access continues until the end of your current period.'],
+            ['Update payment method', 'Change the card or payment method on file in Whop.'],
+            ['Switch plans', 'Move between monthly and annual billing.'],
+            ['Download invoices', 'Access PDF receipts for every payment.'],
+          ].map(([action, detail]) => (
+            <li class="flex items-start gap-3 text-sm">
+              <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span>
+              <span>
+                <span class="font-medium text-zinc-800">{action}</span>
+                <span class="text-zinc-500"> — {detail}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <!-- No subscription yet -->
