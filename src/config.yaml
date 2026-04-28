@@ -67,6 +67,7 @@ analytics:
   vendors:
     googleAnalytics:
       id: 'G-X92JEDES02'
+      partytown: false
 
 # Light-first UI — calm, modern feel for a psychology product
 ui:
