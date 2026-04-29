@@ -1,6 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { getPermalink } from '~/utils/permalinks';
 import { findImage } from '~/utils/images';
 
@@ -20,10 +20,14 @@ const posts = await Promise.all(
       const db = b.data.publishDate ? new Date(b.data.publishDate).valueOf() : 0;
       return db - da;
     })
-    .map(async (post) => ({
-      ...post,
-      resolvedImage: post.data.image ? await findImage(post.data.image) : null,
-    }))
+    .map(async (post) => {
+      const { remarkPluginFrontmatter } = await render(post);
+      return {
+        ...post,
+        readingTime: remarkPluginFrontmatter?.readingTime as number | undefined,
+        resolvedImage: post.data.image ? await findImage(post.data.image) : null,
+      };
+    })
 );
 
 const categoryMap: Record<string, string> = {
@@ -35,12 +39,9 @@ const categoryMap: Record<string, string> = {
 
 const categories = [...new Set(posts.map((p) => p.data.category).filter(Boolean))];
 
-function readingTime(body: string) {
-  return Math.max(1, Math.ceil(body.split(/\s+/).length / 220));
-}
 function formatDate(d?: Date) {
   if (!d) return '';
-  return new Date(d).toLocaleDateString('en-US', { month: 'short', d: 'numeric', year: 'numeric' });
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 ---
 
@@ -72,11 +73,11 @@ function formatDate(d?: Date) {
     <!-- Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="articles-grid">
       {posts.map((post) => {
-        const cat = post.data.category ?? '';
-        const label = categoryMap[cat] ?? cat;
-        const href = getPermalink(post.id, 'post');
-        const mins = readingTime(post.body ?? '');
-        const date = formatDate(post.data.publishDate);
+          const cat = post.data.category ?? '';
+          const label = categoryMap[cat] ?? cat;
+          const href = getPermalink(post.id, 'post');
+          const mins = post.readingTime;
+          const date = formatDate(post.data.publishDate);
         const img = post.resolvedImage;
 
         return (

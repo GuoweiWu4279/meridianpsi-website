@@ -12,12 +12,7 @@ export interface Props {
 
 const { post, url } = Astro.props;
 
-function readingTime(body?: string) {
-  if (!body) return post.readingTime ?? null;
-  return Math.max(1, Math.ceil(body.split(/\s+/).length / 220));
-}
-
-const mins = readingTime(post.content ?? post.excerpt ?? '');
+const mins = post.readingTime ?? null;
 ---
 
 <!-- Off-white newspaper background -->
