@@ -355,6 +355,70 @@ const intelShowcaseTabs = [
     </div>
   </section>
 
+  <!-- ——— VIDEO DEMO ——— -->
+  <section class="py-16 md:py-20 px-6 bg-white border-b border-zinc-100">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Eyebrow -->
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 fade-up" style="color:#059669;">See It In Action</p>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 fade-up" style="color:#18181b;">
+        Watch how Meridian works
+      </h2>
+      <p class="text-sm text-zinc-500 mb-8 fade-up">A quick walkthrough of real-time PSI monitoring and Guard enforcement inside NinjaTrader 8.</p>
+
+      <!-- Video embed — click thumbnail to load player -->
+      <div class="fade-up">
+        <div
+          id="yt-facade"
+          class="relative mx-auto rounded-xl overflow-hidden cursor-pointer group shadow-lg ring-1 ring-zinc-200"
+          style="max-width:720px; aspect-ratio:16/9; background:#0f0f0f;"
+          data-yt-id="PLACEHOLDER"
+          role="button"
+          tabindex="0"
+          aria-label="Play Meridian product demo"
+        >
+          <!-- Thumbnail -->
+          <img
+            id="yt-thumb"
+            src="https://i.ytimg.com/vi/PLACEHOLDER/maxresdefault.jpg"
+            alt="Meridian demo video thumbnail"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <!-- Dark overlay on hover -->
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-200"></div>
+          <!-- Play button -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-16 h-16 rounded-full bg-white/95 group-hover:scale-110 transition-transform duration-200 flex items-center justify-center shadow-md">
+              <svg class="w-6 h-6 text-zinc-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const facade = document.getElementById('yt-facade');
+    if (facade) {
+      const play = () => {
+        const id = facade.dataset.ytId;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        iframe.allow = 'autoplay; encrypted-media; fullscreen';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 w-full h-full';
+        iframe.style.border = 'none';
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+        facade.style.cursor = 'default';
+      };
+      facade.addEventListener('click', play);
+      facade.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') play(); });
+    }
+  </script>
+
   <!-- ——— ROADMAP / HOW IT WORKS ——— -->
   <section id="how-it-works" class="section border-y border-zinc-200/80 bg-white">
     <div class="container-wide">
