@@ -89,7 +89,12 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
     { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
   ],
-  socialLinks: [],
+  socialLinks: [
+    { ariaLabel: 'X / Twitter', icon: 'tabler:brand-x', href: 'https://x.com/Meridian_PSI' },
+    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@Meridianpsi1' },
+    { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@meridianpsi' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/meridianpsi/' },
+  ],
   footNote: `
     &copy; ${new Date().getFullYear()} Meridian. All rights reserved. &nbsp;·&nbsp;
     <span class="text-xs text-muted">Trading involves substantial risk of loss. Past performance is not indicative of future results.</span>
