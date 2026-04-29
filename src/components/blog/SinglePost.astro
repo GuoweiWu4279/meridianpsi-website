@@ -69,14 +69,10 @@ const mins = readingTime(post.content ?? post.excerpt ?? '');
     <!-- Cover image -->
     {post.image && (
       <div class="mb-8 -mx-8 sm:-mx-14">
-        <Image
-          src={post.image}
-          class="w-full"
-          widths={[740, 1080]}
-          sizes="(max-width: 740px) 100vw, 740px"
+        <img
+          src={typeof post.image === 'string' ? post.image : (post.image as any).src ?? String(post.image)}
           alt={post.excerpt ?? post.title}
-          width={740}
-          height={416}
+          class="w-full"
           loading="eager"
           decoding="async"
         />
