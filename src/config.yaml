@@ -33,11 +33,11 @@ i18n:
 
 apps:
   blog:
-    isEnabled: false
+    isEnabled: true
     postsPerPage: 6
 
     post:
-      isEnabled: false
+      isEnabled: true
       permalink: '/%slug%'
       robots:
         index: true
@@ -46,13 +46,13 @@ apps:
       isEnabled: false
       pathname: 'blog'
       robots:
-        index: true
+        index: false
 
     category:
       isEnabled: false
       pathname: 'category'
       robots:
-        index: true
+        index: false
 
     tag:
       isEnabled: false
