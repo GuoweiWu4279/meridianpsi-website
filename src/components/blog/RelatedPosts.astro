@@ -1,10 +1,8 @@
 ---
-import { APP_BLOG } from 'astrowind:config';
-
-import { getRelatedPosts } from '~/utils/blog';
-import BlogHighlightedPosts from '../widgets/BlogHighlightedPosts.astro';
+import { getCollection } from 'astro:content';
+import { getPermalink } from '~/utils/permalinks';
+import { findImage } from '~/utils/images';
 import type { Post } from '~/types';
-import { getBlogPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
@@ -12,20 +10,120 @@ export interface Props {
 
 const { post } = Astro.props;
 
-const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
+const templateIds = [
+  'astrowind-template-in-depth',
+  'get-started-website-with-astro-tailwind-css',
+  'how-to-customize-astrowind-to-your-brand',
+  'useful-resources-to-create-websites',
+  'markdown-elements-demo-post',
+  'landing',
+];
+
+const allPosts = await getCollection('post');
+
+const related = await Promise.all(
+  allPosts
+    .filter((p) => !p.data.draft && !templateIds.includes(p.id) && p.id !== post.id)
+    .sort((a, b) => {
+      // Prefer same category, then fall back to most recent
+      const sameA = a.data.category === post.category ? 1 : 0;
+      const sameB = b.data.category === post.category ? 1 : 0;
+      if (sameB !== sameA) return sameB - sameA;
+      const da = a.data.publishDate ? new Date(a.data.publishDate).valueOf() : 0;
+      const db = b.data.publishDate ? new Date(b.data.publishDate).valueOf() : 0;
+      return db - da;
+    })
+    .slice(0, 3)
+    .map(async (p) => ({
+      ...p,
+      resolvedImage: p.data.image ? await findImage(p.data.image) : null,
+    }))
+);
+
+const categoryMap: Record<string, string> = {
+  'trading-psychology': 'Trading Psychology',
+  'risk-management':    'Risk Management',
+  'prop-trading':       'Prop Trading',
+  'execution':          'Execution',
+};
+
+function readingTime(body: string) {
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 220));
+}
+function formatDate(d?: Date) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
 ---
 
-{
-  APP_BLOG.isRelatedPostsEnabled ? (
-    <BlogHighlightedPosts
-      classes={{
-        container:
-          'pt-0 lg:pt-0 md:pt-0 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
-      }}
-      title="Related Posts"
-      linkText="View All Posts"
-      linkUrl={getBlogPermalink()}
-      postIds={relatedPosts.map((post) => post.id)}
-    />
-  ) : null
-}
+{related.length > 0 && (
+  <section class="border-t border-zinc-200 mt-12 py-14 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Section header -->
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-lg font-bold text-zinc-900">More Articles</h2>
+        <a href="/articles" class="text-sm text-zinc-400 hover:text-zinc-700 transition-colors">See All →</a>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {related.map((p) => {
+          const cat = p.data.category ?? '';
+          const label = categoryMap[cat] ?? cat;
+          const href = getPermalink(p.id, 'post');
+          const mins = readingTime(p.body ?? '');
+          const date = formatDate(p.data.publishDate);
+          const img = p.resolvedImage;
+
+          return (
+            <article class="group flex flex-col border border-zinc-300 bg-white hover:shadow-sm transition-shadow duration-200">
+              <a href={href} class="block overflow-hidden shrink-0" style="aspect-ratio: 16/9;">
+                {img ? (
+                  <img
+                    src={typeof img === 'string' ? img : (img as any).src ?? img}
+                    alt={p.data.title}
+                    class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-zinc-800 via-zinc-700 to-emerald-900 flex items-end p-5">
+                    <span class="text-[10px] font-semibold tracking-widest uppercase text-emerald-400 opacity-80">
+                      {label || 'Article'}
+                    </span>
+                  </div>
+                )}
+              </a>
+
+              <div class="flex flex-col flex-1 px-5 pt-5 pb-8">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center shrink-0">
+                      <svg class="w-3.5 h-3.5 text-zinc-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                      </svg>
+                    </div>
+                    <span class="text-xs text-zinc-500">{date} &nbsp;·&nbsp; {mins} min read</span>
+                  </div>
+                </div>
+
+                <a href={href} class="block mb-2.5">
+                  <h3 class="text-[15px] font-bold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-150">
+                    {p.data.title}
+                  </h3>
+                </a>
+
+                {p.data.excerpt && (
+                  <p class="text-sm text-zinc-500 leading-relaxed line-clamp-3">
+                    {p.data.excerpt}
+                  </p>
+                )}
+
+                <div class="flex-1 min-h-[2rem]"></div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
