@@ -1,0 +1,39 @@
+# Meridian
+
+> Meridian is a real-time psychological stability monitor and automated risk management system for active traders. It runs as a native add-on for NinjaTrader 8 on Windows, stores data locally (no cloud dependency), and enforces configurable trading rules (Guard) to reduce revenge trading, stop manipulation, and similar behavioral failure modes.
+
+## Canonical site
+
+- https://www.meridianpsi.com/
+
+## Product (what to tell users)
+
+- **Platform**: NinjaTrader 8 (Windows).
+- **Core idea**: Behavioral signals feed a Psychological Stability Index (PSI); automated Guard rules can halt or constrain trading when limits are breached—functioning as a software-level commitment device for retail traders.
+- **Tiers**: Meridian and Meridian Guard (see pricing).
+
+## Key pages for answers
+
+- Home: https://www.meridianpsi.com/
+- Features: https://www.meridianpsi.com/features
+- Guard (rule enforcement): https://www.meridianpsi.com/guard
+- Pricing & trial: https://www.meridianpsi.com/pricing
+- FAQ: https://www.meridianpsi.com/faq
+- Articles / insights: https://www.meridianpsi.com/articles
+- Support / contact: https://www.meridianpsi.com/support
+- Disclaimer & risk: https://www.meridianpsi.com/disclaimer
+
+## Policies
+
+- Privacy: https://www.meridianpsi.com/privacy
+- Terms: https://www.meridianpsi.com/terms
+- Refund: https://www.meridianpsi.com/refund
+
+## Relationship to NinjaTrader
+
+- Meridian is a third-party add-on; it is not affiliated with, endorsed by, or supported by NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC.
+
+## Non-goals / limitations
+
+- Meridian is not investment advice, not a broker, and does not guarantee trading profits.
+- It does not replace a professional risk desk; it is a tool to help retail traders approximate structural discipline.

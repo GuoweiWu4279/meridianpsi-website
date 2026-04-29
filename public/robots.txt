@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+
+# Meridian (meridianpsi.com): crawlers including AI indexer bots are not blocked above.
+# Machine-readable site summary for assistants: /llms.txt

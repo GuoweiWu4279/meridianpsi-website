@@ -12,18 +12,9 @@ const metadata = {
 
 const allPosts = await getCollection('post');
 
-const templateIds = [
-  'astrowind-template-in-depth',
-  'get-started-website-with-astro-tailwind-css',
-  'how-to-customize-astrowind-to-your-brand',
-  'useful-resources-to-create-websites',
-  'markdown-elements-demo-post',
-  'landing',
-];
-
 const posts = await Promise.all(
   allPosts
-    .filter((p) => !p.data.draft && !templateIds.includes(p.id))
+    .filter((p) => !p.data.draft)
     .sort((a, b) => {
       const da = a.data.publishDate ? new Date(a.data.publishDate).valueOf() : 0;
       const db = b.data.publishDate ? new Date(b.data.publishDate).valueOf() : 0;

@@ -10,20 +10,11 @@ export interface Props {
 
 const { post } = Astro.props;
 
-const templateIds = [
-  'astrowind-template-in-depth',
-  'get-started-website-with-astro-tailwind-css',
-  'how-to-customize-astrowind-to-your-brand',
-  'useful-resources-to-create-websites',
-  'markdown-elements-demo-post',
-  'landing',
-];
-
 const allPosts = await getCollection('post');
 
 const related = await Promise.all(
   allPosts
-    .filter((p) => !p.data.draft && !templateIds.includes(p.id) && p.id !== post.id)
+    .filter((p) => !p.data.draft && p.id !== post.id)
     .sort((a, b) => {
       // Prefer same category, then fall back to most recent
       const sameA = a.data.category === post.category ? 1 : 0;
