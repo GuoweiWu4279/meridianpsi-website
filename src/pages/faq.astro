@@ -13,6 +13,7 @@ const allFaqs = await getCollection('faq');
 const sorted = allFaqs.sort((a, b) => a.data.order - b.data.order);
 
 const categories = [
+  { id: 'psychology', label: 'Trading Psychology & Risk' },
   { id: 'installation', label: 'Installation' },
   { id: 'trading', label: 'Trading & Usage' },
   { id: 'technical', label: 'Technical' },
@@ -24,9 +25,32 @@ const faqsByCategory = categories.map(cat => ({
   ...cat,
   items: sorted.filter(f => f.data.category === cat.id),
 })).filter(cat => cat.items.length > 0);
+
+// FAQPage JSON-LD for GEO — helps Gemini, ChatGPT, Perplexity cite this page
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: sorted.map(entry => ({
+    '@type': 'Question',
+    name: entry.data.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: entry.body
+        .replace(/^---[\s\S]*?---\n?/, '')
+        .replace(/\*\*(.+?)\*\*/g, '$1')
+        .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+        .replace(/#+\s/g, '')
+        .replace(/`/g, '')
+        .replace(/\n+/g, ' ')
+        .trim(),
+    },
+  })),
+};
 ---
 
 <Layout metadata={metadata}>
+  <!-- FAQPage structured data for GEO (Gemini / ChatGPT / Perplexity) -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <HeroText
     title="Frequently Asked Questions"
     subtitle="Can't find what you're looking for? Contact us at contactmeridianpsi@gmail.com"

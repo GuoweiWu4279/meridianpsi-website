@@ -195,7 +195,60 @@ const intelShowcaseTabs = [
 ---
 
 <Layout metadata={metadata}>
-  <!-- ——— HERO — light, clean ——— -->
+  <!-- Structured data for GEO: SoftwareApplication + WebSite -->
+  <script type="application/ld+json">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Meridian",
+        "applicationCategory": "FinanceApplication",
+        "applicationSubCategory": "TradingApplication",
+        "operatingSystem": "Windows",
+        "description": "Meridian is a real-time psychological stability monitor and automated risk management system for active traders. It tracks seven behavioral signals — including revenge trading, stop manipulation, and overtrading pace — and enforces trading rules automatically through configurable Guard rules. Runs natively inside NinjaTrader 8 with no cloud dependency.",
+        "url": "https://www.meridianpsi.com",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Meridian",
+            "price": "24.99",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Meridian Guard",
+            "price": "34.99",
+            "priceCurrency": "USD",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
+          }
+        ],
+        "featureList": [
+          "Real-time Psychological Stability Index (PSI)",
+          "Seven behavioral signal dimensions",
+          "Automated trading rule enforcement (Guard)",
+          "Revenge trading detection",
+          "Stop manipulation detection",
+          "Overtrading pace monitoring",
+          "Local-only data storage — no cloud",
+          "NinjaTrader 8 native add-on",
+          "Prop firm compatible"
+        ],
+        "softwareRequirements": "NinjaTrader 8",
+        "creator": {
+          "@type": "Organization",
+          "name": "Meridian",
+          "url": "https://www.meridianpsi.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Meridian",
+        "url": "https://www.meridianpsi.com",
+        "description": "Real-time psychological stability monitoring and automated risk management for active futures traders using NinjaTrader 8."
+      }
+    ]
+  })}</script>
   <!-- Hero background: replace src/assets/images/hero-bg.jpg (imported so dev/build always resolve URL). -->
   <section
     class="relative overflow-hidden md:-mt-[84px] not-prose hero-bg-home"
