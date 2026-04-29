@@ -1,13 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-
 import Image from '~/components/common/Image.astro';
-import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
-
-import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
-
 import type { Post } from '~/types';
 
 export interface Props {
@@ -16,88 +11,100 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
+
+function readingTime(body?: string) {
+  if (!body) return post.readingTime ?? null;
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 220));
+}
+
+const mins = readingTime(post.content ?? post.excerpt ?? '');
 ---
 
-<section class="py-8 sm:py-16 lg:py-20 mx-auto">
-  <article>
-    <header
-      class={post.image
-        ? 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'
-        : 'intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'}
-    >
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
-          <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
-          {
-            post.author && (
-              <>
-                {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-                <span class="inline-block">{post.author}</span>
-              </>
-            )
-          }
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
-                </a>
-              </>
-            )
-          }
-          {
-            post.readingTime && (
-              <>
-                &nbsp;· <span>{post.readingTime}</span> min read
-              </>
-            )
-          }
-        </p>
-      </div>
+<!-- Off-white newspaper background -->
+<div class="bg-zinc-50 min-h-screen">
+  <!-- Article column: white, narrow, centered -->
+  <article class="bg-white max-w-[740px] mx-auto px-8 sm:px-14 pt-10 pb-16 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
 
-      <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading"
-      >
-        {post.title}
-      </h1>
-      <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
-      >
+    <!-- Author / meta row -->
+    <div class="flex items-center justify-between mb-7">
+      <div class="flex items-center gap-3">
+        <!-- Avatar -->
+        <div class="w-9 h-9 rounded-full bg-zinc-200 flex items-center justify-center shrink-0">
+          <svg class="w-4.5 h-4.5 text-zinc-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
+        </div>
+        <div class="flex items-center gap-1.5 text-sm text-zinc-500">
+          <span class="font-medium text-zinc-700">{post.author ?? 'Meridian'}</span>
+          <span class="text-zinc-300">·</span>
+          <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
+          {mins && (
+            <>
+              <span class="text-zinc-300">·</span>
+              <span>{mins} min read</span>
+            </>
+          )}
+        </div>
+      </div>
+      <!-- Three-dot menu -->
+      <div class="opacity-30 hover:opacity-60 cursor-pointer p-1">
+        <svg class="w-4 h-4 text-zinc-700" fill="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Title — large, editorial, newspaper weight -->
+    <h1 class="text-[2rem] sm:text-[2.5rem] font-extrabold text-zinc-950 leading-[1.2] tracking-[-0.02em] mb-5">
+      {post.title}
+    </h1>
+
+    <!-- Excerpt / subtitle -->
+    {post.excerpt && (
+      <p class="text-lg text-zinc-500 leading-relaxed mb-7 border-b border-zinc-100 pb-7">
         {post.excerpt}
       </p>
+    )}
 
-      {
-        post.image ? (
-          <Image
-            src={post.image}
-            class="max-w-full lg:max-w-[900px] mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-            widths={[400, 900]}
-            sizes="(max-width: 900px) 400px, 900px"
-            alt={post?.excerpt || ''}
-            width={900}
-            height={506}
-            loading="eager"
-            decoding="async"
-          />
-        ) : (
-          <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
-          </div>
-        )
-      }
-    </header>
-    <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
-    >
+    <!-- Cover image -->
+    {post.image && (
+      <div class="mb-8 -mx-8 sm:-mx-14">
+        <Image
+          src={post.image}
+          class="w-full"
+          widths={[740, 1080]}
+          sizes="(max-width: 740px) 100vw, 740px"
+          alt={post.excerpt ?? post.title}
+          width={740}
+          height={416}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )}
+
+    <!-- Body — newspaper prose -->
+    <div class="
+      prose prose-zinc max-w-none
+      prose-p:text-[17px] prose-p:leading-[1.85] prose-p:text-zinc-700
+      prose-headings:font-bold prose-headings:text-zinc-950 prose-headings:tracking-tight
+      prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3
+      prose-h3:text-[1.1rem] prose-h3:mt-8 prose-h3:mb-2
+      prose-a:text-emerald-700 prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-zinc-900
+      prose-blockquote:border-l-4 prose-blockquote:border-zinc-300 prose-blockquote:pl-5 prose-blockquote:text-zinc-600 prose-blockquote:not-italic prose-blockquote:font-normal
+      prose-hr:border-zinc-200 prose-hr:my-10
+      prose-li:text-[17px] prose-li:text-zinc-700
+      prose-img:rounded-sm
+    ">
       <slot />
     </div>
-    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
-      <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
+
+    <!-- Social share -->
+    <div class="mt-12 pt-7 border-t border-zinc-100 flex items-center gap-1">
+      <span class="text-sm text-zinc-400 font-medium mr-2">Share</span>
+      <SocialShare url={url} text={post.title} class="flex items-center gap-0" />
     </div>
+
   </article>
-</section>
+</div>
