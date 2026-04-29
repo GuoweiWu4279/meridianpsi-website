@@ -42,6 +42,10 @@ export const headerData = {
       ],
     },
     {
+      text: 'Articles',
+      href: getPermalink('/articles'),
+    },
+    {
       text: 'Account',
       href: getPermalink('/account'),
     },

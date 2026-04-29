@@ -1,0 +1,137 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Trading Insights — Meridian',
+  description: 'In-depth articles on trading psychology, risk management, and execution discipline for active futures traders.',
+  robots: { index: true, follow: true },
+};
+
+const allPosts = await getCollection('post');
+const posts = allPosts
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => {
+    const da = a.data.publishDate ? new Date(a.data.publishDate).valueOf() : 0;
+    const db = b.data.publishDate ? new Date(b.data.publishDate).valueOf() : 0;
+    return db - da;
+  })
+  // Exclude placeholder / template posts
+  .filter((p) => !['astrowind-template-in-depth', 'get-started-website-with-astro-tailwind-css',
+    'how-to-customize-astrowind-to-your-brand', 'useful-resources-to-create-websites',
+    'markdown-elements-demo-post', 'landing'].includes(p.id));
+
+const categoryLabel: Record<string, string> = {
+  'trading-psychology': 'Trading Psychology',
+  'risk-management':    'Risk Management',
+  'prop-trading':       'Prop Trading',
+  'execution':          'Execution',
+  'default':            'Article',
+};
+
+function readingTime(body: string) {
+  return Math.max(1, Math.ceil(body.split(/\s+/).length / 220));
+}
+
+function formatDate(d?: Date) {
+  if (!d) return '';
+  return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+---
+
+<Layout metadata={metadata}>
+  <!-- Header -->
+  <section class="max-w-5xl mx-auto px-6 pt-16 pb-10">
+    <div class="mb-2">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase text-emerald-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
+        Meridian
+      </span>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight leading-[1.15] mb-4">
+      Trading Insights
+    </h1>
+    <p class="text-lg text-zinc-500 max-w-2xl leading-relaxed">
+      In-depth articles on trading psychology, execution discipline, and the structural edge that separates consistent traders from the rest.
+    </p>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="border-t border-zinc-200"></div>
+  </div>
+
+  <!-- Article grid -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    {posts.length === 0 ? (
+      <p class="text-zinc-400 text-center py-20">No articles published yet.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((post) => {
+          const cat = post.data.category ?? 'default';
+          const label = categoryLabel[cat] ?? 'Article';
+          const href = getPermalink(post.id, 'post');
+          const mins = readingTime(post.body ?? '');
+          const date = formatDate(post.data.publishDate);
+
+          return (
+            <a
+              href={href}
+              class="group relative flex flex-col rounded-2xl border border-zinc-200 bg-white p-7 hover:border-zinc-300 hover:shadow-md transition-all duration-200"
+            >
+              <!-- Category + meta row -->
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-flex items-center rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-[11px] font-semibold tracking-wide text-emerald-800 uppercase">
+                  {label}
+                </span>
+                <span class="text-xs text-zinc-400">{date}</span>
+                <span class="text-xs text-zinc-300">·</span>
+                <span class="text-xs text-zinc-400">{mins} min read</span>
+              </div>
+
+              <!-- Title -->
+              <h2 class="text-xl font-bold text-zinc-900 leading-snug mb-3 group-hover:text-emerald-700 transition-colors duration-150">
+                {post.data.title}
+              </h2>
+
+              <!-- Excerpt -->
+              {post.data.excerpt && (
+                <p class="text-sm text-zinc-500 leading-relaxed line-clamp-3 flex-1">
+                  {post.data.excerpt}
+                </p>
+              )}
+
+              <!-- Read link -->
+              <div class="mt-5 flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all duration-150">
+                Read article
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+
+              <!-- Hover accent line -->
+              <div class="absolute inset-x-0 bottom-0 h-0.5 rounded-b-2xl bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></div>
+            </a>
+          );
+        })}
+      </div>
+    )}
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="rounded-2xl bg-zinc-50 border border-zinc-200 px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-semibold text-zinc-900 mb-1">Ready to trade with a safety harness?</p>
+        <p class="text-sm text-zinc-500">Start a 7-day free trial — no credit card required during trial.</p>
+      </div>
+      <a
+        href="/pricing"
+        class="shrink-0 inline-flex items-center px-6 py-2.5 rounded-full bg-zinc-900 hover:bg-zinc-700 text-white text-sm font-semibold transition-colors"
+      >
+        Start free trial
+      </a>
+    </div>
+  </section>
+</Layout>
