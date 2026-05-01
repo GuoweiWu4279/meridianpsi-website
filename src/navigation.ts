@@ -72,6 +72,7 @@ export const footerData = {
         { text: 'Account', href: getPermalink('/account') },
         { text: 'FAQ', href: getPermalink('/faq') },
         { text: 'System requirements', href: getPermalink('/releases#requirements') },
+        { text: 'Affiliate Program', href: getPermalink('/affiliate') },
       ],
     },
     {
