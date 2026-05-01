@@ -1,0 +1,68 @@
+---
+description: Meridian brand positioning, tone, pricing, and copy guidelines — always apply when editing website copy or marketing content
+alwaysApply: true
+---
+
+# Meridian Brand Positioning
+
+## What Meridian Is
+
+Meridian is a **native NinjaTrader 8 add-on** (Windows only) that monitors trader behavior in real time, computes a **Psychological Stability Index (PSI)**, and enforces configurable **Guard Rules** that can automatically intervene — from a visual warning to a full automated broker disconnect — before emotional decision-making causes irreversible damage.
+
+It is **not** a journal, not a signal tool, not a broker, not investment advice.
+
+## Core Positioning Statement
+
+> "Trading without a risk management system is like working on a skyscraper without a safety harness."
+
+This is the **anchor metaphor** and must remain prominent. Do not remove or demote it below the fold on the homepage. It can appear in hero, section headers, or as a standalone pull-quote.
+
+## Tone: The Surgeon, Not the Salesman
+
+Meridian's voice is **clinical, objective, and data-driven**. The product speaks through evidence, not persuasion.
+
+**Do:**
+- State facts and capabilities directly ("Meridian monitors 7 behavioral signals and updates PSI in <100ms")
+- Use passive, observational language ("the score dropped", "the session showed elevated re-entry speed")
+- Reference research, data, behavioral finance
+- Let the product's logic speak — do not editorialize
+
+**Do not:**
+- Use exclamation marks in copy
+- Use words like "amazing", "powerful", "game-changer", "revolutionary"
+- Write sentences that beg or plead for the user to try the product
+- Repeat "cancel any time" or "free" as primary messaging — these are fine as factual footnotes, not headlines
+- Use phrases like "Join thousands of traders" (we have no such data)
+
+## Current Pricing (as of 2026-04-30)
+
+| Plan | Monthly | Annual |
+|---|---|---|
+| Meridian Core | $49.99/mo | $479.90/yr (~$39.99/mo) |
+| Meridian Guard | $69.99/mo | $671.90/yr (~$55.99/mo) |
+
+Annual savings: Core ~$120/yr · Guard ~$168/yr
+
+**7-day free trial applies to all plans. A credit card IS required at checkout.**
+
+## Whop Checkout Links
+
+| Plan | URL |
+|---|---|
+| Core — Monthly | https://whop.com/checkout/plan_4Z0XZqQl7TaDH |
+| Core — Annual | https://whop.com/checkout/plan_JhWetoQ39OCNz |
+| Guard — Monthly | https://whop.com/checkout/plan_ZHX4ySB65fahf |
+| Guard — Annual | https://whop.com/checkout/plan_frPOgHtDTvBkR |
+
+## Product Tiers
+
+**Meridian Core** — Real-time PSI monitor. 7 behavioral signal dimensions. Personal adaptive baseline. 5-year local session history. Post-session report. No cloud.
+
+**Meridian Guard** — Everything in Core, plus: Guard System (6 trigger types, 5 intervention levels including automated broker disconnect), Intel Layer (monthly digest, PSI × P&L correlation, weekday patterns, Today's Risk Brief).
+
+## Platform & Compliance
+
+- NinjaTrader 8 is **required** (Windows only). NT7 is not supported.
+- All data is stored **locally**. No cloud, no telemetry, no external accounts.
+- Meridian is a **third-party add-on**. It is not affiliated with, endorsed by, or supported by NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC.
+- Every page that mentions trading must include or link to the risk disclaimer: **Trading involves substantial risk of loss.**
