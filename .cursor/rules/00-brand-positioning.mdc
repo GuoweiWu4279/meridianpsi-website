@@ -60,6 +60,14 @@ Annual savings: Core ~$120/yr · Guard ~$168/yr
 
 **Meridian Guard** — Everything in Core, plus: Guard System (6 trigger types, 5 intervention levels including automated broker disconnect), Intel Layer (monthly digest, PSI × P&L correlation, weekday patterns, Today's Risk Brief).
 
+## Affiliate Program Terms
+
+- **Creator commission:** 30% recurring, for the lifetime of each referred subscription, paid via Whop
+- **Customer discount:** 10% permanent discount applied via creator's unique promo code at every renewal
+- **Creator access:** Complimentary Meridian Guard license for the duration of the active affiliate partnership (review license — not "lifetime", tied to active partnership)
+- Affiliates must disclose the affiliate arrangement per applicable regulations
+- Affiliate page: `/affiliate`
+
 ## Platform & Compliance
 
 - NinjaTrader 8 is **required** (Windows only). NT7 is not supported.

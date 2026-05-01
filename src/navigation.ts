@@ -42,8 +42,17 @@ export const headerData = {
       ],
     },
     {
-      text: 'Articles',
-      href: getPermalink('/articles'),
+      text: 'Resources',
+      links: [
+        {
+          text: 'Articles',
+          href: getPermalink('/articles'),
+        },
+        {
+          text: 'Affiliate Program',
+          href: getPermalink('/affiliate'),
+        },
+      ],
     },
     {
       text: 'Account',
