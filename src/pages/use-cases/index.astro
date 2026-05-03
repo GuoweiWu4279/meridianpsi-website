@@ -1,0 +1,85 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Use Cases — Meridian PSI for NinjaTrader 8',
+  description:
+    'Problem-focused pages: revenge trading lockout, overtrading prevention, stop-loss manipulation, prop firm behavioral risk, and how Meridian Guard compares to daily loss limits.',
+  robots: { index: true, follow: true },
+};
+
+const cases = [
+  {
+    title: 'NinjaTrader revenge trading lockout',
+    href: '/use-cases/ninjatrader-revenge-trading-lockout',
+    blurb: 'Rapid re-entry, cooldowns, and entry blocking before the next impulsive trade.',
+  },
+  {
+    title: 'NinjaTrader overtrading prevention',
+    href: '/use-cases/ninjatrader-overtrading-prevention',
+    blurb: 'Session pace, trade frequency, and trade-count limits when execution drifts from the plan.',
+  },
+  {
+    title: 'Stop-loss manipulation detection',
+    href: '/use-cases/stop-loss-manipulation-detection',
+    blurb: 'Widening or removing stops under loss — flagged in real time with optional Guard responses.',
+  },
+  {
+    title: 'Prop firm behavioral risk control',
+    href: '/use-cases/prop-firm-behavioral-risk-control',
+    blurb: 'Behavior-first guardrails alongside evaluation account rules.',
+  },
+];
+
+const compares = [
+  {
+    title: 'Meridian Guard vs daily loss limits',
+    href: '/compare/meridian-guard-vs-daily-loss-limits',
+  },
+  {
+    title: 'Meridian Guard vs RiskMaster, ClickAlgo & daily loss limits',
+    href: '/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-12">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-600 mb-3">NinjaTrader 8</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-4">Use cases</h1>
+      <p class="text-lg text-zinc-500 leading-relaxed">
+        Short pages for specific trading discipline problems. Each explains the failure mode, what native limits miss, and how Meridian Guard can respond.
+      </p>
+    </header>
+
+    <ul class="space-y-4 mb-14">
+      {cases.map((c) => (
+        <li>
+          <a
+            href={c.href}
+            class="block rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm hover:border-emerald-300/60 hover:shadow-md transition-all"
+          >
+            <span class="font-semibold text-zinc-900">{c.title}</span>
+            <span class="block text-sm text-zinc-500 mt-1">{c.blurb}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-4">Comparisons</h2>
+    <ul class="space-y-3 mb-10">
+      {compares.map((c) => (
+        <li>
+          <a href={c.href} class="text-emerald-800 font-medium hover:underline underline-offset-2">
+            {c.title} →
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="text-sm text-zinc-500">
+      Product overview: <a href="/what-is-meridian-psi" class="text-emerald-800 underline underline-offset-2">What is Meridian PSI?</a>
+    </p>
+  </article>
+</Layout>

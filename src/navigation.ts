@@ -2,121 +2,58 @@ import { getPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
-    {
-      text: 'Meridian',
-      href: getPermalink('/'),
-      links: [
-        {
-          text: 'Features',
-          href: getPermalink('/features'),
-        },
-        {
-          text: 'Meridian Guard',
-          href: getPermalink('/guard'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'Releases',
-          href: getPermalink('/releases'),
-        },
-        {
-          text: 'Security & Privacy',
-          href: getPermalink('/trust'),
-        },
-      ],
-    },
-    {
-      text: 'About',
-      href: getPermalink('/about'),
-    },
-    {
-      text: 'Support',
-      links: [
-        {
-          text: 'FAQ',
-          href: getPermalink('/faq'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/support'),
-        },
-      ],
-    },
+    { text: 'Guard', href: getPermalink('/guard') },
+    { text: 'Features', href: getPermalink('/features') },
+    { text: 'Pricing', href: getPermalink('/pricing') },
+    { text: 'FAQ', href: getPermalink('/faq') },
     {
       text: 'Resources',
       links: [
-        {
-          text: 'What is Meridian PSI?',
-          href: getPermalink('/what-is-meridian-psi'),
-        },
-        {
-          text: 'Articles',
-          href: getPermalink('/articles'),
-        },
-        {
-          text: 'Glossary',
-          href: getPermalink('/glossary'),
-        },
-        {
-          text: 'Affiliate Program',
-          href: getPermalink('/affiliate'),
-        },
+        { text: 'About', href: getPermalink('/about') },
+        { text: 'Articles', href: getPermalink('/articles') },
+        { text: 'Use Cases', href: getPermalink('/use-cases') },
+        { text: 'Glossary', href: getPermalink('/glossary') },
+        { text: 'Release Notes', href: getPermalink('/releases') },
       ],
     },
-    {
-      text: 'Account',
-      href: getPermalink('/account'),
-    },
+    { text: 'Account', href: getPermalink('/account') },
   ],
-  actions: [{ text: 'Start free trial', href: '/pricing', variant: 'primary' }],
+  actions: [{ text: 'Start free trial', href: getPermalink('/pricing'), variant: 'primary' }],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Meridian',
+      title: 'Product',
       links: [
+        { text: 'Guard', href: getPermalink('/guard') },
         { text: 'Features', href: getPermalink('/features') },
-        { text: 'Meridian Guard', href: getPermalink('/guard') },
         { text: 'Pricing', href: getPermalink('/pricing') },
-        { text: 'Releases', href: getPermalink('/releases') },
+        { text: 'FAQ', href: getPermalink('/faq') },
+        { text: 'Account', href: getPermalink('/account') },
+        { text: 'Security & Privacy', href: getPermalink('/trust') },
       ],
     },
     {
-      title: 'Company',
+      title: 'Resources',
       links: [
         { text: 'About', href: getPermalink('/about') },
-        { text: 'Support', href: getPermalink('/support') },
-        { text: 'Account', href: getPermalink('/account') },
-        { text: 'FAQ', href: getPermalink('/faq') },
         { text: 'Articles', href: getPermalink('/articles') },
+        { text: 'Use Cases', href: getPermalink('/use-cases') },
         { text: 'Glossary', href: getPermalink('/glossary') },
-        { text: 'System requirements', href: getPermalink('/releases#requirements') },
-        { text: 'Security & Privacy', href: getPermalink('/trust') },
+        { text: 'Release Notes', href: getPermalink('/releases') },
         { text: 'Affiliate Program', href: getPermalink('/affiliate') },
       ],
     },
     {
-      title: 'Use Cases',
+      title: 'Support',
       links: [
-        { text: 'What is Meridian PSI?', href: getPermalink('/what-is-meridian-psi') },
-        { text: 'Revenge Trading Lockout', href: getPermalink('/use-cases/ninjatrader-revenge-trading-lockout') },
-        { text: 'Overtrading Prevention', href: getPermalink('/use-cases/ninjatrader-overtrading-prevention') },
-        { text: 'Stop-Loss Manipulation', href: getPermalink('/use-cases/stop-loss-manipulation-detection') },
-        { text: 'Prop Firm Risk Control', href: getPermalink('/use-cases/prop-firm-behavioral-risk-control') },
-        { text: 'Guard vs RiskMaster & ClickAlgo', href: getPermalink('/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits') },
-        { text: 'Guard vs Daily Loss Limits', href: getPermalink('/compare/meridian-guard-vs-daily-loss-limits') },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
+        { text: 'Contact', href: getPermalink('/support') },
+        { text: 'Documentation', href: getPermalink('/articles') },
+        { text: 'Installation', href: getPermalink('/releases#requirements') },
         { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
-        { text: 'Terms of Service', href: getPermalink('/terms') },
-        { text: 'Privacy Policy', href: getPermalink('/privacy') },
+        { text: 'Privacy', href: getPermalink('/privacy') },
+        { text: 'Terms', href: getPermalink('/terms') },
         { text: 'Refund Policy', href: getPermalink('/refund') },
       ],
     },
