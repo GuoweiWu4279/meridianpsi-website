@@ -1,18 +1,49 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import pricing from '~/data/pricing.json';
 
 /** Hero background: replace `public/guard-bg.jpg` (not hashed — easy to swap after AI export). */
 const guardBgUrl = '/guard-bg.jpg';
 
+const guardTier = pricing.tiers[1]!;
+const usd = (n: number) => n.toFixed(2);
+
 const metadata = {
   title: 'Meridian Guard — Commitment Device for Active Traders',
   description:
-    'Meridian Guard enforces the rules you set for yourself. Six trigger conditions, five action levels, and an Intel Layer that turns your session history into actionable insight.',
+    `Meridian Guard: automated enforcement for NinjaTrader 8 — $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr after a 7-day free trial. Six trigger conditions, five action levels, Intel Layer. Trading involves substantial risk.`,
 };
 
 const guardCheckout =
   'https://whop.com/checkout/plan_ZHX4ySB65fahf';
+
+const guardOffers = [
+  {
+    '@type': 'Offer',
+    name: 'Meridian Guard — monthly (after trial)',
+    price: usd(guardTier.monthlyPrice),
+    priceCurrency: guardTier.currency,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: usd(guardTier.monthlyPrice),
+      priceCurrency: guardTier.currency,
+      billingDuration: 'P1M',
+    },
+  },
+  {
+    '@type': 'Offer',
+    name: 'Meridian Guard — annual (after trial)',
+    price: usd(guardTier.annualPrice),
+    priceCurrency: guardTier.currency,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: usd(guardTier.annualPrice),
+      priceCurrency: guardTier.currency,
+      billingDuration: 'P1Y',
+    },
+  },
+];
 
 const guardSchemaJson = JSON.stringify({
   "@context": "https://schema.org",
@@ -31,17 +62,7 @@ const guardSchemaJson = JSON.stringify({
     "Composure progress tracking over six months",
     "100% local — no cloud, no telemetry"
   ],
-  "offers": {
-    "@type": "Offer",
-    "price": "34.99",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "34.99",
-      "priceCurrency": "USD",
-      "billingDuration": "P1M"
-    }
-  },
+  "offers": guardOffers,
   "softwareVersion": "1.1.0",
   "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
   "publisher": {

@@ -18,19 +18,19 @@ The goal is to keep the program simple, measurable, and compliant while the prod
 
 ## Examples
 
-### Monthly purchase
+### Monthly purchase (example: Meridian Core)
 
-- Monthly plan: `$24.99`
-- Audience first-purchase discount: about `$22.49`
-- Creator commission at 20%: about `$4.50`
+- Monthly plan (public list price): `$49.99` — see [Pricing](https://www.meridianpsi.com/pricing) for current tiers
+- Audience first-purchase discount (10% example): about `$44.99`
+- Creator commission at 20% (example): about `$9.00`
 
-### Annual purchase
+### Annual purchase (example: Meridian Core)
 
-- Planned annual price: `$239.88/year`
-- Audience first-purchase discount: about `$215.89`
-- Creator commission at 20%: about `$43.18`
+- Annual plan (public list price): `$479.90/year` — see [Pricing](https://www.meridianpsi.com/pricing)
+- Audience first-purchase discount (10% example): about `$431.91`
+- Creator commission at 20% (example): about `$86.38`
 
-Note: annual commission only applies once annual checkout is live and the customer actually buys the annual plan.
+Note: use live prices from the website; Meridian Guard is billed separately at a higher tier. Annual commission only applies when the customer buys the annual plan.
 
 ## Why This Structure
 

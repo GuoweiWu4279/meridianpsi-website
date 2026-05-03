@@ -3,14 +3,45 @@ import Layout from '~/layouts/PageLayout.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
+import pricing from '~/data/pricing.json';
 
 const checkoutUrl = '/pricing';
+
+const coreTier = pricing.tiers[0]!;
+const usd = (n: number) => n.toFixed(2);
 
 const metadata = {
   title: 'Features — Meridian',
   description:
-    'See how Meridian works: live PSI, seven behavioral signals, session review, personal baselines, adaptable profiles, and fully local privacy.',
+    `See how Meridian works: live PSI, seven behavioral signals, session review, and local-only privacy. Meridian Core from $${usd(coreTier.monthlyPrice)}/mo or $${usd(coreTier.annualPrice)}/yr after a 7-day free trial. Trading involves substantial risk.`,
 };
+
+const coreOffers = [
+  {
+    '@type': 'Offer',
+    name: 'Meridian Core — monthly (after trial)',
+    price: usd(coreTier.monthlyPrice),
+    priceCurrency: coreTier.currency,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: usd(coreTier.monthlyPrice),
+      priceCurrency: coreTier.currency,
+      billingDuration: 'P1M',
+    },
+  },
+  {
+    '@type': 'Offer',
+    name: 'Meridian Core — annual (after trial)',
+    price: usd(coreTier.annualPrice),
+    priceCurrency: coreTier.currency,
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: usd(coreTier.annualPrice),
+      priceCurrency: coreTier.currency,
+      billingDuration: 'P1Y',
+    },
+  },
+];
 
 const schemaJson = JSON.stringify({
   "@context": "https://schema.org",
@@ -32,17 +63,7 @@ const schemaJson = JSON.stringify({
     "5-year local session history",
     "NinjaTrader 8 native add-on"
   ],
-  "offers": {
-    "@type": "Offer",
-    "price": "24.99",
-    "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "24.99",
-      "priceCurrency": "USD",
-      "billingDuration": "P1M"
-    }
-  },
+  "offers": coreOffers,
   "softwareVersion": "1.1.0",
   "releaseNotes": "https://www.meridianpsi.com/releases",
   "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",

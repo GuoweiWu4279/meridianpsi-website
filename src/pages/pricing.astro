@@ -6,17 +6,81 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 
 import pricing from '~/data/pricing.json';
 
-const metadata = {
-  title: 'Pricing — Meridian',
-  description:
-    'Meridian pricing: from $49.99/month after a 7-day free trial. Trading involves substantial risk.',
-};
-
 const { tiers, footnote, headline, subhead } = pricing;
 const [standard, guard] = tiers;
+
+const usd = (n: number) => n.toFixed(2);
+
+const pricingPageDescription = `Meridian Core: $${usd(standard.monthlyPrice)}/mo or $${usd(standard.annualPrice)}/yr after a 7-day free trial. Meridian Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr after trial. Cancel anytime. Trading involves substantial risk.`;
+
+const metadata = {
+  title: 'Pricing — Meridian',
+  ignoreTitleTemplate: true,
+  description: pricingPageDescription,
+};
+
+function tierToPricingPageOffers(tier: (typeof tiers)[number]) {
+  const monthly = usd(tier.monthlyPrice);
+  const annual = usd(tier.annualPrice);
+  return [
+    {
+      '@type': 'Offer',
+      name: `${tier.name} — monthly (after trial)`,
+      price: monthly,
+      priceCurrency: tier.currency,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: monthly,
+        priceCurrency: tier.currency,
+        billingDuration: 'P1M',
+      },
+    },
+    {
+      '@type': 'Offer',
+      name: `${tier.name} — annual (after trial)`,
+      price: annual,
+      priceCurrency: tier.currency,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: annual,
+        priceCurrency: tier.currency,
+        billingDuration: 'P1Y',
+      },
+    },
+  ];
+}
+
+const pricingPageJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Pricing — Meridian',
+      url: 'https://www.meridianpsi.com/pricing',
+      description: pricingPageDescription,
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: standard.name,
+      url: 'https://www.meridianpsi.com/pricing',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Windows',
+      offers: tierToPricingPageOffers(standard),
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: guard.name,
+      url: 'https://www.meridianpsi.com/pricing',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Windows',
+      offers: tierToPricingPageOffers(guard),
+    },
+  ],
+}).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={pricingPageJsonLd} />
   <HeroText tagline="Pricing" title={headline} subtitle={subhead} />
 
   <!-- Billing toggle -->
@@ -200,7 +264,7 @@ const [standard, guard] = tiers;
       {
         title: 'What is the difference between monthly and annual?',
         description:
-          'Same full product, same features. Monthly is billed every month. Annual is billed once per year at a reduced effective rate — saving around $60 per year. Both include a 7-day free trial.',
+          'Same full product, same features. Monthly is billed every month. Annual is billed once per year at a lower effective monthly rate — roughly $120/year less than monthly on Meridian Core, and roughly $168/year less on Meridian Guard (see the Annual toggle on this page). Both include a 7-day free trial.',
       },
       {
         title: 'What is the difference between Meridian and Meridian Guard?',

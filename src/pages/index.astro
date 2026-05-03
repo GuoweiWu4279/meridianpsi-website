@@ -1,6 +1,7 @@
 ﻿---
 import Layout from '~/layouts/PageLayout.astro';
 import heroBgImage from '~/assets/images/hero-bg.jpg';
+import pricing from '~/data/pricing.json';
 
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -194,6 +195,37 @@ const intelShowcaseTabs = [
   },
 ];
 
+function tierToSchemaOffers(tier: (typeof pricing.tiers)[number]) {
+  const monthly = tier.monthlyPrice.toFixed(2);
+  const annual = tier.annualPrice.toFixed(2);
+  return [
+    {
+      '@type': 'Offer',
+      name: `${tier.name} — monthly (after trial)`,
+      price: monthly,
+      priceCurrency: tier.currency,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: monthly,
+        priceCurrency: tier.currency,
+        billingDuration: 'P1M',
+      },
+    },
+    {
+      '@type': 'Offer',
+      name: `${tier.name} — annual (after trial)`,
+      price: annual,
+      priceCurrency: tier.currency,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: annual,
+        priceCurrency: tier.currency,
+        billingDuration: 'P1Y',
+      },
+    },
+  ];
+}
+
 /** JSON-LD must be injected via set:html — inline `{JSON.stringify({...})}` breaks because Astro treats inner `}` as closing the expression. */
 const homePageJsonLd = {
   '@context': 'https://schema.org',
@@ -207,22 +239,7 @@ const homePageJsonLd = {
       description:
         'Meridian is a real-time psychological stability monitor and automated risk management system for active traders. It tracks seven behavioral signals — including revenge trading, stop manipulation, and overtrading pace — and enforces trading rules automatically through configurable Guard rules. Runs natively inside NinjaTrader 8 with no cloud dependency.',
       url: 'https://www.meridianpsi.com',
-      offers: [
-        {
-          '@type': 'Offer',
-          name: 'Meridian',
-          price: '49.99',
-          priceCurrency: 'USD',
-          priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
-        },
-        {
-          '@type': 'Offer',
-          name: 'Meridian Guard',
-          price: '69.99',
-          priceCurrency: 'USD',
-          priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M' },
-        },
-      ],
+      offers: pricing.tiers.flatMap(tierToSchemaOffers),
       featureList: [
         'Real-time Psychological Stability Index (PSI)',
         'Seven behavioral signal dimensions',
