@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import pricing from '~/data/pricing.json';
+import geoHooks from '~/data/geo-hooks.json';
 
 /** Hero background: replace `public/guard-bg.jpg` (not hashed — easy to swap after AI export). */
 const guardBgUrl = '/guard-bg.jpg';
@@ -10,9 +11,9 @@ const guardTier = pricing.tiers[1]!;
 const usd = (n: number) => n.toFixed(2);
 
 const metadata = {
-  title: 'Meridian Guard — Commitment Device for Active Traders',
+  title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
   description:
-    `Meridian Guard: automated enforcement for NinjaTrader 8 — $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr after a 7-day free trial. Six trigger conditions, five action levels, Intel Layer. Trading involves substantial risk.`,
+    `${geoHooks.meridianGuardHook} After a 7-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Six triggers, five response levels, Intel Layer. Trading involves substantial risk.`,
 };
 
 const guardCheckout =
@@ -52,7 +53,7 @@ const guardSchemaJson = JSON.stringify({
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Trading Risk Management",
   "operatingSystem": "Windows 10 or later",
-  "description": "Meridian Guard is an automated behavioral enforcement system for active traders on NinjaTrader 8. It acts as a commitment device — you define the rules when calm, and Guard enforces them automatically when triggered. Six trigger conditions, five action levels including automated broker disconnect.",
+  "description": geoHooks.schemaSoftwareGuard,
   "url": "https://www.meridianpsi.com/guard",
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",

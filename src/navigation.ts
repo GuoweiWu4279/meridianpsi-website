@@ -49,6 +49,10 @@ export const headerData = {
       text: 'Resources',
       links: [
         {
+          text: 'What is Meridian PSI?',
+          href: getPermalink('/what-is-meridian-psi'),
+        },
+        {
           text: 'Articles',
           href: getPermalink('/articles'),
         },
@@ -103,6 +107,7 @@ export const footerData = {
         { text: 'Overtrading Prevention', href: getPermalink('/use-cases/ninjatrader-overtrading-prevention') },
         { text: 'Stop-Loss Manipulation', href: getPermalink('/use-cases/stop-loss-manipulation-detection') },
         { text: 'Prop Firm Risk Control', href: getPermalink('/use-cases/prop-firm-behavioral-risk-control') },
+        { text: 'Guard vs RiskMaster & ClickAlgo', href: getPermalink('/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits') },
         { text: 'Guard vs Daily Loss Limits', href: getPermalink('/compare/meridian-guard-vs-daily-loss-limits') },
       ],
     },

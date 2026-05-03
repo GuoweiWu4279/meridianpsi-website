@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import heroBgImage from '~/assets/images/hero-bg.jpg';
 import pricing from '~/data/pricing.json';
+import geoHooks from '~/data/geo-hooks.json';
 
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -236,8 +237,7 @@ const homePageJsonLd = {
       name: 'Meridian',
       url: 'https://www.meridianpsi.com',
       logo: 'https://www.meridianpsi.com/meridian-logo.png',
-      description:
-        'Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.',
+      description: geoHooks.meridianPsiCanonical,
       sameAs: [
         'https://x.com/Meridian_PSI',
         'https://www.youtube.com/@Meridianpsi1',
@@ -252,13 +252,19 @@ const homePageJsonLd = {
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
       softwareRequirements: 'NinjaTrader 8',
-      description:
-        'Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.',
+      description: geoHooks.schemaSoftwarePsi,
       url: 'https://www.meridianpsi.com',
       offers: pricing.tiers.flatMap(tierToSchemaOffers),
       featureList: [
         'Real-time Psychological Stability Index (PSI)',
         'Seven behavioral signal dimensions',
+        'NinjaTrader 8 behavioral risk manager and trade lockout layer',
+        'Revenge trading lockout — rapid re-entry detection',
+        'Overtrading prevention — session pace and trade frequency',
+        'Stop-loss manipulation detection',
+        'Trade limiter and entry blocking (Guard)',
+        'Consecutive-loss cooldowns and rule enforcement add-on',
+        'Complements daily loss limits — behavior-first, before P&L damage compounds',
         'Revenge Entry detection',
         'Stop-Loss Manipulation detection',
         'Overtrading Pace monitoring',

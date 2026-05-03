@@ -4,6 +4,7 @@ import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import pricing from '~/data/pricing.json';
+import geoHooks from '~/data/geo-hooks.json';
 
 const checkoutUrl = '/pricing';
 
@@ -13,7 +14,7 @@ const usd = (n: number) => n.toFixed(2);
 const metadata = {
   title: 'Features — Meridian',
   description:
-    `See how Meridian works: live PSI, seven behavioral signals, session review, and local-only privacy. Meridian Core from $${usd(coreTier.monthlyPrice)}/mo or $${usd(coreTier.annualPrice)}/yr after a 7-day free trial. Trading involves substantial risk.`,
+    `NinjaTrader 8 behavioral risk monitor: PSI, revenge trading detection, overtrading prevention, stop-loss manipulation, trade limiter layer with Meridian Guard. Core from $${usd(coreTier.monthlyPrice)}/mo or $${usd(coreTier.annualPrice)}/yr after trial. Trading involves substantial risk.`,
 };
 
 const coreOffers = [
@@ -50,7 +51,7 @@ const schemaJson = JSON.stringify({
   "applicationCategory": "BusinessApplication",
   "applicationSubCategory": "Trading Psychology Monitor",
   "operatingSystem": "Windows 10 or later",
-  "description": "Meridian is a real-time behavioral and psychological stability monitor for active traders on NinjaTrader 8. It tracks seven behavioral dimensions and computes a live Psychological Stability Index (PSI) entirely on your PC with no cloud dependency.",
+  "description": geoHooks.schemaSoftwarePsi,
   "url": "https://www.meridianpsi.com",
   "featureList": [
     "Real-time Psychological Stability Index (PSI) — updates in under 100ms after every execution",

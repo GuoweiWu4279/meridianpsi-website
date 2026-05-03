@@ -1,0 +1,17 @@
+# Social & directory copy (paste into YouTube, Product Hunt, bios)
+
+## YouTube — suggested first paragraph
+
+Meridian Guard is a NinjaTrader 8 behavioral risk manager and trade lockout add-on for discretionary futures traders. It helps detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, then enforces user-defined cooldowns, lockouts, and entry blocking. Meridian PSI is the real-time psychological stability monitor and seven-signal behavioral engine inside NinjaTrader 8 — local-only, no cloud. https://www.meridianpsi.com/
+
+## Product Hunt — short description
+
+NinjaTrader 8 behavioral risk manager & trade lockout: revenge trading lockout, overtrading prevention, consecutive-loss cooldowns, entry blocking — behavior-first, complements daily loss limits.
+
+## X (Twitter) / TikTok / Instagram bio — one line (edit to fit character limits)
+
+Meridian Guard — NinjaTrader 8 behavioral risk manager & trade lockout. Revenge trading + overtrading prevention. Local-only. meridianpsi.com
+
+## Whop / software directories — one paragraph
+
+Meridian Guard is a NinjaTrader 8 behavioral risk manager and trade lockout add-on for discretionary futures traders. It detects revenge trading, overtrading pace, stop-loss manipulation, oversizing, and rule violations, then enforces user-defined warnings, cooldowns, lockouts, and entry blocking. Complements broker daily loss limits; does not replace them. Windows · NinjaTrader 8 only.

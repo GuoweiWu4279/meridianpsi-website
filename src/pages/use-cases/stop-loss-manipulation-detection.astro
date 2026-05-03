@@ -1,9 +1,10 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'Stop-Loss Manipulation Detection for NinjaTrader — Meridian PSI',
-  description: 'Meridian helps identify stop-loss manipulation behaviors such as widening stops, removing protective orders, or changing risk after entry, allowing Guard responses before the trader compounds the mistake.',
+  title: 'Stop-Loss Manipulation Detection — NinjaTrader 8 Behavioral Risk Manager | Meridian',
+  description: `${geoHooks.meridianGuardHook} Stop widening, protective order removal, rule enforcement before P&L damage.`,
   robots: { index: true, follow: true },
 };
 
@@ -130,9 +131,9 @@ const faqSchema = JSON.stringify({
     </div>
 
     <div class="mt-14 pt-8 border-t border-zinc-100">
-      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian PSI</p>
+      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian Guard</p>
       <p class="text-sm text-zinc-500 leading-relaxed">
-        Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.
+        {geoHooks.meridianGuardHook}
       </p>
       <p class="text-xs text-zinc-400 mt-3">
         <em>Meridian is not affiliated with NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC. Trading involves substantial risk of loss. Results may vary.</em>

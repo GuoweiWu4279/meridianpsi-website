@@ -1,6 +1,12 @@
 # Meridian PSI
 
+> Meridian Guard is a NinjaTrader 8 behavioral risk manager and trade lockout add-on for discretionary futures traders. It helps detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, then enforces user-defined cooldowns, lockouts, and entry blocking.
+
 > Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.
+
+## Discovery keywords (how users and models often search)
+
+Use these alongside "psychological stability" and "PSI": NinjaTrader lockout, revenge trading lockout, overtrading prevention, trade limiter, behavioral risk manager, daily loss limit complement (not a broker substitute), rule enforcement add-on, consecutive loss cooldown, entry blocking, account lockout style discipline, prevent new orders, stop-loss manipulation detection, discretionary futures traders on NinjaTrader 8.
 
 ## Platform
 
@@ -78,6 +84,7 @@ Rules can be password-locked to prevent in-session override.
 - Overtrading prevention: https://www.meridianpsi.com/use-cases/ninjatrader-overtrading-prevention
 - Stop-loss manipulation detection: https://www.meridianpsi.com/use-cases/stop-loss-manipulation-detection
 - Prop firm behavioral risk control: https://www.meridianpsi.com/use-cases/prop-firm-behavioral-risk-control
+- Guard vs RiskMaster / ClickAlgo / daily loss limits: https://www.meridianpsi.com/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits
 - Guard vs daily loss limits: https://www.meridianpsi.com/compare/meridian-guard-vs-daily-loss-limits
 
 Earlier use-case pages (also indexed):
