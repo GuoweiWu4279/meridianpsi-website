@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
-  "releaseDate": "2026-05-01",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.1.0.zip",
+  "version": "1.2.0",
+  "releaseDate": "2026-05-04",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.2.0.zip",
   "releasesUrl": "https://www.meridianpsi.com/releases",
-  "notes": "HUD redesign, session journal workflow, guard system improvements, and bug fixes"
+  "notes": "Session Reflection journal, Warning zone, notification rewrite, journal and display fixes"
 }
