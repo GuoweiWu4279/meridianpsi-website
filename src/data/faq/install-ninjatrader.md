@@ -4,7 +4,7 @@ category: installation
 order: 1
 ---
 
-Download the `.zip` file from the [Releases page](/releases) and extract it. Inside you will find an `.ninjascript` file (or `.zip` for NinjaScript import). In NinjaTrader 8:
+Download the `.zip` file from the [Download page](/download) and extract it. Inside you will find an `.ninjascript` file (or `.zip` for NinjaScript import). In NinjaTrader 8:
 
 1. Open **Tools → Import → NinjaScript Add-On**
 2. Select the downloaded file

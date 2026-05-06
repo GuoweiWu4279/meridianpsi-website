@@ -27,11 +27,11 @@
     "salesEmail": "contactmeridianpsi@gmail.com"
   },
   "links": {
-    "download": "/releases",
+    "download": "/download",
     "pricing": "/pricing",
     "checkout": "/checkout",
     "docs": "/faq",
     "support": "/support",
-    "changelog": "/releases"
+    "changelog": "/download"
   }
 }

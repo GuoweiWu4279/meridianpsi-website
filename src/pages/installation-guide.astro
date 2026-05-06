@@ -1,0 +1,220 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const DOWNLOAD_PAGE = 'https://www.meridianpsi.com/downloads';
+const WHOP_URL = 'https://whop.com';
+const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
+
+const metadata = {
+  title: 'Installation Guide — Meridian',
+  description:
+    'Install Meridian in NinjaTrader 8: Whop license key, download, import, activate, SIM setup, and troubleshooting.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="py-12 px-6">
+    <div class="max-w-3xl mx-auto text-zinc-900 dark:text-white">
+      <h1 class="text-3xl md:text-4xl font-bold mb-3">Install Meridian in NinjaTrader 8</h1>
+      <p class="text-zinc-600 dark:text-zinc-400 text-base mb-10 leading-relaxed">
+        This guide will help you install Meridian, activate your license, and complete your first SIM test.
+      </p>
+
+      <!-- Quick Start -->
+      <div class="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/60 dark:bg-emerald-950/30 p-6 md:p-7 mb-12">
+        <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">Quick Start</h2>
+        <ol class="list-decimal list-inside space-y-1.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+          <li>Get your license key from Whop</li>
+          <li>
+            Download Meridian from <a class="text-emerald-800 dark:text-emerald-400 underline font-medium" href={DOWNLOAD_PAGE}>{DOWNLOAD_PAGE}</a>
+          </li>
+          <li>In NinjaTrader 8, go to <strong>Tools → Import → NinjaScript Add-On</strong></li>
+          <li>Import the Meridian <code class="text-xs bg-zinc-200/80 dark:bg-zinc-800 px-1 rounded">.zip</code> file</li>
+          <li>Open Meridian from <strong>Control Center → New → Add-ons → Meridian</strong></li>
+          <li>Paste your license key</li>
+          <li>Connect to SIM</li>
+          <li>Start in <strong>Monitor Only</strong> or <strong>Alert Only</strong> mode</li>
+          <li>Place one small SIM test trade</li>
+          <li>Confirm the dashboard updates</li>
+        </ol>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-3">Start here</h2>
+      <p class="text-sm font-medium text-zinc-800 dark:text-zinc-200 mb-2">You will need:</p>
+      <ul class="list-disc list-inside text-sm text-zinc-600 dark:text-zinc-400 space-y-1 mb-4">
+        <li>NinjaTrader 8 installed</li>
+        <li>Your Whop login</li>
+        <li>Your Meridian license key</li>
+        <li>The latest Meridian download</li>
+      </ul>
+      <p class="text-sm text-zinc-600 dark:text-zinc-400 border-l-2 border-emerald-500 pl-3 py-1 mb-10">
+        For first use, start in SIM and keep Guard in <strong>Monitor Only</strong> or <strong>Alert Only</strong> mode.
+      </p>
+
+      <div class="space-y-10 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">1. Get your license key</h2>
+          <p class="mb-3">Your Meridian license key is stored inside your Whop membership.</p>
+          <ol class="list-decimal list-inside space-y-1.5 mb-3">
+            <li>Go to <a class="text-emerald-800 dark:text-emerald-400 underline font-medium" href={WHOP_URL} target="_blank" rel="noopener noreferrer">{WHOP_URL}</a></li>
+            <li>Sign in with the same email you used at checkout</li>
+            <li>Open your Meridian PSI membership</li>
+            <li>Find the Software / License Key section</li>
+            <li>Copy your license key</li>
+          </ol>
+          <p class="mb-3">Copy the key exactly. Do not add extra spaces before or after it.</p>
+          <p class="mb-1">If you cannot find your license key, email:</p>
+          <p class="mb-1">
+            <a class="text-emerald-800 dark:text-emerald-400 underline font-medium" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+          </p>
+          <p>Include the email address you used at checkout.</p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">2. Download Meridian</h2>
+          <p class="mb-2">Download the latest Meridian build here:</p>
+          <p class="mb-3">
+            <a class="text-emerald-800 dark:text-emerald-400 underline font-medium break-all" href={DOWNLOAD_PAGE}>{DOWNLOAD_PAGE}</a>
+          </p>
+          <p class="mb-3">Save the file somewhere easy to find, such as your Downloads folder.</p>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-1">Important:</p>
+          <p>
+            If the downloaded file is a NinjaScript <code class="text-xs bg-zinc-200/80 dark:bg-zinc-800 px-1 rounded">.zip</code> package, do not extract it. Import the
+            <code class="text-xs bg-zinc-200/80 dark:bg-zinc-800 px-1 rounded">.zip</code> file directly into NinjaTrader.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">3. Import Meridian into NinjaTrader 8</h2>
+          <ol class="list-decimal list-inside space-y-1.5 mb-3">
+            <li>Open NinjaTrader 8</li>
+            <li>Go to the Control Center</li>
+            <li>Click Tools</li>
+            <li>Click Import</li>
+            <li>Click NinjaScript Add-On</li>
+            <li>Select the Meridian <code class="text-xs bg-zinc-200/80 dark:bg-zinc-800 px-1 rounded">.zip</code> file you downloaded</li>
+            <li>Confirm the import</li>
+            <li>Allow NinjaTrader to compile the add-on</li>
+            <li>Restart NinjaTrader if prompted</li>
+          </ol>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-1">Important:</p>
+          <p>Meridian is not a chart indicator. Do not look for it in the chart Indicators list.</p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">4. Open Meridian</h2>
+          <p class="mb-2">After installation, open Meridian from the NinjaTrader Control Center:</p>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-2">New → Add-ons → Meridian</p>
+          <p>Meridian runs from the Control Center and monitors trading behavior in the background.</p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">5. Activate your license</h2>
+          <p class="mb-2">When Meridian opens:</p>
+          <ol class="list-decimal list-inside space-y-1.5 mb-3">
+            <li>Paste your Whop license key</li>
+            <li>Click Activate</li>
+            <li>Confirm that Meridian opens successfully</li>
+          </ol>
+          <p class="mb-2">If activation fails, check that:</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>You copied the full license key</li>
+            <li>There are no extra spaces</li>
+            <li>You are using the same Whop account that started the trial or subscription</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">6. First setup</h2>
+          <p class="mb-3">Before using Meridian live, set up your basic profile.</p>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-2">Recommended first setup:</p>
+          <ol class="list-decimal list-inside space-y-1.5 mb-3">
+            <li>Connect to SIM first</li>
+            <li>Open Meridian</li>
+            <li>Confirm your account appears</li>
+            <li>Open Settings / Profile</li>
+            <li>Set your normal trading window</li>
+            <li>Set your typical position size</li>
+            <li>Set basic risk limits</li>
+            <li>Keep Guard in Monitor Only or Alert Only mode</li>
+            <li>Save your profile</li>
+          </ol>
+          <p>Do not start with strict lockouts or disconnect actions. Test in SIM first.</p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">7. First SIM test</h2>
+          <p class="mb-2">After setup:</p>
+          <ol class="list-decimal list-inside space-y-1.5 mb-3">
+            <li>Connect to SIM</li>
+            <li>Open Meridian</li>
+            <li>Confirm your account is detected</li>
+            <li>Place one small SIM test trade</li>
+            <li>Confirm that the dashboard updates</li>
+            <li>Review any warning or Critical message</li>
+          </ol>
+          <p>If everything looks normal, continue testing in SIM before enabling stricter Guard actions.</p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-3">Common issues</h2>
+
+          <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mt-4 mb-2">No accounts are showing</h3>
+          <p class="mb-2">Try this:</p>
+          <ol class="list-decimal list-inside space-y-1.5 mb-2">
+            <li>Make sure your SIM or live account is connected in NinjaTrader</li>
+            <li>Click Refresh Accounts in Meridian</li>
+            <li>If needed, close and reopen the Meridian Dashboard</li>
+          </ol>
+          <p class="mb-6">If the issue continues, send a screenshot to support.</p>
+
+          <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-2">Meridian shows Critical on the first SIM trade</h3>
+          <p class="mb-2">This usually means one of your profile rules was triggered.</p>
+          <p class="mb-1 font-medium text-zinc-800 dark:text-zinc-200">Common causes:</p>
+          <ul class="list-disc list-inside space-y-1 mb-2">
+            <li>You are trading outside your configured session window</li>
+            <li>Your position size is above your profile setting</li>
+            <li>Guard settings are too strict for first use</li>
+            <li>Your profile is not fully configured yet</li>
+          </ul>
+          <p class="mb-6">For first testing, use Monitor Only or Alert Only mode.</p>
+
+          <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-2">I cannot find Meridian in Indicators</h3>
+          <p class="mb-2">That is expected.</p>
+          <p class="mb-2">Meridian is not opened from the chart Indicators list.</p>
+          <p class="mb-1">Open it from:</p>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-6">Control Center → New → Add-ons → Meridian</p>
+
+          <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-2">The import failed</h3>
+          <p class="mb-2">Make sure you are importing through:</p>
+          <p class="font-medium text-zinc-800 dark:text-zinc-200 mb-2">Tools → Import → NinjaScript Add-On</p>
+          <p>If NinjaTrader shows an error, send a screenshot to support.</p>
+        </section>
+
+        <section class="rounded-xl border border-zinc-200 dark:border-zinc-800 p-5">
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-white mb-2">Need help?</h2>
+          <p class="mb-1">Email:</p>
+          <p class="mb-3">
+            <a class="text-emerald-800 dark:text-emerald-400 underline font-medium" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+          </p>
+          <p class="mb-1 font-medium text-zinc-800 dark:text-zinc-200">Please include:</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Your Whop checkout email</li>
+            <li>Your NinjaTrader 8 version</li>
+            <li>Your Meridian version</li>
+            <li>A screenshot of the issue</li>
+            <li>The step where you got stuck</li>
+          </ul>
+        </section>
+
+        <section class="text-xs text-zinc-500 dark:text-zinc-500 border-t border-zinc-200 dark:border-zinc-800 pt-8">
+          <p class="font-semibold text-zinc-700 dark:text-zinc-400 mb-1">Risk notice</p>
+          <p>
+            Meridian is a behavioral monitoring and risk-management tool. It does not provide trade signals, financial advice, or profit guarantees. Test in SIM before using
+            Meridian live.
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</Layout>

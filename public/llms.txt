@@ -71,7 +71,7 @@ Rules can be password-locked to prevent in-session override.
 - Pricing: https://www.meridianpsi.com/pricing
 - FAQ: https://www.meridianpsi.com/faq
 - Trust / Security & Privacy: https://www.meridianpsi.com/trust
-- Releases / changelog: https://www.meridianpsi.com/releases
+- Download / changelog: https://www.meridianpsi.com/download
 - Articles: https://www.meridianpsi.com/articles
 - Glossary: https://www.meridianpsi.com/glossary
 - Support: https://www.meridianpsi.com/support

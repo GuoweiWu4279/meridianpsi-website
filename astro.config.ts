@@ -29,9 +29,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      filter: (page) =>
-        !page.includes('/download') &&
-        !page.includes('/changelog'),
+      filter: (page) => !page.includes('/changelog'),
     }),
     mdx(),
     icon({
