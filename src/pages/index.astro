@@ -108,9 +108,13 @@ const steps = [
   {
     label: 'Configure',
     bg: '#f4f4f5',
-    desc: 'Adapt the system to your strategy',
-    fullDesc: 'Adapt the system to any strategy or trading style. Meridian allows you to define a comprehensive set of operational boundaries, establishing a baseline customized to your specific execution methods.',
-    bullets: ['Universal compatibility: Configurable for any trading style and strategy.', 'Comprehensive parameters: Set exact session rules, position limits, and stop conventions.', 'Adaptive baseline: Machine learning updates your personal rhythm after every session.'],
+    desc: 'Define your style',
+    fullDesc: 'Define your trading style and strategy so Meridian fits how you actually trade.',
+    bullets: [
+      'Set your trading window, trading size, and entry frequencies.',
+      'Set hold-time and re-entry timing rules that match your execution style.',
+      'Adaptive baseline learning gets more accurate as your session data grows.',
+    ],
     image: '/configue-pic.jpg?v=2',
     imgAlt: 'Meridian personal baseline configuration panel',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
@@ -118,9 +122,13 @@ const steps = [
   {
     label: 'Live Monitor',
     bg: '#1C1C1E',
-    desc: 'PSI updates in <100ms',
-    fullDesc: 'Track your execution state instantly. Grounded in quantitative models and cognitive research, Meridian calculates your Psychological Stability Index (PSI) in real time.',
-    bullets: ['Actionable PSI score updates in &lt;100ms', '7 behavioral signal bars to isolate execution errors', 'Live session stats: trades, win rate, and duration'],
+    desc: 'Monitor behavior',
+    fullDesc: 'Meridian monitors behavior in combination with real cognitive science and psychology to catch mistakes BEFORE they happen.',
+    bullets: [
+      'Tracks revenge trading, overtrading, and oversizing pressure.',
+      'Detects stop-loss manipulation, holding losers too long, and profit-cutting behavior.',
+      'Pressure indicators surface early breakdown signals before damage compounds.',
+    ],
     carouselSlides: [
       { src: '/screenshots/live-monitor-psi-hud.png', alt: 'Meridian live PSI HUD — stability readout and session context' },
       { src: '/screenshots/live-monitor-psi-low.png', alt: 'Meridian live PSI HUD — elevated risk zone readout' },
@@ -130,9 +138,13 @@ const steps = [
   {
     label: 'Guard',
     bg: '#1C1C1E',
-    desc: 'Automated enforcement',
-    fullDesc: 'Automated discipline. You set the rules when you are objective. Guard enforces them automatically when critical thresholds are breached.',
-    bullets: ['6 configurable behavioral trigger conditions', '5 automated response levels (from simple alerts to platform lockout)', 'Set once, active for every session'],
+    desc: 'Automate response',
+    fullDesc: 'Guard turns your rules into action with warnings, acknowledgments, alerts, cooldowns, and broker disconnect when needed.',
+    bullets: [
+      'Response ladder: notification, acknowledgment, alert, cooldown, and disconnect.',
+      'Six trigger conditions with flexible combinations for your exact workflow.',
+      'Trade with confidence knowing a system is behind you.',
+    ],
     image: '/guard-hero.png',
     /* Full asset visible in 16:9 panel (no crop); see .acc-img--guard-fit */
     imgPanelFit: 'guard' as const,
@@ -143,9 +155,14 @@ const steps = [
   {
     label: 'Review & Intel',
     bg: '#f4f4f5',
-    desc: 'Patterns across sessions',
-    fullDesc: 'Analyze the direct correlation between your psychological state and your P&L. Meridian tracks your behavioral data across multiple timeframes to provide objective, actionable execution analysis.',
-    bullets: ['Daily: Daily journaling and detailed session reports.', 'Weekly: Execution analysis identifying repetitive composure patterns.', 'Monthly: Long-term performance tracking, behavioral correlation and very comprehensive analysis.', 'Local History: Up to 5 years of session data stored entirely on your PC.'],
+    desc: 'Review with statistics',
+    fullDesc: 'See your behavior in real statistics and know how to improve.',
+    bullets: [
+      'Detailed session reports show exactly what happened during the trading session.',
+      'Real-time journal and auto-complete journal system keep track of up to 5 years of data for review.',
+      'Trading statistics and trend ranges from daily, weekly, and monthly views.',
+      'Advanced statistics show your biggest weaknesses and where to improve.',
+    ],
     image: '/screenshots/review-intel-illustration.jpg',
     imgAlt: 'Meridian Review & Intel — session history and analysis overview',
     /* Wider than 16:9 — cover fills the panel so letterboxing bars don’t show (other steps stay contain) */
@@ -155,19 +172,19 @@ const steps = [
 ];
 
 const signals = [
-  { name: 'Revenge Entry',     desc: 'Re-entry after loss with elevated size' },
-  { name: 'Stop Manipulation', desc: 'Widening stops in the adverse direction' },
-  { name: 'Size Spike',        desc: 'Position exceeds your declared rule' },
-  { name: 'Hold Bias',         desc: 'Abnormal hold duration vs your baseline' },
-  { name: 'Position Overstay', desc: 'Holding a loser past your 90th-percentile time' },
-  { name: 'Rule Violations',   desc: 'Trading outside your declared session rules' },
-  { name: 'Overtrading Pace',  desc: 'Entry frequency accelerating vs history' },
+  { name: 'Revenge Entry', desc: 'Re-entering too quickly after a loss.' },
+  { name: 'Stop-Moving', desc: 'Widening your stop when the trade moves against you.' },
+  { name: 'Oversizing', desc: 'Trading larger than your profile allows.' },
+  { name: 'Holding Stress', desc: 'Holding a trade far longer than your normal behavior.' },
+  { name: 'Position Overstay', desc: 'Staying in a losing trade beyond your normal time range.' },
+  { name: 'Rule-Breaking', desc: 'Trading outside your declared session rules.' },
+  { name: 'Overtrading Pace', desc: 'Taking trades faster than your normal rhythm.' },
 ];
 
 const intelShowcaseTabs = [
   {
     title: 'Intel & Correlation',
-    sub: 'Cross-reference your psychology with your P&L. Discover your weakest trading days and receive a personalized Pre-Session Risk Brief.',
+    sub: 'Correlation statistics show the impact of behavior on outcomes. Monthly reports compare this month vs last month, highlight your top strengths and weaknesses, and reveal weekday patterns so you can adjust.',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
     slides: [
       { src: '/screenshots/digest-march.png', alt: 'Meridian monthly digest — composure grade (B+), stats, and risk brief context' },
@@ -277,8 +294,8 @@ const homePageJsonLd = {
         'NinjaTrader 8 native add-on',
         'Prop firm compatible',
       ],
-      releaseNotes: 'https://www.meridianpsi.com/releases',
-      downloadUrl: 'https://www.meridianpsi.com/releases',
+      releaseNotes: 'https://www.meridianpsi.com/download',
+      downloadUrl: 'https://www.meridianpsi.com/download',
       publisher: {
         '@id': 'https://www.meridianpsi.com/#organization',
       },
@@ -326,12 +343,11 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             Stop mistakes<br />
             <span style="color:#059669;">before they reach the order window.</span>
           </h1>
-          <p class="text-sm md:text-base font-medium leading-snug max-w-xl mx-auto mb-6 fade-up" style="color:#3f3f46;">
-            Trading without a risk management system is like working on a skyscraper without a safety harness.
+          <p class="text-sm md:text-base leading-relaxed break-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none] max-w-[780px] mx-auto mb-2 fade-up" style="color:#71717a;">
+            Meridian is a real-time psychological stability monitor and automated risk-management system for discretionary futures traders on NinjaTrader 8 — tracking revenge trading, overtrading, stop-moving, oversizing, and rule-breaking before pressure takes over.
           </p>
-          <!-- Subtitle -->
-          <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 fade-up" style="color:#71717a;">
-            <strong style="color:#18181b; font-weight:600;">Meridian</strong> is the first real-time psychological stability monitor and automated risk management system for active traders. It acts as your trading safety harness — monitoring behavioral risk in real time and enforcing your limits before you break your own rules. Built for discretionary futures traders on NinjaTrader 8.
+          <p class="text-xs md:text-sm max-w-[780px] mx-auto mb-6 fade-up" style="color:#a1a1aa;">
+            Not a signal tool. Not financial advice.
           </p>
           <!-- CTAs -->
           <div class="flex flex-col sm:flex-row sm:justify-center gap-3 fade-up">
@@ -387,25 +403,155 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     </div>
   </div>
 
-  <!-- ——— PROBLEM — light off-white ——— -->
+  <!-- ——— DIFFERENTIATION — comparison section ——— -->
   <section class="relative py-16 md:py-24 px-6" style="background:#f7f5f1; border-top:1px solid rgba(0,0,0,0.05); border-bottom:1px solid rgba(0,0,0,0.05);">
-    <div class="relative max-w-2xl mx-auto text-center">
-      <!-- Eyebrow badge -->
+    <div class="relative max-w-6xl mx-auto text-center">
       <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full fade-up" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
         <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">The Problem</span>
+        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Comparison</span>
       </div>
-      <!-- Heading with word-blur animation + two-tone split -->
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
-        Institutions have risk management teams.<br />
-        <span style="color:#059669;">You have Meridian.</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-4 word-blur-target" style="color:#18181b;">
+        Why Meridian is different
       </h2>
-      <!-- Body -->
-      <p class="text-base leading-relaxed max-w-xl mx-auto fade-up" style="color:#71717a;">
-        Institutional traders rely on dedicated teams, data systems, and hard limits to prevent emotional decisions. Retail traders trade alone, relying only on willpower.
+      <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto fade-up mb-8" style="color:#71717a;">
+        Most tools help at one stage. Meridian helps across the full loop.
       </p>
-      <p class="text-base leading-relaxed max-w-xl mx-auto mt-4 fade-up" style="color:#71717a;">
-        Meridian bridges this gap. It acts as your personal risk manager, tracking your behavior and enforcing your rules the moment emotions take over.
+
+      <div class="max-w-6xl mx-auto fade-up text-left">
+        <div class="rounded-2xl border border-zinc-200 bg-white shadow-sm">
+          <div class="overflow-x-auto rounded-2xl p-1">
+            <div class="relative isolate min-w-[980px]">
+              <!-- Single outline for Meridian column (avoids stacked borders + corner clipping) -->
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 z-0 w-1/4 rounded-tr-xl rounded-br-xl border border-emerald-600/20"
+                aria-hidden="true"
+              ></div>
+              <div class="relative z-[1]">
+            <div class="grid grid-cols-4 items-center bg-zinc-50 border-b border-zinc-200">
+              <div class="p-4 text-sm font-semibold text-zinc-700">Capability</div>
+              <div class="p-4 text-sm font-semibold text-zinc-700">Trade Journals</div>
+              <div class="p-4 text-sm font-semibold text-zinc-700">Traditional Risk Management</div>
+              <div class="p-4 text-sm font-semibold text-emerald-700">Meridian · Full Loop</div>
+            </div>
+
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
+              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 1: Live Trading Protection</div>
+              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Works during live trading</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Protects when loss / size limits hit</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Warns before mistake</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects overtrading pace</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">Trade-count only</div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects revenge trading</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects stop-moving / holding losers</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
+            </div>
+
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
+              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 2: Data &amp; Journal</div>
+              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Trade Journal</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center gap-1.5"><span class="text-[19px] leading-none text-zinc-700">✓</span><span>After session</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>Live + after</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">History</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Limited</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>5yrs</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Statistics</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Limited</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Behavior &amp; Composure</div>
+              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Manual &amp; limited</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>7+ trading patterns</span></div>
+            </div>
+
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
+              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 3: Analysis &amp; Improvement</div>
+              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Weekly / monthly patterns</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Progress over time</div>
+              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Identifies behavioral strengths</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Identifies behavioral weaknesses</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Advanced Composure x PnL correlation</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+            <div class="grid grid-cols-4 items-center">
+              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Personalized guide to improve composure</div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
+              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-sm leading-relaxed max-w-3xl mx-auto mt-6 fade-up" style="color:#71717a;">
+        Meridian does not replace journaling or hard risk rules - it fills the gap before those tools usually act.
       </p>
     </div>
   </section>
@@ -496,8 +642,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             <span class="text-emerald-700 dark:text-emerald-500">Guard enforces them.</span>
           </h2>
           <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6">
-            Willpower isn&apos;t a risk strategy. Guard acts as your personal compliance system, automatically enforcing
-            your limits the moment your psychological stability drops.
+            Willpower is not a risk strategy. Guard acts as your personal compliance system, helping stop mistakes before they happen with warnings, acknowledgments, cooldowns, and broker disconnect.
           </p>
           <div
             class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-8"
@@ -555,60 +700,6 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     </div>
   </section>
 
-  <!-- ——— ROADMAP / HOW IT WORKS ——— -->
-  <section id="how-it-works" class="section border-y border-zinc-200/80 bg-white">
-    <div class="container-wide">
-      <div class="text-center mb-16 max-w-2xl mx-auto">
-        <p class="eyebrow mb-4 fade-up">How it works</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 fade-up" style="color:#18181b;">
-          Before. During. After. Every session.
-        </h2>
-        <p class="lead fade-up max-w-3xl mx-auto text-balance" style="color:#71717a;">
-          Meridian fits into every stage of how you trade — setup, real-time monitoring and automatic enforcement, and post-session review.
-        </p>
-      </div>
-
-      <!-- 4-step roadmap -->
-      <div class="relative">
-        <!-- dotted connector line (desktop) -->
-        <div
-          class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] border-t border-dashed border-zinc-300/80"
-          aria-hidden="true"
-        ></div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { num: '01', title: 'Configure',     sub: 'Any strategy. Any style.',      bullets: ['Session rules & time windows', 'Size limits and stop conventions', 'Adaptive baseline learns your rhythm'] },
-            { num: '02', title: 'Live Monitor',  sub: '7 signals. <100ms updates.',    bullets: ['Quantitative math models & cognitive research', '7 signals tracking the most common psychological failure patterns', 'Live score — see instantly which habit is driving performance'] },
-            { num: '03', title: 'Guard',         sub: 'Rules that enforce themselves.', bullets: ['6 trigger conditions', '5 response levels', 'Quiet alert to full platform lockout'] },
-            { num: '04', title: 'Review & Intel', sub: 'Every session. Every pattern.', bullets: ['PSI, Composure, and trade stats', 'Monthly digest & P&L correlation', "Today's Risk Brief"] },
-          ].map((step, i) => (
-            <div class="fade-up" style={`transition-delay:${i * 80}ms`}>
-              <!-- Number disc -->
-              <div class="relative z-10 mx-auto w-12 h-12 rounded-full bg-white border border-zinc-200 flex items-center justify-center mb-5 text-sm font-semibold tracking-tight text-[#4b734e] shadow-sm">
-                {step.num}
-              </div>
-              <div class="text-center mb-5">
-                <h3 class="text-base font-semibold mb-1" style="color:#18181b;">{step.title}</h3>
-                <p class="text-sm" style="color:#71717a;">{step.sub}</p>
-              </div>
-              <ul class="card card-hover p-5 space-y-2.5 shadow-sm shadow-zinc-900/5 ring-1 ring-zinc-900/[0.04]">
-                {step.bullets.map((b) => (
-                  <li class="flex items-start gap-2.5 text-sm" style="color:#71717a;">
-                    <svg class="mt-0.5 w-4 h-4 shrink-0 text-[#4b734e]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ——— STEP DETAIL — light accordion + cross-fade image ——— -->
   <section id="step-detail" class="py-16 lg:py-24 px-6 border-y border-zinc-200/70 bg-gradient-to-b from-zinc-100/70 via-zinc-50/90 to-white">
     <div class="max-w-6xl mx-auto">
@@ -624,10 +715,10 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start">
         <div class="flex flex-col">
           <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight word-blur-target mb-2" style="color:#18181b;">
-            The 4 Stages of<br />Behavioral Risk Management.
+            How Meridian works
           </h2>
           <p class="text-sm leading-relaxed max-w-xl mb-4" style="color:#71717a;">
-            How Meridian integrates into your session to ensure consistent execution.
+            A simple workflow: set your profile, monitor behavior, protect with Guard, and review the session to improve afterward.
           </p>
           <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
           <div
@@ -752,10 +843,10 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div class="text-center max-w-2xl mx-auto mb-16">
         <p class="eyebrow mb-4 fade-up">Behavioral signals</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5 fade-up">
-          Seven patterns. Each tied to a known failure mode.
+          What Meridian watches for
         </h2>
-        <p class="lead fade-up">
-          Seven patterns that show up in every blown account, every missed rule, every session you wish you could take back. Each runs independently and feeds into a single PSI score.
+        <p class="lead fade-up md:whitespace-nowrap">
+          Meridian monitors the behaviors that usually appear before a trader breaks the plan.
         </p>
       </div>
 
@@ -802,9 +893,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight text-balance text-zinc-900 dark:text-zinc-100">
           See the exact cost of your trading psychology.
         </h2>
-        <p class="text-base md:text-lg leading-relaxed mt-3 text-zinc-600 dark:text-zinc-400 text-pretty">
-          Broker dashboards only show what happened. Meridian shows why. Track your behavioral data to uncover the
-          exact financial impact of your habits.
+        <p class="text-base md:text-lg leading-relaxed mt-3 text-zinc-600 dark:text-zinc-400">
+          Journaling tools only show what happened. Meridian shows the process, why it happened, and the exact financial impact of your behaviors, so you know what to do to improve.
         </p>
       </div>
 
