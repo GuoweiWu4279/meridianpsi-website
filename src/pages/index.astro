@@ -1556,9 +1556,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     initIntelTabs();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+  // View Transitions (ClientRouter): soft navigations do not fire DOMContentLoaded again.
+  // astro:page-load runs after the initial full load and after each client-side navigation.
+  document.addEventListener('astro:page-load', boot);
 </script>
