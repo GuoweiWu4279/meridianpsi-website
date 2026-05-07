@@ -1,9 +1,17 @@
 import { getPermalink } from './utils/permalinks';
 
+// Header navigation data: edit here to change top nav and footer.
 export const headerData = {
   links: [
     { text: 'Guard', href: getPermalink('/guard') },
-    { text: 'Features', href: getPermalink('/features') },
+    {
+      text: 'Features',
+      links: [
+        { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
+        { text: 'Meridian Guard', href: getPermalink('/guard') },
+        { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
+      ],
+    },
     { text: 'Pricing', href: getPermalink('/pricing') },
     {
       text: 'Download',
@@ -34,8 +42,9 @@ export const footerData = {
     {
       title: 'Product',
       links: [
+        { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
         { text: 'Guard', href: getPermalink('/guard') },
-        { text: 'Features', href: getPermalink('/features') },
+        { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
         { text: 'Pricing', href: getPermalink('/pricing') },
         { text: 'Download', href: getPermalink('/download') },
         { text: 'Installation Guide', href: getPermalink('/installation-guide') },

@@ -1,0 +1,74 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+export interface Props {
+  featureTag?: string;
+  title: string;
+  intro: string;
+  videoTitle?: string;
+  videoDescription?: string;
+  videoUrl?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+const {
+  featureTag = 'Feature',
+  title,
+  intro,
+  videoTitle = 'Feature walkthrough',
+  videoDescription = 'Add a short 20-60 second product demo video for this feature.',
+  videoUrl,
+  ctaTitle = 'Stop mistakes before they reach the order window.',
+  ctaSubtitle = 'Start in SIM first, then move to stricter enforcement after stable results.',
+} = Astro.props;
+---
+
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-xs font-semibold tracking-[0.15em] uppercase text-emerald-600 mb-3">{featureTag}</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">{title}</h1>
+    <p class="text-zinc-600 leading-relaxed max-w-3xl">{intro}</p>
+  </div>
+</section>
+
+<section class="pb-12 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-4">
+      <h2 class="text-lg md:text-xl font-semibold text-zinc-900">{videoTitle}</h2>
+      <p class="text-sm text-zinc-600 mt-1">{videoDescription}</p>
+    </div>
+    <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50 aspect-video flex items-center justify-center shadow-sm">
+      {
+        videoUrl ? (
+          <iframe
+            src={videoUrl}
+            class="w-full h-full"
+            title={`${title} video walkthrough`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+        ) : (
+          <p class="text-sm text-zinc-500 px-4 text-center">Video placeholder: add your feature walkthrough embed URL.</p>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pb-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <slot />
+  </div>
+</section>
+
+<CallToAction
+  actions={[
+    { variant: 'primary', text: 'Start free trial', href: '/pricing' },
+    { text: 'Installation guide', href: '/installation-guide' },
+  ]}
+>
+  <Fragment slot="title">{ctaTitle}</Fragment>
+  <Fragment slot="subtitle">{ctaSubtitle}</Fragment>
+</CallToAction>

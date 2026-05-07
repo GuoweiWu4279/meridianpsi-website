@@ -1,0 +1,180 @@
+﻿---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'PSI Monitor - Meridian',
+  description:
+    'PSI Monitor tracks behavioral risk in real time and calculates PSI so traders can spot pressure before major mistakes compound.',
+};
+---
+
+<Layout metadata={metadata}>
+
+  <!-- Hero -->
+  <section class="section-tight">
+    <div class="container-wide">
+      <p class="text-xs font-semibold tracking-[0.15em] uppercase text-emerald-600 mb-3">Feature</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">PSI Monitor</h1>
+      <p class="text-zinc-600 leading-relaxed max-w-3xl">
+        Traditional risk management tools usually react after something has already happened. PSI Monitor works earlier by tracking behavior during the session and showing when execution is drifting before major mistakes happen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section class="pb-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-6">
+        <h2 class="text-lg md:text-xl font-semibold text-zinc-900">PSI Monitor walkthrough</h2>
+        <p class="text-sm text-zinc-500 mt-1">See how PSI moves in real time, what behavioral signals are tracked, and how to use PSI as live execution context.</p>
+      </div>
+      <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50 aspect-video shadow-sm">
+        <iframe
+          src="https://www.youtube.com/embed/DjzPWxPGHs8"
+          class="w-full h-full"
+          title="PSI Monitor video walkthrough"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Before / During / After -->
+  <section class="section-tight border-t border-zinc-100">
+    <div class="container-wide">
+      <div class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">Built for the full session, not just the trade.</h2>
+        <p class="text-base text-zinc-500 max-w-2xl">
+          Most risk tools only react after something has already gone wrong. Meridian covers the complete loop — configure your rules and baselines before the open, track behavioral pressure as it builds in real time, enforce limits when discipline slips, and review the patterns that drove your decisions after the close.
+        </p>
+      </div>
+      <div class="relative">
+        <!-- Connector line through circle centers (desktop only) -->
+        <div class="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-emerald-200 z-0" aria-hidden="true"></div>
+        <!-- Arrow indicators between steps -->
+        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 25%; transform: translateX(-50%);" aria-hidden="true">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+        </div>
+        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 50%; transform: translateX(-50%);" aria-hidden="true">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+        </div>
+        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 75%; transform: translateX(-50%);" aria-hidden="true">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div>
+            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">01</div>
+            <div class="text-center mb-4">
+              <h3 class="text-base font-semibold text-zinc-900 mb-1">Configure</h3>
+              <p class="text-sm text-zinc-500">Any strategy. Any style.</p>
+            </div>
+            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Session rules and time windows</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Size limits and stop conventions</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Adaptive baseline learns your rhythm</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">02</div>
+            <div class="text-center mb-4">
+              <h3 class="text-base font-semibold text-zinc-900 mb-1">Live Monitor</h3>
+              <p class="text-sm text-zinc-500">7 signals. &lt;100ms updates.</p>
+            </div>
+            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>PSI score updates in real time</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Seven behavioral signal bars</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Live score shows what is driving pressure</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">03</div>
+            <div class="text-center mb-4">
+              <h3 class="text-base font-semibold text-zinc-900 mb-1">Guard</h3>
+              <p class="text-sm text-zinc-500">Rules that enforce themselves.</p>
+            </div>
+            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>6 trigger conditions</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>5 response levels</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>From quiet alert to stronger action</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">04</div>
+            <div class="text-center mb-4">
+              <h3 class="text-base font-semibold text-zinc-900 mb-1">Review &amp; Intel</h3>
+              <p class="text-sm text-zinc-500">Every session. Every pattern.</p>
+            </div>
+            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>PSI, Composure, and trade stats</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Monthly digest and behavior correlation</span></li>
+              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Clear guide for next-session improvement</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 Behavioral Signals -->
+  <Features
+    tagline="Behavioral signals"
+    title="Seven signals tied to how discipline actually breaks down."
+    subtitle="Each one tracks a distinct failure pattern that shows up reliably before a trader abandons the plan."
+    columns={2}
+    classes={{ items: { title: 'text-base md:text-base font-semibold' } }}
+    items={[
+      {
+        title: 'Revenge Entry (D1) \u2014 re-entering after a loss',
+        description: 'Detects rapid re-entry after a loss with elevated size in the same direction. Direction reversals carry less weight, separating genuine technical pivots from emotional retaliation.',
+        icon: 'tabler:arrow-back-up',
+      },
+      {
+        title: 'Stop Manipulation (D2) \u2014 moving risk wider',
+        description: 'Tracks stop distance over time and flags widening in the adverse direction once price moves against you — the classic impulse to give a losing trade more room than the plan allowed.',
+        icon: 'tabler:arrows-maximize',
+      },
+      {
+        title: 'Size Spike (D3) \u2014 sizing above your rule',
+        description: 'Flags size that exceeds your declared rule, with heavier weight during losing streaks when the urge to make it back is strongest. Your own history sets the threshold, not a generic standard.',
+        icon: 'tabler:trending-up',
+      },
+      {
+        title: 'Rushed Exit (D4) \u2014 cutting winners too quickly',
+        description: 'Compares hold time against your personal baseline to detect exits that arrive too early — surfacing sessions where pressure is pushing you out of good trades before they have room to develop.',
+        icon: 'tabler:clock-bolt',
+      },
+      {
+        title: 'Position Overstay (D5) \u2014 holding losers too long',
+        description: 'Activates when a losing trade exceeds your historical holding tolerance. Deep adverse excursion is logged even if the position later recovers, keeping the record honest.',
+        icon: 'tabler:hourglass',
+      },
+      {
+        title: 'Rule Violations (D6) \u2014 breaking declared session rules',
+        description: 'Checks declared session rules across time windows, stop-loss range, and loss-streak limits. Each breach applies a scored penalty with a cooldown so the same violation is not counted twice in close succession.',
+        icon: 'tabler:shield-x',
+      },
+      {
+        title: 'Overtrading Pace (D7) \u2014 accelerating entry frequency',
+        description: 'Measures intra-session acceleration and deviation from your historical entry rhythm. A warm-up window at the open prevents false positives in the first few trades, when pace is naturally lower.',
+        icon: 'tabler:activity',
+      },
+    ]}
+  />
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Start free trial', href: '/pricing' },
+      { text: 'Installation guide', href: '/installation-guide' },
+    ]}
+  >
+    <Fragment slot="title">Stop mistakes before they reach the order window.</Fragment>
+    <Fragment slot="subtitle">Meridian helps you observe behavior during execution, not only after the session is over.</Fragment>
+  </CallToAction>
+
+</Layout>
