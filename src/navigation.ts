@@ -3,17 +3,7 @@ import { getPermalink } from './utils/permalinks';
 export const headerData = {
   links: [
     { text: 'Guard', href: getPermalink('/guard') },
-    {
-      text: 'Features',
-      href: getPermalink('/psi-monitor'),
-      links: [
-        { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
-        { text: 'Meridian Guard', href: getPermalink('/guard') },
-        { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
-        { text: 'Journal', href: getPermalink('/journal') },
-        { text: 'History & Intel', href: getPermalink('/history-intel') },
-      ],
-    },
+    { text: 'Features', href: getPermalink('/features') },
     { text: 'Pricing', href: getPermalink('/pricing') },
     {
       text: 'Download',
@@ -45,10 +35,7 @@ export const footerData = {
       title: 'Product',
       links: [
         { text: 'Guard', href: getPermalink('/guard') },
-        { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
-        { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
-        { text: 'Journal', href: getPermalink('/journal') },
-        { text: 'History & Intel', href: getPermalink('/history-intel') },
+        { text: 'Features', href: getPermalink('/features') },
         { text: 'Pricing', href: getPermalink('/pricing') },
         { text: 'Download', href: getPermalink('/download') },
         { text: 'Installation Guide', href: getPermalink('/installation-guide') },

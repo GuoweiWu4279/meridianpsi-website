@@ -3,82 +3,17 @@ import Layout from '~/layouts/PageLayout.astro';
 import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import pricing from '~/data/pricing.json';
-import geoHooks from '~/data/geo-hooks.json';
 
-const checkoutUrl = '/pricing';
-
-const coreTier = pricing.tiers[0]!;
-const usd = (n: number) => n.toFixed(2);
+const checkoutUrl = 'https://meridianpsi.lemonsqueezy.com/checkout/buy/b7b8b514-fefa-4a34-8cad-d2e68f564d25';
 
 const metadata = {
   title: 'Features — Meridian',
   description:
-    `NinjaTrader 8 behavioral risk monitor: PSI, revenge trading detection, overtrading prevention, stop-loss manipulation, trade limiter layer with Meridian Guard. Core from $${usd(coreTier.monthlyPrice)}/mo or $${usd(coreTier.annualPrice)}/yr after trial. Trading involves substantial risk.`,
+    'See how Meridian works: live PSI, seven behavioral signals, session review, personal baselines, adaptable profiles, and fully local privacy.',
 };
-
-const coreOffers = [
-  {
-    '@type': 'Offer',
-    name: 'Meridian Core — monthly (after trial)',
-    price: usd(coreTier.monthlyPrice),
-    priceCurrency: coreTier.currency,
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: usd(coreTier.monthlyPrice),
-      priceCurrency: coreTier.currency,
-      billingDuration: 'P1M',
-    },
-  },
-  {
-    '@type': 'Offer',
-    name: 'Meridian Core — annual (after trial)',
-    price: usd(coreTier.annualPrice),
-    priceCurrency: coreTier.currency,
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: usd(coreTier.annualPrice),
-      priceCurrency: coreTier.currency,
-      billingDuration: 'P1Y',
-    },
-  },
-];
-
-const schemaJson = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Meridian",
-  "applicationCategory": "BusinessApplication",
-  "applicationSubCategory": "Trading Psychology Monitor",
-  "operatingSystem": "Windows 10 or later",
-  "description": geoHooks.schemaSoftwarePsi,
-  "keywords": geoHooks.geoSearchAssociate,
-  "url": "https://www.meridianpsi.com",
-  "featureList": [
-    "Real-time Psychological Stability Index (PSI) — updates in under 100ms after every execution",
-    "Seven independent behavioral signal dimensions: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace",
-    "Personal adaptive baseline — calibrates from your own session history",
-    "Session review with Composure score and P&L correlation",
-    "Meridian Guard — six trigger conditions and five action levels including automated broker disconnect",
-    "Intel Layer — monthly behavioral digest, weekday patterns, Today's Risk Brief",
-    "100% local — no cloud, no telemetry, no external accounts",
-    "5-year local session history",
-    "NinjaTrader 8 native add-on"
-  ],
-  "offers": coreOffers,
-  "softwareVersion": "1.1.0",
-  "releaseNotes": "https://www.meridianpsi.com/releases",
-  "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Meridian",
-    "url": "https://www.meridianpsi.com"
-  }
-});
 ---
 
 <Layout metadata={metadata}>
-  <script type="application/ld+json" set:html={schemaJson} />
   <HeroText
     tagline="How Meridian works"
     title="See behavioral pressure live. Review it after the session."
@@ -98,9 +33,9 @@ const schemaJson = JSON.stringify({
         icon: 'tabler:gauge',
       },
       {
-        title: 'Three zones with clear meaning',
+        title: 'Four zones with clear meaning',
         description:
-          'Stable (PSI ≥ 88) means your behavior is consistent with your history. Caution (55–87) signals emerging pressure — one or more patterns are active. Critical (below 55) is a clear signal to pause and reassess before compounding mistakes.',
+          'Stable means your behavior is consistent with your history. Caution signals emerging pressure. Warning means multiple patterns are active. Critical is a clear signal to pause and reassess before compounding mistakes.',
         icon: 'tabler:alert-triangle',
       },
       {
@@ -138,9 +73,9 @@ const schemaJson = JSON.stringify({
         icon: 'tabler:trending-up',
       },
       {
-        title: 'Hold Bias (D4) — holding losers too long',
+        title: 'Rushed Exit (D4) — cutting winners too quickly',
         description:
-          'Detects the loss-aversion pattern: holding a losing trade with the same patience you\'d normally give a winner. Measured against your own trade history, not a generic benchmark.',
+          'Compares current hold behavior with your baseline to detect exits that collapse too early relative to your normal process. It helps surface sessions where pressure is forcing you out of good trades too soon.',
         icon: 'tabler:clock-bolt',
       },
       {
@@ -185,7 +120,7 @@ const schemaJson = JSON.stringify({
       {
         title: 'Rolling history built for repeated patterns',
         description:
-          'Session history stores up to 5 years of daily summaries, up to 200 executions per session, and up to 600 PSI timeline snapshots. Older entries are pruned automatically, so history stays usable without manual cleanup.',
+          'Session history stores up to 365 days of daily summaries, up to 200 executions per session, and up to 600 PSI timeline snapshots. Older entries are pruned automatically, so history stays usable without manual cleanup.',
         icon: 'tabler:history',
       },
     ]}
@@ -233,19 +168,19 @@ const schemaJson = JSON.stringify({
       {
         title: 'Fast rise, slower recovery',
         description:
-          'Pressure from a bad trade builds quickly. Recovery takes longer — and requires actually trading clean, not just waiting. One mistake can fade. A pattern stays visible.',
+          'Each dimension uses separate attack and recovery behavior. Pressure from a violation builds quickly, while recovery requires sustained discipline, so one mistake can fade but repeated behavior stays visible.',
         icon: 'tabler:wave-sine',
       },
       {
         title: 'Overnight carry keeps unresolved pressure visible',
         description:
-          'A rough session doesn\'t get a free reset just because the date changed. Meridian carries unresolved pressure forward with decay — longer breaks allow more recovery, but a bad Tuesday can absolutely still matter on Wednesday.',
+          'Behavioral pressure does not automatically reset at midnight. Meridian carries unresolved pressure forward with time decay, so a rough Tuesday can still matter on Wednesday while longer breaks allow more recovery.',
         icon: 'tabler:moon',
       },
       {
         title: 'Persistent size violations stop recovery',
         description:
-          'If your position size is still above your declared rule, PSI doesn\'t recover — because the violation hasn\'t ended. The score reflects what you\'re actually doing right now, not what you did an hour ago.',
+          'When position size remains above your declared limit, recovery is held in place until size comes back into line. The system reflects the reality that ongoing violations should not look resolved just because time passed.',
         icon: 'tabler:lock',
       },
     ]}
@@ -260,7 +195,7 @@ const schemaJson = JSON.stringify({
       {
         title: 'No accounts, no cloud, no telemetry',
         description:
-          'No analytics, no crash reporting, no usage telemetry. Your fills, session history, and behavioral data never leave your machine — the only outbound call is license key validation.',
+          'There are zero HTTP calls in the codebase. No analytics, no crash reporting, and no license-check pings. Computation happens on your PC, and data stays under your control.',
         icon: 'tabler:cloud-off',
       },
       {
@@ -286,66 +221,6 @@ const schemaJson = JSON.stringify({
     </div>
   </section>
 
-  <!-- Composure vs PSI Clarification -->
-  <section class="py-20 px-6 bg-white border-t border-zinc-100">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-xs font-semibold tracking-[0.15em] text-emerald-600 uppercase mb-4">Two distinct metrics</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-4">PSI and Composure are not the same thing</h2>
-      <p class="text-zinc-600 leading-relaxed mb-10 max-w-2xl">
-        Meridian tracks two separate measures of your behavioral state. Understanding the difference helps you use both correctly.
-      </p>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6">
-          <h3 class="font-bold text-zinc-900 text-lg mb-2">PSI — Real-time score</h3>
-          <p class="text-zinc-600 text-sm leading-relaxed mb-4">
-            0–100. Updates live after every fill and continuously during the session as holds, time, and rule compliance change. Three zones: <strong>Stable (≥88)</strong>, <strong>Caution (55–87)</strong>, <strong>Critical (&lt;55)</strong>.
-          </p>
-          <p class="text-xs text-zinc-400">Used for in-session decisions. Visible in the HUD and as a Guard trigger condition.</p>
-        </div>
-        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6">
-          <h3 class="font-bold text-zinc-900 text-lg mb-2">Composure — Session quality score</h3>
-          <p class="text-zinc-600 text-sm leading-relaxed mb-4">
-            0–100%. Calculated at session end. It reflects how much time you spent in each PSI zone: time in Stable is weighted 1.0×, Caution 0.3×, Critical 0.05×. A long session in Caution will have low Composure even if your PSI looked acceptable.
-          </p>
-          <p class="text-xs text-zinc-400">Used in Intel Tab, session history, and monthly digest. Not displayed live during the session.</p>
-        </div>
-      </div>
-      <p class="text-xs text-zinc-400 mt-6">
-        Example: a trader whose PSI stayed around 75 (Caution) for a 4-hour session would show a Composure of approximately 30% — despite the PSI number looking moderate. The two metrics measure different things.
-      </p>
-    </div>
-  </section>
-
-  <!-- Guard teaser — links to dedicated /guard page -->
-  <section class="py-16 px-6 bg-zinc-900 text-white">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 justify-between">
-      <div>
-        <p class="text-xs font-semibold tracking-[0.15em] text-emerald-400 uppercase mb-3">Meridian Guard</p>
-        <h2 class="text-2xl md:text-3xl font-bold mb-3">Rules that enforce themselves.</h2>
-        <p class="text-zinc-400 text-sm leading-relaxed max-w-xl">
-          Guard adds a commitment-device engine and an Intel Layer to Meridian. Six trigger conditions, five action levels, five years of session history, and a monthly digest — all built around the rules you write yourself, when you are calm.
-        </p>
-      </div>
-      <a
-        href="/guard"
-        class="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/25 hover:border-white/50 rounded-full px-6 py-2.5 transition-all duration-200 whitespace-nowrap"
-      >
-        See Meridian Guard
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  <section class="py-10 px-6 bg-zinc-50/80 border-t border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs text-zinc-500 leading-relaxed text-center">
-        PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on many factors beyond psychology.
-      </p>
-    </div>
-  </section>
-
   <CallToAction
     actions={[
       {
@@ -354,12 +229,12 @@ const schemaJson = JSON.stringify({
         href: checkoutUrl,
         icon: 'tabler:player-play',
       },
-      { text: 'System requirements', href: '/releases#requirements' },
+      { text: 'See pricing', href: '/pricing' },
     ]}
   >
     <Fragment slot="title">See it in your own sessions.</Fragment>
     <Fragment slot="subtitle">
-      7-day free trial · $49.99/month after · cancel any time · NinjaTrader 8 required.
+      7-day free trial · $24.99/month after · cancel any time · NinjaTrader 8 required.
       <span class="block text-xs text-muted mt-2">Trading involves substantial risk of loss. Meridian does not guarantee trading results.</span>
     </Fragment>
   </CallToAction>
