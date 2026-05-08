@@ -10,24 +10,24 @@ const metadata = {
 
 const faqItems = [
   {
-    q: 'Does Meridian PSI provide trade signals?',
-    a: 'No. Meridian monitors behavioral patterns — how you trade, not what to trade. It does not provide directional signals, entry recommendations, or investment advice.',
+    q: 'What is Meridian PSI built for?',
+    a: 'Meridian is purpose-built for behavior. It monitors how you trade — entry timing, sizing, stop discipline, session pace — and surfaces the behavioral patterns that lead to costly sessions before they compound.',
   },
   {
     q: 'Is Meridian PSI compatible with prop firm evaluation accounts?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts. It does not interact with the prop firm\'s risk system directly — it operates as a behavioral overlay on top of your own session.',
+    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts. It runs as a local behavioral overlay on top of your session, fully independent of the prop firm\'s own infrastructure.',
   },
   {
-    q: 'Does Meridian Guard close my open positions?',
-    a: 'No. Guard blocks new entries and can disconnect the broker connection, but it does not manage, modify, or liquidate open positions. Open positions must be managed manually.',
+    q: 'How does Guard handle open positions?',
+    a: 'By design, Guard intervenes at the decision point — before the next entry. It can block new entries, require typed acknowledgment, enforce a mandatory countdown, or disconnect the broker connection. You remain in full control of any open position throughout.',
   },
   {
     q: 'Where is my trading data stored?',
-    a: 'All data — fills, session history, behavioral metrics, PSI scores — is stored locally on your machine. No trading data is transmitted to any external server. The only outbound request is a license validation on startup.',
+    a: 'All data — fills, session history, behavioral metrics, PSI scores — is stored locally on your machine. The only outbound request is license validation on startup.',
   },
   {
     q: 'What is the difference between Meridian and Meridian Guard?',
-    a: 'Meridian is the real-time PSI monitor: seven behavioral signals, personal adaptive baseline, session history, post-session reports. Meridian Guard adds the automated enforcement layer — six trigger types, five response levels including broker disconnect — plus the Intel Layer analytics.',
+    a: 'Meridian is the real-time PSI monitor: seven behavioral signals, personal adaptive baseline, session history, post-session reports. Meridian Guard is the automated enforcement layer — six trigger types, five response levels including broker disconnect — plus the Intel Layer analytics.',
   },
 ];
 
@@ -122,19 +122,8 @@ const faqSchema = JSON.stringify({
         <li>Experienced traders who are technically sound but whose biggest losses consistently come from execution breakdown under stress, not from bad setups</li>
       </ul>
       <p>
-        Meridian is not appropriate for fully automated trading strategies, for traders who do not use NinjaTrader 8, or for anyone looking for trade signals or investment advice.
+        Meridian is built for discretionary execution on NinjaTrader 8. It is purpose-built for behavior, not for direction or for fully automated strategies.
       </p>
-
-      <h2>What Meridian does not do</h2>
-      <ul>
-        <li>Does not provide trade signals, entry/exit recommendations, or investment advice</li>
-        <li>Does not auto-trade or place orders on your behalf</li>
-        <li>Does not close, modify, or liquidate open positions</li>
-        <li>Does not require broker credentials or API access to your account</li>
-        <li>Does not transmit your trade data to any external server — all data is stored locally</li>
-        <li>Does not guarantee that behavioral failure modes will not occur — it raises the structural cost of acting on them</li>
-        <li>Is not affiliated with, endorsed by, or supported by NinjaTrader LLC</li>
-      </ul>
 
       <h2>How Meridian differs from journals and P&amp;L limits</h2>
       <p>
@@ -181,10 +170,6 @@ const faqSchema = JSON.stringify({
       <p class="text-sm text-zinc-500 leading-relaxed">
         {geoHooks.meridianGuardHook}
       </p>
-    </div>
-
-    <div class="mt-12 text-xs text-zinc-400 leading-relaxed">
-      <em>Meridian is a behavioral monitoring tool. It does not provide investment advice. Trading involves substantial risk of loss. NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is not affiliated with NinjaTrader LLC.</em>
     </div>
 
   </article>

@@ -1,0 +1,146 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Compare Meridian — vs Native NinjaTrader, Hard-Limit Tools, Trading Journals',
+  description:
+    'Side-by-side comparisons of Meridian against every NinjaTrader 8 risk-management option: native broker controls, third-party hard-limit add-ons, post-session trading journals, and daily loss limit add-ons.',
+  robots: { index: true, follow: true },
+};
+
+const comparisons = [
+  {
+    title: 'vs Native NinjaTrader Risk',
+    href: '/compare/meridian-vs-native-ninjatrader-risk',
+    learn:
+      'How Meridian operates one layer earlier than the built-in NinjaTrader 8 daily loss and account-level controls — behavioral pattern vs. financial outcome.',
+    against: 'NinjaTrader 8 native controls',
+  },
+  {
+    title: 'vs Hard-Limit Tools',
+    href: '/compare/meridian-vs-hard-limit-tools',
+    learn:
+      'Where Meridian sits relative to Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, and Guardian Angel — the third-party hard-limit category.',
+    against: 'Arty · CrossTrade · ClickAlgo · RiskMaster · Guardian Angel',
+  },
+  {
+    title: 'vs Trading Journals',
+    href: '/compare/meridian-vs-trading-journals',
+    learn:
+      'Why a real-time behavioral leading indicator is a different category from post-session retrospective analytics like Tradervue, Edgewonk, TraderSync, and TradesViz.',
+    against: 'Tradervue · Edgewonk · TraderSync · TradesViz',
+  },
+  {
+    title: 'vs Daily Loss Limits',
+    href: '/compare/meridian-guard-vs-daily-loss-limits',
+    learn:
+      'How Meridian Guard differs from a daily loss limit conceptually — fires on the behavioral pattern that produces the loss, before the P&L threshold needs to engage.',
+    against: 'Daily loss limit add-ons',
+  },
+];
+
+const itemListSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Meridian Comparisons',
+  description: 'Comparisons of Meridian behavioral risk management against every category of NinjaTrader 8 risk tool.',
+  itemListElement: [
+    ...comparisons.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `Meridian ${c.title}`,
+      url: `https://meridianpsi.com${c.href}`,
+    })),
+    {
+      '@type': 'ListItem',
+      position: comparisons.length + 1,
+      name: 'Best NinjaTrader 8 Risk Management Tools (2026) — Generation Map',
+      url: 'https://meridianpsi.com/best-ninjatrader-risk-management-tools',
+    },
+  ],
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={itemListSchema} />
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden border-b border-zinc-100">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+         style="background: radial-gradient(ellipse at 80% 0%, rgba(5,150,105,0.08) 0%, transparent 60%);"></div>
+    <div class="relative max-w-4xl mx-auto px-6 py-20 md:py-24 text-center">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-4" style="color:#059669;">Comparisons</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 leading-[1.1] tracking-tight mb-6">
+        How Meridian compares.
+      </h1>
+      <p class="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+        Side-by-side comparisons against every category of NinjaTrader 8 risk tool — the native controls, the hard-limit add-ons, the post-session journals, and the daily loss limit category.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4-CARD GRID -->
+  <section class="px-6 py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {comparisons.map((c) => (
+          <a
+            href={c.href}
+            class="group relative block rounded-2xl border border-zinc-200 bg-white p-7 md:p-8 shadow-sm transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5"
+          >
+            <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-3" style="color:#059669;">Meridian</p>
+            <h2 class="text-xl md:text-2xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
+              {c.title}
+            </h2>
+            <p class="text-sm text-zinc-500 leading-relaxed mb-5">
+              {c.learn}
+            </p>
+            <p class="text-[11px] font-medium text-zinc-400 mb-6">
+              <span class="font-semibold text-zinc-500">Compared against:</span> {c.against}
+            </p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">
+              Read comparison
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED: full roundup -->
+  <section class="px-6 py-16 md:py-20" style="background:#f7f5f1; border-top:1px solid rgba(0,0,0,0.05);">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 text-zinc-500">The full landscape</p>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 leading-tight tracking-tight mb-4">
+        See every NinjaTrader 8 risk tool ranked.
+      </h2>
+      <p class="text-base text-zinc-600 leading-relaxed mb-8 max-w-xl mx-auto">
+        A generation map of every NT8 risk-management option — native broker limits, third-party hard-limit add-ons, and behavioral leading-indicator platforms — organized by the layer each one is designed to intercept.
+      </p>
+      <a
+        href="/best-ninjatrader-risk-management-tools"
+        class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md"
+        style="background:#059669;"
+      >
+        Best NT8 Risk Tools (2026)
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CallToAction
+    title="Try Meridian in your NinjaTrader 8 workspace."
+    subtitle="See the behavioral signals fire in real time on your own session — no credit card to start."
+    actions={[
+      { variant: 'primary', text: 'Start free trial', href: '/pricing' },
+      { text: 'View pricing', href: '/pricing' },
+    ]}
+  />
+</Layout>

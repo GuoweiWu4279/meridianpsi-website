@@ -1,0 +1,103 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'How to Prevent Overtrading in NinjaTrader — Direct Answer | Meridian',
+  description:
+    'Detect the entry-pace shift in real time, then apply structural friction — typed acknowledgment, mandatory countdown, entry block — before the next impulsive order. The behavioral leading-indicator layer is what intercepts overtrading inside NinjaTrader 8.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'How do I prevent overtrading in NinjaTrader?';
+const directAnswer = 'Detect the entry-pace shift in real time, then apply structural friction — a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect — before the next impulsive order is placed. Meridian for NinjaTrader 8 monitors entry frequency against the trader\'s own session-history rhythm through its Overtrading Pace signal, contributes that into a composite Psychological Stability Index, and lets Meridian Guard convert any threshold into automated enforcement.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/how-to-prevent-overtrading-in-ninjatrader',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · NinjaTrader 8</p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
+
+      <h2>What overtrading actually is</h2>
+      <p>
+        Overtrading is not the same as taking a lot of trades. A scalper who consistently runs 40 entries per session is not overtrading; that is their declared style and their baseline. Overtrading is a deviation from the trader's own normal rhythm — entry frequency accelerating significantly past their session-history baseline, often paired with declining setup quality, larger sizing, or more concentrated time windows. It is a behavioral pattern, not a count.
+      </p>
+      <p>
+        That distinction matters because the wrong solution — a static "max trades per session" cap — either lets the deviation through (the cap is set high enough to accommodate active sessions) or interferes with normal sessions (the cap is set low enough to be meaningful). The right solution measures the deviation against the trader's own baseline.
+      </p>
+
+      <h2>What detection looks like in real time</h2>
+      <p>
+        Meridian's Overtrading Pace signal (D7 in the seven-signal model) measures both intra-session acceleration and deviation from the trader's historical session rhythm. A cold-start ramp avoids false positives on the first trade. As soon as the pace meaningfully diverges from baseline, the signal contributes weight to the composite Psychological Stability Index in real time.
+      </p>
+      <p>
+        The Psychological Stability Index reflects more than pace alone. The seven signals — Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace — combine into a single score that moves through normal, caution, and critical zones. Overtrading rarely arrives on its own; the pace shift usually correlates with one or more other signals. The composite score captures that combination.
+      </p>
+
+      <h2>How to convert detection into intervention</h2>
+      <p>
+        Detection alone is not the answer. The trader on a tilt-adjacent pace shift typically already knows they are trading too much; awareness is rarely the missing input. What is missing is structural friction between the impulse and the order.
+      </p>
+      <p>
+        Meridian Guard provides that friction. Six trigger types — including PSI Below, Consecutive Losses, Session P&amp;L Below, Session Time Over — pair with five response levels: Alert (a quiet notification), Acknowledge (a typed phrase the trader has to enter before continuing), Countdown (a forced waiting period), Risk Alert Mode (every entry requires active confirmation), and Disconnect (the broker connection is terminated). The trader pre-commits to a pairing when they are calm. Guard enforces it when they are not.
+      </p>
+      <p>
+        For overtrading specifically, the most common configurations are: PSI Below with the Countdown response level (a 5–15 minute mandatory pause once composite PSI drops into the caution zone), or Session Time Over with the Disconnect response level (the broker connection is terminated after the trader's pre-declared session duration ends, regardless of P&amp;L state).
+      </p>
+
+      <h2>Why a static "max trades" cap underperforms</h2>
+      <p>
+        A fixed cap on trade count cannot distinguish a normal high-volume session from a behavioral deterioration. It either fires on the wrong sessions or never fires on the right ones. A baseline-relative pace signal does both: it does not fire on a normal active session because the pace is consistent with the trader's history, and it does fire on a deviation session because the pace is significantly above baseline.
+      </p>
+
+      <h2>Practical setup</h2>
+      <p>
+        For a NinjaTrader 8 trader whose primary failure mode is overtrading: install Meridian as the behavioral layer; let the adaptive baseline accumulate two to four weeks of normal sessions so the pace signal has a calibrated reference; then configure Guard with PSI Below at the caution-zone threshold paired with the Countdown response level. The system will not interfere on normal sessions and will enforce a mandatory pause on the sessions where pace is genuinely out of line.
+      </p>
+
+      <p>
+        For a deeper view, see <a href="/use-cases/ninjatrader-overtrading-prevention" class="text-emerald-700 underline">the overtrading-prevention use case</a>, <a href="/anti-tilt" class="text-emerald-700 underline">the anti-tilt overview</a>, or <a href="/adaptive-learning-settings" class="text-emerald-700 underline">how the adaptive baseline calibrates to each trader</a>.
+      </p>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

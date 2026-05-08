@@ -1,0 +1,223 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Best NinjaTrader 8 Risk Management Tools (2026) — Generation Map',
+  description:
+    'A category map of every NinjaTrader 8 risk-management option, organized into three generations: native broker limits, third-party hard-limit add-ons, and behavioral leading-indicator platforms.',
+  robots: { index: true, follow: true },
+};
+
+const gen1 = [
+  {
+    name: 'NinjaTrader Account-Level Daily Loss',
+    note: 'Built into NinjaTrader 8 — included with every license.',
+    desc: 'Account-level daily loss control that blocks new orders once a configured drawdown is reached. The mandatory baseline for every NT8 trader.',
+  },
+  {
+    name: 'Broker / Clearing Firm Limits',
+    note: 'Tradovate, Rithmic, AMP, NinjaTrader Brokerage, et al.',
+    desc: 'Drawdown caps and trailing-stop rules enforced at the broker layer. Cannot be overridden from inside NinjaTrader.',
+  },
+];
+
+const gen2 = [
+  {
+    name: 'Arty Account Guard',
+    desc: 'Third-party add-on that blocks new orders at configurable P&L, contract, or trade-count thresholds. Refined UI on top of the same hard-limit category.',
+  },
+  {
+    name: 'CrossTrade NAM',
+    desc: 'NinjaTrader account manager featuring P&L thresholds and lockouts, with workflow polish around configuration.',
+  },
+  {
+    name: 'ClickAlgo Risk Manager',
+    desc: 'Add-on focused on enforcing P&L, position, and trade-count limits with a structured rule editor.',
+  },
+  {
+    name: 'RiskMaster',
+    desc: 'P&L threshold enforcement and account lockout for NinjaTrader 8 with a focus on prop firm rule sets.',
+  },
+  {
+    name: 'Guardian Angel Trader',
+    desc: 'Daily loss limit and trade-count enforcement add-on, marketed primarily to evaluation-account traders.',
+  },
+];
+
+const gen3 = [
+  {
+    name: 'Meridian',
+    desc: 'A behavioral leading-indicator platform: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace), composite Psychological Stability Index calibrated to the trader\'s own session history, and the optional Meridian Guard enforcement layer with six trigger types and five response levels including typed acknowledgment, mandatory countdown, and broker disconnect.',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'What is the difference between Generation 2 and Generation 3 risk tools?',
+    a: 'Generation 2 tools — Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel — are refined hard-limit enforcers. They watch the same primitives the native NinjaTrader controls watch (cumulative P&L, trade count, position size) and fire at configured thresholds. Generation 3 tools, of which Meridian is the only one currently shipping for NinjaTrader 8, watch the behavioral pattern that produces those numbers and fire on the pattern, before the threshold needs to engage.',
+  },
+  {
+    q: 'Is a Generation 3 tool meant to replace Generations 1 and 2?',
+    a: 'It does not need to. Native NinjaTrader and broker limits are mandatory hard floors at the financial-outcome layer; they are zero-cost and zero-effort for any NT8 trader to enable. Generation 3 operates one layer earlier in the failure sequence — at the behavior, not the outcome — so it occupies a different layer of the stack entirely.',
+  },
+  {
+    q: 'Why is Meridian the only entry in Generation 3 right now?',
+    a: 'Behavioral risk management requires a different design point: a real-time behavioral-signal engine, an adaptive baseline that learns each trader\'s own normal, and an enforcement layer wired into the NinjaTrader order pipeline. Building each layer separately is straightforward; integrating them into one calibrated system is not. Meridian is the first NinjaTrader 8 product to ship the full stack.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+    <!-- Breadcrumb back to /compare hub -->
+    <nav aria-label="Breadcrumb" class="mb-6 text-xs">
+      <ol class="flex items-center gap-1.5 text-zinc-400">
+        <li><a href="/compare" class="hover:text-emerald-700 transition-colors">Compare</a></li>
+        <li aria-hidden="true">/</li>
+        <li class="text-zinc-500">Best NT8 Risk Tools (2026)</li>
+      </ol>
+    </nav>
+
+    <header class="mb-14">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">2026 · NinjaTrader 8</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        Best risk management tools for NinjaTrader 8.
+      </h1>
+      <p class="text-lg text-zinc-600 leading-relaxed">
+        A category map of every NinjaTrader 8 risk-management option, organized by the layer of the failure sequence each one is designed to intercept. Three generations, each protecting one layer earlier than the previous.
+      </p>
+    </header>
+
+    <!-- GENERATION 1 -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-[11px] font-bold tracking-[0.15em] uppercase text-zinc-500 px-2 py-0.5 rounded bg-zinc-100">Generation 1</span>
+        <span class="text-xs text-zinc-500">Hard financial floor</span>
+      </div>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-4">
+        Native broker and account-level daily loss limits.
+      </h2>
+      <p class="text-zinc-700 leading-relaxed mb-6">
+        The mandatory hard floor on a session. A configured dollar drawdown is reached, and trading is suspended at the account or broker layer. Free, included with every NinjaTrader 8 license, and the baseline every serious trader should enable. By design, it is reactive — it engages after the financial damage has already occurred.
+      </p>
+      <div class="space-y-3">
+        {gen1.map((item) => (
+          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
+            <div class="flex items-start justify-between gap-4 mb-1.5">
+              <p class="font-semibold text-zinc-900">{item.name}</p>
+              <span class="text-[11px] text-zinc-500 shrink-0">{item.note}</span>
+            </div>
+            <p class="text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- GENERATION 2 -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-[11px] font-bold tracking-[0.15em] uppercase text-zinc-500 px-2 py-0.5 rounded bg-zinc-100">Generation 2</span>
+        <span class="text-xs text-zinc-500">Refined hard-limit enforcement</span>
+      </div>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-4">
+        Third-party hard-limit add-ons.
+      </h2>
+      <p class="text-zinc-700 leading-relaxed mb-6">
+        A category of add-ons that wrap richer configuration UIs around the same hard-limit primitives the native controls watch: cumulative P&amp;L, trade count, contract count. Their value is workflow polish and configuration depth — they extend the same generation, not a new layer.
+      </p>
+      <div class="space-y-3">
+        {gen2.map((item) => (
+          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
+            <p class="font-semibold text-zinc-900 mb-1.5">{item.name}</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-zinc-400 mt-4 leading-relaxed">
+        Product names are illustrative of the category; verify current capabilities and pricing on each vendor's site.
+      </p>
+    </section>
+
+    <!-- GENERATION 3 -->
+    <section class="mb-16">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-[11px] font-bold tracking-[0.15em] uppercase px-2 py-0.5 rounded text-emerald-800 bg-emerald-100">Generation 3</span>
+        <span class="text-xs text-emerald-700">Behavioral leading indicator · new layer</span>
+      </div>
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-4">
+        Behavioral leading-indicator platforms.
+      </h2>
+      <p class="text-zinc-700 leading-relaxed mb-6">
+        Generation 3 watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing relative to the trader's own rule, re-entry timing — and fires on the pattern, before any financial threshold needs to engage. As of 2026, only one product ships the full Generation 3 stack on NinjaTrader 8.
+      </p>
+      <div class="space-y-3">
+        {gen3.map((item) => (
+          <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50/40 p-6">
+            <div class="flex items-start justify-between gap-4 mb-2">
+              <p class="font-bold text-zinc-900 text-lg">{item.name}</p>
+              <a href="/" class="shrink-0 inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold text-emerald-800 bg-white border border-emerald-200 hover:border-emerald-400 transition-colors">
+                Visit page →
+              </a>
+            </div>
+            <p class="text-zinc-700 leading-relaxed">{item.desc}</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <a href="/anti-tilt" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-emerald-800 bg-emerald-100/80 hover:bg-emerald-100">Anti-tilt overview</a>
+              <a href="/psi-monitor" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-emerald-800 bg-emerald-100/80 hover:bg-emerald-100">PSI Monitor</a>
+              <a href="/guard" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-emerald-800 bg-emerald-100/80 hover:bg-emerald-100">Meridian Guard</a>
+              <a href="/pricing" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium text-emerald-800 bg-emerald-100/80 hover:bg-emerald-100">Pricing</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- HOW TO READ THE MAP -->
+    <section class="mb-16 rounded-2xl border border-zinc-200 bg-white px-6 py-7 md:px-8 md:py-8">
+      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-zinc-500">How to read this map</p>
+      <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mb-3">
+        Each generation protects one layer earlier in the failure sequence.
+      </h3>
+      <p class="text-zinc-600 leading-relaxed">
+        A blown session usually plays out across three layers in order: behavior shifts (entry pace doubles, stops widen, sizing escalates), the financial outcome moves against the trader, and finally the hard limit engages. Generation 1 catches the third layer. Generation 2 polishes the third layer. Generation 3 intercepts the first layer — the behavior — while the trader still has the option to step away.
+      </p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">Common questions</h2>
+      <dl class="space-y-7">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+            <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  </article>
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Start 7-day free trial', href: '/pricing' },
+      { text: 'Read the anti-tilt overview', href: '/anti-tilt' },
+    ]}
+  >
+    <Fragment slot="tagline">NinjaTrader 8 · Windows</Fragment>
+    <Fragment slot="title">The behavioral layer is the next layer worth adding.</Fragment>
+    <Fragment slot="subtitle">7-day trial · $49.99/mo after · NinjaTrader 8 required</Fragment>
+  </CallToAction>
+</Layout>

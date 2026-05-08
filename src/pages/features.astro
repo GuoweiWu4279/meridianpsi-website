@@ -130,7 +130,7 @@ const metadata = {
     id="baselines"
     tagline="Personalization"
     title="Built around your history, your rules, and your trading style."
-    subtitle="Meridian does not compare you to a generic industry average. It learns from your own sessions and can be configured to fit different workflows, rules, and execution styles."
+    subtitle="Meridian learns from your own sessions and adapts to your workflow, rules, and execution style — never to a generic industry average."
     items={[
       {
         title: 'Your baseline updates automatically',
@@ -174,7 +174,7 @@ const metadata = {
       {
         title: 'Overnight carry keeps unresolved pressure visible',
         description:
-          'Behavioral pressure does not automatically reset at midnight. Meridian carries unresolved pressure forward with time decay, so a rough Tuesday can still matter on Wednesday while longer breaks allow more recovery.',
+          'Behavioral pressure carries forward across sessions with time decay, so a rough Tuesday can still matter on Wednesday while longer breaks allow more recovery — exactly mirroring how discipline actually rebuilds.',
         icon: 'tabler:moon',
       },
       {
@@ -213,14 +213,6 @@ const metadata = {
     ]}
   />
 
-  <section class="py-10 px-6 bg-zinc-50/80 border-t border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs text-zinc-500 leading-relaxed text-center">
-        PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on many factors beyond psychology.
-      </p>
-    </div>
-  </section>
-
   <CallToAction
     actions={[
       {
@@ -235,7 +227,6 @@ const metadata = {
     <Fragment slot="title">Stop mistakes before they reach the order window.</Fragment>
     <Fragment slot="subtitle">
       7-day free trial · $24.99/month after · cancel any time · NinjaTrader 8 required.
-      <span class="block text-xs text-muted mt-2">Trading involves substantial risk of loss. Meridian does not guarantee trading results.</span>
     </Fragment>
   </CallToAction>
 </Layout>

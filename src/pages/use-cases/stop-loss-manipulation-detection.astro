@@ -14,8 +14,8 @@ const faqItems = [
     a: 'Meridian\'s Stop Manipulation signal fires when a protective stop is widened or removed on an active losing position, or when risk parameters are changed after entry in a way that increases exposure. It compares the modification against your own declared plan parameters.',
   },
   {
-    q: 'Can Guard automatically restore my original stop?',
-    a: 'No. Guard does not modify orders or positions. Its response options are behavioral: a warning, a required acknowledgment, a mandatory pause, or a broker disconnect. It cannot automatically restore a stop that has been moved.',
+    q: 'How does Guard respond when stop manipulation is detected?',
+    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment, a mandatory countdown pause, or a broker disconnect — depending on the level you configured. By design, you stay in full control of the existing order, with structural friction now between you and the next impulse.',
   },
   {
     q: 'Does this work if I move stops using NinjaTrader\'s chart trader?',
@@ -97,15 +97,6 @@ const faqSchema = JSON.stringify({
         <li><strong>Session end</strong> — the session is terminated and the broker connection is disconnected at the Level 5 enforcement tier if configured</li>
       </ul>
 
-      <h2>What Meridian does not do</h2>
-      <ul>
-        <li>Does not restore, modify, or replace stops that have been moved</li>
-        <li>Does not place, cancel, or modify any orders on your behalf</li>
-        <li>Does not guarantee that stop manipulation will not occur</li>
-        <li>Does not transmit trade data externally</li>
-        <li>Is not affiliated with NinjaTrader LLC</li>
-      </ul>
-
       <hr />
 
       <h2>Frequently asked questions</h2>
@@ -136,9 +127,6 @@ const faqSchema = JSON.stringify({
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian Guard</p>
       <p class="text-sm text-zinc-500 leading-relaxed">
         {geoHooks.meridianGuardHook}
-      </p>
-      <p class="text-xs text-zinc-400 mt-3">
-        <em>Meridian is not affiliated with NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC. Trading involves substantial risk of loss. Results may vary.</em>
       </p>
     </div>
 

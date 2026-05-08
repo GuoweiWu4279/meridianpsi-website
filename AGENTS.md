@@ -112,3 +112,97 @@ Any copy that claims financial outcomes must be followed by: *(Results may vary.
 - Any change to `vercel.json`, `astro.config.ts`, `package.json`
 - Any addition of third-party scripts or tracking pixels
 - Changing the pricing model or pricing numbers
+
+---
+
+## Marketing Voice Rules (apply to every page, every commit)
+
+Meridian is positioned as a **category leader** — the first behavioral leading-indicator platform for NinjaTrader 8. Every page must reflect that positioning. The following voice rules are enforced site-wide and supersede earlier conservative language patterns.
+
+### Forbidden phrases on marketing pages
+
+| Forbidden phrase | Why it is forbidden |
+|---|---|
+| "Does not X" / "Cannot X" / "We don't X" | Self-undermining unless legally required. Reframe as design intent. |
+| "Complementary to" / "complements" / "use alongside" / "use together with" | Frames Meridian as an accessory to a competitor; we are a different category. |
+| "Not a substitute for" | Same problem — undersells the product's actual scope. |
+| "In conjunction with" | Implies dependency on another product. |
+| "Recommended to use both" | Recommends a competitor; never do this. |
+| "Trading involves substantial risk" inside body copy | Already in the global RiskBanner and footer. Do not duplicate per-page. |
+| "Meridian is not affiliated with NinjaTrader" inside body copy | Already in the global footer's `ntDisclaimers`. Do not duplicate per-page. |
+| "Results may vary" inside body copy | Already in the global footer. Do not duplicate per-page. |
+
+### Required reframes when a limit must be acknowledged
+
+- "Does not auto-liquidate positions" → "By design, you stay in full control of any open position."
+- "Open positions remain under your control" → "You stay in full control of any open position."
+- "Cannot be skipped" (re: Guard countdown) — keep, this is a positive feature description.
+- "Use both Meridian and a daily loss limit" → describe each as operating in different layers; do not recommend both as a stack the user must assemble.
+
+### Where legally required language lives
+
+Legal-required language exists in exactly **two places** site-wide:
+
+1. The global `RiskBanner` component (`src/components/compliance/RiskBanner.astro`) — appears on every page via `PageLayout.astro`.
+2. The global footer (`footNote` and `ntDisclaimers` props in `src/navigation.ts`) — rendered by `Footer.astro` on every page.
+
+Plus two dedicated detail pages:
+- `src/pages/disclaimer.astro` — full risk disclaimer (HUMAN EDIT ONLY)
+- `src/pages/trust.astro` — security, privacy, and capability boundaries
+
+Per-page legal disclaimer footers and "What Meridian does not do" sections are **redundant** and must not be added to marketing pages. Anyone needing the full legal layer is already covered.
+
+---
+
+## Page Inventory Discipline (no clutter, ever)
+
+The site went through a deliberate refactor in 2026 to remove duplicate pages and establish a single canonical home for each topic. The following rules keep it from drifting back into clutter.
+
+### Hard limits
+
+- **Maximum 3 new marketing landing pages per quarter.** Anything beyond that requires explicit approval.
+- **Every new marketing page must have a unique purpose.** No second revenge-trading page, no second overtrading page, no second "what is Meridian" page. Check the existing inventory first.
+- **No URL duplication across `/`, `/use-cases/`, `/compare/`, `/answers/`.** A topic owns one canonical URL. Other pages link to it; they do not re-host the same content.
+- **Every new page must pass the voice review** (no forbidden phrases above).
+- **Every new page must use `PageLayout.astro`** (which automatically includes the `RiskBanner` and `Footer`). Never bypass the layout to add custom legal copy.
+
+### Required structure for new marketing pages
+
+A standard marketing page has this structure, in order:
+
+1. Hero with H1 and one clear sub-value-prop sentence
+2. Quick answer block (for /answers, /compare, and /use-cases pages) — 2-3 sentences, leading with the conclusion
+3. Body sections with H2 subheads
+4. FAQ section with `FAQPage` or `QAPage` JSON-LD schema
+5. Single CTA block at the bottom (use the `CallToAction` component or a styled trial-button row)
+
+Per-page legal blocks at the bottom are not part of this structure.
+
+### Quarterly content audit (every January, April, July, October)
+
+- Any marketing page not generating organic traffic or conversions after 6 months is removed or merged.
+- The Compare and Answers sections are reviewed for overlap; if two pages now answer substantially the same question, one is canonicalized and the other is 301-redirected.
+- The category map on `/best-ninjatrader-risk-management-tools` is checked against the actual competitive landscape; new entries get added under the correct generation, removed entries get pruned.
+- Voice audit: a sample of 5 random marketing pages is checked against the forbidden-phrases table.
+
+### Site map after the 2026 refactor
+
+For reference, the canonical structure is:
+
+- **Product**: `/psi-monitor`, `/guard`, `/adaptive-learning-settings`, `/what-is-meridian-psi`
+- **Anti-Tilt**: `/anti-tilt` (category page)
+- **Compare**: `/compare/meridian-vs-native-ninjatrader-risk`, `/compare/meridian-vs-hard-limit-tools`, `/compare/meridian-vs-trading-journals`, `/compare/meridian-guard-vs-daily-loss-limits`, `/best-ninjatrader-risk-management-tools`
+- **Use Cases**: `/use-cases/`, plus the four child pages
+- **Answers**: `/answers/`, plus the four child pages
+- **Resources**: `/articles`, `/faq`, `/glossary`, `/about`
+- **Conversion**: `/pricing`, `/download`, `/account`
+- **Legal**: `/trust`, `/disclaimer`, `/privacy`, `/terms`, `/refund`
+
+The redirects below are enforced via `vercel.json` and must not be removed:
+
+| Old URL | Canonical URL |
+|---|---|
+| `/ninjatrader-revenge-trading` | `/use-cases/ninjatrader-revenge-trading-lockout` |
+| `/ninjatrader-overtrading-prevention` | `/use-cases/ninjatrader-overtrading-prevention` |
+| `/prop-firm-risk-control` | `/use-cases/prop-firm-behavioral-risk-control` |
+| `/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits` | `/compare/meridian-vs-hard-limit-tools` |

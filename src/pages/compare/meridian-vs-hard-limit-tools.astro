@@ -1,0 +1,183 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+const metadata = {
+  title: 'Meridian vs Hard-Limit Risk Tools — Arty, CrossTrade, ClickAlgo, RiskMaster',
+  description:
+    'Hard-limit add-ons for NinjaTrader 8 — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — refine the same financial-outcome layer. Meridian operates one layer earlier, on the behavior itself.',
+  robots: { index: true, follow: true },
+};
+
+const matrixCols = [
+  'Arty Account Guard',
+  'CrossTrade NAM',
+  'ClickAlgo Risk Manager',
+  'RiskMaster',
+  'Guardian Angel',
+  'Meridian',
+];
+
+const matrixRows = [
+  { feature: 'Cumulative P&L threshold',     values: ['yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Trade-count limit',            values: ['yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Max position size cap',        values: ['yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Real-time behavioral signals', values: ['no','no','no','no','no','yes'] },
+  { feature: 'Adaptive baseline (per-trader calibration)', values: ['no','no','no','no','no','yes'] },
+  { feature: 'Composite stability score',    values: ['no','no','no','no','no','yes'] },
+  { feature: 'Stop-modification detection',  values: ['no','no','no','no','no','yes'] },
+  { feature: 'Re-entry pace detection',      values: ['no','no','no','no','no','yes'] },
+  { feature: 'Typed acknowledgment level',   values: ['no','no','no','no','no','yes'] },
+  { feature: 'Mandatory countdown level',    values: ['no','no','no','no','no','yes'] },
+  { feature: 'Broker disconnect level',      values: ['some','some','no','some','no','yes'] },
+  { feature: 'Post-session behavioral analytics', values: ['no','no','no','no','no','yes'] },
+];
+
+const faqItems = [
+  {
+    q: 'How are hard-limit risk tools different from Meridian?',
+    a: 'Hard-limit tools — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — refine the configuration UI on top of the same primitives that NinjaTrader\'s native controls watch: cumulative P&L, trade count, position size. They sit at the financial-outcome layer. Meridian sits one layer earlier — at the behavior that produces the financial outcome — and fires on seven distinct behavioral signals plus a composite Psychological Stability Index.',
+  },
+  {
+    q: 'Are these hard-limit tools wrong?',
+    a: 'No. They are well-built within their generation. They are mature versions of a single design point: a refined hard-limit enforcer at the financial-outcome layer. That layer is necessary. It is also one layer too late to intercept the behavior that produces most blown sessions.',
+  },
+  {
+    q: 'Can Meridian replace one of these tools?',
+    a: 'Meridian Guard\'s Session P&L Below trigger covers the same job a Generation 2 hard-limit tool covers — and more, because it fires on six trigger types and five response levels including typed acknowledgment, mandatory countdown, and broker disconnect. The behavioral signal layer above it is what no Generation 2 tool offers.',
+  },
+  {
+    q: 'Why has no other NinjaTrader 8 product built the behavioral layer?',
+    a: 'Behavioral risk requires three components in one calibrated system: a real-time behavioral-signal engine, an adaptive baseline that learns each trader\'s own normal, and an enforcement pipeline wired into NinjaTrader\'s order layer. Building each separately is straightforward. Integrating them into one calibrated platform that ships on NinjaTrader 8 is what Meridian was built to do.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+
+const cellLabel = (v: string) => v === 'yes' ? '✓' : v === 'some' ? '◐' : '—';
+const cellClass = (v: string, isMeridian: boolean) => {
+  if (v === 'yes') return isMeridian ? 'text-emerald-700 font-bold' : 'text-zinc-600';
+  if (v === 'some') return 'text-amber-600';
+  return 'text-zinc-300';
+};
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <article class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-12 max-w-3xl">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Comparison · NinjaTrader 8</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        Meridian vs hard-limit risk tools.
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">
+          Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds. Meridian is Generation 3: behavioral leading-indicator detection plus the same hard-limit enforcement, in one platform.
+        </p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
+
+      <h2>What this category builds well</h2>
+      <p>
+        The Generation 2 category — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel Trader — has refined the user experience around hard-limit enforcement substantially over the last few years. Configuration is cleaner. Rule sets are richer. Workflow polish is real.
+      </p>
+      <p>
+        What every product in the category shares is the design point: enforcement at the financial-outcome layer. The same primitives the native NinjaTrader controls watch — cumulative P&amp;L, trade count, position size — wrapped in better UIs. The category extends Generation 1; it does not open a new layer.
+      </p>
+
+      <h2>Where Meridian operates instead</h2>
+      <p>
+        Meridian is not a refined hard-limit tool. It is the first NinjaTrader 8 product to ship the behavioral layer above it: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement pipeline that converts behavioral thresholds into automated response actions.
+      </p>
+      <p>
+        Guard also covers the hard-limit job a Generation 2 tool covers: a Session P&amp;L Below trigger ends the session at any threshold you configure, with five response levels available including typed acknowledgment, mandatory countdown, and broker disconnect. The behavioral layer is what the previous generation did not build.
+      </p>
+
+      <!-- Capability matrix -->
+      <h2>Capability matrix</h2>
+      <div class="not-prose overflow-x-auto my-6">
+        <table class="w-full text-sm border-collapse rounded-xl overflow-hidden border border-zinc-200">
+          <thead>
+            <tr class="bg-zinc-50 border-b border-zinc-200">
+              <th class="text-left px-4 py-3 font-semibold text-zinc-900 sticky left-0 bg-zinc-50">Capability</th>
+              {matrixCols.map((col) => (
+                <th class={'text-center px-3 py-3 font-semibold text-xs whitespace-nowrap ' + (col === 'Meridian' ? 'text-emerald-800 bg-emerald-50/40' : 'text-zinc-600')}>{col}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-100 bg-white">
+            {matrixRows.map((row) => (
+              <tr>
+                <td class="px-4 py-2.5 text-zinc-700 sticky left-0 bg-white">{row.feature}</td>
+                {row.values.map((v, i) => (
+                  <td class={'text-center px-3 py-2.5 ' + cellClass(v, matrixCols[i] === 'Meridian') + (matrixCols[i] === 'Meridian' ? ' bg-emerald-50/30' : '')}>
+                    {cellLabel(v)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-zinc-500 leading-relaxed">
+        ✓ supported · ◐ partial / vendor-dependent · — not in scope. Capabilities for third-party products are based on publicly listed features as of 2026; verify on each vendor's site.
+      </p>
+
+      <h2>The behavioral signal column</h2>
+      <p>
+        The single column that separates Generation 2 from Generation 3 is real-time behavioral-signal detection. A hard-limit tool can tell the trader they have lost $500. It cannot tell them their entry frequency has doubled, that the last three stops have been moved progressively wider, or that they are re-entering 40 seconds after a stop-out with double their average size.
+      </p>
+      <p>
+        Each of those is a Meridian signal. Each fires before any P&amp;L threshold has reason to. That is the layer the previous generation never built.
+      </p>
+
+      <h2>Where this comparison sits in context</h2>
+      <p>
+        For the wider category map, including Generation 1 native controls and the relationship between all three generations, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.
+      </p>
+
+      <hr />
+
+      <h2>Frequently asked questions</h2>
+      <dl class="space-y-6 not-prose">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          See Guard trigger types →
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-zinc-100">
+      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
+      <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
+    </div>
+
+  </article>
+</Layout>

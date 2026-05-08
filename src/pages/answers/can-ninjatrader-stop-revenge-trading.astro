@@ -1,0 +1,103 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Can NinjaTrader Stop Revenge Trading? — Direct Answer | Meridian',
+  description:
+    'Native NinjaTrader controls cap financial damage but do not detect the revenge-entry pattern itself. The behavioral leading-indicator layer is what intercepts revenge trading before the next order is placed.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'Can NinjaTrader stop revenge trading?';
+const directAnswer = 'NinjaTrader\'s built-in account controls cap financial damage at a fixed dollar threshold, but they do not detect the revenge-trading pattern itself — rapid re-entry after a loss, elevated size, accelerating pace. The behavioral layer that intercepts the pattern as it forms is what actually stops the next revenge entry from reaching the order window. On NinjaTrader 8, that layer is what Meridian provides through real-time behavioral signal detection and Meridian Guard\'s automated enforcement.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/can-ninjatrader-stop-revenge-trading',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · NinjaTrader 8</p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
+
+      <h2>What NinjaTrader can do today</h2>
+      <p>
+        NinjaTrader 8 ships with an account-level daily loss control that blocks new orders once a configured drawdown is reached. Many brokers connected through NinjaTrader — Tradovate, Rithmic, AMP, NinjaTrader Brokerage — also enforce drawdown limits at the clearing layer. Together, these constitute the financial-outcome floor on a session.
+      </p>
+      <p>
+        That floor catches the eventual financial damage from revenge trading. It does not catch the pattern itself. By the time the daily loss limit fires, the behavioral sequence is over: the trader has re-entered three times after the initial stop-out, sized up twice, moved one stop progressively wider, and produced enough cumulative loss to breach the threshold. Each of those decisions happened earlier — in the window the financial-outcome layer cannot see.
+      </p>
+
+      <h2>What revenge trading actually looks like at the order level</h2>
+      <p>
+        A revenge entry has a recognizable signature. The most reliable elements are: the time gap between the stop-out and the next order is unusually short relative to the trader's normal hold-and-evaluate rhythm; the position size on the new entry equals or exceeds the previous size; the directional bias often matches the original trade rather than reversing on technical evidence; and the entry pace from that point forward typically accelerates beyond the trader's session baseline.
+      </p>
+      <p>
+        None of those elements are visible to a system that watches only cumulative P&amp;L. They are visible to a system that watches each order event in real time, compares it against the trader's own behavioral baseline, and treats the deviation as a signal in itself.
+      </p>
+
+      <h2>What the behavioral layer adds</h2>
+      <p>
+        Meridian runs as a NinjaTrader 8 add-on and observes every order event as it happens. The Revenge Entry signal (D1 in the seven-signal model) fires when re-entry timing, size, and directional bias collectively match the revenge signature. The Overtrading Pace signal (D7) fires when subsequent entry frequency accelerates past the trader's session-history rhythm. Each signal contributes to a composite Psychological Stability Index calibrated to the individual trader.
+      </p>
+      <p>
+        When the optional Meridian Guard layer is enabled, the trader can pre-commit to specific responses at specific behavioral thresholds: a typed acknowledgment phrase that has to be entered before the next order goes through, a mandatory countdown of any duration, an entry block at a configured PSI floor, or a broker disconnect at the highest enforcement level. The intervention happens before the order reaches the market, not after the loss has been realized.
+      </p>
+
+      <h2>Why self-discipline rarely closes the gap alone</h2>
+      <p>
+        Behavioral economists describe the cognitive shift after a loss in well-documented terms: cortisol elevates, the prefrontal cortex becomes less available for deliberate decision-making, and the impulse to recover the loss becomes the dominant input to the next decision. The trader knows they should wait. They often cannot. This is precisely the situation a commitment device is designed for — a pre-committed external constraint that the in-session decision-maker cannot easily override.
+      </p>
+      <p>
+        That is the design point of the behavioral layer Meridian was built for. The decision to enforce a cooldown, require an acknowledgment, or block entries below a PSI floor is made when the trader is calm. The system enforces it when the trader is not.
+      </p>
+
+      <h2>Practical setup</h2>
+      <p>
+        For a NinjaTrader 8 trader who has had at least one revenge sequence end a session badly: keep the native account-level daily loss control on as the financial-outcome floor; install Meridian as the behavioral layer above it; configure Guard's Consecutive Losses trigger to enforce a typed acknowledgment after two losses and a mandatory countdown after three. The financial-outcome layer remains the backstop. The behavioral layer fires before the backstop has reason to.
+      </p>
+
+      <p>
+        For a deeper view of how Meridian's seven behavioral signals map to common failure modes, see <a href="/use-cases/ninjatrader-revenge-trading-lockout" class="text-emerald-700 underline">the revenge-trading use case</a>, <a href="/anti-tilt" class="text-emerald-700 underline">the anti-tilt overview</a>, or <a href="/guard" class="text-emerald-700 underline">Meridian Guard's full trigger and response model</a>.
+      </p>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

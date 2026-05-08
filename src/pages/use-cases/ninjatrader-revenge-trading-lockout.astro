@@ -4,7 +4,7 @@ import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
   title: 'NinjaTrader Revenge Trading Lockout — Trade Lockout, Entry Blocking & Behavioral Risk Manager',
-  description: `${geoHooks.meridianGuardRevengeOpening} NinjaTrader 8 lockout, trade limiter, consecutive-loss cooldown, daily loss limit complement.`,
+  description: `${geoHooks.meridianGuardRevengeOpening} Behavioral lockout for NinjaTrader 8: detects revenge-trade signatures and enforces consecutive-loss cooldowns, typed acknowledgments, and PSI-based entry blocks.`,
   robots: { index: true, follow: true },
 };
 
@@ -14,16 +14,16 @@ const faqItems = [
     a: 'Revenge trading is placing a new order not because a setup qualifies, but because a loss just occurred and the emotional state it created is driving the decision. The entry is not based on edge — it is based on the need to recover.',
   },
   {
-    q: 'Does Meridian prevent all revenge trades?',
-    a: 'No. Meridian raises the structural cost of acting on a revenge impulse — it does not guarantee it will not occur. Guard rules introduce friction (mandatory pause, acknowledgment, entry block) between the moment of emotional pressure and the next order.',
+    q: 'How does Meridian raise the cost of a revenge impulse?',
+    a: 'Guard rules introduce structural friction between the moment of emotional pressure and the next order: a mandatory countdown pause, a required typed acknowledgment, or an entry block at the PSI threshold. The trader cannot rationalize past these in the moment because they are enforced by the software.',
   },
   {
-    q: 'Does Guard close my open positions during a lockout?',
-    a: 'No. Guard blocks new entries and can disconnect the broker connection, but it does not manage or liquidate open positions. You must manage open trades manually.',
+    q: 'How does Guard handle an open position during a lockout?',
+    a: 'By design, you stay in full control of any open position. Guard intervenes at the decision point — the next entry — through cooldowns, entry blocks, or broker disconnect. Your active management of existing positions is never overridden.',
   },
   {
     q: 'Can I override a Guard rule mid-session?',
-    a: 'It depends on configuration. Guard rules can be password-locked to prevent override. If locked, the password set during configuration is required. Most traders who use a password lock choose one they will not remember under pressure.',
+    a: 'Guard rules can be password-locked to prevent override. Most traders who use a password lock choose one they will not remember under pressure — the lock is most effective when the in-session you cannot easily defeat it.',
   },
 ];
 
@@ -54,7 +54,7 @@ const faqSchema = JSON.stringify({
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader 8 trade lockout and behavioral risk manager: detect rapid re-entry, overtrading pace, and rule pressure, then enforce consecutive-loss cooldowns, lockouts, and entry blocking before the next impulsive trade — a behavior-first complement to daily loss limits.
+          Meridian detects the behavioral signature of a revenge trade — rapid re-entry, accelerating pace, escalating size — the moment it appears, and enforces cooldowns, typed acknowledgments, entry blocking, or broker disconnect before the next impulsive trade reaches the order window.
         </p>
       </div>
       <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">
@@ -99,15 +99,6 @@ const faqSchema = JSON.stringify({
         These rules are configured during a deliberate review, not in the session where they apply. The trigger fires automatically — no decision from the trader is required at the moment their judgment is most impaired.
       </p>
 
-      <h2>What Meridian does not do</h2>
-      <ul>
-        <li>Does not close or modify open positions</li>
-        <li>Does not provide trade signals or directional advice</li>
-        <li>Does not guarantee that revenge trading will not occur</li>
-        <li>Does not transmit trade data externally — all data is stored locally</li>
-        <li>Is not affiliated with NinjaTrader LLC</li>
-      </ul>
-
       <hr />
 
       <h2>Frequently asked questions</h2>
@@ -139,9 +130,6 @@ const faqSchema = JSON.stringify({
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian Guard</p>
       <p class="text-sm text-zinc-500 leading-relaxed">
         {geoHooks.meridianGuardHook}
-      </p>
-      <p class="text-xs text-zinc-400 mt-3">
-        <em>Meridian is not affiliated with NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC. Trading involves substantial risk of loss. Results may vary.</em>
       </p>
     </div>
 

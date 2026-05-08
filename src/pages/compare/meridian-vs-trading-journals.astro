@@ -1,0 +1,187 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+const metadata = {
+  title: 'Meridian vs Trading Journals — Tradervue, Edgewonk, TraderSync, TradesViz',
+  description:
+    'Trading journals analyze sessions after the close. Meridian intercepts the behavioral pattern in real time. Two different categories — retrospective analytics versus a behavioral leading indicator inside NinjaTrader 8.',
+  robots: { index: true, follow: true },
+};
+
+const compareRows = [
+  {
+    dim: 'Category',
+    journals: 'Post-session retrospective analytics',
+    meridian: 'Real-time behavioral leading indicator',
+  },
+  {
+    dim: 'Operates',
+    journals: 'After the trading session ends',
+    meridian: 'During the session, in real time',
+  },
+  {
+    dim: 'Reads',
+    journals: 'Imported trade history (CSV, broker export)',
+    meridian: 'Live NinjaTrader 8 order events',
+  },
+  {
+    dim: 'Output',
+    journals: 'Charts, dashboards, weekly summaries',
+    meridian: 'Composite PSI score + 7 behavioral signals + Guard enforcement',
+  },
+  {
+    dim: 'Behavioral pattern detection',
+    journals: 'Visible in retrospect, requires manual review',
+    meridian: 'Detected the moment the pattern emerges',
+  },
+  {
+    dim: 'Intervention capability',
+    journals: 'None — analysis only',
+    meridian: 'Guard: typed acknowledgment, mandatory countdown, entry block, broker disconnect',
+  },
+  {
+    dim: 'Data location',
+    journals: 'Cloud platform',
+    meridian: 'Local on Windows machine',
+  },
+  {
+    dim: 'Adapts to your style',
+    journals: 'Group / tag analysis',
+    meridian: 'Adaptive baseline learning calibrated per trader',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'How is Meridian different from Tradervue or Edgewonk?',
+    a: 'Tradervue, Edgewonk, TraderSync, TradesViz, and similar journal platforms are post-session analytics tools. They import completed trades after the session ends and surface patterns through dashboards, group filters, and weekly summaries. Meridian is a real-time behavioral leading indicator that runs inside NinjaTrader 8 during the session and can intercept the behavioral pattern as it forms — a different category entirely.',
+  },
+  {
+    q: 'Could a journal platform detect revenge trading or overtrading?',
+    a: 'A journal platform can show the trader, after the session ends, that they re-entered three times in twelve minutes after a stop-out. Meridian flags the same pattern as the second order is placed and can require a typed acknowledgment, a mandatory countdown, or an entry block before the third one. Retrospective vs real-time is the category line.',
+  },
+  {
+    q: 'Does Meridian replace post-session analysis?',
+    a: 'Meridian generates its own behavioral session review — PSI trend, composure index, weekday patterns, monthly digest, today\'s risk brief — focused on behavioral execution rather than position-level P&L attribution. Traders who also want broker-import trade tagging, multi-account portfolio analytics, or strategy-level statistical breakdowns will pick a journal platform for that specific job; the two products solve different problems.',
+  },
+  {
+    q: 'Why does Meridian only run on NinjaTrader 8?',
+    a: 'Real-time behavioral signal detection requires a live order pipeline — every entry, modification, and exit observed as it happens, not imported afterwards. NinjaTrader 8 is the platform Meridian was built into; that integration is what makes the leading-indicator design possible.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-12">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Comparison · Different categories</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        Meridian vs trading journals.
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">
+          Tradervue, Edgewonk, TraderSync, and TradesViz are post-session retrospective platforms. Meridian is a real-time behavioral leading indicator that runs inside NinjaTrader 8 and can intercept the pattern as it forms. They are different categories.
+        </p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
+
+      <h2>What trading journals do</h2>
+      <p>
+        Trading journal platforms — Tradervue, Edgewonk, TraderSync, TradesViz, Chartlog, and similar — import completed trade history after the session ends and surface patterns through dashboards, weekly summaries, group filters, and tag-based analytics. They are mature retrospective analytics platforms.
+      </p>
+      <p>
+        The design point is the post-session review: by the time the data is on the screen, the trades are closed. Their job is to help a trader understand what happened so the next session is better.
+      </p>
+
+      <h2>Where Meridian operates instead</h2>
+      <p>
+        Meridian is not a journal platform. It runs inside NinjaTrader 8 during the live session, observing every order event as it happens. Seven behavioral signals — Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace — feed into a composite Psychological Stability Index in real time, calibrated to the trader's own session history.
+      </p>
+      <p>
+        When the optional Meridian Guard layer is enabled, the same signals can require a typed acknowledgment, enforce a mandatory countdown, block new entries, or disconnect the broker connection — the moment the behavioral threshold is crossed, not after the session ends.
+      </p>
+
+      <!-- Comparison table -->
+      <div class="not-prose overflow-x-auto my-8">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-zinc-200">
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-900 w-1/3"></th>
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-500">Trading journals</th>
+              <th class="text-left py-3 font-semibold text-zinc-900">Meridian</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-100">
+            {compareRows.map((row) => (
+              <tr>
+                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                <td class="py-3 pr-4 text-zinc-600">{row.journals}</td>
+                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Different categories, different design points</h2>
+      <p>
+        Retrospective analytics and real-time behavioral leading indicators answer different questions. The retrospective category answers <em>what happened in this session?</em> The leading-indicator category answers <em>what is happening right now, and what should happen next?</em>
+      </p>
+      <p>
+        A journal platform can show, three days later, that the trader re-entered three times in twelve minutes after a stop-out. Meridian flags the same pattern as the second order is placed and gives the trader the option to enforce friction before the third one. Same data, different layer of the trading process.
+      </p>
+
+      <h2>Where this comparison sits in context</h2>
+      <p>
+        For the wider risk-tooling category map, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.
+      </p>
+
+      <hr />
+
+      <h2>Frequently asked questions</h2>
+      <dl class="space-y-6 not-prose">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/psi-monitor" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          See PSI Monitor →
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-zinc-100">
+      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
+      <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
+    </div>
+
+  </article>
+</Layout>

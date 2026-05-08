@@ -1,6 +1,28 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/ninjatrader-revenge-trading",
+      "destination": "/use-cases/ninjatrader-revenge-trading-lockout",
+      "permanent": true
+    },
+    {
+      "source": "/ninjatrader-overtrading-prevention",
+      "destination": "/use-cases/ninjatrader-overtrading-prevention",
+      "permanent": true
+    },
+    {
+      "source": "/prop-firm-risk-control",
+      "destination": "/use-cases/prop-firm-behavioral-risk-control",
+      "permanent": true
+    },
+    {
+      "source": "/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits",
+      "destination": "/compare/meridian-vs-hard-limit-tools",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",

@@ -1,0 +1,103 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'How to Stop Myself from Revenge Trading — Direct Answer | Meridian',
+  description:
+    'Self-discipline rarely defeats a tilt sequence in real time. A pre-committed external constraint — a commitment device — is what consistently does. Meridian Guard for NinjaTrader 8 is built around exactly that mechanism.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'How do I stop myself from revenge trading?';
+const directAnswer = 'Self-discipline alone rarely defeats a tilt sequence in the moment, because the cognitive shift after a loss reduces the same prefrontal capacity that self-discipline depends on. What consistently works is a commitment device — a constraint you set when you are calm that the in-session you cannot easily override. On NinjaTrader 8, Meridian Guard converts behavioral thresholds into pre-committed enforcement actions: a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/how-to-stop-myself-from-revenge-trading',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · Behavioral risk</p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
+
+      <h2>Why willpower alone underperforms here</h2>
+      <p>
+        After a stop-out — particularly an unexpected one — the cognitive response is well-documented: cortisol elevates, the prefrontal cortex becomes less available for deliberate decision-making, and the impulse to recover the loss becomes the dominant input to the next decision. The trader knows they should wait. The same neurological state that drives the impulse also reduces the capacity to override it.
+      </p>
+      <p>
+        That is why the standard self-discipline interventions — taking a deep breath, closing the platform, journaling — work for some traders some of the time, but rarely with the consistency required to protect an account. The intervention asks the wrong system to do the work. The system that needs to act is impaired by the same trigger that produced the impulse.
+      </p>
+
+      <h2>What does work consistently</h2>
+      <p>
+        The intervention that produces consistent results is structural: a constraint set when the trader is calm, applied automatically when the trader is not. Behavioral economists call this a commitment device. The classic example is locking the cookies in a cabinet when buying them — the in-the-moment self cannot easily defeat the constraint set by the planning self.
+      </p>
+      <p>
+        The same principle applies to revenge trading. When the trader is calm and reviewing the prior week, they can clearly identify the pattern: re-entering within 60 seconds of a stop-out, sizing up after losses, accelerating entry pace under pressure. They can also clearly identify what intervention they would want — a forced 10-minute pause, a typed acknowledgment, an entry block. The hard part is making sure the intervention actually happens during the next live session, when the planning self is not the one in control.
+      </p>
+
+      <h2>How a software commitment device works in NinjaTrader 8</h2>
+      <p>
+        Meridian Guard for NinjaTrader 8 is built specifically as a commitment-device platform. The trader configures the rules in advance — for example, "after two consecutive losses, require a typed acknowledgment phrase before the next entry; after three, enforce a 10-minute countdown; after four, end the session" — and Guard enforces them automatically the moment a trigger condition is met.
+      </p>
+      <p>
+        Six trigger types are available: PSI Below (the composite Psychological Stability Index drops under a threshold), Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, and Session Time Over. Each can be paired with one of five response levels — Alert, Acknowledge, Countdown, Risk Alert Mode, Disconnect — selected for the appropriate severity. Guard rules can be password-locked to prevent in-session override, with most traders selecting a password they will not remember under pressure as a standard practice.
+      </p>
+
+      <h2>The pre-commitment that matters</h2>
+      <p>
+        The decision that does the work is not the in-session decision to wait. It is the calm-state decision, made in advance, to enforce a constraint. The trader who sets up Guard correctly is not promising themselves they will not revenge trade; they are removing the ability to revenge trade once a behavioral threshold is crossed. Those are very different mechanisms with very different reliability.
+      </p>
+
+      <h2>Practical setup</h2>
+      <p>
+        For a trader whose primary failure mode is revenge trading: install Meridian as the behavioral layer in NinjaTrader 8; let the adaptive baseline accumulate at least two weeks of normal sessions so the Revenge Entry signal has a calibrated reference; then configure Guard with Consecutive Losses paired to the Acknowledge response level after two losses, the Countdown response level after three, and the Disconnect response level after four. Enable the password lock with a password that is not memorable under pressure.
+      </p>
+      <p>
+        The configuration takes about five minutes once. The protection it provides is automatic from that point forward, with no further decision required from the trader at the moment their judgment is most impaired.
+      </p>
+
+      <p>
+        For a deeper view, see <a href="/use-cases/ninjatrader-revenge-trading-lockout" class="text-emerald-700 underline">the revenge-trading use case</a>, <a href="/guard" class="text-emerald-700 underline">Meridian Guard's full trigger and response model</a>, or <a href="/anti-tilt" class="text-emerald-700 underline">the anti-tilt overview</a>.
+      </p>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

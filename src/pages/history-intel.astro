@@ -1,0 +1,70 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FeatureDetailPage from '~/components/widgets/FeatureDetailPage.astro';
+
+const metadata = {
+  title: 'History & Intel — Meridian',
+  description:
+    'Track behavioral trends across sessions with long-term history and actionable risk intel.',
+};
+---
+
+<Layout metadata={metadata}>
+  <FeatureDetailPage
+    featureTag="Feature"
+    title="History & Intel"
+    intro="History & Intel surfaces repeating behavior patterns across days, weeks, and months so you can prepare for known risk windows before they appear in live execution."
+    videoTitle="History & Intel demo"
+    videoDescription="Record a short walkthrough of trend views, risk patterns, and how you turn insight into next-session actions."
+    ctaTitle="Stop mistakes before they reach the order window."
+    ctaSubtitle="History & Intel connects session behavior to your next high-quality decision."
+  >
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">What it reveals</h2>
+        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
+          <li>Repeat pressure patterns by day and session type.</li>
+          <li>Behavior trends across your full history window.</li>
+          <li>Risk context that is invisible in raw P&amp;L.</li>
+        </ul>
+      </div>
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">How it helps</h2>
+        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
+          <li>Plan your next session with better context.</li>
+          <li>Tighten rules where recurring drift appears.</li>
+          <li>Build consistency with evidence over time.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
+      <h2 class="font-semibold text-zinc-900 mb-2">Pressure dynamics over time</h2>
+      <p class="text-sm text-zinc-600 leading-relaxed mb-3">
+        Meridian models pressure as something that can rise quickly and recover more gradually. This helps explain why one
+        rough period can still affect later decisions, even if P&amp;L temporarily stabilizes.
+      </p>
+      <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
+        <li>Fast pressure rise, slower recovery profile.</li>
+        <li>Overnight carry for unresolved behavioral pressure.</li>
+        <li>Persistent violations can pause recovery until corrected.</li>
+      </ul>
+    </div>
+    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
+      <h2 class="font-semibold text-zinc-900 mb-2">PSI vs Composure</h2>
+      <p class="text-sm text-zinc-600 leading-relaxed mb-3">
+        PSI is your live state during execution. Composure is your session-quality score after the session ends. You need
+        both: one for in-session decisions, one for longer-term progress review.
+      </p>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div class="rounded-lg border border-zinc-200 p-4">
+          <p class="text-xs uppercase tracking-wide text-zinc-500 mb-1">PSI</p>
+          <p class="text-sm text-zinc-700">Real-time behavioral pressure readout used during live execution.</p>
+        </div>
+        <div class="rounded-lg border border-zinc-200 p-4">
+          <p class="text-xs uppercase tracking-wide text-zinc-500 mb-1">Composure</p>
+          <p class="text-sm text-zinc-700">Post-session quality score used in history, digest, and trend analysis.</p>
+        </div>
+      </div>
+    </div>
+  </FeatureDetailPage>
+</Layout>

@@ -98,11 +98,11 @@ const triggers = [
 ];
 
 const levels = [
-  { level: 'L1', name: 'Alert',          color: '#059669', desc: 'A quiet notification. Does not interrupt trading.' },
+  { level: 'L1', name: 'Alert',          color: '#059669', desc: 'A quiet notification. Stays out of the way of execution.' },
   { level: 'L2', name: 'Acknowledge',    color: '#0d9488', desc: 'Type your own pre-written phrase before continuing.' },
   { level: 'L3', name: 'Countdown',      color: '#d97706', desc: 'Forced waiting period. Cannot be skipped.' },
   { level: 'L4', name: 'Risk Alert Mode',color: '#ea580c', desc: 'Persistent banner. Every entry requires active confirmation.' },
-  { level: 'L5', name: 'Disconnect',     color: '#dc2626', desc: 'Disconnects your broker. Positions are never closed by the system.' },
+  { level: 'L5', name: 'Disconnect',     color: '#dc2626', desc: 'Disconnects your broker. You stay in full control of any open position.' },
 ];
 
 const examples = [
@@ -180,7 +180,7 @@ const examples = [
           </div>
 
           <p class="text-xs text-zinc-600 mt-5 leading-relaxed">
-            $69.99/mo after trial · Cancel any time · Trading involves substantial risk of loss.
+            $69.99/mo after trial · Cancel any time
           </p>
         </div>
 
@@ -533,9 +533,6 @@ const examples = [
           Compare all plans
         </a>
       </div>
-      <p class="text-xs text-zinc-500 max-w-md mx-auto mt-6 leading-relaxed">
-        Trading involves substantial risk of loss. Meridian Guard is a behavioral enforcement tool and does not guarantee trading outcomes. Results may vary.
-      </p>
     </div>
   </section>
 

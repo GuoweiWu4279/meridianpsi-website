@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FeatureDetailPage from '~/components/widgets/FeatureDetailPage.astro';
+
+const metadata = {
+  title: 'Journal — Meridian',
+  description:
+    'Capture session context, behavior notes, and decisions so you can improve execution consistency over time.',
+};
+---
+
+<Layout metadata={metadata}>
+  <FeatureDetailPage
+    featureTag="Feature"
+    title="Journal"
+    intro="Journal gives structure to post-session reflection. Instead of vague notes, you can log behavior context, rule adherence, and decisions to improve next session."
+    videoTitle="Journal workflow demo"
+    videoDescription="Record a short clip of your after-session workflow and the exact notes you review before the next open."
+    ctaTitle="Stop mistakes before they reach the order window."
+    ctaSubtitle="Journal entries help convert one-time lessons into stable habits."
+  >
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">What to capture</h2>
+        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
+          <li>Where pressure started and why.</li>
+          <li>Rules followed vs rules broken.</li>
+          <li>What to repeat and what to remove.</li>
+        </ul>
+      </div>
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">Best practice</h2>
+        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
+          <li>Keep entries short and specific.</li>
+          <li>Review before your next session starts.</li>
+          <li>Track progress by behavior, not only P&amp;L.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
+      <h2 class="font-semibold text-zinc-900 mb-2">Suggested post-session structure</h2>
+      <ol class="text-sm text-zinc-600 space-y-2 list-decimal list-inside">
+        <li>What behavior created pressure first?</li>
+        <li>Which rule did I follow well today?</li>
+        <li>Which rule did I break or nearly break?</li>
+        <li>What one adjustment should I apply next session?</li>
+      </ol>
+    </div>
+    <div class="mt-4 grid md:grid-cols-2 gap-4">
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">Session report tie-in</h2>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Use Journal with your session timeline: note when pressure started, which signal triggered first, and what
+          action you took. This links behavior to execution outcomes.
+        </p>
+      </div>
+      <div class="rounded-xl border border-zinc-200 p-5">
+        <h2 class="font-semibold text-zinc-900 mb-2">Keep it actionable</h2>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          End each journal entry with one next-session rule. Small, specific adjustments compound faster than broad goals.
+        </p>
+      </div>
+    </div>
+  </FeatureDetailPage>
+</Layout>
