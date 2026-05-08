@@ -430,7 +430,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div class="timeline-block max-w-5xl mx-auto">
 
         <!-- Context label -->
-        <p class="text-sm md:text-base font-bold tracking-[0.16em] uppercase text-center mb-7" style="color:#a1a1aa;">When risk tools intervene</p>
+        <p class="text-base md:text-lg leading-relaxed text-center mb-7" style="color:#71717a;">When risk tools intervene</p>
 
         <!-- Single merged meta row: simple stamps + dots (desktop only) -->
         <div class="hidden md:grid grid-cols-4 gap-4 mb-3 relative" style="padding-bottom:24px;">
@@ -484,14 +484,15 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
               </svg>
             </div>
             <p class="relative z-10 text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#064e3b;">Preventive<br />Risk Control</p>
-            <!-- Green bar row with product name inline — same height as competitor green bar -->
-            <div class="relative z-10 flex items-center gap-3 mb-4">
-              <div class="w-7 h-0.5 shrink-0" style="background:#059669;"></div>
-              <p class="text-xs font-semibold leading-none" style="color:#059669;">Meridian PSI / Guard</p>
-            </div>
+            <!-- Green bar — identical to competitor cards -->
+            <div class="relative z-10 w-7 h-0.5 mb-4" style="background:#059669;"></div>
             <div class="relative z-10 flex items-center gap-2 mb-6">
               <svg class="shrink-0" width="16" height="16" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.75" stroke="#059669" stroke-width="1.2"/><path d="M5 8.5l2.5 2.5 4.5-4.5" stroke="#059669" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               <p class="text-sm font-semibold leading-snug" style="color:#059669;">Stops the mistake before it becomes a trade.</p>
+            </div>
+            <!-- Product name at bottom — mirrors competitor Products slot -->
+            <div class="relative z-10 pt-4 border-t border-emerald-100">
+              <p class="text-sm font-semibold leading-snug" style="color:#059669;">Meridian PSI / Guard</p>
             </div>
           </div>
 
