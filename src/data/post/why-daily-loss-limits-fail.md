@@ -2,9 +2,15 @@
 title: "Why Daily Loss Limits Don't Stop Overtrading in NinjaTrader 8"
 excerpt: "Configuring a daily loss limit is the first risk management step most traders take. It is necessary. It is also not sufficient."
 author: "Meridian"
-category: trading-psychology
+category: 'trading-psychology'
 tags: ["overtrading", "ninjatrader", "risk management", "behavioral finance"]
 publishDate: 2026-05-02
+metadata:
+  title: "Why Daily Loss Limits Don't Stop Overtrading in NinjaTrader 8"
+  description: "Daily loss limits fire after the damage. Understanding exactly where they fail — and what behavioral monitoring adds — is the prerequisite for building risk controls that actually work."
+  robots:
+    index: true
+    follow: true
 ---
 
 Configuring a daily loss limit is the first risk management step most traders take. It is necessary. It is also not sufficient — and understanding exactly where it fails is the prerequisite for building a behavioral risk system that actually works.

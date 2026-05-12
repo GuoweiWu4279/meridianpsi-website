@@ -28,9 +28,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap({
-      filter: (page) => !page.includes('/changelog'),
-    }),
+    sitemap(),
     mdx(),
     icon({
       include: {

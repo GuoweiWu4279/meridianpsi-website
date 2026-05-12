@@ -2,9 +2,15 @@
 title: "Why Prop Firm Evaluations Get Blown — and What Actually Stops It"
 excerpt: "The statistics on prop firm evaluation failure rates are stark. Understanding the behavioral mechanism behind the most common failure mode is the prerequisite for addressing it structurally."
 author: "Meridian"
-category: trading-psychology
+category: 'trading-psychology'
 tags: ["prop firm", "funded trader", "evaluation", "ninjatrader", "risk management"]
 publishDate: 2026-05-02
+metadata:
+  title: "Why Prop Firm Evaluations Get Blown — and What Actually Stops It"
+  description: "Most prop firm evaluations fail not because of strategy, but because of one behavioral session. Here is the failure mechanism and the structural interventions that actually stop it."
+  robots:
+    index: true
+    follow: true
 ---
 
 The statistics on prop firm evaluation failure rates are stark. Depending on the platform, the majority of evaluation attempts do not result in a funded account. A significant share of those that do get funded are subsequently halted within the first 60 days.
