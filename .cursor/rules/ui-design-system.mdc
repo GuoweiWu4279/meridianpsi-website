@@ -1,0 +1,136 @@
+---
+description: Meridian website design system — colors, spacing, components, dark mode. Load when editing any .astro, .css, or .ts file that affects UI.
+globs: src/**/*.{astro,css,ts,tsx}
+alwaysApply: false
+---
+
+# Meridian Design System
+
+## Color Tokens (always use these, never hardcode other values)
+
+| Purpose | Light | Dark |
+|---|---|---|
+| Brand / CTA | `#059669` (emerald-600) | same |
+| Brand hover | `#047857` (emerald-700) | `#6ee7b7` for text links |
+| Body text | `#3f3f46` (zinc-700) | `#e4e4e7` |
+| Headings | `#18181b` (zinc-900) | `#fafafa` |
+| Muted text | `#71717a` (zinc-500) | `#a1a1aa` |
+| Border light | `#e4e4e7` (zinc-200) | `rgba(255,255,255,0.08)` |
+| Page background | `white` | `rgb(9 9 11)` (zinc-950) |
+| Card background | `white` | `#18181b` (zinc-900) |
+
+CSS variables also available: `--aw-color-primary`, `--aw-color-secondary`, `--aw-color-accent`, `--aw-color-text-default`, `--aw-color-text-muted`.
+
+Tailwind aliases: `text-primary`, `bg-primary`, `text-muted`, `text-default`.
+
+## Typography Scale
+
+```
+.eyebrow   → text-xs font-semibold tracking-widest uppercase, color #059669
+.display   → text-4xl md:text-6xl font-bold tracking-tight (-0.03em), color #18181b
+.lead      → text-lg leading-relaxed, color #71717a
+h1–h4      → color #18181b, letter-spacing -0.02em (set globally)
+```
+
+Font family: Inter Variable (`font-sans` / `font-heading`). **Never specify another font.**
+
+## Spacing System
+
+Sections use consistent vertical rhythm — do not invent new padding values:
+
+```
+.section        → py-24 lg:py-32 px-6
+.section-tight  → py-16 lg:py-24 px-6
+```
+
+Containers:
+```
+.container-narrow → max-w-3xl mx-auto
+.container-wide   → max-w-6xl mx-auto
+```
+
+For inline/flex alignment: **always use `items-center` on flex rows** that mix text and icons. The most common misalignment bug is forgetting `items-center` on a flex parent.
+
+## Buttons
+
+Use the pre-built classes — do NOT recreate buttons with raw Tailwind:
+
+```html
+<!-- Primary CTA -->
+<a class="btn btn-primary">Download Free Trial</a>
+<a class="btn btn-primary btn-lg">Download Free Trial</a>
+
+<!-- Secondary -->
+<a class="btn btn-secondary">Learn More</a>
+
+<!-- Ghost link -->
+<a class="btn-tertiary">See all features →</a>
+```
+
+`btn-primary` is `#059669` background, white text, with hover lift.
+`btn-secondary` is white/border in light, transparent/border in dark.
+
+## Cards
+
+```html
+<div class="card p-6">...</div>
+<div class="card card-hover p-6">...</div>  <!-- adds hover lift + green border -->
+```
+
+Never use raw `rounded`, `shadow`, `border` combos — always `.card`.
+
+## Dark Mode
+
+All components must work in both modes. Pattern:
+
+```html
+<div class="text-zinc-700 dark:text-zinc-300">
+<div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/10">
+```
+
+**Or use the named classes** (`.card`, `.lead`, `.display`) which already handle dark mode.
+
+Never add dark mode only for light — if you style something for light, add the dark variant.
+
+## Common Misalignment Fixes
+
+**Icon + text not aligned:**
+```html
+<!-- ❌ BAD -->
+<div class="flex gap-2">
+  <Icon name="tabler:check" class="w-5 h-5" />
+  <span>Feature text</span>
+</div>
+
+<!-- ✅ GOOD -->
+<div class="flex items-center gap-2">
+  <Icon name="tabler:check" class="w-5 h-5 shrink-0" />
+  <span>Feature text</span>
+</div>
+```
+
+**Horizontal dashes / dividers not aligned with text:**
+```html
+<!-- ✅ Pattern: flex items-center for rule + label combos -->
+<div class="flex items-center gap-3">
+  <div class="h-px flex-1 bg-zinc-200 dark:bg-white/10"></div>
+  <span class="text-xs text-zinc-400">or</span>
+  <div class="h-px flex-1 bg-zinc-200 dark:bg-white/10"></div>
+</div>
+```
+
+**Grid columns uneven height / not aligning tops:**
+```html
+<!-- ✅ For feature grids, always use items-start unless centering is intentional -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+```
+
+## Astro Icon Usage
+
+Always import from `astro-icon/components` and use tabler icons:
+```astro
+import { Icon } from 'astro-icon/components';
+<Icon name="tabler:check" class="w-5 h-5 text-primary" />
+```
+
+Available sets: `tabler:*` and `flat-color-icons:*`.

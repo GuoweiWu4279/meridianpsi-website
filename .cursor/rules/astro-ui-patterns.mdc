@@ -1,0 +1,134 @@
+---
+description: Astro component patterns for Meridian website — how to write sections, fix layout bugs, use PageLayout. Load when editing .astro files.
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Astro UI Patterns — Meridian Website
+
+## Every page MUST use PageLayout
+
+```astro
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+const meta = { title: '...', description: '...' };
+---
+<PageLayout {meta}>
+  <!-- page content -->
+</PageLayout>
+```
+
+`PageLayout` includes: `RiskBanner` + `Header` + `Footer`. Never bypass it.
+
+## Section Structure
+
+Standard section template (copy-paste this, don't invent alternatives):
+
+```astro
+<section class="section">
+  <div class="container-wide">
+    <div class="text-center mb-12">
+      <p class="eyebrow">Section label</p>
+      <h2 class="text-3xl md:text-4xl font-bold mt-2 text-zinc-900 dark:text-zinc-50">Heading</h2>
+      <p class="lead mt-4 max-w-2xl mx-auto">Supporting sentence.</p>
+    </div>
+    <!-- content -->
+  </div>
+</section>
+```
+
+## Feature Grid
+
+3-column grid of cards (features, benefits, etc.):
+
+```astro
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+  {features.map(f => (
+    <div class="card p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <Icon name={f.icon} class="w-6 h-6 text-primary shrink-0" />
+        <h3 class="font-semibold text-zinc-900 dark:text-zinc-50">{f.title}</h3>
+      </div>
+      <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{f.description}</p>
+    </div>
+  ))}
+</div>
+```
+
+Key rules:
+- `items-start` on grid (not `items-center` or `items-stretch`) for variable-height cards
+- `shrink-0` on icons so they never compress
+- `flex items-center gap-3` for icon+title rows — **always `items-center`**
+
+## Two-Column Split (text + image/screenshot)
+
+```astro
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+  <div>
+    <p class="eyebrow">Label</p>
+    <h2 class="text-3xl font-bold mt-2 text-zinc-900 dark:text-zinc-50">Heading</h2>
+    <p class="lead mt-4">Description.</p>
+    <ul class="mt-6 space-y-3">
+      {points.map(p => (
+        <li class="flex items-start gap-3">
+          <Icon name="tabler:check" class="w-5 h-5 text-primary mt-0.5 shrink-0" />
+          <span class="text-zinc-600 dark:text-zinc-400">{p}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="guard-media-frame">
+    <img src={screenshot} alt="..." class="w-full" />
+  </div>
+</div>
+```
+
+Note `mt-0.5` on the check icon — this offsets it to align with the first line of text (not the vertical center of multi-line text).
+
+## CTA Block (bottom of every marketing page)
+
+```astro
+<section class="section-tight bg-zinc-50 dark:bg-zinc-900/50">
+  <div class="container-narrow text-center">
+    <h2 class="text-3xl font-bold text-zinc-900 dark:text-zinc-50">Ready to trade with discipline?</h2>
+    <p class="lead mt-4">Start your free trial today — no license required for the first 30 days.</p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/download" class="btn btn-primary btn-lg">Download Free Trial</a>
+      <a href="/pricing" class="btn btn-secondary btn-lg">View Pricing</a>
+    </div>
+  </div>
+</section>
+```
+
+Always `flex-col sm:flex-row` for button rows — stacks on mobile, side by side on desktop.
+
+## Dividers / Separators
+
+```astro
+<!-- Section divider -->
+<div class="border-t border-zinc-200 dark:border-white/10 my-12"></div>
+
+<!-- "or" separator (horizontal line + label) -->
+<div class="flex items-center gap-3 my-6">
+  <div class="h-px flex-1 bg-zinc-200 dark:bg-white/10"></div>
+  <span class="text-xs text-zinc-400 dark:text-zinc-500">or</span>
+  <div class="h-px flex-1 bg-zinc-200 dark:bg-white/10"></div>
+</div>
+```
+
+## Prose / Rich Text Sections
+
+For markdown-rendered content, wrap with the prose class:
+```astro
+<div class="prose prose-zinc dark:prose-invert max-w-none">
+  <Content />
+</div>
+```
+
+## Debugging Alignment Issues
+
+When an element looks misaligned, check in this order:
+1. Is the flex parent missing `items-center`? (most common cause)
+2. Is there an unintended `margin-top` or `padding-top` coming from a global `h1–h4` style?
+3. Is there a `prose` wrapper applying typography margins to non-prose content?
+4. Is an icon missing `shrink-0`? (causes it to compress and throw off the row height)
