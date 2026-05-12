@@ -159,23 +159,29 @@ function formatDate(d?: Date) {
 </style>
 
 <script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.cat-btn');
-  const cards = document.querySelectorAll<HTMLElement>('.article-card');
+  // Re-attach on every Astro client-side navigation (View Transitions).
+  function initArticleFilter() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.cat-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.article-card');
+    if (!tabs.length) return;
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const cat = tab.dataset.cat ?? 'all';
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const cat = tab.dataset.cat ?? 'all';
 
-      tabs.forEach((t) => {
-        t.classList.remove('active', 'text-zinc-900', 'border-zinc-900');
-        t.classList.add('text-zinc-400', 'border-transparent');
-      });
-      tab.classList.add('active', 'text-zinc-900', 'border-zinc-900');
-      tab.classList.remove('text-zinc-400', 'border-transparent');
+        tabs.forEach((t) => {
+          t.classList.remove('active', 'text-zinc-900', 'border-zinc-900');
+          t.classList.add('text-zinc-400', 'border-transparent');
+        });
+        tab.classList.add('active', 'text-zinc-900', 'border-zinc-900');
+        tab.classList.remove('text-zinc-400', 'border-transparent');
 
-      cards.forEach((card) => {
-        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+        cards.forEach((card) => {
+          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+        });
       });
     });
-  });
+  }
+
+  document.addEventListener('astro:page-load', initArticleFilter);
 </script>

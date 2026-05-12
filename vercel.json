@@ -21,6 +21,16 @@
       "source": "/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits",
       "destination": "/compare/meridian-vs-hard-limit-tools",
       "permanent": true
+    },
+    {
+      "source": "/docs",
+      "destination": "/faq",
+      "permanent": false
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": "/faq",
+      "permanent": false
     }
   ],
   "headers": [

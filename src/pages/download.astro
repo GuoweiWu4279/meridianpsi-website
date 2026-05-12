@@ -179,16 +179,31 @@ const { Content: LatestContent } = await render(latest);
 </Layout>
 
 <script>
-  const checkbox = document.getElementById('disclaimer-confirm') as HTMLInputElement | null;
-  const btn = document.getElementById('download-btn');
+  // Re-attach on every Astro client-side navigation (View Transitions).
+  function initDownloadGate() {
+    const checkbox = document.getElementById('disclaimer-confirm') as HTMLInputElement | null;
+    const btn = document.getElementById('download-btn');
+    if (!checkbox || !btn) return;
 
-  checkbox?.addEventListener('change', () => {
-    if (checkbox.checked) {
-      btn?.classList.remove('opacity-40', 'pointer-events-none');
-      btn?.removeAttribute('aria-disabled');
+    // Reset to disabled state on every page-load (in case browser auto-restored checkbox).
+    if (!checkbox.checked) {
+      btn.classList.add('opacity-40', 'pointer-events-none');
+      btn.setAttribute('aria-disabled', 'true');
     } else {
-      btn?.classList.add('opacity-40', 'pointer-events-none');
-      btn?.setAttribute('aria-disabled', 'true');
+      btn.classList.remove('opacity-40', 'pointer-events-none');
+      btn.removeAttribute('aria-disabled');
     }
-  });
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        btn.classList.remove('opacity-40', 'pointer-events-none');
+        btn.removeAttribute('aria-disabled');
+      } else {
+        btn.classList.add('opacity-40', 'pointer-events-none');
+        btn.setAttribute('aria-disabled', 'true');
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initDownloadGate);
 </script>

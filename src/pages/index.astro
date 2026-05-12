@@ -159,7 +159,7 @@ const steps = [
     fullDesc: 'See your behavior in real statistics and know how to improve.',
     bullets: [
       'Detailed session reports show exactly what happened during the trading session.',
-      'Real-time journal and auto-complete journal system keep track of up to 5 years of data for review.',
+      'Real-time journal capture and automatic session compilation keep track of up to 5 years of data for review.',
       'Trading statistics and trend ranges from daily, weekly, and monthly views.',
       'Advanced statistics show your biggest weaknesses and where to improve.',
     ],
@@ -339,7 +339,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Trading psychology monitor</span>
           </div>
           <!-- Title with word-blur animation -->
-          <h1 class="text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.08] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.1] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
             Stop mistakes<br />
             <span style="color:#059669;">before they reach the order window.</span>
           </h1>
@@ -362,7 +362,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <!-- Ecosystem / Recommended Resources section -->
   <div class="fade-up border-b border-zinc-200/60" style="background: #FEFEFE;">
     <div class="max-w-6xl mx-auto px-6 py-8 md:py-10">
-      <div class="flex items-center justify-between mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-8">
         <p class="text-base font-semibold" style="color:#18181b;">Our Recommended Resources</p>
         <p class="text-xs" style="color:#a1a1aa;">More platforms launching very shortly.</p>
       </div>
@@ -789,6 +789,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           </div>
         </div>
       </div>
+      <p class="text-xs text-center mt-2 md:hidden" style="color:#a1a1aa;">← Swipe to see full comparison →</p>
 
       <p class="text-sm leading-relaxed max-w-3xl mx-auto mt-6 fade-up" style="color:#71717a;">
         Meridian is a different category — a behavioral leading indicator that fires before any hard limit would need to.
@@ -1180,7 +1181,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <!-- Right column: fills same height as left column -->
         <div class="min-w-0 lg:flex lg:flex-col">
           <div
-            class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 lg:flex-1"
+            class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 lg:flex-1 aspect-video lg:aspect-auto"
             style="position: relative; isolation: isolate; z-index: 0; width: 100%; min-height: 0; background: #1C1C1E;"
             id="intel-showcase-panel"
             role="tabpanel"

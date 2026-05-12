@@ -292,7 +292,7 @@ const pricingPageJsonLd = JSON.stringify({
       {
         title: 'Does Meridian store or transmit my trade data?',
         description:
-          'No. All data — fills, session history, behavioral metrics, PSI scores — is stored locally on your machine and is never transmitted to any external server. The only outbound request Meridian makes is a license key validation on startup. No trade data, account information, or behavioral records leave your computer.',
+          'No. All data — fills, session history, behavioral metrics, PSI scores — is stored locally on your machine and is never transmitted to any external server. The primary outbound request Meridian makes is a license key validation on startup. No trade data, account information, or behavioral records leave your computer.',
       },
       {
         title: 'What does PSI measure — and can it predict profits?',
@@ -322,64 +322,72 @@ const pricingPageJsonLd = JSON.stringify({
 </Layout>
 
 <script>
-  const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement;
-  const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement;
+  // Astro View Transitions (ClientRouter) replaces the DOM on SPA navigation,
+  // so listeners must be re-attached on `astro:page-load` (fires for both
+  // initial load and every subsequent client-side navigation).
+  function initPricingToggle() {
+    const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement | null;
+    const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement | null;
+    if (!btnMonthly || !btnAnnual) return;
 
-  const stdMonthlyPrice  = document.getElementById('std-monthly-price');
-  const stdAnnualPrice   = document.getElementById('std-annual-price');
-  const stdMonthlyNote   = document.getElementById('std-monthly-note');
-  const stdAnnualNote    = document.getElementById('std-annual-note');
-  const stdCta           = document.getElementById('std-cta') as HTMLAnchorElement;
+    const stdMonthlyPrice  = document.getElementById('std-monthly-price');
+    const stdAnnualPrice   = document.getElementById('std-annual-price');
+    const stdMonthlyNote   = document.getElementById('std-monthly-note');
+    const stdAnnualNote    = document.getElementById('std-annual-note');
+    const stdCta           = document.getElementById('std-cta') as HTMLAnchorElement | null;
 
-  const guardMonthlyPrice = document.getElementById('guard-monthly-price');
-  const guardAnnualPrice  = document.getElementById('guard-annual-price');
-  const guardMonthlyNote  = document.getElementById('guard-monthly-note');
-  const guardAnnualNote   = document.getElementById('guard-annual-note');
-  const guardCta          = document.getElementById('guard-cta') as HTMLAnchorElement;
+    const guardMonthlyPrice = document.getElementById('guard-monthly-price');
+    const guardAnnualPrice  = document.getElementById('guard-annual-price');
+    const guardMonthlyNote  = document.getElementById('guard-monthly-note');
+    const guardAnnualNote   = document.getElementById('guard-annual-note');
+    const guardCta          = document.getElementById('guard-cta') as HTMLAnchorElement | null;
 
-  const MONTHLY_URL       = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
-  const ANNUAL_URL        = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
-  const GUARD_MONTHLY_URL = 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
-  const GUARD_ANNUAL_URL  = 'https://whop.com/checkout/plan_frPOgHtDTvBkR';
+    const MONTHLY_URL       = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
+    const ANNUAL_URL        = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
+    const GUARD_MONTHLY_URL = 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
+    const GUARD_ANNUAL_URL  = 'https://whop.com/checkout/plan_frPOgHtDTvBkR';
 
-  function setMonthly() {
-    btnMonthly.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
-    btnMonthly.classList.remove('text-zinc-500');
-    btnAnnual.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
-    btnAnnual.classList.add('text-zinc-500');
+    function setMonthly() {
+      btnMonthly!.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
+      btnMonthly!.classList.remove('text-zinc-500');
+      btnAnnual!.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
+      btnAnnual!.classList.add('text-zinc-500');
 
-    stdMonthlyPrice?.classList.remove('hidden');
-    stdAnnualPrice?.classList.add('hidden');
-    stdMonthlyNote?.classList.remove('hidden');
-    stdAnnualNote?.classList.add('hidden');
-    if (stdCta) stdCta.href = MONTHLY_URL;
+      stdMonthlyPrice?.classList.remove('hidden');
+      stdAnnualPrice?.classList.add('hidden');
+      stdMonthlyNote?.classList.remove('hidden');
+      stdAnnualNote?.classList.add('hidden');
+      if (stdCta) stdCta.href = MONTHLY_URL;
 
-    guardMonthlyPrice?.classList.remove('hidden');
-    guardAnnualPrice?.classList.add('hidden');
-    guardMonthlyNote?.classList.remove('hidden');
-    guardAnnualNote?.classList.add('hidden');
-    if (guardCta) guardCta.href = GUARD_MONTHLY_URL;
+      guardMonthlyPrice?.classList.remove('hidden');
+      guardAnnualPrice?.classList.add('hidden');
+      guardMonthlyNote?.classList.remove('hidden');
+      guardAnnualNote?.classList.add('hidden');
+      if (guardCta) guardCta.href = GUARD_MONTHLY_URL;
+    }
+
+    function setAnnual() {
+      btnAnnual!.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
+      btnAnnual!.classList.remove('text-zinc-500');
+      btnMonthly!.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
+      btnMonthly!.classList.add('text-zinc-500');
+
+      stdMonthlyPrice?.classList.add('hidden');
+      stdAnnualPrice?.classList.remove('hidden');
+      stdMonthlyNote?.classList.add('hidden');
+      stdAnnualNote?.classList.remove('hidden');
+      if (stdCta) stdCta.href = ANNUAL_URL;
+
+      guardMonthlyPrice?.classList.add('hidden');
+      guardAnnualPrice?.classList.remove('hidden');
+      guardMonthlyNote?.classList.add('hidden');
+      guardAnnualNote?.classList.remove('hidden');
+      if (guardCta) guardCta.href = GUARD_ANNUAL_URL;
+    }
+
+    btnMonthly.addEventListener('click', setMonthly);
+    btnAnnual.addEventListener('click', setAnnual);
   }
 
-  function setAnnual() {
-    btnAnnual.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');
-    btnAnnual.classList.remove('text-zinc-500');
-    btnMonthly.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
-    btnMonthly.classList.add('text-zinc-500');
-
-    stdMonthlyPrice?.classList.add('hidden');
-    stdAnnualPrice?.classList.remove('hidden');
-    stdMonthlyNote?.classList.add('hidden');
-    stdAnnualNote?.classList.remove('hidden');
-    if (stdCta) stdCta.href = ANNUAL_URL;
-
-    guardMonthlyPrice?.classList.add('hidden');
-    guardAnnualPrice?.classList.remove('hidden');
-    guardMonthlyNote?.classList.add('hidden');
-    guardAnnualNote?.classList.remove('hidden');
-    if (guardCta) guardCta.href = GUARD_ANNUAL_URL;
-  }
-
-  btnMonthly?.addEventListener('click', setMonthly);
-  btnAnnual?.addEventListener('click', setAnnual);
+  document.addEventListener('astro:page-load', initPricingToggle);
 </script>

@@ -226,8 +226,9 @@
   top: 70px;
   left: 0;
   right: 0;
-  bottom: 70px !important;
-  padding: 0 5px;
+  bottom: 0;
+  padding: 0 16px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
 .dropdown:focus .dropdown-menu,
