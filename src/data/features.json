@@ -3,7 +3,7 @@
     {
       "id": "psi-index",
       "title": "Psychological Stability Index (PSI)",
-      "description": "A 0–100 score updated in real time, mapped to Stable (≥88), Caution (55–87), and Critical (<55) so you can see when emotional pressure is building.",
+      "description": "A 0–100 score updated in real time across four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55) — so you can see when emotional pressure is building before it reaches a critical state.",
       "icon": "tabler:gauge",
       "category": "core"
     },

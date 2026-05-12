@@ -92,7 +92,7 @@ export const footerData = {
         { text: 'FAQ', href: getPermalink('/faq') },
         { text: 'Glossary', href: getPermalink('/glossary') },
         { text: 'About', href: getPermalink('/about') },
-        { text: 'Affiliate Program', href: getPermalink('/affiliate') },
+        { text: 'Partner Program', href: getPermalink('/partners') },
       ],
     },
     {

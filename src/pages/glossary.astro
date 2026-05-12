@@ -12,14 +12,14 @@ const terms = [
     id: 'psi',
     term: 'Psychological Stability Index (PSI)',
     definition:
-      'A composite score from 0 to 100 that measures a trader\'s behavioral stability in real time during a live NinjaTrader 8 session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. A score above 87 is considered Stable; 55–87 is Caution; below 55 is Critical. PSI updates in under 100 milliseconds after every execution, stop move, or sizing decision.',
+      'A composite score from 0 to 100 that measures a trader\'s behavioral stability in real time during a live NinjaTrader 8 session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. PSI is grouped into four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55). PSI updates in under 100 milliseconds after every execution, stop move, or sizing decision.',
     related: ['composure', 'behavioral-baseline', 'seven-signals'],
   },
   {
     id: 'composure',
     term: 'Composure Score',
     definition:
-      'A session-quality metric calculated at the end of each trading session. Unlike PSI — which is a live real-time score — Composure reflects how much of the session was spent in each PSI zone, weighted by psychological cost: Stable time is weighted 1.0×, Caution 0.3×, and Critical 0.05×. A long session in the Caution zone will produce a low Composure score even if the PSI looked acceptable at any individual moment. Composure is designed to capture session-level discipline, not just end-of-session state.',
+      'A session-quality metric calculated at the end of each trading session. Unlike PSI — which is a live real-time score — Composure reflects how much of the session was spent in each PSI zone, weighted by psychological cost: Stable time contributes most, Caution contributes less, Warning contributes very little, and Critical contributes almost nothing. A long session in the Caution or Warning zone will produce a low Composure score even if the PSI looked acceptable at any individual moment. Composure is designed to capture session-level discipline, not just end-of-session state.',
     related: ['psi', 'session-review'],
   },
   {
@@ -33,7 +33,7 @@ const terms = [
     id: 'seven-signals',
     term: 'Seven Behavioral Signal Dimensions',
     definition:
-      'The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Hold Bias — abnormal hold duration relative to the trader\'s own baseline; (5) Position Overstay — holding a losing trade beyond the trader\'s 90th-percentile hold time; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.',
+      'The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Rushed Exit — cutting winners too early relative to the trader\'s normal hold-time baseline; (5) Position Overstay — holding a losing trade beyond the trader\'s historical tolerance window; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.',
     related: ['psi', 'behavioral-baseline'],
   },
   {

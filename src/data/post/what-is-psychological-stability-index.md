@@ -25,7 +25,7 @@ The Psychological Stability Index is a composite score from 0 to 100 that quanti
 
 It is not a measure of profitability. It is not a measure of strategy quality. It is a measure of the degree to which the trader is executing in alignment with their own declared rules and historical behavioral norms — as evidenced by their observable actions.
 
-A PSI of 100 means every measurable behavioral indicator is within normal parameters for that trader. A PSI of 0 represents the maximum possible deviation across all tracked dimensions simultaneously. In practice, scores below 55 are considered Critical — a threshold at which the probability of a significant behavioral failure in the near term is substantially elevated.
+A PSI of 100 means every measurable behavioral indicator is within normal parameters for that trader. A PSI of 0 represents the maximum possible deviation across all tracked dimensions simultaneously. In practice, scores below 55 are classified as Critical — a threshold at which the probability of a significant behavioral failure in the near term is substantially elevated.
 
 ---
 
@@ -57,13 +57,13 @@ Monitors whether the trader is modifying protective stops in the adverse directi
 
 Compares current position sizing against the trader's declared maximum and their own historical position size distribution. An abrupt upward deviation — particularly when it coincides with other elevated signals — indicates the kind of escalating commitment that precedes significant single-session drawdowns.
 
-### 4. Hold Bias
+### 4. Rushed Exit
 
-Measures whether the trader is holding losing positions substantially longer than their own historical median hold time, or holding winning positions for substantially shorter periods. This behavioral asymmetry — cut winners early, let losers run — is one of the most reliably documented patterns in retail trading research.
+Compares current hold time against the trader's personal baseline to detect exits that arrive too early — surfacing sessions where pressure is pushing the trader out of good trades before they have room to develop. The "cut winners short" half of the classic discipline asymmetry.
 
 ### 5. Position Overstay
 
-Similar in concept to Hold Bias but focused on a specific threshold: whether a losing position is being held beyond the trader's historical 90th percentile hold duration. This represents a structural decision to let a trade develop beyond any normal range of patience, typically driven by the unwillingness to accept the loss.
+The "let losers run" half of the same asymmetry, focused on a specific threshold: whether a losing position is being held beyond the trader's historical tolerance window. This represents a structural decision to let a trade develop beyond any normal range of patience, typically driven by unwillingness to accept the loss. Deep adverse excursion is recorded even if the position later recovers.
 
 ### 6. Rule Violations
 
@@ -99,13 +99,15 @@ This is the distinction between execution quality and strategy quality — two s
 
 ## PSI Zones and Their Interpretations
 
-Scores are grouped into three zones based on the probability distribution of behavioral failures observed across sessions:
+Scores are grouped into four zones based on the probability distribution of behavioral failures observed across sessions:
 
-**Stable (87–100).** All tracked dimensions are within normal parameters. The trader is executing in a way that is consistent with their own historical baseline. No specific intervention is indicated.
+**Stable (88–100).** All tracked dimensions are within normal parameters. The trader is executing in a way that is consistent with their own historical baseline. No specific intervention is indicated.
 
-**Caution (55–87).** One or more dimensions are showing elevated readings, but the overall composite has not reached the threshold associated with high-probability behavioral failure. This zone functions as an early warning state — a signal that attention is warranted.
+**Caution (72–87).** One or more dimensions are showing elevated readings, but the overall composite has not reached the threshold associated with high-probability behavioral failure. This zone functions as an early warning state — a signal that attention is warranted.
 
-**Critical (0–55).** Multiple dimensions are significantly elevated. At this threshold, the probability that the current session will produce a significant behavioral failure — a large revenge trade, an abandoned stop, an unplanned escalation of size — is substantially elevated. Most rule-enforcement responses are calibrated to trigger at or near this threshold.
+**Warning (55–71).** Multiple dimensions are active simultaneously and the composite is moving toward critical conditions. At this level, the session is materially closer to behavioral failure than at Caution; this is the zone where most traders should consider stepping back deliberately rather than waiting.
+
+**Critical (0–54).** Multiple dimensions are significantly elevated. At this threshold, the probability that the current session will produce a significant behavioral failure — a large revenge trade, an abandoned stop, an unplanned escalation of size — is substantially elevated. Most rule-enforcement responses are calibrated to trigger at or near this threshold.
 
 ---
 

@@ -75,13 +75,13 @@ const faqSchema = JSON.stringify({
         Meridian tracks seven independent behavioral signal dimensions during every live NinjaTrader 8 session. These signals update in real time — within 100ms of each execution — and combine into a composite Psychological Stability Index (PSI) scored 0–100.
       </p>
       <ul>
-        <li><strong>Revenge Entry</strong> — rapid re-entry at elevated size within a short interval after a loss event</li>
-        <li><strong>Overtrading Pace</strong> — entry frequency accelerating beyond your own historical baseline</li>
-        <li><strong>Stop-Loss Manipulation</strong> — widening or removing a protective stop on an active losing position</li>
-        <li><strong>Size Spike</strong> — position sizing approaching or repeatedly hitting the configured maximum under loss conditions</li>
-        <li><strong>Rule Violations</strong> — trading outside your declared session parameters (instrument, time window, trade count)</li>
-        <li><strong>Hold Bias / Position Overstay</strong> — holding duration diverging significantly from your norm, correlated with unrealized loss</li>
-        <li><strong>Drawdown Depth</strong> — cumulative session drawdown relative to your own historical session profile</li>
+        <li><strong>Revenge Entry (D1)</strong> — rapid re-entry at elevated size within a short interval after a loss event</li>
+        <li><strong>Stop Manipulation (D2)</strong> — widening or removing a protective stop on an active losing position</li>
+        <li><strong>Size Spike (D3)</strong> — position sizing exceeding your declared rule, with heavier weight during losing streaks</li>
+        <li><strong>Rushed Exit (D4)</strong> — cutting winners too early relative to your normal hold-time baseline</li>
+        <li><strong>Position Overstay (D5)</strong> — holding a losing trade beyond your historical tolerance window</li>
+        <li><strong>Rule Violations (D6)</strong> — trading outside your declared session parameters (time window, stop range, loss-streak limits)</li>
+        <li><strong>Overtrading Pace (D7)</strong> — entry frequency accelerating beyond your own historical session rhythm</li>
       </ul>
       <p>
         Each dimension is calibrated to your own trading history — not a population average. Meridian compares your current behavior to your past behavior. A scalper who normally enters every 90 seconds is evaluated against their own baseline, not against a swing trader's pace.
@@ -151,7 +151,7 @@ const faqSchema = JSON.stringify({
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
-      <p class="text-sm text-zinc-500 mb-5">Meridian is available for NinjaTrader 8 on Windows. 7-day free trial on all plans. Credit card required at checkout.</p>
+      <p class="text-sm text-zinc-500 mb-5">Meridian is available for NinjaTrader 8 on Windows. 7-day free trial on all plans. Cancel any time.</p>
       <div class="flex flex-wrap gap-3">
         <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
           Start 7-day free trial
