@@ -11,8 +11,9 @@
 
 - ✅ **Phase 1 — Site fixes & infrastructure** — complete
 - ✅ **Phase 2 — `/partners` landing page** — complete
-- ⏳ **Phase 3 — Creator kit assets** — not started (Gary's deliverable: logo pack, screenshots, video footage)
-- ⏳ **Phase 4 — Email outreach copy + Gemini personalization** — not started
+- ⏳ **Phase 3 — Creator kit assets** — not started (Gary's deliverable: logo pack, screenshots, video footage, partner brief PDF, Intel Layer walkthrough)
+- ✅ **Phase 4 — Email outreach copy + Gemini personalization** — templates locked at v6 (see `social/outreach-strategy.md`)
+- ⏳ **Phase 5 — Instantly setup + first send batch** — pending Phase 3 deliverables
 
 ---
 

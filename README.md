@@ -35,5 +35,6 @@ src/
 ## Key Docs
 
 - `AFFILIATE_PROGRAM.md` — canonical partner program terms (30% recurring, 10% permanent discount, free Guard)
-- `CREATOR_OUTREACH_EMAIL.md` — cold outreach email templates
-- `social/` — YouTube framework, DM templates, automation pipeline, voice samples, partner program progress
+- `social/outreach-strategy.md` — locked email templates + Instantly campaign + Gemini personalization prompt + KPI tracking
+- `social/partner-program-progress.md` — phase tracker and open decisions
+- `social/` — YouTube framework, DM templates, automation pipeline, voice samples
