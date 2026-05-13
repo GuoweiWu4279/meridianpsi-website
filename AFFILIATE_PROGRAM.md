@@ -1,54 +1,51 @@
-# PSI Monitor Affiliate Program
+# Meridian Partner Program — Canonical Terms
 
-## Purpose
+## Current Offer (as of May 2026, via Whop)
 
-This document defines the current creator / affiliate offer for PSI Monitor.
+| Term | Value |
+|---|---|
+| Creator commission | 30% recurring — every billing cycle for the lifetime of the subscription |
+| Audience discount | 10% permanent — on every renewal, not just the first purchase |
+| Creator benefit | Free Meridian Guard license for the duration of the active partnership |
+| Attribution | Unique affiliate link (`whop.com/meridian/?a=creatorname`) — permanent, no cookie window |
+| Discount code | Separate 10%-off promo code for audience use at checkout (independent of attribution) |
+| Payout cadence | Monthly via Whop affiliate panel (standard 30-day waiting period from purchase to release) |
+| Program type | Invited creators only |
 
-The goal is to keep the program simple, measurable, and compliant while the product is still early.
+## Earnings Examples
 
-## Current Offer
+### 20 active paying subscribers (Guard Monthly at $69.99)
 
-- Audience discount: `10% off first purchase`
-- Creator commission: `20% of first paid purchase`
-- Creator benefit: `12 months free access`
-- Attribution: creator link plus creator code
-- Attribution window: `30 days`
-- Payout cadence: monthly
-- Program type: invited creators only
+- Subscriber pays: $69.99 × 0.90 = $62.99/mo
+- Creator earns: $62.99 × 0.30 = **$18.90/mo per sub**
+- 20 subs: **$4,536/yr**
 
-## Examples
+### 100 active paying subscribers
 
-### Monthly purchase (example: Meridian Core)
+- 100 subs: **$22,680/yr**
 
-- Monthly plan (public list price): `$49.99` — see [Pricing](https://www.meridianpsi.com/pricing) for current tiers
-- Audience first-purchase discount (10% example): about `$44.99`
-- Creator commission at 20% (example): about `$9.00`
+### 200 active paying subscribers
 
-### Annual purchase (example: Meridian Core)
+- 200 subs: **$45,360/yr**
 
-- Annual plan (public list price): `$479.90/year` — see [Pricing](https://www.meridianpsi.com/pricing)
-- Audience first-purchase discount (10% example): about `$431.91`
-- Creator commission at 20% (example): about `$86.38`
-
-Note: use live prices from the website; Meridian Guard is billed separately at a higher tier. Annual commission only applies when the customer buys the annual plan.
+Note: use live prices from [meridianpsi.com/pricing](https://www.meridianpsi.com/pricing). Meridian Core is billed at a lower tier. Annual-plan subscribers pay less per month but commission still applies to the actual amount paid each cycle.
 
 ## Why This Structure
 
-- Keeps the offer easy to explain
-- Gives creators a meaningful upside on annual purchases
-- Preserves margin better than recurring lifetime commissions
-- Makes it possible to test creator fit before building a larger program
+- 30% recurring is a meaningful, long-term incentive — creator value compounds as their audience subscribes and stays
+- Permanent discount (not first-purchase only) makes the code worth mentioning in every video, not just launch content
+- Free Guard license lets the creator use the product authentically — they review their own sessions with it
+- The trial does the convincing: 7-day free trial means audience installs and decides themselves; creator doesn't have to oversell
 
 ## Who To Invite
 
 Prioritize creators who already speak to:
 
 - NinjaTrader users
-- Futures traders
-- Prop firm traders
+- Futures and prop firm traders
 - Trading discipline and psychology
-- Session review and journaling workflows
-- Risk management and execution habits
+- Session review and execution habits
+- Risk management
 
 Avoid creators whose audience is built around:
 
@@ -59,49 +56,42 @@ Avoid creators whose audience is built around:
 
 ## Required Creator Disclosures
 
-Creators should clearly disclose that:
+Creators must clearly disclose that:
 
-- they received free access, and/or
-- they may earn a commission if viewers purchase through their link or code
+- they received free access and/or earn a commission if viewers purchase through their link or code
+- compliant with FTC and other applicable endorsement rules in their jurisdiction
 
 ## Required Positioning
 
-Approved framing:
+**Approved framing:**
 
-- PSI Monitor helps monitor behavioral pressure during a live session
-- PSI Monitor helps review discipline and stability after the session
-- PSI Monitor is a behavioral monitoring tool only
-- PSI Monitor does not provide trading signals or investment advice
+- Meridian monitors behavioral pressure during a live session
+- Meridian helps review discipline and stability after the session
+- Meridian is a behavioral monitoring tool for NinjaTrader 8
+- Meridian does not provide trading signals or investment advice
 
-Do not allow creators to claim:
+**Do not allow creators to claim:**
 
 - guaranteed profits
 - reduced losses
 - profit improvement
 - "this will make you disciplined"
-- "this tool prevents blowups"
+- "this prevents blowups"
 - financial advice or trade recommendations
 
 ## Outreach Talking Points
 
-Use these points in creator outreach:
-
-- Real-time PSI during the session
-- Seven visible behavioral signals
-- Session review beyond P&L
-- Personal baseline instead of generic thresholds
-- Native NinjaTrader 8 add-on
-- Fully local operation on the user's machine
-
-Optional future-looking line for private outreach only:
-
-"We plan to keep shipping meaningful upgrades over the next few months, including additional features and broader pricing options. As the product expands, the value of a 20% first-purchase commission can increase, especially on higher-ticket plans."
-
-Do not present future plans as guaranteed public promises.
+- Real-time PSI score during the session
+- Seven visible behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace)
+- Session review that goes beyond P&L
+- Personal adaptive baseline instead of generic thresholds
+- Native NinjaTrader 8 add-on, fully local — no cloud, no telemetry
+- 7-day free trial, credit card required
 
 ## Operational Notes
 
-- Track each creator by both link and code
-- Review creator traffic quality before renewing free access
+- Attribution is via unique affiliate link (Whop URL parameter) — track by link
+- Separate 10%-off promo code is issued per creator for audience discount — track by code
+- Review creator traffic quality before renewing the free Guard license
 - Start with a small invited list and expand only after seeing real conversions
-- If a creator produces high-quality conversions, consider a custom deal later
+- If a creator produces consistently high-quality conversions, a custom deal can be discussed
