@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/affiliate",
+      "destination": "/partners",
+      "permanent": true
+    },
+    {
       "source": "/ninjatrader-revenge-trading",
       "destination": "/use-cases/ninjatrader-revenge-trading-lockout",
       "permanent": true

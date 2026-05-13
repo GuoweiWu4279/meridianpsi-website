@@ -1,6 +1,6 @@
 # Partner Program — Progress & Handoff
 
-**Last updated:** 2026-05-12
+**Last updated:** 2026-05-12 (evening — accordion + redirect pass)
 **Owner:** Gary
 **Goal:** Maximize *recurring revenue* from partner-channel signups (not just partner count). Cold outreach via Instantly from `garycaffrey@meridian-partnership.com` (new domain, currently in warm-up).
 **Target:** NT8-focused YouTubers / Twitter / podcasts / newsletters with 1k–20k followers (futures, prop firms, trading psychology).
@@ -71,7 +71,7 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Rushed Exit · D
 3. **Why this works** — 3 icon cards: Audience pays for NT8 software · Software not a guru · The trial does the convincing
 4. **Details on demand (accordion, default-collapsed)** — 4 items:
    - What's in the creator kit?
-   - How tracking & payouts work *(Whop promo-code attribution, 30-day payout cycle, W-9/W-8 BEN)*
+   - How tracking & payouts work *(Whop affiliate-link attribution + separate 10%-off promo code, 30-day waiting period, monthly payouts via Whop affiliate panel)*
    - Brand-safe partnership *(reverse-risk reframe)*
    - Program terms & fine print
 5. **Apply form** — Formspree endpoint `xaqalank` (same as `/support`), hidden `_subject = "Partner Application"`. 8 fields: name, email, channel name, channel URL, audience size, audience trades, fit reason, optional notes
@@ -92,10 +92,11 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Rushed Exit · D
 
 | Decision | Status | Notes |
 |---|---|---|
-| Add `/affiliate → /partners` 301 to `vercel.json` for proper edge-level redirect (vs current Astro meta-refresh) | Waiting | Currently works in dev + static build. Edge-level 301 is cleaner SEO-wise. 5 lines to add, matches existing redirect patterns in `vercel.json` |
-| Confirm Whop affiliate mechanics actually match what's written in the "How tracking & payouts work" accordion | Waiting | Specifically: promo-code attribution model, 30-day payout cycle, W-9/W-8 BEN handling. If Whop's actual flow differs, accordion needs corrections — this is the one place on `/partners` that **cannot be wrong** |
+| Add `/affiliate → /partners` 301 to `vercel.json` for proper edge-level redirect | ✅ Done 2026-05-12 PM | Added at the top of the `redirects` array. `affiliate.astro` retained as dev/preview fallback (Vercel only reads `vercel.json` on production). |
+| Confirm Whop affiliate mechanics actually match what's written in the "How tracking & payouts work" accordion | ✅ Done 2026-05-12 PM | Verified against `docs.whop.com/manage-your-business/growth-marketing/affiliate-program` + `whop.com/earnings-terms`. Real model: **affiliate link = attribution** (URL param `?a=name`), **promo code = audience discount** (separate mechanism). Old accordion incorrectly fused them. Rewritten to 5 bullets; tax-form and cancel/resubscribe bullets removed (out of scope for partner outreach — affiliates handle their own taxes). 30% commission rate, recurring-on-subscription, 30-day waiting, monthly payout via Whop panel — all confirmed accurate. |
 | Creator kit asset preparation | Waiting | Gary delivers: logo pack, screenshots, video footage. AI delivers: talking-points doc, 3 video script templates |
 | Default-expand any accordion item? (currently all collapsed) | Waiting | Brand-safe partnership might be worth defaulting open — it's the trust-building section that small bloggers care about most |
+| Reconcile stale root-level docs with canonical `/partners` offer | Waiting | `AFFILIATE_PROGRAM.md` (root) still says 20% first-purchase / 12 months access / 30-day attribution window — pre-Whop legacy text. `CREATOR_OUTREACH_EMAIL.md` says "10% off **first** purchase" — should be "10% permanent discount". Not user-facing; clean up next time we touch outreach copy. |
 
 ---
 
