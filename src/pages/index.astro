@@ -9,6 +9,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'Meridian — The First Real-Time Psychological Stability Index for Active Traders',
+  description: 'Real-time behavioral risk monitor for NinjaTrader 8. Make trading discipline measurable. Stops revenge trading and overtrading before they cost you. 7-day free trial.',
   ignoreTitleTemplate: true,
   robots: { index: true, follow: true },
 };
@@ -123,7 +124,7 @@ const steps = [
     label: 'Live Monitor',
     bg: '#1C1C1E',
     desc: 'Monitor behavior',
-    fullDesc: 'Meridian monitors behavior in combination with real cognitive science and psychology to catch mistakes BEFORE they happen.',
+    fullDesc: 'Meridian monitors behavior with adaptive learning and behavioral finance principles to catch mistakes BEFORE they happen.',
     bullets: [
       'Tracks revenge trading, overtrading, and oversizing pressure.',
       'Detects stop-loss manipulation, holding losers too long, and profit-cutting behavior.',
@@ -351,113 +352,162 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   >
     <!-- Bottom fade: blends hero into the section below -->
     <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style="background: linear-gradient(to bottom, transparent, #fafafa);" aria-hidden="true"></div>
+
+
+
     <!-- Header spacer -->
     <div class="md:pt-[84px]"></div>
-    <div class="relative z-[1] max-w-6xl mx-auto px-6">
+    <div class="relative z-[1] max-w-7xl mx-auto px-6">
       <div class="pt-14 pb-12 md:pt-20 md:pb-16 lg:pt-24 lg:pb-20">
-        <div class="text-center max-w-4xl mx-auto">
-          <!-- Eyebrow badge -->
-          <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 fade-up rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-            <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Trading psychology monitor</span>
+        <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)] lg:gap-14 lg:items-center">
+          <!-- Left column: text content -->
+          <div class="text-center lg:text-left max-w-4xl mx-auto lg:max-w-none lg:mx-0">
+            <!-- Eyebrow badge -->
+            <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 fade-up rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
+              <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Behavioral risk monitor for NinjaTrader 8</span>
+            </div>
+            <!-- Title with word-blur animation -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.1rem] xl:text-[3.6rem] font-bold leading-[1.1] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
+              Stop mistakes<br />
+              <span style="color:#059669;">before they reach<br class="hidden lg:block" />the order window.</span>
+            </h1>
+            <p class="text-sm md:text-base leading-relaxed max-w-[640px] mx-auto lg:mx-0 mb-3 fade-up" style="color:#71717a;">
+              Think Apple Watch stress monitor, but for trading discipline — detecting 7 behavioral patterns in real time, calibrated to your own style, before the slip becomes a loss.
+            </p>
+            <p class="text-xs md:text-sm max-w-[640px] mx-auto lg:mx-0 mb-6 fade-up" style="color:#a1a1aa;">
+              Revenge trading · overtrading · stop manipulation · oversizing. Responds with alerts, cooldowns, entry blocks, or broker disconnect.
+            </p>
+            <!-- Trust signal chips -->
+            <div class="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 mb-7 fade-up">
+              <div class="inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="#059669" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-xs md:text-sm font-medium" style="color:#3f3f46;">Adaptive learning</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="#059669" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-xs md:text-sm font-medium" style="color:#3f3f46;">Discipline in real stats</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="#059669" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="text-xs md:text-sm font-medium" style="color:#3f3f46;">Journal &amp; Report</span>
+              </div>
+            </div>
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3 fade-up">
+              <a href="/pricing" class="btn btn-lg font-semibold" style="background:#059669; color:white; border:1px solid #059669;">Start 7-day free trial</a>
+              <a href="#video-demo" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.2); color:#18181b; background:transparent;">Watch 90-sec demo</a>
+            </div>
+            <!-- Reassurance line under CTAs -->
+            <p class="mt-4 text-xs fade-up" style="color:#a1a1aa;">
+              Cancel anytime
+              <span class="mx-2 text-zinc-300" aria-hidden="true">·</span>
+              Then $49.99/mo
+            </p>
           </div>
-          <!-- Title with word-blur animation -->
-          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.1] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
-            Stop mistakes<br />
-            <span style="color:#059669;">before they reach the order window.</span>
-          </h1>
-          <p class="text-sm md:text-base leading-relaxed break-normal [overflow-wrap:normal] [word-break:normal] [hyphens:none] max-w-[780px] mx-auto mb-2 fade-up" style="color:#71717a;">
-            Real-time behavioral monitoring — catches revenge trades, oversizing, stop manipulation, and overtrading before they hit your P&amp;L. Powered by the Psychological Stability Index (PSI). Built first for NinjaTrader 8.
-          </p>
-          <p class="text-xs md:text-sm max-w-[780px] mx-auto mb-6 fade-up" style="color:#a1a1aa;">
-            Not a signal tool. Not financial advice.
-          </p>
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row sm:justify-center gap-3 fade-up">
-            <a href="/pricing" class="btn btn-lg font-semibold" style="background:#059669; color:white; border:1px solid #059669;">Start free trial</a>
-            <a href="#video-demo" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.2); color:#18181b; background:transparent;">Watch demo</a>
+
+          <!-- Right column: hero demo video loops silently -->
+          <div class="mt-12 lg:mt-0 fade-up">
+            <div class="relative mx-auto lg:mx-0 max-w-md sm:max-w-lg lg:max-w-none flex flex-col items-center lg:items-start">
+              <video
+                class="w-full h-auto rounded-2xl shadow-xl ring-1 ring-zinc-200/80"
+                style="min-height: 320px; object-fit: cover;"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+                aria-label="Meridian in action — real-time behavioral monitoring inside NinjaTrader 8"
+              >
+                <source src="/videos/hero-demo.mp4" type="video/mp4" />
+                <!-- Fallback for browsers that don't support video -->
+                <img
+                  src="/screenshots/live-monitor-psi-hud.png"
+                  alt="Meridian PSI HUD — real-time behavioral monitoring inside NinjaTrader 8"
+                />
+              </video>
+              <!-- Vendor badge as screenshot caption -->
+              <a
+                href="https://ninjatraderus.pxf.io/jROzm0"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Official NinjaTrader Ecosystem Vendor — verify on ninjatrader.com"
+                class="mt-3 self-start inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
+                style="text-decoration:none; padding:5px 11px 5px 7px; border-radius:100px;
+                       background:rgba(242,101,34,0.07); border:1px solid rgba(242,101,34,0.22);"
+              >
+                <span style="display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; flex-shrink:0; background:rgba(242,101,34,0.14);">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </span>
+                <span class="text-xs font-semibold tracking-wide" style="color:#F26522;">Official NinjaTrader Ecosystem Vendor</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Official NinjaTrader Vendor floating badge -->
-    <a
-      href="https://ninjatraderus.pxf.io/jROzm0"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Official NinjaTrader Vendor — verify on ninjatrader.com"
-      class="absolute bottom-14 right-10 md:bottom-16 md:right-16 z-10 hidden sm:inline-flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl transition-shadow hover:shadow-lg"
-      style="background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(242,101,34,0.25); box-shadow: 0 4px 20px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.05);"
-    >
-      <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full" style="background: rgba(242,101,34,0.12);">
-        <svg class="w-3 h-3" fill="none" stroke="#F26522" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-        </svg>
-      </span>
-      <div>
-        <p class="text-[9px] font-semibold tracking-[0.12em] uppercase leading-none mb-0.5" style="color:#F26522;">Official Vendor</p>
-        <p class="text-[11px] font-semibold leading-none" style="color:#18181b;">NinjaTrader</p>
-      </div>
-    </a>
   </section>
 
   <!-- Official Partner strip -->
-  <div class="fade-up border-b border-zinc-200/70" style="background: #fafafa;">
-    <div class="max-w-5xl mx-auto px-6 py-10 md:py-12">
+  <div class="fade-up border-b border-zinc-200/70" style="background:#fafafa;">
+    <div class="max-w-3xl mx-auto px-6 py-10 md:py-12 text-center">
 
-      <!-- Eyebrow label -->
-      <div class="flex justify-center mb-5">
-        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full" style="border: 1px solid rgba(242,101,34,0.3); background: rgba(242,101,34,0.06);">
-          <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="#F26522" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span class="text-[12px] font-semibold tracking-[0.12em] uppercase" style="color:#F26522;">Official NinjaTrader Vendor</span>
-        </div>
+      <!-- Eyebrow -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4"
+           style="border:1px solid rgba(242,101,34,0.25); background:rgba(242,101,34,0.05);">
+        <svg class="w-3 h-3 shrink-0" fill="none" stroke="#F26522" stroke-width="2.8" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+        <span class="text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:#F26522;">Official NinjaTrader Vendor</span>
       </div>
 
       <!-- Supporting copy -->
-      <p class="text-center text-xs md:text-sm mx-auto mb-8 md:mb-10 whitespace-nowrap" style="color:#71717a;">
+      <p class="text-sm mb-8" style="color:#71717a;">
         Audited and Approved by NinjaTrader&rsquo;s Compliance, QA &amp; Executive teams.
       </p>
 
       <!-- Logos row -->
-      <div class="flex items-center justify-center gap-14 md:gap-20">
-        <!-- NinjaTrader -->
+      <div class="flex items-center justify-center gap-10 md:gap-16">
         <a
           href="https://ninjatraderus.pxf.io/jROzm0"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="NinjaTrader — official trading platform partner"
-          class="flex flex-col items-center gap-2.5 group"
+          class="flex flex-col items-center gap-2 group"
         >
           <img
             src="/logos/ninjatrader-wordmark.png"
             alt="NinjaTrader"
-            style="height: 34px; width: auto; object-fit: contain; opacity: 0.8; transition: opacity 0.2s;"
+            style="height:32px; width:auto; object-fit:contain; opacity:0.8; transition:opacity 0.2s;"
             class="group-hover:opacity-100"
           />
-          <span class="text-[10px] tracking-wide" style="color:#a1a1aa;">Official Ecosystem Vendor</span>
+          <span class="text-[10px] tracking-[0.08em] uppercase" style="color:#b4b4b4;">Ecosystem Vendor</span>
         </a>
 
-        <!-- Divider -->
-        <div class="w-px h-10 self-center" style="background: rgba(0,0,0,0.1);" aria-hidden="true"></div>
+        <div class="w-px h-8 self-center" style="background:rgba(0,0,0,0.1);" aria-hidden="true"></div>
 
-        <!-- Kinetick -->
         <a
           href="https://kinetick.com/NinjaTrader"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Kinetick — official market data partner"
-          class="flex flex-col items-center gap-2.5 group"
+          class="flex flex-col items-center gap-2 group"
         >
           <img
             src="/logos/kinetick-logo.png"
             alt="Kinetick"
-            style="height: 32px; width: auto; object-fit: contain; opacity: 0.8; transition: opacity 0.2s;"
+            style="height:30px; width:auto; object-fit:contain; opacity:0.8; transition:opacity 0.2s;"
             class="group-hover:opacity-100"
           />
-          <span class="text-[10px] tracking-wide" style="color:#a1a1aa;">Market Data Partner</span>
+          <span class="text-[10px] tracking-[0.08em] uppercase" style="color:#b4b4b4;">Market Data Partner</span>
         </a>
       </div>
 
@@ -484,7 +534,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
 
       <!-- Sub-headline -->
       <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto fade-up mb-14" style="color:#71717a;">
-        Every risk tool acts <em class="not-italic font-semibold text-zinc-700">after</em> you make a mistake &mdash; but why?
+        Every other risk tool acts <em class="not-italic font-semibold text-zinc-700">after</em> the breach in discipline &mdash; but why?
       </p>
 
       <!-- ═══════ Timeline ═══════ -->
@@ -616,8 +666,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       </div>
       <!-- ═══════ End Timeline ═══════ -->
 
-      <!-- Punchline -->
-      <div class="mt-20 max-w-3xl mx-auto fade-up">
+      <!-- Punchline — revealed by JS timeline sequence -->
+      <div id="timeline-punchline" class="mt-20 max-w-3xl mx-auto">
         <p class="text-sm md:text-base text-zinc-900 mb-2">Stages 2&ndash;4 have existed since day trading began.</p>
         <p class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight" style="color:#18181b;">
           Stage 1 never did &mdash; <span style="color:#059669;">until Meridian.</span>
@@ -632,65 +682,29 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       </div>
     </div>
 
-    <!-- Scoped motion for the timeline only -->
+    <!-- Scoped initial state — JS IntersectionObserver drives the reveal sequence -->
     <style>
+      /* All timeline elements start invisible; JS adds transitions and reveals them */
       .timeline-block .timeline-axis-line {
         transform: scaleX(0);
         transform-origin: left center;
-        animation: timeline-axis-draw 700ms ease-out 100ms forwards;
       }
-      .timeline-block .timeline-dot {
-        opacity: 0;
-        animation: timeline-fade 400ms ease-out forwards;
-      }
-      .timeline-block .timeline-dot-1 { animation-delay: 850ms; }
-      .timeline-block .timeline-dot-2 { animation-delay: 250ms; }
-      .timeline-block .timeline-dot-3 { animation-delay: 400ms; }
-      .timeline-block .timeline-dot-4 { animation-delay: 550ms; }
-
+      .timeline-block .timeline-dot,
       .timeline-block .timeline-card {
         opacity: 0;
-        animation: timeline-rise 500ms ease-out forwards;
+        transform: translateY(10px);
       }
-      .timeline-block .timeline-card-1 {
-        animation-name: timeline-rise-stage1;
-        animation-delay: 950ms;
-        animation-duration: 700ms;
+      #timeline-punchline {
+        opacity: 0;
+        transform: translateY(16px);
       }
-      .timeline-block .timeline-card-2 { animation-delay: 350ms; }
-      .timeline-block .timeline-card-3 { animation-delay: 500ms; }
-      .timeline-block .timeline-card-4 { animation-delay: 650ms; }
-
-      @keyframes timeline-axis-draw {
-        from { transform: scaleX(0); }
-        to   { transform: scaleX(1); }
-      }
-      @keyframes timeline-fade {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-      }
-      @keyframes timeline-rise {
-        from { opacity: 0; transform: translateY(8px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes timeline-rise-stage1 {
-        0%   { opacity: 0; transform: translateY(10px) scale(1); }
-        55%  { opacity: 1; transform: translateY(-6px) scale(1); }
-        75%  { transform: translateY(-4px) scale(1.025); }
-        100% { opacity: 1; transform: translateY(-4px) scale(1); }
-      }
-
+      /* Instant reveal for reduced-motion users */
       @media (prefers-reduced-motion: reduce) {
-        .timeline-block .timeline-axis-line,
+        .timeline-block .timeline-axis-line { transform: scaleX(1) !important; }
         .timeline-block .timeline-dot,
-        .timeline-block .timeline-card {
-          animation: none !important;
-          opacity: 1 !important;
-          transform: none !important;
-        }
-        .timeline-block .timeline-card-1 {
-          transform: translateY(-4px) !important;
-        }
+        .timeline-block .timeline-card { opacity: 1 !important; transform: none !important; }
+        .timeline-block .timeline-card-1 { transform: translateY(-4px) !important; }
+        #timeline-punchline { opacity: 1 !important; transform: none !important; }
       }
     </style>
   </section>
@@ -853,7 +867,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <p class="text-xs text-center mt-2 md:hidden" style="color:#a1a1aa;">← Swipe to see full comparison →</p>
 
       <p class="text-sm leading-relaxed max-w-3xl mx-auto mt-6 fade-up" style="color:#71717a;">
-        Meridian is a different category — a behavioral leading indicator that fires before any hard limit would need to.
+        Meridian is a different category — a behavioral leading indicator that fires before any hard limit would need to. The first tool that makes trading discipline measurable in real time.
       </p>
     </div>
   </section>
@@ -1020,7 +1034,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             How Meridian works
           </h2>
           <p class="text-sm leading-relaxed max-w-xl mb-4" style="color:#71717a;">
-            A simple workflow: set your profile, monitor behavior, protect with Guard, and review the session to improve afterward.
+            Configure once. Meridian's adaptive baseline learns your style — then monitors, protects, and reports session by session.
           </p>
           <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
           <div
@@ -1147,8 +1161,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5 fade-up">
           What Meridian watches for
         </h2>
-        <p class="lead fade-up md:whitespace-nowrap">
-          Meridian monitors the behaviors that usually appear before a trader breaks the plan.
+        <p class="lead fade-up">
+          Seven behaviors that appear before a trader breaks the plan — calibrated to your own baseline, sharper the more you trade.
         </p>
       </div>
 
@@ -1193,10 +1207,10 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
 
       <div class="text-center max-w-3xl xl:max-w-4xl mx-auto mb-5 md:mb-6 lg:mb-7 fade-up">
         <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight text-balance text-zinc-900 dark:text-zinc-100">
-          See the exact cost of your trading psychology.
+          Make discipline measurable.
         </h2>
         <p class="text-base md:text-lg leading-relaxed mt-3 text-zinc-600 dark:text-zinc-400">
-          Journaling tools only show what happened. Meridian shows the process, why it happened, and the exact financial impact of your behaviors, so you know what to do to improve.
+          For the first time, see what your discipline is actually costing you — composure grades, weekday patterns, and the PnL impact of every behavioral slip. Journals show what happened. Meridian shows why, and what to do next.
         </p>
       </div>
 
@@ -1391,15 +1405,15 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <!-- ——— FINAL CTA ——— -->
   <CallToAction
     actions={[
-      { variant: 'primary', text: 'Start free trial', href: '/pricing' },
+      { variant: 'primary', text: 'Start 7-day free trial', href: '/pricing' },
       { text: 'See pricing', href: '/pricing' },
     ]}
   >
     <div slot="bg" class="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-100/90 via-white to-zinc-50/80 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-950" aria-hidden="true"></div>
     <Fragment slot="tagline">NinjaTrader 8 · Windows</Fragment>
-    <Fragment slot="title">Behavioral data. Session by session. Entirely on your machine.</Fragment>
+    <Fragment slot="title">Stop the slip before it costs you another funded account.</Fragment>
     <Fragment slot="subtitle">
-      7-day trial · $49.99/mo after · NinjaTrader 8 required
+      7-day free trial · $49.99/mo after · 100% local · NinjaTrader 8 required
     </Fragment>
   </CallToAction>
 </Layout>
@@ -1855,4 +1869,82 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   // View Transitions (ClientRouter): soft navigations do not fire DOMContentLoaded again.
   // astro:page-load runs after the initial full load and after each client-side navigation.
   document.addEventListener('astro:page-load', boot);
+</script>
+
+<script>
+  // ─── Section A: scroll-triggered sequential timeline reveal ───
+  // Story order: Post-session → After damage → At limit → [pause] → Before the order (Meridian)
+  (function () {
+    var block = document.querySelector('.timeline-block');
+    if (!block) return;
+
+    var axisLine  = block.querySelector('.timeline-axis-line');
+    var dot1 = block.querySelector('.timeline-dot-1');
+    var dot2 = block.querySelector('.timeline-dot-2');
+    var dot3 = block.querySelector('.timeline-dot-3');
+    var dot4 = block.querySelector('.timeline-dot-4');
+    var card1 = block.querySelector('.timeline-card-1');
+    var card2 = block.querySelector('.timeline-card-2');
+    var card3 = block.querySelector('.timeline-card-3');
+    var card4 = block.querySelector('.timeline-card-4');
+    var punchline = document.getElementById('timeline-punchline');
+
+    // Respect prefers-reduced-motion — reveal instantly
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    function show(el, transition, transform) {
+      if (!el) return;
+      el.style.transition = transition;
+      el.style.opacity = '1';
+      if (transform !== undefined) el.style.transform = transform;
+    }
+
+    function runSequence() {
+      // 0 ms — axis draws left → right (1.2 s)
+      setTimeout(function () {
+        show(axisLine, 'transform 1200ms ease-out', 'scaleX(1)');
+      }, 0);
+
+      // 600 ms — Post-session label + dot (rightmost: column 4)
+      setTimeout(function () { show(dot4, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 600);
+      // 780 ms — Post-session card rises
+      setTimeout(function () { show(card4, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 780);
+
+      // 1150 ms — After damage label + dot (column 3)
+      setTimeout(function () { show(dot3, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 1150);
+      // 1330 ms — After damage card rises
+      setTimeout(function () { show(card3, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 1330);
+
+      // 1700 ms — At limit label + dot (column 2)
+      setTimeout(function () { show(dot2, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 1700);
+      // 1880 ms — At limit card rises
+      setTimeout(function () { show(card2, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 1880);
+
+      // ── 900 ms dramatic pause — audience sits with "so what came before all this?" ──
+
+      // 2780 ms — Before the order dot pulses in (column 1)
+      setTimeout(function () { show(dot1, 'opacity 700ms ease-out, transform 700ms ease-out', 'translateY(0)'); }, 2780);
+
+      // 3000 ms — Meridian card springs in with bounce settle
+      setTimeout(function () {
+        if (!card1) return;
+        card1.style.transition = 'opacity 700ms ease-out, transform 1000ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 700ms ease-out';
+        card1.style.opacity = '1';
+        card1.style.transform = 'translateY(-5px) scale(1)';
+      }, 3000);
+
+      // 4300 ms — Punchline fades up (audience has absorbed all 4 stages)
+      setTimeout(function () {
+        show(punchline, 'opacity 900ms ease-out, transform 900ms ease-out', 'translateY(0)');
+      }, 4300);
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) {
+        runSequence();
+        observer.disconnect();
+      }
+    }, { threshold: 0.12 });
+    observer.observe(block);
+  })();
 </script>
