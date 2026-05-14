@@ -1,12 +1,10 @@
-# Partner Outreach Strategy & Templates (v6.1)
+# Partner Outreach Strategy & Templates (v6)
 
-**Status:** Strategic update — 2026-05-13. Body is otherwise locked.
+**Status:** Locked — 2026-05-12
 **Owner:** Gary
 **Sending platform:** Instantly via `garycaffrey@meridian-partnership.com` (in domain warm-up)
 **Audience:** NT8-relevant creators with 1k–20k followers (YouTube, Twitter/X, podcasts, newsletters)
 **KPI:** Active paying-subscription conversions through partner channel — NOT raw reply rate, NOT signed-partner count.
-
-**v6.1 change (2026-05-13):** Meridian became an **Official NinjaTrader Ecosystem Vendor** (approved by NT Compliance, QA, and Executive teams). One credibility sentence added to Email 1 paragraph 2; a third subject-line variant added that leads with the Ecosystem status. This is the highest-leverage credibility signal we will ever have for cold outreach to NT8 creators — the rest of the body stays locked to preserve the prior strategic decisions.
 
 ---
 
@@ -76,11 +74,10 @@ These are the **only** things that change per recipient. Everything else in ever
 
 | Variant | Subject |
 |---|---|
-| **A (primary, 50% volume)** | `Partnership idea after your {{video_topic}} video` |
-| **B (secondary, 25% volume)** | `{{channel_name}} × Meridian — partnership idea` |
-| **C (credibility lead, 25% volume — new 2026-05-13)** | `Official NT Ecosystem Vendor — partnership idea for {{channel_name}}` |
+| **A (primary, 70% volume)** | `Partnership idea after your {{video_topic}} video` |
+| **B (secondary, 30% volume)** | `{{channel_name}} × Meridian — partnership idea` |
 
-After 100 sends per variant, compare reply rate and lock the winner. The C variant is included because the Ecosystem-vendor status is a new external-credibility lever; if it underperforms A, retire it.
+After 100 sends per variant, compare reply rate and lock the winner.
 
 ### Body (locked — do not edit without strategic review)
 
@@ -91,9 +88,7 @@ Hi {{first_name}},
 
 I've watched several of your recent NT8 videos — specifically your point about {{specific_point}} in "{{video_title}}" — that's exactly one of the core problems I built Meridian to solve, which is why I'm reaching out directly.
 
-Meridian is an Official NinjaTrader Ecosystem Vendor — meaning the product, website, and social channels have been reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams (verifiable on ninjatrader.com). I'm telling you up front so you can stop reading right here if "another NT8 affiliate offer" is the wrong category for your channel — most of those don't clear that bar.
-
-The fundamental difference from other NT8 risk tools: daily loss limits cap you after the damage (reactive); trade journals review it after the fact (post-hoc). Meridian monitors 7 behavioral leading indicators — revenge entries after losses, stop-loss widening, oversize entries, overtrading pace — and intervenes the moment a trader starts deviating from their normal trading rhythm or breaking their own plan (think Apple Watch stress-monitor, but for trading discipline). The intervention is graduated: from message alerts, to forced cooldown timeouts, to Meridian Guard auto-disconnecting your broker — before the next bad fill, not after.
+The product is called Meridian. The fundamental difference from other NT8 risk tools: daily loss limits cap you after the damage (reactive); trade journals review it after the fact (post-hoc). Meridian monitors 7 behavioral leading indicators — revenge entries after losses, stop-loss widening, oversize entries, overtrading pace — and intervenes the moment a trader starts deviating from their normal trading rhythm or breaking their own plan (think Apple Watch stress-monitor, but for trading discipline). The intervention is graduated: from message alerts, to forced cooldown timeouts, to Meridian Guard auto-disconnecting your broker — before the next bad fill, not after.
 
 Each dimension isn't a fixed threshold — it's a personal baseline continuously calibrated from your own session history, using adaptive learning to track your normal trading habits and strategy. The longer you use it, the sharper the baseline and the more precise the interventions.
 

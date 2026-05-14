@@ -195,13 +195,14 @@ For reference, the canonical structure is:
 - **Use Cases**: `/use-cases/`, plus the four child pages
 - **Answers**: `/answers/`, plus the four child pages
 - **Resources**: `/articles`, `/faq`, `/glossary`, `/about`
-- **Conversion**: `/pricing`, `/download`, `/account`
+- **Conversion**: `/pricing`, `/download`, `/account`, `/partners`
 - **Legal**: `/trust`, `/disclaimer`, `/privacy`, `/terms`, `/refund`
 
 The redirects below are enforced via `vercel.json` and must not be removed:
 
 | Old URL | Canonical URL |
 |---|---|
+| `/affiliate` | `/partners` |
 | `/ninjatrader-revenge-trading` | `/use-cases/ninjatrader-revenge-trading-lockout` |
 | `/ninjatrader-overtrading-prevention` | `/use-cases/ninjatrader-overtrading-prevention` |
 | `/prop-firm-risk-control` | `/use-cases/prop-firm-behavioral-risk-control` |

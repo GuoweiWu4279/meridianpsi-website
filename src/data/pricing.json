@@ -4,7 +4,7 @@
   "tiers": [
     {
       "id": "meridian",
-      "name": "Meridian",
+      "name": "Meridian Core",
       "description": "The full real-time PSI monitor for active traders.",
       "monthlyPrice": 49.99,
       "annualPrice": 479.90,
@@ -49,5 +49,5 @@
       ]
     }
   ],
-  "footnote": "Meridian is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }
