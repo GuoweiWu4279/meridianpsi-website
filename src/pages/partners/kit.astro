@@ -1,0 +1,643 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const allEntries = await getCollection('partnerKit');
+const byId = Object.fromEntries(allEntries.map((e) => [e.id, e]));
+
+async function renderEntry(id: string) {
+  const entry = byId[id];
+  if (!entry) return null;
+  return await render(entry);
+}
+
+// Render all prose sections upfront
+const [
+  r00, r01,
+  r021, r022, r023,
+  r031, r032, r033, r034,
+  r041, r042, r043,
+  r05,
+  r061, r062, r063, r064, r065, r066,
+  r07,
+] = await Promise.all([
+  renderEntry('00-hero'),
+  renderEntry('01-personal-details'),
+  renderEntry('02-1-install'),
+  renderEntry('02-2-first-30-min'),
+  renderEntry('02-3-product-deep-dive'),
+  renderEntry('03-1-core-positioning'),
+  renderEntry('03-2-differentiation'),
+  renderEntry('03-3-audience-faq'),
+  renderEntry('03-4-angles-by-audience'),
+  renderEntry('04-1-ftc-disclosure'),
+  renderEntry('04-2-forbidden-phrases'),
+  renderEntry('04-3-when-in-doubt'),
+  renderEntry('05-visual-assets'),
+  renderEntry('06-1-video-60s-hook'),
+  renderEntry('06-2-video-3min-walkthrough'),
+  renderEntry('06-3-video-30s-short'),
+  renderEntry('06-4-youtube-description'),
+  renderEntry('06-5-twitter-thread'),
+  renderEntry('06-6-newsletter-section'),
+  renderEntry('07-1-support'),
+]);
+
+// Content components (capitalized for use as Astro components)
+const HeroContent       = r00?.Content;
+const PersonalContent   = r01?.Content;
+const InstallContent    = r021?.Content;
+const First30Content    = r022?.Content;
+const DeepDiveContent   = r023?.Content;
+const PositioningContent = r031?.Content;
+const DiffContent       = r032?.Content;
+const FaqContent        = r033?.Content;
+const AnglesContent     = r034?.Content;
+const FtcContent        = r041?.Content;
+const ForbiddenContent  = r042?.Content;
+const DoubtContent      = r043?.Content;
+const AssetsContent     = r05?.Content;
+const Script60Content   = r061?.Content;
+const Script3mContent   = r062?.Content;
+const Script30Content   = r063?.Content;
+const YtDescContent     = r064?.Content;
+const TweetContent      = r065?.Content;
+const NewsletterContent = r066?.Content;
+const SupportContent    = r07?.Content;
+
+// Structured frontmatter data
+const heroData      = byId['00-hero']?.data;
+const lastUpdated   = heroData?.lastUpdated ?? '2026-05-13';
+const faqItems      = byId['03-3-audience-faq']?.data?.faqs ?? [];
+const positioningCopyables  = byId['03-1-core-positioning']?.data?.copyables ?? [];
+const ftcCopyables          = byId['04-1-ftc-disclosure']?.data?.copyables ?? [];
+const script60Copyables     = byId['06-1-video-60s-hook']?.data?.copyables ?? [];
+const script3mCopyables     = byId['06-2-video-3min-walkthrough']?.data?.copyables ?? [];
+const script30Copyables     = byId['06-3-video-30s-short']?.data?.copyables ?? [];
+const ytDescCopyables       = byId['06-4-youtube-description']?.data?.copyables ?? [];
+const tweetCopyables        = byId['06-5-twitter-thread']?.data?.copyables ?? [];
+const newsletterCopyables   = byId['06-6-newsletter-section']?.data?.copyables ?? [];
+
+const metadata = {
+  title: 'Meridian Creator Kit',
+  description: 'Everything you need to create great Meridian content.',
+  robots: { index: false, follow: false },
+};
+
+const tocItems = [
+  { id: 's1', label: 'Your Details',        icon: '01' },
+  { id: 's2', label: 'Get Started',          icon: '02' },
+  { id: 's3', label: 'Talking Points',       icon: '03' },
+  { id: 's4', label: 'Compliance',           icon: '04' },
+  { id: 's5', label: 'Visual Assets',        icon: '05' },
+  { id: 's6', label: 'Content Templates',   icon: '06' },
+  { id: 's7', label: 'Support',              icon: '07' },
+];
+---
+
+<Layout metadata={metadata}>
+
+  <!-- Skip to main content (keyboard / screen reader users) -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-emerald-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold"
+  >
+    Skip to main content
+  </a>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════ -->
+  <section class="border-b border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+    <div class="max-w-6xl mx-auto px-6 pt-14 pb-10">
+      <div class="flex items-center gap-2.5 mb-6">
+        <span
+          class="inline-flex items-center gap-2 border px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase"
+          style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.08); color: rgb(6 95 70);"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
+          Creator Kit · Meridian Partner Program
+        </span>
+      </div>
+
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-3">
+        Welcome<span id="name-display"></span>.
+      </h1>
+
+      <p class="text-zinc-500 dark:text-zinc-400 text-[15px] mb-4 max-w-xl">
+        Everything you need to create great Meridian content and earn recurring commission. Start with your personal details in the welcome email, then work through this kit at your own pace.
+      </p>
+
+      <p class="text-xs text-zinc-400 dark:text-zinc-500">
+        Last updated: <time datetime={lastUpdated}>{lastUpdated}</time>
+        &nbsp;·&nbsp; Questions? <a href="mailto:garycaffrey@meridian-partnership.com" class="underline hover:text-zinc-600 dark:hover:text-zinc-300">garycaffrey@meridian-partnership.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE TOC  (visible below lg breakpoint)
+       ═══════════════════════════════════════════════════════ -->
+  <details
+    id="toc-mobile"
+    class="lg:hidden border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900 print:hidden"
+  >
+    <summary class="px-6 py-3.5 text-sm font-semibold text-zinc-700 dark:text-zinc-300 cursor-pointer list-none flex items-center justify-between select-none">
+      <span>Jump to section</span>
+      <svg class="w-4 h-4 text-zinc-400 transition-transform [[open]_&]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </summary>
+    <nav aria-label="Section navigation (mobile)" class="px-6 pb-4 grid grid-cols-2 gap-1">
+      {tocItems.map((item) => (
+        <a
+          href={`#${item.id}`}
+          class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-zinc-600 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+        >
+          <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 w-4 shrink-0">{item.icon}</span>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </details>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TWO-COLUMN LAYOUT
+       ═══════════════════════════════════════════════════════ -->
+  <div class="max-w-6xl mx-auto px-6 flex gap-10 py-10 pb-28">
+
+    <!-- Sidebar TOC (hidden on mobile, sticky on desktop) -->
+    <aside
+      class="hidden lg:block w-52 shrink-0 print:hidden"
+      aria-label="Section navigation"
+    >
+      <nav class="sticky top-24 space-y-0.5" id="toc-nav">
+        {tocItems.map((item) => (
+          <a
+            href={`#${item.id}`}
+            data-toc-target={item.id}
+            class="toc-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition-colors"
+          >
+            <span class="text-[10px] font-mono text-zinc-300 dark:text-zinc-600 w-4 shrink-0 toc-icon" aria-hidden="true">{item.icon}</span>
+            {item.label}
+          </a>
+        ))}
+
+        <div class="pt-6 border-t border-zinc-100 dark:border-zinc-800 mt-4">
+          <a
+            href="/partner-kit/meridian-creator-kit.zip"
+            download
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
+          >
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download all assets
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main id="main-content" class="flex-1 min-w-0 space-y-16">
+
+      <!-- ── § 1 Your Personal Details ───────────────────── -->
+      <section id="s1" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 01</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Your Personal Details</h2>
+        </div>
+        <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+          {PersonalContent ? <PersonalContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+        </div>
+      </section>
+
+      <!-- ── § 2 Get Started ─────────────────────────────── -->
+      <section id="s2" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 02</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Get Started with Meridian</h2>
+        </div>
+
+        <div class="space-y-10">
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-[10px] font-bold text-emerald-700 dark:text-emerald-400 shrink-0">1</span>
+              Install Meridian
+            </h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {InstallContent ? <InstallContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-[10px] font-bold text-emerald-700 dark:text-emerald-400 shrink-0">2</span>
+              Your first 30 minutes
+            </h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {First30Content ? <First30Content /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-3 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center text-[10px] font-bold text-emerald-700 dark:text-emerald-400 shrink-0">3</span>
+              Product deep dive
+            </h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {DeepDiveContent ? <DeepDiveContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── § 3 Talking Points ──────────────────────────── -->
+      <section id="s3" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 03</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Talking Points</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">Use these verbatim, paraphrase them, or just use them to get a feel for the right level of precision. What matters is accuracy — not matching word-for-word.</p>
+        </div>
+
+        <div class="space-y-10">
+
+          <!-- 3.1 Core Positioning -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">Core positioning</h3>
+            {positioningCopyables.length > 0 ? (
+              <div class="space-y-3">
+                {positioningCopyables.map((item: { label: string; content: string }) => (
+                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                    <div class="flex items-center justify-between px-4 py-3 bg-zinc-50/70 dark:bg-zinc-800/50 border-b border-zinc-100 dark:border-zinc-700/60">
+                      <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">{item.label}</span>
+                      <button
+                        class="copy-btn flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                        data-copy={item.content}
+                        aria-label={`Copy ${item.label} to clipboard`}
+                      >
+                        <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                    <p class="px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">{item.content}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                {PositioningContent ? <PositioningContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- 3.2 Differentiation -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">How Meridian is different</h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {DiffContent ? <DiffContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+
+          <!-- 3.3 Audience FAQ (accordion) -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">Questions your audience will ask</h3>
+            {faqItems.length > 0 ? (
+              <div class="space-y-2">
+                {faqItems.map((item: { q: string; a: string }) => (
+                  <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                    <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50/60 dark:hover:bg-zinc-800/40 transition-colors">
+                      <span class="text-sm font-medium text-zinc-800 dark:text-zinc-200 pr-4">{item.q}</span>
+                      <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="px-5 pb-4 pt-1 border-t border-zinc-100 dark:border-zinc-700/60">
+                      <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            ) : (
+              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                {FaqContent ? <FaqContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- 3.4 Audience angles -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">Angles by audience type</h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {AnglesContent ? <AnglesContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── § 4 Compliance ──────────────────────────────── -->
+      <section id="s4" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 04</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Compliance</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">These rules protect you as much as they protect us. Creators who get this wrong face FTC enforcement, not Meridian. We take it seriously so you don't have to guess.</p>
+        </div>
+
+        <div class="space-y-10">
+          <!-- 4.1 FTC Disclosure -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">Disclosure language</h3>
+            {ftcCopyables.length > 0 ? (
+              <div class="space-y-3">
+                {ftcCopyables.map((item: { label: string; content: string }) => (
+                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                    <div class="flex items-center justify-between px-4 py-3 bg-zinc-50/70 dark:bg-zinc-800/50 border-b border-zinc-100 dark:border-zinc-700/60">
+                      <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">{item.label}</span>
+                      <button
+                        class="copy-btn flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                        data-copy={item.content}
+                        aria-label={`Copy ${item.label} to clipboard`}
+                      >
+                        <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <span class="copy-label">Copy</span>
+                      </button>
+                    </div>
+                    <p class="px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">{item.content}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                {FtcContent ? <FtcContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+              </div>
+            )}
+          </div>
+
+          <!-- 4.2 Forbidden phrases -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">What not to say</h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {ForbiddenContent ? <ForbiddenContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+
+          <!-- 4.3 When in doubt -->
+          <div>
+            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 mb-4">When in doubt</h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {DoubtContent ? <DoubtContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── § 5 Visual Assets ───────────────────────────── -->
+      <section id="s5" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 05</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Visual Assets</h2>
+        </div>
+
+        <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm mb-8">
+          {AssetsContent ? <AssetsContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+        </div>
+
+        <!-- Download all CTA -->
+        <div class="rounded-2xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 px-6 py-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Complete asset package</p>
+              <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">Logo pack · Screenshots · B-roll · Templates</p>
+            </div>
+            <a
+              href="/partner-kit/meridian-creator-kit.zip"
+              download
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-colors shrink-0"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download all assets
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── § 6 Content Templates ───────────────────────── -->
+      <section id="s6" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 06</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Content Templates</h2>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2 max-w-xl">Starting points — not scripts to read verbatim. Adapt them to your voice. The structure matters more than the exact words.</p>
+        </div>
+
+        <div class="space-y-4">
+
+          {/* Helper component for script accordion */}
+          {[
+            { title: '60-second hook (YouTube Short / Reel)', copyables: script60Copyables, Content: Script60Content },
+            { title: '3-minute walkthrough (YouTube long-form)', copyables: script3mCopyables, Content: Script3mContent },
+            { title: '30-second short', copyables: script30Copyables, Content: Script30Content },
+            { title: 'YouTube description', copyables: ytDescCopyables, Content: YtDescContent },
+            { title: 'Twitter / X thread (7 tweets)', copyables: tweetCopyables, Content: TweetContent },
+            { title: 'Newsletter section', copyables: newsletterCopyables, Content: NewsletterContent },
+          ].map(({ title, copyables, Content: SectionContent }: { title: string; copyables: {label:string;content:string}[]; Content: any }) => (
+            <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+              <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50/60 dark:hover:bg-zinc-800/40 transition-colors">
+                <span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{title}</span>
+                <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 pt-1 border-t border-zinc-100 dark:border-zinc-700/60 space-y-3">
+                {copyables.length > 0 ? (
+                  copyables.map((item: {label:string;content:string}) => (
+                    <div class="rounded-lg border border-zinc-100 dark:border-zinc-700/60 overflow-hidden">
+                      <div class="flex items-center justify-between px-4 py-2.5 bg-zinc-50/70 dark:bg-zinc-800/50 border-b border-zinc-100 dark:border-zinc-700/40">
+                        <span class="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">{item.label}</span>
+                        <button
+                          class="copy-btn flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded"
+                          data-copy={item.content}
+                          aria-label={`Copy ${item.label} to clipboard`}
+                        >
+                          <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                          <span class="copy-label">Copy</span>
+                        </button>
+                      </div>
+                      <pre class="px-4 py-3 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap font-sans overflow-x-auto">{item.content}</pre>
+                    </div>
+                  ))
+                ) : (
+                  <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                    {SectionContent ? <SectionContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+                  </div>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- ── § 7 Support ─────────────────────────────────── -->
+      <section id="s7" class="kit-section scroll-mt-24">
+        <div class="mb-6">
+          <p class="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 dark:text-emerald-500 mb-1.5">§ 07</p>
+          <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">Support</h2>
+        </div>
+        <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+          {SupportContent ? <SupportContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       STICKY BOTTOM BAR
+       ═══════════════════════════════════════════════════════ -->
+  <div
+    id="sticky-bar"
+    class="fixed bottom-0 left-0 right-0 z-40 border-t border-zinc-200 dark:border-zinc-700 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-sm px-6 py-3 print:hidden"
+    role="complementary"
+    aria-label="Quick actions"
+  >
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+      <p class="text-xs text-zinc-400 dark:text-zinc-500 hidden sm:block">
+        Questions? <a href="mailto:garycaffrey@meridian-partnership.com" class="underline hover:text-zinc-600 dark:hover:text-zinc-300">garycaffrey@meridian-partnership.com</a>
+      </p>
+      <div class="flex items-center gap-3 ml-auto">
+        <a
+          href="mailto:garycaffrey@meridian-partnership.com"
+          class="sm:hidden inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-600 text-xs font-semibold text-zinc-700 dark:text-zinc-300 hover:border-zinc-500 transition-colors"
+        >
+          Questions?
+        </a>
+        <a
+          href="/partner-kit/meridian-creator-kit.zip"
+          download
+          class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Download all assets
+        </a>
+      </div>
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  /* Print styles */
+  @media print {
+    #sticky-bar,
+    #toc-nav,
+    #toc-mobile,
+    .copy-btn { display: none !important; }
+    .kit-section { break-inside: avoid; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* Copy button active (copied) state */
+  .copy-btn.copied .copy-label { color: rgb(5 150 105); }
+  .copy-btn.copied .copy-icon { color: rgb(5 150 105); }
+
+  /* TOC active link */
+  .toc-link.active {
+    color: rgb(5 150 105);
+    background-color: rgb(240 253 244 / 0.7);
+    font-weight: 600;
+  }
+  .dark .toc-link.active {
+    color: rgb(52 211 153);
+    background-color: rgb(6 78 59 / 0.25);
+  }
+  .toc-link.active .toc-icon {
+    color: rgb(5 150 105);
+  }
+  .dark .toc-link.active .toc-icon {
+    color: rgb(52 211 153);
+  }
+</style>
+
+<script>
+  // ── 1. Name personalisation ──────────────────────────────
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    if (name) {
+      const el = document.getElementById('name-display');
+      if (el) el.textContent = ', ' + decodeURIComponent(name);
+    }
+  })();
+
+  // ── 2. Scroll-spy: highlight active TOC link ─────────────
+  (function () {
+    const sections = document.querySelectorAll<HTMLElement>('.kit-section');
+    const links = document.querySelectorAll<HTMLAnchorElement>('[data-toc-target]');
+    if (!sections.length || !links.length) return;
+
+    let current = '';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            current = entry.target.id;
+            links.forEach((link) => {
+              const active = link.dataset.tocTarget === current;
+              link.classList.toggle('active', active);
+            });
+          }
+        });
+      },
+      { rootMargin: '-15% 0px -75% 0px', threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+  })();
+
+  // ── 3. Copy-to-clipboard buttons ─────────────────────────
+  (function () {
+    document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy') ?? '';
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          // Fallback for older browsers
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        const label = btn.querySelector<HTMLElement>('.copy-label');
+        if (label) {
+          const original = label.textContent;
+          label.textContent = 'Copied';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            label.textContent = original;
+            btn.classList.remove('copied');
+          }, 1500);
+        }
+      });
+    });
+  })();
+</script>

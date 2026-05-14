@@ -1,22 +1,24 @@
 # Creator Outreach Email Templates
 
-> These are early templates for manual cold outreach. When the Instantly campaign
-> is live, these will be replaced by the Instantly sequence in `social/partner-program-progress.md`.
-> Until then, use these for one-off manual outreach.
+> **Status:** Legacy manual templates — use for one-off outreach only.
+> The canonical automated sequence (v6, locked 2026-05-12) lives in `social/outreach-strategy.md`.
+> Do NOT use these templates in Instantly — the Instantly campaign has its own sequence.
+> Terms in this file (30% recurring, 10% permanent) are current as of May 2026.
+> **As of May 2026, Meridian is an Official NinjaTrader Ecosystem Vendor — every outreach should lead with this fact.**
 
 ---
 
-## Template 1: Short Intro
+## Template 1: Short Intro (Official Vendor lead)
 
-Subject: Meridian creator partnership
+Subject: Official NinjaTrader Ecosystem Vendor — creator partnership
 
 Hi [Name],
 
-I run Meridian, a NinjaTrader 8 add-on that helps active traders monitor behavioral pressure during live sessions.
+I run Meridian, a NinjaTrader 8 add-on and an **Official NinjaTrader Ecosystem Vendor** — meaning our product, website, and social channels have been reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams.
 
-The product shows a real-time PSI score, seven visible behavioral signals, and session review tools that go beyond P&L alone.
+Meridian helps active traders monitor behavioral pressure during live sessions: a real-time PSI score, seven visible behavioral signals (revenge entry, stop manipulation, oversizing, overtrading pace, etc.), and session review tools that go beyond P&L alone.
 
-I think your audience may be a strong fit, especially if they care about discipline, execution quality, and avoiding repeated mistakes under pressure.
+Your audience may be a strong fit, especially if they care about discipline, execution quality, and avoiding repeated mistakes under pressure.
 
 The creator offer:
 
@@ -25,7 +27,9 @@ The creator offer:
 - 10% permanent discount for your viewers on every renewal
 - 30% recurring commission on every billing cycle
 
-If you're interested, I can send screenshots, a short demo, and a one-page creator brief.
+Because we're an approved NT Ecosystem vendor, you can promote Meridian to your audience knowing the compliance bar has already been cleared on our side.
+
+Happy to send screenshots, a short demo, and a one-page creator brief.
 
 Best,
 [Your Name]
@@ -33,15 +37,15 @@ Best,
 
 ---
 
-## Template 2: Slightly Warmer Version
+## Template 2: Slightly Warmer Version (audience-fit lead)
 
-Subject: Possible fit for your audience — Meridian
+Subject: Possible fit for your audience — Meridian (Official NT Ecosystem Vendor)
 
 Hi [Name],
 
 I've been following your content on [futures trading / prop firm trading / trading discipline / session review], and I think Meridian could be a good fit for your audience.
 
-Meridian is a behavioral monitoring add-on for NinjaTrader 8. It gives traders a live PSI score during the session, surfaces what is driving the score through seven behavioral signals, and keeps a session history that goes beyond P&L.
+Meridian is a behavioral monitoring add-on for NinjaTrader 8 and an **Official NinjaTrader Ecosystem Vendor** — reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams. It gives traders a live PSI score during the session, surfaces what is driving the score through seven behavioral signals, and keeps a session history that goes beyond P&L.
 
 I'm building a small invited creator program and wanted to reach out directly.
 
@@ -61,7 +65,7 @@ Best,
 
 ## Optional Follow-Up (send ~5 days after no reply)
 
-Subject: Re: Meridian creator partnership
+Subject: Re: Meridian creator partnership (Official NT Ecosystem Vendor)
 
 Hi [Name],
 
@@ -72,8 +76,9 @@ If useful, I can send:
 - a short product walkthrough
 - screenshots of the live PSI view
 - the exact partner terms on one page
+- a verification of our Official NinjaTrader Ecosystem Vendor status (you can also confirm directly on ninjatrader.com)
 
-No pressure either way. I thought your audience might connect with this because it focuses on discipline and behavioral consistency — not signals or profit promises.
+No pressure either way. I thought your audience might connect with this because it focuses on discipline and behavioral consistency — not signals or profit promises — and the NT approval process means the compliance lift is already done.
 
 Best,
 [Your Name]
@@ -82,8 +87,17 @@ Best,
 
 ## Notes For Sending
 
-- Personalize the first paragraph whenever possible — mention a specific video, thread, or topic they covered
-- Keep the tone practical, not hype-driven
-- Do not promise future platform support or feature delivery dates as guarantees
-- If they agree, send the partner brief link (`meridianpsi.com/partners`) and compliance guidance next
-- Do not use these templates in Instantly — those get their own sequence once Phase 4 starts
+- **Lead with the Official Ecosystem Vendor status** — it materially shifts how creators read the rest of the email. Their first question is always "is this legit / will my audience get burned" and this answers it before they ask.
+- Personalize the first paragraph whenever possible — mention a specific video, thread, or topic they covered.
+- Keep the tone practical, not hype-driven. The Ecosystem-vendor line is enough credibility on its own; don't pile on superlatives.
+- Do not promise future platform support or feature delivery dates as guarantees.
+- If they agree, send the partner brief link (`meridianpsi.com/partners`) and compliance guidance next.
+- Do not use these templates in Instantly — those get their own sequence once Phase 4 starts.
+
+## Subject-Line A/B Bank (rotate to avoid spam clustering)
+
+- `Official NinjaTrader Ecosystem Vendor — creator partnership`
+- `Approved NT8 vendor — fit for [Name]'s audience?`
+- `30% recurring + Official NT Ecosystem Vendor — quick intro`
+- `Meridian (NT Ecosystem) — partnership for [Channel Name]?`
+- `Possible fit for your audience — Meridian (Official NT Ecosystem Vendor)`

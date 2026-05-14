@@ -88,8 +88,26 @@ const faqCollection = defineCollection({
   }),
 });
 
+// Partner kit collection — used by /partners/kit page (soft-private, noindex)
+const partnerKitCollection = defineCollection({
+  loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/partner-kit' }),
+  schema: z.object({
+    title: z.string(),
+    section: z.string(),
+    lastUpdated: z.string().optional(),
+    order: z.number().default(99),
+    faqs: z
+      .array(z.object({ q: z.string(), a: z.string() }))
+      .optional(),
+    copyables: z
+      .array(z.object({ label: z.string(), content: z.string() }))
+      .optional(),
+  }),
+});
+
 export const collections = {
   post: postCollection,
   changelog: changelogCollection,
   faq: faqCollection,
+  partnerKit: partnerKitCollection,
 };

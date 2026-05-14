@@ -11,8 +11,9 @@
 
 - ✅ **Phase 1 — Site fixes & infrastructure** — complete
 - ✅ **Phase 2 — `/partners` landing page** — complete
-- ⏳ **Phase 3 — Creator kit assets** — not started (Gary's deliverable: logo pack, screenshots, video footage)
-- ⏳ **Phase 4 — Email outreach copy + Gemini personalization** — not started
+- ⏳ **Phase 3 — Creator kit assets** — not started (Gary's deliverable: logo pack, screenshots, video footage, partner brief PDF, Intel Layer walkthrough)
+- ✅ **Phase 4 — Email outreach copy + Gemini personalization** — templates locked at v6 (see `social/outreach-strategy.md`)
+- ⏳ **Phase 5 — Instantly setup + first send batch** — pending Phase 3 deliverables
 
 ---
 
@@ -96,7 +97,7 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Rushed Exit · D
 | Confirm Whop affiliate mechanics actually match what's written in the "How tracking & payouts work" accordion | ✅ Done 2026-05-12 PM | Verified against `docs.whop.com/manage-your-business/growth-marketing/affiliate-program` + `whop.com/earnings-terms`. Real model: **affiliate link = attribution** (URL param `?a=name`), **promo code = audience discount** (separate mechanism). Old accordion incorrectly fused them. Rewritten to 5 bullets; tax-form and cancel/resubscribe bullets removed (out of scope for partner outreach — affiliates handle their own taxes). 30% commission rate, recurring-on-subscription, 30-day waiting, monthly payout via Whop panel — all confirmed accurate. |
 | Creator kit asset preparation | Waiting | Gary delivers: logo pack, screenshots, video footage. AI delivers: talking-points doc, 3 video script templates |
 | Default-expand any accordion item? (currently all collapsed) | Waiting | Brand-safe partnership might be worth defaulting open — it's the trust-building section that small bloggers care about most |
-| Reconcile stale root-level docs with canonical `/partners` offer | Waiting | `AFFILIATE_PROGRAM.md` (root) still says 20% first-purchase / 12 months access / 30-day attribution window — pre-Whop legacy text. `CREATOR_OUTREACH_EMAIL.md` says "10% off **first** purchase" — should be "10% permanent discount". Not user-facing; clean up next time we touch outreach copy. |
+| Reconcile stale root-level docs with canonical `/partners` offer | ✅ Done 2026-05-13 | `AFFILIATE_PROGRAM.md` — 30% recurring / 10% permanent / Whop. `CREATOR_OUTREACH_EMAIL.md` — terms confirmed correct (30% + 10% permanent); header updated to clearly mark it as legacy manual-only, pointing to `outreach-strategy.md` v6 as canonical. |
 
 ---
 

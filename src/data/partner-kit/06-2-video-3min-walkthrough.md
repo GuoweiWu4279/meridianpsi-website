@@ -1,0 +1,16 @@
+---
+title: 3-Minute Walkthrough Script
+section: content-templates
+order: 2
+copyables:
+  - label: "Full script — adapt to your voice"
+    content: "[0:00–0:10 — HOOK]\n\"Let me show you what your trading session looks like from Meridian's perspective.\"\n\n[0:10–0:30 — PRODUCT INTRO]\n\"Meridian is a NinjaTrader 8 add-on that monitors behavioral signals during your live session. What you're seeing right now is the floating HUD — it stays on screen while you trade. You can position it anywhere in your workspace.\"\n\n[0:30–0:55 — THE PSI SCORE]\n\"The big number is the PSI — Psychological Stability Index — on a 0-to-100 scale. There are four zones: Stable above 88, Caution from 72 to 87, Warning from 55 to 71, and Critical below 55. You want to stay green. When it starts dropping, something is changing in your behavior — and you can see it happening before it becomes a problem.\"\n\n[0:55–1:45 — THE SEVEN SIGNALS]\n\"Below the score, there are seven behavioral dimensions. D1 is Revenge Entry — how fast you're re-entering after a loss. D2 is Stop Manipulation — are you widening your stops. D3 is Size Spike — position size relative to your baseline. D4 is Rushed Exit — are you cutting positions too early. D5 is Position Overstay — holding a deep loser beyond normal. D6 tracks Rule Violations — are you breaking your own plan. D7 is Overtrading Pace — are you trading too fast. Each one contributes to the overall PSI score with a weight you can configure.\"\n\n[1:45–2:15 — THE PERSONAL BASELINE]\n\"The important thing here is that these aren't fixed thresholds. Meridian learns what normal looks like for *you* — your typical position size, your hold times, your normal re-entry patterns. So a size spike for a scalper means something different than for a swing trader. The baseline adapts as your trading evolves. Playback sessions are tracked separately, so practicing in Market Replay doesn't affect your live data.\"\n\n[2:15–2:45 — GUARD]\n\"If you're on Meridian Guard, you can set automated interventions. When PSI drops below your configured threshold — or when a specific dimension spikes — it can show a warning overlay, trigger a forced cooldown timer, or disconnect your broker connection entirely. The disconnect doesn't close open positions — you stay in full control of anything already running. It stops you from opening the next trade while you're in a bad state.\"\n\n[2:45–3:00 — CTA]\n\"There's a 7-day trial at the link below. Code [YOURCODE] is 10% off every renewal. I've been running it on [your trading context] and the [specific thing you noticed] was genuinely useful.\"\n\n[Affiliate disclosure: see §4 for exact wording — place at top of YouTube description]"
+---
+
+**Tips for this format:**
+
+- Record screen capture of the actual Meridian interface while narrating — the visuals are more convincing than anything you can say
+- The "seven signals" section can feel dense if rushed — slow down slightly here, or trim to 3–4 signals if you're under time pressure
+- The baseline section is where technically-minded viewers lean in — don't rush it
+- "The disconnect doesn't close open positions" is important to say explicitly — it's the most common misconception and the most important clarification
+- Adapt the CTA by replacing the bracketed parts with your actual experience — the more specific, the more credible

@@ -1,5 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /partners/kit
 
 # Meridian (meridianpsi.com): crawlers including AI indexer bots are not blocked above.
+# /partners/kit is a soft-private partner resource page — not for public indexing.
 # Machine-readable site summary for assistants: /llms.txt
