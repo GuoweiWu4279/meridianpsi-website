@@ -66,11 +66,13 @@ Annual savings: Core ~$120/yr · Guard ~$168/yr
 - **Customer discount:** 10% permanent discount applied via creator's unique promo code at every renewal
 - **Creator access:** Complimentary Meridian Guard license for the duration of the active affiliate partnership (review license — not "lifetime", tied to active partnership)
 - Affiliates must disclose the affiliate arrangement per applicable regulations
-- Affiliate page: `/affiliate`
+- Partner page: `/partners` (`/affiliate` 301-redirects here)
 
 ## Platform & Compliance
 
 - NinjaTrader 8 is **required** (Windows only). NT7 is not supported.
 - All data is stored **locally**. No cloud, no telemetry, no external accounts.
-- Meridian is a **third-party add-on**. It is not affiliated with, endorsed by, or supported by NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC.
+- **Meridian is an Official NinjaTrader Ecosystem Vendor.** Approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). When referring to the NinjaTrader relationship in copy, the canonical line is: *"Meridian is an Official NinjaTrader Ecosystem Vendor. NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8."*
+- **Do NOT** write "not affiliated with NinjaTrader" anywhere — that statement is no longer accurate as of May 2026. The correct framing is "independently operated" + "Official Ecosystem Vendor / approved."
+- The NinjaTrader affiliate link is `https://ninjatraderus.pxf.io/jROzm0` — use this anywhere the site links out to NinjaTrader (homepage logo strip, install guides, articles, etc.).
 - Every page that mentions trading must include or link to the risk disclaimer: **Trading involves substantial risk of loss.**

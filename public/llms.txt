@@ -1,5 +1,7 @@
 # Meridian PSI
 
+> Meridian is an **Official NinjaTrader Ecosystem Vendor** — approved by NinjaTrader's Compliance, QA, and Executive teams. Meridian Guard and Meridian PSI are listed in the official NinjaTrader Ecosystem as approved third-party add-ons for NinjaTrader 8.
+
 > Meridian Guard is a NinjaTrader 8 behavioral risk manager and trade lockout add-on for discretionary futures traders. It helps detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, then enforces user-defined cooldowns, lockouts, and entry blocking.
 
 > Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.
@@ -53,7 +55,7 @@ Rules can be password-locked to prevent in-session override.
 - Does not require broker credentials
 - Does not transmit trade data externally
 - Does not guarantee behavioral failure modes will not occur
-- Is not affiliated with NinjaTrader LLC
+- Is not owned by NinjaTrader LLC (Meridian is an independently operated Official NinjaTrader Ecosystem Vendor; see the "Relationship to NinjaTrader" section below)
 
 ## Pricing
 
@@ -112,7 +114,7 @@ Earlier use-case pages (also indexed):
 
 ## Relationship to NinjaTrader
 
-Meridian is a third-party add-on. It is not affiliated with, endorsed by, or supported by NinjaTrader LLC. NinjaTrader® is a registered trademark of NinjaTrader LLC.
+Meridian is an **Official NinjaTrader Ecosystem Vendor** — the company, its website, social channels, and the Meridian NT8 add-on itself were reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams before being listed in the NinjaTrader Ecosystem. Meridian is operated by an independent company and is a third-party add-on developer for NinjaTrader 8. NinjaTrader® is a registered trademark of NinjaTrader LLC, and Meridian is not owned by NinjaTrader LLC.
 
 ## Compliance
 

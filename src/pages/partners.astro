@@ -1,10 +1,11 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 const metadata = {
   title: 'Partner with Meridian — 30% Lifetime Recurring for NinjaTrader 8 Creators',
   description:
-    '30% lifetime recurring commission. 10% permanent audience discount. Free Meridian Guard license. We respond to applications within 24 hours.',
+    'Partner with an Official NinjaTrader Ecosystem Vendor. 30% lifetime recurring commission. 10% permanent audience discount. Free Meridian Guard license. We respond to applications within 24 hours.',
   robots: { index: true, follow: true },
 };
 
@@ -78,18 +79,25 @@ const finePrintItems = [
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
          style="background: radial-gradient(ellipse at 75% 0%, rgba(5,150,105,0.10) 0%, transparent 60%);"></div>
     <div class="relative max-w-3xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-24">
-      <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-8 rounded-full"
-           style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.08);">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Partner Program · NT8 Creators</span>
+      <div class="flex flex-wrap items-center gap-2 mb-8">
+        <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full"
+             style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.08);">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
+          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Partner Program · NT8 Creators</span>
+        </div>
+        <EcosystemVendorBadge variant="compact" align="left" />
       </div>
 
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] text-zinc-900 mb-6">
         Partner with Meridian.
       </h1>
 
-      <p class="text-lg md:text-xl text-zinc-600 leading-relaxed mb-10">
+      <p class="text-lg md:text-xl text-zinc-600 leading-relaxed mb-4">
         30% lifetime recurring. 10% permanent audience discount. Free Guard license while you're a partner. We respond in 24 hours.
+      </p>
+      <p class="text-sm text-zinc-500 leading-relaxed mb-10">
+        You&rsquo;ll be promoting an <strong class="text-zinc-700">Official NinjaTrader Ecosystem Vendor</strong> &mdash; reviewed and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams. Your audience can verify on
+        <a href="https://ninjatrader.com/vendor-services/" target="_blank" rel="noopener" class="underline text-zinc-600 hover:text-zinc-900">ninjatrader.com</a>.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3">

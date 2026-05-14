@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Button from '~/components/ui/Button.astro';
+import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 import products from '~/data/products.json';
 
@@ -101,6 +102,10 @@ const supportEmail = products.purchase.supportEmail;
             </svg>
             Cancel before trial ends — no charge
           </p>
+        </div>
+
+        <div class="mt-6 flex justify-center">
+          <EcosystemVendorBadge variant="compact" />
         </div>
 
         <div class="mt-8 pt-6 border-t border-zinc-100 space-y-1.5">

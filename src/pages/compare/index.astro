@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 const metadata = {
   title: 'Compare Meridian — vs Native NinjaTrader, Hard-Limit Tools, Trading Journals',
@@ -74,9 +75,12 @@ const itemListSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 leading-[1.1] tracking-tight mb-6">
         How Meridian compares.
       </h1>
-      <p class="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+      <p class="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-6">
         Side-by-side comparisons against every category of NinjaTrader 8 risk tool — the native controls, the hard-limit add-ons, the post-session journals, and the daily loss limit category.
       </p>
+      <div class="flex justify-center">
+        <EcosystemVendorBadge variant="compact" />
+      </div>
     </div>
   </section>
 

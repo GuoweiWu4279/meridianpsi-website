@@ -252,9 +252,31 @@ const homePageJsonLd = {
       '@type': 'Organization',
       '@id': 'https://www.meridianpsi.com/#organization',
       name: 'Meridian',
+      alternateName: ['Meridian PSI', 'Meridian Guard'],
       url: 'https://www.meridianpsi.com',
       logo: 'https://www.meridianpsi.com/meridian-logo.png',
       description: geoHooks.meridianPsiCanonical,
+      memberOf: {
+        '@type': 'ProgramMembership',
+        programName: 'NinjaTrader Ecosystem',
+        hostingOrganization: {
+          '@type': 'Organization',
+          name: 'NinjaTrader, LLC',
+          url: 'https://ninjatrader.com/',
+        },
+        membershipNumber: 'Official Ecosystem Vendor',
+        description:
+          'Meridian is an Official NinjaTrader Ecosystem Vendor — approved by NinjaTrader\u2019s Compliance, QA, and Executive teams (May 2026).',
+      },
+      knowsAbout: [
+        'NinjaTrader 8',
+        'Behavioral risk management',
+        'Psychological Stability Index',
+        'Revenge trading prevention',
+        'Overtrading prevention',
+        'Stop-loss manipulation detection',
+        'Prop firm risk control',
+      ],
       sameAs: [
         'https://x.com/Meridian_PSI',
         'https://www.youtube.com/@Meridianpsi1',
@@ -272,6 +294,7 @@ const homePageJsonLd = {
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
       url: 'https://www.meridianpsi.com',
+      award: 'Official NinjaTrader Ecosystem Vendor (May 2026)',
       offers: pricing.tiers.flatMap(tierToSchemaOffers),
       featureList: [
         'Real-time Psychological Stability Index (PSI)',
@@ -359,45 +382,51 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     </div>
   </section>
 
-  <!-- Ecosystem / Recommended Resources section -->
+  <!-- Ecosystem / Official Partner section -->
   <div class="fade-up border-b border-zinc-200/60" style="background: #FEFEFE;">
-    <div class="max-w-6xl mx-auto px-6 py-8 md:py-10">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-8">
-        <p class="text-base font-semibold" style="color:#18181b;">Our Recommended Resources</p>
-        <p class="text-xs" style="color:#a1a1aa;">More platforms launching very shortly.</p>
+    <div class="max-w-6xl mx-auto px-6 py-10 md:py-12">
+      <div class="flex flex-col items-center text-center mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded-full" style="border: 1px solid rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+          <span class="text-[10px] font-semibold tracking-[0.18em] uppercase" style="color:#059669;">Official NinjaTrader Ecosystem Vendor</span>
+        </div>
+        <p class="text-sm md:text-base font-semibold mb-1" style="color:#18181b;">Approved &amp; listed in the NinjaTrader Ecosystem.</p>
+        <p class="text-xs md:text-sm max-w-xl" style="color:#71717a;">
+          Reviewed by NinjaTrader&rsquo;s Compliance, QA, and Executive teams before joining the Ecosystem. Built on NinjaTrader 8 with Kinetick market data.
+        </p>
       </div>
       <div class="flex flex-wrap items-center justify-center gap-12 md:gap-20">
-        <!-- NinjaTrader — affiliate link -->
+        <!-- NinjaTrader — Official Ecosystem affiliate link -->
         <a
           href="https://ninjatraderus.pxf.io/jROzm0"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="NinjaTrader — trading platform"
+          aria-label="NinjaTrader — official trading platform partner"
           class="flex flex-col items-center gap-3 group"
         >
           <img
             src="/logos/ninjatrader-wordmark.png"
-            alt="NinjaTrader"
-            style="height: 36px; width: auto; object-fit: contain; opacity: 0.85; transition: opacity 0.2s;"
+            alt="NinjaTrader — Official Ecosystem"
+            style="height: 36px; width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s;"
             class="group-hover:opacity-100"
           />
-          <span class="text-[11px] text-zinc-400 tracking-wide">Trading Platform</span>
+          <span class="text-[11px] text-zinc-500 tracking-wide">Official Ecosystem Vendor</span>
         </a>
-        <!-- Kinetick — data feed -->
+        <!-- Kinetick — official market data partner -->
         <a
           href="https://kinetick.com/NinjaTrader"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Kinetick — market data feed"
+          aria-label="Kinetick — official market data partner"
           class="flex flex-col items-center gap-3 group"
         >
           <img
             src="/logos/kinetick-logo.png"
             alt="Kinetick"
-            style="height: 36px; width: auto; object-fit: contain; opacity: 0.85; transition: opacity 0.2s;"
+            style="height: 36px; width: auto; object-fit: contain; opacity: 0.9; transition: opacity 0.2s;"
             class="group-hover:opacity-100"
           />
-          <span class="text-[11px] text-zinc-400 tracking-wide">Market Data Feed</span>
+          <span class="text-[11px] text-zinc-500 tracking-wide">Market Data Partner</span>
         </a>
       </div>
     </div>

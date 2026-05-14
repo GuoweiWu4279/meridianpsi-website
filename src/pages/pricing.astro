@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 import pricing from '~/data/pricing.json';
 import geoHooks from '~/data/geo-hooks.json';
@@ -246,6 +247,10 @@ const pricingPageJsonLd = JSON.stringify({
         <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
         Checkout secured by Whop
       </span>
+    </div>
+
+    <div class="mt-6 flex justify-center">
+      <EcosystemVendorBadge variant="compact" />
     </div>
 
     <p class="mt-6 text-center text-xs text-zinc-500 leading-relaxed max-w-2xl mx-auto">

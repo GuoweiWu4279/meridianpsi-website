@@ -1,0 +1,96 @@
+---
+/**
+ * Official NinjaTrader Ecosystem Vendor — reusable trust signal.
+ *
+ * Why this exists:
+ *   Site-wide we have ONE canonical way to display the Ecosystem-vendor
+ *   status as a conversion-supporting trust signal. Do not invent ad-hoc
+ *   markup on individual pages — use this component so the visual style,
+ *   copy, and link target stay consistent.
+ *
+ * Variants:
+ *   - "compact" : small inline badge (a chip). Drop near a CTA, in a trust
+ *                 strip, or in a tight space.
+ *   - "strip"   : full horizontal strip with eyebrow + supporting line.
+ *                 Use once near a hero / first viewport of a page.
+ *   - "card"    : full card with explanation. Use when the page is itself
+ *                 about trust (e.g. /trust, /about).
+ *
+ * Conversion principles encoded here:
+ *   - Always link out to NinjaTrader so the user can independently verify.
+ *   - Never become the H1.
+ *   - One instance per page maximum.
+ */
+
+interface Props {
+  variant?: 'compact' | 'strip' | 'card';
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const { variant = 'compact', align = 'center', class: className = '' } = Astro.props;
+const alignClass = align === 'center' ? 'mx-auto text-center' : 'text-left';
+---
+
+{variant === 'compact' && (
+  <a
+    href="https://ninjatrader.com/vendor-services/"
+    target="_blank"
+    rel="noopener"
+    aria-label="Official NinjaTrader Ecosystem Vendor — verify on ninjatrader.com"
+    class:list={['inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60', className]}
+    style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
+  >
+    <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+    <span class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">
+      Official NinjaTrader Ecosystem Vendor
+    </span>
+  </a>
+)}
+
+{variant === 'strip' && (
+  <div class:list={['flex flex-col gap-2 max-w-2xl', alignClass, className]}>
+    <a
+      href="https://ninjatrader.com/vendor-services/"
+      target="_blank"
+      rel="noopener"
+      aria-label="Official NinjaTrader Ecosystem Vendor — verify on ninjatrader.com"
+      class={`inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60 ${align === 'center' ? 'mx-auto' : ''}`}
+      style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07); width: fit-content;"
+    >
+      <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+      <span class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">
+        Official NinjaTrader Ecosystem Vendor
+      </span>
+    </a>
+    <p class="text-[11px] md:text-xs text-zinc-500 leading-relaxed">
+      Reviewed and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams.
+    </p>
+  </div>
+)}
+
+{variant === 'card' && (
+  <div class:list={['rounded-2xl border border-emerald-100 bg-emerald-50/40 px-6 py-5', className]}>
+    <div class="flex items-start gap-4">
+      <div class="shrink-0 mt-1">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-sm" style="border:1px solid rgba(5,150,105,0.35);">
+          <svg class="w-4 h-4" fill="none" stroke="#059669" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </span>
+      </div>
+      <div class="flex-1">
+        <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:#059669;">
+          Official NinjaTrader Ecosystem Vendor
+        </p>
+        <p class="text-sm text-zinc-700 leading-relaxed">
+          Meridian is reviewed and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams &mdash;
+          the same review every Ecosystem vendor must pass.
+          <a href="https://ninjatrader.com/vendor-services/" target="_blank" rel="noopener" class="underline hover:text-emerald-800">
+            Learn about the Ecosystem &rarr;
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+)}

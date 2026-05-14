@@ -11,7 +11,7 @@ metadata:
   title:
     default: Meridian — Real-Time Psychological Stability Index for Traders
     template: '%s — Meridian'
-  description: "Meridian is the first real-time psychological stability index for active traders — built for NinjaTrader 8. Track seven behavioral dimensions, entirely on your PC."
+  description: "Meridian is the first real-time psychological stability index for active traders — built for NinjaTrader 8 by an Official NinjaTrader Ecosystem Vendor. Track seven behavioral dimensions, entirely on your PC."
   robots:
     index: true
     follow: true

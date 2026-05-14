@@ -1,5 +1,6 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 const DOWNLOAD_PAGE = 'https://www.meridianpsi.com/downloads';
 const WHOP_URL = 'https://whop.com';
@@ -16,9 +17,13 @@ const metadata = {
   <section class="py-12 px-6">
     <div class="max-w-3xl mx-auto text-zinc-900 dark:text-white">
       <h1 class="text-3xl md:text-4xl font-bold mb-3">Install Meridian in NinjaTrader 8</h1>
-      <p class="text-zinc-600 dark:text-zinc-400 text-base mb-10 leading-relaxed">
+      <p class="text-zinc-600 dark:text-zinc-400 text-base mb-5 leading-relaxed">
         This guide will help you install Meridian, activate your license, and complete your first SIM test.
       </p>
+
+      <div class="mb-10">
+        <EcosystemVendorBadge variant="strip" align="left" />
+      </div>
 
       <!-- Quick Start -->
       <div class="rounded-2xl border border-emerald-200 dark:border-emerald-900/50 bg-emerald-50/60 dark:bg-emerald-950/30 p-6 md:p-7 mb-12">

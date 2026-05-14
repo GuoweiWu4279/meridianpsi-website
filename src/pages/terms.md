@@ -42,7 +42,7 @@ Nothing in the Software, this website, or any associated documentation constitut
 
 ## 8. Third-Party Platform
 
-Meridian is an independent third-party add-on for NinjaTrader 8. We are not affiliated with, sponsored by, or endorsed by NinjaTrader LLC. Your use of NinjaTrader is governed by NinjaTrader's own terms of service.
+Meridian is an **Official NinjaTrader Ecosystem Vendor**, approved by NinjaTrader's Compliance and Executive teams. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8 &mdash; NinjaTrader® is a registered trademark of NinjaTrader LLC, and Meridian is not owned by NinjaTrader LLC. Your use of NinjaTrader is governed by NinjaTrader's own terms of service.
 
 ## 9. Payments and Refunds
 

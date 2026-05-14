@@ -1,0 +1,53 @@
+{
+  "headline": "See yourself clearly. Every session.",
+  "subhead": "Two products. Same commitment to precision.",
+  "tiers": [
+    {
+      "id": "meridian",
+      "name": "Meridian Core",
+      "description": "The full real-time PSI monitor for active traders.",
+      "monthlyPrice": 49.99,
+      "annualPrice": 479.90,
+      "annualMonthly": 39.99,
+      "annualSavings": 120,
+      "currency": "USD",
+      "trialDays": 7,
+      "badge": "",
+      "highlight": false,
+      "monthlyCtaHref": "https://whop.com/checkout/plan_4Z0XZqQl7TaDH",
+      "annualCtaHref": "https://whop.com/checkout/plan_JhWetoQ39OCNz",
+      "features": [
+        "Real-time PSI — updates in under 100ms after every fill",
+        "Seven independent behavioral dimensions in one composite score",
+        "Baselines calibrated from your own session history",
+        "Native NinjaTrader 8 add-on — no cloud, no accounts",
+        "5-year session history and post-session reports",
+        "Cancel any time"
+      ]
+    },
+    {
+      "id": "guard",
+      "name": "Meridian Guard",
+      "description": "Automated enforcement layer for active traders.",
+      "monthlyPrice": 69.99,
+      "annualPrice": 671.90,
+      "annualMonthly": 55.99,
+      "annualSavings": 168,
+      "currency": "USD",
+      "trialDays": 7,
+      "badge": "",
+      "highlight": true,
+      "monthlyCtaHref": "https://whop.com/checkout/plan_ZHX4ySB65fahf",
+      "annualCtaHref": "https://whop.com/checkout/plan_frPOgHtDTvBkR",
+      "features": [
+        "Everything in Meridian",
+        "Guard System — rules that enforce themselves (6 triggers · 5 action levels)",
+        "Intel Layer — monthly digest, weekday patterns & Composure progress",
+        "PSI × P&L correlation — see what your Stable sessions average vs Critical",
+        "Today's Risk Brief — personalized pre-session summary built from your history",
+        "Priority support"
+      ]
+    }
+  ],
+  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+}
