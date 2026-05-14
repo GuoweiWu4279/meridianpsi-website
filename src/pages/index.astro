@@ -388,77 +388,79 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       rel="noopener noreferrer"
       aria-label="Official NinjaTrader Vendor — verify on ninjatrader.com"
       class="absolute bottom-8 right-6 md:bottom-10 md:right-10 z-10 hidden sm:inline-flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl transition-shadow hover:shadow-lg"
-      style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(5,150,105,0.18); box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);"
+      style="background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(242,101,34,0.25); box-shadow: 0 4px 20px rgba(0,0,0,0.09), 0 1px 3px rgba(0,0,0,0.05);"
     >
-      <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full" style="background: rgba(5,150,105,0.1);">
-        <svg class="w-3 h-3" fill="none" stroke="#059669" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
+      <span class="shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full" style="background: rgba(242,101,34,0.12);">
+        <svg class="w-3 h-3" fill="none" stroke="#F26522" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
         </svg>
       </span>
       <div>
-        <p class="text-[9px] font-semibold tracking-[0.12em] uppercase leading-none mb-0.5" style="color:#059669;">Official Vendor</p>
+        <p class="text-[9px] font-semibold tracking-[0.12em] uppercase leading-none mb-0.5" style="color:#F26522;">Official Vendor</p>
         <p class="text-[11px] font-semibold leading-none" style="color:#18181b;">NinjaTrader</p>
       </div>
     </a>
   </section>
 
   <!-- Official Partner strip -->
-  <div class="fade-up" style="background: #f9fafb; border-bottom: 1px solid rgba(0,0,0,0.07);">
-    <div class="max-w-5xl mx-auto px-6 py-7 md:py-8">
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-0">
+  <div class="fade-up border-b border-zinc-200/70" style="background: #fafafa;">
+    <div class="max-w-5xl mx-auto px-6 py-10 md:py-12">
 
-        <!-- Verified trust block -->
-        <div class="flex items-center gap-3 sm:pr-8 md:pr-12">
-          <span class="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(5,150,105,0.1); border: 1px solid rgba(5,150,105,0.2);">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="#059669" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-          </span>
-          <div>
-            <p class="text-[12px] font-semibold leading-snug" style="color:#18181b;">Official NinjaTrader Vendor</p>
-            <p class="text-[11px] leading-snug" style="color:#71717a;">Reviewed by Compliance, QA &amp; Executive teams</p>
-          </div>
+      <!-- Eyebrow label -->
+      <div class="flex justify-center mb-5">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full" style="border: 1px solid rgba(242,101,34,0.3); background: rgba(242,101,34,0.06);">
+          <svg class="w-3 h-3 shrink-0" fill="none" stroke="#F26522" stroke-width="2.6" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span class="text-[10px] font-semibold tracking-[0.16em] uppercase" style="color:#F26522;">Official NinjaTrader Vendor</span>
         </div>
+      </div>
+
+      <!-- Supporting copy -->
+      <p class="text-center text-xs md:text-sm max-w-md mx-auto mb-8 md:mb-10 leading-relaxed" style="color:#71717a;">
+        Reviewed by NinjaTrader&rsquo;s Compliance, QA &amp; Executive teams. Built on NinjaTrader 8 with Kinetick market data.
+      </p>
+
+      <!-- Logos row -->
+      <div class="flex items-center justify-center gap-14 md:gap-20">
+        <!-- NinjaTrader -->
+        <a
+          href="https://ninjatraderus.pxf.io/jROzm0"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="NinjaTrader — official trading platform partner"
+          class="flex flex-col items-center gap-2.5 group"
+        >
+          <img
+            src="/logos/ninjatrader-wordmark.png"
+            alt="NinjaTrader"
+            style="height: 34px; width: auto; object-fit: contain; opacity: 0.8; transition: opacity 0.2s;"
+            class="group-hover:opacity-100"
+          />
+          <span class="text-[10px] tracking-wide" style="color:#a1a1aa;">Official Ecosystem Vendor</span>
+        </a>
 
         <!-- Divider -->
-        <div class="hidden sm:block self-stretch w-px mx-1" style="background: rgba(0,0,0,0.09);" aria-hidden="true"></div>
-        <div class="sm:hidden w-24 h-px" style="background: rgba(0,0,0,0.09);" aria-hidden="true"></div>
+        <div class="w-px h-10 self-center" style="background: rgba(0,0,0,0.1);" aria-hidden="true"></div>
 
-        <!-- Logos -->
-        <div class="flex items-center gap-6 md:gap-8 sm:pl-8 md:pl-12">
-          <!-- NinjaTrader -->
-          <a
-            href="https://ninjatraderus.pxf.io/jROzm0"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="NinjaTrader — official trading platform partner"
-            class="opacity-70 hover:opacity-100 transition-opacity duration-200"
-          >
-            <img
-              src="/logos/ninjatrader-wordmark.png"
-              alt="NinjaTrader"
-              style="height: 28px; width: auto; object-fit: contain;"
-            />
-          </a>
-          <!-- Thin divider between logos -->
-          <div class="w-px h-6 self-center" style="background: rgba(0,0,0,0.12);" aria-hidden="true"></div>
-          <!-- Kinetick -->
-          <a
-            href="https://kinetick.com/NinjaTrader"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Kinetick — official market data partner"
-            class="opacity-70 hover:opacity-100 transition-opacity duration-200"
-          >
-            <img
-              src="/logos/kinetick-logo.png"
-              alt="Kinetick"
-              style="height: 26px; width: auto; object-fit: contain;"
-            />
-          </a>
-        </div>
-
+        <!-- Kinetick -->
+        <a
+          href="https://kinetick.com/NinjaTrader"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Kinetick — official market data partner"
+          class="flex flex-col items-center gap-2.5 group"
+        >
+          <img
+            src="/logos/kinetick-logo.png"
+            alt="Kinetick"
+            style="height: 32px; width: auto; object-fit: contain; opacity: 0.8; transition: opacity 0.2s;"
+            class="group-hover:opacity-100"
+          />
+          <span class="text-[10px] tracking-wide" style="color:#a1a1aa;">Market Data Partner</span>
+        </a>
       </div>
+
     </div>
   </div>
 
