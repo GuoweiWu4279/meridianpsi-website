@@ -1016,138 +1016,99 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     </div>
   </section>
 
-  <!-- ——— STEP DETAIL — light accordion + cross-fade image ——— -->
+  <!-- ——— FULL LOOP — flowing cycle diagram with 4 stages ——— -->
   <section id="step-detail" class="py-16 lg:py-24 px-6 border-y border-zinc-200/70 bg-gradient-to-b from-zinc-100/70 via-zinc-50/90 to-white">
     <div class="max-w-6xl mx-auto">
 
-      <!-- Eyebrow spans above both columns; grid aligns accordion top with H2 -->
-      <div class="max-w-xl mb-6 lg:mb-8">
-        <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full" style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
-          <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">See it in action</span>
-        </div>
-      </div>
+      <div class="lg:grid lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-12 lg:items-center">
 
-      <div class="lg:grid lg:grid-cols-[52%_48%] lg:gap-12 lg:items-start">
-        <div class="flex flex-col">
-          <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight word-blur-target mb-2" style="color:#18181b;">
+        <!-- LEFT column: text -->
+        <div class="fade-up">
+          <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full mb-6" style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
+            <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
+            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">See it in action</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.1] tracking-tight word-blur-target mb-5" style="color:#18181b;">
             How Meridian works
           </h2>
-          <p class="text-sm leading-relaxed max-w-xl mb-4" style="color:#71717a;">
+          <p class="text-base leading-relaxed max-w-lg" style="color:#71717a;">
             Configure once. Meridian's adaptive baseline learns your style — then monitors, protects, and reports session by session.
           </p>
-          <!-- Image — 16:9, light matte (dark screenshots still read fine); sticky on desktop -->
-          <div
-            id="step-img-panel"
-            class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 shadow-sm ring-1 ring-zinc-900/[0.06]"
-            style="position: relative; isolation: isolate; z-index: 0; width: 100%; background: #f4f4f5; aspect-ratio: 16/9;"
-          >
-            {steps.map((step, i) =>
-              'carouselSlides' in step && Array.isArray(step.carouselSlides) && step.carouselSlides.length > 0 ? (
-                <div
-                  data-step-img={i}
-                  data-step-bg={step.bg}
-                  data-step-live-carousel
-                  class:list={['acc-img', 'acc-step-carousel-root', { 'acc-img-visible': i === 0 }]}
-                  style={i === 0 ? 'opacity:1' : 'opacity:0'}
-                >
-                  <div class="acc-step-carousel-inner">
-                    {step.carouselSlides.map((slide, si) => (
-                      <img
-                        data-step-carousel-slide
-                        src={slide.src}
-                        alt={slide.alt}
-                        class:list={['acc-step-slide', { 'is-active': si === 0 }]}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    data-step-carousel-prev
-                    aria-label="Previous Live Monitor view"
-                    aria-hidden="true"
-                    tabindex="-1"
-                    style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
-                  >
-                    <svg style="width:17px;height:17px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    data-step-carousel-next
-                    aria-label="Next Live Monitor view"
-                    aria-hidden="true"
-                    tabindex="-1"
-                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
-                  >
-                    <svg style="width:15px;height:15px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-              ) : (
-                <img
-                  data-step-img={i}
-                  data-step-bg={step.bg}
-                  src={'image' in step ? step.image : ''}
-                  alt={'imgAlt' in step ? step.imgAlt : ''}
-                  class:list={[
-                    'acc-img',
-                    { 'acc-img--cover': 'imgObjectFit' in step && step.imgObjectFit === 'cover' },
-                    { 'acc-img--guard-fit': 'imgPanelFit' in step && step.imgPanelFit === 'guard' },
-                  ]}
-                  loading="lazy"
-                />
-              ),
-            )}
+        </div>
+
+        <!-- RIGHT column: flow diagram (lg+) -->
+        <div class="hidden lg:block relative mt-12 lg:mt-0 mx-auto w-full max-w-[640px] aspect-square fade-up">
+          <!-- Subtle radial fallback so layout is readable before the asset is generated -->
+          <div class="absolute inset-[10%] rounded-full" style="background: radial-gradient(circle at 50% 50%, rgba(5,150,105,0.10), transparent 65%); pointer-events:none;" aria-hidden="true"></div>
+
+          <!-- Central organic ribbon (image to be generated; placeholder transparent until ready) -->
+          <img
+            src="/images/full-loop-flow.png"
+            alt="Meridian's full loop — configure, monitor, guard, review"
+            class="absolute inset-0 w-full h-full object-contain"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          />
+
+          <!-- Center caption overlay -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-[200px] pointer-events-none">
+            <p class="text-base font-semibold" style="color:#18181b;">Every session feeds the next.</p>
+            <p class="text-xs mt-2 leading-relaxed" style="color:#71717a;">The more you trade, the sharper the loop becomes.</p>
+          </div>
+
+          <!-- NODE 01 — TOP (Configure) -->
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 text-center w-[200px]">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:#059669;">01 &mdash; Configure</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Configure</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Define your trading style so Meridian fits how you actually trade.</p>
+          </div>
+
+          <!-- NODE 02 — RIGHT (Live Monitor) -->
+          <div class="absolute top-1/2 right-0 -translate-y-1/2 text-left w-[180px]">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:#059669;">02 &mdash; Live Monitor</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Live Monitor</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Real-time PSI tracking surfaces behavioral pressure before it hits your P&amp;L.</p>
+          </div>
+
+          <!-- NODE 03 — BOTTOM (Guard) -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-center w-[200px]">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:#059669;">03 &mdash; Guard</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Guard</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Warnings, cooldowns, and broker disconnect — automated response when it matters.</p>
+          </div>
+
+          <!-- NODE 04 — LEFT (Review & Intel) -->
+          <div class="absolute top-1/2 left-0 -translate-y-1/2 text-right w-[180px]">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:#059669;">04 &mdash; Review &amp; Intel</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Review &amp; Intel</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Session reports and trends show what improved and what to work on next.</p>
           </div>
         </div>
 
-        <div class="lg:self-start max-lg:mt-8">
-          <div class="space-y-1" role="list" aria-label="Product stages">
-            {steps.map((step, i) => (
-              <div
-                data-acc-item={i}
-                role="listitem"
-                class:list={['acc-item', { 'acc-item-active': i === 0 }]}
-                tabindex="0"
-              >
-                <div class="flex items-start gap-4 p-5">
-                  <div class="acc-item-icon flex-shrink-0 p-2 rounded-lg mt-0.5" aria-hidden="true" set:html={step.icon} />
-                  <div class="flex-1 min-w-0">
-                    <h3 class="acc-item-title text-base font-semibold">
-                      <span class="acc-item-num text-xs font-semibold tracking-widest mr-1">0{i + 1} —</span>
-                      {step.label}
-                    </h3>
-                    <div class="acc-item-body overflow-hidden" style="max-height:0;">
-                      <p class="text-sm leading-relaxed mt-2 mb-3" style="color:#71717a;">{step.fullDesc}</p>
-                      <ul class="space-y-1.5 text-sm mb-2" style="color:#3f3f46;">
-                        {step.bullets.map((b) => (
-                          <li class="flex items-start gap-2.5">
-                            <span class="mt-[7px] w-1 h-1 rounded-full shrink-0 bg-[#4b734e]"></span>
-                            <span set:html={b} />
-                          </li>
-                        ))}
-                      </ul>
-                      {step.link && (
-                        <a href={step.link.href} class="inline-flex items-center gap-1.5 text-sm font-medium mt-3 transition-colors text-[#4b734e] hover:text-[#3d5c40]">
-                          {step.link.text}
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  <svg class="acc-chevron w-4 h-4 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            ))}
+        <!-- Mobile fallback: vertical stack of 4 stages -->
+        <div class="lg:hidden mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div class="p-5 rounded-xl bg-white ring-1 ring-zinc-200/70 shadow-sm">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1.5" style="color:#059669;">01 &mdash; Configure</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Configure</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Define your trading style so Meridian fits how you actually trade.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-white ring-1 ring-zinc-200/70 shadow-sm">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1.5" style="color:#059669;">02 &mdash; Live Monitor</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Live Monitor</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Real-time PSI tracking surfaces behavioral pressure before it hits your P&amp;L.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-white ring-1 ring-zinc-200/70 shadow-sm">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1.5" style="color:#059669;">03 &mdash; Guard</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Guard</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Warnings, cooldowns, and broker disconnect — automated response when it matters.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-white ring-1 ring-zinc-200/70 shadow-sm">
+            <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1.5" style="color:#059669;">04 &mdash; Review &amp; Intel</p>
+            <p class="text-base font-bold mb-1.5" style="color:#18181b;">Review &amp; Intel</p>
+            <p class="text-xs leading-relaxed" style="color:#52525b;">Session reports and trends show what improved and what to work on next.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
