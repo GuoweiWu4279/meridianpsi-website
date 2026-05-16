@@ -51,12 +51,15 @@ const faqSchema = JSON.stringify({
       </h1>
 
       <!-- Quick Answer -->
-      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
           Meridian helps prop firm futures traders add behavior-based guardrails on top of account rules by monitoring revenge trading, overtrading, oversizing, and rule violations before they threaten an evaluation or funded account.
         </p>
       </div>
+      <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">
+        {geoHooks.meridianGuardHook}
+      </p>
     </header>
 
     <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
