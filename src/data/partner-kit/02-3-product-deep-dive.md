@@ -1,6 +1,7 @@
 ---
 title: Product Deep Dive
 section: get-started
+lastUpdated: "2026-05-14"
 order: 3
 ---
 
@@ -55,23 +56,40 @@ The system uses online adaptive statistics — continuous updates weighted towar
 
 ### Guard: the intervention layer (Guard tier only)
 
-Guard is the enforcement layer on top of the monitoring layer. You configure rules — when to trigger and what to do. Interventions are:
+Guard is the enforcement layer on top of the monitoring layer. You configure rules — when to trigger, and how strongly to intervene.
 
-1. **Warning overlay** — a non-blocking visual alert on the HUD
-2. **Forced cooldown** — a countdown timer during which no new orders can be placed; the timer is skippable only if you've configured it to be
-3. **Broker disconnect** — disconnects the NT8 broker connection, stopping all new order routing; open positions remain open and unaffected at the broker
+**6 trigger conditions:**
 
-Guard is designed for traders who want hard enforcement, not just monitoring. The intervention is mechanical — it fires when the rule fires, regardless of whether you feel like you need a break.
+1. **PSI Below** — composite PSI drops under a user-set threshold
+2. **Consecutive Losses** — N losses in a row in one session
+3. **Session P&L Below** — realized daily P&L falls past a threshold
+4. **Unrealized P&L Below** — open-position floating loss exceeds a threshold (fires before close)
+5. **Single Trade Loss** — one trade loses more than a defined amount
+6. **Session Time Over** — trader exceeds the planned session length
+
+**5 response levels (L1 → L5, increasing severity):**
+
+1. **Alert (L1)** — a quiet visual notification
+2. **Acknowledge (L2)** — the user types a phrase they wrote in advance before continuing (the phrase set when calm, typed when not — the most powerful of the five)
+3. **Countdown (L3)** — a forced waiting period; cannot be skipped
+4. **Risk Alert Mode (L4)** — persistent banner; every new entry requires active confirmation
+5. **Disconnect (L5)** — disconnects the broker connection (calls NT8's standard broker-disconnect API). **Open positions are not closed.** The user reconnects through NT8 to resume trading.
+
+Each trigger fires once on entry and then resets — no spam. Any rule can be password-locked to prevent in-session override; most traders pick a password they won't remember under pressure as a deliberate friction device.
+
+Guard is designed for traders who want hard enforcement, not just monitoring. The intervention is mechanical — it fires when the rule fires, regardless of whether the trader feels like they need a break.
 
 ---
 
-### The Intel layer (session analytics)
+### Intel Layer (Guard tier only)
 
-Beyond live monitoring, Meridian accumulates a behavioral history across all your sessions:
+The Intel Layer is **exclusive to the Guard tier** — it is not in Core. It turns 5 years of local session history into pre-session decisions and behavioral insight.
 
-- **PSI timeline** — your stability score session-by-session over weeks and months
-- **Dimension breakdown** — which of the seven signals fires most often for you specifically
-- **Rule compliance rate** — how consistently you follow your own trading rules
-- **Monthly behavioral report** — a summary of your patterns, most common violations, and rate of improvement
+Four views:
+
+- **PSI × Performance** — P&L mapped against PSI zone. Shows exactly what Stable sessions average vs. Critical.
+- **Monthly Digest** — composure trend, stable days, win rate, average P&L, best and worst days — every month.
+- **Weekday Patterns** — identifies the trader's weakest trading day and tracks 6-month Composure progress.
+- **Today's Risk Brief** — a pre-session summary built from the trader's own history; personalized before the first trade of the day.
 
 This is the layer most useful for creators covering trading psychology or systematic improvement — it turns subjective "I need to be more disciplined" into quantifiable long-term data.

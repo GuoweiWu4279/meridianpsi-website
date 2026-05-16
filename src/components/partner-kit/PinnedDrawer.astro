@@ -1,0 +1,155 @@
+---
+---
+
+<!-- Floating button -->
+<button
+  type="button"
+  id="pinned-toggle"
+  class="hidden fixed bottom-20 left-4 z-40 inline-flex items-center gap-2 px-4 py-2 rounded-full shadow-lg bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 text-xs font-medium print:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+  aria-label="Open pinned snippets"
+  aria-expanded="false"
+  aria-controls="pinned-drawer"
+>
+  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+    <path d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182A2.25 2.25 0 0015.5 10.564V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z" />
+  </svg>
+  Pinned <span id="pinned-count">0</span>
+</button>
+
+<!-- Drawer -->
+<div
+  id="pinned-drawer"
+  class="fixed inset-y-0 left-0 z-50 w-[min(400px,90vw)] bg-white dark:bg-zinc-950 border-r border-zinc-200 dark:border-zinc-800 shadow-2xl transform -translate-x-full transition-transform duration-200 print:hidden flex flex-col"
+  role="dialog" aria-modal="true" aria-labelledby="pinned-drawer-title" tabindex="-1"
+>
+  <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-100 dark:border-zinc-800">
+    <div>
+      <h2 id="pinned-drawer-title" class="text-base font-semibold text-zinc-900 dark:text-zinc-50">Pinned snippets</h2>
+      <p class="text-xs text-zinc-400 mt-0.5">Stays here across visits.</p>
+    </div>
+    <button type="button" id="pinned-close" class="text-zinc-400 hover:text-zinc-700 p-1.5 -m-1.5 rounded focus-visible:outline-none" aria-label="Close pinned drawer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="pinned-list" class="flex-1 overflow-y-auto px-5 py-4 space-y-3"></div>
+  <p id="pinned-empty" class="hidden px-5 pb-6 text-sm text-zinc-500 leading-relaxed">
+    Nothing pinned yet. Click the pin icon on any copyable to save it here.
+  </p>
+</div>
+
+<!-- Scrim -->
+<div id="pinned-scrim" class="fixed inset-0 z-40 bg-zinc-900/30 dark:bg-zinc-950/60 opacity-0 pointer-events-none transition-opacity duration-200 print:hidden"></div>
+
+<script>
+  type PinnedItem = { label: string; content: string; source: string };
+  const KEY = 'meridian-kit:pinned';
+
+  function read(): PinnedItem[] {
+    try { return JSON.parse(localStorage.getItem(KEY) ?? '[]'); } catch { return []; }
+  }
+  function write(items: PinnedItem[]) {
+    localStorage.setItem(KEY, JSON.stringify(items));
+    render(); syncPinBtns();
+  }
+
+  function syncPinBtns() {
+    const pinned = read();
+    document.querySelectorAll<HTMLButtonElement>('.pin-btn').forEach((btn) => {
+      const active = pinned.some((p) => p.content === (btn.dataset.pinContent ?? ''));
+      btn.classList.toggle('is-pinned', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      const lbl = btn.querySelector<HTMLElement>('.pin-label');
+      if (lbl) lbl.textContent = active ? 'Pinned' : 'Pin';
+    });
+  }
+
+  function esc(s: string) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function render() {
+    const items = read();
+    const list = document.getElementById('pinned-list');
+    const empty = document.getElementById('pinned-empty');
+    const toggle = document.getElementById('pinned-toggle');
+    const count = document.getElementById('pinned-count');
+    if (count) count.textContent = String(items.length);
+    if (toggle) toggle.classList.toggle('hidden', items.length === 0);
+    if (empty) empty.classList.toggle('hidden', items.length > 0);
+    if (!list) return;
+    list.innerHTML = items.map((item, i) => `
+      <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden" data-pinned-idx="${i}">
+        <div class="flex items-center justify-between px-3 py-2 border-b border-zinc-100 dark:border-zinc-700/60">
+          <div class="min-w-0">
+            <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 truncate">${esc(item.label)}</p>
+            <p class="text-xs text-zinc-400 mt-0.5 truncate">${esc(item.source)}</p>
+          </div>
+          <div class="shrink-0 flex items-center gap-1 ml-2">
+            <button type="button" class="pinned-copy text-xs text-zinc-500 hover:text-emerald-700 px-2 py-1 rounded">Copy</button>
+            <button type="button" class="pinned-remove text-xs text-zinc-400 hover:text-red-500 px-2 py-1 rounded" data-remove-idx="${i}">Remove</button>
+          </div>
+        </div>
+        <pre class="px-3 py-2.5 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap font-sans">${esc(item.content)}</pre>
+      </div>`).join('');
+  }
+
+  const drawer = document.getElementById('pinned-drawer');
+  const scrim  = document.getElementById('pinned-scrim');
+  const toggle = document.getElementById('pinned-toggle');
+  const close  = document.getElementById('pinned-close');
+
+  function openDrawer()  { drawer?.classList.remove('-translate-x-full'); scrim?.classList.remove('opacity-0','pointer-events-none'); toggle?.setAttribute('aria-expanded','true'); drawer?.focus(); }
+  function closeDrawer() { drawer?.classList.add('-translate-x-full'); scrim?.classList.add('opacity-0','pointer-events-none'); toggle?.setAttribute('aria-expanded','false'); }
+
+  toggle?.addEventListener('click', openDrawer);
+  close?.addEventListener('click', closeDrawer);
+  scrim?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+
+  document.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+
+    const pinBtn = t.closest<HTMLButtonElement>('.pin-btn');
+    if (pinBtn) {
+      e.preventDefault();
+      const item: PinnedItem = { label: pinBtn.dataset.pinLabel ?? '', content: pinBtn.dataset.pinContent ?? '', source: pinBtn.dataset.pinSource ?? '' };
+      if (!item.content) return;
+      const items = read();
+      const idx = items.findIndex((p) => p.content === item.content);
+      if (idx >= 0) items.splice(idx, 1); else items.unshift(item);
+      write(items);
+      return;
+    }
+
+    const copyBtn = t.closest<HTMLButtonElement>('.pinned-copy');
+    if (copyBtn) {
+      const pre = copyBtn.closest('[data-pinned-idx]')?.querySelector('pre');
+      const text = pre?.textContent ?? '';
+      navigator.clipboard.writeText(text).catch(() => {});
+      const orig = copyBtn.textContent;
+      copyBtn.textContent = 'Copied';
+      setTimeout(() => { copyBtn.textContent = orig; }, 1200);
+      return;
+    }
+
+    const removeBtn = t.closest<HTMLButtonElement>('.pinned-remove');
+    if (removeBtn) {
+      const idx = Number(removeBtn.dataset.removeIdx ?? '-1');
+      if (idx < 0) return;
+      const items = read();
+      items.splice(idx, 1);
+      write(items);
+      return;
+    }
+  });
+
+  render(); syncPinBtns();
+</script>
+
+<style>
+  .pin-btn.is-pinned { color: rgb(5 150 105); }
+  .dark .pin-btn.is-pinned { color: rgb(52 211 153); }
+</style>

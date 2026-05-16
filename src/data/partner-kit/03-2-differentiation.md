@@ -1,7 +1,17 @@
 ---
 title: How Meridian is Different
 section: talking-points
+lastUpdated: "2026-05-15"
 order: 2
+copyables:
+  - label: "vs. Daily loss limit (one sentence)"
+    content: "A daily loss limit fires after the damage. Meridian fires during the behavioral pattern that causes it."
+  - label: "vs. Trading journal (one sentence)"
+    content: "A journal reviews what happened yesterday. Meridian acts on what's happening now."
+  - label: "vs. Prop firm hard limits (one sentence)"
+    content: "Prop firm limits are a hard external rule. Meridian is an internal feedback loop — it tells you what's changing in your behavior before you hit the limit."
+  - label: "vs. Generic risk tools (one sentence)"
+    content: "A position size calculator or max-drawdown rule applies the same threshold to every trader. Meridian's baseline is personal — it learns your rhythm and flags when you deviate from yourself."
 ---
 
 These comparisons come up constantly. Having clean answers to each one makes your content more authoritative and helps your audience understand exactly what they're getting.

@@ -16,8 +16,8 @@
     },
     {
       "id": "hud",
-      "title": "Floating HUD + hub",
-      "description": "A lightweight overlay during trading plus a full hub for session stats, timelines, history, profile baselines, and settings — all inside NinjaTrader 8.",
+      "title": "Floating HUD + Dashboard",
+      "description": "A lightweight overlay during trading plus a full Dashboard for session stats, timelines, history, profile baselines, and settings — all inside NinjaTrader 8.",
       "icon": "tabler:layout-dashboard",
       "category": "core"
     },

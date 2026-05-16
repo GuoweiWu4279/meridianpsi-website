@@ -1,6 +1,7 @@
 ---
 title: FTC Disclosure Language
 section: compliance
+lastUpdated: "2026-05-01"
 order: 1
 copyables:
   - label: "YouTube video description (top of description)"

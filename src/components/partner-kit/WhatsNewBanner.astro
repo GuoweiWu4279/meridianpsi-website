@@ -1,0 +1,82 @@
+---
+interface UpdateEntry {
+  id: string;
+  title: string;
+  anchor: string;
+  lastUpdated: string;
+}
+
+interface Props {
+  updates: UpdateEntry[];
+}
+
+const { updates } = Astro.props;
+const updatesJson = JSON.stringify(updates);
+const maxStamp = updates.length > 0
+  ? updates.reduce((a, u) => (u.lastUpdated > a ? u.lastUpdated : a), '0000-00-00')
+  : '';
+---
+
+{updates.length > 0 && (
+  <div
+    id="whats-new-banner"
+    class="hidden max-w-6xl mx-auto px-6 mt-4"
+    data-max-stamp={maxStamp}
+    data-updates={updatesJson}
+  >
+    <div class="rounded-xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50 dark:bg-emerald-950/30 px-4 py-3 flex items-start gap-3">
+      <svg class="shrink-0 w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs font-medium uppercase tracking-widest text-emerald-700 dark:text-emerald-400 mb-1">Updated since your last visit</p>
+        <ul id="whats-new-list" class="text-sm text-zinc-700 dark:text-zinc-300 flex flex-wrap gap-x-3 gap-y-1"></ul>
+      </div>
+      <button
+        type="button"
+        id="whats-new-dismiss"
+        class="shrink-0 text-zinc-400 hover:text-zinc-700 p-1 -m-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+        aria-label="Dismiss"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+)}
+
+<script>
+  (function () {
+    const banner = document.getElementById('whats-new-banner');
+    if (!banner) return;
+    const KEY = 'meridian-kit:last-visit';
+    const maxStamp = banner.dataset.maxStamp ?? '';
+    const lastVisit = localStorage.getItem(KEY);
+
+    // Only show on return visits where something has genuinely changed
+    if (lastVisit && maxStamp > lastVisit) {
+      try {
+        const updates = JSON.parse(banner.dataset.updates ?? '[]') as { title: string; anchor: string; lastUpdated: string }[];
+        const visible = updates.filter((u) => u.lastUpdated > lastVisit);
+        const list = document.getElementById('whats-new-list');
+        if (list && visible.length > 0) {
+          list.innerHTML = visible.map((u) =>
+            `<li><a href="#${u.anchor}" class="underline decoration-emerald-400 hover:decoration-emerald-700">${u.title}</a></li>`
+          ).join('');
+          banner.classList.remove('hidden');
+        }
+      } catch { /* */ }
+    }
+
+    // Record this visit so the next visit can diff against it
+    setTimeout(() => {
+      localStorage.setItem(KEY, maxStamp || new Date().toISOString().slice(0, 10));
+    }, 0);
+
+    document.getElementById('whats-new-dismiss')?.addEventListener('click', () => {
+      banner.classList.add('hidden');
+      localStorage.setItem(KEY, new Date().toISOString().slice(0, 10));
+    });
+  })();
+</script>

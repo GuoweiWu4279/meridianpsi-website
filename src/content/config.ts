@@ -102,6 +102,16 @@ const partnerKitCollection = defineCollection({
     copyables: z
       .array(z.object({ label: z.string(), content: z.string() }))
       .optional(),
+    quickActions: z
+      .array(
+        z.object({
+          title: z.string(),
+          desc: z.string(),
+          anchor: z.string(),
+          icon: z.string(),
+        })
+      )
+      .optional(),
   }),
 });
 

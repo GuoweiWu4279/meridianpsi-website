@@ -1,0 +1,179 @@
+---
+---
+
+<!-- Sidebar search trigger -->
+<button
+  type="button"
+  id="kit-search-trigger"
+  class="w-full flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm text-zinc-400 hover:border-zinc-300 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+  aria-label="Search the creator kit"
+  aria-haspopup="dialog"
+>
+  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  </svg>
+  <span class="flex-1 text-left">Search…</span>
+  <span class="text-xs font-mono text-zinc-300 dark:text-zinc-600">⌘K</span>
+</button>
+
+<!-- Modal -->
+<div
+  id="kit-search-modal"
+  class="hidden fixed inset-0 z-50 print:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="kit-search-label"
+>
+  <div id="kit-search-scrim" class="absolute inset-0 bg-zinc-950/40 dark:bg-zinc-950/60 backdrop-blur-sm"></div>
+  <div class="relative mx-auto mt-[10vh] max-w-xl px-4">
+    <div class="rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-2xl overflow-hidden">
+
+      <!-- Input row -->
+      <div class="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-100 dark:border-zinc-800">
+        <svg class="w-4 h-4 text-zinc-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          id="kit-search-input"
+          type="text"
+          placeholder="Search talking points, scripts, FAQ…"
+          aria-label="Search creator kit"
+          autocomplete="off"
+          class="flex-1 bg-transparent border-0 outline-none text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400"
+        />
+        <kbd class="text-xs font-mono text-zinc-400 dark:text-zinc-500 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">ESC</kbd>
+      </div>
+
+      <!-- Results -->
+      <div id="kit-search-results" class="max-h-[60vh] overflow-y-auto">
+        <p id="kit-search-empty" class="px-5 py-7 text-center text-sm text-zinc-400">
+          Try "FTC", "PSI", "Mac", or "thumbnail"
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="px-4 py-2.5 border-t border-zinc-100 dark:border-zinc-800 flex items-center gap-4 text-xs text-zinc-400">
+        <span class="flex items-center gap-1"><kbd class="px-1 py-0.5 rounded border border-zinc-200 dark:border-zinc-700 font-mono">↵</kbd> jump</span>
+        <span class="flex items-center gap-1">
+          <kbd class="px-1 py-0.5 rounded border border-zinc-200 dark:border-zinc-700 font-mono">↑</kbd>
+          <kbd class="px-1 py-0.5 rounded border border-zinc-200 dark:border-zinc-700 font-mono">↓</kbd>
+          navigate
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Entry = { id: string; sectionAnchor: string; sectionTitle: string; title: string; text: string; copyableLabels: string[] };
+
+  const modal  = document.getElementById('kit-search-modal');
+  const scrim  = document.getElementById('kit-search-scrim');
+  const trigger = document.getElementById('kit-search-trigger');
+  const input  = document.getElementById('kit-search-input') as HTMLInputElement | null;
+  const results = document.getElementById('kit-search-results');
+  const empty  = document.getElementById('kit-search-empty');
+  const indexEl = document.getElementById('kit-search-index') as HTMLScriptElement | null;
+
+  let index: Entry[] = [];
+  let highlighted = 0;
+  let current: { entry: Entry; snippet: string }[] = [];
+
+  try { index = JSON.parse(indexEl?.textContent ?? '[]'); } catch { /* */ }
+
+  const open  = () => { modal?.classList.remove('hidden'); setTimeout(() => input?.focus(), 10); };
+  const close = () => { modal?.classList.add('hidden'); if (input) input.value = ''; render(''); };
+
+  function esc(s: string) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function snippet(text: string, q: string, r = 60) {
+    const lo = text.toLowerCase(), lq = q.toLowerCase(), i = lo.indexOf(lq);
+    if (i === -1) return text.slice(0, 140);
+    const s = Math.max(0, i - r), e = Math.min(text.length, i + q.length + r);
+    return (s > 0 ? '…' : '') + text.slice(s, e).replace(/\s+/g, ' ').trim() + (e < text.length ? '…' : '');
+  }
+  function hi(text: string, q: string) {
+    if (!q) return esc(text);
+    const lo = text.toLowerCase(), lq = q.toLowerCase();
+    let out = '', cur = 0;
+    while (cur < text.length) {
+      const f = lo.indexOf(lq, cur);
+      if (f === -1) { out += esc(text.slice(cur)); break; }
+      out += esc(text.slice(cur, f));
+      out += `<mark class="bg-emerald-200/60 dark:bg-emerald-500/25 text-zinc-900 dark:text-zinc-100 rounded-sm px-0.5">${esc(text.slice(f, f + q.length))}</mark>`;
+      cur = f + q.length;
+    }
+    return out;
+  }
+  function score(e: Entry, q: string) {
+    const lq = q.toLowerCase();
+    let s = 0;
+    if (e.title.toLowerCase().includes(lq)) s += 100;
+    if (e.sectionTitle.toLowerCase().includes(lq)) s += 40;
+    e.copyableLabels.forEach((l) => { if (l.toLowerCase().includes(lq)) s += 25; });
+    if (e.text.toLowerCase().includes(lq)) s += 8;
+    return s;
+  }
+
+  function render(q: string) {
+    if (!results) return;
+    results.querySelectorAll('.sr').forEach((n) => n.remove());
+    if (!q.trim()) { empty?.classList.remove('hidden'); current = []; return; }
+    empty?.classList.add('hidden');
+
+    const scored = index.map((e) => ({ e, s: score(e, q.trim()) }))
+      .filter((r) => r.s > 0).sort((a, b) => b.s - a.s).slice(0, 10);
+    current = scored.map((r) => ({ entry: r.e, snippet: snippet(r.e.text, q.trim()) }));
+
+    if (!current.length) {
+      const p = document.createElement('p');
+      p.className = 'sr px-5 py-7 text-center text-sm text-zinc-400';
+      p.textContent = `No results for "${q}".`;
+      results.appendChild(p);
+      return;
+    }
+
+    current.forEach(({ entry, snippet: snip }, i) => {
+      const a = document.createElement('a');
+      a.href = `#${entry.sectionAnchor}`;
+      a.className = 'sr block px-5 py-3 border-b border-zinc-100 dark:border-zinc-800 last:border-0 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors focus-visible:outline-none focus:bg-zinc-50';
+      a.dataset.idx = String(i);
+      a.innerHTML = `
+        <p class="text-xs font-medium uppercase tracking-widest text-emerald-700 dark:text-emerald-400 mb-1">${esc(entry.sectionTitle)}</p>
+        <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-0.5">${hi(entry.title, q.trim())}</p>
+        <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">${hi(snip, q.trim())}</p>`;
+      a.addEventListener('click', close);
+      results.appendChild(a);
+    });
+
+    highlighted = 0;
+    updateHighlight();
+  }
+
+  function updateHighlight() {
+    results?.querySelectorAll<HTMLElement>('.sr[data-idx]').forEach((el, i) => {
+      el.classList.toggle('bg-zinc-50', i === highlighted);
+      el.classList.toggle('dark:bg-zinc-800', i === highlighted);
+      if (i === highlighted) el.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  trigger?.addEventListener('click', open);
+  scrim?.addEventListener('click', close);
+  input?.addEventListener('input', (e) => render((e.target as HTMLInputElement).value));
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); if (current.length) { highlighted = (highlighted + 1) % current.length; updateHighlight(); } }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); if (current.length) { highlighted = (highlighted - 1 + current.length) % current.length; updateHighlight(); } }
+    if (e.key === 'Enter') { e.preventDefault(); results?.querySelectorAll<HTMLAnchorElement>('.sr[data-idx]')[highlighted]?.click(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      const t = e.target as HTMLElement;
+      if (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable) return;
+      e.preventDefault(); open();
+    }
+  });
+</script>

@@ -1,6 +1,7 @@
 ---
 title: Audience FAQ
 section: talking-points
+lastUpdated: "2026-05-14"
 order: 3
 faqs:
   - q: "Does it work on NinjaTrader 7?"
@@ -18,13 +19,13 @@ faqs:
   - q: "What exactly happens when Guard disconnects the broker?"
     a: "Meridian calls NinjaTrader's standard broker disconnect API — the same action as manually clicking 'Disconnect' in the NT8 interface. Any open positions remain at the broker; they are not closed. To reconnect, you simply reconnect through NT8 normally. The disconnect is designed as a hard pause, not an emergency liquidation."
   - q: "Can I turn off specific signals I don't care about?"
-    a: "Yes. Each of the seven behavioral dimensions has an individual weight you can set to zero (disabled) or adjust. You can also configure the PSI threshold that triggers each Guard intervention level."
+    a: "Yes. Each of the seven behavioral dimensions has an individual weight in Settings — you can set it to zero (disabled) or tune the sensitivity. On Guard, each rule has its own threshold and response level, independent of the PSI weights."
   - q: "How is the baseline calculated? What if I change my strategy?"
     a: "The baseline uses online adaptive statistics — it continuously updates based on your recent sessions, with more recent sessions weighted more heavily than older ones. If you change your strategy significantly, the baseline adapts over time. Playback (Market Replay) sessions do not affect your live baseline, so you can practice without contaminating your real trading data."
   - q: "Does it work during Market Replay?"
     a: "Yes. Meridian monitors your behavior during Market Replay sessions as well. However, Replay data is tracked separately and does not affect your live trading baseline — the two session types are kept isolated."
   - q: "What's the difference between Meridian Core and Meridian Guard?"
-    a: "Core includes real-time PSI monitoring, the seven behavioral signals, the session HUD, session history, and the Intel analytics layer (monthly behavioral reports). Guard adds the automated intervention system — the ability to configure rules that trigger warnings, forced cooldowns, and automated broker disconnect when your PSI or individual signals cross your configured thresholds."
+    a: "Core includes real-time PSI monitoring, the seven behavioral signals, the floating HUD, the Session Journal, and 5 years of local session history. Guard adds two things: (1) the Guard System — automated rules with six trigger conditions and five response levels, from a quiet alert to a typed acknowledgment, forced countdown, confirmation-required mode, or full broker disconnect — and (2) the Intel Layer, which is the analytics view on top of your history (monthly digest, PSI × P&L correlation, weekday patterns, and a personalized pre-session Risk Brief). The Intel Layer is Guard-exclusive."
   - q: "Is there a free trial?"
     a: "Yes — 7 days, credit card required at checkout. The trial auto-cancels if not converted; you won't be charged unless you actively keep the subscription after the trial ends."
   - q: "Does it work with prop firm accounts (APEX, TopStep, etc.)?"

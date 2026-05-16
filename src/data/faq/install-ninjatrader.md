@@ -4,11 +4,13 @@ category: installation
 order: 1
 ---
 
-Download the `.zip` file from the [Download page](/download) and extract it. Inside you will find an `.ninjascript` file (or `.zip` for NinjaScript import). In NinjaTrader 8:
+Download the `.zip` from the [Download page](/download). **Do not extract it** — NinjaScript packages are imported as `.zip`. Then in NinjaTrader 8:
 
-1. Open **Tools → Import → NinjaScript Add-On**
-2. Select the downloaded file
-3. NinjaTrader will compile and install the add-on automatically
-4. **Important:** Launch Meridian directly from the NinjaTrader Control Center (**New → Add-ons**), **NOT** from the chart Indicators list
+1. **Tools → Import → NinjaScript Add-On**, select the `.zip`
+2. Let NT8 compile; restart if prompted
+3. **Open the Dashboard** — either method works any time:
+   - **Control Center → New → Add-on → Meridian Dashboard**, or
+   - Click the **hamburger icon (☰)** in the top-right of the HUD
+4. In the Dashboard, open the **License tab**, paste your Whop license key, click **Activate**
 
-For further help, see the [FAQ](/faq) or contact [support](/support).
+**Important:** Meridian is an add-on, not a chart indicator. Do **not** look for it in the chart Indicators list. For the full walkthrough with screenshots, see the [Installation Guide](/installation-guide). For further help, see the [FAQ](/faq) or contact [support](/support).
