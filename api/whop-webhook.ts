@@ -224,10 +224,11 @@ function extractFirstName(name: string | undefined, email: string): string {
 async function createNtLicense(email: string, whopPlanId?: string): Promise<boolean> {
   const token = await getNtToken();
 
-  // Determine license duration from the Whop plan
-  // Update these plan IDs to match your actual Whop plan IDs
-  const GUARD_ANNUAL_PLAN  = 'plan_MGCcEbDRslnpn';
-  const CORE_ANNUAL_PLAN   = 'plan_JhWetoQ39OCNz';
+  // Determine license duration from the Whop plan.
+  // Source of truth for these IDs is MERIDIAN.md §2 (and `pricing.json` /
+  // `LicenseManager.cs` GuardPlanIds / CorePlanIds — all four must agree).
+  const GUARD_ANNUAL_PLAN  = 'plan_frPOgHtDTvBkR';   // Guard Annual
+  const CORE_ANNUAL_PLAN   = 'plan_JhWetoQ39OCNz';   // Core Annual
   const isAnnual = whopPlanId === GUARD_ANNUAL_PLAN || whopPlanId === CORE_ANNUAL_PLAN;
 
   // NT license type: Monthly or Annual (no Lifetime for subscription products)
