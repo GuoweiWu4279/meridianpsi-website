@@ -18,10 +18,23 @@
  *
  * Environment variables required (Vercel Project → Settings → Environment Variables):
  *   WHOP_WEBHOOK_SECRET   — from Whop Dashboard → Developer → Webhooks → endpoint secret
- *   NT_TRADOVATE_USERNAME — Tradovate account username (used to mint NT API token)
- *   NT_TRADOVATE_PASSWORD — Tradovate account password
- *   NT_TRADOVATE_APP_ID   — provided by NT Vendor Support when API access is granted
- *   NT_TRADOVATE_APP_SECRET — provided by NT Vendor Support
+ *
+ *   The next five come from Tradovate's API key flow (Tradovate
+ *   trader → Settings → API Access → Generate API Key). Tradovate's
+ *   /v1/auth/accesstokenrequest body REQUIRES all six of
+ *   { name, password, appId, appVersion, cid, sec } — leaving any out
+ *   yields HTTP 400 "missing required field <name>". An earlier
+ *   version of this file omitted `sec` and put the secret into `cid`,
+ *   which is why every paying customer pre-1.3.2 had a stuck NT
+ *   provisioning even when the env vars were set.
+ *
+ *   NT_TRADOVATE_USERNAME — the Tradovate username you logged in with (e.g. "wugary4")
+ *   NT_TRADOVATE_PASSWORD — that Tradovate user's password
+ *   NT_TRADOVATE_APP_ID   — the API key "name" you typed when creating the key
+ *   NT_TRADOVATE_CID      — numeric Client ID shown by Tradovate after key creation
+ *   NT_TRADOVATE_SEC      — string secret shown by Tradovate after key creation
+ *                           (one-time reveal — re-issue the key if lost)
+ *
  *   RESEND_API_KEY        — from resend.com dashboard (optional; if unset, email is skipped)
  *   RESEND_FROM           — sender, e.g. "Meridian <notifications@meridianpsi.com>"
  *                           (domain must be verified in Resend; defaults to onboarding@resend.dev for testing)
@@ -326,15 +339,43 @@ async function getNtToken(): Promise<string> {
     return _ntToken;
   }
 
+  // Fail loudly with a useful message if any required env var is missing,
+  // rather than letting Tradovate return its terse "missing required
+  // field" error from which it's hard to tell which side is broken.
+  const requiredEnv = {
+    NT_TRADOVATE_USERNAME: process.env.NT_TRADOVATE_USERNAME,
+    NT_TRADOVATE_PASSWORD: process.env.NT_TRADOVATE_PASSWORD,
+    NT_TRADOVATE_APP_ID:   process.env.NT_TRADOVATE_APP_ID,
+    NT_TRADOVATE_CID:      process.env.NT_TRADOVATE_CID,
+    NT_TRADOVATE_SEC:      process.env.NT_TRADOVATE_SEC,
+  };
+  const missing = Object.entries(requiredEnv)
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missing.length > 0) {
+    throw new Error(`Tradovate auth: missing env vars: ${missing.join(', ')}`);
+  }
+
+  const cidNum = Number(requiredEnv.NT_TRADOVATE_CID);
+  if (!Number.isFinite(cidNum)) {
+    throw new Error(
+      `Tradovate auth: NT_TRADOVATE_CID must be a number (got: ${requiredEnv.NT_TRADOVATE_CID})`
+    );
+  }
+
+  // Tradovate's request body must include all six fields exactly:
+  //   { name, password, appId, appVersion, cid (number), sec (string) }
+  // See https://api.tradovate.com/ -> Authentication -> Access Token Request.
   const response = await fetch(TRADOVATE_AUTH_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name:       process.env.NT_TRADOVATE_USERNAME,
-      password:   process.env.NT_TRADOVATE_PASSWORD,
-      appId:      process.env.NT_TRADOVATE_APP_ID,
+      name:       requiredEnv.NT_TRADOVATE_USERNAME,
+      password:   requiredEnv.NT_TRADOVATE_PASSWORD,
+      appId:      requiredEnv.NT_TRADOVATE_APP_ID,
       appVersion: '1.0.0',
-      cid:        process.env.NT_TRADOVATE_APP_SECRET,
+      cid:        cidNum,
+      sec:        requiredEnv.NT_TRADOVATE_SEC,
     }),
   });
 
