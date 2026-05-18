@@ -107,9 +107,15 @@ export const POST: APIRoute = async ({ request }) => {
         break;
     }
   } catch (err) {
-    console.error('[whop-webhook] NT API error:', err);
-    // Return 500 so Whop retries the webhook automatically
-    return new Response('Internal Server Error', { status: 500 });
+    const msg = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+    console.error('[whop-webhook] NT API error:', msg);
+    // Echo the underlying error in the response body so that operators
+    // calling /api/whop-webhook with a valid signature (e.g. the
+    // scripts/replay-whop-event.mjs back-fill tool) can see what
+    // actually failed without needing Vercel dashboard access. Whop's
+    // production traffic ignores response bodies on 5xx and just
+    // retries, so this is safe to expose.
+    return new Response(`Internal Server Error: ${msg}`, { status: 500 });
   }
 
   return new Response('OK', { status: 200 });
