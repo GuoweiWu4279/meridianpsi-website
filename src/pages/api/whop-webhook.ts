@@ -16,17 +16,36 @@
  *   src/pages/api/ with `export const prerender = false` and the
  *   @astrojs/vercel adapter. The 54 other pages remain pre-rendered.
  *
- * Environment variables required (Vercel Project → Settings → Environment Variables):
- *   WHOP_WEBHOOK_SECRET   — from Whop Dashboard → Developer → Webhooks → endpoint secret
+ * Environment variables (Vercel Project → Settings → Environment Variables):
  *
- *   The next five come from Tradovate's API key flow (Tradovate
- *   trader → Settings → API Access → Generate API Key). Tradovate's
- *   /v1/auth/accesstokenrequest body REQUIRES all six of
- *   { name, password, appId, appVersion, cid, sec } — leaving any out
- *   yields HTTP 400 "missing required field <name>". An earlier
- *   version of this file omitted `sec` and put the secret into `cid`,
- *   which is why every paying customer pre-1.3.2 had a stuck NT
- *   provisioning even when the env vars were set.
+ * REQUIRED — without these the webhook either rejects every request or
+ * never delivers anything customer-facing:
+ *
+ *   WHOP_WEBHOOK_SECRET   — from Whop Dashboard → Developer → Webhooks
+ *                           → endpoint secret. Missing this returns 401
+ *                           for every Whop request (signature can't be
+ *                           verified).
+ *
+ *   RESEND_API_KEY        — from resend.com dashboard. Missing this
+ *                           silently skips the welcome email (logs as
+ *                           `email=skipped(no-resend-key)`). The
+ *                           webhook still returns 200.
+ *
+ * OPTIONAL — controls the NT Ecosystem mirror, which is *pure
+ * bookkeeping* in v1.3.2+ (the add-on enforces licensing via Whop, not
+ * `VendorLicense(1468)`). If any of the five are missing the NT
+ * mirror is skipped entirely (logs as `nt=skipped(no-nt-env)`) and
+ * the webhook still returns 200. Set all five only after the
+ * Tradovate API user has been granted vendor-write permission on
+ * productId 1468 by NinjaTrader support — otherwise NT will return
+ * 403 on every call and you'll just see `nt=failed` in logs.
+ *
+ * Tradovate's /v1/auth/accesstokenrequest body REQUIRES all six of
+ *   { name, password, appId, appVersion, cid, sec }
+ * — leaving any out yields HTTP 400 "missing required field <name>".
+ * An earlier version of this file omitted `sec` and put the secret
+ * into `cid`, which is why every paying customer pre-1.3.2 had a
+ * stuck NT provisioning even when the env vars were "set".
  *
  *   NT_TRADOVATE_USERNAME — the Tradovate username you logged in with (e.g. "wugary4")
  *   NT_TRADOVATE_PASSWORD — that Tradovate user's password
@@ -35,7 +54,6 @@
  *   NT_TRADOVATE_SEC      — string secret shown by Tradovate after key creation
  *                           (one-time reveal — re-issue the key if lost)
  *
- *   RESEND_API_KEY        — from resend.com dashboard (optional; if unset, email is skipped)
  *   RESEND_FROM           — sender, e.g. "Meridian <notifications@meridianpsi.com>"
  *                           (domain must be verified in Resend; defaults to onboarding@resend.dev for testing)
  */
@@ -86,53 +104,116 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response('OK', { status: 200 });
   }
 
-  console.log(`[whop-webhook] action=${event.action} email=${email}`);
+  // ── Processing model ─────────────────────────────────────────────────────
+  //
+  // As of v1.3.2 the NT8 add-on enforces licensing purely against Whop
+  // (`LicenseManager.cs`); we no longer call `VendorLicense(1468)` on
+  // start-up. That means the NT Ecosystem mirror below is *pure
+  // bookkeeping* — every paying customer can already use the product
+  // the instant Whop hands them a key. So the webhook MUST satisfy:
+  //
+  //   1. Customer-facing work (welcome email) is attempted FIRST and is
+  //      not gated on NT API health.
+  //   2. NT mirror failures are logged but never propagated — Whop must
+  //      see HTTP 200 so it doesn't disable our endpoint after retries.
+  //   3. If the NT Tradovate env vars are absent, the NT mirror is
+  //      skipped silently (treat "no creds" as "feature off"), so we
+  //      can run the integration with the NT side intentionally off
+  //      while waiting on NinjaTrader to grant the Tradovate API user
+  //      vendor-write permission on productId 1468.
+  //
+  // One summary log line is emitted per processed event so operators
+  // can grep Vercel runtime logs with a single query.
+  // ─────────────────────────────────────────────────────────────────────────
 
-  // 4. Mirror to NT Ecosystem API
-  try {
-    switch (event.action) {
-      // Subscription activated (new purchase or re-activation)
-      case 'membership.went_valid': {
-        const isNew = await createNtLicense(email, event.data.plan?.id);
-        // Only send welcome email on first activation, not re-activations
-        if (isNew) {
-          const firstName = extractFirstName(event.data.user?.name, email);
-          await sendWelcomeEmail(email, firstName).catch((err) => {
-            // Log but don't fail the webhook — NT license already created
-            console.error('[whop-webhook] Welcome email failed (non-fatal):', err);
-          });
-        }
-        break;
-      }
+  let emailStatus: WelcomeEmailStatus = 'n/a';
+  let ntStatus: NtMirrorStatus = 'n/a';
 
-      // Subscription cancelled or expired
-      case 'membership.went_invalid':
-        await expireNtLicense(email);
-        break;
-
-      // Successful renewal — extend the existing license by refreshing it
-      case 'membership.renewal_successful':
-        await createNtLicense(email, event.data.plan?.id);
-        break;
-
-      default:
-        // Other events (payment_failed, etc.) — no action needed
-        break;
-    }
-  } catch (err) {
-    const msg = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
-    console.error('[whop-webhook] NT API error:', msg);
-    // Echo the underlying error in the response body so that operators
-    // calling /api/whop-webhook with a valid signature (e.g. the
-    // scripts/replay-whop-event.mjs back-fill tool) can see what
-    // actually failed without needing Vercel dashboard access. Whop's
-    // production traffic ignores response bodies on 5xx and just
-    // retries, so this is safe to expose.
-    return new Response(`Internal Server Error: ${msg}`, { status: 500 });
+  if (event.action === 'membership.went_valid') {
+    const firstName = extractFirstName(event.data.user?.name, email);
+    emailStatus = await tryWelcomeEmail(email, firstName);
   }
+
+  if (
+    event.action === 'membership.went_valid' ||
+    event.action === 'membership.renewal_successful'
+  ) {
+    ntStatus = await tryCreateNtLicense(email, event.data.plan?.id);
+  } else if (event.action === 'membership.went_invalid') {
+    ntStatus = await tryExpireNtLicense(email);
+  }
+
+  // One greppable summary line per processed event:
+  //   [whop-webhook] processed action=membership.went_valid recipient=foo@bar.com welcome=sent nt=skipped(no-nt-env)
+  console.log(
+    `[whop-webhook] processed action=${event.action} recipient=${email} welcome=${emailStatus} nt=${ntStatus}`
+  );
 
   return new Response('OK', { status: 200 });
 };
+
+// ── Best-effort wrappers ───────────────────────────────────────────────────
+//
+// Each of these swallows its own errors and converts the outcome to a
+// short status enum, so the top-level handler can stay linear and
+// always reach the final `return 200`.
+
+type WelcomeEmailStatus = 'sent' | 'failed' | 'skipped(no-resend-key)' | 'n/a';
+type NtMirrorStatus =
+  | 'created'
+  | 'exists'
+  | 'expired'
+  | 'not-found'
+  | 'failed'
+  | 'skipped(no-nt-env)'
+  | 'n/a';
+
+async function tryWelcomeEmail(email: string, firstName: string): Promise<WelcomeEmailStatus> {
+  if (!process.env.RESEND_API_KEY) return 'skipped(no-resend-key)';
+  try {
+    await sendWelcomeEmail(email, firstName);
+    return 'sent';
+  } catch (err) {
+    console.error('[whop-webhook] Welcome email failed (non-fatal):', errMsg(err));
+    return 'failed';
+  }
+}
+
+async function tryCreateNtLicense(email: string, planId: string | undefined): Promise<NtMirrorStatus> {
+  if (!hasNtEnvVars()) return 'skipped(no-nt-env)';
+  try {
+    const isNew = await createNtLicense(email, planId);
+    return isNew ? 'created' : 'exists';
+  } catch (err) {
+    console.error('[whop-webhook] NT createLicense failed (non-fatal):', errMsg(err));
+    return 'failed';
+  }
+}
+
+async function tryExpireNtLicense(email: string): Promise<NtMirrorStatus> {
+  if (!hasNtEnvVars()) return 'skipped(no-nt-env)';
+  try {
+    const found = await expireNtLicense(email);
+    return found ? 'expired' : 'not-found';
+  } catch (err) {
+    console.error('[whop-webhook] NT expireLicense failed (non-fatal):', errMsg(err));
+    return 'failed';
+  }
+}
+
+function hasNtEnvVars(): boolean {
+  return Boolean(
+    process.env.NT_TRADOVATE_USERNAME &&
+      process.env.NT_TRADOVATE_PASSWORD &&
+      process.env.NT_TRADOVATE_APP_ID &&
+      process.env.NT_TRADOVATE_CID &&
+      process.env.NT_TRADOVATE_SEC
+  );
+}
+
+function errMsg(err: unknown): string {
+  return err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+}
 
 // GET is implemented purely so that a manual `curl https://.../api/whop-webhook`
 // returns a useful health check instead of an opaque 404 / 405.
@@ -316,7 +397,12 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   return true;
 }
 
-async function expireNtLicense(email: string): Promise<void> {
+/**
+ * Returns `true` when an active license was found and deleted,
+ * `false` when there was nothing to expire (already inactive, never
+ * created on the NT side, etc.). Throws on transport / auth errors.
+ */
+async function expireNtLicense(email: string): Promise<boolean> {
   const token = await getNtToken();
 
   // Find the existing license for this email + product
@@ -335,7 +421,7 @@ async function expireNtLicense(email: string): Promise<void> {
 
   if (!active) {
     console.log(`[whop-webhook] No active NT license found for ${email} — nothing to expire`);
-    return;
+    return false;
   }
 
   const deleteResp = await fetch(`${NT_API_BASE}/licenses/${active.id}`, {
@@ -349,6 +435,7 @@ async function expireNtLicense(email: string): Promise<void> {
   }
 
   console.log(`[whop-webhook] NT license expired for ${email}`);
+  return true;
 }
 
 // ── NT / Tradovate authentication ──────────────────────────────────────────
