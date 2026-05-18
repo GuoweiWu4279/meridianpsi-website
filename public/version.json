@@ -1,8 +1,8 @@
-{
-  "version": "1.3.1",
-  "releaseDate": "2026-05-17",
+﻿{
+  "version": "1.3.2",
+  "releaseDate": "2026-05-18",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.3.1.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.3.2.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "Guard cooldown re-arm fix and Market Replay session time fix"
+  "notes": "Removes NT8 vendor-notification gate. Activation is now Whop-only and works for prop firm logins."
 }
