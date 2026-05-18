@@ -265,9 +265,22 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   const CORE_ANNUAL_PLAN  = 'plan_JhWetoQ39OCNz'; // Core Annual
   const isAnnual = whopPlanId === GUARD_ANNUAL_PLAN || whopPlanId === CORE_ANNUAL_PLAN;
 
-  // NT license type: Monthly or Annual (no Lifetime for subscription products)
-  const licenseType = isAnnual ? 'Annual' : 'Monthly';
+  // NT Ecosystem API does NOT accept a "Monthly" / "Annual" enum like the
+  // Vendor Dashboard UI does — it requires an explicit ISO-8601 UTC
+  // `expirationDateUTC`. Compute one billing cycle from now to match Whop.
+  const now = new Date();
+  const expirationDate = new Date(now);
+  if (isAnnual) {
+    expirationDate.setUTCFullYear(expirationDate.getUTCFullYear() + 1);
+  } else {
+    expirationDate.setUTCMonth(expirationDate.getUTCMonth() + 1);
+  }
+  const expirationDateUTC = expirationDate.toISOString();
 
+  // NT Ecosystem POST /v1/licenses takes a `licenses` ARRAY (batch
+  // shape), NOT a single license object. Sending a flat object yields
+  // HTTP 400 "body/licenses Required". Each entry requires email,
+  // productId, and expirationDateUTC.
   const response = await fetch(`${NT_API_BASE}/licenses`, {
     method: 'POST',
     headers: {
@@ -275,9 +288,13 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      email,
-      productId: NT_PRODUCT_ID,
-      licenseType,
+      licenses: [
+        {
+          email,
+          productId: NT_PRODUCT_ID,
+          expirationDateUTC,
+        },
+      ],
     }),
   });
 
@@ -292,7 +309,10 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
     throw new Error(`NT createLicense failed: HTTP ${response.status} — ${body}`);
   }
 
-  console.log(`[whop-webhook] NT license created for ${email} (${licenseType})`);
+  const cycle = isAnnual ? 'Annual' : 'Monthly';
+  console.log(
+    `[whop-webhook] NT license created for ${email} (${cycle}, expires ${expirationDateUTC})`
+  );
   return true;
 }
 
