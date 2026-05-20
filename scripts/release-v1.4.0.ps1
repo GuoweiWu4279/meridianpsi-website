@@ -46,7 +46,7 @@ $newVersionJson = @"
   "notes": "Guard risk enforcement (Trading Pause), pause survives restart, reconnect/PSI stability fixes, Guard UI redesign."
 }
 "@
-Set-Content -Path $versionJson -Value $newVersionJson -Encoding UTF8 -NoNewline
+[System.IO.File]::WriteAllText((Join-Path $webDir $versionJson), $newVersionJson)
 Write-Host "[OK] public/version.json updated -> 1.4.0" -ForegroundColor Green
 
 foreach ($prev in @("src/data/changelog/v1.3.2.md", "src/data/changelog/v1.3.1.md", "src/data/changelog/v1.3.0.md")) {
