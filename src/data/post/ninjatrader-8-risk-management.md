@@ -102,7 +102,7 @@ The interventions a behavioral monitoring add-on can trigger range along a gradi
 
 **Session pause.** All new order entry is blocked for a configurable duration. Existing positions remain manageable. The pause functions as a mandatory cooling period — a version of the commitment device described in behavioral economics literature, now enforced automatically.
 
-**Full disconnect.** The most severe response: the platform disconnects from the broker entirely, preventing any order activity, including position management. This is the maximum-enforcement option, appropriate only for traders whose behavioral failure mode typically involves rapid escalation and who have accepted the risk that existing positions cannot be managed during the lockout.
+**Full disconnect.** The most severe response: the platform disconnects from the broker entirely, preventing any new order activity. Open positions can be automatically liquidated if configured, or left open which means existing positions cannot be managed during the lockout until reconnected. This is the maximum-enforcement option, appropriate only for traders whose behavioral failure mode typically involves rapid escalation.
 
 ---
 

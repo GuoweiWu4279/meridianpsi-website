@@ -43,7 +43,7 @@ Response levels (5):
 2. Acknowledge — type a pre-written phrase before continuing
 3. Countdown — mandatory timed pause, cannot be skipped
 4. Risk Alert Mode — persistent banner, confirmation required before each entry
-5. Disconnect — disconnects broker connection; open positions must be managed manually
+5. Disconnect — disconnects broker connection; open positions can be automatically closed if configured, or managed manually
 
 Rules can be password-locked to prevent in-session override.
 

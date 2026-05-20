@@ -205,7 +205,7 @@
 >
 > So a behavioral leading indicator is just a system that watches these inputs and says: based on what you're doing right now, you're entering the cascade.
 >
-> The commitment device is what happens next. It's not auto-flattening your position — that's after-the-fact and panic-inducing. It's friction at the next decision. A modal that asks you to type a phrase. A 60-second cooldown before the next entry. A broker disconnect after repeated violations. The point is to slow hot-you down enough that cold-you can re-engage.
+> The commitment device is what happens next. You can configure it to auto-flatten your position, or just apply friction at the next decision. A modal that asks you to type a phrase. A 60-second cooldown before the next entry. A broker disconnect after repeated violations. The point is to slow hot-you down enough that cold-you can re-engage.
 >
 > This pairing — leading indicator plus commitment device — is what was missing from every other category of risk tool. Journals are leading-cognition tools but lagging-time tools. Daily loss limits are real-time tools but lagging-cognition tools. The thing that actually works has to be both: real-time and leading.
 >

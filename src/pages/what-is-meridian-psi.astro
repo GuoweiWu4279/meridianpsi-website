@@ -106,7 +106,7 @@ const faqSchema = JSON.stringify({
         <li><strong>Acknowledge</strong> — requires typing a pre-written phrase before continuing</li>
         <li><strong>Countdown</strong> — mandatory pause, cannot be skipped</li>
         <li><strong>Risk Alert Mode</strong> — persistent banner requiring active confirmation before each new entry</li>
-        <li><strong>Disconnect</strong> — disconnects the broker connection entirely; open positions must be managed manually</li>
+        <li><strong>Disconnect</strong> — disconnects the broker connection entirely; open positions can be automatically closed if configured, or managed manually</li>
       </ul>
       <p>
         Guard rules can be password-locked to prevent in-session override. This is intentional: a rule that can be easily bypassed at the moment it fires is a rule with no enforcing power.

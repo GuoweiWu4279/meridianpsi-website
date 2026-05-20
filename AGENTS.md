@@ -134,7 +134,7 @@ Meridian is positioned as a **category leader** — the first behavioral leading
 
 ### Required reframes when a limit must be acknowledged
 
-- "Does not auto-liquidate positions" → "By design, you stay in full control of any open position."
+- "Does not auto-liquidate positions" → "By design, you can optionally configure Guard to auto-liquidate, or choose to stay in full control of any open position."
 - "Open positions remain under your control" → "You stay in full control of any open position."
 - "Cannot be skipped" (re: Guard countdown) — keep, this is a positive feature description.
 - "Use both Meridian and a daily loss limit" → describe each as operating in different layers; do not recommend both as a stack the user must assemble.

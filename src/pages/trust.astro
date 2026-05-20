@@ -59,7 +59,7 @@ const metadata = {
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Does not auto-liquidate positions</strong> — Guard can block new order entry and, at the highest enforcement level, disconnect the broker connection (which prevents new orders but does not force-close open trades). Closing existing positions always remains in your hands.</span>
+            <span><strong class="text-zinc-800">Optional auto-liquidation</strong> — Guard can block new order entry and, at the highest enforcement level, disconnect the broker connection. You can configure Guard to optionally force-close open trades, or choose to manage them yourself.</span>
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -90,7 +90,7 @@ const metadata = {
         <h2 class="text-lg font-bold text-zinc-900 mb-4">What Guard enforces — and what it cannot touch</h2>
         <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-600 leading-relaxed space-y-3">
           <p><strong class="text-zinc-800">Guard blocks new order entry</strong> at the NinjaTrader platform level when a configured threshold is crossed. It intercepts the order before it is submitted — it does not interfere with orders already in the market.</p>
-          <p><strong class="text-zinc-800">Guard does not force-close open positions.</strong> If Guard locks new entries while you have a live trade, you can still exit that trade normally through NinjaTrader. The lockout applies to new entries only.</p>
+          <p><strong class="text-zinc-800">Guard offers optional auto-liquidation.</strong> If Guard locks new entries while you have a live trade, you can configure it to automatically close open positions or choose to exit that trade manually through NinjaTrader.</p>
           <p><strong class="text-zinc-800">Broker disconnect mode</strong> (the highest enforcement level) terminates NinjaTrader's broker connection. This prevents all new order activity — including exits — until you reconnect. This mode is an advanced option intended for situations where full disengagement from the market is desired. It should be understood and tested in simulation before being used live.</p>
         </div>
       </div>

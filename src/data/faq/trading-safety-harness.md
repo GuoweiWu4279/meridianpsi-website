@@ -8,4 +8,4 @@ Working at height without a safety harness is not inherently dangerous — until
 
 **[Meridian](/features) acts as that safety harness for active traders.** It operates in the background during every session, monitoring [seven behavioral dimensions](/features#seven-dimensions) in real time. When psychological pressure builds to a point where the risk of a rule-breaking decision is high, [Meridian Guard](/guard) intervenes automatically — before the order is placed, not after the damage is done.
 
-The harness metaphor also implies something important: **you still do all the work**. Meridian does not trade for you, close your positions, or make decisions on your behalf. It enforces the rules you already wrote for yourself — the ones you know are correct — in the moments when your own judgment is most compromised.
+The harness metaphor also implies something important: **you still do the work**. Meridian does not trade for you or make decisions on your behalf, but it can optionally close your positions when rules are broken. It enforces the rules you already wrote for yourself — the ones you know are correct — in the moments when your own judgment is most compromised.

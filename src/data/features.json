@@ -45,7 +45,7 @@
     {
       "id": "alerts",
       "title": "Alerts you can hear and see",
-      "description": "Visual and optional voice alerts when PSI or dimensions cross the thresholds you configure — a nudge to pause, not an order blocker.",
+      "description": "Visual and optional voice alerts when PSI or dimensions cross the thresholds you configure — plus automatic order blocking and optional auto-liquidation.",
       "icon": "tabler:bell-ringing",
       "category": "core"
     }

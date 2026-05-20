@@ -31,7 +31,7 @@ faqs:
   - q: "Does it work with prop firm accounts (APEX, TopStep, etc.)?"
     a: "Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8. Many traders use it specifically during prop firm evaluations, since the behavioral signals often start firing before the hard evaluation limits are reached."
   - q: "What happens if Guard disconnects me during a live trade?"
-    a: "Your open position stays open at the broker — nothing is automatically closed. You need to manually reconnect in NT8 to resume trading. This is intentional: Guard fires when you are in a deteriorating behavioral state. The disconnect is meant to force a pause; what you do with your open position after that pause is your decision."
+    a: "Your open position stays open at the broker unless you explicitly configure Guard to auto-liquidate. You can choose whether Guard automatically closes your positions or leaves them for you to manage. If you choose manual, you need to manually reconnect in NT8 to resume trading. This is intentional: Guard fires when you are in a deteriorating behavioral state."
   - q: "How long until the baseline is fully calibrated?"
     a: "The baseline starts adapting immediately from your first session. After 5–10 live trading sessions, it has enough data to produce meaningful signals. After 20–30 sessions, the signals become noticeably more precise. The system improves continuously — there is no 'done' state, and there is no minimum session count before it's useful."
 ---
