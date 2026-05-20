@@ -1,8 +1,8 @@
 ﻿{
-  "version": "1.3.2",
-  "releaseDate": "2026-05-18",
+  "version": "1.3.3",
+  "releaseDate": "2026-05-19",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.3.2.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.3.3.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "Hotfix: fixes startup popup on prop firm accounts, Win Rate 0% bug, and Pressure stuck high."
+  "notes": "Bug fixes: Guard consecutive-loss condition now fires correctly; Emergency Override no longer re-triggers immediately."
 }
