@@ -9,7 +9,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
   title: 'Meridian — The First Real-Time Psychological Stability Index for Active Traders',
-  description: 'Real-time behavioral risk monitor for NinjaTrader 8. Make trading discipline measurable. Stops revenge trading and overtrading before they cost you. 7-day free trial.',
+  description: 'Real-time behavioral risk monitor for NinjaTrader 8. Make trading discipline measurable. Hard risk enforcement stops revenge trading and overtrading before they cost you. 7-day free trial.',
   ignoreTitleTemplate: true,
   robots: { index: true, follow: true },
 };
@@ -140,11 +140,11 @@ const steps = [
     label: 'Guard',
     bg: '#1C1C1E',
     desc: 'Automate response',
-    fullDesc: 'Guard turns your rules into action — six triggers paired with five escalating responses, from a quiet alert to a typed acknowledgment, forced countdown, confirmation-required mode, or full broker disconnect.',
+    fullDesc: 'Guard turns your rules into action — six triggers paired with five escalating responses, from a quiet alert to a typed acknowledgment, trading pause, or full broker disconnect.',
     bullets: [
-      'Five response levels: alert, acknowledgment, countdown, confirmation-required, and disconnect.',
+      'Five response levels: notify, risk alert, acknowledgment, trading pause, and disconnect.',
       'Six trigger conditions: PSI threshold, consecutive losses, session P&L, unrealized P&L, single-trade loss, session time.',
-      'Each rule can be password-locked to prevent in-session override.',
+      'Trading pause survives NinjaTrader restarts to prevent circumvention.',
     ],
     image: '/guard-hero.png',
     /* Full asset visible in 16:9 panel (no crop); see .acc-img--guard-fit */
@@ -277,6 +277,8 @@ const homePageJsonLd = {
         'Overtrading prevention',
         'Stop-loss manipulation detection',
         'Prop firm risk control',
+        'NinjaTrader broker disconnect',
+        'NinjaTrader order cancellation'
       ],
       sameAs: [
         'https://x.com/Meridian_PSI',
@@ -306,6 +308,7 @@ const homePageJsonLd = {
         'Stop-loss manipulation detection',
         'Trade limiter and entry blocking (Guard)',
         'Consecutive-loss countdowns and rule enforcement add-on',
+        'Trading Pause — hard risk enforcement',
         'Behavioral leading indicator — fires before P&L damage compounds',
         'Revenge Entry detection',
         'Stop-Loss Manipulation detection',

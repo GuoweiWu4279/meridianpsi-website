@@ -58,14 +58,15 @@ const guardSchemaJson = JSON.stringify({
   "url": "https://www.meridianpsi.com/guard",
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",
-    "Five response levels: Alert, Acknowledge (phrase confirmation), Countdown (forced pause), Risk Alert Mode, Broker Disconnect",
-    "Automated broker disconnect — positions are never closed automatically",
-    "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation, Today's Risk Brief",
-    "Composure progress tracking over six months",
+    "Five response levels: Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect",
+    "Trading Pause: Cancel Orders mode or full Broker Disconnect mode",
+    "Auto-flatten on pause: optionally close all open positions when risk limits are hit",
+    "Pause persistence: lockout survives NinjaTrader restart or crash",
+    "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation",
     "100% local — no cloud, no telemetry"
   ],
   "offers": guardOffers,
-  "softwareVersion": "1.3.1",
+  "softwareVersion": "1.4.0",
   "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
   "publisher": {
     "@type": "Organization",
@@ -98,19 +99,19 @@ const triggers = [
 ];
 
 const levels = [
-  { level: 'L1', name: 'Alert',          color: '#059669', desc: 'A quiet notification. Stays out of the way of execution.' },
-  { level: 'L2', name: 'Acknowledge',    color: '#0d9488', desc: 'Type your own pre-written phrase before continuing.' },
-  { level: 'L3', name: 'Countdown',      color: '#d97706', desc: 'Forced waiting period. Cannot be skipped.' },
-  { level: 'L4', name: 'Risk Alert Mode',color: '#ea580c', desc: 'Persistent banner. Every entry requires active confirmation.' },
-  { level: 'L5', name: 'Disconnect',     color: '#dc2626', desc: 'Disconnects your broker. You stay in full control of any open position.' },
+  { level: 'L1', name: 'Notify',         color: '#059669', desc: 'A quiet toast notification. Stays out of the way of execution.' },
+  { level: 'L2', name: 'Risk Alert',     color: '#0d9488', desc: 'Persistent HUD banner. Every entry requires active confirmation.' },
+  { level: 'L3', name: 'Acknowledge',    color: '#d97706', desc: 'Type your own pre-written phrase and wait out a countdown timer before continuing.' },
+  { level: 'L4', name: 'Trading Pause',  color: '#ea580c', desc: 'Blocks new entries entirely by cancelling orders. Survives NT8 restart.' },
+  { level: 'L5', name: 'Disconnect',     color: '#dc2626', desc: 'Severs broker connection. Optional re-disconnect if you try to bypass.' },
 ];
 
 const examples = [
-  { name: 'Daily Loss Limit',       rule: 'P&L below -$500',                      action: 'Disconnect' },
-  { name: 'Revenge Trade Check',    rule: '3 consecutive losses',                  action: 'Countdown + Acknowledge' },
-  { name: 'Tilt Early Warning',     rule: 'PSI below 65',                          action: 'Alert' },
-  { name: 'Hard Tilt Stop',         rule: 'PSI below 45 + P&L below -$300',        action: 'Disconnect 30 min' },
-  { name: 'Position Risk Monitor',  rule: 'Unrealized below -$400',                action: 'Risk Alert Mode' },
+  { name: 'Daily Loss Limit',       rule: 'P&L below -$500',                      action: 'Trading Pause (Disconnect)' },
+  { name: 'Revenge Trade Check',    rule: '3 consecutive losses',                  action: 'Acknowledge + 60s Countdown' },
+  { name: 'Tilt Early Warning',     rule: 'PSI below 65',                          action: 'Notify' },
+  { name: 'Hard Tilt Stop',         rule: 'PSI below 45 + P&L below -$300',        action: 'Trading Pause (Cancel Orders)' },
+  { name: 'Position Risk Monitor',  rule: 'Unrealized below -$400',                action: 'Risk Alert' },
   { name: 'Session Length Rule',    rule: 'Session over 180 minutes',              action: 'Acknowledge required' },
 ];
 ---
@@ -231,7 +232,7 @@ const examples = [
 
       <!-- Section header -->
       <div class="max-w-2xl mb-16">
-        <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-3">The Guard System</p>
+          <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-3">The Guard System</p>
         <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
           Six ways to detect. Five ways to respond.
         </h2>
@@ -322,10 +323,10 @@ const examples = [
         <!-- Utility features -->
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
           {[
-            { name: 'Edge-trigger',    desc: 'Fires once per condition entry — no repeated alerts.' },
-            { name: 'Cooldown',        desc: 'Prevents rapid re-triggering between conditions.' },
-            { name: 'Emergency Reset', desc: 'One click clears all active Guard state.' },
-            { name: 'Master switch',   desc: 'Disable Guard entirely without losing your rules.' },
+            { name: 'Min loss filter', desc: 'Ignore fee-sized scratches in consecutive-loss streaks.' },
+            { name: 'Auto-flatten',    desc: 'Optionally close all open positions when a pause activates.' },
+            { name: 'Pause persistence', desc: 'Lockout survives NinjaTrader restart or crash.' },
+            { name: 'Emergency Reset', desc: 'One click clears all active Guard state if you need an out.' },
           ].map((item) => (
             <div class="rounded-xl border border-dashed border-zinc-300 bg-white/80 p-4">
               <p class="font-semibold text-zinc-900 text-sm mb-1">{item.name}</p>
@@ -339,12 +340,12 @@ const examples = [
 
 
   <!-- ═══════════════════════════════════════════════════════
-       L2 CALLOUT  —  Only deep-color section on the page
+       L3 CALLOUT  —  Only deep-color section on the page
        ═══════════════════════════════════════════════════════ -->
   <section class="py-20 px-6" style="background:#18181b;">
     <div class="max-w-3xl mx-auto text-center">
       <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-400 uppercase mb-6">
-        Why L2 — Acknowledge — is the most powerful level
+        Why L3 — Acknowledge — is the most powerful friction
       </p>
       <blockquote class="text-2xl md:text-3xl font-semibold text-white leading-[1.4] mb-8">
         "I will not revenge trade.<br class="hidden sm:block" />
@@ -490,6 +491,7 @@ const examples = [
           ['Local — no cloud, no telemetry',             true,  true],
           ['Adapts to any trading style',                true,  true],
           ['Guard System (6 triggers, 5 actions)',       false, true],
+          ['Trading Pause (Cancel Orders or Disconnect)',false, true],
           ['Intel Layer — monthly digest',               false, true],
           ['PSI × P&L correlation',                      false, true],
           ["Today's Risk Brief",                         false, true],

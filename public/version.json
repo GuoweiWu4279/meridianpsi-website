@@ -4,5 +4,5 @@
   "download": "https://www.meridianpsi.com/download",
   "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.4.0.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "Guard risk enforcement (Trading Pause), pause survives restart, reconnect/PSI stability fixes, Guard UI redesign."
+  "notes": "Major release v1.4.0 — Guard enforcement (Trading Pause), pause survives restart, PSI reconnect stability, full Guard UI redesign."
 }
