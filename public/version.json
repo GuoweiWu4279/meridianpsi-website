@@ -1,8 +1,8 @@
 ﻿{
-  "version": "1.4.0",
-  "releaseDate": "2026-05-20",
+  "version": "1.4.1",
+  "releaseDate": "2026-05-21",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.4.0.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.4.1.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "Major release v1.4.0 — Guard enforcement (Trading Pause), pause survives restart, PSI reconnect stability, full Guard UI redesign."
+  "notes": "Patch v1.4.1 — Guard close-position safety fix: close/flatten orders never blocked during pause; Force Reset Guard now fully clears all blocks."
 }
