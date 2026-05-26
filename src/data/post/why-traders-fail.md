@@ -86,4 +86,4 @@ The market does not care how disciplined a trader believes themselves to be. It 
 
 ---
 
-*This article draws on research in behavioral finance and decision science, including work by Daniel Kahneman, Amos Tversky, and Terrance Odean. Data on retail trader outcomes is sourced from studies published in the Journal of Finance and Journal of Financial Economics. The author also developed [Meridian](https://www.meridianpsi.com), a real-time behavioral monitor and automated risk management add-on for NinjaTrader 8, built specifically to address the structural failure modes described here.*
+*This article draws on research in behavioral finance and decision science, including work by Daniel Kahneman, Amos Tversky, and Terrance Odean. Data on retail trader outcomes is sourced from studies published in the Journal of Finance and Journal of Financial Economics. The author also developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 — built specifically to address the structural failure modes described here.*

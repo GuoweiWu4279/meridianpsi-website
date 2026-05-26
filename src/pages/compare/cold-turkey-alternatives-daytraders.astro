@@ -1,0 +1,217 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+const metadata = {
+  title: 'Cold Turkey Alternatives for Day Traders — NinjaTrader 8 Session Enforcement',
+  description:
+    'Traders use Cold Turkey to block trading platforms after bad sessions. Meridian is the purpose-built alternative: a real-time psychological stability monitor that knows whether you should stop, before you do damage.',
+  robots: { index: true, follow: true },
+};
+
+const compareRows = [
+  {
+    dim: 'What it is',
+    ct: 'General-purpose website and app blocker',
+    meridian: 'Real-time psychological stability monitor for NinjaTrader 8',
+  },
+  {
+    dim: 'Awareness of your trading state',
+    ct: 'None — blocks by schedule or manual toggle',
+    meridian: 'Full: reads seven behavioral signals from live order activity',
+  },
+  {
+    dim: 'How it decides to act',
+    ct: 'You decide, in advance or manually, to block access',
+    meridian: 'Behavioral signals and PSI score computed from your actual session',
+  },
+  {
+    dim: 'Calibration to your patterns',
+    ct: 'None — applies the same block to everyone',
+    meridian: 'Adaptive baseline personal to your own trading history',
+  },
+  {
+    dim: 'Response options',
+    ct: 'Block everything or block nothing',
+    meridian: 'Alert, typed acknowledgment, mandatory countdown, risk alert mode, broker disconnect',
+  },
+  {
+    dim: 'Can it tell a bad session from a good one?',
+    ct: 'No',
+    meridian: 'Yes — PSI score reflects real-time behavioral state',
+  },
+  {
+    dim: 'Trading platform integration',
+    ct: 'External process blocker with no order-level access',
+    meridian: 'Native NinjaTrader 8 add-on with direct access to the execution pipeline',
+  },
+  {
+    dim: 'Revenge trading detection',
+    ct: 'No',
+    meridian: 'Yes — Revenge Entry signal fires on rapid re-entry after losses',
+  },
+  {
+    dim: 'Stop-modification detection',
+    ct: 'No',
+    meridian: 'Yes — Stop Manipulation signal flags stop widening on adverse positions',
+  },
+  {
+    dim: 'Post-session behavioral review',
+    ct: 'No',
+    meridian: 'Yes — PSI trend, composure score, monthly digest, behavioral history',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'Why do traders use Cold Turkey?',
+    a: 'Cold Turkey and similar app blockers have become a workaround for a problem that trading software was not solving: the inability to stop trading when you are in a bad state. Traders set up schedules to block their trading platform after certain hours, or manually activate a block after a losing session. It is a blunt but functional solution when no better option exists.',
+  },
+  {
+    q: 'What is the problem with using Cold Turkey for trading?',
+    a: 'Cold Turkey has no awareness of your actual trading state. It cannot tell whether your PSI is 95 and you are trading well, or whether you are in a spiral and should stop. The block fires when you scheduled it, not when you need it. Worse, when you are in the middle of a revenge-trading sequence, you are rarely in a state to manually activate a block. The moment you most need the intervention is the moment you are least likely to impose it on yourself.',
+  },
+  {
+    q: 'How does Meridian work as a Cold Turkey alternative?',
+    a: 'Meridian is a real-time psychological stability monitor built into NinjaTrader 8. It reads your live order stream and computes a Psychological Stability Index (PSI) from seven behavioral signals: re-entry pace, stop modifications, size spikes, exit timing, position hold duration, rule violations, and overtrading pace. When the PSI or an individual signal crosses a threshold you configured while calm, the Meridian Guard layer can require a typed acknowledgment, enforce a mandatory countdown, block new entries, or disconnect the broker. The triggers are behavioral, not scheduled.',
+  },
+  {
+    q: 'What is the typed acknowledgment and why does it matter?',
+    a: 'When Meridian Guard\'s acknowledgment level fires, the trader must type a phrase they wrote during a calm, pre-session state before they can place the next order. Examples: "I am not in a good state" or "I will wait 10 minutes." The friction is the point. It breaks the automatic behavior loop at the exact moment the pattern is detectable, rather than relying on the trader to self-impose a block after the fact.',
+  },
+  {
+    q: 'Is Meridian only for NinjaTrader 8 traders?',
+    a: 'Yes. Meridian is built into the NinjaTrader 8 execution pipeline and requires that platform on Windows. The real-time behavioral signal detection depends on access to the live order feed, which is why it is platform-specific. If you trade on NinjaTrader 8, Meridian is the purpose-built version of the discipline enforcement problem that Cold Turkey addresses generically.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-12">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Alternatives · Day traders on NinjaTrader 8</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        Cold Turkey alternatives for day traders.
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">
+          Cold Turkey blocks trading platforms on a schedule or when you manually activate it. Meridian is a real-time psychological stability monitor that knows your actual behavioral state during the session and intervenes when the signals say you should stop, whether you want to or not. If you trade on NinjaTrader 8, Meridian is the purpose-built version of the problem Cold Turkey solves generically.
+        </p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
+
+      <h2>Why traders turn to app blockers</h2>
+      <p>
+        Cold Turkey, Freedom, and similar focus tools were not designed for traders. They are productivity apps built to help people stop checking social media or wasting time on distracting websites. Somewhere along the way, traders discovered them as a workaround: set a block on the trading platform after market hours, or manually activate it after a bad session, and the platform becomes physically inaccessible.
+      </p>
+      <p>
+        The underlying recognition is correct. Traders who reach for Cold Turkey have already understood that willpower alone is not a reliable stop-loss on behavior. They need an external constraint. The problem is that Cold Turkey is a blunt instrument applied to a precise problem.
+      </p>
+
+      <h2>Where Cold Turkey breaks down</h2>
+      <p>
+        Cold Turkey has no awareness of your trading state. It cannot distinguish between a session where your PSI is 94 and you are executing cleanly from a session where you are down three stop-outs in a row and re-entering faster each time. The block fires when you scheduled it or when you activated it. It has no idea which situation you are in.
+      </p>
+      <p>
+        The timing problem is more fundamental than it first appears. The moments when a trader most needs an intervention are the moments when they are least capable of imposing one on themselves. The revenge-trading spiral is not a state where rational self-monitoring is functioning normally. By the time the trader thinks to activate Cold Turkey, three bad trades may have already happened. Scheduling it in advance means blocking access indiscriminately, whether the session was good or bad.
+      </p>
+      <p>
+        There is also no graduated response. Cold Turkey either blocks the platform or it does not. There is nothing between "full access" and "completely locked out," no acknowledgment friction, no mandatory pause, no alert that says your entry pace has doubled in the last 12 minutes. The precision that trading requires from a discipline tool simply is not there.
+      </p>
+
+      <h2>What a purpose-built trading alternative looks like</h2>
+      <p>
+        Meridian is a real-time psychological stability monitor built natively into NinjaTrader 8. It reads the live execution feed and computes a Psychological Stability Index (PSI) from seven behavioral signals continuously: Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, and Overtrading Pace. Each signal is measured against the trader's own historical session baseline, not a fixed threshold. The system learns what normal looks like for you specifically.
+      </p>
+      <p>
+        When the behavioral signals or the composite PSI crosses thresholds you configured during a calm, pre-session state, the Meridian Guard layer fires. There are five response levels. The first is a quiet alert. The second requires the trader to type a phrase they wrote while calm before placing the next order, which breaks the automatic behavior loop at the exact decision point. The third enforces a mandatory countdown that cannot be skipped. The fourth activates a persistent confirmation requirement before each new entry. The fifth disconnects the broker connection.
+      </p>
+      <p>
+        The triggers are behavioral, not scheduled. The system fires when your order stream says your state has deteriorated, not when the clock says 3pm.
+      </p>
+      <p>
+        Meridian is an Official NinjaTrader Ecosystem Vendor, reviewed and approved by NinjaTrader's Compliance and QA teams in May 2026.
+      </p>
+
+      <div class="not-prose overflow-x-auto my-8">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-zinc-200">
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-900 w-1/3"></th>
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-500">Cold Turkey</th>
+              <th class="text-left py-3 font-semibold text-zinc-900">Meridian</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-100">
+            {compareRows.map((row) => (
+              <tr>
+                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                <td class="py-3 pr-4 text-zinc-600">{row.ct}</td>
+                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The commitment device that actually works in the session</h2>
+      <p>
+        Behavioral economics research on commitment devices is clear: the most effective constraints are set in advance, by a calmer version of yourself, and are difficult to override in the moment. Cold Turkey approximates this with scheduled blocking. Meridian implements it precisely with a configuration you set before the session opens, tied to behavioral thresholds that fire automatically from your own order activity.
+      </p>
+      <p>
+        The typed acknowledgment response is particularly relevant here. Before the session, you write a phrase: "I am not in the right state to trade." When Meridian Guard fires the acknowledgment level, you must type that phrase exactly before placing the next order. The friction is deliberate. It is the pre-committed version of yourself speaking to the in-session version, at the exact moment the behavioral data says intervention is warranted.
+      </p>
+
+      <h2>Where this comparison sits in context</h2>
+      <p>
+        For a broader look at how Meridian relates to other NinjaTrader 8 risk tools, see <a href="/compare/meridian-vs-hard-limit-tools" class="text-emerald-800 underline underline-offset-2">Meridian vs hard-limit tools</a> or <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a>. For the specific use case of revenge-trading prevention, see <a href="/use-cases/ninjatrader-revenge-trading-lockout" class="text-emerald-800 underline underline-offset-2">NinjaTrader revenge trading lockout</a>.
+      </p>
+
+      <hr />
+
+      <h2>Frequently asked questions</h2>
+      <dl class="space-y-6 not-prose">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          See Guard trigger types →
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-zinc-100">
+      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
+      <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
+    </div>
+
+  </article>
+</Layout>

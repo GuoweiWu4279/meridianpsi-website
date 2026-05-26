@@ -116,4 +116,4 @@ The gap between institutional and retail is real, and most of it is not closable
 
 ---
 
-*The author trades futures independently. This article reflects personal research and observations and does not constitute financial advice. The author also developed [Meridian](https://www.meridianpsi.com), a real-time behavioral monitor and automated risk management add-on for NinjaTrader 8, built to function as the software-level commitment device described in this article.*
+*The author trades futures independently. This article reflects personal research and observations and does not constitute financial advice. The author also developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 — built to function as the software-level commitment device described in this article.*

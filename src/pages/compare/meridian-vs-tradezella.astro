@@ -1,0 +1,214 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+const metadata = {
+  title: 'Meridian vs TradeZella — Real-Time Psychological Stability Monitoring vs Post-Trade Analysis',
+  description:
+    'TradeZella analyzes your trades after the session ends. Meridian monitors your psychological state while the session is running. Two products that care about trading psychology, operating at completely different points in the trading process.',
+  robots: { index: true, follow: true },
+};
+
+const compareRows = [
+  {
+    dim: 'Category',
+    tradezella: 'Post-session trade analytics platform',
+    meridian: 'Real-time psychological stability monitor',
+  },
+  {
+    dim: 'When it runs',
+    tradezella: 'After the trading session ends',
+    meridian: 'During the live session, in real time',
+  },
+  {
+    dim: 'Psychology data source',
+    tradezella: 'Self-reported mood tags, manual journal entries',
+    meridian: 'Behavioral signals computed automatically from live order activity',
+  },
+  {
+    dim: 'Behavioral pattern detection',
+    tradezella: 'Visible in trade history after the fact; requires manual review',
+    meridian: 'Detected the moment the pattern emerges from the order stream',
+  },
+  {
+    dim: 'Intervention capability',
+    tradezella: 'None — analysis and journaling only',
+    meridian: 'Alert, typed acknowledgment, mandatory countdown, entry block, broker disconnect',
+  },
+  {
+    dim: 'Reads',
+    tradezella: 'Imported trade history (broker export, CSV)',
+    meridian: 'Live NinjaTrader 8 order events as they occur',
+  },
+  {
+    dim: 'Psychological Stability Index',
+    tradezella: 'No',
+    meridian: 'Yes — composite 0 to 100 score, updated under 100ms after every order event',
+  },
+  {
+    dim: 'Adaptive personal baseline',
+    tradezella: 'Trade tagging and group filters',
+    meridian: 'Adaptive baseline learning calibrated per trader, updated continuously',
+  },
+  {
+    dim: 'Data storage',
+    tradezella: 'Cloud platform',
+    meridian: 'Local on Windows machine — no cloud, no telemetry',
+  },
+  {
+    dim: 'Platform',
+    tradezella: 'Web-based, works with most brokers',
+    meridian: 'NinjaTrader 8 (Windows), live order pipeline required',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'What is TradeZella?',
+    a: 'TradeZella is a cloud-based trading journal and analytics platform. It imports your completed trades via broker connection or file export, and surfaces performance analytics through dashboards, trade tagging, psychology notes, and reporting tools. It is a polished post-session analytics product with a growing user base.',
+  },
+  {
+    q: 'How is Meridian different from TradeZella?',
+    a: 'TradeZella analyzes your trading history after the session. Meridian monitors your behavior during the session. TradeZella will show you, after the fact, that you had a bad run of revenge trades last Thursday. Meridian will detect the same pattern forming on Thursday afternoon and can require a typed acknowledgment, force a countdown, or block entries before the damage compounds. Both products engage with trading psychology. They do it at opposite ends of the clock.',
+  },
+  {
+    q: 'TradeZella has psychology features. How are they different from Meridian?',
+    a: 'TradeZella\'s psychology features are self-reported: you tag trades with mood labels, write journal entries, and review emotional patterns in your historical data. That is retrospective self-assessment. Meridian computes your psychological state from your actual trading behavior in real time, without asking you anything. It derives psychological signals from order timing, sizing, stop movements, and session pace. You cannot self-report your way out of a revenge-trading spiral. The behavioral data exists in the order stream; Meridian reads it while it is happening.',
+  },
+  {
+    q: 'Does Meridian replace post-session analysis?',
+    a: 'Meridian generates its own behavioral session review: PSI trend across the session, monthly composure digest, PSI versus P&L correlation, weekday patterns, and a pre-session risk brief built from the trader\'s own history. For traders who also want broker-import trade tagging, multi-account portfolio analytics, or strategy-level P&L attribution, a journal platform serves a different purpose. The two products answer different questions.',
+  },
+  {
+    q: 'Why does Meridian only work on NinjaTrader 8?',
+    a: 'Real-time behavioral signal detection requires a live order pipeline: every entry, modification, and exit observed the moment it occurs. Meridian reads the NinjaTrader 8 execution feed directly. That integration is what makes the leading-indicator design possible. A post-session platform can import from any broker because it only needs completed trades. Meridian needs the live feed.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-12">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Comparison · Different categories</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        Meridian vs TradeZella.
+      </h1>
+
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">
+          TradeZella shows you what happened in your trading history. Meridian monitors what is happening right now and can intervene before the session ends badly. One is post-trade analysis. The other is real-time psychological stability monitoring. Same underlying concern about trader psychology; completely different point in the process.
+        </p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
+
+      <h2>What TradeZella does</h2>
+      <p>
+        TradeZella is a post-session trade analytics platform. You connect your broker account or import a trade file, and it surfaces your performance data through dashboards, trade tagging, filtering, and reporting. The platform has psychology features: you can tag trades with emotional states, write journal entries, and track patterns in your self-reported mood data over time.
+      </p>
+      <p>
+        The design point is retrospective review. The session ends, the data arrives, and TradeZella helps you understand what happened. That is valuable work. Knowing, on Sunday, that you tend to revenge-trade on Tuesdays is useful information for next Tuesday.
+      </p>
+
+      <h2>The gap between knowing and intervening</h2>
+      <p>
+        The problem with retrospective analysis is not that it is wrong. It is that it is late. You can review last Thursday's session in detail and correctly identify every mistake. Next Thursday, while those same patterns are forming live in the session, the review data does nothing. By the time a journal platform can show you the pattern, the trades have already been placed.
+      </p>
+      <p>
+        The behavioral evidence that a session is deteriorating exists before the P&L does. Re-entry intervals shorten. Stops get moved. Size increases under loss conditions. Position hold times extend past the trader's own historical threshold. These are not abstract psychological states that require self-reporting. They are measurable events happening in the order stream, in sequence, in real time.
+      </p>
+
+      <h2>Where Meridian operates</h2>
+      <p>
+        Meridian is a real-time psychological stability monitor. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
+      </p>
+      <p>
+        Those signals feed into a composite Psychological Stability Index (PSI), scored 0 to 100 and updated under 100 milliseconds after every order event. The baseline is personal: the system learns what each trader's own normal looks like across sessions and calibrates against that, not against a fixed standard. A session where your PSI is 40 looks different than it would for another trader at the same dollar loss, because your behavioral baseline is yours.
+      </p>
+      <p>
+        When Meridian Guard is enabled, this live monitoring can trigger actual intervention: a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect. The intervention happens during the session, before the pattern fully plays out. That is the design difference from any post-session platform.
+      </p>
+      <p>
+        Meridian is an Official NinjaTrader Ecosystem Vendor, reviewed and approved by NinjaTrader's Compliance and QA teams in May 2026.
+      </p>
+
+      <div class="not-prose overflow-x-auto my-8">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-zinc-200">
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-900 w-1/3"></th>
+              <th class="text-left py-3 pr-4 font-semibold text-zinc-500">TradeZella</th>
+              <th class="text-left py-3 font-semibold text-zinc-900">Meridian</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-zinc-100">
+            {compareRows.map((row) => (
+              <tr>
+                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                <td class="py-3 pr-4 text-zinc-600">{row.tradezella}</td>
+                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The self-reporting problem</h2>
+      <p>
+        TradeZella asks you to tag trades with emotional states. That is a reasonable feature for post-session review. The issue is that self-reporting under stress is unreliable. During a revenge-trading spiral, a trader is not accurately assessing their own emotional state and logging it. The session ends, the damage is done, and then the reflection begins.
+      </p>
+      <p>
+        Meridian does not ask. It reads what you actually did with your orders: how fast you re-entered, whether you moved the stop, whether your size spiked relative to your own session history, whether your exit timing collapsed. Those are behavioral facts, not self-assessments. The difference between "I felt frustrated" and "you re-entered 22 seconds after the stop-out at 1.8x your average size" is the difference between a retrospective impression and a real-time measurement.
+      </p>
+
+      <h2>Where this comparison sits in context</h2>
+      <p>
+        For comparisons against other post-session journal platforms, see <a href="/compare/meridian-vs-trading-journals" class="text-emerald-800 underline underline-offset-2">Meridian vs trading journals</a>. For the full category map of NinjaTrader 8 risk tools, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a>.
+      </p>
+
+      <hr />
+
+      <h2>Frequently asked questions</h2>
+      <dl class="space-y-6 not-prose">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="mt-14 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/psi-monitor" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          See PSI Monitor →
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-zinc-100">
+      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
+      <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
+    </div>
+
+  </article>
+</Layout>

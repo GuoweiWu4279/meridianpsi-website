@@ -78,8 +78,11 @@ export const footerData = {
       links: [
         { text: 'vs Native NinjaTrader Risk', href: getPermalink('/compare/meridian-vs-native-ninjatrader-risk') },
         { text: 'vs Hard-Limit Tools', href: getPermalink('/compare/meridian-vs-hard-limit-tools') },
+        { text: 'vs Guardian Angel', href: getPermalink('/compare/meridian-vs-guardian-angel-ninjatrader') },
         { text: 'vs Trading Journals', href: getPermalink('/compare/meridian-vs-trading-journals') },
+        { text: 'vs TradeZella', href: getPermalink('/compare/meridian-vs-tradezella') },
         { text: 'vs Daily Loss Limits', href: getPermalink('/compare/meridian-guard-vs-daily-loss-limits') },
+        { text: 'Cold Turkey Alternatives', href: getPermalink('/compare/cold-turkey-alternatives-daytraders') },
         { text: 'Best NT8 Risk Tools (2026)', href: getPermalink('/best-ninjatrader-risk-management-tools') },
         { text: 'All Comparisons', href: getPermalink('/compare') },
       ],

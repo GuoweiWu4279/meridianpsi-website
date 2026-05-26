@@ -89,4 +89,4 @@ The password lock is important. A Guard rule that can be overridden in the momen
 
 ---
 
-*Meridian is a behavioral monitoring add-on for NinjaTrader 8. It does not provide investment advice. Trading involves substantial risk of loss. Results may vary.*
+*[Meridian](https://www.meridianpsi.com) is a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. It detects evaluation-ending behavioral patterns before any hard limit is reached. Meridian does not provide investment advice. Trading involves substantial risk of loss. Results may vary.*

@@ -85,4 +85,4 @@ The Guard rule triggers when the behavioral pattern indicates elevated risk — 
 
 ---
 
-*Meridian is a behavioral monitoring add-on for NinjaTrader 8. It does not provide investment advice. Trading involves substantial risk of loss.*
+*[Meridian](https://www.meridianpsi.com) is a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. It fires on the behavioral pattern before any financial threshold needs to engage. Meridian does not provide investment advice. Trading involves substantial risk of loss.*

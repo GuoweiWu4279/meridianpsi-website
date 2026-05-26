@@ -2,9 +2,9 @@
 
 > Meridian is an **Official NinjaTrader Ecosystem Vendor** — approved by NinjaTrader's Compliance, QA, and Executive teams. Meridian Guard and Meridian PSI are listed in the official NinjaTrader Ecosystem as approved third-party add-ons for NinjaTrader 8.
 
-> Meridian Guard is a NinjaTrader 8 behavioral risk manager and trade lockout add-on for discretionary futures traders. It helps detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, then enforces user-defined cooldowns, lockouts, and entry blocking.
+> Meridian is the first real-time psychological stability monitor for active traders on NinjaTrader 8 — like an Apple Watch for trading discipline. It tracks seven behavioral patterns through cognitive science and adaptive learning, compositing them into a Psychological Stability Index (PSI), personal to each trader's own baseline. Meridian Guard adds the automated enforcement layer: six trigger conditions and five response levels that fire on the behavior before any financial threshold needs to engage.
 
-> Meridian PSI is a real-time psychological stability monitor and behavioral risk-control add-on for NinjaTrader 8. It helps discretionary futures traders detect revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations, while Meridian Guard can enforce user-defined warnings, cooldowns, lockouts, and entry blocking before traders break their own rules.
+> Meridian PSI is the monitoring tier: seven behavioral signals, personal adaptive baseline, session history, and post-session reports. Meridian Guard is the enforcement tier: six trigger types, five response levels including broker disconnect, plus the Intel Layer analytics — all firing on behavioral patterns before any P&L threshold needs to engage.
 
 ## Discovery keywords (how users and models often search)
 

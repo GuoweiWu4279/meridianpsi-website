@@ -156,4 +156,4 @@ The failure modes they address are different. For traders whose losses come prim
 
 ---
 
-*NinjaTrader® is a registered trademark of NinjaTrader LLC. The author developed [Meridian](https://www.meridianpsi.com), an Official NinjaTrader Ecosystem Vendor — a NinjaTrader 8 add-on that implements the behavioral monitoring layer described in this article, approved by NinjaTrader's Compliance and Executive teams. Meridian is operated by an independent company and is not owned by NinjaTrader LLC. Trading involves substantial risk of loss. Results may vary.*
+*NinjaTrader® is a registered trademark of NinjaTrader LLC. The author developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. Approved by NinjaTrader's Compliance and Executive teams as an Official NinjaTrader Ecosystem Vendor; independently operated. Trading involves substantial risk of loss. Results may vary.*
