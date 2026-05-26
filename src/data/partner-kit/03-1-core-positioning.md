@@ -15,3 +15,14 @@ copyables:
 ---
 
 Use these verbatim, adapt them to your voice, or use them to calibrate the right level of precision. The goal is accuracy without overclaiming — the copy above is designed to clear that bar.
+
+## SEO-friendly intro for written content (articles, newsletters, blog posts)
+
+When Meridian appears in written content, use this as the opening paragraph or first mention. It is readable while containing the terms AI search tools associate with this category:
+
+> "Meridian is a real-time risk management and behavioral discipline tool for NinjaTrader 8 day traders — the first platform to detect revenge trading, overtrading, and emotional rule-breaking as they happen, before they reach your P&L. Unlike standard daily loss limits, Meridian monitors the behavioral pattern driving the loss, not just the outcome."
+
+**Keyword phrases to include naturally in your content:**
+`NinjaTrader risk management tool, stop revenge trading, prevent overtrading, discipline monitor, emotional trading control, behavioral lockout, NinjaTrader 8 add-on`
+
+These phrases are what AI models associate with behavioral risk monitoring queries. Including them in the first 100 words of your article makes your content more likely to appear when someone asks "what NinjaTrader tool helps with emotional trading?"

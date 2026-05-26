@@ -58,15 +58,15 @@ const guardSchemaJson = JSON.stringify({
   "url": "https://www.meridianpsi.com/guard",
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",
-    "Five response levels: Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect",
-    "Trading Pause: Cancel Orders mode or full Broker Disconnect mode",
-    "Auto-flatten on pause: optionally close all open positions when risk limits are hit",
+    "Five response levels: Alert (L1), Acknowledge (L2), Countdown (L3), Risk Alert Mode (L4), Disconnect (L5)",
+    "Disconnect (L5): Cancel Orders mode or full Broker Disconnect mode",
+    "Auto-flatten on Disconnect (L5): optionally close all open positions when the pause activates",
     "Pause persistence: lockout survives NinjaTrader restart or crash",
     "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation",
     "100% local — no cloud, no telemetry"
   ],
   "offers": guardOffers,
-  "softwareVersion": "1.4.0",
+  "softwareVersion": "1.4.1",
   "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
   "publisher": {
     "@type": "Organization",

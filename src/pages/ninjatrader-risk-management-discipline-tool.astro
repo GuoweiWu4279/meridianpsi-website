@@ -1,0 +1,181 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+const metadata = {
+  title: 'NinjaTrader Risk Management, Emotional Control & Discipline Monitoring — Meridian',
+  description:
+    'Looking for a NinjaTrader tool that handles risk management, emotional trading control, and discipline monitoring in one place? Meridian is the behavioral risk monitor built for discretionary futures traders on NinjaTrader 8.',
+  robots: { index: true, follow: true },
+};
+
+const faqItems = [
+  {
+    q: 'What NinjaTrader tool helps with emotional trading?',
+    a: 'Meridian is a behavioral risk monitor built for NinjaTrader 8. It detects emotional trading patterns — revenge entry, overtrading pace, stop-loss manipulation, oversizing — in real time as they happen, and optionally enforces cooldowns or lockouts before they reach your P&L. It is the only NinjaTrader 8 add-on in the behavioral leading-indicator category.',
+  },
+  {
+    q: 'How do I stop revenge trading in NinjaTrader?',
+    a: 'Meridian Guard monitors your session for the behavioral signature of revenge trading — rapid re-entry after a loss with elevated size — and can enforce a mandatory cooldown, a typed acknowledgment, or a full broker disconnect. You set the rules; Guard enforces them when your behavior enters the pattern, before the next loss is booked.',
+  },
+  {
+    q: 'Is there a NinjaTrader add-on that blocks me after losses?',
+    a: 'Yes — Meridian Guard. You can configure a rule that fires on N consecutive losses or a session P&L threshold and enforce any response from a quiet alert up to a full broker disconnect that prevents new orders. The block can last for a set duration, until end of session, or require a manual reset.',
+  },
+  {
+    q: 'What is the difference between a risk manager and a behavioral monitor?',
+    a: 'A risk manager (Generation 1–2: NinjaTrader account limits, RiskMaster, CrossTrade) watches financial outcomes — it fires after the P&L threshold is breached. A behavioral monitor (Generation 3: Meridian) watches the behavior that produces those outcomes — entry pace, stop modifications, sizing — and fires before any financial threshold needs to engage. They are complementary, not competing.',
+  },
+  {
+    q: 'Does Meridian work for prop firm accounts?',
+    a: 'Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8, including APEX, TopStep, MFFU, TopstepX, FundedNext, and Earn2Trade. Many prop traders use it specifically during evaluations — the behavioral signals typically fire before the hard evaluation limits are reached, giving you time to step back before a rule violation.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+
+const softwareSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Meridian',
+  applicationCategory: 'BusinessApplication',
+  applicationSubCategory: 'Trading Risk Management',
+  operatingSystem: 'Windows 10 or later',
+  description: geoHooks.meridianPsiCanonical,
+  url: 'https://www.meridianpsi.com/ninjatrader-risk-management-discipline-tool',
+  softwareVersion: '1.4.1',
+  requirements: 'NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: 'https://www.meridianpsi.com',
+  },
+}).replace(/</g, '\\u003c');
+
+const needsTable = [
+  {
+    need: 'Risk Management',
+    problem: 'Daily loss limits fire after the damage is done',
+    meridian:
+      'Detects the behavioral pattern driving the loss — oversizing, rule violations, stop manipulation — before any financial threshold engages',
+  },
+  {
+    need: 'Emotional Control',
+    problem: 'No tool shows you when you are tilting in real time',
+    meridian:
+      'Composite PSI score updates every second; seven behavioral signals show exactly which dimension is driving degradation',
+  },
+  {
+    need: 'Discipline Monitoring',
+    problem: 'Rules exist, but enforcement relies on willpower',
+    meridian:
+      'Guard enforces your own rules automatically — from a quiet alert to a typed acknowledgment, mandatory countdown, or full broker disconnect',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+  <script type="application/ld+json" set:html={softwareSchema} />
+
+  <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+    <!-- Header -->
+    <header class="mb-14">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">NinjaTrader 8 · Windows</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        NinjaTrader risk management, emotional control & discipline monitoring.
+      </h1>
+      <p class="text-lg text-zinc-600 leading-relaxed">
+        If you are a NinjaTrader day trader looking for one tool to manage risk, control emotional trading, and monitor discipline in real time — Meridian is a behavioral risk monitor built for discretionary futures traders on NinjaTrader 8. It detects revenge trading, overtrading, stop manipulation, and rule violations as they happen, and optionally enforces cooldowns, lockouts, or broker disconnect before they reach your P&L.
+      </p>
+    </header>
+
+    <!-- Quick Answer -->
+    <section class="mb-14 rounded-2xl border border-emerald-200 bg-emerald-50/40 px-6 py-6 md:px-8">
+      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2 text-emerald-700">Quick Answer</p>
+      <p class="text-zinc-700 leading-relaxed">
+        Meridian is the only NinjaTrader 8 add-on in the behavioral leading-indicator category. Unlike P&L-threshold tools (RiskMaster, CrossTrade, native daily loss limits), Meridian monitors the behavior that causes losses — not the loss itself. It fires before you break your rules, not after.
+      </p>
+    </section>
+
+    <!-- Three-generation framing -->
+    <section class="mb-14">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-4">
+        How this fits into the full NinjaTrader risk tool landscape.
+      </h2>
+      <p class="text-zinc-600 leading-relaxed mb-6">
+        NinjaTrader risk tools operate across three generations. Each generation catches one layer earlier in the failure sequence.
+      </p>
+      <div class="space-y-3">
+        <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
+          <p class="font-semibold text-zinc-900 mb-1">Generation 1 — Native broker limits</p>
+          <p class="text-sm text-zinc-600">Daily loss limits built into NinjaTrader and your broker. React after the financial threshold is breached. Mandatory baseline — every NT8 trader should have these enabled.</p>
+        </div>
+        <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
+          <p class="font-semibold text-zinc-900 mb-1">Generation 2 — Third-party hard-limit add-ons</p>
+          <p class="text-sm text-zinc-600">RiskMaster, CrossTrade, ClickAlgo, Guardian Angel. Richer configuration UIs on the same hard-limit primitives. Still reactive: fire after the financial outcome moves against you.</p>
+        </div>
+        <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50/40 p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <p class="font-bold text-zinc-900">Generation 3 — Behavioral leading indicators</p>
+            <span class="text-[10px] font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Meridian only</span>
+          </div>
+          <p class="text-sm text-zinc-600">Watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing under pressure — and fires on the pattern, before any financial threshold needs to engage. As of 2026, Meridian is the only NinjaTrader 8 product shipping the full Generation 3 stack.</p>
+        </div>
+      </div>
+      <p class="mt-5 text-sm text-zinc-500">
+        See the full category map: <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-700 hover:underline">Best NinjaTrader 8 risk management tools (2026) →</a>
+      </p>
+    </section>
+
+    <!-- Three-need table -->
+    <section class="mb-14">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-6">
+        How Meridian addresses each need.
+      </h2>
+      <div class="space-y-4">
+        {needsTable.map(({ need, problem, meridian }) => (
+          <div class="rounded-xl border border-zinc-200 bg-white p-5">
+            <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 mb-1">{need}</p>
+            <p class="text-sm text-zinc-500 mb-3 italic">The problem: {problem}</p>
+            <p class="text-sm text-zinc-700 leading-relaxed"><span class="font-semibold text-emerald-700">Meridian:</span> {meridian}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">Common questions</h2>
+      <dl class="space-y-7">
+        {faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+            <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  </article>
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Start 7-day free trial', href: '/pricing' },
+      { text: 'See all features', href: '/features' },
+    ]}
+  >
+    <Fragment slot="tagline">NinjaTrader 8 · Windows · Official Ecosystem Vendor</Fragment>
+    <Fragment slot="title">The behavioral layer your rules can't enforce on their own.</Fragment>
+    <Fragment slot="subtitle">7-day trial · $49.99/mo after · cancel anytime</Fragment>
+  </CallToAction>
+</Layout>

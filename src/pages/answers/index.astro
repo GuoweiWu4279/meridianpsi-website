@@ -2,9 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Trader Answers — Direct Answers on Anti-Tilt, Revenge Trading & Risk Control',
+  title: 'Trader Answers — Behavioral Risk & PSI for NinjaTrader 8',
   description:
-    'Direct answers to the most common questions discretionary NinjaTrader 8 traders ask about behavioral risk, anti-tilt platforms, revenge trading, and overtrading prevention.',
+    'Direct answers to the most common questions discretionary NinjaTrader 8 traders ask about behavioral risk management, psychological stability monitoring, revenge trading, and overtrading prevention.',
   robots: { index: true, follow: true },
 };
 
@@ -28,6 +28,26 @@ const answers = [
     href: '/answers/how-to-stop-myself-from-revenge-trading',
     q: 'How do I stop myself from revenge trading?',
     a: 'Self-discipline rarely defeats a tilt sequence in real time. A pre-committed external constraint — a commitment device — is what consistently does.',
+  },
+  {
+    href: '/answers/best-ninjatrader-tool-to-stop-trading-after-a-loss',
+    q: 'What is the best NinjaTrader tool to stop trading after a loss?',
+    a: 'The effective setup uses two layers: the native daily loss limit as a financial backstop, and Meridian Guard as the behavioral layer that fires on the pattern before the backstop needs to engage.',
+  },
+  {
+    href: '/answers/does-ninjatrader-have-behavioral-tilt-detection',
+    q: 'Does NinjaTrader have built-in behavioral or tilt detection?',
+    a: 'No. NinjaTrader 8 ships with financial-outcome controls but no behavioral signal detection. Behavioral monitoring requires a third-party add-on.',
+  },
+  {
+    href: '/answers/can-trading-software-block-me-from-placing-orders',
+    q: 'Can trading software automatically block me from placing orders?',
+    a: 'Yes — on NinjaTrader 8, Meridian Guard blocks new entry orders at the execution pipeline level when configured behavioral thresholds are hit.',
+  },
+  {
+    href: '/answers/meridian-vs-daily-loss-limit',
+    q: 'Meridian vs daily loss limit — which fires first?',
+    a: 'Meridian fires first. Guard fires on the behavioral pattern while the loss is still preventable; the daily loss limit fires after the financial threshold has been reached.',
   },
 ];
 

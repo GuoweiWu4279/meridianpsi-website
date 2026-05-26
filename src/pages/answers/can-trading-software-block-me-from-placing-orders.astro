@@ -1,0 +1,106 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Can Trading Software Automatically Block Me From Placing Orders? — Meridian',
+  description:
+    'Yes — on NinjaTrader 8, Meridian Guard can automatically block new entries when configured behavioral thresholds are hit, before the order reaches the market.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'Can trading software automatically block me from placing orders?';
+const directAnswer = 'Yes — on NinjaTrader 8, Meridian Guard can block new entries automatically when configured thresholds are hit. The block is enforced at the NinjaTrader order pipeline level: new entry orders are cancelled before they reach the market. Meridian Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (acknowledgment, countdown, entry block, disconnect) are both user-configured in advance.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/can-trading-software-block-me-from-placing-orders',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · NinjaTrader 8</p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
+
+      <h2>How Meridian Guard blocks orders on NinjaTrader 8</h2>
+      <p>
+        Meridian Guard intercepts at the NinjaTrader order execution pipeline. When a Guard rule fires, new entry orders placed through the NinjaTrader interface are cancelled before they reach the broker. This applies to manual orders, hotkey orders, and orders placed via ATM strategies. Close-position orders (flatten, bracket stops) are never blocked — only new entry orders during an active pause.
+      </p>
+
+      <h2>The five response levels</h2>
+      <p>
+        Guard's block is not binary. It escalates across five levels, and you configure which level fires for which trigger:
+      </p>
+      <ul>
+        <li><strong>Alert (L1)</strong> — a quiet notification; no block on orders</li>
+        <li><strong>Acknowledge (L2)</strong> — must type a pre-written phrase before the next entry is allowed</li>
+        <li><strong>Countdown (L3)</strong> — mandatory timed pause; entries blocked until the timer expires</li>
+        <li><strong>Risk Alert Mode (L4)</strong> — persistent banner; confirmation required before each new entry</li>
+        <li><strong>Disconnect (L5)</strong> — broker connection severed; no new entries possible until manually reconnected</li>
+      </ul>
+      <p>
+        Most traders use L2 (Acknowledge) for a first trigger, L3 (Countdown) for a second, and L5 (Disconnect) for the third. The escalation means early signals are informational; later signals are enforcement.
+      </p>
+
+      <h2>What triggers the block</h2>
+      <p>
+        Six trigger types are available:
+      </p>
+      <ul>
+        <li>PSI (Psychological Stability Index) drops below a configured threshold</li>
+        <li>N consecutive losses</li>
+        <li>Session P&L drops below a configured limit</li>
+        <li>Unrealized P&L on an open position drops below a threshold (before the position closes)</li>
+        <li>A single trade loss exceeds a configured amount</li>
+        <li>Session time exceeds a planned duration</li>
+      </ul>
+      <p>
+        Rules can be password-locked so they cannot be overridden in-session.
+      </p>
+
+      <p>
+        Full documentation on setup: <a href="/guard" class="text-emerald-700 underline">Meridian Guard — trigger and response model</a>. For comparing Guard to a daily loss limit: <a href="/compare/meridian-guard-vs-daily-loss-limits" class="text-emerald-700 underline">Guard vs daily loss limits</a>.
+      </p>
+    </div>
+
+    <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+    </div>
+
+    <div class="mt-8 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+          Start 7-day free trial
+        </a>
+        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

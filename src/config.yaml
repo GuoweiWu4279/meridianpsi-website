@@ -4,7 +4,7 @@ site:
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: null
+  googleSiteVerificationId: null  # TODO: paste GSC meta verification token here (e.g. "abc123xyz" from Search Console → Settings → Ownership verification → HTML tag)
 
 # Default SEO metadata
 metadata:
@@ -23,8 +23,8 @@ metadata:
         height: 628
     type: website
   twitter:
-    handle: null
-    site: null
+    handle: '@Meridian_PSI'
+    site: '@Meridian_PSI'
     cardType: summary_large_image
 
 i18n:

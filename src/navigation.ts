@@ -55,6 +55,8 @@ export const footerData = {
       links: [
         { text: 'Meridian Guard', href: getPermalink('/guard') },
         { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
+        { text: 'Session Journal', href: getPermalink('/journal') },
+        { text: 'History & Intel', href: getPermalink('/history-intel') },
         { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
         { text: 'How Meridian Works', href: getPermalink('/what-is-meridian-psi') },
         { text: 'All Features', href: getPermalink('/features') },
@@ -65,6 +67,7 @@ export const footerData = {
     {
       title: 'Solutions',
       links: [
+        { text: 'Risk, Emotion & Discipline Guide', href: getPermalink('/ninjatrader-risk-management-discipline-tool') },
         { text: 'Anti-Tilt Risk Management', href: getPermalink('/anti-tilt') },
         { text: 'Revenge Trading Lockout', href: getPermalink('/use-cases/ninjatrader-revenge-trading-lockout') },
         { text: 'Overtrading Prevention', href: getPermalink('/use-cases/ninjatrader-overtrading-prevention') },
