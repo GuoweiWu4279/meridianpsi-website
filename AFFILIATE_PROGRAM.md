@@ -82,7 +82,7 @@ Creators must clearly disclose that:
 ## Outreach Talking Points
 
 - Real-time PSI score during the session
-- Seven visible behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace)
+- Seven visible behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace)
 - Session review that goes beyond P&L
 - Personal adaptive baseline instead of generic thresholds
 - Native NinjaTrader 8 add-on, fully local — no cloud, no telemetry

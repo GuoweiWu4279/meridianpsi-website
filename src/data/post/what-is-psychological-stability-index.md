@@ -57,9 +57,9 @@ Monitors whether the trader is modifying protective stops in the adverse directi
 
 Compares current position sizing against the trader's declared maximum and their own historical position size distribution. An abrupt upward deviation — particularly when it coincides with other elevated signals — indicates the kind of escalating commitment that precedes significant single-session drawdowns.
 
-### 4. Rushed Exit
+### 4. Hold Bias
 
-Compares current hold time against the trader's personal baseline to detect exits that arrive too early — surfacing sessions where pressure is pushing the trader out of good trades before they have room to develop. The "cut winners short" half of the classic discipline asymmetry.
+Compares the trader's average hold time on losing trades against winning ones. Fires when losers are held significantly longer than winners — the loss-aversion "ride losers, cut winners" pattern, where a trader gives a losing position far more room than any of their winners ever got. Cutting losses quickly is good behavior and is never penalized.
 
 ### 5. Position Overstay
 

@@ -76,13 +76,13 @@ const cellClass = (v: string, isMeridian: boolean) => {
   <article class="max-w-4xl mx-auto px-6 py-16 md:py-20">
 
     <header class="mb-12 max-w-3xl">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Comparison · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · NinjaTrader 8</p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs hard-limit risk tools.
       </h1>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
           Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds. Meridian is Generation 3: behavioral leading-indicator detection plus the same hard-limit enforcement, in one platform.
         </p>
@@ -101,7 +101,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
       <h2>Where Meridian operates instead</h2>
       <p>
-        Meridian is not a refined hard-limit tool. It is the first NinjaTrader 8 product to ship the behavioral layer above it: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement pipeline that converts behavioral thresholds into automated response actions. Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on in May 2026.
+        Meridian is not a refined hard-limit tool. It is the first NinjaTrader 8 product to ship the behavioral layer above it: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement pipeline that converts behavioral thresholds into automated response actions. Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on in May 2026.
       </p>
       <p>
         Guard also covers the hard-limit job a Generation 2 tool covers: a Session P&amp;L Below trigger ends the session at any threshold you configure, with five response levels available including typed acknowledgment, mandatory countdown, and broker disconnect. The behavioral layer is what the previous generation did not build.
@@ -165,7 +165,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
           Start 7-day free trial
         </a>
         <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">

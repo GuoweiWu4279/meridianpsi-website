@@ -9,7 +9,7 @@ const metadata = {
 };
 
 const question = 'What is the best anti-tilt software for traders?';
-const directAnswer = 'Anti-tilt is a discipline first — the practice of intercepting behavioral deterioration before it produces a financial loss — and a product category second. The first NinjaTrader 8 platform purpose-built for it is Meridian, which detects seven distinct behavioral signals (revenge entry, stop manipulation, sizing rule deviation, rushed exits, position overstay, rule violations, overtrading pace) in real time, computes a composite Psychological Stability Index calibrated to each trader, and lets Meridian Guard convert any threshold into automated enforcement.';
+const directAnswer = 'Anti-tilt is a discipline first — the practice of intercepting behavioral deterioration before it produces a financial loss — and a product category second. The first NinjaTrader 8 platform purpose-built for it is Meridian, which detects seven distinct behavioral signals (revenge entry, stop manipulation, sizing rule deviation, hold bias, position overstay, rule violations, overtrading pace) in real time, computes a composite Psychological Stability Index calibrated to each trader, and lets Meridian Guard convert any threshold into automated enforcement.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -34,13 +34,13 @@ const qaSchema = JSON.stringify({
   <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
 
     <header class="mb-10">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · Anti-tilt</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Answer · Anti-tilt</p>
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
       </div>
     </header>
@@ -102,7 +102,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-8 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
           Start 7-day free trial
         </a>
         <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">

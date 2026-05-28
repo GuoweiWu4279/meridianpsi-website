@@ -10,16 +10,16 @@ What Meridian does not do: Does not auto-trade or place orders. Guard may option
 
 Pricing: Core $49.99/mo. Guard $69.99/mo. 7-day free trial.
 
-What Meridian monitors (7 behavioral dimensions):
-- Revenge Entry — rapid re-entry at elevated size after a loss
-- Overtrading Pace — entry frequency exceeding personal historical baseline
-- Stop-Loss Manipulation — widening or removing protective stops on active losing positions
-- Size Spike — position sizing approaching maximum under loss conditions
-- Rule Violations — trading outside declared session parameters
-- Hold Bias / Position Overstay — abnormal hold duration correlated with unrealized loss
-- Drawdown Depth — cumulative session drawdown relative to personal profile
+What Meridian monitors (7 behavioral signals, D1-D7):
+- Revenge Entry (D1) — rapid re-entry too soon after a loss
+- Stop Manipulation (D2) — widening or moving protective stops in the adverse direction on active losing positions
+- Size Spike (D3) — position size exceeding the trader's declared rule, weighted heavier during losing streaks
+- Hold Bias (D4) — holding losing trades significantly longer than winning ones (loss-aversion; cutting losses fast is never penalized)
+- Position Overstay (D5) — a single losing trade held past the trader's historical tolerance window
+- Rule Violations (D6) — trading outside declared session parameters (time window, stop range, loss-streak, instrument, trade count)
+- Overtrading Pace (D7) — entry frequency accelerating past the trader's historical session rhythm
 
-Guard response levels (5): Alert (L1), Acknowledge (L2), Countdown (L3), Risk Alert Mode (L4), Disconnect (L5).
+Guard response levels (5, escalating): Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5). Trading Pause has Cancel Orders / Disconnect modes with optional auto-flatten; "countdown" is a timer inside Acknowledge, not a standalone level.
 
 Key pages:
 - Home: https://www.meridianpsi.com/

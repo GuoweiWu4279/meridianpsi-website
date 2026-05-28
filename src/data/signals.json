@@ -1,0 +1,47 @@
+{
+  "_comment": "Canonical D1–D7 behavioral signals — single source of truth. Names match the live NT8 HUD (hudLabel) and MERIDIAN.md §4. Edit here; pages import this file. Do NOT hardcode signal names/descriptions in pages.",
+  "signals": [
+    {
+      "code": "D1",
+      "name": "Revenge Entry",
+      "hudLabel": "Revenge",
+      "short": "Re-entering too quickly after a loss."
+    },
+    {
+      "code": "D2",
+      "name": "Stop Manipulation",
+      "hudLabel": "No Stop",
+      "short": "Widening or moving your stop when the trade moves against you."
+    },
+    {
+      "code": "D3",
+      "name": "Size Spike",
+      "hudLabel": "Oversize",
+      "short": "Position size exceeding your declared rule — heavier weight during losing streaks."
+    },
+    {
+      "code": "D4",
+      "name": "Hold Bias",
+      "hudLabel": "Loss Hold Bias",
+      "short": "Holding losing trades far longer than your winners — the loss-aversion \"ride losers\" pattern."
+    },
+    {
+      "code": "D5",
+      "name": "Position Overstay",
+      "hudLabel": "Holding Long",
+      "short": "Holding a losing trade past your historical tolerance — the \"let losers run\" pattern."
+    },
+    {
+      "code": "D6",
+      "name": "Rule Violations",
+      "hudLabel": "Rule Break",
+      "short": "Trading outside the rules you set in your own profile."
+    },
+    {
+      "code": "D7",
+      "name": "Overtrading Pace",
+      "hudLabel": "Overtrade",
+      "short": "Entry frequency accelerating past your normal session rhythm."
+    }
+  ]
+}

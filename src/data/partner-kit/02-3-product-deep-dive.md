@@ -33,7 +33,7 @@ Each dimension measures a specific pattern of potentially emotionally-driven beh
 | D1 | Revenge Entry | How quickly you re-enter after a losing trade, relative to your normal re-entry cadence |
 | D2 | Stop Manipulation | Whether you're widening your stop-loss after entry, relative to your baseline stop adjustment patterns |
 | D3 | Size Spike | Position size relative to your typical sizing baseline for this instrument and time of day |
-| D4 | Rushed Exit | Exiting a position significantly faster than your normal hold time for the session context |
+| D4 | Hold Bias | Holding losing trades significantly longer than your winning ones — the loss-aversion pattern (cutting losses fast is never penalized) |
 | D5 | Position Overstay | Holding a losing position deeper into loss territory than your normal baseline |
 | D6 | Rule Violations | Directly violating rules you've explicitly configured in your trading plan |
 | D7 | Overtrading Pace | Trading frequency significantly above your normal session pace |
@@ -69,11 +69,11 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 
 **5 response levels (L1 → L5, increasing severity):**
 
-1. **Alert (L1)** — a quiet visual notification
-2. **Acknowledge (L2)** — the user types a phrase they wrote in advance before continuing (the phrase set when calm, typed when not — the most powerful of the five)
-3. **Countdown (L3)** — a forced waiting period; cannot be skipped
-4. **Risk Alert Mode (L4)** — persistent banner; every new entry requires active confirmation
-5. **Disconnect (L5)** — disconnects the broker connection (calls NT8's standard broker-disconnect API). **Open positions are not closed.** The user reconnects through NT8 to resume trading.
+1. **Notify (L1)** — a quiet toast notification
+2. **Risk Alert (L2)** — persistent banner; every new entry requires active confirmation
+3. **Acknowledge (L3)** — the user types a phrase they wrote in advance, with an optional countdown, before continuing (set when calm, typed when not — the most powerful friction of the five)
+4. **Trading Pause (L4)** — blocks new entries by cancelling orders; survives a NinjaTrader restart
+5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API). **Open positions can be auto-flattened if configured, or left under your manual control.** The user reconnects through NT8 to resume trading.
 
 Each trigger fires once on entry and then resets — no spam. Any rule can be password-locked to prevent in-session override; most traders pick a password they won't remember under pressure as a deliberate friction device.
 

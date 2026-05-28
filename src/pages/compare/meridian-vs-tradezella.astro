@@ -102,13 +102,13 @@ const faqSchema = JSON.stringify({
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
 
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Comparison · Different categories</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · Different categories</p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs TradeZella.
       </h1>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
           TradeZella shows you what happened in your trading history. Meridian monitors what is happening right now and can intervene before the session ends badly. One is post-trade analysis. The other is real-time psychological stability monitoring. Same underlying concern about trader psychology; completely different point in the process.
         </p>
@@ -135,7 +135,7 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is a real-time psychological stability monitor. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Rushed Exit, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
+        Meridian is a real-time psychological stability monitor. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
       </p>
       <p>
         Those signals feed into a composite Psychological Stability Index (PSI), scored 0 to 100 and updated under 100 milliseconds after every order event. The baseline is personal: the system learns what each trader's own normal looks like across sessions and calibrates against that, not against a fixed standard. A session where your PSI is 40 looks different than it would for another trader at the same dollar loss, because your behavioral baseline is yours.
@@ -196,7 +196,7 @@ const faqSchema = JSON.stringify({
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
           Start 7-day free trial
         </a>
         <a href="/psi-monitor" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">

@@ -34,12 +34,12 @@ const qaSchema = JSON.stringify({
   <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
 
     <header class="mb-10">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Answer · NinjaTrader 8</p>
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
       </div>
     </header>
@@ -56,10 +56,10 @@ const qaSchema = JSON.stringify({
         Guard's block is not binary. It escalates across five levels, and you configure which level fires for which trigger:
       </p>
       <ul>
-        <li><strong>Alert (L1)</strong> — a quiet notification; no block on orders</li>
-        <li><strong>Acknowledge (L2)</strong> — must type a pre-written phrase before the next entry is allowed</li>
-        <li><strong>Countdown (L3)</strong> — mandatory timed pause; entries blocked until the timer expires</li>
-        <li><strong>Risk Alert Mode (L4)</strong> — persistent banner; confirmation required before each new entry</li>
+        <li><strong>Notify (L1)</strong> — a quiet notification; no block on orders</li>
+        <li><strong>Risk Alert (L2)</strong> — persistent banner; confirmation required before each new entry</li>
+        <li><strong>Acknowledge (L3)</strong> — must type a pre-written phrase (with an optional countdown) before the next entry is allowed</li>
+        <li><strong>Trading Pause (L4)</strong> — new entries blocked by cancelling orders; survives an NT8 restart</li>
         <li><strong>Disconnect (L5)</strong> — broker connection severed; no new entries possible until manually reconnected</li>
       </ul>
       <p>
@@ -94,7 +94,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-8 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
           Start 7-day free trial
         </a>
         <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">

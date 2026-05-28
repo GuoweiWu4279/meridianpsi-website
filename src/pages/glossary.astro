@@ -33,7 +33,7 @@ const terms = [
     id: 'seven-signals',
     term: 'Seven Behavioral Signal Dimensions',
     definition:
-      'The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Rushed Exit — cutting winners too early relative to the trader\'s normal hold-time baseline; (5) Position Overstay — holding a losing trade beyond the trader\'s historical tolerance window; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.',
+      'The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Hold Bias — holding losing trades significantly longer than winning ones, the loss-aversion pattern (cutting losses quickly is never penalized); (5) Position Overstay — holding a losing trade beyond the trader\'s historical tolerance window; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.',
     related: ['psi', 'behavioral-baseline'],
   },
   {
@@ -128,7 +128,7 @@ const schemaJson = JSON.stringify({
   <!-- Header -->
   <section class="py-16 px-6 border-b border-zinc-200/60" style="background:#faf7f2;">
     <div class="max-w-3xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style="color:#059669;">Reference</p>
+      <p class="text-[11px] font-semibold tracking-[0.18em] uppercase mb-3" style="color:var(--aw-color-primary);">Reference</p>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-4">Glossary</h1>
       <p class="text-lg text-zinc-500 leading-relaxed max-w-2xl">
         Key terms in trading psychology, behavioral risk management, and the Meridian platform — defined precisely.
@@ -188,7 +188,7 @@ const schemaJson = JSON.stringify({
   <!-- Bottom CTA -->
   <section class="py-16 px-6 border-t border-zinc-200/60" style="background:#faf7f2;">
     <div class="max-w-3xl mx-auto text-center">
-      <p class="text-sm font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">See it in practice</p>
+      <p class="text-sm font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">See it in practice</p>
       <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-4 tracking-tight">
         Every term on this page is tracked live inside Meridian.
       </h2>
@@ -196,7 +196,7 @@ const schemaJson = JSON.stringify({
         Meridian monitors these behavioral patterns in real time, every session, entirely on your PC.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/features" class="btn btn-lg font-semibold" style="background:#059669;color:white;border:1px solid #059669;">
+        <a href="/features" class="btn btn-lg font-semibold" style="background:var(--aw-color-primary);color:white;border:1px solid var(--aw-color-primary);">
           See all features
         </a>
         <a href="/pricing" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.18);color:#18181b;">

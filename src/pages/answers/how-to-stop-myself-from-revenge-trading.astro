@@ -34,13 +34,13 @@ const qaSchema = JSON.stringify({
   <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
 
     <header class="mb-10">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:#059669;">Answer · Behavioral risk</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Answer · Behavioral risk</p>
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:#059669;">Short answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
       </div>
     </header>
@@ -68,7 +68,7 @@ const qaSchema = JSON.stringify({
         Meridian Guard for NinjaTrader 8 is built specifically as a commitment-device platform. The trader configures the rules in advance — for example, "after two consecutive losses, require a typed acknowledgment phrase before the next entry; after three, enforce a 10-minute countdown; after four, end the session" — and Guard enforces them automatically the moment a trigger condition is met.
       </p>
       <p>
-        Six trigger types are available: PSI Below (the composite Psychological Stability Index drops under a threshold), Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, and Session Time Over. Each can be paired with one of five response levels — Alert, Acknowledge, Countdown, Risk Alert Mode, Disconnect — selected for the appropriate severity. Guard rules can be password-locked to prevent in-session override, with most traders selecting a password they will not remember under pressure as a standard practice.
+        Six trigger types are available: PSI Below (the composite Psychological Stability Index drops under a threshold), Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, and Session Time Over. Each can be paired with one of five response levels — Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect — selected for the appropriate severity. Guard rules can be password-locked to prevent in-session override, with most traders selecting a password they will not remember under pressure as a standard practice.
       </p>
 
       <h2>The pre-commitment that matters</h2>
@@ -96,7 +96,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-8 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:#059669;">
+        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
           Start 7-day free trial
         </a>
         <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">

@@ -86,19 +86,19 @@
     @apply inline-flex items-center justify-center rounded-lg font-medium text-center leading-snug transition-all duration-200 ease-out cursor-pointer
            text-sm px-5 py-2.5
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
-    --tw-ring-color: #059669;
+    --tw-ring-color: var(--aw-color-primary);
     --tw-ring-offset-color: white;
   }
 
   .btn-primary {
     @apply btn font-semibold hover:-translate-y-0.5 active:translate-y-0;
-    background: #059669;
+    background: var(--aw-color-primary);
     color: white;
-    border: 1px solid #059669;
+    border: 1px solid var(--aw-color-primary);
   }
   .btn-primary:hover {
-    background: #047857;
-    border-color: #047857;
+    background: var(--aw-color-secondary);
+    border-color: var(--aw-color-secondary);
   }
 
   .btn-secondary {
@@ -123,9 +123,9 @@
 
   .btn-tertiary {
     @apply inline-flex items-center gap-1 text-sm font-medium transition-colors;
-    color: #059669;
+    color: var(--aw-color-primary);
   }
-  .btn-tertiary:hover { color: #047857; }
+  .btn-tertiary:hover { color: var(--aw-color-secondary); }
   .dark .btn-tertiary:hover { color: #6ee7b7; }
 
   .btn-lg {
@@ -160,13 +160,13 @@
     @apply transition-all duration-200 hover:-translate-y-0.5;
   }
   .card-hover:hover {
-    border-color: #059669;
+    border-color: var(--aw-color-primary);
   }
 
   /* ——— Typography helpers ———————————————————— */
   .eyebrow {
     @apply text-xs font-semibold tracking-widest uppercase;
-    color: #059669;
+    color: var(--aw-color-primary);
   }
   .display {
     @apply text-4xl md:text-6xl font-bold tracking-tight;

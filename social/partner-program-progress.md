@@ -27,7 +27,7 @@
 - `src/pages/what-is-meridian-psi.astro` — 7-signal list normalized · removed "Credit card required at checkout"
 - `src/data/features.json` — PSI zones updated to 4-zone model
 - `src/data/faq/what-is-psi.md` — 4-zone description (added Warning)
-- `src/data/post/what-is-psychological-stability-index.md` — Hold Bias → Rushed Exit · 3-zone → 4-zone · "below 55 considered Critical" → "below 55 classified as Critical"
+- `src/data/post/what-is-psychological-stability-index.md` — D4 = Hold Bias (matches add-on engine) · 3-zone → 4-zone · "below 55 considered Critical" → "below 55 classified as Critical"
 - `src/data/changelog/v0.9.0.md` — fixed `downloadUrl: ~` (null) schema error blocking dev server
 
 ### PSI zones (canonical, from add-on code)
@@ -41,7 +41,7 @@
 
 ### 7 behavioral signals (canonical naming)
 
-D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Rushed Exit · D5 Position Overstay · D6 Rule Violations · D7 Overtrading Pace
+D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Hold Bias · D5 Position Overstay · D6 Rule Violations · D7 Overtrading Pace
 
 ### About page
 

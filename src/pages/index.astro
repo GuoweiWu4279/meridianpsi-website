@@ -1,8 +1,9 @@
-﻿---
+---
 import Layout from '~/layouts/PageLayout.astro';
 import heroBgImage from '~/assets/images/hero-bg.jpg';
 import pricing from '~/data/pricing.json';
 import geoHooks from '~/data/geo-hooks.json';
+import signalsData from '~/data/signals.json';
 
 import Hero from '~/components/widgets/Hero.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -127,7 +128,7 @@ const steps = [
     fullDesc: 'Meridian monitors behavior with adaptive learning and behavioral finance principles to catch mistakes BEFORE they happen.',
     bullets: [
       'Tracks revenge trading, overtrading, and oversizing pressure.',
-      'Detects stop-loss manipulation, holding losers too long, and profit-cutting behavior.',
+      'Detects stop-loss manipulation, holding losers longer than winners, and overstaying losing positions.',
       'Pressure indicators surface early breakdown signals before damage compounds.',
     ],
     carouselSlides: [
@@ -172,15 +173,8 @@ const steps = [
   },
 ];
 
-const signals = [
-  { name: 'Revenge Entry', desc: 'Re-entering too quickly after a loss.' },
-  { name: 'Stop Manipulation', desc: 'Widening or moving your stop when the trade moves against you.' },
-  { name: 'Size Spike', desc: 'Position size exceeding your declared rule — heavier weight during losing streaks.' },
-  { name: 'Rushed Exit', desc: 'Cutting a profitable position before any meaningful price move — the "cut winners" pattern.' },
-  { name: 'Position Overstay', desc: 'Holding a losing trade past your historical tolerance — the "let losers run" pattern.' },
-  { name: 'Rule Violations', desc: 'Trading outside the rules you set in your own profile.' },
-  { name: 'Overtrading Pace', desc: 'Entry frequency accelerating past your normal session rhythm.' },
-];
+// Canonical signals come from src/data/signals.json (single source of truth).
+const signals = signalsData.signals.map((s) => ({ name: s.name, desc: s.short }));
 
 const intelShowcaseTabs = [
   {
@@ -367,13 +361,13 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           <div class="text-center lg:text-left max-w-4xl mx-auto lg:max-w-none lg:mx-0">
             <!-- Eyebrow badge -->
             <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-7 fade-up rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-              <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Real-time psychological stability monitor NT 8</span>
+              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
+              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Real-time psychological stability monitor NT 8</span>
             </div>
             <!-- Title -->
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.1rem] xl:text-[3.6rem] font-bold leading-[1.1] tracking-tight mb-6 word-blur-target" style="color:#18181b;">
               Stop mistakes<br />
-              <span style="color:#059669;">before they reach<br class="hidden lg:block" />the order window.</span>
+              <span style="color:var(--aw-color-primary);">before they reach<br class="hidden lg:block" />the order window.</span>
             </h1>
             <!-- Subtitle — split for emphasis -->
             <p class="text-lg md:text-xl font-semibold leading-snug max-w-[520px] mx-auto lg:mx-0 mb-2 fade-up" style="color:#27272a;">
@@ -384,7 +378,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             </p>
             <!-- CTAs -->
             <div class="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3 mb-4 fade-up">
-              <a href="/pricing" class="btn btn-lg font-semibold" style="background:#059669; color:white; border:1px solid #059669;">Start 7-day free trial</a>
+              <a href="/pricing" class="btn btn-lg font-semibold" style="background:var(--aw-color-primary); color:white; border:1px solid var(--aw-color-primary);">Start 7-day free trial</a>
               <a href="#video-demo" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.2); color:#18181b; background:transparent;">Watch 90-sec demo</a>
             </div>
             <p class="text-xs fade-up" style="color:#a1a1aa;">
@@ -496,11 +490,11 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <!-- Header -->
       <div class="text-center max-w-2xl mx-auto mb-14 lg:mb-20 fade-up">
         <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-5 rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-          <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Trading software, evolved</span>
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
+          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Trading software, evolved</span>
         </div>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4" style="color:#18181b;">
-          Your ultimate <span style="color:#059669;">trading partner.</span>
+          Your ultimate <span style="color:var(--aw-color-primary);">trading partner.</span>
         </h2>
         <p class="text-base md:text-lg leading-relaxed" style="color:#71717a;">
           Built to support every stage of your trading — and adapt to the way you actually trade.
@@ -517,7 +511,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <!-- 01 Live Monitor -->
         <div class="text-center relative">
           <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 12h4l3-8 4 16 3-8h4"/>
             </svg>
           </div>
@@ -531,7 +525,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <!-- 02 Guard -->
         <div class="text-center relative">
           <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/>
               <path d="M9 12l2 2 4-4"/>
             </svg>
@@ -539,14 +533,14 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">02</p>
           <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Guard</h3>
           <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Intervenes when you diverge — alert, typed acknowledgment, countdown, or broker disconnect.
+            Intervenes when you diverge — from a quiet notification to a typed acknowledgment, trading pause, or broker disconnect.
           </p>
         </div>
 
         <!-- 03 Journal -->
         <div class="text-center relative">
           <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 4h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4z"/>
               <path d="M4 4v18"/>
               <path d="M8 8h6M8 12h6M8 16h4"/>
@@ -562,7 +556,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <!-- 04 Review & Intel -->
         <div class="text-center relative">
           <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21h18"/>
               <path d="M6 17V11"/>
               <path d="M11 17V7"/>
@@ -580,7 +574,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <!-- 05 Adaptive Learning -->
         <div class="text-center relative">
           <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border-2 border-emerald-600/40 shadow-sm" style="box-shadow:0 4px 14px -4px rgba(5,150,105,0.18), 0 1px 3px rgba(0,0,0,0.04);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/>
               <path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/>
               <path d="M21 3v5h-5"/>
@@ -599,7 +593,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <!-- Loop hint — closes the cycle in words -->
       <div class="mt-14 lg:mt-16 text-center fade-up">
         <p class="inline-flex items-center gap-2 text-sm" style="color:#71717a;">
-          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/>
             <path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/>
             <path d="M21 3v5h-5"/>
@@ -629,7 +623,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 fade-up">
         {signals.map((s, i) => (
           <div class="card card-hover p-5 flex items-start gap-4 shadow-sm shadow-zinc-900/5 ring-1 ring-zinc-900/[0.03]">
-            <span class="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-[rgba(75,115,78,0.12)] dark:bg-emerald-900/30 text-[#4b734e] dark:text-emerald-400 text-xs font-semibold flex items-center justify-center">
+            <span class="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-[rgba(75,115,78,0.12)] dark:bg-emerald-900/30 text-[var(--aw-color-logo-green)] dark:text-emerald-400 text-xs font-semibold flex items-center justify-center">
               {String(i + 1).padStart(2, '0')}
             </span>
             <div>
@@ -660,8 +654,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full"
           style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
         >
-          <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.12em]" style="color:#059669;">Review, Analysis &amp; Intel</span>
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
+          <span class="text-[11px] font-semibold tracking-[0.12em]" style="color:var(--aw-color-primary);">Review, Analysis &amp; Intel</span>
         </div>
       </div>
 
@@ -778,7 +772,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <section id="video-demo" class="py-16 md:py-20 px-6 bg-white border-b border-zinc-100">
     <div class="max-w-3xl mx-auto text-center">
       <!-- Eyebrow -->
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 fade-up" style="color:#059669;">See It In Action</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 fade-up" style="color:var(--aw-color-primary);">See It In Action</p>
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 fade-up" style="color:#18181b;">
         Watch how Meridian works
       </h2>
@@ -846,14 +840,14 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
 
       <!-- Eyebrow -->
       <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full fade-up" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-        <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">A new category</span>
+        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
+        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">A new category</span>
       </div>
 
       <!-- H2 -->
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
         We are not a better risk tool.<br />
-        <span style="color:#059669;">We are a different stage.</span>
+        <span style="color:var(--aw-color-primary);">We are a different stage.</span>
       </h2>
 
       <!-- Sub-headline -->
@@ -878,7 +872,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
 
           <!-- Column 1: BEFORE THE ORDER -->
           <div class="flex flex-col items-center gap-3 relative z-10">
-            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:#059669;">Before the order</p>
+            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:var(--aw-color-primary);">Before the order</p>
             <div class="timeline-dot timeline-dot-1 w-5 h-5 rounded-full ring-2 ring-white ring-offset-1" style="background:#064e3b; box-shadow:0 0 0 8px rgba(6,78,59,0.15);"></div>
           </div>
 
@@ -905,29 +899,29 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6 items-stretch">
 
           <!-- Stage 1 — Meridian (background image, slightly more padding) -->
-          <div class="timeline-card timeline-card-1 relative rounded-2xl p-6 md:p-7 text-left flex flex-col overflow-hidden" style="border:2px solid #059669; box-shadow: 0 24px 48px -16px rgba(5,150,105,0.30), 0 8px 20px -12px rgba(5,150,105,0.14), 0 3px 8px -3px rgba(0,0,0,0.06); background-image: url('/images/card-bg.jpg'); background-size: cover; background-position: center;">
+          <div class="timeline-card timeline-card-1 relative rounded-2xl p-6 md:p-7 text-left flex flex-col overflow-hidden" style="border:2px solid var(--aw-color-primary); box-shadow: 0 24px 48px -16px rgba(5,150,105,0.30), 0 8px 20px -12px rgba(5,150,105,0.14), 0 3px 8px -3px rgba(0,0,0,0.06); background-image: url('/images/card-bg.jpg'); background-size: cover; background-position: center;">
             <!-- Overlay so text stays readable -->
             <div class="absolute inset-0 rounded-2xl" style="background:rgba(255,255,255,0.82); pointer-events:none;"></div>
-            <span class="absolute z-10 top-2.5 left-3 text-[9px] font-bold tracking-[0.18em] uppercase rounded px-1.5 py-0.5" style="background:#059669; color:white;">New category</span>
+            <span class="absolute z-10 top-2.5 left-3 text-[9px] font-bold tracking-[0.18em] uppercase rounded px-1.5 py-0.5" style="background:var(--aw-color-primary); color:white;">New category</span>
             <div class="relative z-10 mb-4 mt-2">
               <svg width="36" height="36" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                <path d="M19 3L7 8.5v10.5c0 7.5 5.2 14.5 12 16.3C25.8 33.5 31 26.5 31 19V8.5L19 3z" stroke="#059669" stroke-width="1.4" fill="none"/>
-                <rect x="13" y="16" width="2.2" height="8" rx="1" fill="#059669"/>
-                <rect x="16.4" y="13" width="2.2" height="11" rx="1" fill="#059669"/>
-                <rect x="19.8" y="17.5" width="2.2" height="6.5" rx="1" fill="#059669"/>
-                <rect x="23.2" y="14.5" width="2.2" height="9.5" rx="1" fill="#059669"/>
+                <path d="M19 3L7 8.5v10.5c0 7.5 5.2 14.5 12 16.3C25.8 33.5 31 26.5 31 19V8.5L19 3z" stroke="var(--aw-color-primary)" stroke-width="1.4" fill="none"/>
+                <rect x="13" y="16" width="2.2" height="8" rx="1" fill="var(--aw-color-primary)"/>
+                <rect x="16.4" y="13" width="2.2" height="11" rx="1" fill="var(--aw-color-primary)"/>
+                <rect x="19.8" y="17.5" width="2.2" height="6.5" rx="1" fill="var(--aw-color-primary)"/>
+                <rect x="23.2" y="14.5" width="2.2" height="9.5" rx="1" fill="var(--aw-color-primary)"/>
               </svg>
             </div>
             <p class="relative z-10 text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#064e3b;">Preventive<br />Risk Control</p>
             <!-- Green bar — identical to competitor cards -->
-            <div class="relative z-10 w-7 h-0.5 mb-4" style="background:#059669;"></div>
+            <div class="relative z-10 w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
             <div class="relative z-10 flex items-center gap-2 mb-6">
-              <svg class="shrink-0" width="16" height="16" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.75" stroke="#059669" stroke-width="1.2"/><path d="M5 8.5l2.5 2.5 4.5-4.5" stroke="#059669" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <p class="text-sm font-semibold leading-snug" style="color:#059669;">Stops the mistake before it becomes a trade.</p>
+              <svg class="shrink-0" width="16" height="16" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.75" stroke="var(--aw-color-primary)" stroke-width="1.2"/><path d="M5 8.5l2.5 2.5 4.5-4.5" stroke="var(--aw-color-primary)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p class="text-sm font-semibold leading-snug" style="color:var(--aw-color-primary);">Stops the mistake before it becomes a trade.</p>
             </div>
             <!-- Product name at bottom — mirrors competitor Products slot -->
             <div class="relative z-10 pt-4 border-t border-emerald-100">
-              <p class="text-sm font-semibold leading-snug" style="color:#059669;">Meridian PSI / Guard</p>
+              <p class="text-sm font-semibold leading-snug" style="color:var(--aw-color-primary);">Meridian PSI / Guard</p>
             </div>
           </div>
 
@@ -941,7 +935,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
               </svg>
             </div>
             <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Threshold<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:#059669;"></div>
+            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
             <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts at limits.</p>
             <div class="pt-4 border-t border-zinc-100">
               <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
@@ -959,7 +953,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
               </svg>
             </div>
             <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Corrective<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:#059669;"></div>
+            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
             <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts after damage.</p>
             <div class="pt-4 border-t border-zinc-100">
               <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
@@ -978,7 +972,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
               </svg>
             </div>
             <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Analytical<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:#059669;"></div>
+            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
             <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts after the session.</p>
             <div class="pt-4 border-t border-zinc-100">
               <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
@@ -994,7 +988,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div id="timeline-punchline" class="mt-20 max-w-3xl mx-auto">
         <p class="text-sm md:text-base text-zinc-900 mb-2">Stages 2&ndash;4 have existed since day trading began.</p>
         <p class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight" style="color:#18181b;">
-          Stage 1 never did &mdash; <span style="color:#059669;">until Meridian.</span>
+          Stage 1 never did &mdash; <span style="color:var(--aw-color-primary);">until Meridian.</span>
         </p>
       </div>
 
@@ -1208,8 +1202,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full"
             style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
           >
-            <span class="w-1.5 h-1.5 rounded-full" style="background:#059669;" aria-hidden="true"></span>
-            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:#059669;">Meridian Guard</span>
+            <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
+            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Meridian Guard</span>
           </div>
           <h2
             class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.12] mb-5 text-balance"
@@ -1408,14 +1402,14 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     outline: none;
   }
   .acc-item-num {
-    color: #4b734e;
+    color: var(--aw-color-logo-green);
     letter-spacing: 0.08em;
   }
-  .acc-item:focus-visible { box-shadow: 0 0 0 2px #4b734e; }
+  .acc-item:focus-visible { box-shadow: 0 0 0 2px var(--aw-color-logo-green); }
   .acc-item-title { color: #52525b; transition: color 0.2s ease; }
   .acc-item-icon {
     background: rgba(75, 115, 78, 0.12);
-    color: #4b734e;
+    color: var(--aw-color-logo-green);
     transition: background-color 0.2s ease, color 0.2s ease;
   }
   .acc-item-body {
@@ -1431,12 +1425,12 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   /* Active state */
   .acc-item-active {
     background: white;
-    border-color: #4b734e;
+    border-color: var(--aw-color-logo-green);
     box-shadow: 0 2px 16px rgba(75, 115, 78, 0.12);
   }
   .acc-item-active .acc-item-title { color: #18181b; }
-  .acc-item-active .acc-item-num { color: #4b734e; }
-  .acc-item-active .acc-item-icon { background: #4b734e; color: white; }
+  .acc-item-active .acc-item-num { color: var(--aw-color-logo-green); }
+  .acc-item-active .acc-item-icon { background: var(--aw-color-logo-green); color: white; }
   .acc-item-active .acc-chevron { opacity: 1; transform: translateX(0); color: rgba(0,0,0,0.3); }
   /* Hover */
   .acc-item:not(.acc-item-active):hover { background: rgba(0,0,0,0.025); border-color: rgba(0,0,0,0.08); }
