@@ -1,6 +1,6 @@
 # Meridian PSI — for LLM/AI indexers
 
-Meridian is an Official NinjaTrader Ecosystem Vendor. First real-time psychological stability monitor for active traders on NinjaTrader 8.
+Meridian is a behavioral risk management and trading discipline add-on for NinjaTrader 8, and an Official NinjaTrader Ecosystem Vendor. It detects revenge trading, overtrading, stop manipulation, and oversizing in real time, then enforces lockouts before impulsive orders reach the broker. It is the first real-time psychological stability monitor (PSI) for active traders on NinjaTrader 8.
 
 Discovery keywords: NinjaTrader lockout, revenge trading lockout, overtrading prevention, trade limiter, behavioral risk manager, rule enforcement add-on, consecutive loss cooldown, entry blocking, risk management NinjaTrader, emotional trading control, discipline monitoring NinjaTrader, stop revenge trading NinjaTrader, behavioral risk monitor, trading discipline software, prevent overtrading NinjaTrader.
 

@@ -3,13 +3,14 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'Meridian vs Hard-Limit Risk Tools — Arty, CrossTrade, ClickAlgo, RiskMaster',
+  title: 'Meridian vs Hard-Limit Risk Tools — KosyGuard, Arty, CrossTrade, ClickAlgo, RiskMaster',
   description:
-    'Hard-limit add-ons for NinjaTrader 8 — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — refine the same financial-outcome layer. Meridian operates one layer earlier, on the behavior itself.',
+    'Hard-limit add-ons for NinjaTrader 8 — KosyGuard, Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — enforce the same financial-outcome layer (P&L, trade count, position size). Meridian operates one layer earlier, on the behavior itself.',
   robots: { index: true, follow: true },
 };
 
 const matrixCols = [
+  'KosyGuard',
   'Arty Account Guard',
   'CrossTrade NAM',
   'ClickAlgo Risk Manager',
@@ -19,24 +20,29 @@ const matrixCols = [
 ];
 
 const matrixRows = [
-  { feature: 'Cumulative P&L threshold',     values: ['yes','yes','yes','yes','yes','yes'] },
-  { feature: 'Trade-count limit',            values: ['yes','yes','yes','yes','yes','yes'] },
-  { feature: 'Max position size cap',        values: ['yes','yes','yes','yes','yes','yes'] },
-  { feature: 'Real-time behavioral signals', values: ['no','no','no','no','no','yes'] },
-  { feature: 'Adaptive baseline (per-trader calibration)', values: ['no','no','no','no','no','yes'] },
-  { feature: 'Composite stability score',    values: ['no','no','no','no','no','yes'] },
-  { feature: 'Stop-modification detection',  values: ['no','no','no','no','no','yes'] },
-  { feature: 'Re-entry pace detection',      values: ['no','no','no','no','no','yes'] },
-  { feature: 'Typed acknowledgment level',   values: ['no','no','no','no','no','yes'] },
-  { feature: 'Mandatory countdown level',    values: ['no','no','no','no','no','yes'] },
-  { feature: 'Broker disconnect level',      values: ['some','some','no','some','no','yes'] },
-  { feature: 'Post-session behavioral analytics', values: ['no','no','no','no','no','yes'] },
+  { feature: 'Cumulative P&L threshold',     values: ['yes','yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Trade-count limit',            values: ['yes','yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Max position size cap',        values: ['yes','yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Consecutive-loss cooldown / timeout', values: ['some','no','no','no','some','no','yes'] },
+  { feature: 'Real-time behavioral signals', values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Adaptive baseline (per-trader calibration)', values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Composite stability score',    values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Stop-modification detection',  values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Re-entry pace detection',      values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Typed acknowledgment level',   values: ['no','no','no','no','no','no','yes'] },
+  { feature: 'Mandatory countdown level',    values: ['some','no','no','no','no','no','yes'] },
+  { feature: 'Broker disconnect level',      values: ['some','some','some','no','some','no','yes'] },
+  { feature: 'Post-session behavioral analytics', values: ['no','no','no','no','no','no','yes'] },
 ];
 
 const faqItems = [
   {
     q: 'How are hard-limit risk tools different from Meridian?',
-    a: 'Hard-limit tools — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — refine the configuration UI on top of the same primitives that NinjaTrader\'s native controls watch: cumulative P&L, trade count, position size. They sit at the financial-outcome layer. Meridian sits one layer earlier — at the behavior that produces the financial outcome — and fires on seven distinct behavioral signals plus a composite Psychological Stability Index.',
+    a: 'Hard-limit tools — KosyGuard, Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — refine the configuration UI on top of the same primitives that NinjaTrader\'s native controls watch: cumulative P&L, trade count, position size, and (in the newer tools) fixed consecutive-loss timeouts. They sit at the financial-outcome layer. Meridian sits one layer earlier — at the behavior that produces the financial outcome — and fires on seven distinct behavioral signals plus a composite Psychological Stability Index calibrated to each trader\'s own session history.',
+  },
+  {
+    q: 'KosyGuard already markets itself as a way to stop revenge trading — how is Meridian different?',
+    a: 'KosyGuard stops revenge trading with fixed rules you set in advance: a timeout after a loss, a consecutive-loss limit, a max-trades-per-day cap. Those are useful, but they are static thresholds that fire the same way for every trader on every day. Meridian detects the revenge-trade signature itself — re-entering faster than your own normal, with accelerating frequency and escalating size, relative to a baseline calibrated to your session history — and fires before a fixed rule would have reason to. A timeout reacts after the rule is hit; the behavioral signal reacts as the behavior forms. Meridian Guard then enforces with five escalating response levels, including a fixed consecutive-loss cooldown of the kind KosyGuard offers, so you keep the hard-limit safety net and gain the behavioral layer above it.',
   },
   {
     q: 'Are these hard-limit tools wrong?',
@@ -84,7 +90,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds. Meridian is Generation 3: behavioral leading-indicator detection plus the same hard-limit enforcement, in one platform.
+          KosyGuard, Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds, some with consecutive-loss cooldowns. Meridian is Generation 3: behavioral leading-indicator detection plus the same hard-limit enforcement, in one platform.
         </p>
       </div>
     </header>
@@ -93,7 +99,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
       <h2>What this category builds well</h2>
       <p>
-        The Generation 2 category — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel Trader — has refined the user experience around hard-limit enforcement substantially over the last few years. Configuration is cleaner. Rule sets are richer. Workflow polish is real.
+        The Generation 2 category — KosyGuard, Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel Trader — has refined the user experience around hard-limit enforcement substantially over the last few years. Configuration is cleaner. Rule sets are richer. The newest entrants add consecutive-loss timeouts and self-lockout. Workflow polish is real.
       </p>
       <p>
         What every product in the category shares is the design point: enforcement at the financial-outcome layer. The same primitives the native NinjaTrader controls watch — cumulative P&amp;L, trade count, position size — wrapped in better UIs. The category extends Generation 1; it does not open a new layer.
