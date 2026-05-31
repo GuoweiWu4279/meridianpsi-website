@@ -267,16 +267,16 @@ Below is everything you need, in order. If anything is unclear or you get stuck,
 
 1. Sign in to whop.com using the same email you used at checkout.
 2. Open your Meridian membership / product.
-3. Find the Software section (exact placement can vary slightly depending on Whop's layout) and copy your license key in full — no extra spaces before or after.
+3. Find the Software section (exact placement can vary slightly depending on Whop's layout) and copy your license key in full, with no extra spaces before or after.
 
-If you cannot find the Software section, don't worry — Whop's interface changes from time to time, and we've seen that before. Email us with your checkout email and we'll help you locate it.
+If you cannot find the Software section, don't worry. Whop's interface changes from time to time, and we've seen that before. Email us with your checkout email and we'll help you locate it.
 
 ---
 
 2) Download and install
 
 1. Download the latest package: https://www.meridianpsi.com/download
-2. Do not unzip the file — NinjaTrader imports it as a .zip.
+2. Do not unzip the file. NinjaTrader imports it as a .zip.
 3. In NinjaTrader 8: Tools → Import → NinjaScript Add-On → select the .zip.
 4. Restart NinjaTrader if it asks you to.
 
@@ -287,15 +287,15 @@ If you cannot find the Software section, don't worry — Whop's interface change
 1. Control Center → New → Add-on → Meridian Dashboard
 2. Open the License tab → paste your key → Activate.
 
-Meridian is an add-on, not a chart indicator — you will not find it under the chart Indicators list. That is expected.
+Meridian is an add-on, not a chart indicator, so you will not find it under the chart Indicators list. That is expected.
 
 ---
 
-4) After activation — configure Settings first
+4) After activation: configure Settings first
 
 Open Settings and set your size, session window, signal weights, and response preset to match how you actually trade. Meridian uses this as the foundation it learns from.
 
-Guard rules (Guard tier only) are configured in the Guard tab — not in Settings.
+Guard rules (Guard tier only) are configured in the Guard tab, not in Settings.
 
 ---
 
@@ -312,13 +312,13 @@ Market Replay is also handled in a separate context from your live baseline, so 
 
 6) What to expect in your first sessions
 
-Your first several sessions are a learning phase — signals are intentionally gentler until Meridian has enough history to reflect your real patterns. That is normal.
+Your first several sessions are a learning phase. Signals are intentionally gentler until Meridian has enough history to reflect your real patterns. That is normal.
 
 ---
 
 Full step-by-step guide: https://www.meridianpsi.com/installation-guide
 
-Thanks again for choosing Meridian. If you ever have a question, run into any issue, or there's a feature you'd like to see, just reply to this email — we genuinely welcome your feedback and read every message.
+Thanks again for choosing Meridian. If you ever have a question, run into any issue, or there's a feature you'd like to see, just reply to this email. We genuinely welcome your feedback and read every message.
 
 Gary Caffrey, Meridian Team
 Official NinjaTrader Ecosystem Vendor
@@ -333,7 +333,8 @@ www.Meridianpsi.com`;
     body: JSON.stringify({
       from,
       to: [toEmail],
-      subject: 'Welcome to Meridian — your next steps',
+      reply_to: 'contactmeridianpsi@gmail.com',
+      subject: 'Welcome to Meridian: your next steps',
       text,
     }),
   });
