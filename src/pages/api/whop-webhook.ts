@@ -83,9 +83,12 @@ export const POST: APIRoute = async ({ request }) => {
   // 1. Read raw body (needed for signature verification)
   const rawBody = await request.text();
 
-  // 2. Verify Whop webhook signature
-  const signature = request.headers.get('whop-signature') ?? undefined;
-  if (!verifyWhopSignature(rawBody, signature)) {
+  // 2. Verify Whop webhook signature (Standard Webhooks / Svix scheme)
+  if (!verifyWhopSignature(rawBody, {
+    id: request.headers.get('webhook-id') ?? undefined,
+    timestamp: request.headers.get('webhook-timestamp') ?? undefined,
+    signature: request.headers.get('webhook-signature') ?? undefined,
+  })) {
     console.error('[whop-webhook] Invalid signature');
     return new Response('Unauthorized', { status: 401 });
   }
@@ -129,33 +132,42 @@ export const POST: APIRoute = async ({ request }) => {
   let emailStatus: WelcomeEmailStatus = 'n/a';
   let ntStatus: NtMirrorStatus = 'n/a';
 
-  // Support both Whop V1 dot-notation and newer underscore-notation event names
+  // Whop's current Standard-Webhooks payload puts the event name in `type`
+  // using dot notation (e.g. "membership.activated"). Older/legacy variants
+  // used `action` with "membership.went_valid" or underscore forms. Normalize
+  // across all of them so we never silently miss an activation.
+  const eventType = (event.type ?? event.action ?? '').toLowerCase();
+
   const isActivation =
-    event.action === 'membership.went_valid' ||
-    event.action === 'membership_activated';
+    eventType === 'membership.activated' ||
+    eventType === 'membership.went_valid' ||
+    eventType === 'membership_activated';
 
   const isRenewal =
-    event.action === 'membership.renewal_successful' ||
-    event.action === 'payment_succeeded';
+    eventType === 'membership.renewal_successful' ||
+    eventType === 'payment.succeeded' ||
+    eventType === 'payment_succeeded';
+
+  const isDeactivation =
+    eventType === 'membership.deactivated' ||
+    eventType === 'membership.went_invalid' ||
+    eventType === 'membership_deactivated';
 
   if (isActivation) {
     const firstName = extractFirstName(event.data.user?.name, email);
     emailStatus = await tryWelcomeEmail(email, firstName);
   }
 
-  if (
-    isActivation ||
-    isRenewal
-  ) {
+  if (isActivation || isRenewal) {
     ntStatus = await tryCreateNtLicense(email, event.data.plan?.id);
-  } else if (event.action === 'membership.went_invalid' || event.action === 'membership_deactivated') {
+  } else if (isDeactivation) {
     ntStatus = await tryExpireNtLicense(email);
   }
 
   // One greppable summary line per processed event:
-  //   [whop-webhook] processed action=membership.went_valid recipient=foo@bar.com welcome=sent nt=skipped(no-nt-env)
+  //   [whop-webhook] processed type=membership.activated recipient=foo@bar.com welcome=sent nt=skipped(no-nt-env)
   console.log(
-    `[whop-webhook] processed action=${event.action} recipient=${email} welcome=${emailStatus} nt=${ntStatus}`
+    `[whop-webhook] processed type=${eventType || '(none)'} recipient=${email} welcome=${emailStatus} nt=${ntStatus}`
   );
 
   return new Response('OK', { status: 200 });
@@ -513,30 +525,68 @@ async function getNtToken(): Promise<string> {
   return _ntToken;
 }
 
-// ── Whop signature verification ────────────────────────────────────────────
+// ── Whop signature verification (Svix / "Standard Webhooks" scheme) ─────────
+//
+// Whop signs webhooks with the Standard Webhooks spec (Svix under the hood),
+// NOT a plain HMAC of the body. The request carries three headers:
+//   webhook-id         e.g. msg_8em8Sa...
+//   webhook-timestamp  unix seconds, e.g. 1780200784
+//   webhook-signature  space-delimited list of "v1,<base64sig>" entries
+//
+// The signed content is `${id}.${timestamp}.${rawBody}` and the signature is
+// base64(HMAC-SHA256(key, signedContent)). The signing key is the part of the
+// secret after the `ws_`/`whsec_` prefix, base64-decoded.
 
-function verifyWhopSignature(rawBody: string, signature: string | undefined): boolean {
+function verifyWhopSignature(
+  rawBody: string,
+  headers: { id?: string; timestamp?: string; signature?: string }
+): boolean {
   const secret = process.env.WHOP_WEBHOOK_SECRET;
   if (!secret) {
     console.error('[whop-webhook] WHOP_WEBHOOK_SECRET is not set');
     return false;
   }
-  if (!signature) return false;
 
-  try {
-    // Whop uses HMAC-SHA256; the header value is the hex digest
-    const expected = crypto.createHmac('sha256', secret).update(rawBody, 'utf8').digest('hex');
+  const { id, timestamp, signature } = headers;
+  if (!id || !timestamp || !signature) return false;
 
-    return crypto.timingSafeEqual(Buffer.from(signature, 'hex'), Buffer.from(expected, 'hex'));
-  } catch {
-    return false;
+  const signedContent = `${id}.${timestamp}.${rawBody}`;
+
+  // Candidate keys: the Svix-correct base64-decoded key, plus a couple of
+  // defensive fallbacks (raw utf8) in case Whop changes the secret format.
+  const afterPrefix = secret.includes('_') ? secret.slice(secret.indexOf('_') + 1) : secret;
+  const candidateKeys: Buffer[] = [];
+  try { candidateKeys.push(Buffer.from(afterPrefix, 'base64')); } catch { /* ignore */ }
+  candidateKeys.push(Buffer.from(secret, 'utf8'));
+  candidateKeys.push(Buffer.from(afterPrefix, 'utf8'));
+
+  // The header may contain multiple "v{version},{sig}" entries separated by spaces.
+  const passedSigs = signature
+    .split(' ')
+    .map((part) => part.includes(',') ? part.split(',')[1] : part)
+    .filter(Boolean);
+
+  for (const key of candidateKeys) {
+    const expected = crypto.createHmac('sha256', key).update(signedContent, 'utf8').digest('base64');
+    const expectedBuf = Buffer.from(expected, 'base64');
+    for (const sig of passedSigs) {
+      try {
+        const sigBuf = Buffer.from(sig, 'base64');
+        if (sigBuf.length === expectedBuf.length && crypto.timingSafeEqual(sigBuf, expectedBuf)) {
+          return true;
+        }
+      } catch { /* malformed sig entry — skip */ }
+    }
   }
+
+  return false;
 }
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
 interface WhopEvent {
-  action: string;
+  type?: string;
+  action?: string;
   data: {
     id?: string;
     user?: { email?: string; name?: string };
