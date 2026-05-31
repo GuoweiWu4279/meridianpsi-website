@@ -259,7 +259,7 @@ async function sendWelcomeEmail(toEmail: string, firstName: string): Promise<voi
 
 Welcome to Meridian, and thank you for joining.
 
-Below is everything you need, in order. If anything is unclear or you get stuck, reply to this email or write to contactmeridianpsi@gmail.com and include the email address you used at checkout on Whop. We typically respond within 24 hours on business days.
+Below is everything you need, in order. If anything is unclear or you get stuck, reply to this email or write to contactmeridianpsi@gmail.com and include the email address you used at checkout on Whop. We will respond within 24 hours.
 
 ---
 
@@ -318,10 +318,11 @@ Your first several sessions are a learning phase — signals are intentionally g
 
 Full step-by-step guide: https://www.meridianpsi.com/installation-guide
 
-Thanks again for choosing Meridian.
+Thanks again for choosing Meridian. If you ever have a question, run into any issue, or there's a feature you'd like to see, just reply to this email — we genuinely welcome your feedback and read every message.
 
-Meridian Team
-contactmeridianpsi@gmail.com`;
+Gary Caffrey, Meridian Team
+Official NinjaTrader Ecosystem Vendor
+www.Meridianpsi.com`;
 
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
