@@ -129,17 +129,26 @@ export const POST: APIRoute = async ({ request }) => {
   let emailStatus: WelcomeEmailStatus = 'n/a';
   let ntStatus: NtMirrorStatus = 'n/a';
 
-  if (event.action === 'membership.went_valid') {
+  // Support both Whop V1 dot-notation and newer underscore-notation event names
+  const isActivation =
+    event.action === 'membership.went_valid' ||
+    event.action === 'membership_activated';
+
+  const isRenewal =
+    event.action === 'membership.renewal_successful' ||
+    event.action === 'payment_succeeded';
+
+  if (isActivation) {
     const firstName = extractFirstName(event.data.user?.name, email);
     emailStatus = await tryWelcomeEmail(email, firstName);
   }
 
   if (
-    event.action === 'membership.went_valid' ||
-    event.action === 'membership.renewal_successful'
+    isActivation ||
+    isRenewal
   ) {
     ntStatus = await tryCreateNtLicense(email, event.data.plan?.id);
-  } else if (event.action === 'membership.went_invalid') {
+  } else if (event.action === 'membership.went_invalid' || event.action === 'membership_deactivated') {
     ntStatus = await tryExpireNtLicense(email);
   }
 
