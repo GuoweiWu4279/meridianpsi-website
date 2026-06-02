@@ -30,8 +30,8 @@
     },
     {
       "id": "local-only",
-      "title": "No cloud, no accounts",
-      "description": "Your trading data stays on your machine. No telemetry, no analytics, no behavioral data in the cloud — suitable for traders who care about privacy.",
+      "title": "No accounts, anonymous by design",
+      "description": "No login, no personal accounts. Meridian never collects your name, broker credentials, account numbers, or funds. Data used to improve the product is anonymized — tied to a random ID, never your identity — and is never sold. Opt out anytime.",
       "icon": "tabler:cloud-off",
       "category": "privacy"
     },

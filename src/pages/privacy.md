@@ -9,7 +9,7 @@ Meridian is designed with privacy as a core principle. This policy explains what
 
 ## 1. Core Privacy Principle
 
-**Meridian does not collect, transmit, or store your trading data.** All session analysis, stability index calculations, and behavioral tracking happen entirely on your local machine. Your trading activity never leaves your computer.
+**Meridian collects only what it needs to run the product, improve it, and conduct research on trading discipline — and nothing that identifies you personally.** We do not collect your name, contact details, broker credentials, account numbers, or funds/balance information. Trading activity and behavioral signals used for product improvement and research are **anonymized** — linked only to a random identifier, never to your identity — stored securely, and **never sold or shared for advertising**. You can opt out at any time (see §6).
 
 ## 2. Information We Collect
 
@@ -30,13 +30,23 @@ This website uses privacy-respecting analytics to understand visitor traffic (pa
 
 If you contact us for support, we retain the email and information you provide solely to resolve your inquiry. We do not share this with third parties.
 
+### 2d. Product-Improvement & Research Data
+
+To improve Meridian and to study how trading discipline relates to outcomes, the Software may transmit **anonymized** records of your trading activity and the behavioral signals it computes — for example executions, orders, position changes, and PSI / behavioral-signal values. These records:
+
+- are linked only to a **random anonymous identifier**, never to your name or identity;
+- contain **no personally identifying information, broker credentials, account numbers, or funds/balance data**;
+- are transmitted over HTTPS/TLS and stored securely;
+- are used **solely** to improve the product and for research, and are **never sold** or shared for advertising.
+
+You can opt out at any time (see [Data & Research Notice](/data-research) and §6).
+
 ## 3. What We Do NOT Collect
 
-- Trading positions, orders, or account data
-- NinjaTrader account information
-- Financial account numbers or credentials
-- Behavioral index scores or session history
-- Any data processed by the Software on your local machine
+- Your name, email, or contact details (unless you email support)
+- NinjaTrader or broker account credentials or account numbers
+- Financial account numbers, card details, or funds/balance data
+- Any directly personally-identifying information
 
 ## 4. Data Security
 
@@ -52,8 +62,9 @@ We use the following third-party services:
 ## 6. Your Rights
 
 Depending on your jurisdiction (GDPR, CCPA, etc.), you may have the right to:
-- Request deletion of any personal data we hold about you
-- Request a copy of any data associated with your account
+- **Opt out of anonymized product-improvement & research data collection** (§2d) — email us, and you can also turn it off in the Software's settings
+- Request deletion of any data associated with your anonymous identifier
+- Request a copy of any data associated with you
 - Opt out of communications
 
 To exercise these rights, email: **contactmeridianpsi@gmail.com**

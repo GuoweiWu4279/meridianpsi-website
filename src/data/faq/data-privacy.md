@@ -4,8 +4,8 @@ category: technical
 order: 1
 ---
 
-No. Meridian is designed with privacy as a core principle. All trading calculations and data storage happen **entirely on your local machine**. No trading data, session information, or behavioral metrics are ever transmitted to any server.
+Meridian keeps you **anonymous**. It never collects your name, broker credentials, account numbers, or funds. To improve the product and to run research on trading discipline, the Software does transmit **anonymized** records of your trading activity and the behavioral signals it computes — linked only to a random identifier, never to your identity, and **never sold**. You can **opt out anytime** in settings or by email.
 
-The only outbound request Meridian makes is a license key validation against the payment provider on startup. **No fills, no session data, and no behavioral metrics ever leave your machine.**
+License validation against the payment provider also runs on startup. The product **works fully even if the anonymized upload is blocked** (e.g. behind a strict prop-firm firewall) — collection is best-effort and never required for Meridian to function.
 
-This is one of the reasons Meridian works reliably in prop firm environments with strict firewall policies. Learn more on the [Features page](/features#privacy).
+See the [Data &amp; Research Notice](/data-research) and [Privacy Policy](/privacy) for the full detail and your choices.
