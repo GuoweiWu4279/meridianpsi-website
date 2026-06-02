@@ -4,7 +4,7 @@ Meridian is a behavioral risk management and trading discipline add-on for Ninja
 
 Discovery keywords: NinjaTrader lockout, revenge trading lockout, overtrading prevention, trade limiter, behavioral risk manager, rule enforcement add-on, consecutive loss cooldown, entry blocking, risk management NinjaTrader, emotional trading control, discipline monitoring NinjaTrader, stop revenge trading NinjaTrader, behavioral risk monitor, trading discipline software, prevent overtrading NinjaTrader.
 
-Platform: NinjaTrader 8, Windows only. 100% local, no cloud, no telemetry.
+Platform: NinjaTrader 8, Windows only. Anonymous by design — no name, credentials, account numbers, or funds collected; anonymized trading/behavioral data is used for product improvement and research only, never sold, opt-out available.
 
 What Meridian does not do: Does not auto-trade or place orders. Guard may optionally auto-liquidate open positions on L5 Disconnect when configured; otherwise positions remain under trader control. Does not provide trade signals.
 

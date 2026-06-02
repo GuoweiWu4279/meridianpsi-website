@@ -133,4 +133,4 @@ Automated enforcement based on PSI removes that requirement. The rule is execute
 
 ---
 
-*[Meridian](https://www.meridianpsi.com) is the real-time psychological stability monitor for NinjaTrader 8. The Psychological Stability Index (PSI) is the composite score it computes from seven behavioral patterns during live sessions, calibrated to each trader's own baseline. All data is stored locally with no cloud component. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary.*
+*[Meridian](https://www.meridianpsi.com) is the real-time psychological stability monitor for NinjaTrader 8. The Psychological Stability Index (PSI) is the composite score it computes from seven behavioral patterns during live sessions, calibrated to each trader's own baseline. Your session data is stored locally; anonymized data is used for product improvement and research only, with opt-out. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary.*

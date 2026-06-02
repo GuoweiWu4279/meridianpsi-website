@@ -4,7 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Security & Privacy — Meridian',
   description:
-    'Meridian stores all session data locally on your PC. No cloud, no broker credentials, no trade data leaves your machine. Understand exactly what the software does and does not do.',
+    'Meridian is anonymous by design: it never collects your name, broker credentials, account numbers, or funds. Data used to improve the product and for research is anonymized and never sold — and you can opt out. Understand exactly what the software does and does not do.',
   robots: { index: true, follow: true },
 };
 ---
@@ -17,12 +17,15 @@ const metadata = {
       <div class="mb-14">
         <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Security & Privacy</p>
         <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-5">
-          Your data never<br />leaves your machine.
+          Anonymous<br />by design.
         </h1>
         <p class="text-base text-zinc-500 leading-relaxed max-w-xl">
-          Meridian runs entirely inside NinjaTrader 8 on your Windows PC. There is no cloud backend,
-          no external data collection, and no requirement to share credentials with any party other
-          than your existing broker and NinjaTrader license.
+          Meridian runs inside NinjaTrader 8 on your Windows PC. It never collects your name, broker
+          credentials, account numbers, or funds. To improve the product and run research on trading
+          discipline, it transmits <strong>anonymized</strong> records of your trading activity and the
+          behavioral signals it computes — tied only to a random identifier, never your identity, never
+          sold. You can opt out at any time. See the
+          <a href="/data-research" class="text-emerald-700 underline hover:text-emerald-900">Data &amp; Research Notice</a>.
         </p>
       </div>
 
@@ -51,7 +54,7 @@ const metadata = {
         <ul class="space-y-3 text-sm text-zinc-600 leading-relaxed">
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Does not transmit your trade data</strong> — fills, P&amp;L, positions, and account details never leave NinjaTrader's local environment through Meridian.</span>
+            <span><strong class="text-zinc-800">Never collects identifying or financial data</strong> — no name, broker credentials, account numbers, card details, or funds. Anonymized trading and behavioral records used for product improvement and research are tied only to a random identifier, never sold, and you can opt out anytime.</span>
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -67,17 +70,21 @@ const metadata = {
           </li>
           <li class="flex items-start gap-3">
             <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Does not use third-party analytics or telemetry</strong> — no usage events, crash reports, or behavioral analytics are sent to external services. The software has no built-in tracking.</span>
+            <span><strong class="text-zinc-800">No third-party ad tracking or profiling</strong> — we do not sell your data or use it for advertising. The only data we collect is anonymized trading/behavioral data for product improvement and research, which you can turn off.</span>
           </li>
         </ul>
       </div>
 
       <!-- Section 3: The only external connection -->
       <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">The only external connection</h2>
+        <h2 class="text-lg font-bold text-zinc-900 mb-4">External connections</h2>
         <p class="text-sm text-zinc-600 leading-relaxed mb-3">
-          Meridian makes one type of external network request: <strong class="text-zinc-800">license validation via Whop</strong>.
-          When Meridian starts, it checks that your subscription is active. This request contains only a license identifier — no trade data, no account information, and no personally identifiable information beyond what Whop holds as your subscription provider.
+          Meridian makes two kinds of external request. <strong class="text-zinc-800">License validation via Whop</strong>
+          (on startup) contains only a license identifier — no trade data and no personally identifiable information.
+          <strong class="text-zinc-800">Anonymized research upload</strong> sends trading and behavioral records tied only to
+          a random identifier (no name, credentials, account numbers, or funds) over HTTPS — used solely to improve the
+          product and for research, never sold, and <strong class="text-zinc-800">fully optional</strong> (the product works
+          even if it is blocked, and you can opt out). Details: <a href="/data-research" class="text-emerald-700 underline hover:text-emerald-900">Data &amp; Research Notice</a>.
         </p>
         <p class="text-sm text-zinc-600 leading-relaxed">
           If you have questions about how Whop handles subscription data, their privacy policy is available at

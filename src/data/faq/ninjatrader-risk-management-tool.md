@@ -12,6 +12,6 @@ Key capabilities inside NinjaTrader 8:
 - **[Live PSI score](/features#live-psi)** updated in under 100ms after every fill
 - **[Seven behavioral signals](/features#seven-dimensions)** that detect patterns like revenge entries, stop widening, and overtrading pace
 - **[Guard rules](/guard)** that can trigger alerts, countdown timers, acknowledgement prompts, or broker disconnection based on conditions you define (P&L limit, consecutive losses, PSI threshold, session time, and more)
-- **Session history** stored locally on your machine — no data leaves your PC
+- **Session history** stored locally on your machine; anonymized data may be collected for research (opt-out)
 
 Meridian works with all brokers and prop firm connections that NinjaTrader 8 supports, including Apex, Topstep, and direct brokerage accounts. See [pricing](/pricing) to start a free trial.

@@ -96,7 +96,7 @@ The critical distinction between native controls and any journal or analytics pl
 
 ### Meridian
 
-Meridian is a NinjaTrader 8 add-on that monitors behavioral signals during the live session and computes a Psychological Stability Index (PSI) in real time. The seven signals tracked include revenge trading indicators, overtrading pace, stop manipulation patterns, and drawdown rate relative to session baseline. The Guard module translates PSI readings into automated responses: advisories, order restrictions, or complete platform lockout when configurable thresholds are crossed. Data is stored locally with no cloud component.
+Meridian is a NinjaTrader 8 add-on that monitors behavioral signals during the live session and computes a Psychological Stability Index (PSI) in real time. The seven signals tracked include revenge trading indicators, overtrading pace, stop manipulation patterns, and drawdown rate relative to session baseline. The Guard module translates PSI readings into automated responses: advisories, order restrictions, or complete platform lockout when configurable thresholds are crossed. Your session data is stored locally; anonymized records are used for product improvement and research, with opt-out.
 
 The practical difference between Meridian and NinjaTrader's native controls is the level at which enforcement operates. Native controls catch individual orders that violate static rules. Meridian tracks the sequence and pattern of decisions across the session and can respond to behavioral deterioration before it produces a rule-violating order — or in cases where the deterioration never technically violates order-level rules but is producing consistent losses.
 
