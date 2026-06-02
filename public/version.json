@@ -1,8 +1,8 @@
 {
-  "version": "1.4.1",
-  "releaseDate": "2026-05-21",
+  "version": "1.4.2",
+  "releaseDate": "2026-06-02",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.4.1.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.4.2.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "Patch v1.4.1 — Guard close-position safety fix: close/flatten orders never blocked during pause; Force Reset Guard now fully clears all blocks."
+  "notes": "v1.4.2 — First-run Quick Setup so your protective limits are active from session one; clearer Guard status; accurate Profile calibration; a Session watch-list card."
 }
