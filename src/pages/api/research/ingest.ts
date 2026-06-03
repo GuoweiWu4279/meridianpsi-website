@@ -64,7 +64,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     return json(200, { ok: true, pathname: blob.pathname });
   } catch (e) {
-    return json(500, { error: 'ingest failed', detail: (e as Error)?.message ?? String(e) });
+    return json(500, { error: 'ingest failed' });
   }
 };
 
