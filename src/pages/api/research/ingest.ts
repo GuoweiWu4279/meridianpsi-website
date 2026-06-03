@@ -55,11 +55,16 @@ export const POST: APIRoute = async ({ request }) => {
     const opts: Record<string, unknown> = {
       access: 'private',         // the store is private — data is access-controlled
       addRandomSuffix: false,
+      allowOverwrite: true,      // streaming flushes overwrite one object per session
       contentType: 'application/x-ndjson',
     };
     if (token) opts.token = token;
 
-    const key = `research/${anon}/${session}-${Date.now()}.ndjson`;
+    // STABLE key per session (no timestamp suffix): the add-on streams the growing
+    // recording every ~60 s, each POST overwriting the same object, so the stored copy
+    // always converges to the latest bytes — near-real-time, exactly one object/session,
+    // never duplicated.
+    const key = `research/${anon}/${session}.ndjson`;
     const blob = await put(key, body, opts as any);
 
     return json(200, { ok: true, pathname: blob.pathname });
