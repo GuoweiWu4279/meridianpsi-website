@@ -53,8 +53,8 @@ export const POST: APIRoute = async ({ request }) => {
     // otherwise let the SDK pick it up — so we don't hard-require manual token setup.
     const token = import.meta.env.BLOB_READ_WRITE_TOKEN ?? process.env.BLOB_READ_WRITE_TOKEN;
     const opts: Record<string, unknown> = {
-      access: 'public',          // unguessable random suffix; data is anonymized
-      addRandomSuffix: true,
+      access: 'private',         // the store is private — data is access-controlled
+      addRandomSuffix: false,
       contentType: 'application/x-ndjson',
     };
     if (token) opts.token = token;
