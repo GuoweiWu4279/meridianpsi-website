@@ -41,9 +41,6 @@ export const POST: APIRoute = async ({ request }) => {
     if (!secret) return json(503, { error: 'ingest not configured' });
     if (request.headers.get('x-meridian-key') !== secret) return json(401, { error: 'unauthorized' });
 
-    const token = import.meta.env.BLOB_READ_WRITE_TOKEN ?? process.env.BLOB_READ_WRITE_TOKEN;
-    if (!token) return json(503, { error: 'storage not configured' });
-
     const anon = safe(request.headers.get('x-meridian-anon'), 'unknown');
     const session = safe(request.headers.get('x-meridian-session'), 'session');
 
@@ -51,13 +48,19 @@ export const POST: APIRoute = async ({ request }) => {
     if (!body) return json(400, { error: 'empty body' });
     if (body.length > MAX_BYTES) return json(413, { error: 'too large' });
 
-    const key = `research/${anon}/${session}-${Date.now()}.ndjson`;
-    const blob = await put(key, body, {
+    // @vercel/blob auto-resolves credentials from the connected Blob store (or from
+    // BLOB_READ_WRITE_TOKEN if explicitly set). Use the explicit token when present,
+    // otherwise let the SDK pick it up — so we don't hard-require manual token setup.
+    const token = import.meta.env.BLOB_READ_WRITE_TOKEN ?? process.env.BLOB_READ_WRITE_TOKEN;
+    const opts: Record<string, unknown> = {
       access: 'public',          // unguessable random suffix; data is anonymized
       addRandomSuffix: true,
       contentType: 'application/x-ndjson',
-      token,
-    });
+    };
+    if (token) opts.token = token;
+
+    const key = `research/${anon}/${session}-${Date.now()}.ndjson`;
+    const blob = await put(key, body, opts as any);
 
     return json(200, { ok: true, pathname: blob.pathname });
   } catch (e) {
