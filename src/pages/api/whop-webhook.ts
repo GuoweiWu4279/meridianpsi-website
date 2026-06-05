@@ -350,11 +350,20 @@ www.Meridianpsi.com`;
 
 function extractFirstName(name: string | undefined, email: string): string {
   if (name && name.trim()) {
-    return name.trim().split(' ')[0];
+    const clean = name.trim();
+    // Company / business names (e.g. "The Algo Trader, LLC") make a bad
+    // greeting — fall back to a neutral "there" rather than "Hi The,".
+    const looksLikeCompany = /\b(LLC|L\.L\.C|Inc|Ltd|Co|Corp|Company|Capital|Group|Holdings|Trading|Trader|Markets?|Fund|Partners|Ventures|Labs?)\b/i.test(clean);
+    const first = clean.split(/\s+/)[0];
+    const isArticleOrTitle = /^(the|a|an|mr|mrs|ms|dr)$/i.test(first);
+    if (looksLikeCompany || isArticleOrTitle || first.length < 2) return 'there';
+    return first;
   }
   // Fall back to the part before @ in the email
   const local = email.split('@')[0].replace(/[._\-+]/g, ' ').trim();
-  return local.charAt(0).toUpperCase() + local.slice(1);
+  const firstLocal = local.split(' ')[0];
+  if (!firstLocal || firstLocal.length < 2) return 'there';
+  return firstLocal.charAt(0).toUpperCase() + firstLocal.slice(1);
 }
 
 // ── NT Ecosystem API calls ─────────────────────────────────────────────────
