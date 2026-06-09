@@ -1,150 +1,232 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// ABOUT — brand story & trust. Voice register: PRECISE / trust / brand-story.
+// Positioning: Meridian is the most COMPLETE risk management for NinjaTrader 8 —
+// a superset. Everything a traditional risk tool does, plus the behavioral layer
+// none have. This page is who we are and why to trust us. Header, Footer and
+// RiskBanner come from PageLayout. Text-forward; design system matches the
+// homepage (light site, emerald accent, alternating bands, zinc cards).
+//
+// VENDOR CLAIM: the "Official NinjaTrader Ecosystem Vendor — audited and approved
+// by NinjaTrader's Compliance, QA, and Executive teams" wording below is the
+// owner-confirmed canonical claim (see CANONICAL-FACTS.md, VENDOR CLAIM section).
+// Keep it in sync with that file; do not reintroduce the dropped-team or the
+// fabricated "executive background check" variants that were removed.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const metadata = {
   title: 'About — Meridian',
-  description: 'Why Meridian was built — and how we built the first real-time psychological stability monitor for active NinjaTrader 8 traders.',
+  description:
+    'Who Meridian is and why to trust it: the most complete risk management for NinjaTrader 8 — every limit a traditional risk tool has, plus the real-time behavioral layer none of them do. Built by traders. Official NinjaTrader Ecosystem Vendor. Local-first, anonymized, opt-out telemetry. No outcome guarantees.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Mission -->
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">Why Meridian Was Built</p>
-      <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 leading-snug">
-        We built the tool we wished existed.
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-16 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5">WHO WE ARE</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        We built the most complete<br class="hidden md:block" /> risk tool for NinjaTrader 8.
       </h1>
-      <div class="space-y-4 text-zinc-600 leading-relaxed text-base">
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Everything a traditional risk tool gives you &mdash; daily loss limits, max size, P&amp;L and drawdown caps,
+        loss-streak cutoffs &mdash; plus the one layer none of them have: real-time detection of the behavior that actually
+        blows up accounts. We&rsquo;re a small team building exactly that, and nothing else.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHY WE BUILT IT ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-24" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY MERIDIAN WAS BUILT</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        We built the tool we wished existed.
+      </h2>
+      <div class="mt-7 space-y-5 text-lg text-zinc-600 leading-relaxed">
         <p>
-          Most trading software is built by engineers who have never traded, or by traders who outsource the engineering. Meridian sits at the intersection — built by traders who learned to ship software because no one else was going to build this.
+          Most trading software is built by engineers who have never traded, or by traders who outsource the
+          engineering. Meridian sits at the intersection &mdash; built by traders who learned to ship software because
+          no one else was going to build this.
         </p>
         <p>
-          The frustration that started Meridian was simple: every existing risk tool fires <em>after</em> the damage. Daily loss limit hits at -$500 — by then the revenge trade has already happened. A trade journal shows the pattern at 8pm — the next morning the same thing happens again.
+          The frustration that started Meridian was simple: every existing risk tool fires <em>after</em> the damage. A
+          daily loss limit trips at &minus;$500 &mdash; by then the revenge trade has already happened. A trade journal
+          shows the pattern at 8pm &mdash; the next morning the same thing happens again.
         </p>
         <p>
-          The behavior that produces blown sessions is observable in real time. Re-entry pace shortens. Stops get widened. Sizing creeps up. Every one of these is measurable from the order stream NinjaTrader is already producing — no one had built the software to extract those signals and feed them back to the trader during the session.
+          But the behavior that produces blown sessions is observable in real time. Re-entry pace shortens. Stops get
+          widened. Sizing creeps up. Every one of these is measurable from the order stream NinjaTrader is already
+          producing &mdash; no one had built the software to extract those signals and feed them back to the trader
+          <em>during</em> the session.
         </p>
-        <p class="font-semibold text-zinc-900">
-          So we did.
-        </p>
+        <p class="text-xl font-semibold text-zinc-900">So we did.</p>
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="border-t border-zinc-100"></div>
-
-  <!-- What we are -->
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">What We Are</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
-        The real-time psychological stability monitor for NinjaTrader 8.
+  <!-- ───────────────────────── WHAT WE ARE — the superset ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT WE ARE</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        A superset, not a different tool.
       </h2>
-      <div class="space-y-4 text-zinc-600 leading-relaxed text-base">
-        <p>
-          Meridian is a NinjaTrader 8 add-on that monitors seven behavioral signals from your live order activity and surfaces a Psychological Stability Index (PSI) in real time. <a href="/guard" class="text-emerald-700 underline hover:text-emerald-900">Meridian Guard</a> adds a configurable enforcement layer — alerts, acknowledgment prompts, mandatory countdowns, entry blocks, broker disconnect — when the patterns you defined as off-limits start to appear.
-        </p>
-        <p>
-          We are not a trading guru. We do not sell signals, courses, mentorship, or Discord access. We are a small team building one thing: the real-time psychological stability monitor for active discretionary futures traders on NinjaTrader 8.
-        </p>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Keep the safety net you already trust &mdash; Meridian has every part of it. Then it adds the behavioral layer
+        no limit-based tool can reach: a live read on <em>how</em> you&rsquo;re trading, measured against your own
+        baseline, that steps in before the order instead of after the loss.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">Everything a traditional risk tool does</div>
+        <ul class="space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">Plus the layer none of them have</div>
+        <ul class="space-y-3 text-zinc-800">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time detection of seven behavioral signals &mdash; revenge, oversizing, stop manipulation&hellip;</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade &mdash; not a generic average</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Intervention <em>before</em> the order, not after the loss</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor &middot; guard &middot; journal &middot; review</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
       </div>
     </div>
+    <p class="mt-8 max-w-3xl text-lg text-zinc-600 leading-relaxed">
+      We are not a trading guru. We do not sell signals, courses, mentorship, or Discord access. We are a small team
+      building one thing &mdash; the most complete risk management for active discretionary futures traders on
+      NinjaTrader 8. The Psychological Stability Index you&rsquo;ll see across the product is the mechanism, not the
+      pitch: one live score, from seven measured signals, that tells you when discipline is slipping.
+    </p>
   </section>
 
-  <!-- Divider -->
-  <div class="border-t border-zinc-100"></div>
-
-  <!-- Official Ecosystem Vendor -->
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">Official NinjaTrader Ecosystem Vendor</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
-        Reviewed, tested, and approved by NinjaTrader.
+  <!-- ───────────────────────── OFFICIAL ECOSYSTEM VENDOR ───────────────────────── -->
+  <!-- VENDOR CLAIM: the first paragraph below carries the owner-confirmed canonical
+       vendor wording (see CANONICAL-FACTS.md, VENDOR CLAIM section). Keep it in sync
+       with that file; do not reintroduce the deleted "executive background check" claim. -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-24" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">OFFICIAL NINJATRADER ECOSYSTEM VENDOR</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        A standing we had to earn.
       </h2>
-      <div class="space-y-4 text-zinc-600 leading-relaxed text-base">
+      <div class="mt-7 space-y-5 text-lg text-zinc-600 leading-relaxed">
         <p>
-          Meridian is an <strong class="text-zinc-900">Official NinjaTrader Ecosystem Vendor</strong>. Our company, our website, our social channels, and the Meridian NT8 add-on itself were reviewed and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams before being listed in the official Ecosystem.
+          Meridian is an <strong class="text-zinc-900">Official NinjaTrader Ecosystem Vendor</strong>. Our company, our
+          website, our social channels, and the Meridian NT8 add-on itself were audited and approved by
+          NinjaTrader&rsquo;s Compliance, QA, and Executive teams before being listed in the official Ecosystem.
         </p>
         <p>
-          That review covered: signed Vendor Listing Agreement, executive background check, full compliance audit of every public surface where we talk about trading, and a hands-on QA pass on the live NT8 add-on by NinjaTrader&rsquo;s internal QA team.
+          That review covered a signed Vendor Listing Agreement, a compliance audit of every public surface where we
+          talk about trading, and a hands-on QA pass on the live NT8 add-on by NinjaTrader&rsquo;s internal QA team.
         </p>
         <p>
-          Practically, this means two things for our users. First, the product you install is the same product NinjaTrader&rsquo;s own team installed and tested. Second, the public claims we make about Meridian have already cleared the global retail-trading compliance bar that NinjaTrader applies to every Ecosystem vendor &mdash; not just to us.
+          Practically, that means two things for you. First, the product you install is the same product
+          NinjaTrader&rsquo;s own team installed and tested. Second, the claims we make about Meridian have already
+          cleared the retail-trading compliance bar NinjaTrader applies to every Ecosystem vendor &mdash; not just to us.
         </p>
         <p class="text-sm text-zinc-500">
-          NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8; it is not owned by NinjaTrader LLC.
+          NinjaTrader&reg; is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company
+          and is a third-party add-on for NinjaTrader 8; it is not owned by NinjaTrader LLC.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="border-t border-zinc-100"></div>
-
-  <!-- What we are not -->
-  <section class="py-20 px-6 bg-zinc-50/60">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">What We Are Not</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
-        We don't publish track records. The product is the work.
+  <!-- ───────────────────────── HONESTY STANCE ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHERE WE STAND</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        The promises &mdash; and the limits &mdash; in plain language.
       </h2>
-      <div class="space-y-4 text-zinc-600 leading-relaxed text-base">
-        <p>
-          We are not a hedge fund running our own strategy. We do not publish account statements, screenshots of "I made $X this month," or any other form of personal P&amp;L marketing. The product is the work; the work is the marketing.
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        A risk tool only earns trust if it&rsquo;s honest about its own boundaries. Here is exactly what Meridian does
+        with your data, what it will and won&rsquo;t do, and what we will never claim.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 max-w-5xl" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Telemetry is local-first, anonymized, and opt-out. We never collect your name, broker credentials, account
+          numbers, or funds. Anything used to improve the product or for research is tied to a random ID, never your
+          identity, and is never sold. Opt out anytime.
         </p>
-        <p>
-          If you want trading signals, we are not the right product. If you want a journaling platform, we are not the right product. If you want a risk tool that watches for the <em>behavior</em> that produces the loss — not the loss itself — Meridian is purpose-built for that.
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="font-semibold text-zinc-900 mb-2">Guard never closes unless you ask it to</div>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Guard enforces the rules you wrote when you were calm &mdash; by default it only blocks you from <em>adding</em>
+          risk, never closing a live position on its own. The single exception is explicit and off by default: on a
+          Trading Pause or Disconnect rule you <em>may</em> opt in to auto-flatten open positions when it fires. You can always exit, any time.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="font-semibold text-zinc-900 mb-2">No outcome guarantees</div>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          We don&rsquo;t publish track records, account statements, or &ldquo;I made $X&rdquo; screenshots, and we never
+          promise profits. Meridian improves self-awareness and discipline; outcomes still depend on many factors beyond
+          psychology.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="border-t border-zinc-100"></div>
-
-  <!-- How we operate -->
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs font-semibold tracking-widest text-emerald-700 uppercase mb-4">How We Operate</p>
-      <h2 class="text-2xl md:text-3xl font-bold text-zinc-900 mb-6 leading-snug">
-        Local-first. Public roadmap. Direct support.
+  <!-- ───────────────────────── HOW WE OPERATE ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-24" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW WE OPERATE</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Small team. Public roadmap. Direct support.
       </h2>
-      <ul class="space-y-3 text-zinc-600 leading-relaxed text-base list-disc pl-5 marker:text-emerald-600">
-        <li>Meridian never collects your name, broker credentials, account numbers, or funds. Data used to improve the product and for research is anonymized — tied to a random ID, never your identity — and is never sold. You can opt out anytime.</li>
-        <li>The product is sold via Whop with a 7-day free trial.</li>
-        <li>Updates ship publicly via the <a href="/download" class="text-emerald-700 underline hover:text-emerald-900">changelog</a>. v1.2.0 is the current release.</li>
-        <li>Support questions go to <a href="mailto:contactmeridianpsi@gmail.com" class="text-emerald-700 underline hover:text-emerald-900">contactmeridianpsi@gmail.com</a> and are answered within 24 hours.</li>
-        <li>The team is small. Every change to the product is reviewed by someone who understands both the trading workflow and the code.</li>
+      <ul class="mt-7 space-y-4 text-lg text-zinc-600 leading-relaxed list-disc pl-5 marker:text-emerald-600">
+        <li>Two tiers: <strong class="text-zinc-900">Core at $49.99/mo</strong> and <strong class="text-zinc-900">Guard at $69.99/mo</strong>, both with a 7-day free trial. Sold via Whop; cancel anytime.</li>
+        <li>Updates ship publicly through the <a href="/download" class="text-emerald-700 underline hover:text-emerald-900">changelog</a> &mdash; you can see exactly what changed and when.</li>
+        <li>Support goes to <a href="mailto:contactmeridianpsi@gmail.com" class="text-emerald-700 underline hover:text-emerald-900">contactmeridianpsi@gmail.com</a> and is answered within 24 hours. We read every email.</li>
+        <li>The team is small on purpose. Every change to the product is reviewed by someone who understands both the trading workflow and the code.</li>
       </ul>
-      <p class="mt-6 text-zinc-600 leading-relaxed text-base">
-        If you have feedback, a bug report, or a feature request — send it. We read every email.
+      <p class="mt-7 text-lg text-zinc-600 leading-relaxed">
+        If you have feedback, a bug report, or a feature request &mdash; send it. The roadmap is shaped by traders who
+        actually use the tool.
       </p>
     </div>
   </section>
 
-  <!-- PSI scope — behavioral proxy -->
-  <section class="py-12 px-6 bg-zinc-50/80 border-t border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs text-zinc-500 leading-relaxed">
-        PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on many factors beyond psychology.
-      </p>
-    </div>
+  <!-- ───────────────────────── PSI SCOPE — behavioral proxy ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-12">
+    <p class="text-sm text-zinc-500 leading-relaxed">
+      PSI is a behavioral proxy index derived from your trading activity inside NinjaTrader. It does not measure
+      physiology (for example heart rate or stress hormones), and it is not validated as a predictor of trading profits
+      or losses. Meridian is designed to improve self-awareness and discipline during a session; outcomes still depend on
+      many factors beyond psychology.
+    </p>
   </section>
 
-  <!-- CTA -->
-  <section class="py-16 px-6 bg-white border-t border-zinc-100 text-center">
-    <div class="max-w-xl mx-auto">
-      <h2 class="text-2xl font-bold text-zinc-900 mb-3">Try it free for 7 days.</h2>
-      <p class="text-zinc-500 text-base mb-8">Cancel any time during the trial.</p>
-      <a
-        href="/pricing"
-        class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-full transition-colors"
-      >
-        Start free trial — 7 days
-      </a>
-      <p class="mt-4 text-xs text-zinc-400">$49.99/month after trial · NinjaTrader 8 required</p>
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-3xl mx-auto px-6 py-24 text-center" data-reveal>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        Trade the version of you<br class="hidden md:block" /> that you respect.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600">
+        Everything your risk tool does &mdash; plus the part that actually saves the account.
+      </p>
+      <div class="mt-9">
+        <a href="/pricing" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required</p>
     </div>
   </section>
 </Layout>

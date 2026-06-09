@@ -4,9 +4,19 @@ import { getCollection, render } from 'astro:content';
 import { getPermalink } from '~/utils/permalinks';
 import { findImage } from '~/utils/images';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// ARTICLES — the editorial index. Voice register: OBJECTIVE / editorial.
+// Job: list every published post cleanly so readers and crawlers find them.
+// Design system matches the homepage (index.astro): light site, emerald accent,
+// halo hero band, eyebrow + H2 scale, rounded-2xl zinc-bordered cards. Header,
+// Footer, RiskBanner come from PageLayout. The post collection wiring and the
+// category-filter script below are load-bearing — do not break them.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const metadata = {
   title: 'Trading Insights — Meridian',
-  description: 'In-depth articles on trading psychology, risk management, and execution discipline for active futures traders.',
+  description:
+    'In-depth articles on trading psychology, risk management, and execution discipline for active NinjaTrader 8 futures traders — the research behind behavioral risk management.',
   robots: { index: true, follow: true },
 };
 
@@ -43,141 +53,270 @@ function formatDate(d?: Date) {
   if (!d) return '';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
+
+const SITE = 'https://www.meridianpsi.com';
+
+const featured = posts[0];
+const rest = posts.slice(1);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// JSON-LD: a Blog + CollectionPage built from the real post collection, so the
+// index is legible to crawlers and GEO. Injected via set:html — inline
+// `{JSON.stringify({...})}` breaks because Astro reads an inner `}` as closing
+// the expression.
+// ─────────────────────────────────────────────────────────────────────────────
+const articlesJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Blog',
+      '@id': `${SITE}/articles#blog`,
+      name: 'Meridian — Trading Insights',
+      description: metadata.description,
+      url: `${SITE}/articles`,
+      publisher: { '@id': `${SITE}/#organization` },
+      blogPost: posts.map((post) => ({
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        description: post.data.excerpt ?? undefined,
+        url: `${SITE}${getPermalink(post.id, 'post')}`,
+        datePublished: post.data.publishDate ? new Date(post.data.publishDate).toISOString() : undefined,
+        author: { '@type': 'Organization', name: post.data.author ?? 'Meridian' },
+        keywords: post.data.tags?.join(', ') || undefined,
+      })),
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${SITE}/articles#webpage`,
+      name: 'Trading Insights — Meridian',
+      description: metadata.description,
+      url: `${SITE}/articles`,
+      isPartOf: { '@id': `${SITE}/#website` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+        { '@type': 'ListItem', position: 2, name: 'Trading Insights', item: `${SITE}/articles` },
+      ],
+    },
+  ],
+};
+
+const articlesJsonLdHtml = JSON.stringify(articlesJsonLd).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
-  <section class="max-w-6xl mx-auto px-6 pt-10 pb-20">
+  <!-- Structured data: Blog + CollectionPage + breadcrumbs, built from the post collection -->
+  <script type="application/ld+json" set:html={articlesJsonLdHtml} />
 
-    <!-- Page header -->
-    <div class="mb-8">
-      <h1 class="text-2xl font-bold text-zinc-900 tracking-tight mb-1">Trading Insights</h1>
-      <p class="text-sm text-zinc-400">Financial insight, in-depth trading philosophy, and execution research for serious traders.</p>
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">TRADING INSIGHTS</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        The research behind<br />behavioral risk management.
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Trading psychology, risk management, and execution discipline for active NinjaTrader 8 futures traders &mdash;
+        the mechanisms behind why accounts fail under pressure, and what the research says about managing it.
+      </p>
     </div>
+  </section>
 
-    <!-- Divider + Category tabs -->
-    <div class="border-t border-zinc-200 mb-8">
+  <!-- ───────────────────────── INDEX ───────────────────────── -->
+  <section class="border-t border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-20">
+
+      <!-- Category tabs -->
       {categories.length > 0 && (
-        <div class="flex flex-wrap gap-6 pt-4" id="cat-tabs">
-          <button data-cat="all" class="cat-btn active text-sm font-medium pb-1 border-b-2 border-zinc-900 text-zinc-900 transition-colors">
+        <div class="flex flex-wrap items-center gap-2.5 mb-12" id="cat-tabs">
+          <button
+            data-cat="all"
+            class="cat-btn active text-sm font-medium px-4 py-2 rounded-full border border-emerald-500 bg-emerald-600 text-white transition-colors"
+          >
             All Posts
           </button>
           {categories.map((cat) => (
-            <button data-cat={cat} class="cat-btn text-sm font-medium pb-1 border-b-2 border-transparent text-zinc-400 hover:text-zinc-700 transition-colors">
+            <button
+              data-cat={cat}
+              class="cat-btn text-sm font-medium px-4 py-2 rounded-full border border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 hover:text-zinc-900 transition-colors"
+            >
               {categoryMap[cat!] ?? cat}
             </button>
           ))}
         </div>
       )}
-    </div>
 
-    <!-- Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="articles-grid">
-      {posts.map((post) => {
+      <!-- Featured post — full-width lead card -->
+      {featured && (
+        <a
+          href={getPermalink(featured.id, 'post')}
+          data-cat={featured.data.category ?? ''}
+          class="article-card group block rounded-2xl border border-zinc-200 bg-[#fafafa] overflow-hidden hover:border-zinc-300 hover:shadow-sm transition mb-8"
+        >
+          <div class="grid md:grid-cols-2">
+            <div class="overflow-hidden bg-zinc-900 md:order-2" style="aspect-ratio: 16/10;">
+              {featured.resolvedImage ? (
+                <img
+                  src={typeof featured.resolvedImage === 'string'
+                    ? featured.resolvedImage
+                    : (featured.resolvedImage as any).src ?? featured.resolvedImage}
+                  alt={featured.data.title}
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  loading="eager"
+                />
+              ) : (
+                <div class="w-full h-full bg-gradient-to-br from-zinc-800 via-zinc-700 to-emerald-900 flex items-end p-7">
+                  <span class="text-[10px] font-semibold tracking-widest uppercase text-emerald-400/90">
+                    {categoryMap[featured.data.category ?? ''] ?? featured.data.category ?? 'Article'}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div class="flex flex-col justify-center p-8 md:p-10 md:order-1">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-[11px] font-bold tracking-widest uppercase text-emerald-700">
+                  {categoryMap[featured.data.category ?? ''] ?? featured.data.category ?? 'Featured'}
+                </span>
+                <span class="text-zinc-300">&middot;</span>
+                <span class="text-xs text-zinc-500 tnum">{formatDate(featured.data.publishDate)}</span>
+              </div>
+              <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors">
+                {featured.data.title}
+              </h2>
+              {featured.data.excerpt && (
+                <p class="mt-4 text-lg text-zinc-600 leading-relaxed line-clamp-3">{featured.data.excerpt}</p>
+              )}
+              <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
+                Read article
+                <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="M13 6l6 6-6 6" /></svg>
+                {featured.readingTime && <span class="text-zinc-400 font-normal tnum">{featured.readingTime} min read</span>}
+              </div>
+            </div>
+          </div>
+        </a>
+      )}
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="articles-grid">
+        {rest.map((post) => {
           const cat = post.data.category ?? '';
           const label = categoryMap[cat] ?? cat;
           const href = getPermalink(post.id, 'post');
           const mins = post.readingTime;
           const date = formatDate(post.data.publishDate);
-        const img = post.resolvedImage;
+          const img = post.resolvedImage;
 
-        return (
-          <article
-            data-cat={cat}
-            class="article-card group flex flex-col border border-zinc-300 bg-white hover:shadow-sm transition-shadow duration-200"
-          >
-            <!-- Cover image — flush to card edges, no radius -->
-            <a href={href} class="block overflow-hidden shrink-0" style="aspect-ratio: 16/9;">
-              {img ? (
-                <img
-                  src={typeof img === 'string' ? img : (img as any).src ?? img}
-                  alt={post.data.title}
-                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                  loading="lazy"
-                />
-              ) : (
-                <div class="w-full h-full bg-gradient-to-br from-zinc-800 via-zinc-700 to-emerald-900 flex items-end p-5">
-                  <span class="text-[10px] font-semibold tracking-widest uppercase text-emerald-400 opacity-80">
-                    {label || 'Article'}
-                  </span>
-                </div>
-              )}
-            </a>
-
-            <!-- Card body with generous padding -->
-            <div class="flex flex-col flex-1 px-5 pt-5 pb-8">
-              <!-- Author / meta row -->
-              <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-zinc-200 flex items-center justify-center shrink-0">
-                    <svg class="w-3.5 h-3.5 text-zinc-500" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                    </svg>
+          return (
+            <a
+              href={href}
+              data-cat={cat}
+              class="article-card group flex flex-col rounded-2xl border border-zinc-200 bg-white overflow-hidden hover:border-zinc-300 hover:shadow-sm transition"
+            >
+              <!-- Cover -->
+              <div class="overflow-hidden bg-zinc-900 shrink-0" style="aspect-ratio: 16/9;">
+                {img ? (
+                  <img
+                    src={typeof img === 'string' ? img : (img as any).src ?? img}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-zinc-800 via-zinc-700 to-emerald-900 flex items-end p-5">
+                    <span class="text-[10px] font-semibold tracking-widest uppercase text-emerald-400/90">
+                      {label || 'Article'}
+                    </span>
                   </div>
-                  <span class="text-xs text-zinc-500">{date} &nbsp;·&nbsp; {mins} min read</span>
-                </div>
-                <div class="w-5 h-5 flex items-center justify-center opacity-30 hover:opacity-60 cursor-pointer">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
-                  </svg>
-                </div>
+                )}
               </div>
 
-              <!-- Title -->
-              <a href={href} class="block mb-2.5">
-                <h2 class="text-[15px] font-bold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors duration-150">
+              <!-- Body -->
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-2.5 mb-3 text-xs">
+                  {label && <span class="font-bold tracking-widest uppercase text-emerald-700">{label}</span>}
+                  {label && <span class="text-zinc-300">&middot;</span>}
+                  <span class="text-zinc-500 tnum">{date}</span>
+                </div>
+
+                <h2 class="text-lg font-bold text-zinc-900 leading-snug group-hover:text-emerald-700 transition-colors">
                   {post.data.title}
                 </h2>
-              </a>
 
-              <!-- Excerpt -->
-              {post.data.excerpt && (
-                <p class="text-sm text-zinc-500 leading-relaxed line-clamp-3">
-                  {post.data.excerpt}
-                </p>
-              )}
+                {post.data.excerpt && (
+                  <p class="mt-3 text-sm text-zinc-600 leading-relaxed line-clamp-3">{post.data.excerpt}</p>
+                )}
 
-              <!-- Spacer to push content up and leave deliberate whitespace at bottom -->
-              <div class="flex-1 min-h-[2rem]"></div>
-            </div>
-          </article>
-        );
-      })}
+                <div class="flex-1"></div>
+
+                {mins && (
+                  <div class="mt-5 pt-4 border-t border-zinc-100 text-xs text-zinc-400 tnum">{mins} min read</div>
+                )}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- Empty state -->
+      {posts.length === 0 && (
+        <p class="text-center text-zinc-400 py-24">No articles yet. Check back soon.</p>
+      )}
     </div>
+  </section>
 
-    <!-- Empty state -->
-    {posts.length === 0 && (
-      <p class="text-center text-zinc-400 py-24 text-sm">No articles yet. Check back soon.</p>
-    )}
+  <!-- ───────────────────────── CTA ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-3xl mx-auto px-6 py-24 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM READING TO PRACTICE</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
+        The research is the easy part.<br />Acting on it mid-session isn't.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600">
+        Meridian does everything a traditional NinjaTrader 8 risk tool does &mdash; daily loss limits, max size, drawdown
+        caps &mdash; plus the behavioral layer none of them have: it surfaces revenge, oversizing, and tilt in real time and
+        intervenes while you can still act on it.
+      </p>
+      <div class="mt-9">
+        <a href="/pricing" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+    </div>
   </section>
 </Layout>
 
 <style>
   .cat-btn.active {
-    color: #18181b;
-    border-bottom-color: #18181b;
+    background-color: #059669;
+    border-color: #10b981;
+    color: #fff;
   }
 </style>
 
 <script>
-  // Re-attach on every Astro client-side navigation (View Transitions).
+  // Category filter. Re-attach on every Astro client-side navigation (View Transitions).
   function initArticleFilter() {
     const tabs = document.querySelectorAll<HTMLButtonElement>('.cat-btn');
     const cards = document.querySelectorAll<HTMLElement>('.article-card');
     if (!tabs.length) return;
+
+    const ACTIVE = ['active', 'bg-emerald-600', 'border-emerald-500', 'text-white'];
+    const IDLE = ['bg-white', 'border-zinc-200', 'text-zinc-600'];
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         const cat = tab.dataset.cat ?? 'all';
 
         tabs.forEach((t) => {
-          t.classList.remove('active', 'text-zinc-900', 'border-zinc-900');
-          t.classList.add('text-zinc-400', 'border-transparent');
+          t.classList.remove(...ACTIVE);
+          t.classList.add(...IDLE);
         });
-        tab.classList.add('active', 'text-zinc-900', 'border-zinc-900');
-        tab.classList.remove('text-zinc-400', 'border-transparent');
+        tab.classList.remove(...IDLE);
+        tab.classList.add(...ACTIVE);
 
         cards.forEach((card) => {
-          card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+          card.style.display = cat === 'all' || card.dataset.cat === cat ? '' : 'none';
         });
       });
     });

@@ -4,8 +4,8 @@ category: billing
 order: 1
 ---
 
-We offer a **30-day money-back guarantee**. If Meridian fails to install or run correctly on a supported system configuration, you are entitled to a full refund within 30 days of purchase.
+You shouldn't have to pay to find out if Meridian fits your trading — that's what the **7-day free trial** is for. You get full access, and your card isn't charged until day 7. If it's not for you, cancel before then and you pay **nothing**.
 
-To request a refund, email **contactmeridianpsi@gmail.com** with your order number.
+After that: a **14-day money-back guarantee** on your **first charge**, and a **full refund anytime** it won't run on a supported NinjaTrader 8 setup. You can **cancel any time**, no lock-in — you're only ever billed for the current period.
 
-Please see the full [Refund Policy](/refund) for complete terms and conditions.
+To request a refund, email **contactmeridianpsi@gmail.com** with your order number. See the full [Refund Policy](/refund) for complete terms.

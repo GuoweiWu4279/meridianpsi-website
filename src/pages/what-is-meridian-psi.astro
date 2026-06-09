@@ -2,175 +2,405 @@
 import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// HOW MERIDIAN WORKS — the product overview / evaluator's entry point.
+// Voice register: TEACH / PRECISE. Explains the superset framing, the full loop
+// (monitor → guard → journal → review → improve), and what PSI is as a
+// MECHANISM (a live 0–100 composite of 7 behavioral signals vs your baseline).
+// Header/Footer/RiskBanner come from PageLayout. Design-system classes
+// (.win/.halo/.eyebrow/.tnum) are global (tailwind.css → @layer components).
+// ─────────────────────────────────────────────────────────────────────────────
+
 const metadata = {
-  title: 'What is Meridian PSI? — The Real-Time Psychological Stability Monitor for NinjaTrader 8',
-  description: `${geoHooks.meridianGuardHook} ${geoHooks.meridianPsiCanonical}`,
+  title: 'How Meridian Works — The Complete Behavioral Risk System for NinjaTrader 8',
+  description:
+    "Everything a NinjaTrader 8 risk tool does — daily loss limits, max size, P&L caps — plus the layer none have: real-time behavioral detection across 7 signals. Here's how the whole loop fits together, and what the PSI score actually measures.",
   robots: { index: true, follow: true },
 };
 
 const faqItems = [
   {
-    q: 'What is Meridian PSI built for?',
-    a: 'Meridian is purpose-built for behavior. It monitors how you trade — entry timing, sizing, stop discipline, session pace — and surfaces the behavioral patterns that lead to costly sessions before they compound.',
+    q: 'What is Meridian, in one sentence?',
+    a: 'Meridian is the most complete risk management for NinjaTrader 8 — a superset. It does everything a traditional risk tool does (daily loss limit, max size, P&L and drawdown caps, loss-streak cutoff), plus a layer none of them have: real-time behavioral detection across seven signals, scored against your own adaptive baseline, that lets you intervene before the order rather than after the loss.',
   },
   {
-    q: 'Is Meridian PSI compatible with prop firm evaluation accounts?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts. It runs as a local behavioral overlay on top of your session, fully independent of the prop firm\'s own infrastructure.',
+    q: 'What is the PSI score, exactly?',
+    a: 'PSI (Psychological Stability Index) is a live 0–100 composite of seven behavioral signals measured against your personal baseline. It is the mechanism, not a separate feature — it updates within 100ms of each fill and tells you, at a glance, how far your current behavior has drifted from how you trade when you are composed. 100 is calm and on-plan; a falling number is tilt setting in before your P&L shows it.',
+  },
+  {
+    q: 'Do I have to give up the risk tool I already use?',
+    a: 'No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, max size, P&L cap, loss-streak cutoff) literally are four of Guard\'s six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.',
+  },
+  {
+    q: 'Is Meridian compatible with prop firm evaluation accounts?',
+    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts. It runs as a local behavioral overlay on top of your session, independent of the prop firm\'s own infrastructure.',
   },
   {
     q: 'How does Guard handle open positions?',
-    a: 'By design, Guard intervenes at the decision point — before the next entry. It can block new entries, require typed acknowledgment, enforce a mandatory countdown, or disconnect the broker connection. You remain in full control of any open position throughout.',
+    a: 'Guard intervenes at the decision point — before the next entry. It can notify, ask you to confirm each entry, require a typed acknowledgment, enforce a pause that cancels working orders, or disconnect the broker connection so you cannot add risk. By default Guard does not close your live positions — it blocks you from adding risk while you stay in control of any open trade and can exit any time. Auto-flatten is a clear opt-in (off by default): tick it on a Trading Pause or Disconnect rule and Guard will close your open positions the moment that rule fires.',
   },
   {
     q: 'Where is my trading data stored?',
-    a: 'All data — fills, session history, behavioral metrics, PSI scores — is stored locally on your machine. The only outbound request is license validation on startup.',
+    a: 'Your fills, session history, behavioral metrics, and PSI scores are stored locally on your machine. Telemetry is local-first, anonymized, and opt-out: an anonymized research upload tied only to a random identifier — never your name, broker credentials, account numbers, or funds. It is best-effort (the product works fully if it is blocked) and you can opt out anytime by email.',
   },
   {
     q: 'What is the difference between Meridian and Meridian Guard?',
-    a: 'Meridian is the real-time PSI monitor: seven behavioral signals, personal adaptive baseline, session history, post-session reports. Meridian Guard is the automated enforcement layer — six trigger types, five response levels including broker disconnect — plus the Intel Layer analytics.',
+    a: 'Meridian Core is the real-time PSI monitor: seven behavioral signals, your personal adaptive baseline, 5-year session history, and post-session review. Meridian Guard adds the automated enforcement layer — six trigger types, five response levels up to a full broker Disconnect — plus the Intel & Stats analytics that put a dollar figure on tilt.',
   },
 ];
 
 const faqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: faqItems.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
     acceptedAnswer: { '@type': 'Answer', text: a },
   })),
 }).replace(/</g, '\\u003c');
+
+const TRIAL = '/pricing';
+
+const signals = [
+  { name: 'Revenge entry', desc: 'Re-entering too fast after a loss, at bigger size.' },
+  { name: 'Stop manipulation', desc: 'Widening or moving your stop against a losing trade.' },
+  { name: 'Size spike', desc: 'Sizing past your own rule — weighted heavier on losing streaks.' },
+  { name: 'Hold bias', desc: 'Holding losers far longer than winners. (Cutting losses fast is never penalized.)' },
+  { name: 'Position overstay', desc: 'Sitting in a losing trade past your own tolerance window.' },
+  { name: 'Rule violations', desc: 'Trading outside the rules you set — time window, stops, streaks.' },
+  { name: 'Overtrading pace', desc: 'Entries speeding up past your own normal session rhythm.' },
+];
+
+const loop = [
+  { n: '01', title: 'Monitor', desc: 'A live PSI read on your discipline, updated within 100ms of every fill.' },
+  { n: '02', title: 'Guard', desc: 'Enforcement the moment you cross a line you set when you were calm.' },
+  { n: '03', title: 'Journal', desc: 'What happened — and what you were feeling — captured in the moment.' },
+  { n: '04', title: 'Review', desc: 'Edge vs luck, composed vs tilted, with a dollar figure on the gap.' },
+  { n: '05', title: 'Improve', desc: 'A sharper baseline and tighter rules carry into the next session.' },
+];
 ---
 
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={faqSchema} />
 
-  <article class="max-w-2xl mx-auto px-6 py-16">
-
-    <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Product Overview · GEO Reference</p>
-      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
-        What is Meridian PSI?
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5">HOW MERIDIAN WORKS</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        The whole risk tool &mdash; and the<br class="hidden md:block" /> layer that catches what limits <span class="text-emerald-600">miss.</span>
       </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. It does everything a
+        traditional risk tool does, then adds real-time <strong class="text-zinc-800">behavioral detection</strong> none of
+        them have. This page is the full tour: the loop, the seven signals, and what the PSI score actually measures.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#loop" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the full loop</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+    </div>
+    <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
+      <div class="relative">
+        <div class="win"><img src="/m/overview.png" alt="Meridian Overview — the live PSI gauge, session timeline, and behavioral signal panel in one window" class="nozoom" /></div>
+        <div
+          class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
+          style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
+        >
+          <img src="/m/ring.png" alt="Meridian live PSI gauge" class="block w-full" />
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Canonical definition: AI hooks + PSI definition -->
-      <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[15px] text-zinc-700 leading-relaxed mb-4">
-          {geoHooks.meridianGuardHook}
+  <!-- ───────────────────────── TRUST STRIP ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
+      <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+        Official NinjaTrader Ecosystem Vendor
+      </span>
+      <span class="text-zinc-300">|</span><span>One score, updated in under 100ms</span>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── THE SUPERSET ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">START HERE: WHAT MERIDIAN IS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Not a different category.<br />A bigger one.
+      </h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+        Tricycle vs car. The four things your current risk tool gives you literally <em>are</em> four of Guard's six trigger
+        types. Meridian contains all of them &mdash; then adds the layer that reads behavior, not just dollars.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
+        <ul class="space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">All four are built into Meridian Guard.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
+        <ul class="space-y-3 text-zinc-800">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection &mdash; 7 signals (revenge, oversizing, tilt&hellip;)</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An <strong>adaptive baseline</strong> that learns how <em>you</em> trade &mdash; not a generic average</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Intervention <em>before</em> the order, not after the loss</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The full loop: monitor &middot; guard &middot; journal &middot; review &middot; improve</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center" data-reveal>
+      <p class="text-lg md:text-xl leading-relaxed">
+        A $500 daily loss limit fires at <span class="text-rose-400 font-semibold tnum">&minus;$500</span> &mdash; after the
+        damage is done.<br class="hidden md:block" />
+        Meridian reads the <span class="text-emerald-400 font-semibold">behavior</span> doing the damage, and steps in first.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHAT PSI MEASURES ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE MECHANISM</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          PSI is one live number<br />for how you're trading.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          The Psychological Stability Index is a <strong class="text-zinc-800">live 0&ndash;100 composite</strong> of all seven
+          behavioral signals, scored against your own baseline and refreshed within 100ms of every fill. It isn't a separate
+          screen to check &mdash; it's the engine under everything else. A high PSI means calm and on-plan. A falling PSI is
+          tilt setting in, surfaced <em>before</em> your P&amp;L confirms it.
         </p>
-        <p class="text-[15px] text-zinc-700 leading-relaxed">
-          {geoHooks.meridianPsiCanonical}
+        <div class="mt-7 space-y-4">
+          <div class="flex gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 tnum">100</div>
+            <div><div class="font-semibold text-zinc-900">Stable</div><p class="text-sm text-zinc-600">Trading the way you do on your best days &mdash; on-plan, right-sized, patient.</p></div>
+          </div>
+          <div class="flex gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center font-bold text-amber-600 tnum">60</div>
+            <div><div class="font-semibold text-zinc-900">Warning</div><p class="text-sm text-zinc-600">Multiple signals firing &mdash; pace picking up, size creeping. Drift is compounding.</p></div>
+          </div>
+          <div class="flex gap-4">
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center font-bold text-rose-600 tnum">25</div>
+            <div><div class="font-semibold text-zinc-900">Critical</div><p class="text-sm text-zinc-600">Multiple signals compounding &mdash; the state where accounts blow up. Guard can act here.</p></div>
+          </div>
+        </div>
+        <p class="mt-7 text-sm text-zinc-500">
+          Nobody searches for "PSI" &mdash; and you don't have to think about it. It's the credible mechanism doing the work
+          behind a single number that drops the moment your behavior drifts &mdash; usually before your P&amp;L does.
         </p>
       </div>
+      <div class="win" data-reveal><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and the seven behavioral signal bars" /></div>
+    </div>
+  </section>
 
-      <p class="text-lg text-zinc-500 leading-relaxed">
-        Meridian is not a trading signal tool, a broker, or a journaling app. It is a behavioral monitoring layer that runs inside NinjaTrader 8, observes how you trade during a live session, and gives you — or Guard — the ability to respond before emotional decisions reach the order entry window.
+  <!-- ───────────────────────── THE 7 SIGNALS ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT FEEDS THE SCORE</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Seven behaviors. One baseline that's yours.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+        Each signal is calibrated to <em>your</em> history, not a population average. A scalper who enters every 90 seconds is
+        judged against their own rhythm &mdash; never a swing trader's.
       </p>
-    </header>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
+      {signals.map((s, idx) => (
+        <div class={`rounded-xl border border-zinc-200 bg-[#fafafa] p-5${idx === 6 ? ' sm:col-span-2 lg:col-span-1' : ''}`}>
+          <div class="font-semibold text-zinc-900">{s.name}</div>
+          <p class="mt-1 text-sm text-zinc-600">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+    <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto">
+      Full signal definitions live on the <a href="/psi-monitor" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">PSI Monitor</a> page.
+    </p>
+  </section>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
-      <h2>What Meridian monitors</h2>
-      <p>
-        Meridian tracks seven independent behavioral signal dimensions during every live NinjaTrader 8 session. These signals update in real time — within 100ms of each execution — and combine into a composite Psychological Stability Index (PSI) scored 0–100.
-      </p>
-      <ul>
-        <li><strong>Revenge Entry (D1)</strong> — rapid re-entry at elevated size within a short interval after a loss event</li>
-        <li><strong>Stop Manipulation (D2)</strong> — widening or removing a protective stop on an active losing position</li>
-        <li><strong>Size Spike (D3)</strong> — position sizing exceeding your declared rule, with heavier weight during losing streaks</li>
-        <li><strong>Hold Bias (D4)</strong> — holding losing trades longer than your winners, the loss-aversion pattern</li>
-        <li><strong>Position Overstay (D5)</strong> — holding a losing trade beyond your historical tolerance window</li>
-        <li><strong>Rule Violations (D6)</strong> — trading outside your declared session parameters (time window, stop range, loss-streak limits)</li>
-        <li><strong>Overtrading Pace (D7)</strong> — entry frequency accelerating beyond your own historical session rhythm</li>
-      </ul>
-      <p>
-        Each dimension is calibrated to your own trading history — not a population average. Meridian compares your current behavior to your past behavior. A scalper who normally enters every 90 seconds is evaluated against their own baseline, not against a swing trader's pace.
-      </p>
-
-      <h2>What Meridian Guard enforces</h2>
-      <p>
-        Meridian Guard is the optional enforcement layer. You configure the rules when you are calm and deliberate. Guard executes them automatically when they are triggered — without asking you to make a judgment call at the moment your judgment is most impaired.
-      </p>
-      <p>Guard supports six trigger types:</p>
-      <ul>
-        <li>PSI Below a defined threshold</li>
-        <li>N Consecutive Losses in a session</li>
-        <li>Session P&amp;L Below a declared limit</li>
-        <li>Unrealized P&amp;L Below a threshold (before the position closes)</li>
-        <li>Single Trade Loss exceeding a defined amount</li>
-        <li>Session Time Over a planned duration</li>
-      </ul>
-      <p>And five response levels:</p>
-      <ul>
-        <li><strong>Notify</strong> — quiet toast notification, does not interrupt trading</li>
-        <li><strong>Risk Alert</strong> — persistent banner requiring active confirmation before each new entry</li>
-        <li><strong>Acknowledge</strong> — type a pre-written phrase (with an optional countdown) before continuing</li>
-        <li><strong>Trading Pause</strong> — blocks new entries by cancelling orders; survives a NinjaTrader restart</li>
-        <li><strong>Disconnect</strong> — severs the broker connection entirely; open positions can be auto-flattened if configured, or managed manually</li>
-      </ul>
-      <p>
-        Guard rules can be password-locked to prevent in-session override. This is intentional: a rule that can be easily bypassed at the moment it fires is a rule with no enforcing power.
-      </p>
-
-      <h2>Who Meridian PSI is for</h2>
-      <p>
-        Meridian is built for <strong>discretionary futures traders</strong> who trade on NinjaTrader 8 (Windows). It is particularly relevant for:
-      </p>
-      <ul>
-        <li>Traders who have identified emotional or behavioral failure modes in their session history — revenge trading, overtrading, stop manipulation — and want a structural solution beyond journaling</li>
-        <li>Prop firm traders who need behavioral guardrails on top of evaluation account limits, to protect funded accounts from single-session blow-ups</li>
-        <li>Experienced traders who are technically sound but whose biggest losses consistently come from execution breakdown under stress, not from bad setups</li>
-      </ul>
-      <p>
-        Meridian is built for discretionary execution on NinjaTrader 8. It is purpose-built for behavior, not for direction or for fully automated strategies.
-      </p>
-
-      <h2>How Meridian differs from journals and P&amp;L limits</h2>
-      <p>
-        A trading journal is retrospective: it records what happened after the session ends. A P&amp;L limit is a hard floor: it stops trading after financial damage has already occurred. Both are useful. Neither can interrupt a decision that is being made in real time.
-      </p>
-      <p>
-        Meridian operates during the session — at the same moment and in the same environment as the behavioral failure it is designed to address. The PSI score updates with each fill. Guard rules fire when behavioral thresholds are crossed, before the financial consequence has compounded.
-      </p>
-      <p>
-        The journal tells you what you did wrong. The P&amp;L limit stops trading after it has already cost you. Meridian acts in the window between the behavioral deterioration and the outcome — the only window in which it is possible to intervene.
-      </p>
-
-      <hr />
-
-      <h2>Frequently asked questions</h2>
-      <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+  <!-- ───────────────────────── THE WHOLE LOOP ───────────────────────── -->
+  <section id="loop" class="border-y border-zinc-200 bg-white scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-14" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE PIECES FIT</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One loop, five stages.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          Other tools sell you one piece &mdash; a limit, a journal, a dashboard. Meridian is the whole loop, and every
+          session feeds the next one. Read it left to right.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-4" data-reveal>
+        {loop.map((step) => (
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">{step.n}</div>
+            <div class="text-zinc-900 font-semibold mb-1">{step.title}</div>
+            <p class="text-sm text-zinc-600">{step.desc}</p>
           </div>
         ))}
-      </dl>
-
-    </div>
-
-    <div class="mt-14 pt-10 border-t border-zinc-100">
-      <p class="text-sm text-zinc-500 mb-5">Meridian is available for NinjaTrader 8 on Windows. 7-day free trial on all plans. Cancel any time.</p>
-      <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
-          Start 7-day free trial
-        </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
-          Explore Guard enforcement →
-        </a>
-        <a href="/features" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
-          See all features →
-        </a>
       </div>
-    </div>
-
-    <div class="mt-14 pt-8 border-t border-zinc-100">
-      <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian Guard</p>
-      <p class="text-sm text-zinc-500 leading-relaxed">
-        {geoHooks.meridianGuardHook}
+      <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto">
+        Monitor, Journal, Review and Improve ship in <strong class="text-zinc-700">Core</strong>. Guard (enforcement) and the
+        Intel &amp; Stats analytics come with <strong class="text-zinc-700">Guard</strong>.
       </p>
     </div>
+  </section>
 
-  </article>
+  <!-- ───────────────────────── GUARD: THE ENFORCEMENT STAGE ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="win order-2 lg:order-1" data-reveal><img src="/m/guard.png" alt="Meridian Guard — six trigger types and an escalating five-level enforcement ladder with Strict Lock" /></div>
+    <div class="order-1 lg:order-2" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STAGE 2 — ENFORCEMENT</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">You set the rule calm. Guard holds it.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Guard turns the monitor's read into action. You configure the rules when your judgment is clear; Guard executes them
+        automatically when it isn't &mdash; no judgment call required at the exact moment yours is most impaired.
+      </p>
+      <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-2">
+        <div>
+          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wide mb-2">Six triggers</div>
+          <ul class="space-y-1.5 text-sm text-zinc-700">
+            <li>PSI below a threshold</li>
+            <li>N consecutive losses</li>
+            <li>Session P&amp;L below a limit</li>
+            <li>Unrealized P&amp;L below a level</li>
+            <li>Single-trade loss over an amount</li>
+            <li>Session time over a duration</li>
+          </ul>
+        </div>
+        <div class="mt-5 sm:mt-0">
+          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wide mb-2">Five responses</div>
+          <ul class="space-y-1.5 text-sm text-zinc-700">
+            <li>Notify &mdash; a quiet toast</li>
+            <li>Risk alert &mdash; confirm each entry</li>
+            <li>Acknowledge &mdash; type a phrase</li>
+            <li>Trading pause &mdash; block new entries</li>
+            <li>Disconnect &mdash; sever the connection</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-6 text-zinc-800"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes a rule un-bypassable for a window you choose &mdash; for when the tilted version of you wants to switch it off.</p>
+      <p class="mt-4 text-sm text-zinc-500">By default Guard doesn't close your live positions &mdash; it stops you <em>adding</em> risk, and you can always exit any time. (Opt-in auto-flatten can close them for you when a pause or disconnect fires.) <a href="/guard" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">Full Guard breakdown &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHO IT'S FOR ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHO IT'S FOR</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Built for traders whose biggest losses<br class="hidden md:block" /> aren't bad setups.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          Meridian is for serious discretionary futures traders on NinjaTrader 8 (Windows) &mdash; especially those running
+          prop-firm evaluations &mdash; whose accounts blow up from <em>behavior</em>, not strategy.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5" data-reveal>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">You've named your failure mode</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Revenge trading, overtrading, stop manipulation &mdash; you see it in your session history and want a structural fix, not another journaling reminder.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">You're protecting funded capital</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Prop-firm evaluation and funded accounts where one off-plan session ends the whole thing &mdash; you need behavioral guardrails on top of the firm's hard limits.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">You're technically sound</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Your setups are fine. Your worst days come from execution breaking down under stress &mdash; the window Meridian is built to catch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHY NOT A JOURNAL / A LIMIT ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY TIMING IS THE WHOLE POINT</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A journal looks back. A limit fires late.<br class="hidden md:block" /> Meridian acts in between.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-2">A trading journal</div>
+        <p class="text-zinc-700 leading-relaxed">is <strong>retrospective</strong> &mdash; it records what happened after the session is over. Useful, but it can't interrupt a decision being made right now.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-2">A P&amp;L limit</div>
+        <p class="text-zinc-700 leading-relaxed">is a <strong>hard floor</strong> &mdash; it stops you after the financial damage has already landed. A necessary backstop, but a lagging one.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-2">Meridian</div>
+        <p class="text-zinc-800 leading-relaxed">acts in the <strong>window between</strong> the behavior and the outcome &mdash; the only window where intervention is still possible. PSI updates after every fill; Guard can intervene before the cost compounds.</p>
+      </div>
+    </div>
+    <p class="text-center mt-8 text-zinc-600 max-w-2xl mx-auto">
+      Meridian doesn't replace your journal or your loss limit &mdash; it adds the one stage they both leave out.
+    </p>
+  </section>
+
+  <!-- ───────────────────────── PRICING ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">TWO TIERS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Start free. Keep what protects you.</h2>
+        <p class="mt-4 text-lg text-zinc-600">7-day free trial &middot; no charge until day 7 &middot; cancel anytime.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto" data-reveal>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900">Meridian Core</div>
+          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$49.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
+          <p class="mt-3 text-sm text-zinc-600">The full real-time PSI monitor, all seven behavioral signals, your adaptive baseline, and 5-year session history.</p>
+          <a href={TRIAL} class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition">Start free trial</a>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
+          <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
+          <div class="font-semibold text-zinc-900">Meridian Guard</div>
+          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$69.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
+          <p class="mt-3 text-sm text-zinc-600">Everything in Core, plus automatic enforcement, Strict Lock, and the full Intel &amp; Stats layer that prices your tilt.</p>
+          <a href={TRIAL} class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
+        </div>
+      </div>
+      <p class="text-center mt-6 text-sm text-zinc-500"><a href="/pricing" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">Full plan comparison &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FAQ ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">QUESTIONS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Frequently asked</h2>
+    </div>
+    <dl class="space-y-7" data-reveal>
+      {faqItems.map(({ q, a }) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+          <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo border-t border-zinc-200">
+    <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Now you know how it works.<br />See it on your own session.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the layer that actually saves the account.</p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+        <a href="/features" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See all features</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
 </Layout>

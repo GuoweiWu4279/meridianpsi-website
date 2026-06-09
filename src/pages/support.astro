@@ -1,60 +1,180 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SUPPORT — voice register: CLEAR / helpful / low-ego. Job: make getting help
+// obvious. Contact form (Formspree), response expectation, and the common
+// links a stuck user actually needs (install guide, FAQ, account, download).
+// Header, Footer, RiskBanner come from PageLayout. Design-system classes
+// (.win/.halo/.eyebrow/.tnum) live in the global stylesheet.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
+
 const metadata = {
   title: 'Support — Meridian',
-  description: 'Get help with Meridian. Send a message, browse FAQs, or check the changelog.',
+  description:
+    'Get help with Meridian for NinjaTrader 8. Send a message and hear back within 24 hours, or jump straight to the installation guide, FAQ, your account, and the latest download.',
+  robots: { index: true, follow: true },
 };
+
+// ContactPage JSON-LD — additive structured data so assistants can surface the
+// right way to reach support. (The page previously had no schema.)
+const supportJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Meridian Support',
+  url: 'https://www.meridianpsi.com/support',
+  description:
+    'Support for Meridian, the behavioral risk-management add-on for NinjaTrader 8. Contact the team for installation help, bug reports, and billing questions.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: 'https://www.meridianpsi.com',
+    email: SUPPORT_EMAIL,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: SUPPORT_EMAIL,
+      availableLanguage: 'English',
+    },
+  },
+};
+const supportJsonLdHtml = JSON.stringify(supportJsonLd).replace(/</g, '\\u003c');
+
+const resources = [
+  {
+    href: '/installation-guide',
+    label: 'Installation guide',
+    desc: 'Get your key, import the add-on, and activate in NinjaTrader 8 — step by step.',
+    glyph: 'M9 7V4m6 3V4M7 7h10v4a5 5 0 0 1-5 5 5 5 0 0 1-5-5V7ZM12 16v4',
+  },
+  {
+    href: '/faq',
+    label: 'FAQ',
+    desc: 'Quick answers on setup, privacy, billing, and how the signals work.',
+    glyph: 'M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.5-1.5 1-1.5 2.2M12 17h.01',
+  },
+  {
+    href: '/account',
+    label: 'Your account',
+    desc: 'Manage your subscription, license, and billing through Whop.',
+    glyph: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 20a8 8 0 0 1 16 0',
+  },
+  {
+    href: '/download',
+    label: 'Download',
+    desc: 'Grab the latest build and see what changed in the release notes.',
+    glyph: 'M12 3v12m0 0l-4-4m4 4l4-4M5 21h14',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <section class="py-16 px-6">
-    <div class="max-w-2xl mx-auto text-center mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white mb-3">Support</h1>
-      <p class="text-zinc-500 dark:text-zinc-400 text-base">
-        Questions, bug reports, or installation issues — send us a message and we'll get back to you within 24 hours.
+  <!-- Structured data: ContactPage -->
+  <script type="application/ld+json" set:html={supportJsonLdHtml} />
+
+  <!-- ───────────────────────── HEADER ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-3xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SUPPORT</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Stuck? Let's get you<br />back to trading.
+      </h1>
+      <p class="mt-6 text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto">
+        Installation snag, a bug, a billing question — tell us what's going on and we'll help. Most messages get a real
+        reply within <span class="font-semibold text-zinc-800">24 hours</span>. Real person, no ticket maze.
       </p>
+      <div class="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#contact" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Send a message</a>
+        <a href={`mailto:${SUPPORT_EMAIL}`} class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">Email us directly</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── BEFORE YOU WRITE / COMMON LINKS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FASTEST PATH</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Start here — it might be a one-click fix.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Most questions are answered on one of these pages. If yours isn't, the form below is right there.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto" data-reveal>
+        {resources.map((r) => (
+          <a
+            href={r.href}
+            class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 hover:border-emerald-400 hover:bg-white transition flex flex-col"
+          >
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 mb-4 border border-emerald-100">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={r.glyph} /></svg>
+            </span>
+            <div class="font-semibold text-zinc-900 group-hover:text-emerald-700 transition">{r.label}</div>
+            <p class="mt-1 text-sm text-zinc-600 leading-relaxed">{r.desc}</p>
+            <span class="mt-4 text-sm font-medium text-emerald-700 inline-flex items-center gap-1">
+              Open
+              <svg class="w-4 h-4 transition group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0l-6-6m6 6l-6 6" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── CONTACT FORM ───────────────────────── -->
+  <section id="contact" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-[1fr_1.15fr] gap-14 items-start scroll-mt-24">
+    <!-- Left rail: what to expect -->
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SEND A MESSAGE</p>
+      <h2 class="text-3xl md:text-[2.6rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Tell us what's happening.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        The more detail you give, the faster we can fix it. Including your NinjaTrader version and what you were doing
+        when something broke saves a round-trip.
+      </p>
+      <ul class="mt-7 space-y-4 text-zinc-700">
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold mt-0.5">&check;</span><span><span class="font-semibold text-zinc-900">Within 24 hours.</span> A real reply from the team, not an auto-responder.</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold mt-0.5">&check;</span><span><span class="font-semibold text-zinc-900">For bugs:</span> your NinjaTrader version and any error text help most.</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold mt-0.5">&check;</span><span><span class="font-semibold text-zinc-900">Prefer email?</span> Reach us at <a href={`mailto:${SUPPORT_EMAIL}`} class="text-emerald-700 font-medium underline decoration-emerald-300 underline-offset-2 hover:decoration-emerald-500">{SUPPORT_EMAIL}</a>.</span></li>
+      </ul>
     </div>
 
-    <!-- Contact form -->
-    <div class="max-w-xl mx-auto">
-      <form
-        action="https://formspree.io/f/xaqalank"
-        method="POST"
-        class="space-y-5"
-        id="support-form"
-      >
-        <div>
-          <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            placeholder="Your name"
-            class="w-full rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-          />
+    <!-- Right: the form card -->
+    <div class="rounded-2xl border border-zinc-200 bg-white p-7 md:p-8 shadow-sm" data-reveal>
+      <form action="https://formspree.io/f/xaqalank" method="POST" class="space-y-5" id="support-form">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-sm font-medium text-zinc-700 mb-1.5">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              placeholder="Your name"
+              class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              placeholder="your@email.com"
+              class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+            />
+          </div>
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            placeholder="your@email.com"
-            class="w-full rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-          />
-        </div>
-
-        <div>
-          <label for="subject" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Subject</label>
+          <label for="subject" class="block text-sm font-medium text-zinc-700 mb-1.5">Topic</label>
           <select
             name="subject"
             id="subject"
             required
-            class="w-full rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
           >
             <option value="" disabled selected>Select a topic</option>
             <option value="Installation issue">Installation issue</option>
@@ -66,69 +186,50 @@ const metadata = {
         </div>
 
         <div>
-          <label for="ninjatrader" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-            NinjaTrader version <span class="text-zinc-400 font-normal">(optional — helps with bug reports)</span>
+          <label for="ninjatrader" class="block text-sm font-medium text-zinc-700 mb-1.5">
+            NinjaTrader version <span class="text-zinc-400 font-normal">(optional — speeds up bug reports)</span>
           </label>
           <input
             type="text"
             name="ninjatrader_version"
             id="ninjatrader"
             placeholder="e.g. 8.1.3.1"
-            class="w-full rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
           />
         </div>
 
         <div>
-          <label for="message" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">Message</label>
+          <label for="message" class="block text-sm font-medium text-zinc-700 mb-1.5">Message</label>
           <textarea
             name="message"
             id="message"
             required
             rows="5"
-            placeholder="Describe your issue or question in as much detail as possible."
-            class="w-full rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+            placeholder="Describe your issue or question in as much detail as you can."
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition resize-none"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-sm"
+          class="w-full font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
         >
           Send message
         </button>
 
-        <p class="text-xs text-center text-zinc-400">
-          Or email us directly at
-          <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600">contactmeridianpsi@gmail.com</a>
+        <p class="text-xs text-center text-zinc-500">
+          We typically reply within 24 hours. You can also email
+          <a href={`mailto:${SUPPORT_EMAIL}`} class="underline underline-offset-2 hover:text-zinc-700">{SUPPORT_EMAIL}</a>.
         </p>
       </form>
 
-      <!-- Success state shown after Formspree redirect if using JS -->
-      <div id="form-success" class="hidden text-center py-10">
-        <div class="text-emerald-600 text-4xl mb-4">✓</div>
-        <h2 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">Message sent</h2>
-        <p class="text-zinc-500 text-sm">We'll get back to you within 24 hours.</p>
-      </div>
-    </div>
-
-    <!-- Quick links -->
-    <div class="max-w-xl mx-auto mt-14 pt-10 border-t border-zinc-100 dark:border-zinc-700">
-      <p class="text-xs font-semibold tracking-widest text-zinc-400 uppercase mb-4 text-center">Other resources</p>
-      <div class="grid grid-cols-2 gap-3">
-        <a href="/faq" class="flex items-center gap-3 rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-3 hover:border-emerald-400 transition-colors group">
-          <span class="text-emerald-600 text-lg">?</span>
-          <div>
-            <p class="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-emerald-700 transition-colors">FAQ</p>
-            <p class="text-xs text-zinc-400">Common questions</p>
-          </div>
-        </a>
-        <a href="/download" class="flex items-center gap-3 rounded-lg border border-zinc-200 dark:border-zinc-700 px-4 py-3 hover:border-emerald-400 transition-colors group">
-          <span class="text-emerald-600 text-lg">↓</span>
-          <div>
-            <p class="text-sm font-medium text-zinc-900 dark:text-white group-hover:text-emerald-700 transition-colors">Releases</p>
-            <p class="text-xs text-zinc-400">Download latest build</p>
-          </div>
-        </a>
+      <!-- Success state, shown after a successful submit (JS) -->
+      <div id="form-success" class="hidden text-center py-12">
+        <div class="mx-auto mb-4 inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 border border-emerald-200">
+          <svg class="w-7 h-7 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <h3 class="text-xl font-semibold text-zinc-900 mb-2">Message sent.</h3>
+        <p class="text-zinc-600 text-sm">Thanks — we'll get back to you within 24 hours.</p>
       </div>
     </div>
   </section>

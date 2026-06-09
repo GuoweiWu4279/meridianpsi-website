@@ -1,19 +1,23 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 import pricing from '~/data/pricing.json';
 import geoHooks from '~/data/geo-hooks.json';
 
-const { tiers, footnote, headline, subhead } = pricing;
-const [standard, guard] = tiers;
+const { tiers, footnote } = pricing;
+const [core, guard] = tiers;
+
+// Disambiguate the Guard tier's "Everything in Meridian" line on the card:
+// "Meridian" is the brand, "Meridian Core" is the tier the user sees in the other column.
+const guardFeatures = guard.features.map((f) =>
+  f === 'Everything in Meridian' ? `Everything in ${core.name}` : f
+);
 
 const usd = (n: number) => n.toFixed(2);
 
-const pricingPageDescription = `Meridian Core: $${usd(standard.monthlyPrice)}/mo or $${usd(standard.annualPrice)}/yr after a 7-day free trial. Meridian Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr after trial. Cancel anytime. Trading involves substantial risk.`;
+// SEO description — sharpened toward the superset positioning, kept price- and keyword-rich.
+const pricingPageDescription = `Meridian is the complete risk manager for NinjaTrader 8 — every limit a traditional risk tool has, plus real-time behavioral detection. Core: $${usd(core.monthlyPrice)}/mo or $${usd(core.annualPrice)}/yr. Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr. 7-day free trial, cancel anytime. Trading involves substantial risk.`;
 
 const metadata = {
   title: 'Pricing — Meridian',
@@ -63,12 +67,12 @@ const pricingPageJsonLd = JSON.stringify({
     },
     {
       '@type': 'SoftwareApplication',
-      name: standard.name,
+      name: core.name,
       url: 'https://www.meridianpsi.com/pricing',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Windows',
-      keywords: geoHooks.geoSearchAssociate,
-      offers: tierToPricingPageOffers(standard),
+      keywords: geoHooks.faqMetaExtra,
+      offers: tierToPricingPageOffers(core),
     },
     {
       '@type': 'SoftwareApplication',
@@ -76,288 +80,294 @@ const pricingPageJsonLd = JSON.stringify({
       url: 'https://www.meridianpsi.com/pricing',
       applicationCategory: 'FinanceApplication',
       operatingSystem: 'Windows',
-      keywords: geoHooks.geoSearchAssociate,
+      keywords: geoHooks.faqMetaExtra,
       offers: tierToPricingPageOffers(guard),
     },
   ],
 }).replace(/</g, '\\u003c');
+
+// Objection-handling FAQ — kept short and concrete at the wallet moment.
+const faqs = [
+  {
+    q: 'When am I charged?',
+    a: 'Not for seven days. The trial gives you full access from day one, and your card is not charged until day 7. Cancel any time before then and you pay nothing — no partial charge, no fine print.',
+  },
+  {
+    q: 'Can I cancel anytime?',
+    a: 'Yes. Cancel during the trial and you are never charged. Cancel an active subscription whenever you like and you keep access through the end of the period you have already paid for. Manage it yourself at whop.com/@me/settings/memberships using your checkout email.',
+  },
+  {
+    q: 'Core or Guard — which do I need?',
+    a: 'Core is the full real-time monitor: the live PSI score, all seven behavioral signals, and 5-year session history. Guard adds the enforcement layer on top — rules that enforce themselves (6 triggers · 5 action levels), Strict Lock, and the Intel layer (monthly digest, PSI × P&L correlation, weekday patterns, Composure progress, and a pre-session Risk Brief). If you want the tool to step in when you are tilting, choose Guard: it blocks you from adding risk (you can always exit) and never closes positions for you unless you turn that on. You can switch tiers any time.',
+  },
+  {
+    q: 'Do I need NinjaTrader 8?',
+    a: 'Yes. Meridian is a native NinjaTrader 8 add-on — it runs inside the platform you already use, with no separate login account. It does not work as a standalone app.',
+  },
+  {
+    q: 'Monthly or annual?',
+    a: `Same product, same features. Annual is billed once a year at a lower effective monthly rate — about $${core.annualSavings}/yr less on Core and about $${guard.annualSavings}/yr less on Guard. Both include the 7-day free trial. Use the toggle above to compare.`,
+  },
+];
 ---
 
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={pricingPageJsonLd} />
-  <HeroText tagline="Pricing" title={headline} subtitle={subhead} />
 
-  <!-- ROI context block -->
-  <section class="max-w-3xl mx-auto px-6 mb-10">
-    <div class="rounded-2xl bg-zinc-50 border border-zinc-100 px-8 py-8">
-      <p class="text-center text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-7">Put the cost in context</p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-
-        <!-- Col 1: Prop firm eval -->
-        <div class="px-5 py-6 rounded-xl bg-white border border-zinc-200">
-          <p class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wide mb-3">Prop firm evaluation</p>
-          <p class="text-3xl font-bold text-zinc-800">$89–$540</p>
-          <p class="text-xs text-zinc-400 mt-2 leading-snug">FTMO 2-Step Challenge (10K–100K).<br />Fee is lost if you fail — refunded only if you pass.</p>
-        </div>
-
-        <!-- Col 2: One bad session -->
-        <div class="px-5 py-6 rounded-xl bg-white border border-zinc-200">
-          <p class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wide mb-3">One off-plan session</p>
-          <p class="text-3xl font-bold text-zinc-800">$300–800</p>
-          <p class="text-xs text-zinc-400 mt-2 leading-snug">Typical range traders report for a session driven by revenge entries or stop manipulation.</p>
-        </div>
-
-        <!-- Col 3: Meridian -->
-        <div class="px-5 py-6 rounded-xl bg-emerald-50 border border-emerald-200">
-          <p class="text-[11px] font-semibold text-emerald-600 uppercase tracking-wide mb-3">Meridian — one month</p>
-          <p class="text-3xl font-bold text-emerald-700">$49.99</p>
-          <p class="text-xs text-zinc-400 mt-2 leading-snug">Real-time behavioral monitoring for every session. Adapts to your own baseline.</p>
-        </div>
-
-      </div>
-      <p class="text-center text-[11px] text-zinc-400 mt-6 leading-relaxed max-w-lg mx-auto">
-        Meridian does not guarantee trading results. These figures are illustrative — prop firm fees are publicly listed; session loss ranges are self-reported by users.
+  <!-- ───────────────────────── HERO / RISK REVERSAL ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">PRICING</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        Try it free for 7 days.<br />No charge until day 7.
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
+        Full access from day one — the live monitor and every behavioral signal, running on your own sessions. Decide
+        with a week of your real data in hand. Cancel any time before the trial ends and you pay nothing.
       </p>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          7-day free trial
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          No charge until day 7
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Cancel anytime
+        </span>
+      </div>
     </div>
   </section>
 
-  <!-- Billing toggle -->
-  <div class="flex items-center justify-center mb-10 px-6">
-    <div class="relative flex items-center bg-zinc-100 rounded-full p-1 gap-1">
-      <button
-        id="btn-monthly"
-        class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm"
-      >
-        Monthly
-      </button>
-      <button
-        id="btn-annual"
-        class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 text-zinc-500"
-      >
-        Annual
-        <span class="ml-2 inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5">
-          Save ~$120/yr
+  <!-- ───────────────────────── PLANS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div data-reveal class="max-w-5xl mx-auto px-6 py-24">
+
+      <!-- Billing toggle -->
+      <div class="flex items-center justify-center mb-12">
+        <div class="relative flex items-center bg-zinc-100 rounded-full p-1 gap-1">
+          <button id="btn-monthly" class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm">
+            Monthly
+          </button>
+          <button id="btn-annual" class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 text-zinc-500">
+            Annual
+            <span class="ml-2 inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5">Save up to ${guard.annualSavings}/yr</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 items-start max-w-4xl mx-auto">
+
+        <!-- Meridian Core -->
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-8">
+          <div class="mb-5">
+            <h2 class="text-xl font-bold text-zinc-900">{core.name}</h2>
+            <p class="mt-1 text-sm text-zinc-600">{core.description}</p>
+          </div>
+
+          <div class="mb-6 min-h-[88px]">
+            <div id="core-monthly-price" class="flex items-baseline gap-1.5">
+              <span class="text-5xl font-extrabold text-zinc-900 tnum">${core.monthlyPrice}</span>
+              <span class="text-zinc-500 text-sm">/month</span>
+            </div>
+            <div id="core-annual-price" class="hidden items-baseline gap-1.5">
+              <span class="text-5xl font-extrabold text-zinc-900 tnum">${core.annualMonthly}</span>
+              <span class="text-zinc-500 text-sm">/month</span>
+            </div>
+            <p id="core-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 7-day free trial</p>
+            <p id="core-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
+              Billed <span class="tnum">${core.annualPrice}</span>/year · saves ~<span class="tnum">${core.annualSavings}</span>/yr · 7-day free trial
+            </p>
+          </div>
+
+          <a
+            id="core-cta"
+            href={core.monthlyCtaHref}
+            target="_blank"
+            rel="noopener"
+            class="block w-full text-center font-semibold text-zinc-900 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition mb-7"
+          >
+            Start free trial
+          </a>
+
+          <ul class="space-y-3">
+            {core.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-sm text-zinc-700">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Meridian Guard (recommended) -->
+        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-8 relative shadow-sm">
+          <div class="absolute -top-3 left-8 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full tracking-wide">RECOMMENDED</div>
+          <div class="mb-5">
+            <h2 class="text-xl font-bold text-zinc-900">{guard.name}</h2>
+            <p class="mt-1 text-sm text-zinc-600">{guard.description}</p>
+          </div>
+
+          <div class="mb-6 min-h-[88px]">
+            <div id="guard-monthly-price" class="flex items-baseline gap-1.5">
+              <span class="text-5xl font-extrabold text-zinc-900 tnum">${guard.monthlyPrice}</span>
+              <span class="text-zinc-500 text-sm">/month</span>
+            </div>
+            <div id="guard-annual-price" class="hidden items-baseline gap-1.5">
+              <span class="text-5xl font-extrabold text-zinc-900 tnum">${guard.annualMonthly}</span>
+              <span class="text-zinc-500 text-sm">/month</span>
+            </div>
+            <p id="guard-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 7-day free trial</p>
+            <p id="guard-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
+              Billed <span class="tnum">${guard.annualPrice}</span>/year · saves ~<span class="tnum">${guard.annualSavings}</span>/yr · 7-day free trial
+            </p>
+          </div>
+
+          <a
+            id="guard-cta"
+            href={guard.monthlyCtaHref}
+            target="_blank"
+            rel="noopener"
+            class="block w-full text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm mb-7"
+          >
+            Start free trial
+          </a>
+
+          <ul class="space-y-3">
+            {guardFeatures.map((f) => (
+              <li class="flex items-start gap-2.5 text-sm text-zinc-700">
+                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Trust strip -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-xs text-zinc-500 max-w-3xl mx-auto">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Checkout secured by Whop
         </span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Two pricing cards -->
-  <section class="max-w-4xl mx-auto px-6 pb-6">
-    <div class="grid md:grid-cols-2 gap-6 items-start">
-
-      <!-- Meridian (standard) -->
-      <div class="rounded-3xl border border-zinc-200 bg-white shadow-sm px-8 py-10">
-        <div class="mb-6">
-          <h2 class="text-xl font-bold text-zinc-900 mb-1">{standard.name}</h2>
-          <p class="text-sm text-zinc-500">{standard.description}</p>
-        </div>
-
-        <div class="mb-6 min-h-[80px]">
-          <div id="std-monthly-price" class="flex items-baseline gap-1">
-            <span class="text-4xl font-bold text-zinc-900">${standard.monthlyPrice}</span>
-            <span class="text-zinc-500 text-sm">/month</span>
-          </div>
-          <div id="std-annual-price" class="hidden flex items-baseline gap-1">
-            <span class="text-4xl font-bold text-zinc-900">${standard.annualMonthly}</span>
-            <span class="text-zinc-500 text-sm">/month</span>
-          </div>
-          <p id="std-monthly-note" class="text-xs text-zinc-400 mt-1">Billed monthly · 7-day free trial</p>
-          <p id="std-annual-note" class="text-xs text-zinc-400 mt-1 hidden">
-            Billed ${standard.annualPrice}/year · saves ~${standard.annualSavings}/yr · 7-day free trial
-          </p>
-        </div>
-
-        <a
-          id="std-cta"
-          href={standard.monthlyCtaHref}
-          class="block w-full text-center px-6 py-3 rounded-full bg-zinc-900 hover:bg-zinc-700 text-white font-semibold text-sm transition-colors mb-8"
-        >
-          Start free trial
-        </a>
-
-        <ul class="space-y-3">
-          {standard.features.map((f) => (
-            <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-              <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-              </svg>
-              {f}
-            </li>
-          ))}
-        </ul>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Native NinjaTrader 8 add-on
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds
+        </span>
       </div>
 
-      <!-- Meridian Guard -->
-      <div class="rounded-3xl border-2 border-emerald-600/30 bg-gradient-to-b from-white to-emerald-50/30 shadow-lg shadow-emerald-900/5 px-8 py-10 relative overflow-hidden">
-        <div class="absolute top-4 right-4">
-          <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-600 text-white text-[11px] font-semibold tracking-wide uppercase">Recommended</span>
-        </div>
-        <div class="mb-6">
-          <h2 class="text-xl font-bold text-zinc-900 mb-1">{guard.name}</h2>
-          <p class="text-sm text-zinc-500">{guard.description}</p>
-        </div>
-
-        <div class="mb-6 min-h-[80px]">
-          <div id="guard-monthly-price" class="flex items-baseline gap-1">
-            <span class="text-4xl font-bold text-zinc-900">${guard.monthlyPrice}</span>
-            <span class="text-zinc-500 text-sm">/month</span>
-          </div>
-          <div id="guard-annual-price" class="hidden flex items-baseline gap-1">
-            <span class="text-4xl font-bold text-zinc-900">${guard.annualMonthly}</span>
-            <span class="text-zinc-500 text-sm">/month</span>
-          </div>
-          <p id="guard-monthly-note" class="text-xs text-zinc-400 mt-1">Billed monthly · 7-day free trial</p>
-          <p id="guard-annual-note" class="text-xs text-zinc-400 mt-1 hidden">
-            Billed ${guard.annualPrice}/year · saves ~${guard.annualSavings}/yr · 7-day free trial
-          </p>
-        </div>
-
-        <a
-          id="guard-cta"
-          href={guard.monthlyCtaHref}
-          class="block w-full text-center px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-colors mb-8"
-        >
-          Start free trial
-        </a>
-
-        <ul class="space-y-3">
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
-            Everything in Meridian
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
-            Guard System — rules that enforce themselves (6 triggers · 5 action levels)
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
-            Intel Layer — monthly digest, weekday patterns & Composure progress
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
-            PSI × P&L correlation — see what your Stable sessions average vs Critical
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-            </svg>
-            Today's Risk Brief — personalized pre-session summary
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-zinc-600 mt-2">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <a href="/guard#comparison" class="text-zinc-400 hover:text-zinc-600 underline underline-offset-2 text-xs">See full Guard & Intel feature breakdown →</a>
-          </li>
-        </ul>
+      <div class="mt-6 flex justify-center">
+        <EcosystemVendorBadge variant="compact" />
       </div>
+    </div>
+  </section>
 
+  <!-- ───────────────────────── WHAT YOU'RE BUYING (superset) ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT EVERY PLAN INCLUDES</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">More than a risk tool. The complete one.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+        Both plans do everything a traditional NinjaTrader 8 risk tool does — daily loss limits, max position size, P&amp;L
+        caps, loss-streak cutoffs. Then they add the layer none of them have: real-time behavioral detection that catches
+        the mistake before the order, not after the loss.
+      </p>
+    </div>
+    <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
+        <ul class="space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">Included in both plans.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
+        <ul class="space-y-3 text-zinc-800">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection — 7 signals (revenge, oversizing, tilt&hellip;)</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade — not a generic average</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>It steps in <em>before</em> the order, not after the loss</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor · guard · journal · review</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-emerald-700 font-medium">Guard adds the enforcement layer on top.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── RISK REVERSAL / REFUND ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE RISK IS OURS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Try it on your own sessions, then decide.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          You should not have to pay to find out whether a tool works for you. So you don't.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">7 days, on the house</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Full access from day one. Your card is not charged until day 7 — cancel before then and you pay nothing at all.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Cancel in two clicks</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Manage your plan yourself through Whop, any time. Cancel and you keep access through the period you have already paid for.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">An honest refund</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">If Meridian won't run on a supported NinjaTrader 8 setup and we can't fix it, we refund you in full. Email <a href="mailto:contactmeridianpsi@gmail.com" class="underline text-emerald-800 hover:text-emerald-900">contactmeridianpsi@gmail.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FAQ ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">BEFORE YOU CHECK OUT</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Straight answers.</h2>
+    </div>
+    <div data-reveal class="space-y-4">
+      {faqs.map((item) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <h3 class="font-semibold text-zinc-900">{item.q}</h3>
+          <p class="mt-2 text-zinc-600 leading-relaxed">{item.a}</p>
+        </div>
+      ))}
     </div>
 
-    <!-- Trust strip -->
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-zinc-400">
-      <span class="flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-        24-hour support response
-      </span>
-      <span class="flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-        Cancel anytime
-      </span>
-      <span class="flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-        Anonymous by design — no personal data collected
-      </span>
-      <span class="flex items-center gap-1.5">
-        <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-        Checkout secured by Whop
-      </span>
-    </div>
-
-    <div class="mt-6 flex justify-center">
-      <EcosystemVendorBadge variant="compact" />
-    </div>
-
-    <p class="mt-6 text-center text-xs text-zinc-500 leading-relaxed max-w-2xl mx-auto">
+    <!-- Billing terms (verbatim footnote) -->
+    <p class="mt-12 text-center text-xs text-zinc-500 leading-relaxed max-w-2xl mx-auto">
       {footnote}
       <a href="/disclaimer" class="underline text-emerald-800 hover:text-emerald-900"> Risk disclaimer</a>.
     </p>
   </section>
 
-  <FAQs
-    title="Billing and product questions"
-    tagline=""
-    classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: 'How does the free trial work?',
-        description:
-          'Your first seven days include full access at no cost. If you choose to continue afterward, you pay the plan rate you selected — monthly or annual. You may cancel during the trial at any time and no charge applies.',
-      },
-      {
-        title: 'What is the difference between monthly and annual?',
-        description:
-          'Same full product, same features. Monthly is billed every month. Annual is billed once per year at a lower effective monthly rate — roughly $120/year less than monthly on Meridian Core, and roughly $168/year less on Meridian Guard (see the Annual toggle on this page). Both include a 7-day free trial.',
-      },
-      {
-        title: 'What is the difference between Meridian and Meridian Guard?',
-        description:
-          'Meridian is the full real-time PSI monitor. Meridian Guard is an upgraded tier that adds the Guard System (a commitment-device engine with 6 trigger conditions and 5 action levels) and the Intel Layer (monthly digest, PSI × P&L correlation, weekday patterns, and a personalized pre-session risk brief). Both products are available now — start with either tier and switch at any time.',
-      },
-      {
-        title: 'Can I cancel at any time?',
-        description:
-          'Yes. Cancel during the trial and you will not be charged at all. Cancel an active subscription whenever you like and you retain access through the end of the period you have already paid for. To cancel, visit your Whop account at whop.com/@me/settings/memberships — log in with the email you used at checkout.',
-      },
-      {
-        title: 'What payment methods are accepted?',
-        description:
-          'Checkout is processed securely by Whop. Major credit and debit cards (Visa, Mastercard, American Express, Discover) and other methods shown at checkout are supported where available. We do not store your full card details on Meridian servers.',
-      },
-      {
-        title: 'What does the refund policy cover?',
-        description:
-          'Please see our Refund Policy for the full terms. In general, it explains how we handle installation or technical issues on supported setups, and how courtesy refunds work within the stated time frames.',
-      },
-      {
-        title: 'Does Meridian store or transmit my trade data?',
-        description:
-          'Meridian keeps you anonymous: it never collects your name, broker credentials, account numbers, or funds. To improve the product and run research on trading discipline, it does transmit anonymized records of your trading activity and behavioral signals — tied only to a random identifier, never your identity, and never sold. You can opt out anytime in settings or by email. The product works fully even if the upload is blocked. See the Data & Research Notice and Privacy Policy.',
-      },
-      {
-        title: 'What does PSI measure — and can it predict profits?',
-        description:
-          'PSI summarizes behavioral-stability signals from your live session using the patterns Meridian is designed to monitor. It is a risk-awareness and discipline tool, not a forecast of trading results, and it is not investment advice. Trading involves substantial risk of loss; many factors beyond psychology determine outcomes.',
-      },
-    ]}
-  />
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Start free trial — Meridian',
-        href: standard.monthlyCtaHref,
-        icon: 'tabler:player-play',
-      },
-      { text: 'System requirements', href: '/download#requirements' },
-    ]}
-  >
-    <Fragment slot="title">Seven-day trial. Full access.</Fragment>
-    <Fragment slot="subtitle">
-      $49.99/month or $479.90/year after the trial period. NinjaTrader 8 required. Credit card required at checkout.
-      <span class="block text-xs text-muted mt-2">Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice.</span>
-    </Fragment>
-  </CallToAction>
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-24 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">Start the trial. Let your own data decide.</h2>
+      <p class="mt-5 text-lg text-zinc-600">From ${core.monthlyPrice}/month after the 7-day free trial. No charge until day 7. Cancel anytime.</p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start 7-day free trial</a>
+        <a href="/download#requirements" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">System requirements</a>
+      </div>
+      <p class="mt-5 text-xs text-zinc-500 max-w-xl mx-auto leading-relaxed">
+        NinjaTrader 8 required. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice.
+      </p>
+    </div>
+  </section>
 </Layout>
 
 <script>
@@ -369,11 +379,11 @@ const pricingPageJsonLd = JSON.stringify({
     const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement | null;
     if (!btnMonthly || !btnAnnual) return;
 
-    const stdMonthlyPrice  = document.getElementById('std-monthly-price');
-    const stdAnnualPrice   = document.getElementById('std-annual-price');
-    const stdMonthlyNote   = document.getElementById('std-monthly-note');
-    const stdAnnualNote    = document.getElementById('std-annual-note');
-    const stdCta           = document.getElementById('std-cta') as HTMLAnchorElement | null;
+    const coreMonthlyPrice = document.getElementById('core-monthly-price');
+    const coreAnnualPrice  = document.getElementById('core-annual-price');
+    const coreMonthlyNote  = document.getElementById('core-monthly-note');
+    const coreAnnualNote   = document.getElementById('core-annual-note');
+    const coreCta          = document.getElementById('core-cta') as HTMLAnchorElement | null;
 
     const guardMonthlyPrice = document.getElementById('guard-monthly-price');
     const guardAnnualPrice  = document.getElementById('guard-annual-price');
@@ -381,8 +391,9 @@ const pricingPageJsonLd = JSON.stringify({
     const guardAnnualNote   = document.getElementById('guard-annual-note');
     const guardCta          = document.getElementById('guard-cta') as HTMLAnchorElement | null;
 
-    const MONTHLY_URL       = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
-    const ANNUAL_URL        = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
+    // Canonical Whop checkout links (mirror src/data/pricing.json).
+    const CORE_MONTHLY_URL  = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
+    const CORE_ANNUAL_URL   = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
     const GUARD_MONTHLY_URL = 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
     const GUARD_ANNUAL_URL  = 'https://whop.com/checkout/plan_frPOgHtDTvBkR';
 
@@ -392,14 +403,18 @@ const pricingPageJsonLd = JSON.stringify({
       btnAnnual!.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
       btnAnnual!.classList.add('text-zinc-500');
 
-      stdMonthlyPrice?.classList.remove('hidden');
-      stdAnnualPrice?.classList.add('hidden');
-      stdMonthlyNote?.classList.remove('hidden');
-      stdAnnualNote?.classList.add('hidden');
-      if (stdCta) stdCta.href = MONTHLY_URL;
+      coreMonthlyPrice?.classList.remove('hidden');
+      coreMonthlyPrice?.classList.add('flex');
+      coreAnnualPrice?.classList.add('hidden');
+      coreAnnualPrice?.classList.remove('flex');
+      coreMonthlyNote?.classList.remove('hidden');
+      coreAnnualNote?.classList.add('hidden');
+      if (coreCta) coreCta.href = CORE_MONTHLY_URL;
 
       guardMonthlyPrice?.classList.remove('hidden');
+      guardMonthlyPrice?.classList.add('flex');
       guardAnnualPrice?.classList.add('hidden');
+      guardAnnualPrice?.classList.remove('flex');
       guardMonthlyNote?.classList.remove('hidden');
       guardAnnualNote?.classList.add('hidden');
       if (guardCta) guardCta.href = GUARD_MONTHLY_URL;
@@ -411,14 +426,18 @@ const pricingPageJsonLd = JSON.stringify({
       btnMonthly!.classList.remove('bg-white', 'text-zinc-900', 'shadow-sm');
       btnMonthly!.classList.add('text-zinc-500');
 
-      stdMonthlyPrice?.classList.add('hidden');
-      stdAnnualPrice?.classList.remove('hidden');
-      stdMonthlyNote?.classList.add('hidden');
-      stdAnnualNote?.classList.remove('hidden');
-      if (stdCta) stdCta.href = ANNUAL_URL;
+      coreMonthlyPrice?.classList.add('hidden');
+      coreMonthlyPrice?.classList.remove('flex');
+      coreAnnualPrice?.classList.remove('hidden');
+      coreAnnualPrice?.classList.add('flex');
+      coreMonthlyNote?.classList.add('hidden');
+      coreAnnualNote?.classList.remove('hidden');
+      if (coreCta) coreCta.href = CORE_ANNUAL_URL;
 
       guardMonthlyPrice?.classList.add('hidden');
+      guardMonthlyPrice?.classList.remove('flex');
       guardAnnualPrice?.classList.remove('hidden');
+      guardAnnualPrice?.classList.add('flex');
       guardMonthlyNote?.classList.add('hidden');
       guardAnnualNote?.classList.remove('hidden');
       if (guardCta) guardCta.href = GUARD_ANNUAL_URL;

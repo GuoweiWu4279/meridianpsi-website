@@ -55,7 +55,7 @@ After stopping the session, open **History** in the Dashboard and click today's 
 
 Then open the **Journal** page and click **Complete Journal** — Meridian auto-compiles a structured session draft from your chips, notes, and stats. Review, edit, save.
 
-The first session baseline is thin — Meridian doesn't have much history to compare against yet. After 5–10 sessions, the signals become meaningfully more precise. By 20–30 sessions, the baseline is well-calibrated to your trading style.
+The first session baseline is thin — Meridian doesn't have much history to compare against yet. As you log more sessions, the signals have more of your own trading history to measure against, so the baseline gradually adapts to your style and the readings get more personal.
 
 ---
 

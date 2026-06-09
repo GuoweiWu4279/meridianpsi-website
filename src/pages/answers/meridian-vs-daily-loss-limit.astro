@@ -9,11 +9,13 @@ const metadata = {
 };
 
 const question = 'Meridian vs daily loss limit — which fires first?';
-const directAnswer = 'Meridian fires first — by design. A daily loss limit fires after the session P&L reaches a configured dollar floor. Meridian Guard fires on the behavioral pattern that produces the loss: consecutive losses, PSI below a threshold, or unrealized P&L deteriorating before the position closes. In a typical failure sequence, Guard fires on the behavioral pattern while there is still time to pause, reflect, and avoid the next entry. The daily loss limit engages after the financial outcome is already in motion. They are complementary layers, not alternatives.';
+const directAnswer = 'Meridian fires first — by design. A daily loss limit fires after the session P&L reaches a configured dollar floor. Meridian is a complete risk-management layer for NinjaTrader 8: it covers the same financial limits a daily loss limit does (daily loss cap, max position size, drawdown and loss-streak cutoffs) and adds a layer those tools lack — real-time behavioral detection. Meridian Guard fires on the behavioral pattern that precedes the loss: consecutive losses, PSI below a threshold, or unrealized P&L deteriorating before the position closes. In a typical failure sequence, Guard fires on the behavioral pattern while there is still time to pause, reflect, and avoid the next entry. A standalone daily loss limit engages only after the financial outcome is already in motion. They are complementary layers — and Meridian provides both.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
@@ -62,22 +65,22 @@ const qaSchema = JSON.stringify({
         After loss 1: nothing fires.<br/>
         After loss 2: Guard fires. The trader must type a phrase before the next order can be placed.<br/>
         After loss 3: Guard fires. The broker disconnects for 20 minutes.<br/>
-        The $500 daily loss limit has not engaged yet — the session is $180 down at this point, well above the limit. But the pattern that typically precedes the $500 loss has been intercepted.
+        The $500 daily loss limit has not engaged yet — the session is only $180 down at this point, well short of the $500 limit, which has not come close to triggering. But the pattern that typically precedes the $500 loss has been intercepted.
       </p>
       <p>
-        If Guard was not there, losses 4, 5, and 6 might have pushed the session to the $500 floor — and the daily loss limit would have fired at the end of the sequence instead of the beginning.
+        If Guard was not there, a few more losses might have pushed the session toward the $500 floor — and the daily loss limit would have fired at the end of the sequence instead of the beginning.
       </p>
 
       <h2>Are they competing or complementary?</h2>
       <p>
-        Complementary. The recommended setup for a NinjaTrader 8 discretionary futures trader is:
+        Complementary — and Meridian supplies both layers. It is the most complete risk-management add-on for NinjaTrader 8: it enforces the financial limits a daily loss limit does (daily loss cap, max position size, drawdown and loss-streak cutoffs) and adds the behavioral layer those tools lack. The recommended setup for a NinjaTrader 8 discretionary futures trader is:
       </p>
       <ul>
-        <li><strong>Always on:</strong> NinjaTrader native daily loss limit + broker-level drawdown limit (financial backstop, cost: free)</li>
-        <li><strong>On top:</strong> Meridian Guard behavioral triggers (behavioral leading indicator, fires before the backstop is needed)</li>
+        <li><strong>Financial backstop:</strong> a daily loss cap and drawdown limit — covered by NinjaTrader's native limit and your broker's, or by Meridian's own loss-based triggers (the native/broker limits are free and worth keeping on as a redundant floor)</li>
+        <li><strong>The layer only Meridian adds:</strong> real-time behavioral triggers — revenge re-entry, oversizing, stop manipulation, overtrading, PSI below threshold — that fire before the financial backstop is ever needed</li>
       </ul>
       <p>
-        A day where Guard fires and the trader steps back is a day the daily loss limit never needed to engage. A day the daily loss limit fires is a day Guard's behavioral threshold was reached but the enforcement was not strong enough — which is a signal to reconfigure the Guard response level upward.
+        A day where Guard fires and the trader steps back is a day the daily loss limit never needed to engage. When the daily loss limit fires after a string of behavioral triggers, that usually means Guard's response level was set too soft for that pattern — a signal to reconfigure it upward. (Some loss-limit days are just market days — a single large adverse move, a gap, news — where no behavioral threshold was crossed at all.)
       </p>
 
       <p>
@@ -87,7 +90,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

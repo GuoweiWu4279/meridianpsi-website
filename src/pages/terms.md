@@ -1,9 +1,10 @@
 ---
 title: 'Terms of Service'
+description: 'The terms governing your use of Meridian, the behavioral risk-management add-on for NinjaTrader 8 — license, acceptable use, disclaimers, and no-guarantee-of-results.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated: April 2026_
+_Last updated: June 2026_
 
 **IMPORTANT: This software is for informational and educational purposes only. Please read these Terms of Service carefully before purchasing or using Meridian.**
 
@@ -13,11 +14,11 @@ By downloading, installing, or using Meridian ("the Software"), you agree to be 
 
 ## 2. Description of Software
 
-Meridian is a psychological stability monitoring tool designed for use with NinjaTrader 8. The Software provides a real-time composite index based on user-configured behavioral inputs during trading sessions. **The Software does not provide trading signals, financial advice, or investment recommendations of any kind.**
+Meridian is a psychological stability monitoring tool designed for use with NinjaTrader® 8. The Software computes a real-time composite score from your order flow and configured settings during trading sessions, surfacing behavioral patterns for your own awareness. **The Software does not provide trading signals, financial advice, or investment recommendations of any kind.**
 
 ## 3. License
 
-Subject to these Terms, we grant you a limited, non-exclusive, non-transferable license to install and use the Software on devices you own or control, solely for your personal, non-commercial use. You may not:
+Subject to these Terms, we grant you a limited, non-exclusive, non-transferable license to install and use the Software on devices you own or control, solely for your own trading use as a single end user. You may not:
 
 - Redistribute, resell, or sublicense the Software
 - Reverse engineer or decompile the Software
@@ -42,11 +43,11 @@ Nothing in the Software, this website, or any associated documentation constitut
 
 ## 8. Third-Party Platform
 
-Meridian is an **Official NinjaTrader Ecosystem Vendor**, approved by NinjaTrader's Compliance and Executive teams. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8 &mdash; NinjaTrader® is a registered trademark of NinjaTrader LLC, and Meridian is not owned by NinjaTrader LLC. Your use of NinjaTrader is governed by NinjaTrader's own terms of service.
+Meridian is an **Official NinjaTrader Ecosystem Vendor**, audited and approved by NinjaTrader's Compliance, QA, and Executive teams. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8 &mdash; NinjaTrader is a registered trademark of NinjaTrader LLC, and Meridian is not owned by NinjaTrader LLC. Your use of NinjaTrader is governed by NinjaTrader's own terms of service.
 
 ## 9. Payments and Refunds
 
-All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
+All purchases include a 7-day free trial — no charge until day 7, cancel anytime. After that: a 14-day money-back guarantee on your first charge, and a full refund anytime Meridian won't run on a supported NinjaTrader 8 setup. All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
 
 ## 10. Updates and Changes
 
@@ -60,6 +61,12 @@ We reserve the right to terminate your license if you violate these Terms. Upon 
 
 These Terms are governed by the laws of the State of California, United States, without regard to its conflict of law provisions. Any disputes shall be resolved in the state or federal courts located in Santa Clara County, California.
 
-## 13. Contact
+## 13. Data Collection and Research
+
+The Software transmits **anonymized** records of your trading activity, the behavioral signals it computes, how the Software is configured, and how its features are used (for example, which screens you open), used solely to improve the product and to conduct research on trading discipline. These records are linked only to a random identifier and contain **no** name, contact details, broker or account credentials, account numbers, or funds/balance information. This data is never sold or shared for advertising.
+
+Your participation is described in detail in our [Privacy Policy](/privacy) and [Data & Research Notice](/data-research). You can **opt out at any time** — email **contactmeridianpsi@gmail.com** — and request deletion of any data associated with your anonymous identifier. By using the Software you acknowledge the data practices described in those documents.
+
+## 14. Contact
 
 For questions about these Terms, email: **contactmeridianpsi@gmail.com**

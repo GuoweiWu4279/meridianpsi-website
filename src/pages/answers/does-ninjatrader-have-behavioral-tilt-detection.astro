@@ -5,15 +5,18 @@ const metadata = {
   title: 'Does NinjaTrader Have Built-In Behavioral or Tilt Detection? — Meridian',
   description:
     'NinjaTrader 8 has daily loss limits and position controls, but no built-in behavioral or tilt detection. Here is what the native tools cover and where the behavioral layer starts.',
+  canonical: 'https://www.meridianpsi.com/answers/does-ninjatrader-have-behavioral-tilt-detection',
   robots: { index: true, follow: true },
 };
 
 const question = 'Does NinjaTrader have built-in behavioral or tilt detection?';
-const directAnswer = 'No. NinjaTrader 8 ships with financial-outcome controls — account-level daily loss limits and position size constraints — but no behavioral signal detection. It does not monitor re-entry speed after a loss, detect stop-loss widening, track overtrading pace, or compute a real-time psychological stability score. Behavioral and tilt detection for NinjaTrader 8 requires a third-party add-on; Meridian is the only add-on currently shipping the full behavioral monitoring stack for NinjaTrader 8.';
+const directAnswer = 'No. NinjaTrader 8 ships with financial-outcome controls — account-level daily loss limits and position size constraints — but no behavioral signal detection. It does not monitor re-entry speed after a loss, detect stop-loss widening, track overtrading pace, or compute a real-time psychological stability score. Behavioral and tilt detection for NinjaTrader 8 requires a third-party add-on. Meridian is the most complete risk add-on for NinjaTrader 8: it covers the same financial limits a traditional risk tool does (daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff) and is the only one that also ships the full behavioral monitoring stack on top.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +41,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
@@ -51,7 +55,7 @@ const qaSchema = JSON.stringify({
         NinjaTrader 8 ships with account-level risk controls under the "Daily Performance" settings. These include: a daily loss limit that blocks new entries when cumulative P&L drops below a configured threshold, a maximum position size constraint, and a maximum number of positions. Some brokers (Tradovate, Rithmic, AMP) also enforce drawdown limits at the clearing layer.
       </p>
       <p>
-        These controls watch one thing: financial outcomes. Once the dollar threshold is hit, trading is suspended. That is the full scope of native behavioral awareness in NinjaTrader 8.
+        These controls watch one thing: financial outcomes. Once the dollar threshold is hit, trading is suspended. That is the full scope of native risk control in NinjaTrader 8 — and it is entirely financial, not behavioral.
       </p>
 
       <h2>What is absent from the native toolset</h2>
@@ -64,17 +68,19 @@ const qaSchema = JSON.stringify({
         <li>Entry frequency relative to the trader's own session baseline (overtrading pace)</li>
         <li>Position size escalation under loss conditions (size spike)</li>
         <li>Hold-time drift on losing positions (position overstay)</li>
+        <li>Directional hold bias — holding winners and losers asymmetrically (hold bias)</li>
+        <li>Hard rule violations — size-cap, daily-loss, and session-window breaches (rule violations)</li>
       </ul>
       <p>
-        These behavioral signals are what produce the financial loss — they precede the outcome the native tools catch. The native toolset catches the result, not the pattern.
+        These behavioral signals often drive the financial loss — they precede the outcome the native tools catch. The native toolset catches the result, not the pattern.
       </p>
 
       <h2>What the behavioral layer adds</h2>
       <p>
-        Meridian runs as a native NinjaTrader 8 add-on and observes every order event and account state change in real time. It tracks the seven behavioral signals above, computes a composite Psychological Stability Index calibrated to each trader's own session history, and optionally enforces pre-committed responses through Meridian Guard — from a quiet alert to a typed acknowledgment, mandatory countdown, or full broker disconnect.
+        Meridian runs as a native NinjaTrader 8 add-on and covers both layers in one tool. It enforces the same financial limits a traditional risk add-on does — daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff — and adds the layer none of them have: it observes every order event and account state change in real time, tracks the seven behavioral signals above, computes a composite Psychological Stability Index calibrated to each trader's own session history, and optionally enforces pre-committed responses through Meridian Guard — from a quiet alert to a typed acknowledgment with an optional countdown, or an opt-in broker disconnect.
       </p>
       <p>
-        The behavioral and financial layers operate independently. Keeping native NinjaTrader daily loss limits active while adding Meridian means the financial backstop is always in place, and the behavioral layer fires on the pattern before the backstop is needed.
+        Because Meridian carries both, it is a superset of a conventional risk tool rather than a separate niche add-on: if you already run any NinjaTrader 8 risk limit, Meridian does that and the behavioral detection too. The two layers also work independently — keeping native NinjaTrader daily loss limits active alongside Meridian means the financial backstop is always in place, and the behavioral layer fires on the pattern before the backstop is needed.
       </p>
 
       <p>
@@ -84,7 +90,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

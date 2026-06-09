@@ -10,4 +10,4 @@ The standard advice (journal after the session, meditate, take breaks) treats th
 
 Meridian does this by calculating a [real-time Psychological Stability Index (PSI)](/features#live-psi) that updates after every fill, every stop modification, and every rule violation. You see a live score and [seven behavioral signals](/features#seven-dimensions) — including overtrading pace, hold-time bias, and size spikes — while the session is still running.
 
-When the score drops into the Caution or Critical zone, you have a concrete signal to pause, not a vague feeling. If you have [Meridian Guard](/guard) configured, the system can enforce a pause for you automatically.
+When the score drops into the Warning or Critical zone, you have a concrete signal to pause, not a vague feeling. If you have [Meridian Guard](/guard) configured, the system can enforce a pause for you automatically.

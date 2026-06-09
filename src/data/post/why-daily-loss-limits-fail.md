@@ -69,7 +69,7 @@ Behavioral monitoring is the earlier warning system — the layer that detects t
 
 1. An elevated Overtrading Pace signal, before any individual threshold is breached, can trigger a mandatory pause
 2. The pause introduces time-based friction between the moment of behavioral deterioration and the next order entry
-3. Time-based friction allows partial neurological recovery — cortisol levels drop, prefrontal cortex function recovers — before the next decision is made
+3. Time-based friction is intended to let the acute stress response begin to subside — the cortisol and adrenaline spike that drives loss-chasing is time-limited, and short enforced pauses are associated with partial recovery of prefrontal function — before the next decision is made
 
 The daily loss limit addresses what happens if this process fails. Behavioral monitoring addresses the process itself.
 
@@ -77,7 +77,7 @@ The daily loss limit addresses what happens if this process fails. Behavioral mo
 
 For NinjaTrader 8 traders, the recommended configuration is:
 
-1. **Broker-level daily loss limit** active at the account level (configured at the clearing firm)
+1. **Broker-level daily loss limit** active at the account level (configured with your broker or prop firm)
 2. **NinjaTrader account-level daily loss control** set slightly above the broker limit (as a platform-layer redundancy)
 3. **Behavioral monitoring** (Meridian PSI) running as an overlay, with Guard rules configured to trigger at behavioral thresholds rather than financial ones
 
@@ -85,4 +85,4 @@ The Guard rule triggers when the behavioral pattern indicates elevated risk — 
 
 ---
 
-*[Meridian](https://www.meridianpsi.com) is a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. It fires on the behavioral pattern before any financial threshold needs to engage. Meridian does not provide investment advice. Trading involves substantial risk of loss.*
+*[Meridian](https://www.meridianpsi.com) is a real-time psychological stability monitor for NinjaTrader 8 that scores behavioral deterioration during a live session and can intervene before the next order rather than after the loss is recorded. It fires on the behavioral pattern before any financial threshold needs to engage. Meridian does not provide investment advice. Trading involves substantial risk of loss. Results may vary.*

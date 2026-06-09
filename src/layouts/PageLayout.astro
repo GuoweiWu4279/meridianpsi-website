@@ -20,7 +20,7 @@ const { metadata } = Astro.props;
   <RiskBanner />
   <slot name="announcement" />
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <Header {...headerData} isSticky />
   </slot>
   <main>
     <slot />

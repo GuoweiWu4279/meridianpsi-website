@@ -23,3 +23,15 @@ pnpm-lock.yaml
 
 .astro
 .vercel
+
+# Claude QC + audit scratch (not part of the site)
+/qc-*.mjs
+/static-preview.mjs
+/crop-qc.py
+/extract-*.py
+/fix-*.py
+/parse-*.py
+/audit/
+/audit-low/
+/audit-digest.txt
+/.claude/

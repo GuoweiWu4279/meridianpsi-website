@@ -1,132 +1,246 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TRUST & SECURITY — precise / compliant / reassuring. The page that states,
+// in plain language, exactly what the software does and does not do: what data
+// leaves the machine (anonymized, opt-out — never name, broker credentials,
+// account numbers, or funds), the Ecosystem-Vendor standing, Guard's
+// boundary (by default it does not close positions; auto-flatten on a full
+// disconnect is opt-in), and the no-guarantees stance.
+// Header, Footer, RiskBanner come from PageLayout. Design-system primitives
+// (.win/.halo/.eyebrow/.tnum) live in the global stylesheet.
+// ─────────────────────────────────────────────────────────────────────────────
+
 const metadata = {
-  title: 'Security & Privacy — Meridian',
+  title: 'Trust & Security — Meridian',
   description:
-    'Meridian is anonymous by design: it never collects your name, broker credentials, account numbers, or funds. Data used to improve the product and for research is anonymized and never sold — and you can opt out. Understand exactly what the software does and does not do.',
+    'Anonymous by design. Meridian never collects your name, credentials, account numbers, or funds — telemetry is local-first, anonymized, and opt-out. No profit guarantees.',
   robots: { index: true, follow: true },
 };
+
+// Plain-language facts, rendered as cards so the page reads like a contract you
+// can scan. Kept in arrays so the markup stays calm and consistent.
+const stored = [
+  {
+    title: 'Your session behavioral data',
+    body: 'PSI scores, signal readings, composure grades, trade counts, and timestamps — written to a local database on your Windows PC.',
+  },
+  {
+    title: 'Your configuration',
+    body: "Guard rules, session parameters, and baseline preferences — stored locally in NinjaTrader's standard add-on data path.",
+  },
+  {
+    title: '5 years of history',
+    body: 'Kept on your machine. Uninstalling Meridian removes the software; your local data files stay under your control unless you delete them.',
+  },
+];
+
+const neverDoes = [
+  {
+    title: 'Never collects who you are',
+    body: 'No name, broker credentials, account numbers, card details, or funds — ever. None of it is required to run the software, and none of it is transmitted.',
+  },
+  {
+    title: 'Never asks for broker credentials',
+    body: "Meridian reads execution data from NinjaTrader's internal data layer, not your broker's API. No passwords or API keys are ever passed to Meridian.",
+  },
+  {
+    title: 'Never gives trading signals',
+    body: 'PSI is a behavioral stability score, not a directional indicator. Meridian generates no buy or sell signals and offers no investment advice.',
+  },
+  {
+    title: 'Never promises a profit',
+    body: 'Meridian protects your discipline, not your P&L. We make no guarantee of trading results, returns, or outcomes — no tool can.',
+  },
+  {
+    title: 'Never sells your data',
+    body: 'No third-party ad tracking, no profiling, no resale. The only data that leaves is anonymized telemetry for product improvement and research — and you can turn it off.',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <section class="py-16 px-6">
-    <div class="max-w-2xl mx-auto">
+  <!-- ───────────────────────── HEADER ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">TRUST &amp; SECURITY</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Anonymous by design.<br />Honest about the rest.
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Meridian runs inside NinjaTrader 8 on your Windows PC. It never collects your name, broker credentials, account
+        numbers, or funds. Telemetry is <strong class="text-zinc-800">local-first, anonymized, and opt-out</strong> — tied
+        only to a random identifier, never sold. This page states exactly what the software does, and what it does not.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13px] text-zinc-500">
+        <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+          Official NinjaTrader Ecosystem Vendor
+        </span>
+        <span class="text-zinc-300">|</span><span>Local-first, anonymized telemetry</span>
+        <span class="text-zinc-300">|</span><span>No profit guarantees</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- Header -->
-      <div class="mb-14">
-        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Security & Privacy</p>
-        <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-5">
-          Anonymous<br />by design.
-        </h1>
-        <p class="text-base text-zinc-500 leading-relaxed max-w-xl">
-          Meridian runs inside NinjaTrader 8 on your Windows PC. It never collects your name, broker
-          credentials, account numbers, or funds. To improve the product and run research on trading
-          discipline, it transmits <strong>anonymized</strong> records of your trading activity and the
-          behavioral signals it computes — tied only to a random identifier, never your identity, never
-          sold. You can opt out at any time. See the
-          <a href="/data-research" class="text-emerald-700 underline hover:text-emerald-900">Data &amp; Research Notice</a>.
+  <!-- ───────────────────────── WHAT LEAVES THE MACHINE ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="max-w-3xl mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT LEAVES THE MACHINE</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Local-first — and specific about it.</h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          We don't claim "fully offline" — Meridian does make two external requests, and we'd rather name them than hide
+          them. Both are stripped of anything that could identify you, and the product keeps working even if you block them.
         </p>
       </div>
-
-      <!-- Section 1: What Meridian stores -->
-      <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">What Meridian stores — and where</h2>
-        <ul class="space-y-3 text-sm text-zinc-600 leading-relaxed">
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            <span><strong class="text-zinc-800">Session behavioral data</strong> — PSI scores, signal readings, composure grades, trade counts, and timestamps. Stored in a local database on your Windows PC.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            <span><strong class="text-zinc-800">Your configuration</strong> — Guard rules, session parameters, baseline preferences. Stored locally in NinjaTrader's standard add-on data path.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            <span><strong class="text-zinc-800">Up to 5 years of history</strong> — all stored on your machine. Uninstalling Meridian removes the software; your local data files remain under your control unless you delete them.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Section 2: What it does NOT do -->
-      <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">What Meridian does not do</h2>
-        <ul class="space-y-3 text-sm text-zinc-600 leading-relaxed">
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Never collects identifying or financial data</strong> — no name, broker credentials, account numbers, card details, or funds. Anonymized trading and behavioral records used for product improvement and research are tied only to a random identifier, never sold, and you can opt out anytime.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Does not require broker credentials</strong> — Meridian reads execution data from NinjaTrader's internal data layer, not directly from your broker's API. No passwords or API keys are ever passed to Meridian.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Optional auto-liquidation</strong> — Guard can block new order entry and, at the highest enforcement level, disconnect the broker connection. You can configure Guard to optionally force-close open trades, or choose to manage them yourself.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">Does not provide trading signals</strong> — PSI is a behavioral stability score, not a directional indicator. Meridian generates no buy or sell signals and offers no investment advice.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            <span><strong class="text-zinc-800">No third-party ad tracking or profiling</strong> — we do not sell your data or use it for advertising. The only data we collect is anonymized trading/behavioral data for product improvement and research, which you can turn off.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Section 3: The only external connection -->
-      <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">External connections</h2>
-        <p class="text-sm text-zinc-600 leading-relaxed mb-3">
-          Meridian makes two kinds of external request. <strong class="text-zinc-800">License validation via Whop</strong>
-          (on startup) contains only a license identifier — no trade data and no personally identifiable information.
-          <strong class="text-zinc-800">Anonymized research upload</strong> sends trading and behavioral records tied only to
-          a random identifier (no name, credentials, account numbers, or funds) over HTTPS — used solely to improve the
-          product and for research, never sold, and <strong class="text-zinc-800">fully optional</strong> (the product works
-          even if it is blocked, and you can opt out). Details: <a href="/data-research" class="text-emerald-700 underline hover:text-emerald-900">Data &amp; Research Notice</a>.
-        </p>
-        <p class="text-sm text-zinc-600 leading-relaxed">
-          If you have questions about how Whop handles subscription data, their privacy policy is available at
-          <a href="https://whop.com/privacy" target="_blank" rel="noopener noreferrer" class="text-emerald-700 underline hover:text-emerald-900">whop.com/privacy</a>.
-        </p>
-      </div>
-
-      <!-- Section 4: Guard enforcement boundaries -->
-      <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">What Guard enforces — and what it cannot touch</h2>
-        <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 text-sm text-zinc-600 leading-relaxed space-y-3">
-          <p><strong class="text-zinc-800">Guard blocks new order entry</strong> at the NinjaTrader platform level when a configured threshold is crossed. It intercepts the order before it is submitted — it does not interfere with orders already in the market.</p>
-          <p><strong class="text-zinc-800">Guard offers optional auto-liquidation.</strong> If Guard locks new entries while you have a live trade, you can configure it to automatically close open positions or choose to exit that trade manually through NinjaTrader.</p>
-          <p><strong class="text-zinc-800">Broker disconnect mode</strong> (the highest enforcement level) terminates NinjaTrader's broker connection. This prevents all new order activity — including exits — until you reconnect. This mode is an advanced option intended for situations where full disengagement from the market is desired. It should be understood and tested in simulation before being used live.</p>
+      <div class="grid md:grid-cols-2 gap-5" data-reveal>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">License validation</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            On startup, Meridian checks your subscription with Whop. The request contains only a license identifier — no
+            trade data, no personally identifiable information. If you have questions about how Whop handles subscription
+            data, see <a href="https://whop.com/privacy" target="_blank" rel="noopener noreferrer" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900">whop.com/privacy</a>.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Anonymized research telemetry</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Anonymized trading and behavioral records — tied only to a random identifier, never your name, credentials,
+            account numbers, or funds — sent over HTTPS to improve the product and study trading discipline. Never sold,
+            <strong class="text-zinc-800">fully optional</strong>, and you can opt out at any time. Details in the
+            <a href="/data-research" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900">Data &amp; Research Notice</a>.
+          </p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Section 5: NinjaTrader relationship -->
-      <div class="mb-12 border-t border-zinc-100 pt-10">
-        <h2 class="text-lg font-bold text-zinc-900 mb-4">Relationship to NinjaTrader</h2>
-        <p class="text-sm text-zinc-600 leading-relaxed mb-3">
+  <!-- ───────────────────────── WHAT STAYS ON YOUR PC ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT STAYS ON YOUR PC</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Your record lives with you.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Everything Meridian builds about your trading is written to your own machine first. You hold the history; you decide
+        when it goes away.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-5" data-reveal>
+      {stored.map((item) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <svg class="w-5 h-5 text-emerald-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+          <div class="font-semibold text-zinc-900 mb-1.5">{item.title}</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHAT MERIDIAN NEVER DOES ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="max-w-3xl mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT MERIDIAN NEVER DOES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The lines we don't cross.</h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          A risk tool earns trust by what it refuses to touch. These are the hard limits — not preferences, not defaults.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5" data-reveal>
+        {neverDoes.map((item) => (
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+            <svg class="w-5 h-5 text-zinc-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            <div class="font-semibold text-zinc-900 mb-1.5">{item.title}</div>
+            <p class="text-sm text-zinc-600 leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── GUARD'S BOUNDARY ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-start" data-reveal>
+      <div>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">GUARD'S BOUNDARY</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          By default, Guard never<br />closes your positions.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          This is the promise that matters most, so we'll be exact. Guard's job is to stop you from <em>adding</em> risk —
+          it intercepts new entries and size increases when you cross a line you set. By default it leaves the position you're
+          already in completely alone: it does not close, flatten, or exit your trade.
+        </p>
+        <p class="mt-4 text-lg text-zinc-800 leading-relaxed">
+          <span class="text-emerald-700 font-semibold">The one exception is opt-in.</span> On the strictest level &mdash; a full
+          broker Disconnect &mdash; you can choose to enable auto-flatten, which closes your open positions at the moment the
+          trigger fires. If you don't enable it, your positions stay open and under your full manual control.
+        </p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 text-sm text-zinc-700 leading-relaxed space-y-4">
+        <p>
+          <strong class="text-zinc-900">It blocks new order entry.</strong> When a threshold you configured is crossed, Guard
+          intercepts the next order at the NinjaTrader platform level — before it's submitted. Orders already working in the
+          market are left alone.
+        </p>
+        <p>
+          <strong class="text-zinc-900">Strict Lock can't be bypassed mid-tilt.</strong> For a window you choose, Guard's
+          settings are frozen — the heated version of you can't loosen a trigger, drop a level, or switch it off — but it still only blocks <em>adding</em> risk.
+        </p>
+        <p>
+          <strong class="text-zinc-900">Broker disconnect is the ceiling, and it's yours to choose.</strong> The highest
+          level (Disconnect) halts new order activity &mdash; either by cancelling working orders or, in its strongest mode,
+          dropping the broker connection &mdash; and can optionally auto-flatten open positions at the trigger. It's an
+          advanced, opt-in mode for full disengagement — understand and test it in simulation before using it live.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── RELATIONSHIP TO NINJATRADER ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="max-w-3xl mb-10" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">RELATIONSHIP TO NINJATRADER</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Where Meridian stands.</h2>
+      </div>
+      <div class="max-w-3xl space-y-5 text-lg text-zinc-600 leading-relaxed" data-reveal>
+        <p>
           Meridian is an <strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor</strong>. Our application,
-          our website, our social channels, and the Meridian NT8 add-on itself have been reviewed and approved by
+          our website, our social channels, and the Meridian NT8 add-on itself have been audited and approved by
           NinjaTrader's Compliance, QA, and Executive teams before being listed in the NinjaTrader Ecosystem.
         </p>
-        <p class="text-sm text-zinc-600 leading-relaxed">
+        <p>
           Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8 &mdash;
           NinjaTrader® is a registered trademark of NinjaTrader LLC, and Meridian is not owned by NinjaTrader LLC.
           Meridian installs through NinjaTrader's standard add-on import process and operates within the permissions
           that NinjaTrader makes available to all approved Ecosystem developers.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- Contact -->
-      <div class="border-t border-zinc-100 pt-10">
-        <p class="text-sm text-zinc-500">
-          Questions about data handling or security?
-          <a href="/support" class="text-emerald-700 underline hover:text-emerald-900">Contact us</a> —
-          we'll get back to you within 24 hours.
+  <!-- ───────────────────────── REFUND & CONTACT ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-2 gap-5" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="font-semibold text-zinc-900 mb-2">Risk-free to try</div>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          7-day free trial — no charge until day 7, cancel anytime. If Meridian won't run on a supported NinjaTrader 8
+          setup and we can't fix it, you get a full refund. We stand behind the software working; we never stand behind a
+          trading outcome.
         </p>
       </div>
-
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="font-semibold text-zinc-900 mb-2">Questions about data or security?</div>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Ask us anything about what's stored, what's transmitted, or how enforcement behaves.
+          <a href="/support" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900">Contact us</a> —
+          we reply within 24 hours.
+        </p>
+      </div>
     </div>
   </section>
 </Layout>

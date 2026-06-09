@@ -1,62 +1,90 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import geoHooks from '~/data/geo-hooks.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ANTI-TILT — feature/solution explainer. Voice register: TEACH / PRECISE.
+// Job: explain how Meridian detects and stops TILT in real time — the behavioral
+// layer that limit-based tools miss. Tie tilt to the concrete signals (revenge,
+// oversizing, stop-manipulation, overtrading) and to Guard's intervention before
+// the order. Header/Footer/RiskBanner come from PageLayout. Design-system classes
+// (.win/.halo/.eyebrow/.tnum) are global (tailwind.css → @layer components).
+// ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Anti-Tilt Risk Management for NinjaTrader 8 — Meridian',
+  title: 'Anti-Tilt for NinjaTrader 8 — Stop Revenge Trading Before the Order | Meridian',
   description:
-    'Anti-tilt is the discipline of intercepting behavioral deterioration — revenge trading, overtrading, stop manipulation — before it produces a loss. Meridian is the first behavioral leading-indicator platform built for NinjaTrader 8 traders.',
+    'Tilt is what blows funded accounts — revenge entries, oversizing, stop manipulation, overtrading. Meridian reads the behavior in real time across 7 signals and steps in before the order, not after the loss. The behavioral layer limit-based risk tools miss, on NinjaTrader 8.',
   robots: { index: true, follow: true },
 };
 
-const signals = [
-  { name: 'Revenge Entry', desc: 'Rapid re-entry after a loss with elevated size in the same direction.' },
-  { name: 'Stop Manipulation', desc: 'Stop distance widening in the adverse direction after price moves against the position.' },
-  { name: 'Size Spike', desc: 'Position size exceeding the trader\'s own declared rule — heavier weight during losing streaks.' },
-  { name: 'Hold Bias', desc: 'Holding losing trades significantly longer than winning ones — the loss-aversion pattern.' },
-  { name: 'Position Overstay', desc: 'A losing trade exceeding the trader\'s historical tolerance window.' },
-  { name: 'Rule Violations', desc: 'Declared session rules — time windows, stop range, loss-streak — being crossed.' },
-  { name: 'Overtrading Pace', desc: 'Entry frequency accelerating past the trader\'s historical session rhythm.' },
+// The tilt sequence → the concrete signal that catches it. Searchable language stays.
+const tiltMap = [
+  {
+    move: 'Revenge entry',
+    feel: 'You take the loss back. Re-enter fast, same direction, bigger.',
+    signal: 'Revenge Entry',
+    catches: 'Rapid re-entry after a loss with elevated size in the same direction.',
+  },
+  {
+    move: 'Oversizing',
+    feel: '“This one makes it back.” Size creeps past the rule you set when calm.',
+    signal: 'Size Spike',
+    catches: 'Position size exceeding your own declared rule — heavier during losing streaks.',
+  },
+  {
+    move: 'Moving the stop',
+    feel: 'The trade goes against you, so you give it room. Then more room.',
+    signal: 'Stop Manipulation',
+    catches: 'Stop distance widening in the adverse direction after price moves against the position.',
+  },
+  {
+    move: 'Overtrading',
+    feel: 'Entries speed up. You are trading the screen, not the plan.',
+    signal: 'Overtrading Pace',
+    catches: 'Entry frequency accelerating past your historical session rhythm.',
+  },
+  {
+    move: 'Bag-holding the loser',
+    feel: 'You cut winners fast and nurse losers, hoping for the round-trip.',
+    signal: 'Hold Bias',
+    catches: 'Holding losing trades far longer than winning ones — the loss-aversion pattern.',
+  },
+  {
+    move: 'Breaking your own rules',
+    feel: 'Past the cutoff time, past the loss-streak line — and trading anyway.',
+    signal: 'Rule Violations',
+    catches: 'Declared session rules — time windows, stop range, loss-streak — being crossed.',
+  },
 ];
 
-const categoryRows = [
-  {
-    layer: 'Generation 1 — Native NinjaTrader / broker limits',
-    purpose: 'Hard-stop financial floor at the account level',
-    sees: 'Cumulative P&L only',
-    fires: 'After the financial threshold is breached',
-  },
-  {
-    layer: 'Generation 2 — Third-party hard-limit add-ons',
-    purpose: 'Refined UI on top of P&L thresholds and trade counters',
-    sees: 'Cumulative P&L, trade count, simple counters',
-    fires: 'After the financial or count threshold is breached',
-  },
-  {
-    layer: 'Generation 3 — Behavioral leading indicators',
-    purpose: 'Intercept the behavior that produces the loss',
-    sees: 'Seven behavioral signals + composite PSI in real time',
-    fires: 'On the behavioral pattern, before the breach',
-  },
+// Where every other tool fires vs. where anti-tilt fires.
+const timeline = [
+  { t: 'Trade 1 — stop-out', limit: 'Silent. P&L is fine.', meridian: 'Logs the loss. Baseline still calm.' },
+  { t: 'Trade 2 — fast re-entry, +1 contract', limit: 'Silent. Still under the cap.', meridian: 'PSI dips. Revenge Entry + Size Spike flag.' },
+  { t: 'Trade 3 — stop widened, size up again', limit: 'Silent. Still under the cap.', meridian: 'PSI hits Warning. Guard can require an Acknowledge — type your phrase, wait out the countdown.' },
+  { t: 'Trade 4 — the one that breaks the day', limit: 'Fires — at −$500, after the damage.', meridian: 'Already blocked the add, or paused the session.' },
 ];
 
 const faqItems = [
   {
     q: 'What is tilt in trading?',
-    a: 'Tilt is the predictable shift in execution behavior that follows an unfavorable event — a stop-out, a missed setup, a sequence of losses. The decision-making system that worked an hour ago becomes biased toward recovery, away from the trader\'s plan. Common manifestations are revenge entries, stop widening, sizing escalation, accelerated entry pace, and abandonment of pre-declared rules.',
+    a: 'Tilt is the predictable shift in execution behavior that follows an unfavorable event — a stop-out, a missed setup, a string of losses. The decision system that worked an hour ago becomes biased toward getting even, away from your plan. It shows up as revenge entries, widening stops, oversizing, accelerating entry pace, and ignoring rules you set when you were calm.',
   },
   {
-    q: 'What is anti-tilt risk management?',
-    a: 'Anti-tilt risk management is the discipline of intercepting behavioral deterioration — the tilt sequence — before it produces a loss. It operates one layer earlier than financial risk management. Where a daily loss limit reacts to a number, an anti-tilt system reacts to the pattern that produces the number.',
+    q: 'How does Meridian detect tilt in real time?',
+    a: 'Meridian watches your order flow against your own session history and scores seven behavioral signals after every fill — Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace, Hold Bias, Position Overstay, and Rule Violations. They combine into one live Psychological Stability Index (PSI) score that moves through Stable, Caution, Warning, and Critical as tilt builds — before your P&L reflects it.',
   },
   {
-    q: 'What makes Meridian an anti-tilt platform?',
-    a: 'Meridian monitors seven distinct behavioral signals tied to how discipline actually breaks down, computes a composite Psychological Stability Index in real time, and gives the trader the option to enforce response actions — typed acknowledgment, mandatory countdown, entry block, broker disconnect — when behavioral thresholds are crossed. Every layer of the platform is built around the behavior, not the financial outcome.',
+    q: 'How is anti-tilt different from a daily loss limit?',
+    a: 'A daily loss limit reacts to a number — it fires after the loss has already happened. Anti-tilt reacts to the behavior that produces the number, one layer earlier. Meridian does everything a limit-based tool does (daily loss limit, max size, P&L and drawdown caps, loss-streak cutoff), then adds the behavioral layer none of them have: it catches the revenge trade at trade two, not the breach at trade four.',
   },
   {
-    q: 'Is anti-tilt only relevant after a losing trade?',
-    a: 'No. Tilt sequences can begin from a missed setup, an unexpected gap, an early winner that triggers fear of giving it back, or simply session fatigue. Meridian\'s seven signals cover the spectrum, and the PSI score reflects the cumulative behavioral pressure regardless of whether the most recent trade was a win or a loss.',
+    q: 'Can Meridian stop a revenge trade before I place it?',
+    a: 'Yes — that is the point. When a behavioral threshold is crossed, Meridian Guard can escalate exactly as far as you decide in advance: a quiet alert (Notify), a persistent confirm-every-entry banner (Risk Alert), a type-your-phrase acknowledgment with a countdown (Acknowledge), a full trading pause that cancels new entries (Trading Pause), or a broker disconnect (Disconnect). By default Guard blocks you from adding risk rather than closing what you hold — you can always exit any position, any time — and if you tick auto-flatten on a Trading Pause or Disconnect rule, Guard will close your open positions for you the moment it fires.',
+  },
+  {
+    q: 'Does anti-tilt only matter after a losing trade?',
+    a: 'No. Tilt can start from a missed setup, an unexpected gap, an early winner you are now scared to give back, or plain session fatigue. The seven signals cover the full spectrum, and PSI reflects cumulative behavioral pressure regardless of whether your last trade was a win or a loss.',
   },
 ];
 
@@ -74,149 +102,205 @@ const faqSchema = JSON.stringify({
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={faqSchema} />
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden border-b border-zinc-100">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
-         style="background: radial-gradient(ellipse at 80% 0%, rgba(5,150,105,0.08) 0%, transparent 60%);"></div>
-    <div class="relative max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-      <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-7 rounded-full"
-           style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.08);">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">A new category · NinjaTrader 8</span>
-      </div>
-
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-zinc-900 mb-6 max-w-3xl">
-        Anti-tilt risk management<br /><span class="text-emerald-600">for NinjaTrader 8.</span>
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">ANTI-TILT FOR NINJATRADER 8</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+        Tilt blows the account.<br />Meridian catches it <span class="text-emerald-600">before the order.</span>
       </h1>
-
-      <p class="text-lg md:text-xl text-zinc-600 leading-relaxed max-w-2xl mb-8">
-        Anti-tilt is the discipline of intercepting behavioral deterioration before it produces a loss. Meridian is the first platform built for it.
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Revenge trading, oversizing, moving stops, overtrading &mdash; the loss that ends a funded account is usually behavioral, not
+        strategic. A daily loss limit only sees the number, after the damage. Meridian reads the <em>behavior</em> across seven
+        signals in real time and steps in while you can still walk away.
       </p>
-
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="/pricing" class="btn btn-lg btn-primary font-semibold">
-          Start 7-day free trial
-        </a>
-        <a href="#how-it-works" class="btn btn-lg font-semibold border-[1.5px] border-zinc-300 text-zinc-800 bg-white hover:bg-zinc-50">
-          See how it works
-        </a>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="/pricing" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#sequence" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
       </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required</p>
+    </div>
+    <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
+      <div class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars catching tilt as it builds" /></div>
     </div>
   </section>
 
-  <!-- DEFINITION -->
-  <section class="py-16 md:py-20 px-6 bg-zinc-50/60 border-b border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Definition</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-5">
-        Tilt is a sequence. Anti-tilt is the system that breaks the sequence.
-      </h2>
-      <p class="text-zinc-700 text-lg leading-relaxed mb-4">
-        Behavioral economists describe tilt as a predictable shift in execution behavior that follows an unfavorable event — a stop-out, a missed setup, a string of losses. The decision-making system that worked an hour ago becomes biased toward recovery, away from the trader's plan.
+  <!-- ───────────────────────── WHAT TILT IS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-24">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT TILT ACTUALLY IS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Tilt is a sequence, not a mood.</h2>
+      <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
+        Tilt is the predictable shift in how you execute after something goes wrong &mdash; a stop-out, a missed setup, a string
+        of losses. The decision system that worked an hour ago quietly tips toward getting even and away from the plan. You
+        already know the shape of it: re-enter fast, size up, give the stop more room, trade more often, ignore the rules you set
+        when you were calm.
       </p>
-      <p class="text-zinc-700 text-lg leading-relaxed">
-        Anti-tilt risk management is the discipline of intercepting that sequence at the behavioral layer, before any financial threshold has reason to engage. It operates one layer earlier than every previous generation of risk tooling.
+      <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+        Because it is a sequence, it is <strong class="text-zinc-900">detectable</strong> &mdash; each step leaves a fingerprint
+        in your order flow before it shows up in your P&amp;L. Anti-tilt is the discipline of catching that sequence one layer
+        earlier than any financial threshold can. Limit-based tools watch the number; Meridian watches the behavior that
+        produces the number.
       </p>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works" class="py-16 md:py-20 px-6 bg-white border-b border-zinc-100">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">How Meridian operates</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
-        Seven behavioral signals. One real-time score. Optional automated enforcement.
-      </h2>
-      <p class="text-zinc-600 max-w-2xl mb-10 leading-relaxed">
-        Each signal tracks a distinct failure pattern that shows up reliably before a trader abandons the plan.
+  <!-- ───────────────────────── THE SEQUENCE → SIGNAL MAP ───────────────────────── -->
+  <section id="sequence" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE TILT, MAPPED TO THE SIGNAL</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Every way tilt shows up,<br />and the signal that catches it.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+        Each behavior is scored in real time, against your own history &mdash; not a generic average.
       </p>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-        {signals.map((s) => (
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5 hover:border-emerald-200 hover:bg-emerald-50/30 transition-colors">
-            <div class="flex items-start gap-2.5 mb-2">
-              <svg class="w-4 h-4 mt-0.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              <p class="font-semibold text-zinc-900">{s.name}</p>
+    </div>
+    <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      {tiltMap.map((row) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7 hover:border-emerald-300 transition-colors">
+          <div class="font-bold text-zinc-900 text-lg">{row.move}</div>
+          <p class="mt-2 text-sm text-zinc-600 leading-relaxed">{row.feel}</p>
+          <div class="mt-5 pt-4 border-t border-zinc-100">
+            <div class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase text-emerald-700">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+              Signal · {row.signal}
             </div>
-            <p class="text-sm text-zinc-600 leading-relaxed pl-7">{s.desc}</p>
+            <p class="mt-2 text-sm text-zinc-500 leading-relaxed">{row.catches}</p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
+    <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+      A seventh signal &mdash; <strong class="text-zinc-700">Position Overstay</strong> &mdash; flags a single losing trade held past your historical
+      patience window into deep adverse excursion, even if it later recovers. Where Hold Bias compares how long you sit in losers
+      versus winners, Overstay watches that one trade overstaying its welcome. All seven combine into one live PSI score.
+    </p>
+  </section>
 
-      <div class="rounded-2xl border border-zinc-200 bg-white px-6 py-7 md:px-8 md:py-8">
-        <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-zinc-500">The output</p>
-        <h3 class="text-xl font-bold text-zinc-900 mb-3">Composite PSI — your real-time stability score</h3>
-        <p class="text-zinc-600 leading-relaxed">
-          The seven signals combine into a single Psychological Stability Index, calibrated to your own session history rather than a generic average. PSI moves through Stable, Caution, Warning, and Critical zones in real time. When you opt in, Meridian Guard converts a PSI threshold — or any of six trigger conditions — into one of five escalating response levels: a quiet alert, a typed acknowledgment, a mandatory countdown, a confirmation-required mode, or a full broker disconnect.
+  <!-- ───────────────────────── THE TIMELINE: WHEN IT FIRES ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHEN EACH ONE FIRES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A limit fires at trade four.<br />Anti-tilt flags at trade two.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Same tilt sequence, one session. Watch where each layer reacts.
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- CATEGORY MAP -->
-  <section class="py-16 md:py-20 px-6 bg-zinc-50/60 border-b border-zinc-100">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">The category map</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
-        Three generations of risk tooling for NinjaTrader 8.
-      </h2>
-      <p class="text-zinc-600 max-w-2xl mb-8 leading-relaxed">
-        Each generation extended the trader's protection to one layer earlier in the failure sequence. Anti-tilt is the third.
-      </p>
-
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border-collapse bg-white rounded-xl overflow-hidden border border-zinc-200">
+      <div data-reveal class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse bg-white rounded-2xl overflow-hidden border border-zinc-200">
           <thead>
             <tr class="border-b border-zinc-200 bg-zinc-50">
-              <th class="text-left px-5 py-3 font-semibold text-zinc-900 w-2/5">Layer</th>
-              <th class="text-left px-5 py-3 font-semibold text-zinc-700">Purpose</th>
-              <th class="text-left px-5 py-3 font-semibold text-zinc-700">What it sees</th>
-              <th class="text-left px-5 py-3 font-semibold text-zinc-700">When it fires</th>
+              <th class="text-left px-5 py-3.5 font-semibold text-zinc-900 w-2/5">What you do</th>
+              <th class="text-left px-5 py-3.5 font-semibold text-zinc-500">A daily loss limit</th>
+              <th class="text-left px-5 py-3.5 font-semibold text-emerald-700">Meridian (anti-tilt)</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100">
-            {categoryRows.map((row, i) => (
-              <tr class={i === 2 ? 'bg-emerald-50/40' : ''}>
-                <td class={'px-5 py-4 ' + (i === 2 ? 'font-semibold text-zinc-900' : 'text-zinc-700')}>{row.layer}</td>
-                <td class="px-5 py-4 text-zinc-600">{row.purpose}</td>
-                <td class="px-5 py-4 text-zinc-600">{row.sees}</td>
-                <td class={'px-5 py-4 ' + (i === 2 ? 'text-emerald-800 font-medium' : 'text-zinc-600')}>{row.fires}</td>
+            {timeline.map((r, i) => (
+              <tr class={i === 3 ? 'bg-emerald-50/40' : ''}>
+                <td class={'px-5 py-4 ' + (i === 3 ? 'font-semibold text-zinc-900' : 'text-zinc-700')}>{r.t}</td>
+                <td class="px-5 py-4 text-zinc-500">{r.limit}</td>
+                <td class={'px-5 py-4 ' + (i === 3 ? 'text-emerald-800 font-medium' : 'text-zinc-700')}>{r.meridian}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center">
+        <p class="text-lg md:text-xl leading-relaxed">
+          The loss limit catches you at <span class="text-rose-400 font-semibold tnum">&minus;$500</span> &mdash; after four
+          revenge trades.<br class="hidden md:block" />
+          Meridian starts flagging at <span class="text-emerald-400 font-semibold">trade two.</span>
+        </p>
+      </div>
+    </div>
+  </section>
 
-      <p class="text-sm text-zinc-500 mt-5 max-w-3xl leading-relaxed">
-        For a deeper category view including specific products at each generation, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-700 underline hover:text-emerald-900">the full NinjaTrader 8 risk-tool generation map</a>.
+  <!-- ───────────────────────── GUARD: INTERVENTION BEFORE THE ORDER ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div data-reveal class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard — your own rules with an escalating enforcement ladder and Strict Lock, intervening before the next order" /></div>
+    <div data-reveal class="order-1 lg:order-2">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTERVENTION, NOT A POST-MORTEM</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">It steps in before the order &mdash; not after the loss.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Detection is only half of anti-tilt. When PSI crosses a line you set while calm, Meridian Guard escalates exactly as far
+        as you decided in advance:
+      </p>
+      <ol class="mt-6 space-y-2.5 text-zinc-700">
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">1</span> <span><strong class="text-zinc-900">Notify</strong> &mdash; a quiet alert; you see your PSI dropping</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">2</span> <span><strong class="text-zinc-900">Risk Alert</strong> &mdash; a persistent banner; every entry requires active confirmation</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">3</span> <span><strong class="text-zinc-900">Acknowledge</strong> &mdash; type your own pre-written phrase and wait out a countdown</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">4</span> <span><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders; survives an NT8 restart</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">5</span> <span><strong class="text-zinc-900">Disconnect</strong> &mdash; severs the broker connection; the session is over</span></li>
+      </ol>
+      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for a window you choose &mdash; for exactly when the tilted version of you wants to switch it off.</p>
+      <p class="mt-4 text-sm text-zinc-500">By default Guard stops you <em>adding</em> risk rather than closing what you hold &mdash; you can always exit any position, any time. Tick <em>auto-flatten</em> on a Trading Pause or Disconnect rule and Guard will close your open positions the moment it fires.</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── SUPERSET FRAME ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Keep every limit you trust.<br />Add the layer that stops tilt.</h2>
+        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Anti-tilt is not a replacement for your loss limit &mdash; it is the upgrade that wraps around it. Tricycle vs. car: if
+          you already run a risk tool, Meridian does everything it does, plus the behavioral layer it is blind to.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
+          <ul class="space-y-3 text-zinc-700">
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
+          </ul>
+          <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too &mdash; these are Guard's trigger types.</p>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+          <div class="text-sm font-semibold text-emerald-700 mb-4">What only anti-tilt adds</div>
+          <ul class="space-y-3 text-zinc-800">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection &mdash; revenge, oversizing, tilt</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Intervention <em>before</em> the order, not after the loss</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor &middot; guard &middot; journal &middot; review</span></li>
+          </ul>
+          <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
+        </div>
+      </div>
+      <p class="text-center mt-8">
+        <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-700 underline hover:text-emerald-900 font-medium">See the full NinjaTrader 8 risk-tool comparison</a>
       </p>
     </div>
   </section>
 
-  <!-- WHY IT MATTERS -->
-  <section class="py-16 md:py-20 px-6 bg-white border-b border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Why this layer matters</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-5">
-        The losses that end accounts are behavioral, not strategic.
-      </h2>
-      <p class="text-zinc-700 text-lg leading-relaxed mb-4">
-        The tradable strategy a trader spent months developing is rarely the failure point. The failure point is one session where behavioral deterioration produced a loss sequence that the strategy itself never permitted — entries the trader would have rejected the day before, sizing they had explicitly ruled out, stops that were moved twice.
-      </p>
-      <p class="text-zinc-700 text-lg leading-relaxed">
-        Every previous generation of risk tooling fires after that sequence has already played out. Anti-tilt fires inside the sequence, while the trader still has the option to step away.
-      </p>
+  <!-- ───────────────────────── WHY IT MATTERS ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-24">
+    <div data-reveal>
+    <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY THIS LAYER MATTERS</p>
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The losses that end accounts are behavioral.</h2>
+    <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
+      The strategy you spent months building is rarely the failure point. The failure point is one session where tilt produced a
+      loss sequence the strategy itself never permitted &mdash; entries you would have rejected the day before, sizing you had
+      explicitly ruled out, a stop you moved twice.
+    </p>
+    <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+      Every earlier generation of risk tooling fires <em>after</em> that sequence has already played out. Anti-tilt fires
+      <em>inside</em> it &mdash; while you still have the option to step away. That is the entire difference between losing a funded
+      account and keeping it.
+    </p>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="py-16 md:py-20 px-6 bg-zinc-50/60 border-b border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Questions</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">
-        About anti-tilt and Meridian.
-      </h2>
-      <dl class="space-y-7">
+  <!-- ───────────────────────── FAQ ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-24">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">QUESTIONS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-10">Anti-tilt, answered.</h2>
+      <dl class="space-y-8">
         {faqItems.map(({ q, a }) => (
           <div>
             <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
@@ -227,15 +311,16 @@ const faqSchema = JSON.stringify({
     </div>
   </section>
 
-  <!-- CTA -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Start 7-day free trial', href: '/pricing' },
-      { text: 'Explore Meridian Guard', href: '/guard' },
-    ]}
-  >
-    <Fragment slot="tagline">NinjaTrader 8 · Windows</Fragment>
-    <Fragment slot="title">Catch the behavior. Skip the breach.</Fragment>
-    <Fragment slot="subtitle">7-day trial · $49.99/mo after · NinjaTrader 8 required</Fragment>
-  </CallToAction>
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Catch the behavior.<br />Skip the breach.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the anti-tilt layer that actually saves the account.</p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="/pricing" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+        <a href="/guard" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Explore Meridian Guard</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">7-day trial &middot; $49.99/mo after &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
 </Layout>

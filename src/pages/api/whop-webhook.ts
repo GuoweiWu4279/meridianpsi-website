@@ -265,7 +265,7 @@ Below is everything you need, in order. If anything is unclear or you get stuck,
 
 1) Get your license key (most important)
 
-1. Sign in to whop.com using the same email you used at checkout.
+1. Sign in at https://whop.com/@me/settings/memberships using the same email you used at checkout.
 2. Open your Meridian membership / product.
 3. Find the Software section (exact placement can vary slightly depending on Whop's layout) and copy your license key in full, with no extra spaces before or after.
 

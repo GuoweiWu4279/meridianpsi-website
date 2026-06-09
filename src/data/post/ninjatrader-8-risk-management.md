@@ -25,11 +25,11 @@ The limits matter, because they define a specific class of losses that native co
 
 NinjaTrader 8 allows configuration of several account-level risk parameters, accessible through the Control Center:
 
-**Maximum position size.** Sets a hard cap on the maximum number of contracts or shares that can be held at any time. Orders that would exceed this limit are rejected before submission. This is enforced at the platform level, not the broker level.
+**Maximum position size.** Sets a hard cap on the maximum number of contracts or shares that can be held at any time. This is a platform-level check: orders that would breach it are blocked by NinjaTrader before they reach the broker. Some brokers add their own enforcement layer as well (covered below).
 
-**Maximum daily loss.** A configurable threshold that, when reached, prevents further order submission for the remainder of the session. This setting is found under the platform's Market Analyzer or through broker-specific integration settings, and behavior varies depending on whether you are using live brokerage or the simulated environment.
+**Maximum daily loss.** A configurable threshold that, when reached, prevents further order submission for the remainder of the session. This setting is configured per account via Control Center → Accounts → Edit Account → Performance tab (or through the broker's risk settings where supported), and behavior varies depending on whether you are using live brokerage or the simulated environment.
 
-**Trade quantity limits.** Maximum order size at the individual trade level, separate from maximum position size. These limits operate at order submission and cannot be overridden by a market order.
+**Trade quantity limits.** Maximum order size at the individual trade level, separate from maximum position size. These limits are evaluated at order submission and apply to all order types, including market orders.
 
 ### Broker Integration
 
@@ -102,7 +102,7 @@ The interventions a behavioral monitoring add-on can trigger range along a gradi
 
 **Session pause.** All new order entry is blocked for a configurable duration. Existing positions remain manageable. The pause functions as a mandatory cooling period — a version of the commitment device described in behavioral economics literature, now enforced automatically.
 
-**Full disconnect.** The most severe response: the platform disconnects from the broker entirely, preventing any new order activity. Open positions can be automatically liquidated if configured, or left open which means existing positions cannot be managed during the lockout until reconnected. This is the maximum-enforcement option, appropriate only for traders whose behavioral failure mode typically involves rapid escalation.
+**Full disconnect.** The most severe response: the platform disconnects from the broker entirely, preventing any new order activity. By default, open positions are left open — you reconnect to manage them. Auto-liquidation on disconnect is available but off by default and must be explicitly enabled. This is the maximum-enforcement option, appropriate only for traders whose behavioral failure mode typically involves rapid escalation.
 
 ---
 
@@ -156,4 +156,4 @@ The failure modes they address are different. For traders whose losses come prim
 
 ---
 
-*NinjaTrader® is a registered trademark of NinjaTrader LLC. The author developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. Approved by NinjaTrader's Compliance and Executive teams as an Official NinjaTrader Ecosystem Vendor; independently operated. Trading involves substantial risk of loss. Results may vary.*
+*NinjaTrader® is a registered trademark of NinjaTrader LLC. The author developed [Meridian](https://www.meridianpsi.com), the complete risk layer for NinjaTrader 8: it does everything a traditional NT8 risk tool does — daily loss, max size, P&L and drawdown caps — and adds the behavioral layer this article describes, using a real-time psychological stability monitor to detect deterioration during a live session and intervene before an order is placed. Audited and approved by NinjaTrader's Compliance, QA, and Executive teams as an Official NinjaTrader Ecosystem Vendor; independently operated. Trading involves substantial risk of loss. Results may vary.*

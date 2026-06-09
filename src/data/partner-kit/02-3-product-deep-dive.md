@@ -73,7 +73,9 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 2. **Risk Alert (L2)** — persistent banner; every new entry requires active confirmation
 3. **Acknowledge (L3)** — the user types a phrase they wrote in advance, with an optional countdown, before continuing (set when calm, typed when not — the most powerful friction of the five)
 4. **Trading Pause (L4)** — blocks new entries by cancelling orders; survives a NinjaTrader restart
-5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API). **Open positions can be auto-flattened if configured, or left under your manual control.** The user reconnects through NT8 to resume trading.
+5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API); the strictest mode of a Trading Pause. The user reconnects through NT8 to resume trading.
+
+**Does Guard close your positions?** By default, no — Guard blocks you from *adding* risk, and you can always exit yourself. But auto-flatten is a clear opt-in: tick the checkbox on a Trading Pause or Disconnect rule and Guard will close all open positions the moment that rule fires. It's off until you turn it on.
 
 Each trigger fires once on entry and then resets — no spam. Any rule can be password-locked to prevent in-session override; most traders pick a password they won't remember under pressure as a deliberate friction device.
 

@@ -4,7 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Can Trading Software Automatically Block Me From Placing Orders? — Meridian',
   description:
-    'Yes — on NinjaTrader 8, Meridian Guard can automatically block new entries when configured behavioral thresholds are hit, before the order reaches the market.',
+    'Yes — on NinjaTrader 8, Meridian Guard can automatically block new entries when configured risk or behavioral thresholds are hit (loss limits, position size, consecutive losses, PSI), before the order reaches the market.',
   robots: { index: true, follow: true },
 };
 
@@ -14,6 +14,8 @@ const directAnswer = 'Yes — on NinjaTrader 8, Meridian Guard can block new ent
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
@@ -47,6 +50,9 @@ const qaSchema = JSON.stringify({
     <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
 
       <h2>How Meridian Guard blocks orders on NinjaTrader 8</h2>
+      <p>
+        Guard is the enforcement layer of Meridian. Unlike a traditional NinjaTrader risk tool, it covers both the conventional limits such a tool enforces — daily loss limit, max position size, session P&L and drawdown caps, consecutive-loss cutoff — and a behavioral layer (revenge trading, oversizing, overtrading) that fires before the order. Guard turns any of those triggers into an actual block.
+      </p>
       <p>
         Meridian Guard intercepts at the NinjaTrader order execution pipeline. When a Guard rule fires, new entry orders placed through the NinjaTrader interface are cancelled before they reach the broker. This applies to manual orders, hotkey orders, and orders placed via ATM strategies. Close-position orders (flatten, bracket stops) are never blocked — only new entry orders during an active pause.
       </p>
@@ -60,15 +66,15 @@ const qaSchema = JSON.stringify({
         <li><strong>Risk Alert (L2)</strong> — persistent banner; confirmation required before each new entry</li>
         <li><strong>Acknowledge (L3)</strong> — must type a pre-written phrase (with an optional countdown) before the next entry is allowed</li>
         <li><strong>Trading Pause (L4)</strong> — new entries blocked by cancelling orders; survives an NT8 restart</li>
-        <li><strong>Disconnect (L5)</strong> — broker connection severed; no new entries possible until manually reconnected</li>
+        <li><strong>Disconnect (L5)</strong> — severs the broker connection; re-disconnects if you try to bypass it during the window</li>
       </ul>
       <p>
-        Most traders use L2 (Acknowledge) for a first trigger, L3 (Countdown) for a second, and L5 (Disconnect) for the third. The escalation means early signals are informational; later signals are enforcement.
+        A common configuration is L3 (Acknowledge) for a first trigger, L4 (Trading Pause) for a second, and L5 (Disconnect) for the third. The escalation means early signals are informational; later signals are enforcement.
       </p>
 
       <h2>What triggers the block</h2>
       <p>
-        Six trigger types are available:
+        Six trigger types are available — the conventional risk limits a daily-loss or position-size tool would enforce, plus the behavioral signal that traditional tools lack:
       </p>
       <ul>
         <li>PSI (Psychological Stability Index) drops below a configured threshold</li>
@@ -89,7 +95,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

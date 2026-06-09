@@ -20,8 +20,8 @@ async function renderEntry(id: string) {
 
 // Render all prose sections upfront
 const [
-  r01,
-  r021, r022, r023,
+  r01, r012,
+  r020, r021, r022, r023,
   r031, r032, r033, r034,
   r041, r042, r043,
   r05,
@@ -29,6 +29,8 @@ const [
   r07,
 ] = await Promise.all([
   renderEntry('01-personal-details'),
+  renderEntry('01-2-earnings'),
+  renderEntry('02-0-first-48-hours'),
   renderEntry('02-1-install'),
   renderEntry('02-2-first-30-min'),
   renderEntry('02-3-product-deep-dive'),
@@ -51,6 +53,8 @@ const [
 
 // Content components (capitalized for use as Astro components)
 const PersonalContent    = r01?.Content;
+const EarningsContent     = r012?.Content;
+const First48Content     = r020?.Content;
 const InstallContent     = r021?.Content;
 const First30Content     = r022?.Content;
 const DeepDiveContent    = r023?.Content;
@@ -127,7 +131,8 @@ const searchIndex = allEntries
   });
 
 // Build the "what's new" list (last 14 days)
-const today = new Date('2026-05-15');
+// Use the real build/runtime clock so the window always advances — never a frozen literal.
+const today = new Date();
 const fourteenDaysAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
 const recentUpdates = allEntries
   .filter((e) => {
@@ -181,16 +186,16 @@ const assetCategories: AssetCategory[] = [
     title: 'Live Monitor — HUD States',
     items: [
       { label: 'HUD — Stable', desc: 'Green zone, all signals flat', thumb: '/screenshots/hud-stable.png', href: '/screenshots/hud-stable.png', type: 'image' },
-      { label: 'HUD — Warning', desc: 'Orange zone, Oversize signal active', thumb: '/screenshots/hud-warning-journal.png', href: '/screenshots/hud-warning-journal.png', type: 'image' },
+      { label: 'HUD — Warning', desc: 'Orange zone, Size Spike signal active (HUD label: Oversize)', thumb: '/screenshots/hud-warning-journal.png', href: '/screenshots/hud-warning-journal.png', type: 'image' },
       { label: 'HUD — Critical', desc: 'Red zone, high pressure, behavioral signals firing', thumb: '/screenshots/psi-critical.png', href: '/screenshots/psi-critical.png', type: 'image' },
     ],
   },
   {
     title: 'Guard — Intervention Levels',
     items: [
-      { label: 'Guard — Acknowledge gate (L2)', desc: 'Must type a phrase to confirm before continuing', thumb: '/screenshots/guard-acknowledge.png', href: '/screenshots/guard-acknowledge.png', type: 'image' },
+      { label: 'Guard — Acknowledge gate (L3)', desc: 'Must type a phrase to confirm before continuing', thumb: '/screenshots/guard-acknowledge.png', href: '/screenshots/guard-acknowledge.png', type: 'image' },
       { label: 'Guard — Trading Pause (L4)', desc: 'New entries blocked until the pause expires; survives an NT8 restart', thumb: '/screenshots/guard-countdown.png', href: '/screenshots/guard-countdown.png', type: 'image' },
-      { label: 'Guard — Disconnect (L4)', desc: 'Broker connection cut, hard stop enforced by software', thumb: '/screenshots/guard-disconnect.png', href: '/screenshots/guard-disconnect.png', type: 'image' },
+      { label: 'Guard — Disconnect (L5)', desc: 'Broker connection cut, hard stop enforced by software', thumb: '/screenshots/guard-disconnect.png', href: '/screenshots/guard-disconnect.png', type: 'image' },
     ],
   },
   {
@@ -212,7 +217,7 @@ const assetCategories: AssetCategory[] = [
     items: [
       { label: 'Journal — compiled daily view', desc: 'Auto-compiled session journal with trade entries and P&L', thumb: '/screenshots/journal-compiled.png', href: '/screenshots/journal-compiled.png', type: 'image' },
       { label: 'Journal — entries and reflection', desc: 'Session entries with mood tags, notes, and reflection prompts', thumb: '/screenshots/journal-entries.png', href: '/screenshots/journal-entries.png', type: 'image' },
-      { label: 'History — month calendar', desc: 'PSI trend line and color-coded session calendar (April 2026)', thumb: '/screenshots/history-month-calendar.png', href: '/screenshots/history-month-calendar.png', type: 'image' },
+      { label: 'History — month calendar', desc: 'Composure trend, equity curve, and a color-coded session calendar, month over month', thumb: '/screenshots/history-month-calendar.png', href: '/screenshots/history-month-calendar.png', type: 'image' },
     ],
   },
   {
@@ -220,7 +225,7 @@ const assetCategories: AssetCategory[] = [
     items: [
       { label: 'Settings — trading profile', desc: 'Session hours, position sizing, risk limits configuration', thumb: '/screenshots/settings-profile.png', href: '/screenshots/settings-profile.png', type: 'image' },
       { label: 'Settings — advanced and display', desc: 'Response level (Balanced), fine-tuning sliders, display modes', thumb: '/screenshots/settings-advanced.png', href: '/screenshots/settings-advanced.png', type: 'image' },
-      { label: 'Profile — baseline learning', desc: 'Adaptive calibration progress, 140 sessions recorded', thumb: '/screenshots/profile-baseline.png', href: '/screenshots/profile-baseline.png', type: 'image' },
+      { label: 'Profile — adaptive baseline', desc: 'A fully-calibrated baseline — average loss size, position size, risk:reward, and win/loss hold times, learned from your sessions', thumb: '/screenshots/profile-baseline.png', href: '/screenshots/profile-baseline.png', type: 'image' },
     ],
   },
   {
@@ -394,11 +399,25 @@ const tocItems = [
         <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
           {PersonalContent ? <PersonalContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
         </div>
+
+        <div class="mt-10 pt-8 border-t border-zinc-100 dark:border-zinc-800">
+          <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">What you earn</h3>
+          <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+            {EarningsContent ? <EarningsContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+          </div>
+        </div>
       </CollapsibleSection>
 
       <!-- ── § 2 Get Started ─────────────────────────────── -->
-      <CollapsibleSection id="s2" numLabel="02" title="Get Started with Meridian" subtitle="Install, configure, and understand the product before you make content about it.">
+      <CollapsibleSection id="s2" numLabel="02" title="Get Started with Meridian" subtitle="Install, configure, and understand the product before you make content about it." defaultOpen={true}>
         <div class="space-y-10">
+          <div>
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Your first 48 hours</h3>
+            <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+              {First48Content ? <First48Content /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+            </div>
+          </div>
+
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Install Meridian</h3>
             <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
@@ -680,6 +699,7 @@ const tocItems = [
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           Coming soon —{' '}
+                          {/* garycaffrey@meridian-partnership.com = the established partner-program mailbox used across all partner-kit content (src/data/partner-kit/*, DashboardHero) — intentional, not a placeholder. */}
                           <a href="mailto:garycaffrey@meridian-partnership.com?subject=Asset request" class="underline hover:text-zinc-600 dark:hover:text-zinc-400">request</a>
                         </span>
                       )}
@@ -785,6 +805,7 @@ const tocItems = [
     role="complementary"
     aria-label="Quick actions"
   >
+    <!-- garycaffrey@meridian-partnership.com = the established partner-program contact mailbox, used consistently across all partner-kit content (src/data/partner-kit/*, DashboardHero). Intentional dedicated partner inbox — not a placeholder. -->
     <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
       <p class="text-xs text-zinc-400 dark:text-zinc-500 hidden sm:block">
         Questions? <a href="mailto:garycaffrey@meridian-partnership.com" class="underline hover:text-zinc-600 dark:hover:text-zinc-300">garycaffrey@meridian-partnership.com</a>

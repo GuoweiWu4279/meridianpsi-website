@@ -3,9 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'Meridian vs Native NinjaTrader Risk Management — Behavioral vs Hard-Limit',
+  title: 'Meridian vs Native NinjaTrader Risk Management — Hard Limits Plus the Behavioral Layer',
   description:
-    'Native NinjaTrader 8 risk controls are excellent at the financial-outcome layer. Meridian operates one layer earlier — at the behavior that produces the outcome. Two different layers of the trading stack.',
+    'Native NinjaTrader 8 risk controls cap the financial outcome. Meridian does that hard-limit job too — and adds the layer native controls lack: real-time behavioral detection at the pattern that produces the outcome. A superset, not a separate niche.',
   robots: { index: true, follow: true },
 };
 
@@ -13,7 +13,7 @@ const compareRows = [
   {
     dim: 'Category',
     native: 'Hard-limit financial floor',
-    meridian: 'Behavioral leading indicator',
+    meridian: 'Complete risk management — hard limits plus the behavioral layer',
   },
   {
     dim: 'Layer of the failure sequence',
@@ -23,7 +23,7 @@ const compareRows = [
   {
     dim: 'What it watches',
     native: 'Cumulative P&L, account drawdown',
-    meridian: '7 behavioral signals + composite PSI in real time',
+    meridian: 'Cumulative P&L and drawdown too, plus seven behavioral signals + composite PSI in real time',
   },
   {
     dim: 'When it fires',
@@ -58,22 +58,22 @@ const compareRows = [
   {
     dim: 'Enforcement mechanism',
     native: 'Order block at threshold',
-    meridian: 'Six trigger types · five response levels (Alert → Disconnect)',
+    meridian: 'Daily-loss / drawdown / loss-streak limits plus behavioral triggers — six trigger types · five response levels (Notify → Disconnect)',
   },
 ];
 
 const faqItems = [
   {
     q: 'Does Meridian work with NinjaTrader\'s native account-level daily loss control?',
-    a: 'Yes. Meridian installs as a standard NinjaTrader 8 add-on inside the native add-on framework. Native account controls remain at the account layer. Meridian operates one layer earlier — at the behavior — so the two sit in different layers of the stack entirely.',
+    a: 'Yes. Meridian installs as a standard NinjaTrader 8 add-on inside the native add-on framework, so native account controls keep working at the account layer. Meridian also provides its own configurable daily-loss and drawdown limits, then adds a layer native controls lack — behavioral detection at the order itself. In practice Meridian is a superset of the native control: it does the same hard-limit job and more.',
   },
   {
     q: 'Why would I add Meridian if NinjaTrader already includes risk controls?',
-    a: 'Native NinjaTrader controls watch one number: cumulative P&L. Meridian watches seven behavioral signals — entry pace, stop modifications, sizing relative to your declared rule, re-entry timing, rule violations, position overstay, hold bias — and a composite PSI score. By the time a P&L threshold could engage, Meridian has already had several opportunities to intervene.',
+    a: 'Native NinjaTrader controls watch one number: cumulative P&L. Meridian watches that same P&L floor — you can set daily-loss, drawdown and loss-streak limits — and also watches seven behavioral signals: entry pace, stop modifications, sizing relative to your declared rule, re-entry timing, rule violations, position overstay, hold bias, plus a composite PSI score. So you keep the native-style hard limit and gain earlier intervention: by the time a P&L threshold could engage, Meridian has already had several opportunities to act.',
   },
   {
     q: 'Can Meridian Guard act like a daily loss limit?',
-    a: 'Yes. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at Level 5 if you choose. Most traders set this trigger above any native limit so the session ends on behavioral terms.',
+    a: 'Yes. Guard fires on six trigger types — PSI Below, Consecutive Losses, Session P&L Below, Session Minutes Over, Unrealized P&L Below, and Single Trade Loss — so the financial floor is just one of them. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at the strictest response level if you choose. Most traders set this trigger above any native limit so the session ends on behavioral terms.',
   },
   {
     q: 'How is Meridian\'s threshold model different?',
@@ -102,11 +102,12 @@ const faqSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs native NinjaTrader risk management.
       </h1>
+      <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader's native risk controls are an excellent hard floor at the financial-outcome layer. Meridian operates one layer earlier — at the behavior that produces the outcome — and fires on the pattern, before any P&amp;L threshold needs to engage.
+          NinjaTrader's native risk controls are an excellent hard floor at the financial-outcome layer. Meridian provides that same hard floor — configurable daily-loss, drawdown and loss-streak limits — and adds the layer native controls don't have: it fires on the behavioral pattern that produces the loss, before any P&amp;L threshold needs to engage. It is the complete, superset version of the same job, not a separate niche.
         </p>
       </div>
     </header>
@@ -123,7 +124,7 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian sits in a different layer of the stack entirely. It watches the behavioral pattern that produces the loss and fires on the pattern itself. Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on in May 2026.
+        Meridian covers everything the native layer does — configurable daily-loss, drawdown and loss-streak limits that block at threshold — and then extends past it. It also watches the behavioral pattern that produces the loss and fires on the pattern itself, the layer a hard floor cannot reach. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
         A native limit cannot see that entry frequency has doubled in the last twenty minutes, that the last three stops have been moved progressively wider, or that the trader is re-entering forty seconds after a stop-out with double the average size. Each of those is a Meridian signal. Each fires before any P&amp;L threshold has reason to.
@@ -156,12 +157,12 @@ const faqSchema = JSON.stringify({
         Picture a session that opens normally, takes a midday loss, then enters a phase of rising entry frequency, progressive stop widening, and declining position quality. Each individual order is well within any native daily loss limit. No financial threshold has been crossed.
       </p>
       <p>
-        That window — between the moment the behavior changes and the moment the loss compounds — is invisible to native NinjaTrader controls by design. They are purpose-built for the financial outcome, not the behavior. Meridian operates exclusively in that window.
+        That window — between the moment the behavior changes and the moment the loss compounds — is invisible to native NinjaTrader controls by design. They are purpose-built for the financial outcome, not the behavior. Meridian covers that financial-outcome floor too, and uniquely also operates inside that earlier window.
       </p>
 
       <h2>Where Meridian fits in the NinjaTrader stack</h2>
       <p>
-        Meridian installs as a standard NinjaTrader 8 add-on. Native account controls keep doing their job at the financial-outcome layer; Meridian adds the behavioral layer above. The ordering is clear: behavior-first intervention, with the native financial-outcome floor underneath in case behavior was missed entirely.
+        Meridian installs as a standard NinjaTrader 8 add-on and runs alongside native account controls. The practical relationship is a superset: Meridian provides its own configurable financial-outcome floor — daily-loss, drawdown and loss-streak limits — and adds the behavioral layer native controls lack. If you already rely on a native limit, Meridian is the upgrade that keeps that floor and intervenes earlier, on the behavior, before the loss compounds.
       </p>
       <p>
         For a wider category view, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">the full NinjaTrader 8 risk-tool generation map</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.

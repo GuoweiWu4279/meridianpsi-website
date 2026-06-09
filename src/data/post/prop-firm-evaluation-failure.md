@@ -1,6 +1,6 @@
 ---
 title: "Why Prop Firm Evaluations Get Blown — and What Actually Stops It"
-excerpt: "The statistics on prop firm evaluation failure rates are stark. Understanding the behavioral mechanism behind the most common failure mode is the prerequisite for addressing it structurally."
+excerpt: "Most prop firm evaluation attempts do not end in a funded account. Understanding the behavioral mechanism behind the most common failure mode is the prerequisite for addressing it structurally."
 author: "Meridian"
 category: 'trading-psychology'
 tags: ["prop firm", "funded trader", "evaluation", "ninjatrader", "risk management"]
@@ -13,7 +13,7 @@ metadata:
     follow: true
 ---
 
-The statistics on prop firm evaluation failure rates are stark. Depending on the platform, the majority of evaluation attempts do not result in a funded account. A significant share of those that do get funded are subsequently halted within the first 60 days.
+Most prop firm evaluation attempts do not end in a funded account, and a meaningful share of funded accounts are halted within the first weeks — the firms' own pass and retention disclosures bear this out.
 
 Traders, trading educators, and prop firms themselves offer different explanations: insufficient edge, poor risk management, bad luck in market conditions. All of these are partial. The full picture requires addressing the behavioral mechanism that most commonly drives a single evaluation-ending session.
 
@@ -41,7 +41,7 @@ A trader can be in a revenge-trading spiral — entries arriving every 60 second
 
 ## The behavioral signals that precede the blow-up
 
-Meridian monitors seven behavioral signals across the live session. In cases that precede a significant drawdown in a single session, the consistent finding is that multiple signals activate in a cluster in the minutes or hours before the decisive loss:
+Meridian monitors seven behavioral signals across the live session. Of those seven, the five most relevant to evaluation blow-ups are below. In cases that precede a significant drawdown in a single session, the consistent finding is that multiple signals activate in a cluster in the minutes or hours before the decisive loss:
 
 **Revenge Entry** — re-entry within a short interval after a loss event, at elevated or maximum size.
 
@@ -61,9 +61,9 @@ A behavioral monitor is useful at the point where the escalation has begun but b
 
 A mandatory pause — introduced by Guard when behavioral signals exceed configured thresholds — forces a gap between the moment of deterioration and the next entry decision. This is not the same as remembering to pause. A remembered pause is subject to the same override pressure as the revenge trade itself. A software-enforced pause is not negotiable.
 
-The neurological basis for this is well-established. The cortisol and adrenaline response that drives loss-chasing behavior is time-limited. A 10–20 minute enforced pause allows partial recovery of prefrontal function. The trader who returns to the platform after a forced break is demonstrably less impaired than the trader who continued without one.
+There is a physiological basis for this. The acute stress response — cortisol, adrenaline — that drives loss-chasing is transient. A short enforced pause gives that response time to subside and lets deliberate decision-making reassert itself, so the trader who returns after a forced break tends to act with more control than one who pushed straight through.
 
-For prop firm traders specifically, Guard can also be configured to enforce a session end when P&L approaches (not reaches) the evaluation's maximum daily loss limit. This creates a buffer before the evaluation-ending threshold — the equivalent of a circuit breaker that fires before the exchange's own circuit breaker.
+For prop firm traders specifically, Guard can also be configured to block all new entries — a hard Trading Pause or Disconnect — when P&L approaches (not reaches) the evaluation's maximum daily loss limit. Your open position stays yours to exit; Guard prevents you from adding to the damage. If you want positions auto-closed at that point, you can opt into auto-flatten on Disconnect — it is off by default. This creates a buffer before the evaluation-ending threshold — the equivalent of a circuit breaker that fires before the exchange's own circuit breaker.
 
 ## The evaluation environment specifically
 
@@ -72,7 +72,7 @@ Prop firm evaluations create conditions that specifically amplify the behavioral
 - **High stakes** — the evaluation represents a real investment of capital and time. Loss of the evaluation has concrete cost.
 - **Recovery pressure** — a session that begins with a loss creates urgency to recover within the evaluation period.
 - **Finite window** — evaluations have time limits, which increases the perceived cost of a losing session.
-- **Daily limits** — the structure of daily maximum loss rules creates a specific endpoint that makes a partially damaged session feel partially irreversible.
+- **Daily limits** — the structure of daily maximum loss rules creates a specific endpoint that makes a damaged session feel irreversible.
 
 All of these conditions increase the probability that a normal loss will trigger a revenge-trading sequence. Evaluations select for traders who can perform under exactly these conditions — and the behavioral failure rate reflects the difficulty of that selection.
 
@@ -80,12 +80,12 @@ All of these conditions increase the probability that a normal loss will trigger
 
 For traders running evaluations, the recommended configuration is specific:
 
-1. **Session-start Guard rules** — defined before the session, with a password lock to prevent in-session override
+1. **Session-start Guard rules** — defined before the session, with Strict Lock engaged to prevent in-session override
 2. **Consecutive-loss trigger** — Guard enforces a mandatory pause after N consecutive losses (typically 3–4), regardless of P&L at that point
-3. **Pre-limit session end** — Guard ends the session when daily P&L reaches 80% of the evaluation's maximum daily loss allowance. This preserves the evaluation even when a session has gone against the trader
+3. **Pre-limit entry lockout** — Guard locks out new entries when daily P&L reaches 80% of the evaluation's maximum daily loss allowance, stopping you from adding to a losing session. You still need to exit the open position (or enable opt-in auto-flatten on Disconnect) to fully cap the drawdown
 4. **PSI threshold block** — new entries blocked when composite PSI drops below the configured threshold, regardless of other conditions
 
-The password lock is important. A Guard rule that can be overridden in the moment when the rule is most needed is a rule with no enforcing power.
+Strict Lock is important. A Guard rule that can be overridden in the moment when the rule is most needed is a rule with no enforcing power.
 
 ---
 

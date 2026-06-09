@@ -5,7 +5,7 @@ import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astr
 const metadata = {
   title: 'Partner with Meridian — 30% Lifetime Recurring for NinjaTrader 8 Creators',
   description:
-    'Partner with an Official NinjaTrader Ecosystem Vendor. 30% lifetime recurring commission. 10% permanent audience discount. Free Meridian Guard license. We respond to applications within 24 hours.',
+    'Promote the most complete risk management for NinjaTrader 8 — the superset that does what every risk tool does, plus the behavioral layer none of them have. 30% lifetime recurring commission, 10% permanent audience discount, free Meridian Guard license. Official NinjaTrader Ecosystem Vendor. We respond to applications within 24 hours.',
   robots: { index: true, follow: true },
 };
 
@@ -36,7 +36,7 @@ const fitCards = [
   {
     icon: 'wallet',
     title: 'Audience already pays for NT8 software',
-    body: 'Indicators, add-ons, risk tools — paid utility is the norm in this niche. No friction in audience expectation.',
+    body: 'Indicators, add-ons, risk tools — paid utility is the norm in this niche. No price objection to overcome.',
   },
   {
     icon: 'shield',
@@ -50,6 +50,12 @@ const fitCards = [
   },
 ];
 
+const earningsTiers = [
+  { subs: '20 active subs', amount: '$4,536', note: 'Illustrative annual run-rate · assumes no churn' },
+  { subs: '100 active subs', amount: '$22,680', note: 'Illustrative annual run-rate · assumes no churn' },
+  { subs: '200 active subs', amount: '$45,360', note: 'Illustrative annual run-rate · assumes no churn' },
+];
+
 const kitItems = [
   'Meridian logo — SVG (vector) + 4 PNG variants (16:9 and square, light and dark)',
   '20+ product screenshots — HUD states (Stable / Warning / Critical), all 4 Guard intervention levels, Session Report, Intel analytics, Journal, History, Settings',
@@ -61,10 +67,18 @@ const kitItems = [
   'Audience angles + objection handling by segment — prop firm, psychology, systematic',
 ];
 
+const payoutItems = [
+  'You receive a unique affiliate link — your own Whop URL like whop.com/meridian/?a=yourname. Anyone who completes checkout through that link is automatically attributed to you.',
+  'Your audience also receives a permanent 10%-off promo code in your name. Discount and attribution are two independent mechanisms, but both are managed from your Whop affiliate panel.',
+  'Commission is 30% of the amount each subscriber actually pays after the discount, recurring on every billing cycle (enabled as a "Recurring payments" override on your partner account).',
+  'Earnings dashboard, attribution tracking, and monthly payouts all run through your Whop affiliate panel.',
+  'Standard 30-day waiting period from a referred purchase to commission release (industry-standard refund-protection window).',
+];
+
 const finePrintItems = [
   '7-day free trial · credit card required at checkout · auto-cancels if not converted',
   'Pricing after trial: Meridian Core $49.99/mo or $479.90/yr · Meridian Guard $69.99/mo or $671.90/yr',
-  'Commission tracked and paid monthly through Whop on standard 30-day cycle',
+  'Commission tracked and paid monthly through Whop',
   'Affiliates required to disclose the partnership per FTC and other applicable regulations',
   'Not all applications are accepted — fit with audience matters more than audience size',
   'Program terms subject to change with reasonable notice to active partners',
@@ -73,131 +87,128 @@ const finePrintItems = [
 
 <Layout metadata={metadata}>
 
-  <!-- ═══════════════════════════════════════════════════════
-       HERO  · tight, single-screen, one clear pitch
-       ═══════════════════════════════════════════════════════ -->
-  <section class="relative overflow-hidden border-b border-zinc-100">
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
-         style="background: radial-gradient(ellipse at 75% 0%, rgba(5,150,105,0.10) 0%, transparent 60%);"></div>
-    <div class="relative max-w-3xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-24">
-      <div class="flex flex-wrap items-center gap-2 mb-8">
-        <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full"
-             style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.08);">
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-16 md:pb-20 text-center" data-reveal>
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-7">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border"
+              style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.07);">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Partner Program · NT8 Creators</span>
-        </div>
-        <EcosystemVendorBadge variant="compact" align="left" />
+          <span class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Partner Program · NT8 Creators</span>
+        </span>
+        <EcosystemVendorBadge variant="compact" />
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] text-zinc-900 mb-6">
-        Partner with Meridian.
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+        Promote the tool that<br />actually <span class="text-emerald-600">catches the behavior.</span>
       </h1>
 
-      <p class="text-lg md:text-xl text-zinc-600 leading-relaxed mb-4">
-        30% lifetime recurring. 10% permanent audience discount. Free Guard license while you're a partner. We respond in 24 hours.
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Meridian is the most complete risk management for NinjaTrader 8 &mdash; everything a risk tool does, plus the
+        behavioral layer none of them have. Recommend a product your audience can install and see firing on their own session on day one.
       </p>
-      <p class="text-sm text-zinc-500 leading-relaxed mb-10">
-        You&rsquo;ll be promoting an <strong class="text-zinc-700">Official NinjaTrader Ecosystem Vendor</strong> &mdash; reviewed and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams. Your audience can verify on
-        <a href="https://ninjatrader.com/vendor-services/" target="_blank" rel="noopener" class="underline text-zinc-600 hover:text-zinc-900">ninjatrader.com</a>.
+      <p class="mt-5 max-w-2xl mx-auto text-lg text-zinc-700 leading-relaxed">
+        <strong class="text-zinc-900">30% lifetime recurring.</strong> 10% permanent audience discount. A free Guard license while you&rsquo;re a partner.
+        We respond in 24 hours.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-3">
-        <a href="#apply" class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-colors">
-          Apply now
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-        <a href="#details" class="inline-flex items-center justify-center px-7 py-3 rounded-full border border-zinc-300 text-sm font-semibold text-zinc-700 hover:border-zinc-500 hover:text-zinc-900 transition-colors">
-          See the details
-        </a>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#apply" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Apply now</a>
+        <a href="#details" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the details</a>
+      </div>
+
+      <p class="mt-7 max-w-2xl mx-auto text-sm text-zinc-500 leading-relaxed">
+        You&rsquo;ll be promoting an <strong class="text-zinc-700">Official NinjaTrader Ecosystem Vendor</strong> &mdash; audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams. Your audience can verify on
+        <a href="https://ninjatrader.com/vendor-services/" target="_blank" rel="noopener" class="underline text-zinc-600 hover:text-zinc-900">ninjatrader.com</a>.
+      </p>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
+      <div class="relative">
+        <div class="win"><img src="/m/overview.png" alt="Meridian Overview dashboard — what your audience installs" class="nozoom" /></div>
+        <div
+          class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
+          style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
+        >
+          <img src="/m/ring.png" alt="Meridian live risk gauge (PSI)" class="block w-full" />
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ───────────────────────── THE DEAL ───────────────────────── -->
+  <section id="details" class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE DEAL</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Set up once. Earn for the<br />lifetime of every subscriber.
+        </h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Three numbers, no asterisks. This is the whole offer.</p>
+      </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       THE DEAL  · 3 numbers, scannable in 5 seconds
-       ═══════════════════════════════════════════════════════ -->
-  <section id="details" class="py-20 md:py-24 px-6 bg-zinc-50/50 border-b border-zinc-100">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">The deal</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-12 max-w-2xl">
-        Set up once. Earn for the lifetime of every subscriber.
-      </h2>
-
-      <div class="grid sm:grid-cols-3 gap-5">
+      <div class="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto" data-reveal>
         {dealCards.map((card) => (
-          <div class="bg-white border border-zinc-200 rounded-2xl px-7 py-8">
-            <p class="text-4xl font-bold text-zinc-900 mb-1.5 tracking-tight">{card.headline}</p>
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+            <p class="text-4xl font-extrabold text-zinc-900 mb-1.5 tracking-tight tnum">{card.headline}</p>
             <p class="text-sm font-semibold text-emerald-700 mb-3">{card.label}</p>
-            <p class="text-sm text-zinc-500 leading-relaxed">{card.sub}</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">{card.sub}</p>
           </div>
         ))}
       </div>
-
-      <!-- What you can earn — matches the page's visual system: white card,
-           zinc-50 inset blocks, single emerald accent. No gradients, no black box. -->
-      <div class="mt-12 rounded-2xl border border-zinc-200 bg-white px-6 py-8 md:px-10 md:py-10">
-        <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">What you can earn</p>
-        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3 leading-snug">
-          The recurring math compounds.
-        </h3>
-        <p class="text-zinc-600 leading-relaxed mb-8 max-w-xl text-[15px]">
-          Every active Guard subscriber pays you <span class="font-semibold text-zinc-900">$18.90/month</span> in recurring commission, for as long as they stay on the plan.
-        </p>
-
-        <!-- Tiered earnings — three equal-weight inset cards -->
-        <div class="grid sm:grid-cols-3 gap-4 mb-8">
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 px-5 py-5">
-            <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">20 active subs</p>
-            <p class="text-2xl font-bold text-zinc-900 tracking-tight">$4,536<span class="text-base font-normal text-zinc-500"> / yr</span></p>
-            <p class="text-xs text-zinc-400 mt-1.5">Recurring</p>
-          </div>
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 px-5 py-5">
-            <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">100 active subs</p>
-            <p class="text-2xl font-bold text-zinc-900 tracking-tight">$22,680<span class="text-base font-normal text-zinc-500"> / yr</span></p>
-            <p class="text-xs text-zinc-400 mt-1.5">Recurring</p>
-          </div>
-          <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 px-5 py-5">
-            <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-1.5">200 active subs</p>
-            <p class="text-2xl font-bold text-zinc-900 tracking-tight">$45,360<span class="text-base font-normal text-zinc-500"> / yr</span></p>
-            <p class="text-xs text-zinc-400 mt-1.5">Recurring</p>
-          </div>
-        </div>
-
-        <!-- How this scales — soft inset callout with subtle emerald accent rule -->
-        <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 border-l-[3px] border-l-emerald-500 px-5 py-5 md:px-6 md:py-5">
-          <p class="text-[11px] font-semibold tracking-[0.18em] uppercase mb-2.5 text-emerald-700">How this scales</p>
-          <p class="text-[15px] leading-relaxed text-zinc-700 mb-2">
-            A single 10,000-view video at 1% conversion = <span class="font-semibold text-zinc-900">100 trial installs</span>. Industry trial-to-paid for SaaS utilities runs <span class="font-semibold text-zinc-900">30–60%</span>.
-          </p>
-          <p class="text-[15px] leading-relaxed text-zinc-500">
-            And this is a long-term partnership — you publish multiple pieces over time. Commission stacks across content cycles, not per-video. Subscribers from a video you posted last quarter still pay you next quarter.
-          </p>
-        </div>
-
-        <p class="text-xs text-zinc-400 leading-relaxed mt-6">
-          Examples assume Meridian Guard monthly ($69.99) with the 10% audience discount applied. Per-subscriber commission = $69.99 × 0.90 × 0.30 = $18.90/mo. Annual plans, Core plans, and churn shift the actual numbers. Illustrative figures, not earnings guarantees.
-        </p>
-      </div>
     </div>
   </section>
 
+  <!-- ───────────────────────── WHAT YOU CAN EARN ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT YOU CAN EARN</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The recurring math compounds.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+        Every active Guard subscriber pays you <span class="font-semibold text-zinc-900 tnum">$18.90/month</span> in recurring
+        commission &mdash; for as long as they stay on the plan.
+      </p>
+    </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       WHY THIS WORKS  · 3-card icon grid, no walls of text
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-20 md:py-24 px-6 bg-white border-b border-zinc-100">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Why this works</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-12 max-w-2xl">
-        Why Meridian converts on NT8 audiences.
-      </h2>
+    <div class="grid sm:grid-cols-3 gap-5 max-w-4xl mx-auto" data-reveal>
+      {earningsTiers.map((tier) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">{tier.subs}</p>
+          <p class="text-3xl font-extrabold text-zinc-900 tracking-tight tnum">{tier.amount}<span class="text-base font-medium text-zinc-400"> / yr</span></p>
+          <p class="text-xs text-emerald-700 font-semibold mt-2">{tier.note}</p>
+        </div>
+      ))}
+    </div>
 
-      <div class="grid md:grid-cols-3 gap-5">
+    <div class="max-w-4xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-8 md:px-10 md:py-9" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">HOW THIS SCALES</p>
+      <p class="text-lg md:text-xl leading-relaxed">
+        A single 10,000-view video at 1% conversion = <span class="text-emerald-400 font-semibold tnum">100 trial installs.</span>
+        How many of those convert varies widely by audience and offer &mdash; credit-card-required trials like ours tend to convert better than free ones.
+      </p>
+      <p class="mt-3 text-base md:text-lg leading-relaxed text-zinc-400">
+        And this is a long-term partnership &mdash; you publish multiple pieces over time. Commission stacks across content
+        cycles, not per video. Subscribers from a video you posted last quarter still pay you next quarter.
+      </p>
+    </div>
+
+    <p class="text-xs text-zinc-400 leading-relaxed mt-6 max-w-4xl mx-auto">
+      Examples assume Meridian Guard monthly ($69.99) with the 10% audience discount applied. Per-subscriber commission = $69.99 × 0.90 × 0.30 = $18.90/mo. Annual plans, Core plans, and churn shift the actual numbers. Illustrative figures, not earnings guarantees.
+    </p>
+  </section>
+
+  <!-- ───────────────────────── WHY THIS WORKS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY THIS WORKS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Why Meridian converts on<br />NT8 audiences.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">It recommends itself &mdash; because the trial makes the case for you.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto" data-reveal>
         {fitCards.map((card) => (
-          <div class="rounded-2xl border border-zinc-200 px-6 py-7 hover:border-emerald-200 transition-colors">
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <div class="w-10 h-10 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-5">
               {card.icon === 'wallet' && (
                 <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,36 +227,32 @@ const finePrintItems = [
               )}
             </div>
             <h3 class="text-base font-bold text-zinc-900 mb-2 leading-snug">{card.title}</h3>
-            <p class="text-sm text-zinc-500 leading-relaxed">{card.body}</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">{card.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- ───────────────────────── DETAILS ON DEMAND ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">DETAILS ON DEMAND</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Everything else, only<br />if you want it.</h2>
+        <p class="mt-4 text-lg text-zinc-600">The full kit, payout mechanics, and program terms &mdash; read them before you apply.</p>
+      </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       DETAILS ON DEMAND  · accordion, default-collapsed
-       Placed before Apply so creators see terms before applying.
-       Cuts visible vertical space ~40% vs. expanded sections.
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-20 md:py-24 px-6 bg-zinc-50/50 border-b border-zinc-100">
-    <div class="max-w-2xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Details on demand</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-10">
-        Everything else, only if you want it.
-      </h2>
+      <div class="space-y-3" data-reveal>
 
-      <div class="space-y-3">
-
-        <details class="group rounded-xl border border-zinc-200 bg-white overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none hover:bg-zinc-50/60 transition-colors">
-            <span class="text-base font-semibold text-zinc-900">What's in the creator kit?</span>
+        <details class="group rounded-2xl border border-zinc-200 bg-white overflow-hidden">
+          <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none hover:bg-[#fafafa] transition-colors">
+            <span class="text-base font-semibold text-zinc-900">What&rsquo;s in the creator kit?</span>
             <svg class="w-5 h-5 text-zinc-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <div class="px-6 pb-6 pt-1">
+          <div class="px-7 pb-7 pt-1">
             <p class="text-sm text-zinc-500 leading-relaxed mb-4">
               Delivered as a zip the moment your application is accepted. Custom asset requests accommodated where possible.
             </p>
@@ -262,22 +269,16 @@ const finePrintItems = [
           </div>
         </details>
 
-        <details class="group rounded-xl border border-zinc-200 bg-white overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none hover:bg-zinc-50/60 transition-colors">
-            <span class="text-base font-semibold text-zinc-900">How tracking & payouts work</span>
+        <details class="group rounded-2xl border border-zinc-200 bg-white overflow-hidden">
+          <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none hover:bg-[#fafafa] transition-colors">
+            <span class="text-base font-semibold text-zinc-900">How tracking &amp; payouts work</span>
             <svg class="w-5 h-5 text-zinc-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <div class="px-6 pb-6 pt-1">
+          <div class="px-7 pb-7 pt-1">
             <ul class="space-y-2.5">
-              {[
-                'You receive a unique affiliate link — your own Whop URL like whop.com/meridian/?a=yourname. Anyone who completes checkout through that link is automatically attributed to you.',
-                'Your audience also receives a permanent 10%-off promo code in your name. Discount and attribution are two independent mechanisms, but both are managed from your Whop affiliate panel.',
-                'Commission is 30% of the amount each subscriber actually pays after the discount, recurring on every billing cycle (enabled as a "Recurring payments" override on your partner account).',
-                'Earnings dashboard, attribution tracking, and monthly payouts all run through your Whop affiliate panel.',
-                'Standard 30-day waiting period from a referred purchase to commission release (industry-standard refund-protection window).',
-              ].map((item) => (
+              {payoutItems.map((item) => (
                 <li class="flex items-start gap-3 text-sm text-zinc-700">
                   <span class="mt-2 w-1 h-1 rounded-full bg-emerald-500 shrink-0" aria-hidden="true"></span>
                   <span class="leading-relaxed">{item}</span>
@@ -287,31 +288,31 @@ const finePrintItems = [
           </div>
         </details>
 
-        <details class="group rounded-xl border border-zinc-200 bg-white overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none hover:bg-zinc-50/60 transition-colors">
+        <details class="group rounded-2xl border border-zinc-200 bg-white overflow-hidden">
+          <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none hover:bg-[#fafafa] transition-colors">
             <span class="text-base font-semibold text-zinc-900">Brand-safe partnership</span>
             <svg class="w-5 h-5 text-zinc-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <div class="px-6 pb-6 pt-1">
+          <div class="px-7 pb-7 pt-1">
             <p class="text-sm text-zinc-700 leading-relaxed mb-3">
               Your audience trusts you. We do not take that lightly.
             </p>
             <p class="text-sm text-zinc-500 leading-relaxed">
-              If the response to your first piece of content is not what either of us hoped for, we close the partnership clean — assets pulled, no further obligation, no awkward follow-up. You retain any commission already earned.
+              If the response to your first piece of content is not what either of us hoped for, either side can close the partnership clean &mdash; no-fault, no performance bar, no awkward follow-up. Closing ends new promotion and asset use only; your recurring commission on subscribers you already referred keeps paying for as long as they stay subscribed. The lifetime-recurring promise is not revoked.
             </p>
           </div>
         </details>
 
-        <details class="group rounded-xl border border-zinc-200 bg-white overflow-hidden">
-          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none hover:bg-zinc-50/60 transition-colors">
-            <span class="text-base font-semibold text-zinc-900">Program terms & fine print</span>
+        <details class="group rounded-2xl border border-zinc-200 bg-white overflow-hidden">
+          <summary class="flex items-center justify-between px-7 py-5 cursor-pointer list-none hover:bg-[#fafafa] transition-colors">
+            <span class="text-base font-semibold text-zinc-900">Program terms &amp; fine print</span>
             <svg class="w-5 h-5 text-zinc-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <div class="px-6 pb-6 pt-1">
+          <div class="px-7 pb-7 pt-1">
             <ul class="space-y-2.5">
               {finePrintItems.map((item) => (
                 <li class="flex items-start gap-3 text-sm text-zinc-700">
@@ -327,128 +328,118 @@ const finePrintItems = [
     </div>
   </section>
 
+  <!-- ───────────────────────── APPLY ───────────────────────── -->
+  <section id="apply" class="border-y border-zinc-200 bg-white scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10" data-reveal>
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">APPLY</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Apply now. We respond<br />in 24 hours.</h2>
+          <p class="mt-4 text-lg text-zinc-600">Every application is reviewed manually. Fit matters more than channel size.</p>
+        </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       APPLY  · placed after details so creators read terms first
-       ═══════════════════════════════════════════════════════ -->
-  <section id="apply" class="py-20 md:py-24 px-6 bg-white border-b border-zinc-100">
-    <div class="max-w-2xl mx-auto">
-      <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-emerald-700">Apply</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
-        Apply now. We respond in 24 hours.
-      </h2>
-      <p class="text-zinc-500 leading-relaxed mb-10 text-[15px]">
-        Every application is reviewed manually. Fit matters more than channel size.
-      </p>
+        <form
+          action={formspreeEndpoint}
+          method="POST"
+          class="space-y-5"
+          id="partner-form"
+          data-reveal
+        >
+          <input type="hidden" name="_subject" value="Partner Application" />
 
-      <form
-        action={formspreeEndpoint}
-        method="POST"
-        class="space-y-5"
-        id="partner-form"
-      >
-        <input type="hidden" name="_subject" value="Partner Application" />
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="p-name" class="block text-sm font-medium text-zinc-700 mb-1.5">Your name</label>
+              <input type="text" name="name" id="p-name" required placeholder="Full name"
+                class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
+            </div>
+            <div>
+              <label for="p-email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
+              <input type="email" name="email" id="p-email" required placeholder="you@domain.com"
+                class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
+            </div>
+          </div>
 
-        <div class="grid sm:grid-cols-2 gap-5">
           <div>
-            <label for="p-name" class="block text-sm font-medium text-zinc-700 mb-1.5">Your name</label>
-            <input type="text" name="name" id="p-name" required placeholder="Full name"
+            <label for="p-channel" class="block text-sm font-medium text-zinc-700 mb-1.5">Channel name</label>
+            <input type="text" name="channel_name" id="p-channel" required placeholder="e.g. NT8 Daily, Pat's Trading, etc."
               class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
           </div>
+
           <div>
-            <label for="p-email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
-            <input type="email" name="email" id="p-email" required placeholder="you@domain.com"
+            <label for="p-url" class="block text-sm font-medium text-zinc-700 mb-1.5">Channel URL</label>
+            <input type="url" name="channel_url" id="p-url" required placeholder="https://youtube.com/@yourchannel"
               class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
+            <p class="text-xs text-zinc-400 mt-1.5">YouTube, X, podcast, newsletter, Discord — your primary channel.</p>
           </div>
-        </div>
 
-        <div>
-          <label for="p-channel" class="block text-sm font-medium text-zinc-700 mb-1.5">Channel name</label>
-          <input type="text" name="channel_name" id="p-channel" required placeholder="e.g. NT8 Daily, Pat's Trading, etc."
-            class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
-        </div>
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="p-size" class="block text-sm font-medium text-zinc-700 mb-1.5">Audience size</label>
+              <select name="audience_size" id="p-size" required
+                class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                <option value="" disabled selected>Select range</option>
+                <option value="<1000">Under 1,000</option>
+                <option value="1k-5k">1,000 – 5,000</option>
+                <option value="5k-20k">5,000 – 20,000</option>
+                <option value="20k-100k">20,000 – 100,000</option>
+                <option value="100k+">100,000+</option>
+              </select>
+            </div>
+            <div>
+              <label for="p-platform" class="block text-sm font-medium text-zinc-700 mb-1.5">Audience trades…</label>
+              <select name="audience_trades" id="p-platform" required
+                class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                <option value="" disabled selected>Primary focus</option>
+                <option value="NT8 futures">NinjaTrader 8 futures</option>
+                <option value="NT8 + prop firm">NT8 + prop firm evaluations</option>
+                <option value="Mixed futures">Futures (mixed platforms)</option>
+                <option value="Stocks/options">Stocks / options</option>
+                <option value="Forex">Forex</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
 
-        <div>
-          <label for="p-url" class="block text-sm font-medium text-zinc-700 mb-1.5">Channel URL</label>
-          <input type="url" name="channel_url" id="p-url" required placeholder="https://youtube.com/@yourchannel"
-            class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent" />
-          <p class="text-xs text-zinc-400 mt-1.5">YouTube, X, podcast, newsletter, Discord — your primary channel.</p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-5">
           <div>
-            <label for="p-size" class="block text-sm font-medium text-zinc-700 mb-1.5">Audience size</label>
-            <select name="audience_size" id="p-size" required
-              class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
-              <option value="" disabled selected>Select range</option>
-              <option value="<1000">Under 1,000</option>
-              <option value="1k-5k">1,000 – 5,000</option>
-              <option value="5k-20k">5,000 – 20,000</option>
-              <option value="20k-100k">20,000 – 100,000</option>
-              <option value="100k+">100,000+</option>
-            </select>
+            <label for="p-fit" class="block text-sm font-medium text-zinc-700 mb-1.5">Why does Meridian fit your audience?</label>
+            <textarea name="fit_reason" id="p-fit" required rows="4" placeholder="A few sentences. What problem does Meridian solve for the people who watch you?"
+              class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"></textarea>
           </div>
+
           <div>
-            <label for="p-platform" class="block text-sm font-medium text-zinc-700 mb-1.5">Audience trades…</label>
-            <select name="audience_trades" id="p-platform" required
-              class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
-              <option value="" disabled selected>Primary focus</option>
-              <option value="NT8 futures">NinjaTrader 8 futures</option>
-              <option value="NT8 + prop firm">NT8 + prop firm evaluations</option>
-              <option value="Mixed futures">Futures (mixed platforms)</option>
-              <option value="Stocks/options">Stocks / options</option>
-              <option value="Forex">Forex</option>
-              <option value="Other">Other</option>
-            </select>
+            <label for="p-notes" class="block text-sm font-medium text-zinc-700 mb-1.5">
+              Anything else? <span class="text-zinc-400 font-normal">(optional)</span>
+            </label>
+            <textarea name="notes" id="p-notes" rows="3" placeholder="Existing sponsorships, media kit link, content schedule."
+              class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"></textarea>
           </div>
+
+          <button type="submit"
+            class="w-full sm:w-auto font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">
+            Submit application
+          </button>
+
+          <p class="text-xs text-zinc-400">
+            Or email us at <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600">contactmeridianpsi@gmail.com</a> with the same info.
+          </p>
+        </form>
+
+        <!-- Success state shown after Formspree submission -->
+        <div id="partner-form-success" class="hidden text-center py-12">
+          <div class="text-emerald-600 text-4xl mb-4">✓</div>
+          <h3 class="text-xl font-semibold text-zinc-900 mb-2">Application received</h3>
+          <p class="text-zinc-500 text-sm">We&rsquo;ll respond within 24 hours, usually faster.</p>
         </div>
-
-        <div>
-          <label for="p-fit" class="block text-sm font-medium text-zinc-700 mb-1.5">Why does Meridian fit your audience?</label>
-          <textarea name="fit_reason" id="p-fit" required rows="4" placeholder="A few sentences. What problem does Meridian solve for the people who watch you?"
-            class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"></textarea>
-        </div>
-
-        <div>
-          <label for="p-notes" class="block text-sm font-medium text-zinc-700 mb-1.5">
-            Anything else? <span class="text-zinc-400 font-normal">(optional)</span>
-          </label>
-          <textarea name="notes" id="p-notes" rows="3" placeholder="Existing sponsorships, media kit link, content schedule."
-            class="w-full rounded-lg border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"></textarea>
-        </div>
-
-        <button type="submit"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-zinc-900 hover:bg-zinc-700 text-white text-sm font-semibold transition-colors">
-          Submit application
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
-
-        <p class="text-xs text-zinc-400">
-          Or email us at <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600">contactmeridianpsi@gmail.com</a> with the same info.
-        </p>
-      </form>
-
-      <!-- Success state shown after Formspree submission -->
-      <div id="partner-form-success" class="hidden text-center py-12">
-        <div class="text-emerald-600 text-4xl mb-4">✓</div>
-        <h3 class="text-xl font-semibold text-zinc-900 mb-2">Application received</h3>
-        <p class="text-zinc-500 text-sm">We'll respond within 24 hours, usually faster.</p>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       BOTTOM DISCLAIMER  · single line
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-8 px-6 bg-zinc-50">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs text-zinc-400 leading-relaxed text-center">
-        Affiliates are responsible for ensuring promotional activity complies with FTC endorsement and financial promotion rules in their jurisdiction. Program terms subject to change with reasonable notice.
-      </p>
-    </div>
+  <!-- ───────────────────────── BOTTOM DISCLAIMER ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-10">
+    <p class="text-xs text-zinc-400 leading-relaxed text-center">
+      Affiliates are responsible for ensuring promotional activity complies with FTC endorsement and financial promotion rules in their jurisdiction. Program terms subject to change with reasonable notice.
+    </p>
   </section>
 
 </Layout>

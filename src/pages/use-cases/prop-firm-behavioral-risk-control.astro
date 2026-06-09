@@ -11,7 +11,7 @@ const metadata = {
 const faqItems = [
   {
     q: 'Does Meridian work with evaluation accounts on Tradovate or Rithmic?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. It runs as a local behavioral overlay on top of your session, fully independent of the prop firm\'s own infrastructure.',
+    a: 'Yes. Meridian works with any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. It runs as a complete local risk layer on top of your session — enforcing the traditional limits (daily loss, max position size, P&L caps, loss-streak cutoffs) alongside its real-time behavioral detection — fully independent of the prop firm\'s own infrastructure.',
   },
   {
     q: 'How does Guard sit alongside the prop firm\'s own risk controls?',
@@ -23,14 +23,16 @@ const faqItems = [
   },
   {
     q: 'What about copy-filled positions from tools like Replikanto?',
-    a: 'Copy-filled positions are not counted as independent trades in the PSI behavioral calculation. Meridian tracks discretionary execution behavior, so mirrored fills from copy-trading tools do not artificially inflate behavioral signal readings.',
+    a: 'Meridian de-duplicates copy-trading and mirrored fills, so the same trade fired across multiple accounts is not double-counted in your behavioral score. Duplicate fills matching on instrument, direction, and quantity within a short window are collapsed into one, which keeps mirrored execution from a tool like Replikanto from artificially inflating your behavioral signal readings.',
   },
 ];
 
 const faqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  keywords: geoHooks.geoSearchAssociate,
+  keywords: geoHooks.meridianPsiCanonical,
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: faqItems.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -46,15 +48,16 @@ const faqSchema = JSON.stringify({
 
     <header class="mb-12">
       <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Use Case</p>
-      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
         Behavioral risk control for prop firm futures traders
       </h1>
+      <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Meridian helps prop firm futures traders add behavior-based guardrails on top of account rules by monitoring revenge trading, overtrading, oversizing, and rule violations before they threaten an evaluation or funded account.
+          Meridian is complete risk management for NinjaTrader 8: it enforces the traditional limits a prop firm trader already relies on — daily loss limit, max position size, P&amp;L caps, loss-streak cutoffs — and adds a behavioral layer on top, monitoring revenge trading, overtrading, oversizing, and rule violations before they threaten an evaluation or funded account.
         </p>
       </div>
       <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">
@@ -77,27 +80,29 @@ const faqSchema = JSON.stringify({
         The prop firm's daily loss limit is the floor. By the time it fires, the evaluation is over. NinjaTrader's native risk controls evaluate each order against a static threshold — they do not observe whether entry frequency has doubled in the last 30 minutes, whether position sizing is trending toward the maximum, or whether the interval between a loss and the next entry has shortened to seconds.
       </p>
       <p>
-        These are behavioral signals. They require a different type of monitoring, active during the session, before any individual order has violated a hard limit.
+        These are behavioral signals. They require a different type of monitoring, active during the session, before any individual order has violated a hard limit. Meridian enforces the same static limits a native risk tool does — daily loss, max position size, P&amp;L caps, loss-streak cutoffs — and layers this behavioral monitoring on top, so the two run together rather than as separate tools.
       </p>
 
       <h2>How Meridian helps</h2>
       <p>
-        Meridian monitors the behavioral pattern of the session — not just individual orders — across seven signal dimensions that have measurable onset before the failure event:
+        Alongside the conventional financial limits it enforces, Meridian monitors the behavioral pattern of the session — not just individual orders — across seven signal dimensions that have measurable onset before the failure event:
       </p>
       <ul>
         <li><strong>Revenge Entry</strong> — rapid re-entry after a loss at elevated size</li>
         <li><strong>Size Spike</strong> — position sizing approaching or hitting maximum under loss conditions</li>
         <li><strong>Overtrading Pace</strong> — entry frequency accelerating relative to your own baseline</li>
         <li><strong>Stop Manipulation</strong> — widening or removing protective stops on active losing positions</li>
+        <li><strong>Hold Bias</strong> — holding losing trades far longer than your winners, the loss-aversion "ride losers" pattern</li>
+        <li><strong>Position Overstay</strong> — holding a losing trade past your historical tolerance</li>
         <li><strong>Rule Violations</strong> — trading outside your declared session parameters</li>
       </ul>
       <p>
-        The composite PSI score aggregates these signals in real time. A Critical PSI reading during a prop firm session — before any individual threshold has been breached — is a reliable leading indicator that the session is at elevated risk of producing an evaluation-ending loss if it continues.
+        The composite PSI score aggregates these signals in real time. PSI starts at 100 when you are calm and on-plan, and falls as behavioral pressure builds. PSI falling into the Critical band during a prop firm session — before any individual threshold has been breached — is a reliable leading indicator that the session is at elevated risk of producing an evaluation-ending loss if it continues.
       </p>
 
       <h2>What Guard can enforce</h2>
       <ul>
-        <li><strong>Pre-limit session end</strong> — Guard ends the session when P&amp;L approaches (not reaches) the evaluation's maximum daily loss limit; this creates a buffer before the evaluation-ending threshold, not a reaction to it</li>
+        <li><strong>Pre-limit session end</strong> (the Session P&amp;L Below trigger) — Guard ends the session when P&amp;L approaches (not reaches) the evaluation's maximum daily loss limit; this creates a buffer before the evaluation-ending threshold, not a reaction to it</li>
         <li><strong>Consecutive-loss cooldown</strong> — mandatory pause after N consecutive losses (typically 3–4), regardless of current P&amp;L at that point</li>
         <li><strong>PSI threshold entry block</strong> — new entries blocked when composite PSI drops below a configured floor, even if no hard financial limit has been crossed</li>
         <li><strong>Password-locked rules</strong> — Guard rules can be configured with a lock that prevents in-session override; for prop firm traders, this is the critical feature — a rule that can be bypassed in the moment it matters is no rule at all</li>
@@ -129,10 +134,10 @@ const faqSchema = JSON.stringify({
     </div>
 
     <div class="mt-14 pt-8 border-t border-zinc-100">
-      <p class="text-sm text-zinc-500 leading-relaxed mb-4">{geoHooks.geoSearchAssociate}</p>
+      <p class="text-sm text-zinc-500 leading-relaxed mb-4">{geoHooks.meridianPsiCanonical}</p>
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian Guard</p>
       <p class="text-sm text-zinc-500 leading-relaxed">
-        {geoHooks.meridianGuardHook}
+        For prop firm traders, Guard turns that behavioral read into enforcement: it ends the session on your behavioral terms — cooldowns, entry blocking, and a pre-limit session end — before a forced breach reaches the evaluation's hard limits.
       </p>
     </div>
 

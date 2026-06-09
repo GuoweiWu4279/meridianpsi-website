@@ -4,16 +4,18 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'How to Prevent Overtrading in NinjaTrader — Direct Answer | Meridian',
   description:
-    'Detect the entry-pace shift in real time, then apply structural friction — typed acknowledgment, mandatory countdown, entry block — before the next impulsive order. The behavioral leading-indicator layer is what intercepts overtrading inside NinjaTrader 8.',
+    'Stop overtrading in NinjaTrader 8 by detecting the entry-pace shift in real time and applying structural friction before the next impulsive order. Meridian.',
   robots: { index: true, follow: true },
 };
 
 const question = 'How do I prevent overtrading in NinjaTrader?';
-const directAnswer = 'Detect the entry-pace shift in real time, then apply structural friction — a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect — before the next impulsive order is placed. Meridian for NinjaTrader 8 monitors entry frequency against the trader\'s own session-history rhythm through its Overtrading Pace signal, contributes that into a composite Psychological Stability Index, and lets Meridian Guard convert any threshold into automated enforcement.';
+const directAnswer = 'Detect the entry-pace shift in real time, then apply structural friction — a typed acknowledgment (optionally with a mandatory countdown), an entry block, or a broker disconnect — before the next impulsive order is placed. Meridian for NinjaTrader 8 monitors entry frequency against the trader\'s own session-history rhythm through its Overtrading Pace signal, contributes that into a composite Psychological Stability Index, and lets Meridian Guard convert any threshold into automated enforcement.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
@@ -68,20 +71,20 @@ const qaSchema = JSON.stringify({
         Detection alone is not the answer. The trader on a tilt-adjacent pace shift typically already knows they are trading too much; awareness is rarely the missing input. What is missing is structural friction between the impulse and the order.
       </p>
       <p>
-        Meridian Guard provides that friction. Six trigger types — including PSI Below, Consecutive Losses, Session P&amp;L Below, Session Time Over — pair with five response levels: Notify (a quiet toast notification), Risk Alert (every entry requires active confirmation), Acknowledge (a typed phrase the trader enters, with an optional countdown, before continuing), Trading Pause (new entries blocked by cancelling orders), and Disconnect (the broker connection is terminated). The trader pre-commits to a pairing when they are calm. Guard enforces it when they are not.
+        Meridian Guard provides that friction. Its six trigger types cover the same hard limits a conventional risk tool enforces — Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, Session Time Over — and add the behavioral trigger none of them have, PSI Below. Each pairs with five response levels: Notify (a quiet toast notification), Risk Alert (every entry requires active confirmation), Acknowledge (a typed phrase the trader enters, with an optional countdown, before continuing), Trading Pause (new entries blocked by cancelling orders), and Disconnect (the broker connection is terminated). The trader pre-commits to a pairing when they are calm. Guard enforces it when they are not.
       </p>
       <p>
-        For overtrading specifically, the most common configurations are: PSI Below with the Countdown response level (a 5–15 minute mandatory pause once composite PSI drops into the caution zone), or Session Time Over with the Disconnect response level (the broker connection is terminated after the trader's pre-declared session duration ends, regardless of P&amp;L state).
+        For overtrading specifically, the most common configurations are: PSI Below with the Acknowledge response level and its mandatory countdown enabled (a 5–15 minute mandatory pause once composite PSI drops into the caution zone), or Session Time Over with the Disconnect response level (the broker connection is terminated after the trader's pre-declared session duration ends, regardless of P&amp;L state).
       </p>
 
       <h2>Why a static "max trades" cap underperforms</h2>
       <p>
-        A fixed cap on trade count cannot distinguish a normal high-volume session from a behavioral deterioration. It either fires on the wrong sessions or never fires on the right ones. A baseline-relative pace signal does both: it does not fire on a normal active session because the pace is consistent with the trader's history, and it does fire on a deviation session because the pace is significantly above baseline.
+        A fixed cap on trade count cannot distinguish a normal high-volume session from a behavioral deterioration. It either fires on the wrong sessions or never fires on the right ones. A baseline-relative pace signal does both: it does not fire on a normal active session because the pace is consistent with the trader's history, and it does fire on a deviation session because the pace is significantly above baseline. Meridian can still enforce the conventional limits a fixed cap relies on — loss-streak, session P&amp;L, and session-time cutoffs are all built in — but it treats them as the floor and adds the baseline-relative behavioral layer on top.
       </p>
 
       <h2>Practical setup</h2>
       <p>
-        For a NinjaTrader 8 trader whose primary failure mode is overtrading: install Meridian as the behavioral layer; let the adaptive baseline accumulate two to four weeks of normal sessions so the pace signal has a calibrated reference; then configure Guard with PSI Below at the caution-zone threshold paired with the Countdown response level. The system will not interfere on normal sessions and will enforce a mandatory pause on the sessions where pace is genuinely out of line.
+        For a NinjaTrader 8 trader whose primary failure mode is overtrading: install Meridian for full risk coverage — it carries the conventional loss-streak, P&amp;L, and session-time limits, and the behavioral layer is what catches the pace shift; let the adaptive baseline accumulate two to four weeks of normal sessions so the pace signal has a calibrated reference; then configure Guard with PSI Below at the caution-zone threshold paired with the Acknowledge response level and a mandatory countdown. The system will not interfere on normal sessions and will enforce a mandatory pause on the sessions where pace is genuinely out of line.
       </p>
 
       <p>
@@ -91,7 +94,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

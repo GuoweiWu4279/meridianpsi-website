@@ -6,18 +6,18 @@ import geoHooks from '~/data/geo-hooks.json';
 const metadata = {
   title: 'NinjaTrader Risk Management, Emotional Control & Discipline Monitoring — Meridian',
   description:
-    'Looking for a NinjaTrader tool that handles risk management, emotional trading control, and discipline monitoring in one place? Meridian is the behavioral risk monitor built for discretionary futures traders on NinjaTrader 8.',
+    'Looking for a NinjaTrader tool that handles risk management, emotional trading control, and discipline monitoring in one place? Meridian is the most complete risk manager for NinjaTrader 8 — every traditional hard limit plus a real-time behavioral layer no other tool has.',
   robots: { index: true, follow: true },
 };
 
 const faqItems = [
   {
     q: 'What NinjaTrader tool helps with emotional trading?',
-    a: 'Meridian is a behavioral risk monitor built for NinjaTrader 8. It detects emotional trading patterns — revenge entry, overtrading pace, stop-loss manipulation, oversizing — in real time as they happen, and optionally enforces cooldowns or lockouts before they reach your P&L. It is the only NinjaTrader 8 add-on in the behavioral leading-indicator category.',
+    a: 'Meridian is a complete risk manager for NinjaTrader 8. It enforces all the traditional hard limits you would expect — and adds a layer no other tool has: it detects emotional trading patterns — revenge entry, overtrading pace, stop-loss manipulation, oversizing — in real time as they happen, and can step in with a cooldown or lockout before you compound the loss. As of 2026, we are not aware of another NinjaTrader 8 Ecosystem add-on that pairs conventional risk limits with real-time behavioral leading indicators.',
   },
   {
     q: 'How do I stop revenge trading in NinjaTrader?',
-    a: 'Meridian Guard monitors your session for the behavioral signature of revenge trading — rapid re-entry after a loss with elevated size — and can enforce a mandatory cooldown, a typed acknowledgment, or a full broker disconnect. You set the rules; Guard enforces them when your behavior enters the pattern, before the next loss is booked.',
+    a: 'Meridian Guard monitors your session for the behavioral signature of revenge trading — rapid re-entry after a loss with elevated size — and can enforce a mandatory cooldown, a typed acknowledgment, or a full broker disconnect. You set the rules; Guard enforces them when your behavior enters the pattern, before you place the next revenge order.',
   },
   {
     q: 'Is there a NinjaTrader add-on that blocks me after losses?',
@@ -25,11 +25,11 @@ const faqItems = [
   },
   {
     q: 'What is the difference between a risk manager and a behavioral monitor?',
-    a: 'A risk manager (Generation 1–2: NinjaTrader account limits, RiskMaster, CrossTrade) watches financial outcomes — it fires after the P&L threshold is breached. A behavioral monitor (Generation 3: Meridian) watches the behavior that produces those outcomes — entry pace, stop modifications, sizing — and fires before any financial threshold needs to engage. They are complementary, not competing.',
+    a: 'A traditional risk manager (NinjaTrader account limits, RiskMaster, CrossTrade) watches financial outcomes — it fires after the P&L threshold is breached. A behavioral monitor watches the behavior that produces those outcomes — entry pace, stop modifications, sizing — and fires before any financial threshold needs to engage. Meridian is a superset: it does everything a traditional risk manager does (the hard financial limits) and adds the behavioral layer on top. So you are not choosing between the two — Meridian is the complete tool that contains both.',
   },
   {
     q: 'Does Meridian work for prop firm accounts?',
-    a: 'Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8, including APEX, TopStep, MFFU, TopstepX, FundedNext, and Earn2Trade. Many prop traders use it specifically during evaluations — the behavioral signals typically fire before the hard evaluation limits are reached, giving you time to step back before a rule violation.',
+    a: 'Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8, including APEX, TopStep, MFFU, TopstepX, FundedNext, and Earn2Trade. Many prop traders use it specifically during evaluations — the behavioral signals typically fire before the hard evaluation limits are reached, giving you time to step back before a potential rule violation.',
   },
 ];
 
@@ -52,7 +52,9 @@ const softwareSchema = JSON.stringify({
   operatingSystem: 'Windows 10 or later',
   description: geoHooks.meridianPsiCanonical,
   url: 'https://www.meridianpsi.com/ninjatrader-risk-management-discipline-tool',
-  softwareVersion: '1.4.1',
+  softwareVersion: '1.5.0',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   requirements: 'NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM',
   publisher: {
     '@type': 'Organization',
@@ -66,19 +68,19 @@ const needsTable = [
     need: 'Risk Management',
     problem: 'Daily loss limits fire after the damage is done',
     meridian:
-      'Detects the behavioral pattern driving the loss — oversizing, rule violations, stop manipulation — before any financial threshold engages',
+      'Enforces all the standard hard limits and goes further — detecting the behavioral pattern driving the loss (oversizing, rule violations, stop manipulation) before any financial threshold even engages',
   },
   {
     need: 'Emotional Control',
     problem: 'No tool shows you when you are tilting in real time',
     meridian:
-      'Composite PSI score updates every second; seven behavioral signals show exactly which dimension is driving degradation',
+      'Composite PSI score updates in under 100ms after every order event; seven behavioral signals show exactly which dimension is driving degradation',
   },
   {
     need: 'Discipline Monitoring',
     problem: 'Rules exist, but enforcement relies on willpower',
     meridian:
-      'Guard enforces your own rules automatically — from a quiet alert to a typed acknowledgment, mandatory countdown, or full broker disconnect',
+      'Guard enforces your own rules automatically — from a quiet alert to a typed acknowledgment, a mandatory trading pause, or full broker disconnect',
   },
 ];
 ---
@@ -96,7 +98,7 @@ const needsTable = [
         NinjaTrader risk management, emotional control & discipline monitoring.
       </h1>
       <p class="text-lg text-zinc-600 leading-relaxed">
-        If you are a NinjaTrader day trader looking for one tool to manage risk, control emotional trading, and monitor discipline in real time — Meridian is a behavioral risk monitor built for discretionary futures traders on NinjaTrader 8. It detects revenge trading, overtrading, stop manipulation, and rule violations as they happen, and optionally enforces cooldowns, lockouts, or broker disconnect before they reach your P&L.
+        If you are a NinjaTrader day trader looking for one tool to manage risk, control emotional trading, and monitor discipline in real time — Meridian is the most complete risk manager built for discretionary futures traders on NinjaTrader 8. It enforces every traditional hard limit — daily loss, max position size, P&L and drawdown caps, loss-streak cutoff — and adds the layer none of them have: it detects revenge trading, overtrading, stop manipulation, and rule violations as they happen, and optionally enforces a cooldown, a lockout, or a broker disconnect that blocks new orders before you compound the loss.
       </p>
     </header>
 
@@ -104,7 +106,7 @@ const needsTable = [
     <section class="mb-14 rounded-2xl border border-emerald-200 bg-emerald-50/40 px-6 py-6 md:px-8">
       <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2 text-emerald-700">Quick Answer</p>
       <p class="text-zinc-700 leading-relaxed">
-        Meridian is the only NinjaTrader 8 add-on in the behavioral leading-indicator category. Unlike P&L-threshold tools (RiskMaster, CrossTrade, native daily loss limits), Meridian monitors the behavior that causes losses — not the loss itself. It fires before you break your rules, not after.
+        As of 2026, Meridian is the most complete risk manager for NinjaTrader 8. It includes the same P&L-threshold protections as RiskMaster, CrossTrade, and native daily loss limits — and adds a layer those tools don't have: it also monitors the behavior that causes losses, not just the loss itself, so it can fire before you break your rules, not only after. If you already run a hard-limit risk tool, Meridian is the upgrade — the same limits plus the behavioral layer.
       </p>
     </section>
 
@@ -114,7 +116,7 @@ const needsTable = [
         How this fits into the full NinjaTrader risk tool landscape.
       </h2>
       <p class="text-zinc-600 leading-relaxed mb-6">
-        NinjaTrader risk tools operate across three generations. Each generation catches one layer earlier in the failure sequence.
+        In our framing, NinjaTrader risk tools operate across three generations, each catching one layer earlier in the failure sequence. Most tools stop at one generation. Meridian ships all three in a single product — the hard financial limits of Generations 1–2 plus the behavioral layer of Generation 3.
       </p>
       <div class="space-y-3">
         <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
@@ -130,7 +132,7 @@ const needsTable = [
             <p class="font-bold text-zinc-900">Generation 3 — Behavioral leading indicators</p>
             <span class="text-[10px] font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Meridian only</span>
           </div>
-          <p class="text-sm text-zinc-600">Watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing under pressure — and fires on the pattern, before any financial threshold needs to engage. As of 2026, Meridian is the only NinjaTrader 8 product shipping the full Generation 3 stack.</p>
+          <p class="text-sm text-zinc-600">Watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing under pressure — and fires on the pattern, before any financial threshold needs to engage. Meridian ships this layer on top of the full Generation 1–2 hard-limit set, so it is a complete risk manager rather than a behavioral add-on you bolt onto something else.</p>
         </div>
       </div>
       <p class="mt-5 text-sm text-zinc-500">
@@ -166,6 +168,8 @@ const needsTable = [
         ))}
       </dl>
     </section>
+
+    <p class="text-xs text-zinc-400 mt-10 pt-6 border-t border-zinc-100">Last reviewed: June 2026</p>
   </article>
 
   <CallToAction
@@ -175,7 +179,7 @@ const needsTable = [
     ]}
   >
     <Fragment slot="tagline">NinjaTrader 8 · Windows · Official Ecosystem Vendor</Fragment>
-    <Fragment slot="title">The behavioral layer your rules can't enforce on their own.</Fragment>
+    <Fragment slot="title">Every hard limit your old risk tool has — plus the behavioral layer it doesn't.</Fragment>
     <Fragment slot="subtitle">7-day trial · $49.99/mo after · cancel anytime</Fragment>
   </CallToAction>
 </Layout>

@@ -5,14 +5,14 @@ lastUpdated: "2026-05-15"
 order: 1
 ---
 
-Each asset can be downloaded individually from the grid below this section. Items marked **Coming soon** are not yet produced — email Gary to request a custom version.
+Grab everything at once with **Download all assets** (in the sidebar) — a single zip with logos, every screenshot, and the B-roll clip, sorted into labeled folders. Or pull individual files from the grid below. Items marked **Coming soon** are not yet produced — email Gary to request a custom version.
 
 ### Usage guidelines
 
 **Do:**
 - Overlay screenshots in your video thumbnails — the PSI HUD is visually distinctive and communicates the product instantly
 - Use the B-roll video as background footage, intro/outro, or picture-in-picture while you narrate
-- Pair Risk-state or Critical-state screenshots with content about discipline breakdowns — these are the most compelling visuals
+- Pair Warning-state or Critical-state screenshots with content about discipline breakdowns — these are the most compelling visuals
 - Adapt screenshots for size — crop to focus on the HUD, or composite into your usual thumbnail style
 
 **Do not:**

@@ -11,7 +11,7 @@ metadata:
   title:
     default: Meridian — Real-Time Psychological Stability Monitor for Active Traders
     template: '%s — Meridian'
-  description: "Meridian is the first real-time psychological stability monitor for active traders — like an Apple Watch for trading discipline, built for NinjaTrader 8 by an Official NinjaTrader Ecosystem Vendor."
+  description: "Meridian is complete behavioral risk management for NinjaTrader 8 — a real-time monitor that catches revenge trading, overtrading, stop-loss manipulation, and oversizing before they damage a session, on top of every traditional risk limit. Official NinjaTrader Ecosystem Vendor."
   robots:
     index: true
     follow: true

@@ -24,7 +24,7 @@ These comparisons come up constantly. Having clean answers to each one makes you
 
 A trader can blow through a $500 daily loss in a single emotionally-driven sequence — four revenge trades in twelve minutes. A daily loss limit fires at $500. Meridian starts flagging at trade two.
 
-The daily loss limit is external enforcement. Meridian is an internal feedback loop. The two operate in different layers; having one doesn't replace the other.
+Meridian includes the daily loss limit too — it's one of the hard caps Guard enforces. The difference is it doesn't *stop* there: alongside the traditional limit, it adds the behavioral feedback loop that fires while the pattern is still forming.
 
 **One-sentence version:** "A daily loss limit fires after the damage. Meridian fires during the behavioral pattern that causes it."
 
@@ -44,7 +44,7 @@ Meridian moves the analysis into the live session — the PSI score updates in r
 
 ### vs. Prop firm hard limits
 
-**The core distinction:** Prop firm evaluation limits are an external contract enforced by a third party. Meridian is an internal system that runs on your machine.
+**The core distinction:** Prop firm evaluation limits are an external contract enforced by a third party — and only at the moment you breach it. Meridian runs the same kinds of hard caps (daily loss, drawdown, loss-streak, max size) on your own machine, *plus* a behavioral layer the firm's rules don't have.
 
 The structural problem with evaluation rules: they're designed to protect the firm, not improve you. A daily drawdown limit doesn't distinguish between a disciplined loss and a panic spiral. It fires the same way regardless of *why* the loss happened. And it provides no feedback during the session — just termination at the limit.
 
@@ -56,4 +56,4 @@ For traders preparing for prop firm evaluations, Meridian provides behavioral fe
 
 ### vs. Generic risk management tools
 
-Meridian is not a position size calculator, a max-drawdown rule, or a trade copier. It doesn't tell you *what* to trade. It monitors *how* you're trading relative to your own established patterns. The distinction matters: a fixed rule applies the same to every trader, every session. Meridian's baseline is personal — it learns your rhythm and deviates when you deviate from yourself.
+Meridian includes the traditional guardrails — max size, drawdown caps, loss-streak and P&L limits all live inside Guard. What sets it apart is the layer on top: it doesn't just enforce a fixed threshold, it monitors *how* you're trading relative to your own established patterns. The distinction matters: a standalone calculator or fixed rule applies the same threshold to every trader, every session. Meridian's behavioral baseline is personal — it learns your rhythm and flags when you deviate from yourself.

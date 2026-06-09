@@ -16,9 +16,11 @@ export const headerData = {
     {
       text: 'Features',
       links: [
-        { text: 'Guard', href: getPermalink('/guard') },
+        { text: 'How Meridian works', href: getPermalink('/what-is-meridian-psi') },
         { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
         { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
+        { text: 'All features', href: getPermalink('/features') },
+        { text: 'Download', href: getPermalink('/download') },
       ],
     },
     { text: 'Compare', href: getPermalink('/compare') },
@@ -31,19 +33,10 @@ export const headerData = {
         { text: 'FAQ', href: getPermalink('/faq') },
         { text: 'Glossary', href: getPermalink('/glossary') },
         { text: 'Use Cases', href: getPermalink('/use-cases') },
+        { text: 'Partner Program', href: getPermalink('/partners') },
         { text: 'About', href: getPermalink('/about') },
       ],
     },
-    {
-      text: 'Download',
-      href: getPermalink('/download'),
-      links: [
-        { text: 'Download', href: getPermalink('/download') },
-        { text: 'Installation Guide', href: getPermalink('/installation-guide') },
-        { text: 'Release Notes', href: getPermalink('/download') },
-      ],
-    },
-    { text: 'Account', href: getPermalink('/account') },
   ],
   actions: [{ text: 'Start free trial', href: getPermalink('/pricing'), variant: 'primary' }],
 };
@@ -108,6 +101,7 @@ export const footerData = {
         { text: 'Account', href: getPermalink('/account') },
         { text: 'Installation Guide', href: getPermalink('/installation-guide') },
         { text: 'Trust & Security', href: getPermalink('/trust') },
+        { text: 'Data & Research Notice', href: getPermalink('/data-research') },
         { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
         { text: 'Privacy', href: getPermalink('/privacy') },
         { text: 'Terms', href: getPermalink('/terms') },
@@ -133,8 +127,7 @@ export const footerData = {
   ntDisclaimers: `
     <p><strong>Risk Disclosure:</strong> Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing ones' financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
     <p><strong>Hypothetical Performance Disclosure:</strong> Hypothetical performance results have many inherent limitations, some of which are described below. No representation is being made that any account will or is likely to achieve profits or losses similar to those shown; in fact, there are frequently sharp differences between hypothetical performance results and the actual results subsequently achieved by any particular trading program. One of the limitations of hypothetical performance results is that they are generally prepared with the benefit of hindsight. In addition, hypothetical trading does not involve financial risk, and no hypothetical trading record can completely account for the impact of financial risk of actual trading. For example, the ability to withstand losses or to adhere to a particular trading program in spite of trading losses are material points which can also adversely affect actual trading results. There are numerous other factors related to the markets in general or to the implementation of any specific trading program which cannot be fully accounted for in the preparation of hypothetical performance results and all which can adversely affect trading results.</p>
-    <p><strong>Live Trade Room Disclosure:</strong> This presentation is for educational purposes only and the opinions expressed are those of the presenter only. All trades presented should be considered hypothetical and should not be expected to be replicated in a live trading account.</p>
     <p><strong>Testimonial Disclosure:</strong> Testimonials appearing on this website may not be representative of other clients or customers and is not a guarantee of future performance or success.</p>
-    <p><strong>Trademark Notice:</strong> NinjaTrader&reg; is a registered trademark of NinjaTrader LLC. Meridian is an Official NinjaTrader Ecosystem Vendor &mdash; approved by NinjaTrader&rsquo;s Compliance and Executive teams &mdash; and is operated as an independent third-party add-on developer for NinjaTrader 8.</p>
+    <p><strong>Trademark Notice:</strong> NinjaTrader&reg; is a registered trademark of NinjaTrader LLC. Meridian is an Official NinjaTrader Ecosystem Vendor &mdash; audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams &mdash; and is operated as an independent third-party add-on developer for NinjaTrader 8.</p>
   `,
 };

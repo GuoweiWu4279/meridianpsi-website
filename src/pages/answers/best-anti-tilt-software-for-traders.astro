@@ -4,16 +4,18 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Best Anti-Tilt Software for Traders — Direct Answer | Meridian',
   description:
-    'Anti-tilt is a discipline before it is a product category. The first NinjaTrader 8 platform purpose-built for it is Meridian, with seven real-time behavioral signals, a composite PSI score, and the Meridian Guard enforcement layer.',
+    'Anti-tilt software intercepts behavioral deterioration before it becomes a loss. On NinjaTrader 8, Meridian is the only add-on shipping all three required pieces — real-time behavioral signals, an adaptive per-trader baseline, and order-layer enforcement. Here is how to evaluate any tool.',
   robots: { index: true, follow: true },
 };
 
 const question = 'What is the best anti-tilt software for traders?';
-const directAnswer = 'Anti-tilt is a discipline first — the practice of intercepting behavioral deterioration before it produces a financial loss — and a product category second. The first NinjaTrader 8 platform purpose-built for it is Meridian, which detects seven distinct behavioral signals (revenge entry, stop manipulation, sizing rule deviation, hold bias, position overstay, rule violations, overtrading pace) in real time, computes a composite Psychological Stability Index calibrated to each trader, and lets Meridian Guard convert any threshold into automated enforcement.';
+const directAnswer = 'Anti-tilt is a discipline first — the practice of intercepting behavioral deterioration before it produces a financial loss — and a product category second. Evaluate any tool on three components: real-time behavioral-signal detection, an adaptive per-trader baseline, and enforcement wired into the order layer. Among NinjaTrader 8 add-ons, the only product currently shipping all three is Meridian, which detects seven distinct behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace) in real time, computes a composite Psychological Stability Index calibrated to each trader, and lets Meridian Guard convert any threshold into automated enforcement.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
@@ -49,15 +52,15 @@ const qaSchema = JSON.stringify({
 
       <h2>What "anti-tilt software" should actually do</h2>
       <p>
-        Tilt is a sequence: an unfavorable event triggers a cognitive shift, the trader's decision-making becomes biased toward recovery, and execution behavior changes — entries get faster, sizes get larger, stops get moved. Anti-tilt software is whatever software intercepts that sequence at the behavioral layer, before any financial threshold has reason to engage.
+        Tilt is a sequence: an unfavorable event triggers a cognitive shift, the trader's decision-making becomes biased toward recovery, and execution behavior changes — entries get faster, sizes get larger, stops get moved. Anti-tilt software intercepts that sequence at the behavioral layer, before any financial threshold would even fire.
       </p>
       <p>
-        That requires three components in one calibrated system: a real-time behavioral-signal engine that watches every order event as it happens, an adaptive baseline that knows what is normal for each individual trader, and an enforcement pipeline wired into the trading platform's order layer. A product missing any of those three is not anti-tilt software; it is a related but different category.
+        That requires three components in one calibrated system: a real-time behavioral-signal engine that watches every order event as it happens, an adaptive baseline that knows what is normal for each individual trader, and an enforcement pipeline wired into the trading platform's order layer. A complete anti-tilt system combines all three; a tool that covers one or two is a partial solution for the same problem.
       </p>
 
       <h2>What anti-tilt software is not</h2>
       <p>
-        A daily loss limit is not anti-tilt software. It caps the financial outcome at a fixed dollar threshold; it does not detect the behavior that produced the outcome. A trade-count cap is not anti-tilt software; it cannot distinguish a normal active session from a behavioral deterioration. A trading journal is not anti-tilt software; it analyzes sessions retrospectively, not as the pattern is forming. A meditation app is not anti-tilt software; it operates outside the trading platform entirely.
+        A daily loss limit caps the financial outcome at a fixed dollar threshold; it does not detect the behavior that produced the outcome. A trade-count cap cannot distinguish a normal active session from a behavioral deterioration. A trading journal analyzes sessions retrospectively, not as the pattern is forming. A meditation app sits outside the trading platform entirely. None of these is anti-tilt software in the sense defined above.
       </p>
       <p>
         Each of those tools is useful for what it does. None of them sits at the layer anti-tilt software is defined by.
@@ -65,10 +68,10 @@ const qaSchema = JSON.stringify({
 
       <h2>The current landscape</h2>
       <p>
-        On NinjaTrader 8, the only platform shipping the full anti-tilt stack as of 2026 is Meridian. The product was built specifically around the design point: seven distinct behavioral signals tied to how discipline actually breaks down, a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement layer that converts any threshold into automated response actions — typed acknowledgment, mandatory countdown, entry block, broker disconnect.
+        On NinjaTrader 8, the only platform shipping the full anti-tilt stack as of 2026 is Meridian. The product was built specifically around the design point: seven distinct behavioral signals tied to how discipline actually breaks down, a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement layer that converts any threshold into automated response actions — typed acknowledgment, mandatory countdown, entry block, broker disconnect. It also covers the conventional limits a risk tool is expected to enforce — daily loss limit, max position size, P&amp;L and drawdown caps, loss-streak cutoff — so anti-tilt is an added layer on top of complete risk management, not a substitute for it.
       </p>
       <p>
-        Other NinjaTrader 8 products in adjacent categories — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — are mature hard-limit enforcers at the financial-outcome layer. They do that job well. Anti-tilt is one layer earlier and a different kind of system.
+        Other NinjaTrader 8 products in adjacent categories — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — are mature hard-limit enforcers at the financial-outcome layer. They do that job well. Meridian enforces those same hard limits and adds the behavioral layer one step earlier, so for a trader already running one of these tools it is a superset rather than a separate category.
       </p>
 
       <h2>What to look for if you are evaluating</h2>
@@ -77,8 +80,8 @@ const qaSchema = JSON.stringify({
       </p>
       <ol>
         <li><strong>Does it detect behavioral patterns in real time?</strong> Specifically: revenge entry, stop modifications mid-trade, sizing relative to the trader's own rule, and entry-pace acceleration. If the product only reads cumulative P&amp;L and trade count, it is a hard-limit tool, not anti-tilt software.</li>
-        <li><strong>Is the threshold model adaptive to the individual trader?</strong> A single-trader baseline is what separates "you are above your normal pace" from "you are above an arbitrary number set last month."</li>
-        <li><strong>Does it produce a composite stability score, not just isolated signals?</strong> Tilt is a sequence, not a single event. A composite score reflects the combination of signals that actually predicts a blown session.</li>
+        <li><strong>Is the threshold model adaptive to the individual trader?</strong> A single-trader baseline is what separates "you are above your normal pace" from "you are above a fixed number you set once and may not revisit."</li>
+        <li><strong>Does it produce a composite stability score, not just isolated signals?</strong> Tilt compounds across signals, not a single event. A composite score reflects the combination of signals that actually predicts a blown session.</li>
         <li><strong>Can it apply structural friction at thresholds, not just notifications?</strong> A push notification that the trader can dismiss is not enforcement. A typed acknowledgment, a forced countdown, an entry block, or a broker disconnect — those are.</li>
       </ol>
       <p>
@@ -87,7 +90,13 @@ const qaSchema = JSON.stringify({
 
       <h2>Where Meridian fits</h2>
       <p>
-        Meridian was designed against exactly that four-question framework. The seven-signal model handles behavioral pattern detection; the adaptive baseline handles per-trader calibration; the composite Psychological Stability Index aggregates the signals into one real-time score; Meridian Guard provides six trigger types and five response levels including typed acknowledgment, mandatory countdown, and broker disconnect. It runs as a standard NinjaTrader 8 add-on and stores all session data locally.
+        Meridian was designed against exactly that four-question framework. The seven-signal model handles behavioral pattern detection; the adaptive baseline handles per-trader calibration; the composite Psychological Stability Index aggregates the signals into one real-time score; and Meridian Guard provides the structural friction, with six trigger types and five response levels — from a non-blocking notification up through typed acknowledgment, an entry-blocking trading pause, and a broker disconnect.
+      </p>
+      <p>
+        The same engine also enforces the standard risk limits — daily loss, max size, P&amp;L and drawdown caps, loss-streak cutoff — and carries the session through to a journal and review pass. The practical result is that Meridian does what a traditional risk tool does and adds the behavioral layer on top, rather than being a niche tool you bolt on beside one.
+      </p>
+      <p>
+        It runs as a standard NinjaTrader 8 add-on; your session history is stored locally on your PC, and the only data it transmits is anonymized, opt-out research telemetry — never your identity, broker credentials, account numbers, or funds.
       </p>
 
       <p>
@@ -97,7 +106,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

@@ -1,180 +1,326 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Features from '~/components/widgets/Features.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import signalsData from '~/data/signals.json';
+import geoHooks from '~/data/geo-hooks.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PSI MONITOR — the live Monitor layer, explained precisely.
+// Voice register: TEACH / PRECISE. Job: show exactly how Meridian turns your
+// order flow into one live score (0–100), updated <100ms after every fill,
+// measured against YOUR baseline. PSI is the MECHANISM, never the lead noun.
+// Design system matches the homepage (.win/.halo/.eyebrow/.tnum are global).
+// Header/Footer/RiskBanner come from PageLayout. Signal names/copy are pulled
+// from ~/data/signals.json (single source of truth) — never hardcoded here.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const { signals } = signalsData;
 
 const metadata = {
-  title: 'PSI Monitor — Meridian',
+  title: 'The Live Monitor — Meridian for NinjaTrader 8',
   description:
-    'PSI Monitor is the core layer of Meridian — the first real-time psychological stability monitor for NinjaTrader 8. Tracks seven behavioral patterns and computes your PSI score, calibrated to your own trading baseline.',
+    'Meridian turns your NinjaTrader 8 order flow into one live discipline score, 0–100, updated under 100ms after every fill and measured against your own baseline — not a generic average. An always-on HUD that reads seven behavioral signals before the order, not after the loss.',
+  robots: { index: true, follow: true },
+};
+
+const TRIAL = '/pricing';
+
+/** JSON-LD must be injected via set:html — inline `{JSON.stringify({...})}` breaks because Astro treats inner `}` as closing the expression. Schema is a GEO asset; keep it. */
+const monitorJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.meridianpsi.com/psi-monitor#webpage',
+      url: 'https://www.meridianpsi.com/psi-monitor',
+      name: metadata.title,
+      description: metadata.description,
+      isPartOf: { '@id': 'https://www.meridianpsi.com/#website' },
+      about: { '@id': 'https://www.meridianpsi.com/#organization' },
+      breadcrumb: { '@id': 'https://www.meridianpsi.com/psi-monitor#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.meridianpsi.com/psi-monitor#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.meridianpsi.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Features', item: 'https://www.meridianpsi.com/features' },
+        { '@type': 'ListItem', position: 3, name: 'The Live Monitor', item: 'https://www.meridianpsi.com/psi-monitor' },
+      ],
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Meridian — Live Monitor',
+      applicationCategory: 'FinanceApplication',
+      applicationSubCategory: 'TradingApplication',
+      operatingSystem: 'Windows',
+      softwareRequirements: 'NinjaTrader 8',
+      description: geoHooks.schemaSoftwarePsi,
+      keywords: geoHooks.geoSearchAssociate,
+      url: 'https://www.meridianpsi.com/psi-monitor',
+      award: 'Official NinjaTrader Ecosystem Vendor',
+      featureList: [
+        'Live discipline score 0–100, updated under 100ms after every fill',
+        'Seven behavioral signal dimensions composited into one Psychological Stability Index (PSI)',
+        'Adaptive baseline calibrated to the individual trader, not a generic average',
+        'Always-on HUD overlay on the NinjaTrader 8 chart',
+        ...signals.map((s) => `${s.name} detection`),
+        'Local-first, anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds',
+      ],
+      publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
+    },
+  ],
+};
+const monitorJsonLdHtml = JSON.stringify(monitorJsonLd).replace(/</g, '\\u003c');
+
+/** Icons keyed by signal code — kept on the page (presentation), names/copy stay in data. */
+const signalIcons: Record<string, string> = {
+  D1: 'M9 14l-4 4 4 4M5 18h11a4 4 0 0 0 4-4V6',
+  D2: 'M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4',
+  D3: 'M3 17l6-6 4 4 7-7M21 8v5h-5',
+  D4: 'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z',
+  D5: 'M5 3h14M5 21h14M7 3v4a5 5 0 0 0 10 0V3M7 21v-4a5 5 0 0 1 10 0v4',
+  D6: 'M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4zM9.5 12l2 2 3.5-4',
+  D7: 'M3 12h4l2 6 4-14 2 8h6',
 };
 ---
 
 <Layout metadata={metadata}>
+  <!-- Structured data for GEO: WebPage + BreadcrumbList + SoftwareApplication -->
+  <script type="application/ld+json" set:html={monitorJsonLdHtml} />
 
-  <!-- Hero -->
-  <section class="section-tight">
-    <div class="container-wide">
-      <p class="text-xs font-semibold tracking-[0.15em] uppercase text-emerald-600 mb-3">Feature</p>
-      <h1 class="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">PSI Monitor</h1>
-      <p class="text-zinc-600 leading-relaxed max-w-3xl">
-        Traditional risk management tools usually react after something has already happened. PSI Monitor works earlier by tracking behavior during the session and showing when execution is drifting before major mistakes happen.
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">THE LIVE MONITOR</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        One number tells you<br />when you're about to <span class="text-emerald-600">break your plan.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Meridian reads your order flow as you trade and turns it into a single live score from
+        <span class="tnum font-semibold text-zinc-800">0&ndash;100</span> &mdash; refreshed in under
+        <span class="tnum font-semibold text-zinc-800">100ms</span> after every fill, measured against
+        <em>your</em> baseline. When discipline starts slipping, you see the number move before your P&amp;L does.
       </p>
-    </div>
-  </section>
-
-  <!-- Video -->
-  <section class="pb-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-6">
-        <h2 class="text-lg md:text-xl font-semibold text-zinc-900">PSI Monitor walkthrough</h2>
-        <p class="text-sm text-zinc-500 mt-1">See how PSI moves in real time, what behavioral signals are tracked, and how to use PSI as live execution context.</p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how the score works</a>
       </div>
-      <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50 aspect-video shadow-sm">
-        <iframe
-          src="https://www.youtube.com/embed/DjzPWxPGHs8"
-          class="w-full h-full"
-          title="PSI Monitor video walkthrough"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        />
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+    </div>
+    <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
+      <div class="relative">
+        <div class="win"><img src="/m/monitor.png" alt="Meridian live Monitor — radial discipline gauge, score timeline, and the seven behavioral signal bars over a NinjaTrader 8 chart" class="nozoom" /></div>
+        <div
+          class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
+          style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
+        >
+          <img src="/m/ring.png" alt="Meridian live discipline gauge — the radial ring catching a critical behavioral state" class="block w-full" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Before / During / After -->
-  <section class="section-tight border-t border-zinc-100">
-    <div class="container-wide">
-      <div class="mb-12">
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">Built for the full session, not just the trade.</h2>
-        <p class="text-base text-zinc-500 max-w-2xl">
-          Most risk tools only react after something has already gone wrong. Meridian covers the complete loop — configure your rules and baselines before the open, track behavioral pressure as it builds in real time, enforce limits when discipline slips, and review the patterns that drove your decisions after the close.
+  <!-- ───────────────────────── TRUST STRIP ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
+      <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+        Official NinjaTrader Ecosystem Vendor
+      </span>
+      <span class="text-zinc-300">|</span><span>Updates in &lt;100ms after every fill</span>
+      <span class="text-zinc-300">|</span><span>Calibrated to your own baseline</span>
+      <span class="text-zinc-300">|</span><span>Local-first, anonymized, opt-out telemetry</span>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHAT IT IS ───────────────────────── -->
+  <section id="how" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center scroll-mt-24">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT THE MONITOR DOES</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        It watches <em>how</em> you trade &mdash; not just how much you've lost.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        A daily loss limit only knows one fact: your P&amp;L. The Monitor reads the behavior underneath it.
+        Every fill, every stop edit, every re-entry is scored against the way <em>you</em> normally trade, then
+        composited into a single live figure &mdash; the Psychological Stability Index, or PSI.
+      </p>
+      <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+        You don't have to read seven dials. You read one. A high score means you're trading like your composed self.
+        A falling score is the early warning &mdash; it moves while you still have a choice, not after the account is already down.
+      </p>
+      <ul class="mt-6 space-y-3 text-zinc-700">
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Seven behavioral signals rolled into one number you can watch drop in real time</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Measured against <em>your</em> baseline &mdash; not a generic average</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An always-on HUD that sits over your NinjaTrader 8 chart</span></li>
+      </ul>
+    </div>
+    <div class="win" data-reveal><img src="/m/ring.png" alt="Meridian PSI gauge — the live 0–100 discipline ring at the center of the Monitor" /></div>
+  </section>
+
+  <!-- ───────────────────────── HOW THE NUMBER MOVES ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="text-center mb-14" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE NUMBER MOVES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">From a fill to a score, in three steps.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          The PSI is not a mood guess. It's a deterministic read of your order flow against your own history &mdash; the same inputs always produce the same number.
         </p>
       </div>
-      <div class="relative">
-        <!-- Connector line through circle centers (desktop only) -->
-        <div class="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-emerald-200 z-0" aria-hidden="true"></div>
-        <!-- Arrow indicators between steps -->
-        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 25%; transform: translateX(-50%);" aria-hidden="true">
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+      <div class="grid sm:grid-cols-3 gap-5" data-reveal>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="text-emerald-600 text-xs font-bold mb-3 tnum">01</div>
+          <div class="text-zinc-900 font-semibold mb-1.5">An order event lands</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">A fill, a stop move, an exit, a re-entry. Meridian reads it natively inside NinjaTrader 8 the instant it happens &mdash; nothing to log by hand.</p>
         </div>
-        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 50%; transform: translateX(-50%);" aria-hidden="true">
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="text-emerald-600 text-xs font-bold mb-3 tnum">02</div>
+          <div class="text-zinc-900 font-semibold mb-1.5">Seven signals re-score</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Each behavioral signal compares the event to <em>your</em> calibrated baseline &mdash; your normal size, pace, hold time, stop discipline &mdash; and updates its own contribution.</p>
         </div>
-        <div class="hidden lg:block absolute z-0" style="top: 21px; left: 75%; transform: translateX(-50%);" aria-hidden="true">
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1l9 6-9 6V1z" fill="#6ee7b7"/></svg>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="text-emerald-600 text-xs font-bold mb-3 tnum">03</div>
+          <div class="text-zinc-900 font-semibold mb-1.5">The PSI composites</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">The seven signals roll into one figure on the gauge and the timeline &mdash; the whole loop finishing in under <span class="tnum font-semibold">100ms</span>, so the number is live, not a replay.</p>
         </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div>
-            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">01</div>
-            <div class="text-center mb-4">
-              <h3 class="text-base font-semibold text-zinc-900 mb-1">Configure</h3>
-              <p class="text-sm text-zinc-500">Any strategy. Any style.</p>
-            </div>
-            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Session rules and time windows</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Size limits and stop conventions</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Adaptive baseline learns your rhythm</span></li>
-            </ul>
-          </div>
-          <div>
-            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">02</div>
-            <div class="text-center mb-4">
-              <h3 class="text-base font-semibold text-zinc-900 mb-1">Live Monitor</h3>
-              <p class="text-sm text-zinc-500">7 signals. &lt;100ms updates.</p>
-            </div>
-            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>PSI score updates in real time</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Seven behavioral signal bars</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Live score shows what is driving pressure</span></li>
-            </ul>
-          </div>
-          <div>
-            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">03</div>
-            <div class="text-center mb-4">
-              <h3 class="text-base font-semibold text-zinc-900 mb-1">Guard</h3>
-              <p class="text-sm text-zinc-500">Rules that enforce themselves.</p>
-            </div>
-            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>6 trigger conditions</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>5 response levels</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>From quiet alert to stronger action</span></li>
-            </ul>
-          </div>
-          <div>
-            <div class="relative z-10 mx-auto w-14 h-14 rounded-full bg-white border-2 border-emerald-300 flex items-center justify-center mb-4 text-sm font-semibold tracking-tight text-emerald-700 shadow-sm">04</div>
-            <div class="text-center mb-4">
-              <h3 class="text-base font-semibold text-zinc-900 mb-1">Review &amp; Intel</h3>
-              <p class="text-sm text-zinc-500">Every session. Every pattern.</p>
-            </div>
-            <ul class="rounded-lg border border-zinc-200 p-5 space-y-2.5">
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>PSI, Composure, and trade stats</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Monthly digest and behavior correlation</span></li>
-              <li class="flex items-start gap-2 text-sm text-zinc-600"><span class="mt-1 text-emerald-700">&#10003;</span><span>Clear guide for next-session improvement</span></li>
-            </ul>
-          </div>
-        </div>
+      </div>
+      <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center">
+        <p class="text-lg md:text-xl leading-relaxed">
+          A loss limit fires once, at <span class="text-rose-400 font-semibold tnum">&minus;$500</span>.<br class="hidden md:block" />
+          The Monitor re-scores after <span class="text-emerald-400 font-semibold">every single fill</span> &mdash; so you see the drift, not just the damage.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 7 Behavioral Signals -->
-  <Features
-    tagline="Behavioral signals"
-    title="Seven signals tied to how discipline actually breaks down."
-    subtitle="Each one tracks a distinct failure pattern that shows up reliably before a trader abandons the plan."
-    columns={2}
-    classes={{ items: { title: 'text-base md:text-base font-semibold' } }}
-    items={[
-      {
-        title: 'Revenge Entry (D1) \u2014 re-entering after a loss',
-        description: 'Detects rapid re-entry after a loss with elevated size in the same direction. Direction reversals carry less weight, separating genuine technical pivots from emotional retaliation.',
-        icon: 'tabler:arrow-back-up',
-      },
-      {
-        title: 'Stop Manipulation (D2) \u2014 moving risk wider',
-        description: 'Tracks stop distance over time and flags widening in the adverse direction once price moves against you — the classic impulse to give a losing trade more room than the plan allowed.',
-        icon: 'tabler:arrows-maximize',
-      },
-      {
-        title: 'Size Spike (D3) \u2014 sizing above your rule',
-        description: 'Flags size that exceeds your declared rule, with heavier weight during losing streaks when the urge to make it back is strongest. Your own history sets the threshold, not a generic standard.',
-        icon: 'tabler:trending-up',
-      },
-      {
-        title: 'Hold Bias (D4) \u2014 holding losers longer than winners',
-        description: 'Compares your average hold time on losing trades against winning ones — surfacing the loss-aversion "ride losers, cut winners" pattern where you give losers far more room than your winners ever got.',
-        icon: 'tabler:clock-bolt',
-      },
-      {
-        title: 'Position Overstay (D5) \u2014 holding losers too long',
-        description: 'Activates when a losing trade exceeds your historical holding tolerance. Deep adverse excursion is logged even if the position later recovers, keeping the record honest.',
-        icon: 'tabler:hourglass',
-      },
-      {
-        title: 'Rule Violations (D6) \u2014 breaking declared session rules',
-        description: 'Checks declared session rules across time windows, stop-loss range, and loss-streak limits. Each breach applies a scored penalty with a cooldown so the same violation is not counted twice in close succession.',
-        icon: 'tabler:shield-x',
-      },
-      {
-        title: 'Overtrading Pace (D7) \u2014 accelerating entry frequency',
-        description: 'Measures intra-session acceleration and deviation from your historical entry rhythm. A warm-up window at the open prevents false positives in the first few trades, when pace is naturally lower.',
-        icon: 'tabler:activity',
-      },
-    ]}
-  />
+  <!-- ───────────────────────── THE 7 SIGNALS (from data) ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE SEVEN SIGNALS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Seven reads. One score.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+        Each signal tracks one distinct way discipline breaks down. They run independently, then composite into the single PSI on the gauge.
+        On the HUD you'll see each one by its short label.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
+      {signals.map((s) => (
+        <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d={signalIcons[s.code]} /></svg>
+            </span>
+            <span class="text-[11px] font-bold text-emerald-700 tnum tracking-wide">{s.code}</span>
+          </div>
+          <div class="font-semibold text-zinc-900">{s.name}</div>
+          <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">{s.short}</p>
+          <div class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-500">
+            <span class="text-zinc-400">HUD label</span>
+            <span class="rounded-md bg-[#0b0b0d] text-zinc-200 px-2 py-0.5 font-mono">{s.hudLabel}</span>
+          </div>
+        </div>
+      ))}
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-6 flex flex-col justify-center">
+        <div class="text-sm font-semibold text-emerald-700 mb-2">Cutting losses fast is never penalized.</div>
+        <p class="text-sm text-zinc-700 leading-relaxed">
+          The signals only fire on the behaviors that quietly blow accounts &mdash; not on good discipline. Exit early, size down, walk away,
+          and the score reflects it.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <!-- CTA -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Start free trial', href: '/pricing' },
-      { text: 'Installation guide', href: '/installation-guide' },
-    ]}
-  >
-    <Fragment slot="title">Stop mistakes before they reach the order window.</Fragment>
-    <Fragment slot="subtitle">Meridian helps you observe behavior during execution, not only after the session is over.</Fragment>
-  </CallToAction>
+  <!-- ───────────────────────── YOUR BASELINE ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="win order-2 lg:order-1" data-reveal><img src="/m/monitor.png" alt="Meridian Monitor — the signal bars and PSI timeline scored against the trader's own baseline" /></div>
+      <div class="order-1 lg:order-2" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SCORED AGAINST YOU</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">A generic average doesn't know your edge.</h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          A scalper firing 40 entries an hour and a swing trader holding for a session are not the same trader &mdash; and one fixed
+          rulebook can't grade both. So the Monitor doesn't use one. It learns <em>your</em> normal: your usual size, your typical pace,
+          how long you hold winners versus losers, how you handle stops.
+        </p>
+        <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+          That baseline is what makes the score honest. A size that's routine for you doesn't ding you &mdash; the same size does the
+          day it's three times your norm and you're chasing a loss back.
+        </p>
+        <p class="mt-5 text-sm text-zinc-500">The baseline adapts as your trading evolves, so the score keeps measuring you against you.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ───────────────────────── PRIVACY / TRUST ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-3 gap-5" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Runs natively in NinjaTrader 8</div><p class="text-sm text-zinc-600">The Monitor is a native add-on. No bridge, no second app, no manual logging &mdash; it reads your order flow where it already lives.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first; the only data that ever leaves is anonymized and opt-out.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">The score, then the action</div><p class="text-sm text-zinc-600">The Monitor reads and warns. When you want it to step in, <a href="/guard" class="text-emerald-700 font-medium hover:underline">Guard</a> enforces the limits you set &mdash; before the order, not after the loss.</p></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── CROSS-LINK / NEXT ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHERE THE MONITOR FITS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The read is step one of the loop.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">The Monitor is how Meridian sees. See the full picture &mdash; every layer, and what enforces it.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto" data-reveal>
+        <a href="/features" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition">
+          <div class="font-semibold text-zinc-900 mb-1.5">All the features <span class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform">&rarr;</span></div>
+          <p class="text-sm text-zinc-600">Monitor, Guard, Journal, Intel &amp; Stats &mdash; the whole monitor → guard → journal → review loop in one tool.</p>
+        </a>
+        <a href="/guard" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition">
+          <div class="font-semibold text-zinc-900 mb-1.5">Meridian Guard <span class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform">&rarr;</span></div>
+          <p class="text-sm text-zinc-600">Turn the score into action: six triggers, five escalating response levels, and Strict Lock for when you're already tilted.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">See the number move<br />before the loss does.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Put the live Monitor on your chart and read your discipline in real time &mdash; scored against you.</p>
+      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
+
+  <script>
+    // Click product screenshots to enlarge (lightbox). Mirrors the homepage so
+    // .win images zoom consistently. Re-inits on astro:page-load for View Transitions.
+    function initMonitor() {
+      if (document.getElementById('m-lightbox')) return; // already initialised
+      const lb = document.createElement('div');
+      lb.id = 'm-lightbox';
+      lb.style.cssText =
+        'position:fixed;inset:0;z-index:100;background:rgba(8,8,10,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out';
+      const img = document.createElement('img');
+      img.style.cssText = 'max-width:96vw;max-height:94vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)';
+      lb.appendChild(img);
+      document.body.appendChild(lb);
+      const close = () => {
+        lb.style.display = 'none';
+      };
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      document.querySelectorAll<HTMLImageElement>('.win img:not(.nozoom)').forEach((el) => {
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          img.src = el.currentSrc || el.src;
+          lb.style.display = 'flex';
+        });
+      });
+    }
+    document.addEventListener('astro:page-load', initMonitor);
+  </script>
 </Layout>

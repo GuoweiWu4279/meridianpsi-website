@@ -9,11 +9,13 @@ const metadata = {
 };
 
 const question = 'How do I stop myself from revenge trading?';
-const directAnswer = 'Self-discipline alone rarely defeats a tilt sequence in the moment, because the cognitive shift after a loss reduces the same prefrontal capacity that self-discipline depends on. What consistently works is a commitment device — a constraint you set when you are calm that the in-session you cannot easily override. On NinjaTrader 8, Meridian Guard converts behavioral thresholds into pre-committed enforcement actions: a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect.';
+const directAnswer = 'Self-discipline alone rarely defeats a tilt sequence in the moment, because the cognitive shift after a loss reduces the same prefrontal capacity that self-discipline depends on. What consistently works is a commitment device — a constraint you set when you are calm that the in-session you cannot easily override. On NinjaTrader 8, Meridian Guard converts behavioral thresholds into pre-committed enforcement actions: a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect that stops new orders (it does not close your open positions unless you opt in).';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
@@ -57,7 +60,7 @@ const qaSchema = JSON.stringify({
 
       <h2>What does work consistently</h2>
       <p>
-        The intervention that produces consistent results is structural: a constraint set when the trader is calm, applied automatically when the trader is not. Behavioral economists call this a commitment device. The classic example is locking the cookies in a cabinet when buying them — the in-the-moment self cannot easily defeat the constraint set by the planning self.
+        The intervention that produces consistent results is structural: a constraint set when the trader is calm, applied automatically when the trader is not. Behavioral economists call this a commitment device. The classic example is locking the cookies in a cabinet while calm — the in-the-moment self cannot easily defeat the constraint set by the planning self.
       </p>
       <p>
         The same principle applies to revenge trading. When the trader is calm and reviewing the prior week, they can clearly identify the pattern: re-entering within 60 seconds of a stop-out, sizing up after losses, accelerating entry pace under pressure. They can also clearly identify what intervention they would want — a forced 10-minute pause, a typed acknowledgment, an entry block. The hard part is making sure the intervention actually happens during the next live session, when the planning self is not the one in control.
@@ -65,10 +68,10 @@ const qaSchema = JSON.stringify({
 
       <h2>How a software commitment device works in NinjaTrader 8</h2>
       <p>
-        Meridian Guard for NinjaTrader 8 is built specifically as a commitment-device platform. The trader configures the rules in advance — for example, "after two consecutive losses, require a typed acknowledgment phrase before the next entry; after three, enforce a 10-minute countdown; after four, end the session" — and Guard enforces them automatically the moment a trigger condition is met.
+        Meridian is a complete risk-management add-on for NinjaTrader 8 — it enforces the traditional limits a risk tool is expected to cover (daily loss limit, P&amp;L and drawdown caps, max single-trade loss, consecutive-loss cutoff, session time), and adds the behavioral layer most tools lack. Guard is the part of that system built specifically as a commitment device. The trader configures the rules in advance — for example, "after two consecutive losses, require a typed acknowledgment phrase before the next entry; after three, enforce a 10-minute countdown; after four, end the session" — and Guard enforces them automatically the moment a trigger condition is met.
       </p>
       <p>
-        Six trigger types are available: PSI Below (the composite Psychological Stability Index drops under a threshold), Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, and Session Time Over. Each can be paired with one of five response levels — Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect — selected for the appropriate severity. Guard rules can be password-locked to prevent in-session override, with most traders selecting a password they will not remember under pressure as a standard practice.
+        Six trigger types are available: PSI Below (the composite Psychological Stability Index drops under a threshold), Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, and Session Time Over. The last five are the same loss, drawdown, and exposure limits a conventional risk tool enforces; PSI Below is the behavioral trigger that conventional tools do not have. Each can be paired with one of five response levels — Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect — selected for the appropriate severity. Guard rules can be password-locked to prevent in-session override — and a common recommendation is to choose a password you will not recall under pressure, so the lock actually holds.
       </p>
 
       <h2>The pre-commitment that matters</h2>
@@ -78,7 +81,7 @@ const qaSchema = JSON.stringify({
 
       <h2>Practical setup</h2>
       <p>
-        For a trader whose primary failure mode is revenge trading: install Meridian as the behavioral layer in NinjaTrader 8; let the adaptive baseline accumulate at least two weeks of normal sessions so the Revenge Entry signal has a calibrated reference; then configure Guard with Consecutive Losses paired to the Acknowledge response level after two losses, the Countdown response level after three, and the Disconnect response level after four. Enable the password lock with a password that is not memorable under pressure.
+        For a trader whose primary failure mode is revenge trading: install Meridian as the behavioral layer in NinjaTrader 8; let the adaptive baseline accumulate around 30 normal sessions so the Revenge Entry signal has a calibrated reference; then configure Guard with Consecutive Losses paired to the Acknowledge response level after two losses, the Trading Pause response level after three, and the Disconnect response level after four. Enable the password lock with a password that is not memorable under pressure.
       </p>
       <p>
         The configuration takes about five minutes once. The protection it provides is automatic from that point forward, with no further decision required from the trader at the moment their judgment is most impaired.
@@ -91,7 +94,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams. Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">

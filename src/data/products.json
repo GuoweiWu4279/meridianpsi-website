@@ -1,9 +1,9 @@
 {
   "name": "Meridian",
   "legalNameNote": "Marketing name for the MeridianPSI NinjaTrader 8 add-on.",
-  "tagline": "The first real-time psychological stability monitor — built for active traders",
-  "description": "Meridian is the first real-time psychological stability monitor for active traders. It tracks seven behavioral patterns during your live NinjaTrader 8 session and computes a live PSI score on your machine in real time.",
-  "version": "1.4.2",
+  "tagline": "Complete risk management for NinjaTrader 8 — every limit, plus the behavioral layer none of them have",
+  "description": "Meridian is the complete risk manager for NinjaTrader 8: every traditional limit a risk tool has — daily loss, max position size, P&L and drawdown caps, loss-streak cutoff — plus a real-time behavioral layer that tracks seven trading behaviors and computes a live PSI score on your machine.",
+  "version": "1.5.0",
   "platform": "NinjaTrader 8 (64-bit)",
   "category": "Trading psychology monitor",
   "systemRequirements": {

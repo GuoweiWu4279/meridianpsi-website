@@ -1,212 +1,25 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import heroBgImage from '~/assets/images/hero-bg.jpg';
 import pricing from '~/data/pricing.json';
 import geoHooks from '~/data/geo-hooks.json';
-import signalsData from '~/data/signals.json';
 
-import Hero from '~/components/widgets/Hero.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+// ─────────────────────────────────────────────────────────────────────────────
+// HOMEPAGE — superset positioning ("Everything your risk tool does — and the
+// part it's blind to"). Ported from the approved mockup public/p/home.html.
+// Voice register: HOOK / conversion. Header, Footer, RiskBanner come from
+// PageLayout. Design-system classes (.win/.halo/.eyebrow/.tnum) are scoped to
+// this page for now; extract to a shared stylesheet when other pages need them.
+// ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Meridian — First Behavioral Risk & Discipline Tool for NinjaTrader 8',
-  description: 'The first real-time behavioral risk monitor for NinjaTrader 8. Detects revenge trading, overtrading, stop manipulation, and oversizing — then locks out impulsive entries before they reach the order window. Adaptive PSI calibrated to your own baseline. 7-day free trial.',
+  title: 'Meridian — Complete Risk Management for NinjaTrader 8',
+  description:
+    "Everything your NinjaTrader 8 risk tool does — daily loss limits, max position size, P&L caps — plus the layer none of them have: real-time behavioral detection that catches revenge trading, oversizing, and tilt before the order. 7-day free trial.",
   ignoreTitleTemplate: true,
   robots: { index: true, follow: true },
 };
 
-const marqueeRow1 = [
-  {
-    quote: "Passed my third Apex evaluation. The first two I blew up on days where, in hindsight, I should have just closed the platform. The pattern was obvious once I could see it.",
-    name: 'Anonymous',
-    role: 'Prop firm trader',
-  },
-  {
-    quote: "Three months in. I thought I had clean execution — the overtrading metric disagreed from day one.",
-    name: 'Anonymous',
-    role: 'Futures day trader',
-  },
-  {
-    quote: "Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own rules. Took data to admit it.",
-    name: 'Anonymous',
-    role: '',
-  },
-  {
-    quote: "After a losing session I used to review charts to explain what happened. Now I check the session report first. It's faster and more honest.",
-    name: 'Anonymous',
-    role: 'ES / NQ',
-  },
-  {
-    quote: "It gives you the option to automatically close your positions, or you can choose to handle that part yourself. I stopped pretending I didn't notice the score dropping while I was moving my stop around.",
-    name: 'Anonymous',
-    role: 'NQ futures',
-  },
-  {
-    quote: "The seven bars make it immediately clear which habit is pulling the score down. I kept telling myself I was trading fine. The data disagreed consistently.",
-    name: 'Anonymous',
-    role: 'MNQ scalper',
-  },
-  {
-    quote: "It's the first tool that actually catches me mid-session, when I'm tilting — not in the journal hours later.",
-    name: 'Anonymous',
-    role: 'Independent trader',
-  },
-  {
-    quote: "Being able to use Market Replay without it touching my live baseline was more useful than I expected.",
-    name: 'Anonymous',
-    role: 'Futures swing',
-  },
-  {
-    quote: "I run two accounts with copy fills. I was expecting double-counting issues in the score. It handled it cleanly without any configuration.",
-    name: 'Anonymous',
-    role: 'Multi-account',
-  },
-];
-
-const marqueeRow2 = [
-  {
-    quote: "Post-session journals have their place. This is different — the feedback arrives while the session is still running, not the next morning.",
-    name: 'Anonymous',
-    role: '',
-  },
-  {
-    quote: "The stop-widening flag caught me doing something I always denied — moving my stop out when a trade went against me. Useful confirmation, even if it wasn't comfortable.",
-    name: 'Anonymous',
-    role: 'CL / GC',
-  },
-  {
-    quote: "I've restarted funded accounts more times than I want to count. If someone had told me a revenge-entry detector would matter more than another indicator, I wouldn't have believed them.",
-    name: 'Anonymous',
-    role: 'Prop trader',
-  },
-  {
-    quote: "Four years trading NQ. Thought I had a solid read on my own behavior. First week of data showed me I had several habits I wasn't aware of.",
-    name: 'Anonymous',
-    role: 'Day trader',
-  },
-  {
-    quote: "The caution signal fired and I decided I could manage through it. Twenty minutes later I had hit my daily limit. I can't blame the tool — I ignored it.",
-    name: 'Anonymous',
-    role: 'ES trader',
-  },
-  {
-    quote: "A rough Tuesday doesn't disappear from the score just because Wednesday started. That's accurate. That's how it actually feels.",
-    name: 'Anonymous',
-    role: 'Overnight + day',
-  },
-  {
-    quote: "Thought my exits were disciplined. Turns out there's a consistent pattern on certain days. I don't love it, but I can work with the information.",
-    name: 'Anonymous',
-    role: 'Index futures',
-  },
-  {
-    quote: "The alerts are infrequent enough that I don't tune them out. When one fires, I actually pause before doing anything.",
-    name: 'Anonymous',
-    role: 'Prop + personal',
-  },
-];
-
-const steps = [
-  {
-    label: 'Configure',
-    bg: '#f4f4f5',
-    desc: 'Define your style',
-    fullDesc: 'Define your trading style and strategy so Meridian fits how you actually trade.',
-    bullets: [
-      'Set your trading window, trading size, and entry frequencies.',
-      'Set hold-time and re-entry timing rules that match your execution style.',
-      'Adaptive baseline learning gets more accurate as your session data grows.',
-    ],
-    image: '/configue-pic.jpg?v=2',
-    imgAlt: 'Meridian personal baseline configuration panel',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
-  },
-  {
-    label: 'Live Monitor',
-    bg: '#1C1C1E',
-    desc: 'Monitor behavior',
-    fullDesc: 'Meridian monitors behavior with adaptive learning and behavioral finance principles to catch mistakes BEFORE they happen.',
-    bullets: [
-      'Tracks revenge trading, overtrading, and oversizing pressure.',
-      'Detects stop-loss manipulation, holding losers longer than winners, and overstaying losing positions.',
-      'Pressure indicators surface early breakdown signals before damage compounds.',
-    ],
-    carouselSlides: [
-      { src: '/screenshots/live-monitor-psi-hud.png', alt: 'Meridian live PSI HUD — stability readout and session context' },
-      { src: '/screenshots/live-monitor-psi-low.png', alt: 'Meridian live PSI HUD — elevated risk zone readout' },
-    ],
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
-  },
-  {
-    label: 'Guard',
-    bg: '#1C1C1E',
-    desc: 'Automate response',
-    fullDesc: 'Guard turns your rules into action — six triggers paired with five escalating responses, from a quiet alert to a typed acknowledgment, trading pause, or full broker disconnect.',
-    bullets: [
-      'Five response levels: notify, risk alert, acknowledgment, trading pause, and disconnect.',
-      'Six trigger conditions: PSI threshold, consecutive losses, session P&L, unrealized P&L, single-trade loss, session time.',
-      'Trading pause survives NinjaTrader restarts to prevent circumvention.',
-    ],
-    image: '/guard-hero.png',
-    /* Full asset visible in 16:9 panel (no crop); see .acc-img--guard-fit */
-    imgPanelFit: 'guard' as const,
-    imgAlt: 'Meridian Guard — broker disconnected after a rule breach, with reconnect instructions',
-    link: { href: '/guard', text: 'Explore Meridian Guard' },
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>',
-  },
-  {
-    label: 'Review & Intel',
-    bg: '#f4f4f5',
-    desc: 'Review with statistics',
-    fullDesc: 'See your behavior in real statistics and know how to improve.',
-    bullets: [
-      'Detailed session reports show exactly what happened during the trading session.',
-      'Real-time journal capture and automatic session compilation keep track of up to 5 years of data for review.',
-      'Trading statistics and trend ranges from daily, weekly, and monthly views.',
-      'Advanced statistics show your biggest weaknesses and where to improve.',
-    ],
-    image: '/screenshots/review-intel-illustration.jpg',
-    imgAlt: 'Meridian Review & Intel — session history and analysis overview',
-    /* Wider than 16:9 — cover fills the panel so letterboxing bars don’t show (other steps stay contain) */
-    imgObjectFit: 'cover' as const,
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
-  },
-];
-
-// Canonical signals come from src/data/signals.json (single source of truth).
-const signals = signalsData.signals.map((s) => ({ name: s.name, desc: s.short }));
-
-const intelShowcaseTabs = [
-  {
-    title: 'Intel & Correlation',
-    sub: 'Correlation statistics show the impact of behavior on outcomes. Monthly reports compare this month vs last month, highlight your top strengths and weaknesses, and reveal weekday patterns so you can adjust.',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>',
-    slides: [
-      { src: '/screenshots/digest-march.png', alt: 'Meridian monthly digest — composure grade (B+), stats, and risk brief context' },
-      { src: '/screenshots/homepage-intel/intel/regression.png', alt: 'Meridian regression analysis: psychology vs outcomes' },
-      { src: '/screenshots/homepage-intel/intel/today-risk-and-analysis.png', alt: 'Meridian today risk and analysis' },
-      { src: '/screenshots/homepage-intel/intel/weekly-trending.png', alt: 'Meridian weekly behavioral trending' },
-    ],
-  },
-  {
-    title: 'History & Progress',
-    sub: 'Visualize your discipline over time. Track your monthly composure grades, daily streak stability, and long-term behavioral progress.',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>',
-    slides: [
-      { src: '/screenshots/homepage-intel/history/monthly-calendar-list.png', alt: 'Meridian monthly calendar in list view' },
-      { src: '/screenshots/homepage-intel/history/monthly-calendar.png', alt: 'Meridian monthly calendar overview' },
-      { src: '/screenshots/homepage-intel/history/psi-trend-in-month.png', alt: 'Meridian PSI trend for the month' },
-    ],
-  },
-  {
-    title: 'Session Report',
-    sub: 'Detailed breakdown of every trade session. Track your PSI fluctuations, time spent in critical zones, and exact behavioral signals triggered.',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
-    slides: [
-      { src: '/screenshots/intel-session-report-hud.png', alt: 'Meridian session report — session log, PSI, composure, and behavioral signals' },
-    ],
-  },
-];
+const TRIAL = '/pricing';
 
 function tierToSchemaOffers(tier: (typeof pricing.tiers)[number]) {
   const monthly = tier.monthlyPrice.toFixed(2);
@@ -261,7 +74,7 @@ const homePageJsonLd = {
         },
         membershipNumber: 'Official Ecosystem Vendor',
         description:
-          'Meridian is an Official NinjaTrader Ecosystem Vendor — approved by NinjaTrader\u2019s Compliance, QA, and Executive teams (May 2026).',
+          'Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader’s Compliance, QA, and Executive teams (May 2026) — and is listed in the official NinjaTrader Ecosystem as an approved third-party add-on for NinjaTrader 8.',
       },
       knowsAbout: [
         'NinjaTrader 8',
@@ -272,7 +85,7 @@ const homePageJsonLd = {
         'Stop-loss manipulation detection',
         'Prop firm risk control',
         'NinjaTrader broker disconnect',
-        'NinjaTrader order cancellation'
+        'NinjaTrader order cancellation',
       ],
       sameAs: [
         'https://x.com/Meridian_PSI',
@@ -283,7 +96,8 @@ const homePageJsonLd = {
     },
     {
       '@type': 'SoftwareApplication',
-      name: 'Meridian PSI',
+      name: 'Meridian',
+      alternateName: ['Meridian PSI', 'Meridian Guard'],
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
@@ -299,7 +113,6 @@ const homePageJsonLd = {
         'Real-time psychological stability monitor and trade lockout layer for NinjaTrader 8',
         'Revenge trading lockout — rapid re-entry detection',
         'Overtrading prevention — session pace and trade frequency',
-        'Stop-loss manipulation detection',
         'Trade limiter and entry blocking (Guard)',
         'Consecutive-loss countdowns and rule enforcement add-on',
         'Trading Pause — hard risk enforcement',
@@ -311,7 +124,7 @@ const homePageJsonLd = {
         'Rule Violations tracking',
         'Meridian Guard — automated behavioral enforcement',
         'Intel Layer analytics',
-        'Anonymous by design — no personal data collected',
+        'Anonymous by design — never your name, broker credentials, account numbers, or funds',
         'NinjaTrader 8 native add-on',
         'Prop firm compatible',
       ],
@@ -340,1567 +153,358 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
 ---
 
 <Layout metadata={metadata}>
-  <!-- Structured data for GEO: SoftwareApplication + WebSite -->
+  <!-- Structured data for GEO: Organization + SoftwareApplication + WebSite -->
   <script type="application/ld+json" set:html={homePageJsonLdHtml} />
-  <!-- Hero background: replace src/assets/images/hero-bg.jpg (imported so dev/build always resolve URL). -->
-  <section
-    class="relative overflow-hidden md:-mt-[84px] not-prose hero-bg-home"
-    style={`--hero-bg: url('${heroBgImage.src}')`}
-  >
-    <!-- Bottom fade: blends hero into the section below -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style="background: linear-gradient(to bottom, transparent, #fafafa);" aria-hidden="true"></div>
 
-
-
-    <!-- Header spacer -->
-    <div class="md:pt-[84px]"></div>
-    <div class="relative z-[1] max-w-7xl mx-auto px-6">
-      <div class="pt-14 pb-12 md:pt-20 md:pb-16 lg:pt-24 lg:pb-20">
-        <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:gap-12 xl:gap-16 lg:items-center">
-          <!-- Left column: text content -->
-          <div class="text-center lg:text-left max-w-4xl mx-auto lg:max-w-none lg:mx-0">
-            <!-- Eyebrow badge -->
-            <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-7 fade-up rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Real-time psychological stability monitor NT 8</span>
-            </div>
-            <!-- Title -->
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[3.1rem] xl:text-[3.6rem] font-bold leading-[1.1] tracking-tight mb-6 word-blur-target" style="color:#18181b;">
-              Stop mistakes<br />
-              <span style="color:var(--aw-color-primary);">before they reach<br class="hidden lg:block" />the order window.</span>
-            </h1>
-            <!-- Subtitle — split for emphasis -->
-            <p class="text-lg md:text-xl font-semibold leading-snug max-w-[520px] mx-auto lg:mx-0 mb-2 fade-up" style="color:#27272a;">
-              Think Apple Watch stress monitor, but for trading discipline.
-            </p>
-            <p class="text-sm md:text-base leading-relaxed max-w-[520px] mx-auto lg:mx-0 mb-9 fade-up" style="color:#71717a;">
-              Detecting 7 behavioral patterns in real time, calibrated to your own style, before the slip becomes a loss.
-            </p>
-            <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3 mb-4 fade-up">
-              <a href="/pricing" class="btn btn-lg font-semibold" style="background:var(--aw-color-primary); color:white; border:1px solid var(--aw-color-primary);">Start 7-day free trial</a>
-              <a href="#video-demo" class="btn btn-lg font-semibold" style="border:1.5px solid rgba(0,0,0,0.2); color:#18181b; background:transparent;">Watch 90-sec demo</a>
-            </div>
-            <p class="text-xs fade-up" style="color:#a1a1aa;">
-              Cancel anytime
-              <span class="mx-2 text-zinc-300" aria-hidden="true">·</span>
-              Then $49.99/mo
-            </p>
-          </div>
-
-          <!-- Right column: clean floating video -->
-          <div class="mt-12 lg:mt-0 fade-up">
-            <div class="relative">
-              <!-- Ambient glow — clipped so it does NOT extend below the video -->
-              <div class="absolute pointer-events-none" style="inset:-40px -32px 0 -32px; border-radius:3rem; background:radial-gradient(ellipse at 50% 50%, rgba(5,150,105,0.10) 0%, transparent 65%); filter:blur(24px);" aria-hidden="true"></div>
-              <!-- Video — shadow kept subtle, no large downward spread -->
-              <video
-                class="relative w-full h-auto rounded-2xl ring-1 ring-zinc-900/8"
-                style="box-shadow: 0 8px 24px -4px rgba(0,0,0,0.18), 0 2px 8px -2px rgba(0,0,0,0.08);"
-                autoplay muted loop playsinline preload="auto"
-                aria-label="Meridian in action — real-time behavioral monitoring inside NinjaTrader 8"
-              >
-                <source src="/videos/hero-demo.mp4" type="video/mp4" />
-                <img src="/screenshots/live-monitor-psi-hud.png" alt="Meridian PSI HUD — real-time behavioral monitoring inside NinjaTrader 8" />
-              </video>
-              <!-- Vendor badge — sits in clear air, no shadow or glow above it -->
-              <div class="mt-3">
-                <a
-                  href="https://ninjatraderus.pxf.io/jROzm0"
-                  target="_blank" rel="noopener noreferrer"
-                  aria-label="Official NinjaTrader Ecosystem Vendor — verify on ninjatrader.com"
-                  class="inline-flex items-center gap-2 hover:opacity-90 transition-opacity"
-                  style="text-decoration:none; padding:5px 11px 5px 7px; border-radius:100px; background:rgba(242,101,34,0.07); border:1px solid rgba(242,101,34,0.22);"
-                >
-                  <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;flex-shrink:0;background:rgba(242,101,34,0.14);">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                  </span>
-                  <span class="text-xs font-semibold tracking-wide" style="color:#F26522;">Official NinjaTrader Ecosystem Vendor</span>
-                </a>
-              </div>
-            </div>
-          </div>
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">RISK MANAGEMENT FOR NINJATRADER 8</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+        Everything your risk tool does &mdash;<br />and the part it's <span class="text-emerald-600">blind to.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Daily loss limits, max size, P&amp;L caps &mdash; Meridian has them all. Then it adds what no limit can: it reads the
+        behavior that actually blows up accounts &mdash; revenge, oversizing, tilt &mdash; in real time, and stops you before
+        the damage.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">Watch how it works</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+    </div>
+    <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
+      <div class="relative">
+        <div class="win"><img src="/m/overview.png" alt="Meridian Overview dashboard" class="nozoom" /></div>
+        <div
+          class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
+          style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
+        >
+          <img src="/m/ring.png" alt="Meridian live PSI gauge — catching a warning behavioral state" class="block w-full" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Official Partner strip -->
-  <div class="fade-up border-b border-zinc-200/70" style="background:#fafafa;">
-    <div class="max-w-3xl mx-auto px-6 py-10 md:py-12 text-center">
-
-      <!-- Eyebrow -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4"
-           style="border:1px solid rgba(242,101,34,0.25); background:rgba(242,101,34,0.05);">
-        <svg class="w-3 h-3 shrink-0" fill="none" stroke="#F26522" stroke-width="2.8" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-        </svg>
+  <!-- ───────────────────────── ENDORSEMENT (Official NT Vendor + partners) ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div data-reveal class="max-w-4xl mx-auto px-6 py-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4" style="border:1px solid rgba(242,101,34,0.25); background:rgba(242,101,34,0.05);">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="#F26522" stroke-width="2.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
         <span class="text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:#F26522;">Official NinjaTrader Vendor</span>
       </div>
-
-      <!-- Supporting copy -->
-      <p class="text-sm mb-8" style="color:#71717a;">
-        Audited and Approved by NinjaTrader&rsquo;s Compliance, QA &amp; Executive teams.
-      </p>
-
-      <!-- Logos row -->
+      <p class="text-sm text-zinc-500 mb-8 max-w-xl mx-auto">Audited and approved by NinjaTrader&rsquo;s Compliance, QA &amp; Executive teams.</p>
       <div class="flex items-center justify-center gap-10 md:gap-16">
-        <a
-          href="https://ninjatraderus.pxf.io/jROzm0"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="NinjaTrader — official trading platform partner"
-          class="flex flex-col items-center gap-2 group"
-        >
-          <img
-            src="/logos/ninjatrader-wordmark.png"
-            alt="NinjaTrader"
-            style="height:32px; width:auto; object-fit:contain; opacity:0.8; transition:opacity 0.2s;"
-            class="group-hover:opacity-100"
-          />
-          <span class="text-[10px] tracking-[0.08em] uppercase" style="color:#b4b4b4;">Ecosystem Vendor</span>
+        <a href="https://ninjatraderus.pxf.io/jROzm0" target="_blank" rel="noopener noreferrer" aria-label="NinjaTrader — official trading platform partner" class="flex flex-col items-center gap-2 group">
+          <img src="/logos/ninjatrader-wordmark.png" alt="NinjaTrader" style="height:30px; width:auto; object-fit:contain; opacity:0.85; transition:opacity 0.2s;" class="group-hover:opacity-100" />
+          <span class="text-[10px] tracking-[0.08em] uppercase text-zinc-400">Ecosystem Vendor</span>
         </a>
-
-        <div class="w-px h-8 self-center" style="background:rgba(0,0,0,0.1);" aria-hidden="true"></div>
-
-        <a
-          href="https://kinetick.com/NinjaTrader"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Kinetick — official market data partner"
-          class="flex flex-col items-center gap-2 group"
-        >
-          <img
-            src="/logos/kinetick-logo.png"
-            alt="Kinetick"
-            style="height:30px; width:auto; object-fit:contain; opacity:0.8; transition:opacity 0.2s;"
-            class="group-hover:opacity-100"
-          />
-          <span class="text-[10px] tracking-[0.08em] uppercase" style="color:#b4b4b4;">Market Data Partner</span>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ——— FULL LOOP — minimal 5-column with connecting dashed line ——— -->
-  <section id="step-detail" class="py-20 md:py-28 bg-white border-y border-zinc-100">
-    <div class="max-w-6xl mx-auto px-6">
-
-      <!-- Header -->
-      <div class="text-center max-w-2xl mx-auto mb-14 lg:mb-20 fade-up">
-        <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-5 rounded-full" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Trading software, evolved</span>
-        </div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-4" style="color:#18181b;">
-          Your ultimate <span style="color:var(--aw-color-primary);">trading partner.</span>
-        </h2>
-        <p class="text-base md:text-lg leading-relaxed" style="color:#71717a;">
-          Built to support every stage of your trading — and adapt to the way you actually trade.
-        </p>
-      </div>
-
-      <!-- 5 columns + dashed connecting line on lg -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-12 lg:gap-x-4 relative fade-up">
-
-        <!-- Decorative connector: a single dashed horizontal line running across the icon row.
-             Hidden on mobile (cards stack), visible on lg+. Sits behind icon tiles. -->
-        <div class="hidden lg:block absolute left-[10%] right-[10%] border-t border-dashed pointer-events-none" style="top:32px;border-color:rgba(5,150,105,0.28);" aria-hidden="true"></div>
-
-        <!-- 01 Live Monitor -->
-        <div class="text-center relative">
-          <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 12h4l3-8 4 16 3-8h4"/>
-            </svg>
-          </div>
-          <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">01</p>
-          <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Live Monitor</h3>
-          <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Tracks behavioral pressure in real time, before mistakes.
-          </p>
-        </div>
-
-        <!-- 02 Guard -->
-        <div class="text-center relative">
-          <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/>
-              <path d="M9 12l2 2 4-4"/>
-            </svg>
-          </div>
-          <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">02</p>
-          <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Guard</h3>
-          <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Intervenes when you diverge — from a quiet notification to a typed acknowledgment, trading pause, or broker disconnect.
-          </p>
-        </div>
-
-        <!-- 03 Journal -->
-        <div class="text-center relative">
-          <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4z"/>
-              <path d="M4 4v18"/>
-              <path d="M8 8h6M8 12h6M8 16h4"/>
-            </svg>
-          </div>
-          <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">03</p>
-          <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Journal</h3>
-          <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Mood chips and quick notes in-session. Auto-compiled at close.
-          </p>
-        </div>
-
-        <!-- 04 Review & Intel -->
-        <div class="text-center relative">
-          <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border border-zinc-200 shadow-sm" style="box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M3 21h18"/>
-              <path d="M6 17V11"/>
-              <path d="M11 17V7"/>
-              <path d="M16 17v-4"/>
-              <path d="M21 17V9"/>
-            </svg>
-          </div>
-          <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">04</p>
-          <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Review &amp; Intel</h3>
-          <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Composure grades, weekday patterns, and what each slip cost you.
-          </p>
-        </div>
-
-        <!-- 05 Adaptive Learning -->
-        <div class="text-center relative">
-          <div class="relative mx-auto mb-5 flex items-center justify-center w-16 h-16 rounded-2xl bg-white border-2 border-emerald-600/40 shadow-sm" style="box-shadow:0 4px 14px -4px rgba(5,150,105,0.18), 0 1px 3px rgba(0,0,0,0.04);">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/>
-              <path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/>
-              <path d="M21 3v5h-5"/>
-              <path d="M3 21v-5h5"/>
-            </svg>
-          </div>
-          <p class="text-[11px] font-semibold tracking-[0.18em] mb-1.5" style="color:#a1a1aa;">05</p>
-          <h3 class="text-base md:text-lg font-bold mb-2" style="color:#18181b;">Adaptive Learning</h3>
-          <p class="text-sm leading-relaxed max-w-[200px] mx-auto" style="color:#71717a;">
-            Baseline refines every session — calibrated to your style, not a generic threshold.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Loop hint — closes the cycle in words -->
-      <div class="mt-14 lg:mt-16 text-center fade-up">
-        <p class="inline-flex items-center gap-2 text-sm" style="color:#71717a;">
-          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--aw-color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/>
-            <path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/>
-            <path d="M21 3v5h-5"/>
-            <path d="M3 21v-5h5"/>
-          </svg>
-          <span>Every session feeds back into <span class="font-semibold" style="color:#18181b;">01</span> — your edge compounds.</span>
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ——— SESSION HISTORY — before / after comparison ——— -->
-  <!-- ——— SEVEN DIMENSIONS ——— -->
-  <section class="section bg-zinc-50/90 dark:bg-zinc-900/40 border-y border-zinc-200/80 dark:border-zinc-800">
-    <div class="container-wide">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <p class="eyebrow mb-4 fade-up">Behavioral signals</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-5 fade-up">
-          What Meridian watches for
-        </h2>
-        <p class="lead fade-up">
-          Seven behaviors that appear before a trader breaks the plan — calibrated to your own baseline, sharper the more you trade.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 fade-up">
-        {signals.map((s, i) => (
-          <div class="card card-hover p-5 flex items-start gap-4 shadow-sm shadow-zinc-900/5 ring-1 ring-zinc-900/[0.03]">
-            <span class="shrink-0 mt-0.5 w-7 h-7 rounded-lg bg-[rgba(75,115,78,0.12)] dark:bg-emerald-900/30 text-[var(--aw-color-logo-green)] dark:text-emerald-400 text-xs font-semibold flex items-center justify-center">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <div>
-              <h3 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">{s.name}</h3>
-              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{s.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="text-center mt-10">
-        <a href="/features#seven-dimensions" class="btn-tertiary">
-          Read the technical detail
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <div class="w-px h-8 self-center bg-zinc-200" aria-hidden="true"></div>
+        <a href="https://kinetick.com/NinjaTrader" target="_blank" rel="noopener noreferrer" aria-label="Kinetick — official market data partner" class="flex flex-col items-center gap-2 group">
+          <img src="/logos/kinetick-logo.png" alt="Kinetick" style="height:28px; width:auto; object-fit:contain; opacity:0.85; transition:opacity 0.2s;" class="group-hover:opacity-100" />
+          <span class="text-[10px] tracking-[0.08em] uppercase text-zinc-400">Market Data Partner</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ——— INTEL — centered headline + sub, then tabs left (48%) + sticky 16:9 right (52%) ——— -->
-  <section
-    id="intel-showcase"
-    class="py-16 lg:py-24 px-6 border-y border-zinc-200/70 bg-[#FEFEFE] dark:bg-zinc-900 dark:border-zinc-800"
-  >
-    <div class="max-w-6xl mx-auto">
-      <div class="max-w-xl mb-4 lg:mb-5">
-        <div
-          class="inline-flex items-center gap-2.5 border px-4 py-1.5 rounded-full"
-          style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
-        >
-          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-          <span class="text-[11px] font-semibold tracking-[0.12em]" style="color:var(--aw-color-primary);">Review, Analysis &amp; Intel</span>
-        </div>
-      </div>
-
-      <div class="text-center max-w-3xl xl:max-w-4xl mx-auto mb-5 md:mb-6 lg:mb-7 fade-up">
-        <h2 class="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight text-balance text-zinc-900 dark:text-zinc-100">
-          Make discipline measurable.
-        </h2>
-        <p class="text-base md:text-lg leading-relaxed mt-3 text-zinc-600 dark:text-zinc-400">
-          For the first time, see what your discipline is actually costing you — composure grades, weekday patterns, and the PnL impact of every behavioral slip. Journals show what happened. Meridian shows why, and what to do next.
-        </p>
-      </div>
-
-      <div class="lg:grid lg:grid-cols-[48%_52%] lg:gap-12 lg:items-stretch fade-up" data-intel-showcase>
-        <!-- Left column -->
-        <div class="max-lg:mb-8 w-full min-w-0 lg:self-stretch">
-          <div class="space-y-1" role="tablist" aria-label="Intel views">
-            {intelShowcaseTabs.map((tab, i) => (
-              <button
-                type="button"
-                role="tab"
-                id={`intel-tab-${i}`}
-                data-intel-tab
-                aria-selected={i === 0 ? 'true' : 'false'}
-                aria-controls="intel-showcase-panel"
-                tabindex={i === 0 ? 0 : -1}
-                class:list={['intel-tab-item acc-item w-full', { 'acc-item-active': i === 0 }]}
-              >
-                <span class="flex items-start gap-4 p-5">
-                  <span class="acc-item-icon flex-shrink-0 p-2 rounded-lg mt-0.5" aria-hidden="true" set:html={tab.icon} />
-                  <span class="flex-1 min-w-0 text-left">
-                    <span class="acc-item-title text-base font-semibold block">
-                      <span class="acc-item-num text-xs font-semibold tracking-widest mr-1">{String(i + 1).padStart(2, '0')} —</span>
-                      {tab.title}
-                    </span>
-                    <span class="intel-tab-sub mt-1 block text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{tab.sub}</span>
-                  </span>
-                  <svg
-                    class="acc-chevron w-4 h-4 shrink-0 mt-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <!-- Right column: fills same height as left column -->
-        <div class="min-w-0 lg:flex lg:flex-col">
-          <div
-            class="relative overflow-hidden rounded-xl mb-8 lg:mb-0 shadow-sm ring-1 ring-zinc-900/[0.06] dark:ring-zinc-700/80 lg:flex-1 aspect-video lg:aspect-auto"
-            style="position: relative; isolation: isolate; z-index: 0; width: 100%; min-height: 0; background: #1C1C1E;"
-            id="intel-showcase-panel"
-            role="tabpanel"
-            aria-labelledby="intel-tab-0"
-          >
-            {intelShowcaseTabs.map((tab, ti) => (
-              <div
-                class:list={['intel-tab-view', { 'is-active': ti === 0 }]}
-                style="position: absolute; inset: 0; overflow: hidden;"
-                data-intel-view={ti}
-                aria-hidden={ti === 0 ? 'false' : 'true'}
-              >
-                {tab.slides.map((slide, si) => (
-                  <img
-                    data-intel-slide
-                    src={slide.src}
-                    alt={slide.alt}
-                    class:list={['intel-showcase-img', { 'is-active': ti === 0 && si === 0 }]}
-                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center;"
-                    loading={ti === 0 && si === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                  />
-                ))}
-              </div>
-            ))}
-
-            <!-- Prev / Next — inside frame, vertically centred, visibility-toggled so frame never resizes -->
-            <button
-              type="button"
-              data-intel-carousel-prev
-              aria-label="Previous screenshot"
-              aria-hidden="true"
-              tabindex="-1"
-              style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
-            >
-              <svg style="width:17px;height:17px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              data-intel-carousel-next
-              aria-label="Next screenshot"
-              aria-hidden="true"
-              tabindex="-1"
-              style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 30; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.22); color: #fff; cursor: pointer; transition: background 0.15s ease; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);"
-            >
-              <svg style="width:15px;height:15px;flex-shrink:0;" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ——— VIDEO DEMO ——— -->
-  <section id="video-demo" class="py-16 md:py-20 px-6 bg-white border-b border-zinc-100">
-    <div class="max-w-3xl mx-auto text-center">
-      <!-- Eyebrow -->
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3 fade-up" style="color:var(--aw-color-primary);">See It In Action</p>
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 fade-up" style="color:#18181b;">
-        Watch how Meridian works
+  <!-- ───────────────────────── SUPERSET ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Every other tool does one piece.<br />Meridian does all of it.
       </h2>
-      <p class="text-sm text-zinc-500 mb-8 fade-up">A quick walkthrough of real-time PSI monitoring and Guard enforcement inside NinjaTrader 8.</p>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Keep the safety net you already trust. Gain the layer none of them have.</p>
+    </div>
+    <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
+        <ul class="space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
+        <ul class="space-y-3 text-zinc-800">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection &mdash; 7 signals (revenge, oversizing, tilt&hellip;)</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade &mdash; not a generic average</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>It steps in <em>before</em> the order, not after the loss</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor &middot; guard &middot; journal &middot; review</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
+      </div>
+    </div>
+    <div data-reveal class="max-w-3xl mx-auto mt-10 rounded-2xl calloutd px-8 py-9 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">A LIMIT REACTS. MERIDIAN PREVENTS.</p>
+      <p class="text-lg md:text-xl leading-relaxed text-zinc-200">
+        A $500 daily loss limit can't stop you until you're already down <span class="text-rose-400 font-semibold tnum">&minus;$500</span> &mdash; four revenge trades too late.<br class="hidden md:block" />
+        Meridian catches the revenge trading at <span class="text-emerald-400 font-semibold">trade two</span>, before the damage is done.
+      </p>
+    </div>
+  </section>
 
-      <!-- Video embed — click thumbnail to load player -->
-      <div class="fade-up">
-        <div
-          id="yt-facade"
-          class="relative mx-auto rounded-xl overflow-hidden cursor-pointer group shadow-lg ring-1 ring-zinc-200"
-          style="max-width:720px; aspect-ratio:16/9; background:#0f0f0f;"
-          data-yt-id="_LQIzJS2lA8"
-          role="button"
-          tabindex="0"
-          aria-label="Play Meridian product demo"
-        >
-          <!-- Thumbnail -->
-          <img
-            id="yt-thumb"
-            src="https://i.ytimg.com/vi/_LQIzJS2lA8/maxresdefault.jpg"
-            alt="Meridian demo video thumbnail"
-            class="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-          />
-          <!-- Dark overlay on hover -->
-          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-200"></div>
-          <!-- Play button -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="w-16 h-16 rounded-full bg-white/95 group-hover:scale-110 transition-transform duration-200 flex items-center justify-center shadow-md">
-              <svg class="w-6 h-6 text-zinc-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-          </div>
+  <!-- ───────────────────────── WHY IT MATTERS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY IT MATTERS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Most blown accounts aren't<br />bad strategy. They're one bad session.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
+          The strategy you spent months on rarely fails you. One session does &mdash; the entries you'd have rejected
+          yesterday, the size you'd ruled out, the stop you moved twice. A daily loss limit catches that at the end.
+          Meridian catches the behavior that's causing it.
+        </p>
+      </div>
+      <div data-reveal class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
+        <div class="rounded-2xl border border-zinc-200 p-6"><div class="text-3xl font-extrabold text-zinc-900 tnum">$89&ndash;540</div><div class="mt-2 text-sm text-zinc-600">A prop-firm evaluation. Lost if you fail it.</div></div>
+        <div class="rounded-2xl border border-zinc-200 p-6"><div class="text-3xl font-extrabold text-zinc-900 tnum">$300&ndash;800</div><div class="mt-2 text-sm text-zinc-600">One revenge session &mdash; and the funded account it can blow.</div></div>
+        <div class="rounded-2xl border-2 border-emerald-500 p-6"><div class="text-3xl font-extrabold text-emerald-700 tnum">$49.99</div><div class="mt-2 text-sm text-zinc-600">Meridian. One month.</div></div>
+      </div>
+      <p class="text-center mt-5 text-xs text-zinc-400 max-w-2xl mx-auto">
+        Illustrative &mdash; prop-firm fees are publicly listed; session-loss ranges are self-reported by users. Meridian does not guarantee trading results.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── LIVE MONITOR ───────────────────────── -->
+  <section id="how" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center scroll-mt-24">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">LIVE MONITOR</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        It watches how you trade &mdash;<br />not just how much you've lost.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Meridian turns your order flow into one live score from 0&ndash;100, updated in under 100ms after every fill. When tilt
+        creeps in, you watch the number fall &mdash; before your P&amp;L does.
+      </p>
+      <ul class="mt-6 space-y-3 text-zinc-700">
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Seven behavioral signals in one number &mdash; so you can see your discipline in real time</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Measured against <em>your</em> baseline, not a generic average</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An always-on HUD that sits over your chart</span></li>
+      </ul>
+    </div>
+    <div data-reveal class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars" /></div>
+  </section>
+
+  <!-- ───────────────────────── 7 SIGNALS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT IT CATCHES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The 7 behaviors that quietly kill accounts.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Every one is scored in real time, against your own history.</p>
+      </div>
+      <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Revenge entries</div><p class="mt-1 text-sm text-zinc-600">Re-entering too fast after a loss, at bigger size.</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Stop manipulation</div><p class="mt-1 text-sm text-zinc-600">Widening or moving your stop against a losing trade.</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Size spikes</div><p class="mt-1 text-sm text-zinc-600">Sizing past your own rule &mdash; worse on losing streaks.</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Hold bias</div><p class="mt-1 text-sm text-zinc-600">Holding losers far longer than winners. (Cutting losses fast is never penalized.)</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Position overstay</div><p class="mt-1 text-sm text-zinc-600">Sitting in a losing trade past your own tolerance.</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Rule violations</div><p class="mt-1 text-sm text-zinc-600">Trading outside the rules you set &mdash; time, stops, streaks.</p></div>
+        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5 sm:col-span-2 lg:col-span-1"><div class="font-semibold text-zinc-900">Overtrading pace</div><p class="mt-1 text-sm text-zinc-600">Entries speeding up past your normal rhythm.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── GUARD ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div data-reveal class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard — your own rules with an escalating enforcement ladder and Strict Lock" /></div>
+    <div data-reveal class="order-1 lg:order-2">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">MERIDIAN GUARD</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Willpower is not a risk strategy.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you
+        decide: a quiet nudge, a typed acknowledgment, a trading pause, or a full broker disconnect.
+      </p>
+      <p class="mt-4 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for a window you choose &mdash; for when the tilted version of you wants to switch it off.</p>
+      <p class="mt-4 text-sm text-zinc-500">Guard never closes your live positions for you. It stops you <em>adding</em> risk &mdash; you can always exit, any time.</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── THE WHOLE LOOP ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-14">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE WHOLE LOOP</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One tool for the whole job.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Others sell you one piece &mdash; a limit, a journal, a dashboard. Meridian is the whole loop, and every session makes the next one sharper.
+        </p>
+      </div>
+      <div data-reveal class="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div><div class="text-zinc-900 font-semibold mb-1">Plan</div><p class="text-sm text-zinc-600">Your one risk for today, before the open.</p></div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div><div class="text-zinc-900 font-semibold mb-1">Monitor</div><p class="text-sm text-zinc-600">A live read on your discipline.</p></div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div><div class="text-zinc-900 font-semibold mb-1">Guard</div><p class="text-sm text-zinc-600">Enforcement when you cross your line.</p></div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div><div class="text-zinc-900 font-semibold mb-1">Journal</div><p class="text-sm text-zinc-600">What happened, captured in the moment.</p></div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">05</div><div class="text-zinc-900 font-semibold mb-1">Review</div><p class="text-sm text-zinc-600">Edge vs luck, and the habit to fix.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── INTEL & STATS (carousel) ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">See what tilt actually<br />costs you.</h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Pick any date range and break your trading down by time of day, hold time, instrument, and long vs short. Meridian
+        puts a dollar figure on the difference between your <span class="text-emerald-700 font-semibold">composed</span>
+        sessions and your <span class="text-rose-600 font-semibold">tilted</span> ones &mdash; so discipline stops being a feeling.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-4 max-w-md">
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5"><div class="text-xs text-zinc-500 mb-1">When you're composed</div><div class="text-3xl font-bold text-emerald-700 tnum">+$1,008<span class="text-base font-medium text-zinc-400">/session</span></div></div>
+        <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5"><div class="text-xs text-zinc-500 mb-1">When you're tilted</div><div class="text-3xl font-bold text-rose-600 tnum">&minus;$247<span class="text-base font-medium text-zinc-400">/session</span></div></div>
+      </div>
+      <p class="mt-3 max-w-md text-xs text-zinc-400">Example figures shown for illustration. Meridian does not guarantee trading results.</p>
+    </div>
+    <div data-carousel data-reveal class="relative">
+      <div class="win">
+        <div class="relative bg-[#0b0b0d] rounded-[10px] overflow-hidden" style="height:min(64vh,560px)">
+          <div data-slide data-cap="Stats — composed vs tilted, your equity curve, and the metrics that matter" style="display:none"><img src="/m/stats-1.png" class="w-full h-full object-contain object-top" alt="Meridian Intel — Stats: composed vs tilted P&L, equity curve, win rate, profit factor, expectancy" /></div>
+          <div data-slide data-cap="Stats — risk, tempo, and your edge sliced four ways" style="display:none"><img src="/m/stats-2.png" class="w-full h-full object-contain object-top" alt="Meridian Intel — Stats breakdowns: drawdown, daily Sharpe, win/loss streaks, P&L by weekday, by side, by hold time" /></div>
+          <div data-slide data-cap="Patterns — your composure calendar, month over month" style="display:none"><img src="/m/patterns.png" class="w-full h-full object-contain object-top" alt="Meridian Patterns — monthly composure calendar with Stable/Caution/Warning/Critical days, trend charts, discipline-vs-outcome map" /></div>
+          <div data-slide data-cap="Insights — where you stand, every session" style="display:none"><img src="/m/intel.png" class="w-full h-full object-contain object-top" alt="Meridian Intel — Insights: PSI × P&L correlation, weekday patterns, monthly digest" /></div>
+        </div>
+      </div>
+      <button data-prev aria-label="Previous" class="absolute left-1 md:-left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1">&#8249;</button>
+      <button data-next aria-label="Next" class="absolute right-1 md:-right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1">&#8250;</button>
+      <div class="mt-4 text-center">
+        <p data-caption class="text-xs font-medium text-zinc-600 mb-3 min-h-[16px]"></p>
+        <div class="flex justify-center items-center gap-2">
+          <button data-dot aria-label="Go to slide 1" class="h-2 rounded-full transition-all"></button>
+          <button data-dot aria-label="Go to slide 2" class="h-2 rounded-full transition-all"></button>
+          <button data-dot aria-label="Go to slide 3" class="h-2 rounded-full transition-all"></button>
+          <button data-dot aria-label="Go to slide 4" class="h-2 rounded-full transition-all"></button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ───────────────────────── TESTIMONIALS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM EARLY-ACCESS TRADERS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Traders who didn't believe it either.</h2>
+        <p class="mt-3 text-sm text-zinc-500">Real quotes from our first users &mdash; anonymous by design.</p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"It's the first tool that actually catches me mid-session, when I'm tilting &mdash; not in the journal hours later."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">Independent trader</figcaption></figure>
+        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"I've restarted funded accounts more times than I want to count. A revenge-entry detector mattered more than another indicator &mdash; I wouldn't have believed that."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">Prop-firm trader</figcaption></figure>
+        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own rules. Took data to admit it."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">ES / NQ futures</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── TRUST / CREDIBILITY ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Official NinjaTrader Ecosystem Vendor</div><p class="text-sm text-zinc-600">Audited and approved by NinjaTrader's Compliance, QA &amp; Executive teams &mdash; the product you install is the one they audited and tested.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first; the only data that leaves is anonymized and opt-out.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Risk-free to try</div><p class="text-sm text-zinc-600">7-day free trial, no charge until day 7. If it won't run on a supported NinjaTrader 8 setup and we can't fix it, you get a full refund.</p></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── PRICING ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Start free. Keep what protects you.</h2>
+        <p class="mt-4 text-lg text-zinc-600">7-day free trial &middot; no charge until day 7 &middot; cancel anytime.</p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900">Meridian Core</div>
+          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$49.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
+          <p class="mt-3 text-sm text-zinc-600">The full real-time monitor, all seven behavioral signals, and 5-year session history.</p>
+          <a href={TRIAL} class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition">Start free trial</a>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
+          <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
+          <div class="font-semibold text-zinc-900">Meridian Guard</div>
+          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$69.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
+          <p class="mt-3 text-sm text-zinc-600">Everything in Core, plus automatic enforcement, Strict Lock, and the full Intel Layer.</p>
+          <a href={TRIAL} class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Trade the version of you<br />that you respect.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the part that actually saves the account.</p>
+      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
+
+  <!-- Design-system primitives (.win/.winsm/.halo/.tnum) now live in the global
+       stylesheet (src/assets/styles/tailwind.css → @layer components). -->
 
   <script>
-    const facade = document.getElementById('yt-facade');
-    if (facade) {
-      const play = () => {
-        const id = facade.dataset.ytId;
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-        iframe.allow = 'autoplay; encrypted-media; fullscreen';
-        iframe.allowFullscreen = true;
-        iframe.className = 'absolute inset-0 w-full h-full';
-        iframe.style.border = 'none';
-        facade.innerHTML = '';
-        facade.appendChild(iframe);
-        facade.style.cursor = 'default';
+    // Homepage interactivity: lightbox (click product screens to enlarge) + Intel carousel.
+    // Re-init on astro:page-load so it survives View Transitions.
+    function initHome() {
+      if (document.getElementById('m-lightbox')) return; // already initialised
+      // Lightbox
+      const lb = document.createElement('div');
+      lb.id = 'm-lightbox';
+      lb.style.cssText =
+        'position:fixed;inset:0;z-index:100;background:rgba(8,8,10,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out';
+      const img = document.createElement('img');
+      img.style.cssText = 'max-width:96vw;max-height:94vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)';
+      lb.appendChild(img);
+      document.body.appendChild(lb);
+      const close = () => {
+        lb.style.display = 'none';
       };
-      facade.addEventListener('click', play);
-      facade.addEventListener('keydown', (e) => { if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') play(); });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      document.querySelectorAll<HTMLImageElement>('.win img:not(.nozoom)').forEach((el) => {
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          img.src = el.currentSrc || el.src;
+          lb.style.display = 'flex';
+        });
+      });
+      // Carousels
+      document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((c) => {
+        const slides = Array.from(c.querySelectorAll<HTMLElement>('[data-slide]'));
+        const dots = Array.from(c.querySelectorAll<HTMLElement>('[data-dot]'));
+        const cap = c.querySelector<HTMLElement>('[data-caption]');
+        let i = 0;
+        const show = (n: number) => {
+          i = ((n % slides.length) + slides.length) % slides.length;
+          slides.forEach((s, k) => {
+            s.style.display = k === i ? 'block' : 'none';
+          });
+          dots.forEach((d, k) => {
+            d.style.width = k === i ? '22px' : '8px';
+            d.style.background = k === i ? '#059669' : '#d4d4d8';
+          });
+          if (cap) cap.textContent = slides[i].getAttribute('data-cap') || '';
+        };
+        const p = c.querySelector('[data-prev]');
+        const nx = c.querySelector('[data-next]');
+        if (p) p.addEventListener('click', () => show(i - 1));
+        if (nx) nx.addEventListener('click', () => show(i + 1));
+        dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
+        show(0);
+      });
     }
+    document.addEventListener('astro:page-load', initHome);
   </script>
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       SECTION A — A NEW CATEGORY (Story)
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative py-16 md:py-24 px-6 overflow-hidden" style="background:#f7f5f1; border-top:1px solid rgba(0,0,0,0.05);">
-    <div class="relative max-w-6xl mx-auto text-center">
-
-      <!-- Eyebrow -->
-      <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full fade-up" style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);">
-        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">A new category</span>
-      </div>
-
-      <!-- H2 -->
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight mb-5 word-blur-target" style="color:#18181b;">
-        We are not a better risk tool.<br />
-        <span style="color:var(--aw-color-primary);">We are a different stage.</span>
-      </h2>
-
-      <!-- Sub-headline -->
-      <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto fade-up mb-14" style="color:#71717a;">
-        Every other risk tool acts <em class="not-italic font-semibold text-zinc-700">after</em> the breach in discipline &mdash; but why?
-      </p>
-
-      <!-- ═══════ Timeline ═══════ -->
-      <div class="timeline-block max-w-5xl mx-auto">
-
-        <!-- Context label -->
-        <p class="text-base md:text-lg leading-relaxed text-center mb-7" style="color:#71717a;">When risk tools intervene</p>
-
-        <!-- Single merged meta row: simple stamps + dots (desktop only) -->
-        <div class="hidden md:grid grid-cols-4 gap-4 mb-3 relative" style="padding-bottom:24px;">
-          <!-- Axis line -->
-          <div class="timeline-axis-line absolute left-[12.5%] right-[12.5%] h-0.5 z-0" style="bottom:10px; background:rgba(113,113,122,0.45);" aria-hidden="true"></div>
-          <!-- Arrow -->
-          <div class="absolute z-10" style="left:calc(87.5% + 8px); bottom:4px;" aria-hidden="true">
-            <svg width="10" height="12" viewBox="0 0 10 14" fill="none"><path d="M1 1l8 6-8 6V1z" fill="#a1a1aa"/></svg>
-          </div>
-
-          <!-- Column 1: BEFORE THE ORDER -->
-          <div class="flex flex-col items-center gap-3 relative z-10">
-            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:var(--aw-color-primary);">Before the order</p>
-            <div class="timeline-dot timeline-dot-1 w-5 h-5 rounded-full ring-2 ring-white ring-offset-1" style="background:#064e3b; box-shadow:0 0 0 8px rgba(6,78,59,0.15);"></div>
-          </div>
-
-          <!-- Column 2: AT LIMIT -->
-          <div class="flex flex-col items-center gap-3 relative z-10">
-            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:#18181b;">At limit</p>
-            <div class="timeline-dot timeline-dot-2 w-3 h-3 rounded-full bg-white border-2 border-zinc-400"></div>
-          </div>
-
-          <!-- Column 3: AFTER DAMAGE -->
-          <div class="flex flex-col items-center gap-3 relative z-10">
-            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:#18181b;">After damage</p>
-            <div class="timeline-dot timeline-dot-3 w-3 h-3 rounded-full bg-white border-2 border-zinc-400"></div>
-          </div>
-
-          <!-- Column 4: POST-SESSION -->
-          <div class="flex flex-col items-center gap-3 relative z-10">
-            <p class="text-[15px] font-bold tracking-[0.18em] uppercase leading-tight" style="color:#18181b;">Post-session</p>
-            <div class="timeline-dot timeline-dot-4 w-3 h-3 rounded-full bg-white border-2 border-zinc-400"></div>
-          </div>
-        </div>
-
-        <!-- Cards — mirror image-2 layout exactly; Stage 1 light, others white -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6 items-stretch">
-
-          <!-- Stage 1 — Meridian (background image, slightly more padding) -->
-          <div class="timeline-card timeline-card-1 relative rounded-2xl p-6 md:p-7 text-left flex flex-col overflow-hidden" style="border:2px solid var(--aw-color-primary); box-shadow: 0 24px 48px -16px rgba(5,150,105,0.30), 0 8px 20px -12px rgba(5,150,105,0.14), 0 3px 8px -3px rgba(0,0,0,0.06); background-image: url('/images/card-bg.jpg'); background-size: cover; background-position: center;">
-            <!-- Overlay so text stays readable -->
-            <div class="absolute inset-0 rounded-2xl" style="background:rgba(255,255,255,0.82); pointer-events:none;"></div>
-            <span class="absolute z-10 top-2.5 left-3 text-[9px] font-bold tracking-[0.18em] uppercase rounded px-1.5 py-0.5" style="background:var(--aw-color-primary); color:white;">New category</span>
-            <div class="relative z-10 mb-4 mt-2">
-              <svg width="36" height="36" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                <path d="M19 3L7 8.5v10.5c0 7.5 5.2 14.5 12 16.3C25.8 33.5 31 26.5 31 19V8.5L19 3z" stroke="var(--aw-color-primary)" stroke-width="1.4" fill="none"/>
-                <rect x="13" y="16" width="2.2" height="8" rx="1" fill="var(--aw-color-primary)"/>
-                <rect x="16.4" y="13" width="2.2" height="11" rx="1" fill="var(--aw-color-primary)"/>
-                <rect x="19.8" y="17.5" width="2.2" height="6.5" rx="1" fill="var(--aw-color-primary)"/>
-                <rect x="23.2" y="14.5" width="2.2" height="9.5" rx="1" fill="var(--aw-color-primary)"/>
-              </svg>
-            </div>
-            <p class="relative z-10 text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#064e3b;">Preventive<br />Risk Control</p>
-            <!-- Green bar — identical to competitor cards -->
-            <div class="relative z-10 w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
-            <div class="relative z-10 flex items-center gap-2 mb-6">
-              <svg class="shrink-0" width="16" height="16" viewBox="0 0 17 17" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="7.75" stroke="var(--aw-color-primary)" stroke-width="1.2"/><path d="M5 8.5l2.5 2.5 4.5-4.5" stroke="var(--aw-color-primary)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <p class="text-sm font-semibold leading-snug" style="color:var(--aw-color-primary);">Stops the mistake before it becomes a trade.</p>
-            </div>
-            <!-- Product name at bottom — mirrors competitor Products slot -->
-            <div class="relative z-10 pt-4 border-t border-emerald-100">
-              <p class="text-sm font-semibold leading-snug" style="color:var(--aw-color-primary);">Meridian PSI / Guard</p>
-            </div>
-          </div>
-
-          <!-- Stage 2 — Threshold -->
-          <div class="timeline-card timeline-card-2 rounded-2xl p-6 md:p-7 text-left bg-white flex flex-col" style="border:1px solid rgba(0,0,0,0.07); box-shadow: 0 16px 30px -18px rgba(0,0,0,0.14), 0 5px 12px -8px rgba(0,0,0,0.07);">
-            <div class="mb-4 mt-2">
-              <svg width="36" height="36" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                <path d="M6 28a13 13 0 1 1 26 0" stroke="#b0b0bc" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-                <path d="M19 28l-5-9" stroke="#b0b0bc" stroke-width="1.4" stroke-linecap="round"/>
-                <circle cx="19" cy="28" r="1.5" fill="#b0b0bc"/>
-              </svg>
-            </div>
-            <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Threshold<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
-            <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts at limits.</p>
-            <div class="pt-4 border-t border-zinc-100">
-              <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
-              <p class="text-sm font-semibold leading-snug" style="color:#18181b;">Arty · ClickAlgo · RiskMaster</p>
-            </div>
-          </div>
-
-          <!-- Stage 3 — Corrective -->
-          <div class="timeline-card timeline-card-3 rounded-2xl p-6 md:p-7 text-left bg-white flex flex-col" style="border:1px solid rgba(0,0,0,0.07); box-shadow: 0 16px 30px -18px rgba(0,0,0,0.14), 0 5px 12px -8px rgba(0,0,0,0.07);">
-            <div class="mb-4 mt-2">
-              <svg width="36" height="36" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                <path d="M19 6L4 32h30L19 6z" stroke="#b0b0bc" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-                <line x1="19" y1="16" x2="19" y2="24" stroke="#b0b0bc" stroke-width="1.4" stroke-linecap="round"/>
-                <circle cx="19" cy="27.5" r="1.2" fill="#b0b0bc"/>
-              </svg>
-            </div>
-            <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Corrective<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
-            <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts after damage.</p>
-            <div class="pt-4 border-t border-zinc-100">
-              <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
-              <p class="text-sm font-semibold leading-snug" style="color:#18181b;">Auto-flatten · Broker lockout</p>
-            </div>
-          </div>
-
-          <!-- Stage 4 — Analytical -->
-          <div class="timeline-card timeline-card-4 rounded-2xl p-6 md:p-7 text-left bg-white flex flex-col" style="border:1px solid rgba(0,0,0,0.07); box-shadow: 0 16px 30px -18px rgba(0,0,0,0.14), 0 5px 12px -8px rgba(0,0,0,0.07);">
-            <div class="mb-4 mt-2">
-              <svg width="36" height="36" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                <circle cx="19" cy="19" r="13" stroke="#b0b0bc" stroke-width="1.4" fill="none"/>
-                <path d="M19 19V6" stroke="#b0b0bc" stroke-width="1.4" stroke-linecap="round"/>
-                <path d="M19 19l11 6.5" stroke="#b0b0bc" stroke-width="1.4" stroke-linecap="round"/>
-                <path d="M19 19L6 17" stroke="#b0b0bc" stroke-width="1.4" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <p class="text-xl md:text-2xl font-bold leading-[1.1] mb-4" style="color:#18181b;">Analytical<br />Risk Control</p>
-            <div class="w-7 h-0.5 mb-4" style="background:var(--aw-color-primary);"></div>
-            <p class="text-sm leading-relaxed mb-6" style="color:#71717a;">Acts after the session.</p>
-            <div class="pt-4 border-t border-zinc-100">
-              <p class="text-[10px] font-bold tracking-[0.14em] uppercase mb-1" style="color:#a1a1aa;">Products</p>
-              <p class="text-sm font-semibold leading-snug" style="color:#18181b;">Tradervue · Edgewonk · TraderSync</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- ═══════ End Timeline ═══════ -->
-
-      <!-- Punchline — revealed by JS timeline sequence -->
-      <div id="timeline-punchline" class="mt-20 max-w-3xl mx-auto">
-        <p class="text-sm md:text-base text-zinc-900 mb-2">Stages 2&ndash;4 have existed since day trading began.</p>
-        <p class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight" style="color:#18181b;">
-          Stage 1 never did &mdash; <span style="color:var(--aw-color-primary);">until Meridian.</span>
-        </p>
-      </div>
-
-      <!-- Bridge to Section B -->
-      <div class="mt-16 max-w-2xl mx-auto pt-6 border-t border-zinc-300/50">
-        <p class="text-sm text-zinc-500">
-          Full feature breakdown below.
-        </p>
-      </div>
-    </div>
-
-    <!-- Scoped initial state — JS IntersectionObserver drives the reveal sequence -->
-    <style>
-      /* All timeline elements start invisible; JS adds transitions and reveals them */
-      .timeline-block .timeline-axis-line {
-        transform: scaleX(0);
-        transform-origin: left center;
-      }
-      .timeline-block .timeline-dot,
-      .timeline-block .timeline-card {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      #timeline-punchline {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      /* Instant reveal for reduced-motion users */
-      @media (prefers-reduced-motion: reduce) {
-        .timeline-block .timeline-axis-line { transform: scaleX(1) !important; }
-        .timeline-block .timeline-dot,
-        .timeline-block .timeline-card { opacity: 1 !important; transform: none !important; }
-        .timeline-block .timeline-card-1 { transform: translateY(-4px) !important; }
-        #timeline-punchline { opacity: 1 !important; transform: none !important; }
-      }
-    </style>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════════════
-       SECTION B — CAPABILITY COMPARISON (Proof)
-       ═══════════════════════════════════════════════════════════════ -->
-  <section class="relative py-16 md:py-20 px-6 bg-white border-t border-zinc-100">
-    <div class="relative max-w-6xl mx-auto text-center">
-
-      <!-- Eyebrow -->
-      <div class="inline-flex items-center gap-2.5 border border-zinc-200 px-4 py-1.5 mb-5 rounded-full fade-up bg-zinc-50">
-        <span class="w-1.5 h-1.5 rounded-full bg-zinc-400" aria-hidden="true"></span>
-        <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-zinc-500">Reference</span>
-      </div>
-
-      <!-- H2 -->
-      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight mb-3" style="color:#18181b;">
-        Capability comparison
-      </h2>
-
-      <!-- Sub-headline -->
-      <p class="text-base leading-relaxed max-w-2xl mx-auto fade-up mb-10" style="color:#71717a;">
-        Side-by-side against trade journals and traditional risk management tools.
-      </p>
-
-      <div class="max-w-6xl mx-auto fade-up text-left">
-        <div class="rounded-2xl border border-zinc-200 bg-white shadow-sm">
-          <div class="overflow-x-auto rounded-2xl p-1">
-            <div class="relative isolate min-w-[980px]">
-              <!-- Single outline for Meridian column (avoids stacked borders + corner clipping) -->
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 z-0 w-1/4 rounded-tr-xl rounded-br-xl border border-emerald-600/20"
-                aria-hidden="true"
-              ></div>
-              <div class="relative z-[1]">
-            <div class="grid grid-cols-4 items-center bg-zinc-50 border-b border-zinc-200">
-              <div class="p-4 text-sm font-semibold text-zinc-700">Capability</div>
-              <div class="p-4 text-sm font-semibold text-zinc-700">Trade Journals</div>
-              <div class="p-4 text-sm font-semibold text-zinc-700">Traditional Risk Management</div>
-              <div class="p-4 text-sm font-semibold text-emerald-700">Meridian · Full Loop</div>
-            </div>
-
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
-              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 1: Live Trading Protection</div>
-              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Works during live trading</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Protects when loss / size limits hit</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Warns before mistake</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects overtrading pace</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">Trade-count only</div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects revenge trading</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Detects stop-moving / holding losers</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center">After session</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>live</span></div>
-            </div>
-
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
-              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 2: Data &amp; Journal</div>
-              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Trade Journal</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-600 flex items-center gap-1.5"><span class="text-[19px] leading-none text-zinc-700">✓</span><span>After session</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>Live + after</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">History</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Limited</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>5yrs</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Statistics</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Limited</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Behavior &amp; Composure</div>
-              <div class="p-4 flex items-center"><span class="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">Manual &amp; limited</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center gap-1"><span class="text-[19px] leading-none">✓</span><span>7+ trading patterns</span></div>
-            </div>
-
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100 bg-zinc-50/70">
-              <div class="col-span-3 px-4 py-2 text-xs font-semibold text-zinc-600">Section 3: Analysis &amp; Improvement</div>
-              <div class="bg-zinc-50/70 min-h-[2.25rem]" aria-hidden="true"></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Weekly / monthly patterns</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Progress over time</div>
-              <div class="p-4 text-[15px] font-normal text-zinc-700 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Identifies behavioral strengths</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Identifies behavioral weaknesses</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center border-b border-zinc-100">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Advanced Composure x PnL correlation</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-            <div class="grid grid-cols-4 items-center">
-              <div class="p-4 text-[15px] font-normal leading-snug text-zinc-700">Personalized guide to improve composure</div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal flex items-center"><span class="text-[19px] leading-none text-zinc-500">—</span></div>
-              <div class="p-4 text-[15px] font-normal text-emerald-600 flex items-center"><span class="text-[19px] leading-none">✓</span></div>
-            </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="text-xs text-center mt-2 md:hidden" style="color:#a1a1aa;">← Swipe to see full comparison →</p>
-
-      <p class="text-sm leading-relaxed max-w-3xl mx-auto mt-6 fade-up" style="color:#71717a;">
-        Meridian is a different category — a behavioral leading indicator that fires before any hard limit would need to. The first tool that makes trading discipline measurable in real time.
-      </p>
-    </div>
-  </section>
-
-  <!-- ——— MERIDIAN GUARD — mini-hero: hook + CTA, no product screenshots ——— -->
-  <section
-    id="meridian-guard"
-    class="section border-y border-zinc-200/60 dark:border-zinc-800 overflow-hidden bg-gradient-to-br from-zinc-50 via-zinc-100/90 to-emerald-50/50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-800/80"
-  >
-    <div class="container-wide max-w-6xl">
-      <div class="grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-10 lg:gap-14 items-center">
-        <div class="text-center lg:text-left">
-          <div
-            class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-6 rounded-full"
-            style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
-          >
-            <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">Meridian Guard</span>
-          </div>
-          <h2
-            class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.12] mb-5 text-balance"
-          >
-            You write the rules.{' '}
-            <span class="text-emerald-700 dark:text-emerald-500">Guard enforces them.</span>
-          </h2>
-          <p class="text-base md:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-6">
-            Willpower is not a risk strategy. Guard acts as your personal compliance system, helping stop mistakes before they happen — with alerts, typed acknowledgments, countdowns, confirmation-required mode, and broker disconnect.
-          </p>
-          <div
-            class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-8"
-            aria-label="Guard at a glance"
-          >
-            <span
-              class="inline-flex items-center rounded-full border border-zinc-200/90 bg-zinc-100/70 dark:border-zinc-700/90 dark:bg-zinc-800/50 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-600 dark:text-zinc-300"
-              >7 behavioral signals</span
-            >
-            <span
-              class="inline-flex items-center rounded-full border border-zinc-200/90 bg-zinc-100/70 dark:border-zinc-700/90 dark:bg-zinc-800/50 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-600 dark:text-zinc-300"
-              >5 automated responses</span
-            >
-            <span
-              class="inline-flex items-center rounded-full border border-zinc-200/90 bg-zinc-100/70 dark:border-zinc-700/90 dark:bg-zinc-800/50 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-zinc-600 dark:text-zinc-300"
-              >Native NT8 add-on</span
-            >
-          </div>
-          <a href="/guard" class="btn-primary btn-lg w-full sm:w-auto inline-flex justify-center">
-            Explore Meridian Guard
-            <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-
-        <div
-          class="relative mx-auto w-full max-w-md aspect-[4/3] rounded-2xl border border-zinc-200/80 dark:border-zinc-700 bg-white/60 dark:bg-zinc-900/40 shadow-lg shadow-zinc-900/5 ring-1 ring-zinc-900/[0.04] backdrop-blur-sm flex items-center justify-center overflow-hidden"
-          aria-hidden="true"
-        >
-          <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-emerald-500/20 blur-3xl"></div>
-          <div class="absolute -bottom-20 -left-16 w-56 h-56 rounded-full bg-zinc-400/15 blur-2xl"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="relative w-[min(55%,200px)] aspect-square flex items-center justify-center">
-              <div class="absolute inset-0 rounded-3xl border-2 border-emerald-500/20 rotate-6"></div>
-              <div class="absolute inset-2 rounded-3xl border border-zinc-200/80 dark:border-zinc-600 -rotate-3"></div>
-              <svg
-                class="w-[45%] text-emerald-600 dark:text-emerald-500 drop-shadow-sm"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.25"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                ></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ——— TESTIMONIALS ——— -->
-  <section class="py-20 md:py-28 bg-gradient-to-b from-zinc-100/80 via-zinc-50 to-white border-y border-zinc-200/70 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 dark:border-zinc-800 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-6 mb-14 text-center">
-      <p class="eyebrow mb-4 fade-up">What traders say</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 fade-up">
-        From early access users
-      </h2>
-    </div>
-
-    <div
-      class="overflow-hidden"
-      style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);"
-    >
-      <!-- Row 1 -->
-      <div class="marquee-left flex w-max mb-4 will-change-transform">
-        {[...marqueeRow1, ...marqueeRow1].map((t, idx) => (
-          <div class="w-80 shrink-0 mx-2 card px-4 py-3" aria-hidden={idx >= marqueeRow1.length ? 'true' : 'false'}>
-            <div class="flex gap-0.5 mb-2 text-amber-600 dark:text-amber-400" aria-hidden="true">
-              {[0, 1, 2, 3, 4].map(() => (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-snug mb-3">"{t.quote}"</p>
-            <div class="flex items-center gap-2">
-              <div class="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-[11px] font-semibold flex items-center justify-center select-none">
-                {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
-              </div>
-              <div>
-                <p class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 leading-tight">{t.name}</p>
-                {t.role && <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-tight mt-0.5">{t.role}</p>}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- Row 2 -->
-      <div class="marquee-right flex w-max will-change-transform">
-        {[...marqueeRow2, ...marqueeRow2].map((t, idx) => (
-          <div class="w-80 shrink-0 mx-2 card px-4 py-3" aria-hidden={idx >= marqueeRow2.length ? 'true' : 'false'}>
-            <div class="flex gap-0.5 mb-2 text-amber-600 dark:text-amber-400" aria-hidden="true">
-              {[0, 1, 2, 3, 4].map(() => (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-3.5 h-3.5 fill-current shrink-0" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-snug mb-3">"{t.quote}"</p>
-            <div class="flex items-center gap-2">
-              <div class="w-6 h-6 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-[11px] font-semibold flex items-center justify-center select-none">
-                {t.name === 'Anonymous' ? '?' : t.name.charAt(0)}
-              </div>
-              <div>
-                <p class="text-xs font-semibold text-zinc-900 dark:text-zinc-100 leading-tight">{t.name}</p>
-                {t.role && <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-tight mt-0.5">{t.role}</p>}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ——— PARTNER PROGRAM ——— -->
-  <section class="py-14 px-6 border-t border-zinc-100 bg-white">
-    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div>
-        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-zinc-400 mb-1">For creators</p>
-        <h2 class="text-base font-bold text-zinc-900 mb-1">Partner Program</h2>
-        <p class="text-sm text-zinc-500 max-w-md">
-          If you create content for active NinjaTrader 8 traders, you can apply to earn 30% lifetime recurring commission. Your audience gets a permanent 10% discount.
-        </p>
-      </div>
-      <a
-        href="/partners"
-        class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-300 text-sm font-medium text-zinc-700 hover:border-zinc-500 hover:text-zinc-900 transition-colors"
-      >
-        View program details
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ——— FINAL CTA ——— -->
-  <CallToAction
-    actions={[
-      { variant: 'primary', text: 'Start 7-day free trial', href: '/pricing' },
-      { text: 'See pricing', href: '/pricing' },
-    ]}
-  >
-    <div slot="bg" class="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-100/90 via-white to-zinc-50/80 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-950" aria-hidden="true"></div>
-    <Fragment slot="tagline">NinjaTrader 8 · Windows</Fragment>
-    <Fragment slot="title">Stop the slip before it costs you another funded account.</Fragment>
-    <Fragment slot="subtitle">
-      7-day free trial · $49.99/mo after · NinjaTrader 8 required
-    </Fragment>
-  </CallToAction>
 </Layout>
-
-<style>
-  /* ——— Marquee ——— */
-  .marquee-left { animation: marquee-left 160s linear infinite; }
-  .marquee-right { animation: marquee-right 160s linear infinite; }
-  @keyframes marquee-left {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  @keyframes marquee-right {
-    from { transform: translateX(-50%); }
-    to   { transform: translateX(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-left,
-    .marquee-right {
-      animation: none;
-    }
-  }
-
-  /* ——— Accordion items (step-detail) ——— */
-  .acc-item {
-    border-radius: 0.75rem;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    outline: none;
-  }
-  .acc-item-num {
-    color: var(--aw-color-logo-green);
-    letter-spacing: 0.08em;
-  }
-  .acc-item:focus-visible { box-shadow: 0 0 0 2px var(--aw-color-logo-green); }
-  .acc-item-title { color: #52525b; transition: color 0.2s ease; }
-  .acc-item-icon {
-    background: rgba(75, 115, 78, 0.12);
-    color: var(--aw-color-logo-green);
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  .acc-item-body {
-    transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-    max-height: 0;
-  }
-  .acc-chevron {
-    color: rgba(0,0,0,0.18);
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
-  }
-  /* Active state */
-  .acc-item-active {
-    background: white;
-    border-color: var(--aw-color-logo-green);
-    box-shadow: 0 2px 16px rgba(75, 115, 78, 0.12);
-  }
-  .acc-item-active .acc-item-title { color: #18181b; }
-  .acc-item-active .acc-item-num { color: var(--aw-color-logo-green); }
-  .acc-item-active .acc-item-icon { background: var(--aw-color-logo-green); color: white; }
-  .acc-item-active .acc-chevron { opacity: 1; transform: translateX(0); color: rgba(0,0,0,0.3); }
-  /* Hover */
-  .acc-item:not(.acc-item-active):hover { background: rgba(0,0,0,0.025); border-color: rgba(0,0,0,0.08); }
-  .acc-item:not(.acc-item-active):hover .acc-item-title { color: #18181b; }
-
-  /* Image cross-fade — absolute stacking inside square container */
-  .acc-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: opacity 0.4s ease;
-    opacity: 0;
-    z-index: 0;
-  }
-  .acc-img.acc-img-visible {
-    z-index: 1;
-  }
-  .acc-img.acc-img--cover {
-    object-fit: cover;
-    object-position: center;
-  }
-  /* Guard hero (~1170×677): center in 16:9 so rounded panel never clips the bitmap */
-  .acc-img.acc-img--guard-fit {
-    inset: 0;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    margin: auto;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  /* Live Monitor (4 stages): in-panel carousel — same cross-fade pattern as Intel showcase */
-  .acc-step-carousel-root {
-    overflow: hidden;
-  }
-  .acc-step-carousel-inner {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-  .acc-step-slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: opacity 0.35s ease;
-    opacity: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .acc-step-slide.is-active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  /* ——— Intel showcase: stacked images + cross-fade ——— */
-  .intel-showcase-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: opacity 0.35s ease;
-    opacity: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .intel-showcase-img.is-active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .intel-tab-view {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .intel-tab-view.is-active {
-    opacity: 1;
-    z-index: 2;
-    pointer-events: auto;
-  }
-  .intel-tab-item {
-    appearance: none;
-    -webkit-appearance: none;
-    font: inherit;
-    margin: 0;
-    cursor: pointer;
-  }
-  .acc-item-active .intel-tab-sub {
-    color: #52525b;
-  }
-  html.dark .acc-item-active .intel-tab-sub {
-    color: #a1a1aa;
-  }
-
-  /* ——— Word-blur animation ——— */
-  .word-blur-word {
-    display: inline-block;
-    opacity: 0;
-    filter: blur(8px);
-  }
-  .word-blur-done .word-blur-word {
-    animation: wordReveal 0.45s ease forwards;
-  }
-  @keyframes wordReveal {
-    to { opacity: 1; filter: blur(0px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .word-blur-word { opacity: 1; filter: blur(0); }
-    .word-blur-done .word-blur-word { animation: none; }
-  }
-</style>
-
-<script>
-  // ——— Scroll-triggered fade-up ———
-  function initFadeUp() {
-    const els = document.querySelectorAll<HTMLElement>('.fade-up');
-    if (!els.length || !('IntersectionObserver' in window)) {
-      els.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.01, rootMargin: '0px' }
-    );
-    els.forEach((el) => observer.observe(el));
-    requestAnimationFrame(() => {
-      els.forEach((el) => {
-        if (el.classList.contains('is-visible')) return;
-        const r = el.getBoundingClientRect();
-        const h = window.innerHeight || 0;
-        if (r.top < h + 1 && r.bottom > -1) el.classList.add('is-visible');
-      });
-    });
-  }
-
-  // ——— Word-blur animation ———
-  // Uses TreeWalker to wrap only text nodes, preserving all HTML tags intact
-  function initWordBlur() {
-    const targets = document.querySelectorAll<HTMLElement>('.word-blur-target');
-    if (!('IntersectionObserver' in window)) {
-      targets.forEach((el) => el.classList.add('word-blur-done'));
-      return;
-    }
-    targets.forEach((el) => {
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-      const textNodes: Text[] = [];
-      let node: Text | null;
-      while ((node = walker.nextNode() as Text | null)) {
-        if (node.nodeValue && node.nodeValue.trim()) textNodes.push(node);
-      }
-      let wordIdx = 0;
-      textNodes.forEach((textNode) => {
-        const text = textNode.nodeValue || '';
-        const parts = text.split(/(\s+)/);
-        const frag = document.createDocumentFragment();
-        parts.forEach((part) => {
-          if (/^\s+$/.test(part) || part === '') {
-            frag.appendChild(document.createTextNode(part));
-          } else {
-            const span = document.createElement('span');
-            span.className = 'word-blur-word';
-            span.style.animationDelay = `${wordIdx++ * 45}ms`;
-            span.textContent = part;
-            frag.appendChild(span);
-          }
-        });
-        textNode.parentNode?.replaceChild(frag, textNode);
-      });
-    });
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('word-blur-done');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    targets.forEach((el) => observer.observe(el));
-    // Hero heading is already visible — trigger immediately
-    const hero = document.querySelector('.word-blur-target') as HTMLElement | null;
-    if (hero) hero.classList.add('word-blur-done');
-  }
-
-  // ——— Accordion (step-detail) ———
-  function initAccordion() {
-    const items  = Array.from(document.querySelectorAll<HTMLElement>('[data-acc-item]'));
-    const images = Array.from(document.querySelectorAll<HTMLElement>('[data-step-img]'));
-    const panel  = document.getElementById('step-img-panel');
-    if (!items.length) return;
-    let current = 0;
-
-    const prevBtn = panel?.querySelector<HTMLButtonElement>('[data-step-carousel-prev]');
-    const nextBtn = panel?.querySelector<HTMLButtonElement>('[data-step-carousel-next]');
-    const liveRoot = panel?.querySelector<HTMLElement>('[data-step-live-carousel]');
-    const liveCarouselStep = liveRoot?.dataset.stepImg != null ? Number(liveRoot.dataset.stepImg) : -1;
-    let liveIdx = 0;
-
-    function liveSlides() {
-      return Array.from(liveRoot?.querySelectorAll<HTMLElement>('[data-step-carousel-slide]') ?? []);
-    }
-
-    function setLiveNav(on: boolean) {
-      [prevBtn, nextBtn].forEach((btn) => {
-        if (!btn) return;
-        btn.style.visibility = on ? 'visible' : 'hidden';
-        btn.style.pointerEvents = on ? 'auto' : 'none';
-        btn.setAttribute('aria-hidden', on ? 'false' : 'true');
-        btn.tabIndex = on ? 0 : -1;
-      });
-    }
-
-    function showLiveCarousel(delta: number) {
-      const slides = liveSlides();
-      if (slides.length <= 1) return;
-      liveIdx = (liveIdx + delta + slides.length) % slides.length;
-      slides.forEach((el, si) => el.classList.toggle('is-active', si === liveIdx));
-    }
-
-    function syncLiveCarouselNav() {
-      const on = liveCarouselStep >= 0 && current === liveCarouselStep && liveSlides().length > 1;
-      setLiveNav(on);
-    }
-
-    function setPanelBg(idx: number) {
-      if (!panel) return;
-      const bg = images[idx]?.dataset.stepBg ?? '#f4f4f5';
-      panel.style.background = bg;
-    }
-
-    function activate(next: number) {
-      if (next === current) return;
-
-      if (liveCarouselStep >= 0 && current === liveCarouselStep && next !== liveCarouselStep) {
-        liveIdx = 0;
-        liveSlides().forEach((el, si) => el.classList.toggle('is-active', si === 0));
-      }
-
-      images.forEach((img, i) => {
-        img.classList.toggle('acc-img-visible', i === next);
-        img.style.opacity = i === next ? '1' : '0';
-      });
-
-      items.forEach((item, i) => {
-        const isActive = i === next;
-        item.classList.toggle('acc-item-active', isActive);
-        item.setAttribute('tabindex', isActive ? '0' : '-1');
-        const body = item.querySelector<HTMLElement>('.acc-item-body');
-        if (body) body.style.maxHeight = isActive ? body.scrollHeight + 'px' : '0';
-      });
-
-      setPanelBg(next);
-      current = next;
-      syncLiveCarouselNav();
-    }
-
-    prevBtn?.addEventListener('click', () => showLiveCarousel(-1));
-    nextBtn?.addEventListener('click', () => showLiveCarousel(1));
-
-    // Click & keyboard
-    items.forEach((item, i) => {
-      item.addEventListener('click', () => activate(i));
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(i); }
-        else if (e.key === 'ArrowDown') { e.preventDefault(); activate((i + 1) % items.length); }
-        else if (e.key === 'ArrowUp') { e.preventDefault(); activate((i - 1 + items.length) % items.length); }
-      });
-    });
-
-    // Init
-    images.forEach((img, i) => {
-      img.classList.toggle('acc-img-visible', i === 0);
-      img.style.opacity = i === 0 ? '1' : '0';
-    });
-    setPanelBg(0);
-    syncLiveCarouselNav();
-    const firstBody = items[0]?.querySelector<HTMLElement>('.acc-item-body');
-    if (firstBody) firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
-  }
-
-  // ——— Intel showcase tabs (left labels, per-tab image carousel) ———
-  function initIntelTabs() {
-    const root = document.querySelector<HTMLElement>('[data-intel-showcase]');
-    if (!root) return;
-    const tabs    = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-intel-tab]'));
-    const views   = Array.from(root.querySelectorAll<HTMLElement>('[data-intel-view]'));
-    const panel   = root.querySelector<HTMLElement>('#intel-showcase-panel');
-    const prevBtn = root.querySelector<HTMLButtonElement>('[data-intel-carousel-prev]');
-    const nextBtn = root.querySelector<HTMLButtonElement>('[data-intel-carousel-next]');
-    if (!tabs.length || !views.length) return;
-
-    // slideIndex[tabIdx] tracks which slide is active within that tab
-    const slideIndex = views.map(() => 0);
-    let currentTab = 0;
-
-    function slideCount(tabIdx: number) {
-      return views[tabIdx]?.querySelectorAll<HTMLElement>('[data-intel-slide]').length ?? 0;
-    }
-
-    function showSlide(tabIdx: number) {
-      const view = views[tabIdx];
-      if (!view) return;
-      const imgs = Array.from(view.querySelectorAll<HTMLElement>('[data-intel-slide]'));
-      const n = imgs.length;
-      if (!n) return;
-      let idx = ((slideIndex[tabIdx] % n) + n) % n;
-      slideIndex[tabIdx] = idx;
-      imgs.forEach((img, si) => img.classList.toggle('is-active', si === idx));
-    }
-
-    function setCarouselBtn(btn: HTMLButtonElement | null | undefined, on: boolean) {
-      if (!btn) return;
-      btn.style.visibility = on ? 'visible' : 'hidden';
-      btn.style.pointerEvents = on ? 'auto' : 'none';
-      btn.setAttribute('aria-hidden', on ? 'false' : 'true');
-      btn.tabIndex = on ? 0 : -1;
-    }
-
-    function updateNav() {
-      const show = slideCount(currentTab) > 1;
-      setCarouselBtn(prevBtn, show);
-      setCarouselBtn(nextBtn, show);
-    }
-
-    function activateTab(next: number) {
-      if (next < 0 || next >= tabs.length) return;
-      currentTab = next;
-      tabs.forEach((tab, i) => {
-        const on = i === currentTab;
-        tab.setAttribute('aria-selected', on ? 'true' : 'false');
-        tab.tabIndex = on ? 0 : -1;
-        tab.classList.toggle('acc-item-active', on);
-      });
-      views.forEach((v, i) => {
-        const on = i === currentTab;
-        v.classList.toggle('is-active', on);
-        v.setAttribute('aria-hidden', on ? 'false' : 'true');
-      });
-      showSlide(currentTab);
-      updateNav();
-      if (panel && tabs[currentTab]) panel.setAttribute('aria-labelledby', tabs[currentTab].id);
-    }
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => { activateTab(i); tab.focus(); });
-      tab.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-          e.preventDefault(); const n = (i + 1) % tabs.length; activateTab(n); tabs[n]?.focus();
-        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-          e.preventDefault(); const n = (i - 1 + tabs.length) % tabs.length; activateTab(n); tabs[n]?.focus();
-        } else if (e.key === 'Home') { e.preventDefault(); activateTab(0); tabs[0]?.focus(); }
-          else if (e.key === 'End')  { e.preventDefault(); const l = tabs.length - 1; activateTab(l); tabs[l]?.focus(); }
-      });
-    });
-
-    prevBtn?.addEventListener('click', () => { slideIndex[currentTab]--; showSlide(currentTab); });
-    nextBtn?.addEventListener('click', () => { slideIndex[currentTab]++; showSlide(currentTab); });
-
-    // Init
-    activateTab(0);
-  }
-
-  function boot() {
-    initFadeUp();
-    initWordBlur();
-    initAccordion();
-    initIntelTabs();
-  }
-
-  // View Transitions (ClientRouter): soft navigations do not fire DOMContentLoaded again.
-  // astro:page-load runs after the initial full load and after each client-side navigation.
-  document.addEventListener('astro:page-load', boot);
-</script>
-
-<script>
-  // ─── Section A: scroll-triggered sequential timeline reveal ───
-  // Story order: Post-session → After damage → At limit → [pause] → Before the order (Meridian)
-  (function () {
-    var block = document.querySelector('.timeline-block');
-    if (!block) return;
-
-    var axisLine  = block.querySelector('.timeline-axis-line');
-    var dot1 = block.querySelector('.timeline-dot-1');
-    var dot2 = block.querySelector('.timeline-dot-2');
-    var dot3 = block.querySelector('.timeline-dot-3');
-    var dot4 = block.querySelector('.timeline-dot-4');
-    var card1 = block.querySelector('.timeline-card-1');
-    var card2 = block.querySelector('.timeline-card-2');
-    var card3 = block.querySelector('.timeline-card-3');
-    var card4 = block.querySelector('.timeline-card-4');
-    var punchline = document.getElementById('timeline-punchline');
-
-    // Respect prefers-reduced-motion — reveal instantly
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    function show(el, transition, transform) {
-      if (!el) return;
-      el.style.transition = transition;
-      el.style.opacity = '1';
-      if (transform !== undefined) el.style.transform = transform;
-    }
-
-    function runSequence() {
-      // 0 ms — axis draws left → right (1.2 s)
-      setTimeout(function () {
-        show(axisLine, 'transform 1200ms ease-out', 'scaleX(1)');
-      }, 0);
-
-      // 600 ms — Post-session label + dot (rightmost: column 4)
-      setTimeout(function () { show(dot4, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 600);
-      // 780 ms — Post-session card rises
-      setTimeout(function () { show(card4, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 780);
-
-      // 1150 ms — After damage label + dot (column 3)
-      setTimeout(function () { show(dot3, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 1150);
-      // 1330 ms — After damage card rises
-      setTimeout(function () { show(card3, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 1330);
-
-      // 1700 ms — At limit label + dot (column 2)
-      setTimeout(function () { show(dot2, 'opacity 500ms ease-out, transform 500ms ease-out', 'translateY(0)'); }, 1700);
-      // 1880 ms — At limit card rises
-      setTimeout(function () { show(card2, 'opacity 650ms ease-out, transform 650ms ease-out', 'translateY(0)'); }, 1880);
-
-      // ── 900 ms dramatic pause — audience sits with "so what came before all this?" ──
-
-      // 2780 ms — Before the order dot pulses in (column 1)
-      setTimeout(function () { show(dot1, 'opacity 700ms ease-out, transform 700ms ease-out', 'translateY(0)'); }, 2780);
-
-      // 3000 ms — Meridian card springs in with bounce settle
-      setTimeout(function () {
-        if (!card1) return;
-        card1.style.transition = 'opacity 700ms ease-out, transform 1000ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 700ms ease-out';
-        card1.style.opacity = '1';
-        card1.style.transform = 'translateY(-5px) scale(1)';
-      }, 3000);
-
-      // 4300 ms — Punchline fades up (audience has absorbed all 4 stages)
-      setTimeout(function () {
-        show(punchline, 'opacity 900ms ease-out, transform 900ms ease-out', 'translateY(0)');
-      }, 4300);
-    }
-
-    var observer = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        runSequence();
-        observer.disconnect();
-      }
-    }, { threshold: 0.12 });
-    observer.observe(block);
-  })();
-</script>

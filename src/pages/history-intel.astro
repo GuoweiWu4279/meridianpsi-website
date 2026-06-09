@@ -1,71 +1,350 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import FeatureDetailPage from '~/components/widgets/FeatureDetailPage.astro';
+import pricing from '~/data/pricing.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HISTORY & INTEL — the long-memory layer of Meridian. Voice register:
+// TEACH / PRECISE. Job: put a dollar figure on discipline. Pick any date range;
+// break trading down by time of day, hold time, instrument, long vs short;
+// composure grades; weekday patterns; 5-year session history; the PSI × P&L
+// correlation. Design system matches the homepage (.win/.halo/.eyebrow/.tnum
+// are global). Header/Footer/RiskBanner come from PageLayout.
+// ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Behavioral History & Intel Layer — NinjaTrader 8 | Meridian',
+  title: 'History & Intel — Put a Dollar Figure on Discipline | Meridian for NinjaTrader 8',
   description:
-    'Meridian History & Intel surfaces repeating behavior patterns across days, weeks, and months — monthly PSI digest, weekday risk patterns, PSI × P&L correlation — so you can prepare before known risk windows appear.',
+    'Pick any date range and break your NinjaTrader 8 trading down by time of day, hold time, instrument, and long vs short. Meridian History & Intel grades composure, surfaces weekday risk patterns from your local session history, and shows the PSI × P&L correlation — what your composed sessions average versus your tilted ones.',
   robots: { index: true, follow: true },
 };
+
+const TRIAL = '/pricing';
+
+// Illustrative figures (clearly labeled below). The two-number PSI × P&L
+// contrast mirrors the homepage Intel section for a consistent claim.
+const COMPOSED_PER_SESSION = 1008;
+const TILTED_PER_SESSION = -247;
+
+// Pull the Guard tier (Intel ships with Guard) from data — never hardcode price.
+const guardTier = pricing.tiers.find((t) => t.id === 'guard') ?? pricing.tiers[pricing.tiers.length - 1];
+
+/** JSON-LD via set:html — inline `{JSON.stringify({...})}` breaks Astro parsing on inner braces. */
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.meridianpsi.com/history-intel/#webpage',
+      url: 'https://www.meridianpsi.com/history-intel',
+      name: metadata.title,
+      description: metadata.description,
+      isPartOf: { '@id': 'https://www.meridianpsi.com/#website' },
+      about: { '@id': 'https://www.meridianpsi.com/#organization' },
+      breadcrumb: { '@id': 'https://www.meridianpsi.com/history-intel/#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.meridianpsi.com/history-intel/#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.meridianpsi.com' },
+        { '@type': 'ListItem', position: 2, name: 'History & Intel', item: 'https://www.meridianpsi.com/history-intel' },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://www.meridianpsi.com/history-intel/#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is the difference between PSI and Composure?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'PSI (Psychological Stability Index) is your live behavioral score during execution, updated after every fill. Composure is the post-session grade Meridian assigns once the session closes. PSI drives in-the-moment decisions; Composure drives your longer-term history and trend review.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How far back does Meridian keep my trading history?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Meridian keeps up to 5 years of session history locally so you can analyze behavior across any date range — by time of day, hold time, instrument, and long versus short.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the PSI × P&L correlation?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Meridian groups your closed sessions by their composure state and shows the average P&L of your composed sessions versus your tilted ones — putting a dollar figure on the difference discipline makes. Figures are illustrative; Meridian does not guarantee trading results.',
+          },
+        },
+      ],
+    },
+  ],
+};
+
+const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
-  <FeatureDetailPage
-    featureTag="Feature"
-    title="History & Intel"
-    intro="History & Intel surfaces repeating behavior patterns across days, weeks, and months so you can prepare for known risk windows before they appear in live execution."
-    videoTitle="History & Intel demo"
-    videoDescription="Record a short walkthrough of trend views, risk patterns, and how you turn insight into next-session actions."
-    ctaTitle="Stop mistakes before they reach the order window."
-    ctaSubtitle="History & Intel connects session behavior to your next high-quality decision."
-  >
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">What it reveals</h2>
-        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
-          <li>Repeat pressure patterns by day and session type.</li>
-          <li>Behavior trends across your full history window.</li>
-          <li>Risk context that is invisible in raw P&amp;L.</li>
-        </ul>
-      </div>
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">How it helps</h2>
-        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
-          <li>Plan your next session with better context.</li>
-          <li>Tighten rules where recurring drift appears.</li>
-          <li>Build consistency with evidence over time.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
-      <h2 class="font-semibold text-zinc-900 mb-2">Pressure dynamics over time</h2>
-      <p class="text-sm text-zinc-600 leading-relaxed mb-3">
-        Meridian models pressure as something that can rise quickly and recover more gradually. This helps explain why one
-        rough period can still affect later decisions, even if P&amp;L temporarily stabilizes.
+  <!-- Structured data for GEO: WebPage + BreadcrumbList + FAQPage -->
+  <script type="application/ld+json" set:html={pageJsonLdHtml} />
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">HISTORY &amp; INTEL</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Put a dollar figure<br />on your <span class="text-emerald-600">discipline.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        The monitor shows you tilt in the moment. History &amp; Intel shows you the pattern &mdash; pick any date range and
+        watch your trading split by time of day, hold time, instrument, and long vs short. Then it does the thing a P&amp;L
+        statement never can: it tells you, in dollars, what composure is worth.
       </p>
-      <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
-        <li>Fast pressure rise, slower recovery profile.</li>
-        <li>Overnight carry for unresolved behavioral pressure.</li>
-        <li>Persistent violations can pause recovery until corrected.</li>
-      </ul>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#correlation" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the correlation</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">Built on your 5-year session history &middot; Intel analysis included with Meridian Guard &middot; Local-first, anonymized</p>
     </div>
-    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
-      <h2 class="font-semibold text-zinc-900 mb-2">PSI vs Composure</h2>
-      <p class="text-sm text-zinc-600 leading-relaxed mb-3">
-        PSI is your live state during execution. Composure is your session-quality score after the session ends. You need
-        both: one for in-session decisions, one for longer-term progress review.
-      </p>
-      <div class="grid md:grid-cols-2 gap-3">
-        <div class="rounded-lg border border-zinc-200 p-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500 mb-1">PSI</p>
-          <p class="text-sm text-zinc-700">Real-time behavioral pressure readout used during live execution.</p>
+  </section>
+
+  <!-- ───────────────────────── WHAT IT BREAKS DOWN ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">PICK A RANGE. SLICE IT FOUR WAYS.</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Your P&amp;L says <em>what</em> happened.<br />Intel says <em>when</em>, <em>where</em>, and <em>why</em>.
+        </h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Choose today, this week, last quarter, or five years &mdash; then read your behavior along the dimensions that
+          actually move the number.
+        </p>
+      </div>
+      <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+          <div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div>
+          <div class="font-semibold text-zinc-900 mb-1">Time of day</div>
+          <p class="text-sm text-zinc-600">The first 30 minutes after the open behave nothing like the lunch lull. See which clock windows you trade well &mdash; and which ones quietly cost you.</p>
         </div>
-        <div class="rounded-lg border border-zinc-200 p-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500 mb-1">Composure</p>
-          <p class="text-sm text-zinc-700">Post-session quality score used in history, digest, and trend analysis.</p>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+          <div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div>
+          <div class="font-semibold text-zinc-900 mb-1">Hold time</div>
+          <p class="text-sm text-zinc-600">Scalps versus the trades you sat in too long. Hold-time buckets reveal whether you're cutting losers fast or letting them run.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+          <div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div>
+          <div class="font-semibold text-zinc-900 mb-1">Instrument</div>
+          <p class="text-sm text-zinc-600">ES, NQ, CL, GC &mdash; your edge is rarely the same across all of them. Intel ranks each instrument by what it actually returned you.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+          <div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div>
+          <div class="font-semibold text-zinc-900 mb-1">Long vs short</div>
+          <p class="text-sm text-zinc-600">Many traders are a different person on each side of the book. Direction split shows where your bias is helping you &mdash; and where it isn't.</p>
         </div>
       </div>
     </div>
-  </FeatureDetailPage>
+  </section>
+
+  <!-- ───────────────────────── THE TWO SCREENS (Intel + Stats pair) ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12 max-w-3xl mx-auto">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Two views of the same five years.</h2>
+      <p class="mt-4 text-lg text-zinc-600">
+        <strong class="text-zinc-900">Insights</strong> tells you where you stand right now and what to do about it.
+        <strong class="text-zinc-900">Stats</strong> is the full breakdown &mdash; every slice, for any range you pick.
+      </p>
+    </div>
+    <div data-reveal class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <figure>
+        <div class="win"><img src="/m/intel.png" alt="Meridian Insights — where you stand this session, composure grade, and the next action to take" /></div>
+        <figcaption class="mt-3 text-center text-sm text-zinc-500">Insights &mdash; your standing, graded, with the next move spelled out.</figcaption>
+      </figure>
+      <figure>
+        <div class="win"><img src="/m/stats-1.png" alt="Meridian Stats — composed vs tilted P&L per session, the equity curve, win rate, profit factor, and expectancy" /></div>
+        <figcaption class="mt-3 text-center text-sm text-zinc-500">Stats &mdash; composed vs tilted, your equity curve, and the metrics that matter.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── COMPOSURE GRADES ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">COMPOSURE GRADES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          PSI is the live read.<br />Composure is the report card.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
+          You need both. PSI moves tick-to-tick during execution &mdash; it's what you watch when you're in a position.
+          Composure is the single grade Meridian assigns each session once it closes, so months of behavior become something
+          you can actually trend.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <p class="text-xs uppercase tracking-wide font-bold text-emerald-700 mb-2">PSI &mdash; live</p>
+          <p class="text-zinc-700 leading-relaxed">A real-time 0&ndash;100 behavioral pressure readout, updated after every fill. Drives the decision you make <em>right now</em>: take the trade, skip it, or step away.</p>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7">
+          <p class="text-xs uppercase tracking-wide font-bold text-emerald-700 mb-2">Composure &mdash; after</p>
+          <p class="text-zinc-700 leading-relaxed">A post-session quality grade. The unit your history, monthly digest, and weekday patterns are built on &mdash; so progress is measured, not remembered.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── PSI × P&L CORRELATION ───────────────────────── -->
+  <section id="correlation" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center scroll-mt-24">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE PSI &times; P&amp;L CORRELATION</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        Discipline stops being<br />a feeling.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Meridian groups your closed sessions by the state you were in and lines them up against what they returned. The
+        gap is the whole argument: your <span class="text-emerald-700 font-semibold">composed</span> sessions (your top
+        composure grades) on one side, your <span class="text-rose-600 font-semibold">tilted</span> ones on the other
+        &mdash; in dollars, not adjectives.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-4 max-w-md">
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+          <div class="text-xs text-zinc-500 mb-1">Composed sessions</div>
+          <div class="text-3xl font-bold text-emerald-700 tnum">+${COMPOSED_PER_SESSION}<span class="text-base font-medium text-zinc-400">/session</span></div>
+        </div>
+        <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+          <div class="text-xs text-zinc-500 mb-1">Tilted sessions</div>
+          <div class="text-3xl font-bold text-rose-600 tnum">&minus;${Math.abs(TILTED_PER_SESSION)}<span class="text-base font-medium text-zinc-400">/session</span></div>
+        </div>
+      </div>
+      <p class="mt-5 text-xs text-zinc-400 max-w-md">
+        Illustrative figures shown for clarity. Your own numbers are computed from your own sessions. Meridian does not
+        guarantee trading results.
+      </p>
+    </div>
+    <div data-reveal class="win"><img src="/m/patterns.png" alt="Meridian Patterns — monthly composure calendar with Stable/Caution/Warning/Critical days, composure trend, and equity curve" /></div>
+  </section>
+
+  <!-- ───────────────────────── WEEKDAY PATTERNS + DIGEST ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">PATTERNS YOU CAN'T FEEL IN ONE SESSION</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Your worst day has a name.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Some risk only shows up at scale &mdash; a weekday that consistently runs hot, a session window where composure
+          dips. Intel surfaces it so you can prepare before the next one arrives.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Weekday risk patterns</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Composure averaged by day of week. If your Fridays tilt &mdash; or your Mondays overtrade &mdash; you'll see it as a trend, not a hunch, and tighten the rule that matters.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Monthly PSI digest</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">A once-a-month read on where your composure is heading, which signals fired most, and whether the habit you set out to fix is actually improving.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Today's Risk Brief</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">A short pre-session summary built from your own history &mdash; the window to watch, the instrument that's burned you, the rule worth holding. Read it before the open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── 5-YEAR HISTORY ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="rounded-2xl calloutd text-zinc-100 px-8 py-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">FIVE-YEAR SESSION HISTORY</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+        A long memory is the point.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed">
+        Meridian keeps up to five years of sessions on your machine, so a pattern that takes months to appear isn't lost
+        to a cleared cache. Slice any window you want &mdash; the data is yours, kept local-first and anonymized.
+      </p>
+      <div class="mt-9 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">5 yr</div><div class="mt-2 text-sm text-zinc-400">Session history retained</div></div>
+        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">4</div><div class="mt-2 text-sm text-zinc-400">Breakdown dimensions, any range</div></div>
+        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">7</div><div class="mt-2 text-sm text-zinc-400">Behavioral signals scored per session</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── INCLUDED WITH GUARD ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-10">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHERE INTEL LIVES</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The full Intel layer ships with {guardTier.name}.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          History &amp; Intel is the analysis half of the loop: monitor &middot; guard &middot; journal &middot;
+          <strong class="text-zinc-900">review</strong> &middot; improve. It's part of {guardTier.name} &mdash; alongside automatic
+          enforcement and Strict Lock.
+        </p>
+        <p class="mt-4 text-base text-zinc-500 max-w-2xl mx-auto">
+          Your 5-year session history is in every tier; {guardTier.name} adds the Intel analysis that turns it into
+          pre-session decisions.
+        </p>
+      </div>
+      <div data-reveal class="max-w-md mx-auto rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
+        <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
+        <div class="font-semibold text-zinc-900">{guardTier.name}</div>
+        <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">${guardTier.monthlyPrice.toFixed(2)}<span class="text-base font-medium text-zinc-400">/mo</span></div>
+        <p class="mt-3 text-sm text-zinc-600">Everything in Core, plus automatic enforcement, Strict Lock, and the full History &amp; Intel layer &mdash; monthly digest, weekday patterns, and the PSI &times; P&amp;L correlation.</p>
+        <a href={TRIAL} class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
+        <p class="mt-3 text-center text-xs text-zinc-500">7-day free trial &middot; no charge until day 7 &middot; cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Stop guessing what tilt costs.<br />Read it off the page.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600">Five years of your own behavior, sliced any way you need &mdash; and a dollar figure on the discipline that protects your account.</p>
+      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
+
+  <!-- Lightbox: click any product screenshot in a .win frame to enlarge.
+       Re-inits on astro:page-load so it survives View Transitions. -->
+  <script>
+    function initHistoryIntel() {
+      if (document.getElementById('m-lightbox')) return; // shared id with other pages — init once
+      const lb = document.createElement('div');
+      lb.id = 'm-lightbox';
+      lb.style.cssText =
+        'position:fixed;inset:0;z-index:100;background:rgba(8,8,10,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out';
+      const img = document.createElement('img');
+      img.style.cssText = 'max-width:96vw;max-height:94vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)';
+      lb.appendChild(img);
+      document.body.appendChild(lb);
+      const close = () => {
+        lb.style.display = 'none';
+      };
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      document.querySelectorAll<HTMLImageElement>('.win img:not(.nozoom)').forEach((el) => {
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          img.src = el.currentSrc || el.src;
+          lb.style.display = 'flex';
+        });
+      });
+    }
+    document.addEventListener('astro:page-load', initHistoryIntel);
+  </script>
 </Layout>
+</content>
+</invoke>

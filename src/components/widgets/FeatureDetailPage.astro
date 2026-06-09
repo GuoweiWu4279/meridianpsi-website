@@ -19,7 +19,7 @@ const {
   videoTitle = 'Feature walkthrough',
   videoDescription = 'Add a short 20-60 second product demo video for this feature.',
   videoUrl,
-  ctaTitle = 'Stop mistakes before they reach the order window.',
+  ctaTitle = 'Everything your risk tool does — and the part it’s blind to.',
   ctaSubtitle = 'Start in SIM first, then move to stricter enforcement after stable results.',
 } = Astro.props;
 ---
@@ -32,15 +32,15 @@ const {
   </div>
 </section>
 
-<section class="pb-12 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-4">
-      <h2 class="text-lg md:text-xl font-semibold text-zinc-900">{videoTitle}</h2>
-      <p class="text-sm text-zinc-600 mt-1">{videoDescription}</p>
-    </div>
-    <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50 aspect-video flex items-center justify-center shadow-sm">
-      {
-        videoUrl ? (
+{
+  videoUrl && (
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-4">
+          <h2 class="text-lg md:text-xl font-semibold text-zinc-900">{videoTitle}</h2>
+          {videoDescription && <p class="text-sm text-zinc-600 mt-1">{videoDescription}</p>}
+        </div>
+        <div class="max-w-3xl mx-auto rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50 aspect-video flex items-center justify-center shadow-sm">
           <iframe
             src={videoUrl}
             class="w-full h-full"
@@ -49,13 +49,11 @@ const {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           />
-        ) : (
-          <p class="text-sm text-zinc-500 px-4 text-center">Video placeholder: add your feature walkthrough embed URL.</p>
-        )
-      }
-    </div>
-  </div>
-</section>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 <section class="pb-16 px-6">
   <div class="max-w-5xl mx-auto">

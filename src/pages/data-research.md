@@ -1,5 +1,6 @@
 ---
-title: 'Data & Research Notice'
+title: 'Data & Research Notice — Meridian'
+description: 'How Meridian collects anonymized, opt-out trading data to research trading discipline — what we collect, what we never collect, and how to opt out.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
@@ -12,12 +13,13 @@ the product and to conduct research on trading discipline. It supplements our
 ## What we collect
 
 To study how trading discipline relates to outcomes — and to make Meridian better — the
-Software transmits **anonymized** records of your trading activity and the behavioral
-signals it computes, for example:
+Software transmits **anonymized** records of your trading activity, the behavioral signals
+it computes, how the Software is configured, and how its features are used, for example:
 
 - executions, orders, and position changes (instrument, side, size, price, timestamps);
 - the PSI score and the seven behavioral-signal values Meridian computes;
-- session and account-type context needed to interpret the above.
+- your profile and settings, and which screens/features you use;
+- session context and account type (simulated, evaluation, or live) — never the account number — needed to interpret the above.
 
 ## What we do NOT collect
 
@@ -35,13 +37,12 @@ signals it computes, for example:
 
 ## Your choice
 
-Participation helps the research but is your choice. You can **opt out at any time** — turn
-it off in the Software's settings, or email **contactmeridianpsi@gmail.com** and we will
+Participation helps the research but is your choice. You can **opt out at any time** — email **contactmeridianpsi@gmail.com** and we will
 stop collection and, on request, delete the data associated with your anonymous identifier.
 
 ## Why we do this
 
 Meridian's premise is that disciplined execution, not outcome, is what a trader can control.
-Studying anonymized behavior at scale is how we test and improve that — rigorously, and in a
-way that ultimately benefits the traders who use it. Questions:
+Studying anonymized behavior at scale is how we test and improve that — rigorously, so the
+product can keep getting better for the traders who use it. Questions:
 **contactmeridianpsi@gmail.com**.

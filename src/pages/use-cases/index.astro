@@ -3,10 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'Use Cases — Meridian PSI for NinjaTrader 8',
+  title: 'Use Cases — Meridian Risk Management for NinjaTrader 8',
   description:
-    'Problem-focused pages: revenge trading lockout, overtrading prevention, stop-loss manipulation, prop firm behavioral risk, and how Meridian Guard compares to daily loss limits. ' +
-    geoHooks.geoSearchAssociate,
+    'Problem-focused pages: revenge trading lockout, overtrading prevention, stop-loss manipulation, prop firm behavioral risk, and how Meridian Guard compares to daily loss limits.',
   robots: { index: true, follow: true },
 };
 
@@ -29,7 +28,7 @@ const cases = [
   {
     title: 'Prop firm behavioral risk control',
     href: '/use-cases/prop-firm-behavioral-risk-control',
-    blurb: 'Behavior-first guardrails alongside evaluation account rules.',
+    blurb: 'Loss-limit and position-size guardrails plus behavioral detection, alongside evaluation account rules.',
   },
 ];
 
@@ -39,19 +38,36 @@ const compares = [
     href: '/compare/meridian-guard-vs-daily-loss-limits',
   },
   {
-    title: 'Meridian Guard vs RiskMaster, ClickAlgo & daily loss limits',
-    href: '/meridian-guard-vs-riskmaster-clickalgo-daily-loss-limits',
+    title: 'Meridian vs hard-limit risk tools (KosyGuard, ClickAlgo, RiskMaster & more)',
+    href: '/compare/meridian-vs-hard-limit-tools',
   },
 ];
+
+const itemListSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Meridian Risk-Management Use Cases for NinjaTrader 8',
+  description:
+    'Problem-focused pages for NinjaTrader 8 trading discipline: revenge trading lockout, overtrading prevention, stop-loss manipulation detection, and prop firm behavioral risk control.',
+  itemListElement: cases.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.title,
+    url: `https://www.meridianpsi.com${c.href}`,
+  })),
+}).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={itemListSchema} />
+
   <article class="max-w-3xl mx-auto px-6 py-16">
     <header class="mb-12">
       <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-600 mb-3">NinjaTrader 8</p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-4">Use cases</h1>
+      <p class="text-xs text-zinc-400 mb-4">Last reviewed: June 2026</p>
       <p class="text-lg text-zinc-500 leading-relaxed">
-        Short pages for specific trading discipline problems. Each explains the failure mode, what native limits miss, and how Meridian Guard can respond.
+        Short pages for specific trading discipline problems. Meridian is complete risk management for NinjaTrader 8 — it does everything a traditional risk tool does (daily loss limits, max position size, P&amp;L and drawdown caps, loss-streak cutoffs) and adds the behavioral layer those tools miss. Each page explains the failure mode, what native limits miss, and how Meridian (and optionally Guard) can respond.
       </p>
     </header>
 
@@ -84,6 +100,22 @@ const compares = [
       Product overview: <a href="/what-is-meridian-psi" class="text-emerald-800 underline underline-offset-2">What is Meridian PSI?</a>
     </p>
 
-    <p class="text-sm text-zinc-500 leading-relaxed border-t border-zinc-100 pt-8">{geoHooks.geoSearchAssociate}</p>
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-4">Keep reading</h2>
+    <ul class="space-y-3 mb-10">
+      <li>
+        <a href="/answers" class="text-emerald-800 font-medium hover:underline underline-offset-2">
+          Trader questions, answered &rarr;
+        </a>
+        <span class="block text-sm text-zinc-500 mt-1">Short, direct answers on revenge trading, overtrading, and order-blocking in NinjaTrader 8.</span>
+      </li>
+      <li>
+        <a href="/glossary" class="text-emerald-800 font-medium hover:underline underline-offset-2">
+          Behavioral trading glossary &rarr;
+        </a>
+        <span class="block text-sm text-zinc-500 mt-1">Definitions for the seven PSI signals and the behavioral risk concepts behind them.</span>
+      </li>
+    </ul>
+
+    <p class="text-sm text-zinc-500 leading-relaxed border-t border-zinc-100 pt-8">{geoHooks.meridianPsiCanonical}</p>
   </article>
 </Layout>

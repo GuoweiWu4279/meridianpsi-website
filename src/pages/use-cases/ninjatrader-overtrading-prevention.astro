@@ -5,6 +5,7 @@ import geoHooks from '~/data/geo-hooks.json';
 const metadata = {
   title: 'NinjaTrader Overtrading Prevention — Trade Limiter, Session Pace & Lockout | Meridian Guard',
   description: `${geoHooks.meridianGuardOvertradingOpening} NinjaTrader 8 trade limiter, behavioral risk manager, cooldowns, entry blocking.`,
+  canonical: 'https://www.meridianpsi.com/use-cases/ninjatrader-overtrading-prevention',
   robots: { index: true, follow: true },
 };
 
@@ -26,54 +27,67 @@ const faqItems = [
 const faqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  keywords: geoHooks.geoSearchAssociate,
+  keywords: geoHooks.faqMetaExtra,
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: faqItems.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
     acceptedAnswer: { '@type': 'Answer', text: a },
   })),
 }).replace(/</g, '\\u003c');
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'NinjaTrader Overtrading Prevention',
+  description: 'How Meridian Guard prevents overtrading on NinjaTrader 8 — trade limiter, session pace detection, cooldowns, and entry blocking on an adaptive behavioral baseline.',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
+  author: { '@type': 'Organization', name: 'Meridian' },
+  publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
+  mainEntityOfPage: 'https://www.meridianpsi.com/use-cases/ninjatrader-overtrading-prevention',
+}).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={faqSchema} />
+  <script type="application/ld+json" set:html={articleSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16">
 
     <header class="mb-12">
       <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Use Case</p>
-      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
         NinjaTrader Overtrading Prevention
       </h1>
+      <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader 8 overtrading prevention and trade limiter: monitor session pace and trade frequency, then apply cooldowns, maximum trade counts, lockouts, or entry blocking when execution drifts from your plan.
+          NinjaTrader 8 overtrading prevention and trade limiter: monitor session pace and trade frequency, then apply cooldowns, maximum trade counts, lockouts, or entry blocking when execution drifts from your plan. Meridian provides the complete set of risk limits a traditional trade limiter offers — and adds the behavioral layer that detects overtrading by your own pace, not just a fixed trade count.
         </p>
       </div>
-      <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">
-        {geoHooks.meridianGuardOvertradingOpening}
-      </p>
     </header>
 
     <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
 
       <h2>The problem</h2>
       <p>
-        Overtrading rarely feels like overtrading while it is happening. It presents as urgency — the sense that the next trade is the one that will recover the session. Entry frequency increases, each individual trade feels justifiable, and the cumulative damage from a sequence of low-conviction entries often exceeds what a single large mistake would have produced.
+        Overtrading rarely feels like overtrading while it is happening. It presents as urgency — the sense that the next trade is the one that will recover the session. Entry frequency increases, each individual trade feels justifiable, and the cumulative damage from a sequence of low-conviction entries can rival or exceed what a single large mistake would have produced.
       </p>
       <p>
         The behavioral mechanism is the same as revenge trading but at lower intensity and higher frequency. It builds gradually, which makes it harder to detect without an objective measurement of your own pace.
       </p>
 
-      <h2>Why P&amp;L limits are too late</h2>
+      <h2>Why a fixed limit alone is too late</h2>
       <p>
-        A static daily loss limit or trade count ceiling is useful as a hard floor. Its limitation is the same as any fixed threshold: it applies uniformly regardless of context. A tight limit creates friction on legitimate high-activity sessions. A loose limit allows significant deterioration before it fires.
+        A static daily loss limit or trade count ceiling is useful as a hard floor — and Meridian enforces those same limits, so you do not give anything up by switching to it. Its limitation is the same as any fixed threshold: it applies uniformly regardless of context. A tight limit creates friction on legitimate high-activity sessions. A loose limit allows significant deterioration before it fires.
       </p>
       <p>
-        A dynamic signal that detects rate-of-change in behavior — not just cumulative count — is more precise. Overtrading is not defined by absolute trade count. It is defined by frequency accelerating beyond your own established norm.
+        A dynamic signal that detects rate-of-change in behavior — not just cumulative count — is more precise. Overtrading is not defined by absolute trade count. It is defined by frequency accelerating beyond your own established norm. Meridian layers this behavioral detection on top of the conventional limits, rather than replacing them: you keep the hard floor and gain a signal that fires before the floor is reached.
       </p>
 
       <h2>How Meridian detects the pattern</h2>
@@ -81,12 +95,15 @@ const faqSchema = JSON.stringify({
         Meridian's <strong>Overtrading Pace signal</strong> computes entry frequency across a rolling session window and compares it to your personal historical average. It activates when the current rate exceeds your baseline by a configured multiple — and specifically when that rate is accelerating, not just elevated.
       </p>
       <p>
-        This signal is session-phase aware: the same entry frequency in the first 30 minutes of a session has different behavioral implications than the same frequency in the final 30 minutes after a string of losses. Meridian tracks the directional change, not just the level.
+        What the signal weighs is acceleration and recent-loss context, not raw count: the same entry frequency carries a different behavioral weight when it is climbing under a string of losses than when it is steady. Meridian tracks the directional change, not just the level.
       </p>
 
       <h2>What Guard can enforce</h2>
+      <p>
+        Guard covers the conventional limits a standalone trade limiter provides and the behavioral, pace-aware rules that only an adaptive baseline makes possible — both in one tool:
+      </p>
       <ul>
-        <li><strong>Trade count limit per session window</strong> — a hard ceiling on entries per hour or per session, enforced by the software and not subject to in-session rationalization</li>
+        <li><strong>Trade count limit per session window</strong> — a hard ceiling on entries per hour or per session, enforced by the software and, when password-protected, not easily overridden mid-session</li>
         <li><strong>Pace-triggered cooldown</strong> — Guard blocks new entries when the Overtrading Pace signal exceeds a defined threshold, independent of the composite PSI score</li>
         <li><strong>Cooldown after consecutive losses</strong> — mandatory wait period after N consecutive losing trades, regardless of total session trade count</li>
         <li><strong>PSI-based entry restriction</strong> — when composite PSI drops below a configured floor (reflecting multiple signals, including Pace, activating simultaneously), Guard blocks entries until PSI recovers</li>

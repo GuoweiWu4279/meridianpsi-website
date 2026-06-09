@@ -180,6 +180,48 @@
   }
   .dark .lead { color: #a1a1aa; }
 
+  /* ——— Product "window" — dark screenshot frame that floats on the light site ——— */
+  .win {
+    background: #0b0b0d;
+    border-radius: 18px;
+    padding: 10px;
+    box-shadow: 0 50px 110px -35px rgba(4, 40, 28, 0.4), 0 16px 40px -14px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .win img {
+    border-radius: 10px;
+    display: block;
+    width: 100%;
+  }
+  .winsm {
+    background: #0b0b0d;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 40px 90px -30px rgba(4, 40, 28, 0.4), 0 12px 30px -12px rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .winsm img {
+    border-radius: 9px;
+    display: block;
+    width: 100%;
+  }
+  /* Emerald hero/CTA glow */
+  .halo {
+    background: radial-gradient(70% 60% at 50% -5%, rgba(5, 150, 105, 0.12), transparent 70%);
+  }
+  /* Tabular figures — align all numerals/stats */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Dark "callout" — emerald-tinted lift so it reads as an intentional dark moment
+     (matches the product windows) instead of a flat black box stuck on white. */
+  .calloutd {
+    background: #0b0b0d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 90px -40px rgba(4, 40, 28, 0.55), 0 14px 34px -14px rgba(0, 0, 0, 0.4);
+  }
+
   /* ——— Motion ————————————————————————————————— */
   .fade-up {
     opacity: 0;
@@ -197,6 +239,20 @@
       transition: none;
     }
   }
+}
+
+/* Accessible focus — consistent emerald ring, keyboard-only (no mouse-click outline) */
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible,
+[role='tab']:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--aw-color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Header: initial state — very light warm glass so it blends with hero from day 1 */

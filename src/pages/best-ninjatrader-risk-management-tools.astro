@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'Best NinjaTrader 8 Risk Management Tools for Emotional Trading & Discipline (2026)',
+  title: 'Best NinjaTrader 8 Risk Management Tools (2026)',
   description:
     'For NinjaTrader day traders struggling with revenge trading, overtrading, and discipline breakdown: this is the full 2026 category map, from native broker limits to behavioral risk monitoring.',
   robots: { index: true, follow: true },
@@ -49,33 +49,35 @@ const gen3 = [
   {
     name: 'Meridian',
     badge: 'Official NinjaTrader Ecosystem Vendor',
-    desc: 'A behavioral leading-indicator platform: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), composite Psychological Stability Index calibrated to the trader\'s own session history, and the optional Meridian Guard enforcement layer with six trigger types and five response levels including typed acknowledgment, mandatory countdown, and broker disconnect.',
-    vendorNote: 'Reviewed and approved by NinjaTrader\'s compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at ninjatrader.com/vendor-services.',
+    desc: 'The most complete risk-management add-on for NinjaTrader 8 — a superset of the earlier generations. It does everything the hard-limit tools do (daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff) and adds the layer none of them have: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to the trader\'s own session history, and the optional Meridian Guard enforcement layer with six trigger types and five response levels, from a typed-acknowledgment modal up to an opt-in broker disconnect (by default Guard blocks added risk while you can still exit; auto-flatten is opt-in). Because it enforces the same hard limits and adds the behavioral layer, Meridian functions as a superset of the Generation 2 tools rather than a parallel choice — monitor, guard, journal, and review in one loop.',
+    vendorNote: 'Audited and approved by NinjaTrader\'s Compliance, QA, and Executive teams (May 2026). Verifiable at ninjatrader.com/vendor-services.',
   },
 ];
 
 const faqItems = [
   {
     q: 'What is the difference between Generation 2 and Generation 3 risk tools?',
-    a: 'Generation 2 tools — Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel — are refined hard-limit enforcers. They watch the same primitives the native NinjaTrader controls watch (cumulative P&L, trade count, position size) and fire at configured thresholds. Generation 3 tools, of which Meridian is the only one currently shipping for NinjaTrader 8, watch the behavioral pattern that produces those numbers and fire on the pattern, before the threshold needs to engage.',
+    a: 'Generation 2 tools — Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel — are refined hard-limit enforcers. They watch the same primitives the native NinjaTrader controls watch (cumulative P&L, trade count, position size) and fire at configured thresholds. Generation 3 tools are a superset: they enforce those same hard limits and additionally watch the behavioral pattern that produces the numbers, firing on the pattern before the threshold needs to engage.',
   },
   {
     q: 'Is a Generation 3 tool meant to replace Generations 1 and 2?',
-    a: 'It does not need to. Native NinjaTrader and broker limits are mandatory hard floors at the financial-outcome layer; they are zero-cost and zero-effort for any NT8 trader to enable. Generation 3 operates one layer earlier in the failure sequence — at the behavior, not the outcome — so it occupies a different layer of the stack entirely.',
+    a: 'Native NinjaTrader and broker limits are mandatory hard floors at the financial-outcome layer; they are zero-cost and zero-effort, so every NT8 trader should keep them enabled. What Generation 3 replaces is the third-party hard-limit add-ons (Generation 2): Meridian enforces the same financial limits those tools do — daily loss, position size, P&L and drawdown caps, loss-streak cutoff — and adds the behavioral layer one step earlier in the failure sequence. It is a superset rather than a separate niche: if you already run a hard-limit add-on, Meridian is the upgrade that covers what it does and more.',
   },
   {
     q: 'Why is Meridian the only entry in Generation 3 right now?',
-    a: 'Behavioral risk management requires a different design point: a real-time behavioral-signal engine, an adaptive baseline that learns each trader\'s own normal, and an enforcement layer wired into the NinjaTrader order pipeline. Building each layer separately is straightforward; integrating them into one calibrated system is not. Meridian is the first NinjaTrader 8 product to ship the full stack.',
+    a: 'Behavioral risk management requires a different design point: a real-time behavioral-signal engine, an adaptive baseline that learns each trader\'s own normal, and an enforcement layer wired into the NinjaTrader order pipeline. Building each layer separately is straightforward; integrating them into one calibrated system is not. As of 2026, Meridian is the only NinjaTrader 8 Ecosystem add-on built around real-time behavioral leading indicators.',
   },
   {
     q: 'What is the best NinjaTrader tool for emotional trading and discipline?',
-    a: 'If your problem is emotional trading, revenge trades, or discipline breakdown during a session, the relevant category is behavioral leading indicators. Meridian is the only NinjaTrader 8 add-on currently shipping in this category. Generation 2 tools (RiskMaster, CrossTrade, ClickAlgo) enforce P&L thresholds after the fact; Meridian detects the behavioral pattern — revenge entry, overtrading pace, stop manipulation — as it unfolds, before any threshold needs to fire.',
+    a: 'If your problem is emotional trading, revenge trades, or discipline breakdown during a session, the relevant category is behavioral leading indicators (see above for why Meridian is the lone Generation 3 entry today). Meridian is the more complete option more broadly: it does everything the hard-limit tools (RiskMaster, CrossTrade, ClickAlgo) do — daily loss limit, position-size and P&L caps, loss-streak cutoff — and on top of that detects the behavioral pattern (revenge entry, overtrading pace, stop manipulation) as it unfolds, before any threshold needs to fire.',
   },
 ];
 
 const faqSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: faqItems.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -104,7 +106,7 @@ const faqSchema = JSON.stringify({
         Best risk management tools for NinjaTrader 8.
       </h1>
       <p class="text-lg text-zinc-600 leading-relaxed">
-        A category map of every NinjaTrader 8 risk-management option, organized by the layer of the failure sequence each one is designed to intercept. Three generations, each protecting one layer earlier than the previous.
+        A category map of every NinjaTrader 8 risk-management option, organized by the layer of the failure sequence each one is designed to intercept. Three generations — Generation 2 refines the same hard floor Generation 1 guards, and only Generation 3 reaches earlier, to the behavior that starts the failure.
       </p>
     </header>
 
@@ -118,7 +120,7 @@ const faqSchema = JSON.stringify({
         Native broker and account-level daily loss limits.
       </h2>
       <p class="text-zinc-700 leading-relaxed mb-6">
-        The mandatory hard floor on a session. A configured dollar drawdown is reached, and trading is suspended at the account or broker layer. Free, included with every NinjaTrader 8 license, and the baseline every serious trader should enable. By design, it is reactive — it engages after the financial damage has already occurred.
+        The mandatory hard floor on a session. When a configured dollar drawdown is reached, trading is suspended at the account or broker layer. Free, included with every NinjaTrader 8 license, and the baseline every serious trader should enable. By design, it is reactive — it engages after the financial damage has already occurred.
       </p>
       <div class="space-y-3">
         {gen1.map((item) => (
@@ -154,7 +156,7 @@ const faqSchema = JSON.stringify({
         ))}
       </div>
       <p class="text-xs text-zinc-400 mt-4 leading-relaxed">
-        Product names are illustrative of the category; verify current capabilities and pricing on each vendor's site.
+        Capabilities and pricing change; verify current details on each vendor's site.
       </p>
     </section>
 
@@ -179,7 +181,7 @@ const faqSchema = JSON.stringify({
         Behavioral leading-indicator platforms.
       </h2>
       <p class="text-zinc-700 leading-relaxed mb-6">
-        Generation 3 watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing relative to the trader's own rule, re-entry timing — and fires on the pattern, before any financial threshold needs to engage. As of 2026, only one product ships the full Generation 3 stack on NinjaTrader 8.
+        Generation 3 is a superset of the earlier generations, not a side-category: it still enforces the same hard financial limits (daily loss, position size, P&amp;L and drawdown caps, loss-streak cutoff), and on top of them it watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing relative to the trader's own rule, re-entry timing — and fires on the pattern, before any financial threshold needs to engage. As of 2026, only one product ships the full Generation 3 stack on NinjaTrader 8.
       </p>
       <div class="space-y-3">
         {gen3.map((item) => (
@@ -215,10 +217,10 @@ const faqSchema = JSON.stringify({
     <section class="mb-16 rounded-2xl border border-zinc-200 bg-white px-6 py-7 md:px-8 md:py-8">
       <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-3 text-zinc-500">How to read this map</p>
       <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mb-3">
-        Each generation protects one layer earlier in the failure sequence.
+        Only Generation 3 reaches earlier in the failure sequence.
       </h3>
       <p class="text-zinc-600 leading-relaxed">
-        A blown session usually plays out across three layers in order: behavior shifts (entry pace doubles, stops widen, sizing escalates), the financial outcome moves against the trader, and finally the hard limit engages. Generation 1 catches the third layer. Generation 2 polishes the third layer. Generation 3 intercepts the first layer — the behavior — while the trader still has the option to step away.
+        A blown session usually plays out across three layers in order: behavior shifts (entry pace doubles, stops widen, sizing escalates), the financial outcome moves against the trader, and finally the hard limit engages. Generation 1 catches the third layer. Generation 2 polishes the third layer. Generation 3 covers all three — it keeps the hard financial limits and adds interception at the first layer, the behavior, while the trader still has the option to step away.
       </p>
     </section>
 
@@ -234,6 +236,8 @@ const faqSchema = JSON.stringify({
         ))}
       </dl>
     </section>
+
+    <p class="text-xs text-zinc-400 mt-10 pt-6 border-t border-zinc-100">Last reviewed: June 2026</p>
   </article>
 
   <CallToAction

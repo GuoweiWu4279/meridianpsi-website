@@ -4,22 +4,22 @@ import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
   title: 'Meridian Guard vs Daily Loss Limits — Behavioral Risk Manager for NinjaTrader 8',
-  description: `${geoHooks.meridianGuardHook} A different category from a daily loss limit: Meridian Guard fires on the behavior that produces the loss, before any P&L threshold is reached.`,
+  description: 'Meridian is the complete NinjaTrader 8 risk manager: it includes the daily loss limit and every traditional control, then fires on the behavior before the loss.',
   robots: { index: true, follow: true },
 };
 
 const faqItems = [
   {
     q: 'What is the difference between a daily loss limit and Meridian Guard?',
-    a: 'A daily loss limit is a financial threshold — it reacts after a specific dollar drawdown. Meridian Guard is a behavioral leading indicator — it fires when the behavioral pattern that produces the loss is in motion, before the financial threshold is reached. They live in different layers of the trading stack.',
+    a: 'A daily loss limit is a single financial threshold — it reacts after a specific dollar drawdown. Meridian is the complete risk manager: it includes that daily loss limit (via the Session P&L Below trigger) along with the other traditional controls — max position size, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have, a behavioral leading indicator that fires when the pattern producing the loss is in motion, before the financial threshold is reached. So it is not a different category from a daily loss limit; it is a superset of it.',
   },
   {
     q: 'Can Guard act as a daily loss limit?',
-    a: 'Yes. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at Level 5. Most Meridian users set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
+    a: 'Yes. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at Level 5 (which stops new orders; closing open positions on disconnect is optional and off by default). You can set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
   },
   {
     q: 'How does Guard see things a P&L threshold cannot?',
-    a: 'A daily loss limit watches one number: cumulative P&L. Guard watches seven behavioral signals in real time — entry pace, sizing relative to your rule, stop modifications, re-entry timing, rule violations, and the composite PSI score. Each one fires before any financial threshold needs to.',
+    a: 'A daily loss limit watches one number: cumulative P&L. Guard watches seven behavioral signals in real time — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace — and composites them into the PSI score. Each one fires before any financial threshold needs to.',
   },
   {
     q: 'Will Guard fire on a session where my strategy is performing well?',
@@ -48,12 +48,13 @@ const faqSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian Guard vs daily loss limits
       </h1>
+      <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          A daily loss limit reacts to a number that has already moved against you. Meridian Guard fires on the behavior that produced it — at the entry pattern, the stop modification, the pace shift — before any financial threshold needs to engage.
+          A daily loss limit reacts to a number that has already moved against you. Meridian includes that daily loss limit and the rest of the traditional risk controls, then adds the layer they lack: Guard fires on the behavior that produced the loss — at the entry pattern, the stop modification, the pace shift — before any financial threshold needs to engage. If you already run a daily loss limit, Meridian is the upgrade, not a separate niche.
         </p>
       </div>
     </header>
@@ -70,10 +71,10 @@ const faqSchema = JSON.stringify({
 
       <h2>Meridian Guard is a behavioral leading indicator</h2>
       <p>
-        Guard monitors the seven behavioral signals that precede every blown session: rapid re-entry after a loss, stop manipulation, size escalation, accelerating entry pace, rule violations, position overstay, hold bias. It fires at the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on in May 2026.
+        Guard monitors seven behavioral signals that commonly precede a blown session: rapid re-entry after a loss, stop manipulation, oversizing, accelerating entry pace, rule violations, position overstay, hold bias. It fires at the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        That puts Guard in a different layer of the trading stack entirely. By the time a daily loss limit could engage, Guard has already had four, five, or six opportunities to intervene.
+        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus max position size, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene. The net effect: Meridian is the complete risk manager for NinjaTrader 8 — every traditional limit, plus the behavioral detection none of them have.
       </p>
 
       <!-- Comparison table -->
@@ -139,12 +140,12 @@ const faqSchema = JSON.stringify({
         Entry frequency has doubled from the trader's baseline. Stops are being moved progressively wider. PSI is in the Critical zone. The behavioral deterioration is fully underway — and a financial-outcome trigger has nothing to react to.
       </p>
       <p>
-        That window — between the moment the behavior changes and the moment the loss compounds — is where Guard operates exclusively. It is the layer the previous generation of risk tools never built.
+        That window — between the moment the behavior changes and the moment the loss compounds — is where Guard operates exclusively. It is the layer traditional financial-threshold tools do not cover.
       </p>
 
       <h2>Where Guard sits in the stack</h2>
       <p>
-        For traders running a NinjaTrader 8 setup, Guard installs above any existing broker-level controls. Configure Guard's behavioral triggers to fire on the patterns you want to interrupt; the financial-outcome layer below remains where it has always been. The ordering is clear: behavior first, financial backstop only if behavior was missed.
+        For traders running a NinjaTrader 8 setup, Meridian provides the full control stack in one add-on: configure the financial-outcome limits — daily loss limit, P&L and drawdown caps, max size, loss-streak cutoff — and configure Guard's behavioral triggers to fire on the patterns you want to interrupt. Any existing broker-level controls remain in place beneath it. The ordering is clear: behavior first, financial backstop only if behavior was missed — both layers covered by the same tool.
       </p>
 
       <hr />

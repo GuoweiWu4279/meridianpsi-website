@@ -47,7 +47,7 @@ The implication is uncomfortable: willpower, at this moment, is not a reliable c
 
 The typical advice offered for revenge trading operates at the wrong level of the system.
 
-**"Slow down and breathe."** Useful, to the extent that any pause that interrupts the automatic continuation of the stress response can allow some recovery of prefrontal function. But this advice requires the trader to remember to apply it, and to successfully execute it, in the moment when their capacity for deliberate action is at its lowest. Most traders who have told themselves to slow down have also revenge traded within the hour.
+**"Slow down and breathe."** Useful, to the extent that any pause that interrupts the automatic continuation of the stress response can allow some recovery of prefrontal function. But this advice requires the trader to remember to apply it, and to successfully execute it, in the moment when their capacity for deliberate action is at its lowest. In practice, telling yourself to slow down rarely survives the moment the stress response peaks.
 
 **"Follow your trading plan."** This is sound as a principle and essentially useless as a corrective in the moment. The plan was written during a state of calm deliberation. The violation of the plan occurs during a state of acute stress. Reminding yourself of the plan does not, in most people, restore the cognitive conditions under which the plan was written.
 
@@ -73,9 +73,9 @@ The critical implementation requirement is that the pause must be enforced exter
 
 ### Commitment Devices
 
-Behavioral economist Richard Thaler, in work that contributed to his Nobel Prize, documented the effectiveness of commitment devices: mechanisms by which a person, in a state of rational calm, restricts their own future behavior against the anticipated failure of their future self.
+Behavioral economist Richard Thaler, in the self-control and planner–doer research recognized by his Nobel Prize, helped formalize the logic of commitment devices: mechanisms by which a person, in a state of rational calm, restricts their own future behavior against the anticipated failure of their future self.
 
-The principle applied to trading is straightforward. Before the session begins — before any losses have occurred, before the stress response has been activated — the trader sets rules. After three consecutive losses, trading stops for fifteen minutes. After a certain P&L threshold is reached, the platform closes. The rules are set in the state that is capable of setting them correctly.
+The principle applied to trading is straightforward. Before the session begins — before any losses have occurred, before the stress response has been activated — the trader sets rules. After three consecutive losses, trading stops for fifteen minutes. After a certain [P&L threshold](/why-daily-loss-limits-fail) is reached, trading locks against adding risk. The rules are set in the state that is capable of setting them correctly.
 
 The commitment device works precisely because it removes the decision from the moment when the decision cannot be trusted. There is no on-the-fly negotiation about whether this particular situation is an exception, because the rule was designed to apply in this particular situation.
 
@@ -95,7 +95,7 @@ Part of what makes structural intervention effective is that revenge trading has
 
 Monitoring those deviations in real time — rather than waiting for the large revenge trade to confirm that the pattern has fully expressed — allows for intervention at an earlier point in the sequence, when it is less costly.
 
-This is the logic behind behavioral monitoring tools that track leading indicators of psychological deterioration rather than waiting for outcome-level evidence that something has gone wrong. By the time the account balance confirms a revenge trade has occurred, the decision has already been made. Earlier signals exist that are diagnostically meaningful and occur before the most consequential decision is executed.
+This is the logic behind [behavioral monitoring tools](/anti-tilt) that track [leading indicators of psychological deterioration](/psi-monitor) rather than waiting for outcome-level evidence that something has gone wrong. By the time the account balance confirms a revenge trade has occurred, the decision has already been made. Earlier signals exist that are diagnostically meaningful and occur before the most consequential decision is executed.
 
 ---
 
@@ -125,4 +125,4 @@ That is the level at which the problem is actually solvable.
 
 ---
 
-*This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten, Roy Baumeister, Richard Thaler, and Daniel Kahneman. The author developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 — the first tool to detect behavioral deterioration during a live session and intervene before it costs you. It detects revenge entry, overtrading, and five other behavioral patterns and can enforce automated intervention. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.*
+*This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten and Richard Thaler. The author developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 that detects behavioral deterioration during a live session and can intervene at the behavioral signal, before the next order. It detects Revenge Entry, Overtrading Pace, and five other behavioral signals and can enforce automated intervention. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.*

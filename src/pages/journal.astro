@@ -1,66 +1,290 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import FeatureDetailPage from '~/components/widgets/FeatureDetailPage.astro';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// JOURNAL — feature page. Voice register: TEACH / PRECISE.
+// Job: explain the IN-SESSION journal — mood chips + quick notes captured in the
+// moment, auto-compiled into a session report at close. Differentiate hard from
+// after-the-fact journaling tools: Meridian writes the journal WHILE you trade.
+// Header, Footer, RiskBanner come from PageLayout. Design-system classes
+// (.win/.halo/.eyebrow/.tnum) are global (tailwind.css → @layer components).
+// ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Session Journal — Post-Trade Reflection for NinjaTrader 8 | Meridian',
+  title: 'Session Journal — In-the-Moment Trade Journaling for NinjaTrader 8 | Meridian',
   description:
-    'Meridian Journal lets NinjaTrader 8 traders log behavior context, rule adherence, and session decisions for structured post-session review. Improve execution consistency over time.',
+    'Most journals are written hours later, from memory. Meridian Journal captures mood chips and quick notes for NinjaTrader 8 traders in the moment — then auto-compiles a session report at close. Capture while you trade; review before the next open.',
   robots: { index: true, follow: true },
 };
+
+const TRIAL = '/pricing';
+
+/** FAQ built from this page's WHAT-THIS-IS-NOT / objection content. Doubles as a GEO answer-box asset. */
+const faqItems = [
+  {
+    q: 'When does Meridian compile the session report?',
+    a: 'At the close. Meridian captures mood chips and quick notes in the moment while you trade, then auto-compiles them into one session report the moment your session ends — no nightly write-up, no blank page.',
+  },
+  {
+    q: 'Do I have to write the journal myself?',
+    a: 'No. Capture is one tap — a mood chip or a one-line note pinned to the exact minute it happened. The report compiles itself at the close, laying your moods and notes over the PSI timeline alongside the behavioral signals that fired.',
+  },
+  {
+    q: 'Is the session journal private?',
+    a: 'Yes. Meridian is local-first: your notes stay yours, and the only data that leaves is anonymized and opt-out — never your name, broker credentials, account numbers, or funds.',
+  },
+  {
+    q: 'How long are my session reports kept?',
+    a: 'Every session report is kept in your 5-year session history, ready to review before the next open. Session history and post-session reports are included on every tier, starting from $49.99/mo.',
+  },
+];
+
+/** JSON-LD must be injected via set:html — inline `{JSON.stringify({...})}` breaks because Astro treats inner `}` as closing the expression. Schema is a GEO asset; keep it. */
+const journalJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.meridianpsi.com/journal#webpage',
+      url: 'https://www.meridianpsi.com/journal',
+      name: metadata.title,
+      description: metadata.description,
+      isPartOf: { '@id': 'https://www.meridianpsi.com/#website' },
+      about: { '@id': 'https://www.meridianpsi.com/#organization' },
+      breadcrumb: { '@id': 'https://www.meridianpsi.com/journal#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.meridianpsi.com/journal#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.meridianpsi.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Features', item: 'https://www.meridianpsi.com/features' },
+        { '@type': 'ListItem', position: 3, name: 'Session Journal', item: 'https://www.meridianpsi.com/journal' },
+      ],
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Meridian — Session Journal',
+      applicationCategory: 'FinanceApplication',
+      applicationSubCategory: 'TradingApplication',
+      operatingSystem: 'Windows',
+      softwareRequirements: 'NinjaTrader 8',
+      description:
+        'The in-session trade journal for NinjaTrader 8: capture mood chips and quick notes in the moment while you trade, then auto-compile a session report at the close. Built by an Official NinjaTrader Ecosystem Vendor.',
+      url: 'https://www.meridianpsi.com/journal',
+      award: 'Official NinjaTrader Ecosystem Vendor',
+      featureList: [
+        'One-tap mood chips stamped onto the live session timeline',
+        'One-line quick notes pinned to the exact minute and fill',
+        'Each chip and note anchored to the fill and PSI score from that moment',
+        'Session report auto-compiled at the close — moods and notes laid over the PSI timeline',
+        'Kept in your 5-year session history, ready to review before the next open',
+        'Local-first, anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds',
+      ],
+      publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://www.meridianpsi.com/journal#faq',
+      mainEntity: faqItems.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+const journalJsonLdHtml = JSON.stringify(journalJsonLd).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
-  <FeatureDetailPage
-    featureTag="Feature"
-    title="Journal"
-    intro="Journal gives structure to post-session reflection. Instead of vague notes, you can log behavior context, rule adherence, and decisions to improve next session."
-    videoTitle="Journal workflow demo"
-    videoDescription="Record a short clip of your after-session workflow and the exact notes you review before the next open."
-    ctaTitle="Stop mistakes before they reach the order window."
-    ctaSubtitle="Journal entries help convert one-time lessons into stable habits."
-  >
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">What to capture</h2>
-        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
-          <li>Where pressure started and why.</li>
-          <li>Rules followed vs rules broken.</li>
-          <li>What to repeat and what to remove.</li>
-        </ul>
+  <!-- Structured data for GEO: WebPage + BreadcrumbList + SoftwareApplication + FAQPage -->
+  <script type="application/ld+json" set:html={journalJsonLdHtml} />
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">JOURNAL &middot; CAPTURE &rarr; REVIEW</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+        The journal that writes itself &mdash;<br />while you&rsquo;re still <span class="text-emerald-600">trading.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Memory is the worst place to keep a trading journal. By the close you&rsquo;ve already rewritten the story.
+        Meridian captures one mood chip and one quick note <em>in the moment</em> &mdash; then auto-compiles them into a
+        session report the moment your session closes.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
       </div>
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">Best practice</h2>
-        <ul class="text-sm text-zinc-600 space-y-2 list-disc list-inside">
-          <li>Keep entries short and specific.</li>
-          <li>Review before your next session starts.</li>
-          <li>Track progress by behavior, not only P&amp;L.</li>
-        </ul>
-      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required &middot; Cancel anytime</p>
     </div>
-    <div class="mt-4 rounded-xl border border-zinc-200 p-5">
-      <h2 class="font-semibold text-zinc-900 mb-2">Suggested post-session structure</h2>
-      <ol class="text-sm text-zinc-600 space-y-2 list-decimal list-inside">
-        <li>What behavior created pressure first?</li>
-        <li>Which rule did I follow well today?</li>
-        <li>Which rule did I break or nearly break?</li>
-        <li>What one adjustment should I apply next session?</li>
-      </ol>
+    <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
+      <div class="win"><img src="/m/journal.png" alt="Meridian Journal — in-session mood chips, timestamped quick notes, and the auto-compiled session report" /></div>
     </div>
-    <div class="mt-4 grid md:grid-cols-2 gap-4">
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">Session report tie-in</h2>
-        <p class="text-sm text-zinc-600 leading-relaxed">
-          Use Journal with your session timeline: note when pressure started, which signal triggered first, and what
-          action you took. This links behavior to execution outcomes.
+  </section>
+
+  <!-- ───────────────────────── THE PROBLEM WITH AFTER-THE-FACT ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY TIMING IS EVERYTHING</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          A journal written from memory<br />records the wrong session.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          The moment that mattered &mdash; the flash of frustration before the revenge entry, the &ldquo;just one more&rdquo;
+          at 2:40pm &mdash; is gone within minutes. By the evening, you log a tidy summary of trades, not the feeling that
+          drove them. The lesson lives in the moment. So that&rsquo;s where Meridian captures it.
         </p>
       </div>
-      <div class="rounded-xl border border-zinc-200 p-5">
-        <h2 class="font-semibold text-zinc-900 mb-2">Keep it actionable</h2>
-        <p class="text-sm text-zinc-600 leading-relaxed">
-          End each journal entry with one next-session rule. Small, specific adjustments compound faster than broad goals.
-        </p>
+      <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <div class="text-sm font-semibold text-zinc-500 mb-4">After-the-fact journaling tools</div>
+          <ul class="space-y-3 text-zinc-700">
+            <li class="flex gap-3"><span class="text-zinc-400">&times;</span> You write it hours later, from memory</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&times;</span> The emotional moment is already gone</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&times;</span> It&rsquo;s a separate chore after a hard day</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&times;</span> Notes float free of what actually happened</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+          <div class="text-sm font-semibold text-emerald-700 mb-4">Meridian Journal &mdash; in-session</div>
+          <ul class="space-y-3 text-zinc-800">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>One tap to mark how you feel, mid-session</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Captured the instant pressure shows up</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Auto-compiled at close &mdash; nothing to write up</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Every note timestamped to the order flow</span></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </FeatureDetailPage>
+  </section>
+
+  <!-- ───────────────────────── MOOD CHIPS + QUICK NOTES ───────────────────────── -->
+  <section id="how" class="max-w-3xl mx-auto px-6 py-24 scroll-mt-24">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">CAPTURE, IN ONE TAP</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        One tap now,<br />no write-up tonight.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Journaling fails when it costs effort at the exact moment you have none. Meridian shrinks the capture to a single
+        gesture, so it actually happens &mdash; even on the sessions you&rsquo;d rather forget.
+      </p>
+      <ul class="mt-6 space-y-4 text-zinc-700">
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold mt-0.5">&check;</span>
+          <span><strong class="text-zinc-900">Mood chips.</strong> Tap one &mdash; calm, focused, frustrated, rushed &mdash; and it&rsquo;s stamped onto the live timeline. No typing required.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold mt-0.5">&check;</span>
+          <span><strong class="text-zinc-900">Quick notes.</strong> A one-line thought &mdash; &ldquo;chasing the open,&rdquo; &ldquo;moved my stop again&rdquo; &mdash; pinned to the exact minute it happened.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold mt-0.5">&check;</span>
+          <span><strong class="text-zinc-900">Anchored to your trades.</strong> Each chip and note sits beside the fill and the PSI score from that moment &mdash; feeling linked to action.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── AUTO-COMPILED SESSION REPORT ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div data-reveal class="win order-2 lg:order-1"><img src="/m/debrief.png" alt="Meridian session report — mood chips, notes, and behavioral signals compiled into one timeline at the close" /></div>
+      <div data-reveal class="order-1 lg:order-2">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">AT THE CLOSE, AUTOMATICALLY</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          Your session ends. The report<br />is already written.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          The instant your session ends, Meridian compiles everything you captured &mdash; mood chips, quick notes, and the
+          behavioral signals that fired &mdash; into one session report. No blank page, no &ldquo;I&rsquo;ll do it later.&rdquo;
+        </p>
+        <ul class="mt-6 space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your moods and notes laid over the PSI timeline</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Where pressure started &mdash; and which signal fired first</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Kept in your 5-year session history, ready to review</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">The report you&rsquo;d have skipped writing is the one waiting for you before the next open.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHERE IT SITS IN THE LOOP ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-14">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHERE IT SITS IN THE LOOP</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Capture is step four of five.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+        The journal isn&rsquo;t a side feature &mdash; it&rsquo;s the bridge from <span class="text-zinc-900 font-medium">what happened</span>
+        to <span class="text-zinc-900 font-medium">what changes next time</span>. It captures while you trade so review has something true to work with.
+      </p>
+    </div>
+    <div data-reveal class="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div><div class="text-zinc-900 font-semibold mb-1">Plan</div><p class="text-sm text-zinc-600">Your one risk for today, before the open.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div><div class="text-zinc-900 font-semibold mb-1">Monitor</div><p class="text-sm text-zinc-600">A live read on your discipline.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div><div class="text-zinc-900 font-semibold mb-1">Guard</div><p class="text-sm text-zinc-600">Enforcement when you cross your line.</p></div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-white p-5 shadow-sm"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div><div class="text-zinc-900 font-semibold mb-1">Journal</div><p class="text-sm text-zinc-600">What happened, captured in the moment.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">05</div><div class="text-zinc-900 font-semibold mb-1">Review</div><p class="text-sm text-zinc-600">Edge vs luck, and the habit to fix.</p></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── HOW TO USE IT WELL (TEACH) ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW TO USE IT WELL</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A few habits make it pay off fast.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">The tool handles capture and compiling. These four habits turn the report into progress.</p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Tap the chip the moment you feel it</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Don&rsquo;t wait for proof you&rsquo;re tilting. The first flicker of frustration is the signal worth catching &mdash; one tap and it&rsquo;s on the record.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Keep notes to one specific line</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">&ldquo;Chased the open&rdquo; beats a paragraph. Specific and short means you&rsquo;ll actually write it &mdash; and actually read it later.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Read the report before the next open</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Two minutes with yesterday&rsquo;s session report primes you to spot the same pattern early today &mdash; while you can still act on it.</p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+          <div class="font-semibold text-zinc-900 mb-2">Leave with one adjustment</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">End each review with a single next-session rule. Small, specific changes compound faster than broad resolutions.</p>
+        </div>
+      </div>
+      <div class="mt-8 rounded-2xl calloutd text-zinc-100 px-8 py-7 max-w-3xl mx-auto">
+        <p class="text-sm font-semibold text-emerald-400 mb-3 tracking-wide">FOUR QUESTIONS THE REPORT HELPS YOU ANSWER</p>
+        <ol class="space-y-2.5 text-zinc-200 leading-relaxed list-decimal list-inside">
+          <li>What behavior created pressure first today?</li>
+          <li>Which rule did I hold to under that pressure?</li>
+          <li>Which rule did I break &mdash; or nearly break?</li>
+          <li>What one adjustment do I apply next session?</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHAT THIS IS NOT ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Capture, not homework</div><p class="text-sm text-zinc-600">No nightly write-up. Tap a chip or a note while you trade; the report compiles itself at the close.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Your notes stay yours. Never your name, broker credentials, account numbers, or funds &mdash; local-first; the only data that leaves is anonymized and opt-out.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Part of the whole loop</div><p class="text-sm text-zinc-600">The journal feeds review, and review sharpens the next plan. One tool, monitor through improve &mdash; not a separate app to keep up.</p></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Capture the session,<br />not the story you tell later.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Mood chips and quick notes in the moment &mdash; auto-compiled into the report waiting before your next open.</p>
+      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required &middot; Cancel anytime</p>
+    </div>
+  </section>
 </Layout>

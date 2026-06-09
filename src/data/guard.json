@@ -16,7 +16,7 @@
     { "level": "L5", "name": "Disconnect",    "color": "#dc2626", "desc": "Severs broker connection. Optional re-disconnect if you try to bypass." }
   ],
   "examples": [
-    { "name": "Daily Loss Limit",      "rule": "P&L below -$500",               "action": "Trading Pause (Disconnect)" },
+    { "name": "Daily Loss Limit",      "rule": "P&L below -$500",               "action": "Disconnect (Broker)" },
     { "name": "Revenge Trade Check",   "rule": "3 consecutive losses",          "action": "Acknowledge + 60s Countdown" },
     { "name": "Tilt Early Warning",    "rule": "PSI below 65",                  "action": "Notify" },
     { "name": "Hard Tilt Stop",        "rule": "PSI below 45 + P&L below -$300", "action": "Trading Pause (Cancel Orders)" },

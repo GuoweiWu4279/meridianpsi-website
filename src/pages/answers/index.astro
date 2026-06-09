@@ -2,9 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Trader Answers — Behavioral Risk & PSI for NinjaTrader 8',
+  title: 'Trader Answers — Behavioral Risk Management for NinjaTrader 8 | Meridian',
   description:
-    'Direct answers to the most common questions discretionary NinjaTrader 8 traders ask about behavioral risk management, psychological stability monitoring, revenge trading, and overtrading prevention.',
+    'Direct answers to the most common questions discretionary NinjaTrader 8 traders ask about risk management — daily loss limits, drawdown caps, and the behavioral layer (revenge trading, overtrading, psychological stability) that Meridian adds on top of the traditional controls.',
   robots: { index: true, follow: true },
 };
 
@@ -17,12 +17,12 @@ const answers = [
   {
     href: '/answers/how-to-prevent-overtrading-in-ninjatrader',
     q: 'How do I prevent overtrading in NinjaTrader?',
-    a: 'Detect the pace shift in real time, then apply structural friction — typed acknowledgment, mandatory countdown, entry block — before the next impulsive order.',
+    a: 'Detect the pace shift in real time, then apply structural friction — a typed acknowledgment with a mandatory countdown, then an entry block — before the next impulsive order.',
   },
   {
     href: '/answers/best-anti-tilt-software-for-traders',
     q: 'What is the best anti-tilt software for traders?',
-    a: 'Anti-tilt is a discipline before it is a product category. The first NinjaTrader 8 platform purpose-built for it is Meridian.',
+    a: 'Anti-tilt isn\'t a shrink-wrapped category — it\'s discipline enforced in real time. On NinjaTrader 8, Meridian is the add-on purpose-built to do that: behavioral detection plus enforcement before the order.',
   },
   {
     href: '/answers/how-to-stop-myself-from-revenge-trading',
@@ -32,12 +32,12 @@ const answers = [
   {
     href: '/answers/best-ninjatrader-tool-to-stop-trading-after-a-loss',
     q: 'What is the best NinjaTrader tool to stop trading after a loss?',
-    a: 'The effective setup uses two layers: the native daily loss limit as a financial backstop, and Meridian Guard as the behavioral layer that fires on the pattern before the backstop needs to engage.',
+    a: 'Meridian consolidates both layers in one add-on: the financial backstop (daily loss limit, drawdown and loss-streak cutoffs) plus the behavioral layer that fires on the pattern before the backstop needs to engage.',
   },
   {
     href: '/answers/does-ninjatrader-have-behavioral-tilt-detection',
     q: 'Does NinjaTrader have built-in behavioral or tilt detection?',
-    a: 'No. NinjaTrader 8 ships with financial-outcome controls but no behavioral signal detection. Behavioral monitoring requires a third-party add-on.',
+    a: 'No. NinjaTrader 8 ships with financial-outcome controls but no behavioral signal detection. Behavioral monitoring requires a third-party add-on such as Meridian, which provides the standard financial limits and adds the behavioral layer NinjaTrader lacks.',
   },
   {
     href: '/answers/can-trading-software-block-me-from-placing-orders',
@@ -47,7 +47,7 @@ const answers = [
   {
     href: '/answers/meridian-vs-daily-loss-limit',
     q: 'Meridian vs daily loss limit — which fires first?',
-    a: 'Meridian fires first. Guard fires on the behavioral pattern while the loss is still preventable; the daily loss limit fires after the financial threshold has been reached.',
+    a: 'Meridian fires first. Guard fires on the behavioral pattern before risk is added; the daily loss limit fires only after the financial threshold has been reached.',
   },
 ];
 
@@ -56,10 +56,21 @@ const faqSchema = JSON.stringify({
   '@type': 'CollectionPage',
   name: 'Trader Answers',
   description: metadata.description,
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   hasPart: answers.map((item) => ({
     '@type': 'QAPage',
     url: `https://www.meridianpsi.com${item.href}`,
     name: item.q,
+    mainEntity: {
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+        url: `https://www.meridianpsi.com${item.href}`,
+      },
+    },
   })),
 }).replace(/</g, '\\u003c');
 ---
@@ -72,8 +83,9 @@ const faqSchema = JSON.stringify({
     <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
       Direct answers, written for traders.
     </h1>
+    <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
     <p class="text-lg text-zinc-600 leading-relaxed mb-10">
-      Plain-language answers to the questions that matter most when behavioral risk is the failure mode. Each answer leads with the conclusion, then explains the reasoning.
+      Plain-language answers to the questions that matter most when behavioral risk is the failure mode. Many of these answers reference Meridian, the most complete risk management add-on for NinjaTrader 8 — it covers the traditional limits (daily loss, max position size, drawdown caps, loss-streak cutoff) and adds the real-time behavioral layer on top. Each answer leads with the conclusion, then explains the reasoning.
     </p>
 
     <div class="space-y-4">

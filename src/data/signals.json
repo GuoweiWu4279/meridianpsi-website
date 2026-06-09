@@ -23,13 +23,13 @@
       "code": "D4",
       "name": "Hold Bias",
       "hudLabel": "Loss Hold Bias",
-      "short": "Holding losing trades far longer than your winners — the loss-aversion \"ride losers\" pattern."
+      "short": "Cutting winners quickly but letting losers run — your losing trades sit far longer than your winning ones."
     },
     {
       "code": "D5",
       "name": "Position Overstay",
       "hudLabel": "Holding Long",
-      "short": "Holding a losing trade past your historical tolerance — the \"let losers run\" pattern."
+      "short": "Sitting in a single position well past your own typical hold time — long after your plan said to be out."
     },
     {
       "code": "D6",

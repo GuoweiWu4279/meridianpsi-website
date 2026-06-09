@@ -51,7 +51,7 @@ Different segments of the NT8 trading community respond to different entry point
 
 **Their core problem:** They have rules. They break them. They know exactly which rules they break, and they still break them. The discipline failure is not from a lack of awareness — it's from a gap between knowing and executing.
 
-**The angle:** Meridian as an execution compliance layer. If you have a defined trading plan, Guard can enforce it: six trigger conditions (PSI threshold, consecutive losses, session/unrealized/single-trade P&L, session time) paired with five escalating response levels (alert → typed acknowledgment → countdown → confirmation-required → broker disconnect). You configure both sides — the rule and how forcefully it intervenes.
+**The angle:** Meridian as an execution compliance layer. If you have a defined trading plan, Guard can enforce it: six trigger conditions (PSI threshold, consecutive losses, session/unrealized/single-trade P&L, session time) paired with five escalating response levels (Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect). You configure both sides — the rule and how forcefully it intervenes.
 
 **What to emphasize:**
 - Guard's configurability — you define both the rules (6 triggers) and the response severity (5 levels), independently per rule
@@ -59,7 +59,7 @@ Different segments of the NT8 trading community respond to different entry point
 - The "typed acknowledgment" response level — a phrase the trader writes when calm, typed when not; high signal-to-friction ratio
 - Password-locked rules — most traders pick a password they won't remember under pressure, making in-session overrides effectively impossible
 - The idea of making your trading plan machine-enforceable, not just written down
-- Local processing — no cloud, no third party with access to your trade data
+- Local processing and storage on your machine; the only data that leaves is anonymized research data (no PII), never sold or shared, opt-out anytime
 
 **What to avoid:** Don't oversell Guard as a replacement for trading discipline. It creates friction against impulsive actions — the discipline itself still has to come from the trader.
 
@@ -88,7 +88,7 @@ Yes. Meridian works with any account connected through NT8, including prop firm 
 You can — unless you password-locked the rule. Most traders pick a password they won't remember under pressure as a deliberate friction device. You always design how much enforcement you want; we don't.
 
 **"Is my trading data safe? Going to the cloud?"**
-No. All behavioral data, baselines, and session history live on your machine. The only outbound network call is license validation with Whop on activation. No trade data, no signals, no telemetry ever leaves your computer.
+Your behavioral data, baselines, and session history live on your machine. Two requests go out: license validation with Whop, and an anonymized research upload — trading and behavioral records tied only to a random identifier (no name, credentials, account numbers, or funds), never sold, used solely to improve the product and for research. It's best-effort (the product works fully if it's blocked) and you can opt out anytime by email.
 
 **"How long until it's actually useful?"**
 The first session works but signals are wide. By session 5–10 the baseline is meaningfully calibrated. By session 20–30 it's tight. There's no minimum session count to start, just diminishing wide-confidence-interval-ness as it learns you.

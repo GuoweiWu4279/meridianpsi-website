@@ -1,24 +1,21 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import pricing from '~/data/pricing.json';
 import geoHooks from '~/data/geo-hooks.json';
 import guardData from '~/data/guard.json';
 
-/** Hero background: replace `public/guard-bg.jpg` (not hashed — easy to swap after AI export). */
-const guardBgUrl = '/guard-bg.jpg';
-
+const coreTier = pricing.tiers[0]!;
 const guardTier = pricing.tiers[1]!;
 const usd = (n: number) => n.toFixed(2);
 
 const metadata = {
   title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
   description:
-    `${geoHooks.meridianGuardHook} After a 7-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Six triggers, five response levels, Intel Layer. Trading involves substantial risk.`,
+    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, a five-level escalation ladder, and an un-bypassable Strict Lock. After a 7-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
+  robots: { index: true, follow: true },
 };
 
-const guardCheckout =
-  'https://whop.com/checkout/plan_ZHX4ySB65fahf';
+const guardCheckout = guardTier.monthlyCtaHref ?? 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
 
 const guardOffers = [
   {
@@ -60,14 +57,15 @@ const guardSchemaJson = JSON.stringify({
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",
     "Five response levels: Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5)",
-    "Disconnect (L5): Cancel Orders mode or full Broker Disconnect mode",
-    "Auto-flatten on Disconnect (L5): optionally close all open positions when the pause activates",
+    "Trading Pause (L4): blocks new entries by cancelling orders while staying connected; Disconnect (L5): severs the broker connection",
+    "Auto-flatten (opt-in, off by default): on a Trading Pause (L4) or Disconnect (L5) rule, optionally close all open positions the moment that rule fires",
+    "Strict Lock: an un-bypassable commitment window you choose in advance — survives NinjaTrader restart",
     "Pause persistence: lockout survives NinjaTrader restart or crash",
     "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation",
     "Anonymous by design — no name, credentials, or funds collected"
   ],
   "offers": guardOffers,
-  "softwareVersion": "1.4.1",
+  "softwareVersion": "1.5.0",
   "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
   "publisher": {
     "@type": "Organization",
@@ -81,13 +79,13 @@ const guardSchemaJson = JSON.stringify({
   }
 });
 
-/** Intel Layer — black 16:9 frame, image only (no in-frame captions). Copy: Intel/Weekday Patterns.png → intel-weekdaypattern.png */
+/** Intel Layer — black 16:9 frame, image only (no in-frame captions). */
 const intelSlides = [
-  /** Full screenshot visible — `cover` was cropping too much on this asset */
   { img: '/screenshots/psi-performance.png', alt: 'PSI × Performance' },
   { img: '/screenshots/digest-march.png', alt: 'Monthly Digest' },
   { img: '/screenshots/intel-weekdaypattern.png', alt: 'Weekday Patterns' },
   { img: '/screenshots/intel-risk-brief.png', alt: "Today's Risk Brief" },
+  { img: '/screenshots/intel-stats-showcase.png', alt: 'Stats — custom date ranges with win rate, profit factor, and breakdowns by time of day, hold time, instrument, and long/short' },
 ];
 
 const { triggers, levels, examples } = guardData;
@@ -96,394 +94,365 @@ const { triggers, levels, examples } = guardData;
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={guardSchemaJson} />
 
-  <!-- ═══════════════════════════════════════════════════════
-       HERO  —  Left text / right screenshot
-       ═══════════════════════════════════════════════════════ -->
-  <section
-    class="relative overflow-hidden md:-mt-[84px] not-prose guard-hero-surface"
-    style={`--guard-hero-bg: url('${guardBgUrl}')`}
-  >
-    <!-- bottom fade into next section -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-         style="background: linear-gradient(to bottom, transparent, #f0ede8);" aria-hidden="true"></div>
-
-    <div class="md:pt-[84px]"></div>
-
-    <div class="relative z-[1] max-w-6xl mx-auto px-6 py-14 md:py-20 lg:py-24">
-      <div class="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-center">
-
-        <!-- Left: frosted panel so copy stays readable on busy background -->
-        <div class="rounded-2xl bg-white/88 backdrop-blur-md px-6 py-7 md:px-8 md:py-9 shadow-sm ring-1 ring-zinc-900/[0.06]">
-          <div class="inline-flex items-center gap-2.5 border px-4 py-1.5 mb-7 rounded-full"
-               style="border-color:rgba(5,150,105,0.35); background:rgba(5,150,105,0.1);">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true"></span>
-            <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-emerald-800">Meridian Guard</span>
-          </div>
-
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.18] text-zinc-900 mb-6">
-            The rules you set for yourself.<br />
-            <span class="text-emerald-600">Enforced automatically.</span>
-          </h1>
-
-          <p class="text-lg text-zinc-700 leading-relaxed mb-8 max-w-lg">
-            When you are calm, you define the rules. When the moment comes — losing streak, tilt, blown limit — Guard enforces them. No decision required from you.
-          </p>
-
-          <!-- 3-step micro-flow -->
-          <div class="flex items-center gap-3 mb-9 text-sm text-zinc-700">
-            <div class="flex flex-col items-center gap-1">
-              <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-800 font-bold text-xs">1</div>
-              <span class="text-xs text-zinc-600 whitespace-nowrap">Set your rules</span>
-            </div>
-            <div class="h-px flex-1 border-t border-dashed border-zinc-300"></div>
-            <div class="flex flex-col items-center gap-1">
-              <div class="w-8 h-8 rounded-full bg-zinc-100 border border-zinc-200 flex items-center justify-center text-zinc-600 font-bold text-xs">2</div>
-              <span class="text-xs text-zinc-600 whitespace-nowrap">Trade normally</span>
-            </div>
-            <div class="h-px flex-1 border-t border-dashed border-zinc-300"></div>
-            <div class="flex flex-col items-center gap-1">
-              <div class="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-white font-bold text-xs">3</div>
-              <span class="text-xs text-zinc-600 whitespace-nowrap">Guard acts for you</span>
-            </div>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a href={guardCheckout} class="btn btn-lg btn-primary font-semibold">
-              Start 7-day free trial
-            </a>
-            <a href="#guard-system"
-               class="btn btn-lg font-semibold border-[1.5px] border-zinc-300 text-zinc-800 bg-white/80 hover:bg-white">
-              See how it works
-            </a>
-          </div>
-
-          <p class="text-xs text-zinc-600 mt-5 leading-relaxed">
-            $69.99/mo after trial · Cancel any time
-          </p>
-        </div>
-
-        <!-- Right: Guard trigger screenshot in dark device frame -->
-        <div class="relative hidden lg:block">
-          <div class="absolute -inset-4 rounded-3xl opacity-30 blur-2xl"
-               style="background: radial-gradient(ellipse at center, rgba(5,150,105,0.28) 0%, transparent 70%);"
-               aria-hidden="true"></div>
-          <figure
-            class="relative m-0 w-full rounded-2xl overflow-hidden shadow-2xl bg-zinc-950 flex items-center justify-center"
-            style="border:1px solid rgba(255,255,255,0.12); box-shadow:0 32px 64px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.10); aspect-ratio:1170/677; max-height:min(440px,56vh);"
-          >
-            <img
-              src="/guard-hero.png"
-              alt="Meridian Guard — broker disconnected after a rule breach, with reconnect instructions"
-              class="block w-full h-full object-contain"
-              loading="eager"
-            />
-          </figure>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       COMMITMENT DEVICE  —  editorial pull-quote
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-16 px-6" style="background:#f0ede8;">
-    <div class="max-w-3xl mx-auto">
-      <div class="rounded-2xl border border-zinc-300/60 bg-white/80 shadow-sm px-8 py-8 md:px-12 md:py-10">
-        <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-5">Why Guard exists</p>
-        <p class="text-xl md:text-2xl font-medium text-zinc-800 leading-[1.55]">
-          Behavioral economists call this a <strong class="text-zinc-900">commitment device</strong> — a mechanism you set up in advance to constrain your future behavior.<br /><br />
-          Institutional traders have compliance systems that do this automatically. Meridian Guard does the same for independent traders.
-        </p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       GUARD SYSTEM  —  Step 1 triggers + Step 2 levels
-       ═══════════════════════════════════════════════════════ -->
-  <section id="guard-system" class="py-20 md:py-28 px-6 bg-white border-t border-zinc-200/60">
-    <div class="max-w-6xl mx-auto">
-
-      <!-- Section header -->
-      <div class="max-w-2xl mb-16">
-          <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-3">The Guard System</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
-          Six ways to detect. Five ways to respond.
-        </h2>
-        <p class="text-zinc-600 leading-relaxed text-lg">
-          You set the pairing once. Guard watches every session and acts the moment a condition is met — no manual check-in required.
-        </p>
-      </div>
-
-      <!-- STEP 1: Trigger conditions -->
-      <div class="mb-20">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="flex-none w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold">1</div>
-          <div>
-            <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase">Step 1</p>
-            <h3 class="text-xl md:text-2xl font-bold text-zinc-900">Define when to intervene</h3>
-          </div>
-          <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
-            Each condition fires once on entry, then resets. No repeated nudges.
-          </p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {triggers.map((item) => (
-            <div class="group rounded-xl border border-zinc-200 bg-zinc-50/60 p-5 md:p-6 hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-200">
-              <div class="flex items-start gap-3 mb-2">
-                <svg class="w-4 h-4 mt-0.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
-                <p class="font-semibold text-zinc-900">{item.name}</p>
-              </div>
-              <p class="text-zinc-600 text-sm leading-relaxed pl-7">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- STEP 2: Action levels with color spectrum -->
-      <div class="mb-20">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="flex-none w-9 h-9 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold">2</div>
-          <div>
-            <p class="text-[11px] font-semibold tracking-[0.15em] text-zinc-500 uppercase">Step 2</p>
-            <h3 class="text-xl md:text-2xl font-bold text-zinc-900">Choose the response level</h3>
-          </div>
-          <p class="hidden md:block text-sm text-zinc-500 ml-auto max-w-xs text-right leading-relaxed">
-            Severity increases from a quiet nudge to a full broker disconnect.
-          </p>
-        </div>
-
-        <!-- Severity bar -->
-        <div class="flex h-1.5 rounded-full overflow-hidden mb-6 gap-0.5">
-          {levels.map((l) => (
-            <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
-          ))}
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          {levels.map((item) => (
-            <div class="rounded-xl border bg-white p-4 flex flex-col gap-2 shadow-sm hover:shadow-md transition-shadow"
-                 style={`border-color:${item.color}33;`}>
-              <div class="flex items-center gap-2">
-                <span class="text-[10px] font-bold tracking-widest px-1.5 py-0.5 rounded text-white"
-                      style={`background:${item.color};`}>{item.level}</span>
-                <span class="font-semibold text-zinc-900 text-sm">{item.name}</span>
-              </div>
-              <p class="text-zinc-600 text-xs leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Example setups -->
-      <div>
-        <p class="text-[11px] font-semibold tracking-[0.2em] text-zinc-500 uppercase mb-3">Example setups</p>
-        <h3 class="text-2xl font-bold text-zinc-900 mb-8">How traders configure Guard</h3>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {examples.map((item) => (
-            <div class="rounded-xl border border-zinc-200 bg-zinc-50 p-5 hover:border-zinc-300 transition-colors">
-              <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
-              <div class="space-y-1">
-                <p class="text-zinc-500 text-xs font-mono">When: <span class="text-zinc-700">{item.rule}</span></p>
-                <p class="text-xs font-mono font-medium" style="color:var(--aw-color-primary);">Action: {item.action}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Utility features -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-          {[
-            { name: 'Min loss filter', desc: 'Ignore fee-sized scratches in consecutive-loss streaks.' },
-            { name: 'Auto-flatten',    desc: 'Optionally close all open positions when a pause activates.' },
-            { name: 'Pause persistence', desc: 'Lockout survives NinjaTrader restart or crash.' },
-            { name: 'Emergency Reset', desc: 'One click clears all active Guard state if you need an out.' },
-          ].map((item) => (
-            <div class="rounded-xl border border-dashed border-zinc-300 bg-white/80 p-4">
-              <p class="font-semibold text-zinc-900 text-sm mb-1">{item.name}</p>
-              <p class="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       L3 CALLOUT  —  Only deep-color section on the page
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-20 px-6" style="background:#18181b;">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-400 uppercase mb-6">
-        Why L3 — Acknowledge — is the most powerful friction
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">MERIDIAN GUARD &middot; THE ENFORCEMENT LAYER</p>
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+        Willpower is not<br />a risk strategy.
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you
+        decide, from a quiet nudge to a full broker disconnect. No decision required from the tilted version of you.
       </p>
-      <blockquote class="text-2xl md:text-3xl font-semibold text-white leading-[1.4] mb-8">
-        "I will not revenge trade.<br class="hidden sm:block" />
-        My plan is my edge."
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={guardCheckout} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#ladder" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it enforces</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime</p>
+    </div>
+    <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
+      <div class="win"><img src="/m/guard.png" alt="Meridian Guard configuration — your own rules with an escalating enforcement ladder and an un-bypassable Strict Lock" /></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── TRUST STRIP ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
+      <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+        Official NinjaTrader Ecosystem Vendor
+      </span>
+      <span class="text-zinc-300">|</span><span>Un-bypassable lockout that survives a restart</span>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── THE PREMISE / COMMITMENT DEVICE ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY GUARD EXISTS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Two different people make<br />these two decisions.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
+        The trader who sets a daily loss limit at 8am is calm, rested, and rational. The trader who wants to override it at 11am &mdash; three losses deep &mdash; is not. Guard puts the calm one in charge of the day.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto" data-reveal>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">You — at 8am, calm</div>
+        <ul class="space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Pick the triggers that mean "I'm done for today"</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Choose how hard each one bites</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Optionally lock the settings shut</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">This version of you writes the rules.</p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">You — at 11am, tilted</div>
+        <ul class="space-y-3 text-zinc-800">
+          <li class="flex gap-3"><span class="text-zinc-400">&times;</span> Wants to "make it back" with one more trade</li>
+          <li class="flex gap-3"><span class="text-zinc-400">&times;</span> Wants to widen the stop just this once</li>
+          <li class="flex gap-3"><span class="text-zinc-400">&times;</span> Wants to switch the limits off</li>
+        </ul>
+        <p class="mt-5 text-sm text-emerald-700 font-medium">This version doesn't get a vote.</p>
+      </div>
+    </div>
+    <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center">
+      <p class="text-lg md:text-xl leading-relaxed">
+        Behavioral economists call this a <span class="text-emerald-400 font-semibold">commitment device</span> &mdash; a mechanism you set up in advance to constrain your future self.<br class="hidden md:block" />
+        Institutional desks have compliance systems that do it automatically. Guard is that, for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── STEP 1 — TRIGGERS ───────────────────────── -->
+  <section id="ladder" class="border-y border-zinc-200 bg-white scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP 1 &middot; THE 6 TRIGGERS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Decide what "too far" means.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Six conditions Guard watches every session. Pick the ones that matter to you and set the numbers. Each fires once on entry, then resets &mdash; no nagging.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
+        {triggers.map((item) => (
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 mt-1 text-emerald-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <div>
+                <div class="font-semibold text-zinc-900">{item.name}</div>
+                <p class="mt-1 text-sm text-zinc-600 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-6 text-sm text-zinc-500 max-w-2xl mx-auto">
+        Five of these are the same hard numbers a traditional risk tool gives you &mdash; daily loss, single-trade loss, drawdown, loss streak, session length. The sixth, <span class="text-emerald-700 font-semibold">PSI Below</span>, fires on the behavior itself, before the money moves.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── STEP 2 — THE ESCALATION LADDER ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP 2 &middot; THE 5-LEVEL LADDER</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Then decide how hard it bites.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+        The same trigger can be a whisper or a wall. You set the level. Severity climbs from a quiet toast to severing the broker connection &mdash; you choose exactly how far Guard goes.
+      </p>
+    </div>
+
+    <!-- Severity bar -->
+    <div class="max-w-5xl mx-auto" data-reveal>
+      <div class="flex h-2 rounded-full overflow-hidden mb-3 gap-0.5">
+        {levels.map((l) => (
+          <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
+        ))}
+      </div>
+      <div class="flex justify-between text-xs text-zinc-500 mb-8 px-0.5">
+        <span>Softest &mdash; a nudge</span>
+        <span>Hardest &mdash; broker disconnect</span>
+      </div>
+
+      <ol class="space-y-3">
+        {levels.map((item) => (
+          <li class="rounded-2xl border border-zinc-200 bg-white p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 shadow-sm">
+            <div class="flex items-center gap-3 sm:w-56 shrink-0">
+              <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>{item.level}</span>
+              <span class="font-semibold text-zinc-900">{item.name}</span>
+            </div>
+            <p class="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- L3 spotlight -->
+    <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-8 md:px-10" data-reveal>
+      <p class="text-[11px] font-bold tracking-[0.2em] text-emerald-400 uppercase mb-4">The most underrated level &mdash; L3, Acknowledge</p>
+      <blockquote class="text-xl md:text-2xl font-semibold text-white leading-[1.4]">
+        "I will not revenge trade. My plan is my edge."
       </blockquote>
-      <p class="text-zinc-400 leading-relaxed max-w-xl mx-auto">
-        You write that phrase yourself — when you are calm, before the session starts. In the moment, you have to type it before the platform lets you continue. Your own words, at the exact moment you need them most.
+      <p class="mt-5 text-zinc-400 leading-relaxed">
+        You write that phrase yourself, when you're calm, before the session. In the moment, Guard makes you type it back &mdash; word for word, against a countdown &mdash; before the platform lets you continue. Your own words, at the exact second you need them most. Often that's all it takes to break the loop.
       </p>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       INTEL LAYER  —  Guard-exclusive feature
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-20 md:py-28 px-6 border-t border-zinc-200/60" style="background:#f7f5f2;">
-    <div class="max-w-6xl mx-auto">
-
-      <!-- Header -->
-      <div class="max-w-2xl mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 mb-5">
-          Guard exclusive
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-4">
-          Intel Layer — your session history,<br class="hidden md:block" /> turned into decisions.
+  <!-- ───────────────────────── HONESTY — GUARD NEVER CLOSES POSITIONS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-24" data-reveal>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-8 md:p-10">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT GUARD WILL NOT DO</p>
+        <h2 class="text-2xl md:text-4xl font-bold tracking-tight text-zinc-900 leading-[1.15]">
+          Guard never closes your live<br class="hidden md:block" /> positions for you.
         </h2>
-        <p class="text-zinc-600 leading-relaxed text-lg">
-          Guard stores 5 years of session history locally and surfaces behavioral patterns that are invisible in any single session.
+        <p class="mt-5 text-lg text-zinc-700 leading-relaxed">
+          It only blocks you from <strong class="text-zinc-900">adding</strong> risk &mdash; new entries, more size. Your open trades stay yours. You can always exit, scale out, or flatten manually, any time, at any level. Guard stops the next bad decision; it never makes a trading decision for you.
+        </p>
+        <p class="mt-4 text-sm text-zinc-600 leading-relaxed">
+          The one exception is explicit and off by default: on a Trading Pause (L4) or Disconnect (L5) rule, you <em>may</em> tick a single checkbox &mdash; <em>Close all open positions immediately</em> &mdash; to auto-flatten the moment that rule fires. If you don't enable it, nothing closes &mdash; positions stay open and fully under your control.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- Side-by-side: tab cards left + fixed 16:9 frame (same pattern as homepage Intel) -->
-      <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start" data-guard-intel>
-        <!-- Left: tab nav cards -->
-        <div class="flex flex-col gap-3" role="tablist" aria-label="Intel Layer views">
-          {[
-            { idx: 0, title: 'PSI × Performance',  desc: 'Your P&L mapped against PSI zone — see exactly what Stable sessions average versus Critical.' },
-            { idx: 1, title: 'Monthly Digest',      desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days — every month.' },
-            { idx: 2, title: 'Weekday Patterns',    desc: 'Find your weakest trading day and track 6-month Composure progress.' },
-            { idx: 3, title: "Today's Risk Brief",  desc: 'Pre-session summary built from your own history — personalized before your first trade.' },
-          ].map((card) => (
-            <button
-              type="button"
-              role="tab"
-              data-guard-intel-tab
-              data-guard-intel-idx={card.idx}
-              aria-selected={card.idx === 0 ? 'true' : 'false'}
-              tabindex={card.idx === 0 ? 0 : -1}
-              class:list={[
-                'text-left rounded-xl p-4 border transition-all duration-200',
-                card.idx === 0
-                  ? 'border-emerald-400 bg-white shadow-sm shadow-emerald-100'
-                  : 'border-zinc-200 bg-white/60 hover:border-zinc-300 hover:bg-white',
-              ]}
-            >
-              <h3 class="font-semibold text-zinc-900 mb-1 text-sm">{card.title}</h3>
-              <p class="text-zinc-600 text-xs leading-relaxed">{card.desc}</p>
-            </button>
-          ))}
-        </div>
+  <!-- ───────────────────────── STRICT LOCK ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+    <div data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STRICT LOCK</p>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        A lock only your calm self<br />can set &mdash; and your tilted<br />self can't undo.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+        Any rule you can switch off in the moment isn't really a rule. Strict Lock is the fix: a commitment window you choose <em>in advance</em>. Once it's armed, Guard's settings are frozen &mdash; you can't loosen a trigger, drop a level, or quietly turn the whole thing off until the window ends.
+      </p>
+      <ul class="mt-6 space-y-3 text-zinc-700">
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>You set the duration when you're calm &mdash; the rest of the day, the eval, the week</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart</strong> &mdash; closing the platform doesn't reset it</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Built for the moment the tilted version of you goes looking for the off switch</span></li>
+      </ul>
+      <p class="mt-5 text-sm text-zinc-500">Lockout state persists across restarts and crashes &mdash; there's no "just reopen it" loophole.</p>
+    </div>
+    <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock arms an un-bypassable commitment window that survives a NinjaTrader restart" /></div>
+  </section>
 
-        <!-- Right: fixed frame + stacked views (absolute), arrows inside frame -->
-        <div class="relative group/guard-intel min-w-0">
-          <div
-            id="guard-intel-panel"
-            class="guard-media-frame relative overflow-hidden rounded-xl shadow-sm ring-1 ring-zinc-900/[0.06] w-full"
-            style="position: relative; isolation: isolate; z-index: 0; width: 100%; aspect-ratio: 16 / 9; min-height: 0; background: #1C1C1E;"
-            role="tabpanel"
-          >
-            {intelSlides.map((slide, i) => (
-              <div
-                class:list={['guard-intel-view', { 'is-active': i === 0 }]}
-                data-guard-intel-view
-                style="position: absolute; inset: 0; overflow: hidden;"
-                aria-hidden={i === 0 ? 'false' : 'true'}
-              >
-                <img
-                  src={slide.img}
-                  alt={slide.alt}
-                  class="absolute inset-0 h-full w-full"
-                  style={`object-fit: ${slide.objectFit ?? 'contain'}; object-position: ${slide.objectPosition ?? 'center'};`}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
-              </div>
-            ))}
-
-            <button
-              type="button"
-              data-guard-intel-prev
-              class="absolute left-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
-              aria-label="Previous Intel view"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
-                <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              data-guard-intel-next
-              class="absolute right-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
-              aria-label="Next Intel view"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
-                <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-              </svg>
-            </button>
+  <!-- ───────────────────────── EXAMPLE CONFIGS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">PUT TOGETHER</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A trigger, a level, a rule.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Pair any trigger with any level and you've written an enforceable rule. Here's how traders actually set Guard up.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
+        {examples.map((item) => (
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
+            <div class="space-y-1.5">
+              <p class="text-xs font-mono text-zinc-500">When: <span class="text-zinc-700">{item.rule}</span></p>
+              <p class="text-xs font-mono font-medium text-emerald-700">Then: {item.action}</p>
+            </div>
           </div>
+        ))}
+      </div>
+
+      <!-- Utility features -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-5 max-w-5xl mx-auto">
+        {guardData.utility.map((item) => (
+          <div class="rounded-xl border border-dashed border-zinc-300 bg-white p-4">
+            <p class="font-semibold text-zinc-900 text-sm mb-1">{item.name}</p>
+            <p class="text-zinc-500 text-xs leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── INTEL LAYER ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="max-w-2xl mb-12" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">GUARD EXCLUSIVE &middot; INTEL LAYER</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Your session history,<br />turned into decisions.
+      </h2>
+      <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+        Guard keeps 5 years of session history locally and surfaces the patterns no single session reveals &mdash; so the rules you set tomorrow are sharper than the ones you set today.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-[2fr_3fr] gap-8 items-start" data-guard-intel>
+      <!-- Left: tab nav cards -->
+      <div class="flex flex-col gap-3" role="tablist" aria-label="Intel Layer views">
+        {[
+          { idx: 0, title: 'PSI × Performance',  desc: 'Your P&L mapped against PSI zone — see exactly what Stable sessions average versus Critical.' },
+          { idx: 1, title: 'Monthly Digest',      desc: 'Composure trend, stable days, win rate, avg P&L, best and worst days — every month.' },
+          { idx: 2, title: 'Weekday Patterns',    desc: 'Find your weakest trading day and track 6-month Composure progress.' },
+          { idx: 3, title: "Today's Risk Brief",  desc: 'A pre-session summary built from your own history — personalized before your first trade.' },
+          { idx: 4, title: 'Stats & Breakdowns',  desc: 'New in v1.5.0 — pick any date range and break your edge down by time of day, hold time, instrument, and long vs short.' },
+        ].map((card) => (
+          <button
+            type="button"
+            role="tab"
+            data-guard-intel-tab
+            data-guard-intel-idx={card.idx}
+            id={`guard-intel-tab-${card.idx}`}
+            aria-controls="guard-intel-panel"
+            aria-selected={card.idx === 0 ? 'true' : 'false'}
+            tabindex={card.idx === 0 ? 0 : -1}
+            class:list={[
+              'text-left rounded-xl p-4 border transition-all duration-200',
+              card.idx === 0
+                ? 'border-emerald-400 bg-white shadow-sm shadow-emerald-100'
+                : 'border-zinc-200 bg-white/60 hover:border-zinc-300 hover:bg-white',
+            ]}
+          >
+            <h3 class="font-semibold text-zinc-900 mb-1 text-sm">{card.title}</h3>
+            <p class="text-zinc-600 text-xs leading-relaxed">{card.desc}</p>
+          </button>
+        ))}
+      </div>
+
+      <!-- Right: fixed 16:9 frame + stacked views -->
+      <div class="relative group/guard-intel min-w-0">
+        <div
+          id="guard-intel-panel"
+          class="guard-media-frame relative overflow-hidden rounded-xl shadow-sm ring-1 ring-zinc-900/[0.06] w-full"
+          style="position: relative; isolation: isolate; z-index: 0; width: 100%; aspect-ratio: 16 / 9; min-height: 0; background: #1C1C1E;"
+          role="tabpanel"
+          aria-labelledby="guard-intel-tab-0"
+        >
+          {intelSlides.map((slide, i) => (
+            <div
+              class:list={['guard-intel-view', { 'is-active': i === 0 }]}
+              data-guard-intel-view
+              style="position: absolute; inset: 0; overflow: hidden;"
+              aria-hidden={i === 0 ? 'false' : 'true'}
+            >
+              <img
+                src={slide.img}
+                alt={slide.alt}
+                class="absolute inset-0 h-full w-full"
+                style="object-fit: contain; object-position: center;"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+          ))}
+
+          <button
+            type="button"
+            data-guard-intel-prev
+            class="absolute left-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
+            aria-label="Previous Intel view"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+              <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-guard-intel-next
+            class="absolute right-2.5 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-all hover:bg-black/70 focus-visible:opacity-100 group-hover/guard-intel:opacity-100"
+            aria-label="Next Intel view"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+              <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       COMPARISON TABLE
-       ═══════════════════════════════════════════════════════ -->
-  <section id="comparison" class="py-20 px-6 bg-white border-t border-zinc-200/60">
-    <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-bold text-zinc-900">Meridian vs Meridian Guard</h2>
-        <p class="text-zinc-600 mt-3">Guard includes everything in Core, plus the Guard System and Intel Layer.</p>
+  <!-- ───────────────────────── COMPARISON: CORE vs GUARD ───────────────────────── -->
+  <section id="comparison" class="border-y border-zinc-200 bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-24">
+      <div class="text-center mb-10" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">CORE VS GUARD</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Guard is Core, plus enforcement.</h2>
+        <p class="mt-4 text-lg text-zinc-600">Everything the monitor does &mdash; and the layer that acts on it.</p>
       </div>
-      <div class="rounded-2xl border border-zinc-200 overflow-hidden shadow-sm">
-        <!-- Header row -->
-        <div class="grid grid-cols-3 text-sm font-semibold" style="background:#18181b; color:white;">
+      <div class="rounded-2xl border border-zinc-200 overflow-hidden shadow-sm" data-reveal>
+        <div class="grid grid-cols-3 text-sm font-semibold bg-zinc-900 text-white">
           <div class="px-5 py-4 text-zinc-400"></div>
           <div class="px-5 py-4 border-l border-zinc-700/60">
-            Meridian<br />
-            <span class="font-normal text-zinc-400 text-xs">$49.99/mo</span>
+            Meridian Core<br />
+            <span class="font-normal text-zinc-400 text-xs tnum">${usd(coreTier.monthlyPrice)}/mo</span>
           </div>
-          <div class="px-5 py-4 border-l border-zinc-700/60" style="color:#34d399;">
+          <div class="px-5 py-4 border-l border-zinc-700/60 text-emerald-400">
             Meridian Guard<br />
-            <span class="font-normal text-xs" style="color:var(--aw-color-primary);">$69.99/mo</span>
+            <span class="font-normal text-emerald-400 text-xs tnum">${usd(guardTier.monthlyPrice)}/mo</span>
           </div>
         </div>
-        <!-- Feature rows -->
         {[
-          ['Real-time PSI score',                        true,  true],
-          ['7 behavioral signal bars',                   true,  true],
-          ['Personal baselines',                         true,  true],
-          ['Session history (5 years)',                  true,  true],
-          ['Local-first; anonymized opt-out telemetry',  true,  true],
-          ['Adapts to any trading style',                true,  true],
-          ['Guard System (6 triggers, 5 actions)',       false, true],
-          ['Trading Pause (Cancel Orders or Disconnect)',false, true],
+          ['Real-time PSI score',                         true,  true],
+          ['7 behavioral signal bars',                    true,  true],
+          ['Personal baselines',                          true,  true],
+          ['Session history (5 years)',                   true,  true],
+          ['Local-first; anonymized opt-out telemetry',   true,  true],
+          ['Guard System (6 triggers, 5-level ladder)',   false, true],
+          ['Trading Pause & broker Disconnect',           false, true],
+          ['Strict Lock — un-bypassable commitment window',false, true],
           ['Intel Layer — monthly digest',               false, true],
-          ['PSI × P&L correlation',                      false, true],
-          ["Today's Risk Brief",                         false, true],
-        ].map(([feature, meridian, guard], i) => (
+          ['PSI × P&L correlation',                       false, true],
+          ["Today's Risk Brief",                          false, true],
+          ['Stats & breakdowns (custom date ranges)',     false, true],
+        ].map(([feature, core, guard], i) => (
           <div class="grid grid-cols-3 border-t border-zinc-100 text-sm" style={i % 2 === 1 ? 'background:#fafafa;' : ''}>
             <div class="px-5 py-3.5 text-zinc-700">{feature}</div>
             <div class="px-5 py-3.5 border-l border-zinc-100">
-              {meridian
+              {core
                 ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                : <span class="text-zinc-300 text-base leading-none">—</span>}
+                : <span class="text-zinc-300 text-base leading-none">&mdash;</span>}
             </div>
             <div class="px-5 py-3.5 border-l border-zinc-100">
               {guard
                 ? <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                : <span class="text-zinc-300 text-base leading-none">—</span>}
+                : <span class="text-zinc-300 text-base leading-none">&mdash;</span>}
             </div>
           </div>
         ))}
@@ -491,27 +460,18 @@ const { triggers, levels, examples } = guardData;
     </div>
   </section>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       FINAL CTA
-       ═══════════════════════════════════════════════════════ -->
-  <section class="py-20 px-6" style="background:#f0ede8; border-top:1px solid rgba(0,0,0,0.07);">
-    <div class="max-w-2xl mx-auto text-center">
-      <p class="text-[11px] font-semibold tracking-[0.2em] text-emerald-700 uppercase mb-4">Available now</p>
-      <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-5">
-        Meridian Guard is ready when you are.
-      </h2>
-      <p class="text-zinc-600 leading-relaxed mb-8 text-lg">
-        Everything in Meridian Core, plus the Guard System and Intel Layer. 7-day free trial. Cancel any time.
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Set the rules once.<br />Let them hold the line.</h2>
+      <p class="mt-6 text-lg text-zinc-600">
+        Everything in Meridian Core, plus the Guard System, Strict Lock, and the Intel Layer. 7-day free trial &mdash; no charge until day 7.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href={guardCheckout} class="btn btn-lg btn-primary font-semibold">
-          Start free trial — $69.99/mo
-        </a>
-        <a href="/pricing" class="btn btn-lg font-semibold border-[1.5px] border-zinc-400/50 text-zinc-700 bg-transparent hover:bg-white/60">
-          Compare all plans
-        </a>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={guardCheckout} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+        <a href="/pricing" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Compare all plans</a>
       </div>
+      <p class="mt-4 text-xs text-zinc-500">${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
     </div>
   </section>
 
@@ -540,6 +500,7 @@ const { triggers, levels, examples } = guardData;
       const prevBtn = root.querySelector('[data-guard-intel-prev]');
       const nextBtn = root.querySelector('[data-guard-intel-next]');
       if (!tabs.length || !views.length) return;
+      const panel = document.getElementById('guard-intel-panel');
 
       const activeCard = ['border-emerald-400', 'bg-white', 'shadow-sm', 'shadow-emerald-100'];
       const inactiveCard = ['border-zinc-200', 'bg-white/60'];
@@ -563,6 +524,7 @@ const { triggers, levels, examples } = guardData;
         if (next === current) return;
         current = next;
         applyTabStyles(current);
+        if (panel && tabs[current] && tabs[current].id) panel.setAttribute('aria-labelledby', tabs[current].id);
         views.forEach((view, i) => {
           const on = i === current;
           view.classList.toggle('is-active', on);
@@ -574,6 +536,17 @@ const { triggers, levels, examples } = guardData;
         tab.addEventListener('click', () => {
           goTo(i);
           tab.focus();
+        });
+        tab.addEventListener('keydown', (e) => {
+          let target = null;
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') target = (i + 1) % tabs.length;
+          else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') target = (i - 1 + tabs.length) % tabs.length;
+          else if (e.key === 'Home') target = 0;
+          else if (e.key === 'End') target = tabs.length - 1;
+          if (target === null) return;
+          e.preventDefault();
+          goTo(target);
+          tabs[target].focus();
         });
       });
       prevBtn?.addEventListener('click', () => goTo(current - 1));

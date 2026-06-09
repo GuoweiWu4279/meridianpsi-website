@@ -1,149 +1,345 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import FeatureDetailPage from '~/components/widgets/FeatureDetailPage.astro';
+import geoHooks from '~/data/geo-hooks.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ADAPTIVE LEARNING & SETTINGS — the personalized baseline.
+// Voice register: TEACH / PRECISE. Meridian learns how YOU trade (window, size,
+// hold-time, re-entry rhythm) and the baseline sharpens every session, so
+// detection is calibrated to you — not a generic threshold. Header/Footer/
+// RiskBanner come from PageLayout. Design-system classes (.win/.halo/.eyebrow/
+// .tnum) are global (tailwind.css @layer components).
+// ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Adaptive Learning & Settings — Meridian',
+  title: 'Adaptive Learning & Settings — a Risk Baseline Calibrated to You | Meridian',
   description:
-    'Meridian adapts to your actual trading history instead of comparing you to generic averages. Set your rules once, and let the baseline do the rest.',
+    "Meridian learns how you actually trade — your session window, size, hold time, and re-entry rhythm — and the baseline sharpens every session. Detection is calibrated to you, not a generic threshold. Configure your window, size rules, and hold-time / re-entry rules; accuracy improves as your history grows.",
+  robots: { index: true, follow: true },
 };
+
+const TRIAL = '/pricing';
+
+/** JSON-LD must be injected via set:html — inline `{JSON.stringify({...})}` breaks because Astro treats inner `}` as closing the expression. Schema is a GEO asset; keep it. Mirrors psi-monitor.astro. */
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.meridianpsi.com/adaptive-learning-settings#webpage',
+      url: 'https://www.meridianpsi.com/adaptive-learning-settings',
+      name: metadata.title,
+      description: metadata.description,
+      isPartOf: { '@id': 'https://www.meridianpsi.com/#website' },
+      about: { '@id': 'https://www.meridianpsi.com/#organization' },
+      breadcrumb: { '@id': 'https://www.meridianpsi.com/adaptive-learning-settings#breadcrumb' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.meridianpsi.com/adaptive-learning-settings#breadcrumb',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.meridianpsi.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Features', item: 'https://www.meridianpsi.com/features' },
+        { '@type': 'ListItem', position: 3, name: 'Adaptive Learning & Settings', item: 'https://www.meridianpsi.com/adaptive-learning-settings' },
+      ],
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Meridian — Adaptive Learning & Settings',
+      applicationCategory: 'FinanceApplication',
+      applicationSubCategory: 'TradingApplication',
+      operatingSystem: 'Windows',
+      softwareRequirements: 'NinjaTrader 8',
+      description: geoHooks.schemaSoftwarePsi,
+      keywords: geoHooks.geoSearchAssociate,
+      url: 'https://www.meridianpsi.com/adaptive-learning-settings',
+      award: 'Official NinjaTrader Ecosystem Vendor',
+      featureList: [
+        'Adaptive baseline calibrated to the individual trader, not a generic average',
+        'Two-layer model — declared profile settings plus a learned behavioral baseline',
+        'Baseline reflects your real patterns after roughly 30 sessions, sharpening every session',
+        'Configurable trading window and schedule',
+        'Configurable normal position-size range and expected trades per session',
+        'Configurable hold-time and re-entry rules, max stop-loss width, and no-stop-loss trader mode',
+        'Optional maximum daily loss limit that doubles as a Guard enforcement trigger',
+        'Three sensitivity presets — Conservative, Balanced, Aggressive — plus per-signal weights',
+        'Per-account monitoring, automated-strategy fill exclusion, Test Mode, and Market Replay exclusion',
+        'Local-first, anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds',
+      ],
+      publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
+    },
+  ],
+};
+const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
 ---
 
 <Layout metadata={metadata}>
-  <FeatureDetailPage
-    featureTag="Feature"
-    title="Adaptive Learning & Settings"
-    intro="Every trader has a different normal. A scalper and a swing trader should not be measured by the same yardstick. Meridian starts with the rules and boundaries you set, then learns from your actual sessions — so feedback gets more accurate as your history grows, not more generic."
-    videoTitle="Adaptive learning and settings walkthrough"
-    videoDescription="See how profile settings define your trading structure and how the adaptive baseline updates as sessions accumulate."
-    videoUrl="https://www.youtube.com/embed/3T-5hDFjeNQ"
-    ctaTitle="Stop mistakes before they reach the order window."
-    ctaSubtitle="Meridian adapts to your trading style over time — fewer false signals, sharper feedback as your baseline matures."
-  >
+  <!-- Structured data for GEO: WebPage + BreadcrumbList + SoftwareApplication -->
+  <script type="application/ld+json" set:html={pageJsonLdHtml} />
 
-    <!-- Two-layer overview -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold text-zinc-900 mb-1">Two layers. One system.</h2>
-      <p class="text-sm text-zinc-500 mb-5">Settings define the structure. Baseline learning makes it personal.</p>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="rounded-xl border border-zinc-200 bg-white p-6">
-          <p class="text-xs font-semibold tracking-[0.12em] uppercase text-emerald-600 mb-3">Layer 1</p>
-          <h3 class="text-base font-semibold text-zinc-900 mb-2">Profile settings</h3>
-          <p class="text-sm text-zinc-500 leading-relaxed">
-            You declare your session window, typical size, entry frequency, stop conventions, and risk limits. Before you have trading history, these give Meridian a starting point calibrated to your style.
-          </p>
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">ADAPTIVE LEARNING &amp; SETTINGS</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        A risk baseline calibrated to <span class="text-emerald-600">you</span> &mdash;<br class="hidden md:block" /> not a generic threshold.
+      </h1>
+      <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        A scalper and a swing trader should never share the same yardstick. Meridian starts from the rules you set, then
+        learns how you actually trade &mdash; your window, your size, your hold time, your re-entry rhythm. Every session,
+        the baseline gets sharper, and so does the detection.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href="#configure" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See what you configure</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+    </div>
+    <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
+      <div class="win"><img src="/m/profile.png" alt="Meridian adaptive baseline, fully calibrated — your average loss size, position size, risk:reward, and win/loss hold times, all learned from your own sessions" /></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── WHY A PERSONAL BASELINE ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY A PERSONAL BASELINE</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          A generic threshold flags the wrong things.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+          Three contracts is reckless for one trader and a quiet Tuesday for another. A fixed rule has to choose: too tight
+          and it cries wolf, too loose and it misses the trade that hurt you. Meridian doesn't choose &mdash; it measures
+          everything against <em>your</em> normal, so the same drift means the same thing every time.
+        </p>
+      </div>
+      <div data-reveal class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
+        <div class="rounded-2xl border border-zinc-200 p-6">
+          <div class="text-3xl font-extrabold text-zinc-900 tnum">7</div>
+          <div class="mt-2 text-sm text-zinc-600">Behavioral signals, each scored against your own history.</div>
         </div>
-        <div class="rounded-xl border border-zinc-200 bg-white p-6">
-          <p class="text-xs font-semibold tracking-[0.12em] uppercase text-emerald-600 mb-3">Layer 2</p>
-          <h3 class="text-base font-semibold text-zinc-900 mb-2">Adaptive baseline learning</h3>
-          <p class="text-sm text-zinc-500 leading-relaxed">
-            After each session, Meridian updates what it knows about how you actually trade — size, hold time, loss magnitude, entry pace. As sessions accumulate, observed behavior gradually replaces the declared settings as the reference point.
-          </p>
+        <div class="rounded-2xl border border-zinc-200 p-6">
+          <div class="text-3xl font-extrabold text-zinc-900 tnum">~30</div>
+          <div class="mt-2 text-sm text-zinc-600">Sessions before the baseline reflects your real patterns.</div>
+        </div>
+        <div class="rounded-2xl border-2 border-emerald-500 p-6">
+          <div class="text-3xl font-extrabold text-emerald-700">Every</div>
+          <div class="mt-2 text-sm text-zinc-600">Session, the reference point sharpens &mdash; no manual reset.</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Settings -->
-    <div class="mb-10">
-      <h2 class="text-xl font-bold text-zinc-900 mb-1">What you configure</h2>
-      <p class="text-sm text-zinc-500 mb-5">Your profile covers the shape of how you trade and the rules you hold yourself to.</p>
-      <div class="grid md:grid-cols-2 gap-4">
-
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-3">Session & schedule</h3>
-          <ul class="space-y-2 text-sm text-zinc-600">
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Trading window start and end time</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Session window check can be disabled for traders without a fixed schedule</span></li>
-          </ul>
-        </div>
-
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-3">Size & frequency</h3>
-          <ul class="space-y-2 text-sm text-zinc-600">
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Normal position size range (min and max contracts)</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Expected trades per session (min and max)</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Typical rest time between trades</span></li>
-          </ul>
-        </div>
-
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-3">Risk limits</h3>
-          <ul class="space-y-2 text-sm text-zinc-600">
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Maximum stop-loss width in ticks</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Maximum daily loss in USD (optional)</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Maximum losing-trade hold time</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Pause-after-N-losses rule</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>No stop-loss trader mode (suppresses naked position detection)</span></li>
-          </ul>
-        </div>
-
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-3">Sensitivity & weights</h3>
-          <ul class="space-y-2 text-sm text-zinc-600">
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Three sensitivity presets: Conservative, Balanced, Aggressive</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Individual weight for each of the seven behavioral signals</span></li>
-            <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Recovery speed multiplier</span></li>
-          </ul>
-        </div>
-
-        <div class="rounded-xl border border-zinc-200 p-5 md:col-span-2">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-3">Account selection & test mode</h3>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <ul class="space-y-2 text-sm text-zinc-600">
-              <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Choose which accounts Meridian monitors, or monitor all by default</span></li>
-              <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Exclude automated strategy fills from PSI and baseline</span></li>
-            </ul>
-            <ul class="space-y-2 text-sm text-zinc-600">
-              <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Test Mode: PSI runs live but nothing is written to baseline history</span></li>
-              <li class="flex items-start gap-2"><span class="mt-0.5 text-emerald-600">&#10003;</span><span>Market Replay sessions are automatically excluded from baseline learning</span></li>
-            </ul>
-          </div>
-        </div>
-
+  <!-- ───────────────────────── TWO LAYERS ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW IT WORKS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Two layers. One reference point.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Your settings define the structure. Learning makes it personal.</p>
+    </div>
+    <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <div class="text-sm font-semibold text-zinc-500 mb-4">Layer 1 &mdash; Profile settings</div>
+        <h3 class="text-xl font-bold text-zinc-900 mb-3">The structure you declare</h3>
+        <p class="text-zinc-600 leading-relaxed">
+          Before you have any history, you tell Meridian the shape of how you trade: your session window, typical size,
+          entry frequency, stop conventions, and risk limits. That gives detection a sensible starting point on day one,
+          calibrated to your style instead of an industry average.
+        </p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <div class="text-sm font-semibold text-emerald-700 mb-4">Layer 2 &mdash; Adaptive baseline</div>
+        <h3 class="text-xl font-bold text-zinc-900 mb-3">The normal it learns</h3>
+        <p class="text-zinc-700 leading-relaxed">
+          After every session, Meridian updates what it knows about how you <em>actually</em> trade &mdash; size, hold
+          time, loss magnitude, entry pace. As sessions accumulate, observed behavior gradually takes over from your
+          declared settings as the reference point. The longer you trade, the sharper it gets.
+        </p>
       </div>
     </div>
-
-    <!-- Early vs mature profile -->
-    <div class="rounded-xl border border-zinc-100 bg-zinc-50 p-6 mb-10">
-      <h2 class="text-base font-semibold text-zinc-900 mb-5">Early profile vs. a mature one</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div>
-          <p class="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-2">Early sessions</p>
-          <p class="text-sm text-zinc-600 leading-relaxed">Your declared settings do most of the work. The system is more lenient because it does not yet have enough data to be precise about what is normal for you.</p>
-        </div>
-        <div>
-          <p class="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-2">After ~30 sessions</p>
-          <p class="text-sm text-zinc-600 leading-relaxed">The baseline has enough history to reflect your real behavior. Thresholds sharpen because the system knows your actual patterns — not just what you declared at setup.</p>
-        </div>
-      </div>
-      <p class="text-sm text-zinc-500 mt-5 pt-4 border-t border-zinc-200">
-        If your style changes, no manual reset is needed. The baseline evolves with each session and shifts naturally toward your new behavior over time.
+    <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center">
+      <p class="text-lg md:text-xl leading-relaxed">
+        Day one, your settings carry the load.<br class="hidden md:block" />
+        By <span class="text-emerald-400 font-semibold">session 30</span>, your own behavior is the yardstick.
       </p>
     </div>
+  </section>
 
-    <!-- Sensitivity presets -->
-    <div>
-      <h2 class="text-xl font-bold text-zinc-900 mb-1">Sensitivity presets</h2>
-      <p class="text-sm text-zinc-500 mb-5">Controls how quickly PSI responds to behavioral pressure, independent of baseline learning.</p>
-      <div class="grid md:grid-cols-3 gap-4">
+  <!-- ───────────────────────── WHAT YOU CONFIGURE ───────────────────────── -->
+  <section id="configure" class="border-y border-zinc-200 bg-white scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT YOU CONFIGURE</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Set your rules once.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Your profile covers the shape of how you trade and the lines you hold yourself to. Set it once &mdash; the
+          baseline handles the rest.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
 
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-2">Conservative</h3>
-          <p class="text-sm text-zinc-500 leading-relaxed">Earlier warnings, faster drops, slower recovery. More frequent alerts in exchange for catching pressure sooner.</p>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Trading window &amp; schedule</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Session start and end time</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Disable the window check entirely if you trade without a fixed schedule</span></li>
+          </ul>
         </div>
 
-        <div class="rounded-xl border border-emerald-200 bg-emerald-50/40 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-2">Balanced <span class="text-xs font-normal text-emerald-600 ml-1">default</span></h3>
-          <p class="text-sm text-zinc-500 leading-relaxed">Catches meaningful behavioral drift without firing on routine variation. The right starting point for most traders.</p>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Size &amp; frequency</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Normal position-size range &mdash; min and max contracts</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Expected trades per session &mdash; min and max</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Typical rest time between trades</span></li>
+          </ul>
         </div>
 
-        <div class="rounded-xl border border-zinc-200 p-5">
-          <h3 class="text-sm font-semibold text-zinc-900 mb-2">Aggressive</h3>
-          <p class="text-sm text-zinc-500 leading-relaxed">Higher thresholds, requires more extreme behavior to move PSI. For disciplined traders who want signals reserved for genuine outliers.</p>
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Hold-time &amp; re-entry rules</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum losing-trade hold time</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Pause-after-N-losses rule for re-entry rhythm</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum stop-loss width, in ticks</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>No-stop-loss trader mode &mdash; suppresses naked-position detection</span></li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Risk limits</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum daily loss in USD (optional)</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>These limits literally are Guard's enforcement triggers</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Set them when you're calm; Guard enforces them when you're not &mdash; blocking added risk at the line you drew</span></li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Sensitivity &amp; signal weights</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Three presets &mdash; Conservative, Balanced, Aggressive</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An individual weight for each of the seven behavioral signals</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Recovery-speed multiplier</span></li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-4">Account selection &amp; test mode</h3>
+          <ul class="space-y-2.5 text-zinc-600">
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Choose which accounts Meridian monitors &mdash; or monitor all by default</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Exclude automated-strategy fills from PSI and the baseline</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Test Mode runs PSI live without writing to baseline history</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Market Replay sessions are excluded from learning automatically</span></li>
+          </ul>
+        </div>
+
+      </div>
+      <div data-reveal class="win max-w-5xl mx-auto mt-12"><img src="/m/settings.png" alt="Meridian Settings — monitored accounts, trading style, session hours, risk limits, stops and rhythm, and the Sensitive / Balanced / Relaxed response level" /></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── EARLY VS MATURE ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div data-reveal class="text-center mb-12">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW IT MATURES</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">It gets more accurate, not more generic.</h2>
+      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+        Most tools are as smart on day one as they'll ever be. Meridian is the opposite &mdash; the more you trade, the
+        more it knows what's actually normal for you.
+      </p>
+    </div>
+    <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+        <p class="text-xs font-semibold tracking-[0.12em] uppercase text-zinc-400 mb-3">Early sessions</p>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-2">Lenient on purpose</h3>
+        <p class="text-zinc-600 leading-relaxed">
+          Your declared settings do most of the work, and detection runs a little looser &mdash; there isn't enough data
+          yet to be precise about what's normal for you, so Meridian won't pretend otherwise.
+        </p>
+      </div>
+      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+        <p class="text-xs font-semibold tracking-[0.12em] uppercase text-emerald-700 mb-3">After ~30 sessions</p>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-2">Sharp, and yours</h3>
+        <p class="text-zinc-700 leading-relaxed">
+          The baseline now has enough history to reflect your real behavior. Thresholds tighten because the system knows
+          your actual size, hold time, and pace &mdash; not just what you typed at setup.
+        </p>
+      </div>
+    </div>
+    <p class="text-center text-zinc-600 mt-8 max-w-2xl mx-auto leading-relaxed">
+      And if your style changes, there's nothing to reset. The baseline keeps updating every session and drifts naturally
+      toward your new behavior over time.
+    </p>
+  </section>
+
+  <!-- ───────────────────────── SENSITIVITY PRESETS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div data-reveal class="text-center mb-12">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SENSITIVITY PRESETS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">How loud the warnings get.</h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Presets control how quickly PSI responds to behavioral pressure &mdash; a separate dial from the baseline that
+          decides what counts as normal.
+        </p>
+      </div>
+      <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-2">Conservative</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Earlier warnings, faster PSI drops, slower recovery. More frequent alerts in exchange for catching pressure
+            sooner.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
+          <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">DEFAULT</div>
+          <h3 class="font-semibold text-zinc-900 mb-2">Balanced</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Catches meaningful behavioral drift without firing on routine variation. The right starting point for most
+            traders.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
+          <h3 class="font-semibold text-zinc-900 mb-2">Aggressive</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Higher thresholds &mdash; PSI only moves on more extreme behavior. For disciplined traders who want signals
+            reserved for genuine outliers.
+          </p>
         </div>
 
       </div>
     </div>
+  </section>
 
-  </FeatureDetailPage>
+  <!-- ───────────────────────── PRIVACY NOTE ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">The baseline stays yours</div>
+        <p class="text-sm text-zinc-600">Your history lives local-first. The only data that leaves is anonymized and opt-out &mdash; never your name, broker credentials, account numbers, or funds.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">Calibrated, not capped</div>
+        <p class="text-sm text-zinc-600">Adaptive learning sharpens detection; it never overrides the hard limits you set. Your declared rules are always the floor.</p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">Official NinjaTrader Ecosystem Vendor</div>
+        <p class="text-sm text-zinc-600">Audited and approved by NinjaTrader's Compliance, QA &amp; Executive teams before listing in the official Ecosystem. Runs natively inside NinjaTrader 8.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Detection that knows<br />how you trade.</h2>
+      <p class="mt-6 text-lg text-zinc-600">Set your rules once. Every session, the baseline sharpens &mdash; fewer false signals, clearer feedback, calibrated to you.</p>
+      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+    </div>
+  </section>
 </Layout>

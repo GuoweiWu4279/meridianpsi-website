@@ -2,18 +2,20 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'What is the Best NinjaTrader Tool to Stop Trading After a Loss? — Meridian',
+  title: 'Best NinjaTrader Tool to Stop Trading After a Loss — Meridian',
   description:
     'The best NinjaTrader 8 tool to stop trading after a loss is one that fires before the next entry, not after the daily loss limit is already breached. Here is how each category works.',
   robots: { index: true, follow: true },
 };
 
 const question = 'What is the best NinjaTrader tool to stop trading after a loss?';
-const directAnswer = 'The most effective tool is one that intercepts before the next entry, not after the daily loss limit fires. On NinjaTrader 8, that means: (1) native account-level daily loss control as the financial backstop, and (2) Meridian Guard as the behavioral layer that fires on the pattern — consecutive losses, PSI drop, deteriorating entry behavior — before the next order is placed. The two are complementary: the financial backstop catches outcomes; Guard catches the behavior that creates them.';
+const directAnswer = 'The most effective tool is one that intercepts before the next entry, not after the daily loss limit fires. On NinjaTrader 8, the most complete option is Meridian: it covers the traditional risk limits (daily loss cap, max position size, P&L/drawdown caps, loss-streak cutoff) and adds the layer those tools lack — real-time behavioral detection that fires on the pattern (consecutive losses, PSI drop, deteriorating entry behavior) before the next order is placed. So the practical setup is: (1) native account-level daily loss control as a free financial backstop, and (2) Meridian as the complete risk layer on top — it enforces the same outcome limits and catches the behavior that creates them. The financial backstop catches outcomes after the fact; Meridian catches the behavior earlier in the sequence.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -38,6 +40,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
@@ -59,12 +62,12 @@ const qaSchema = JSON.stringify({
         <strong>Layer 1 — Financial backstop:</strong> NinjaTrader's built-in account-level daily loss control, plus any broker-enforced drawdown limit (Tradovate, Rithmic, AMP). These are mandatory, free, and should always be active. They catch the financial outcome.
       </p>
       <p>
-        <strong>Layer 2 — Behavioral enforcement:</strong> Meridian Guard — the only NinjaTrader 8 add-on that watches behavioral patterns rather than P&L outcomes. Configured with a Consecutive Losses trigger, it fires after N losses and enforces whatever response you pre-committed to: a typed acknowledgment phrase, a mandatory countdown, or a full broker disconnect. It fires before the daily loss limit needs to engage.
+        <strong>Layer 2 — Complete risk enforcement:</strong> Meridian Guard. It covers the traditional risk limits a NinjaTrader 8 risk tool is expected to enforce — daily loss cap, max position size, P&L and drawdown caps, loss-streak cutoff — and adds the layer those tools lack: it watches behavioral patterns rather than only P&L outcomes. Configured with a Consecutive Losses trigger, it fires after N losses and enforces whatever response you pre-committed to: an Acknowledge step (type a phrase, with an optional countdown), a Trading Pause (a timed lockout on new entries), or a broker Disconnect. It fires before the daily loss limit needs to engage. If you already run a risk tool for the financial limits, Meridian is the upgrade — it enforces those same limits plus the behavioral layer in one add-on, rather than a separate niche product.
       </p>
 
       <h2>What Meridian Guard's consecutive-loss trigger does</h2>
       <p>
-        When you set "2 consecutive losses → Acknowledge" and "3 consecutive losses → 30-minute broker disconnect," Guard intercepts at the behavioral threshold. After loss 2, you must type a pre-written phrase (e.g., "I am stepping back to assess") before the next order can be placed. After loss 3, the broker connection is disconnected for 30 minutes — regardless of what your in-the-moment self wants to do. The pre-committed rule enforces itself.
+        When you set "2 consecutive losses → Acknowledge" and "3 consecutive losses → 30-minute Trading Pause," Guard intercepts at the behavioral threshold. After loss 2, you must type a pre-written phrase (e.g., "I am stepping back to assess") before the next order can be placed. After loss 3, the Trading Pause blocks new entry orders for 30 minutes — you can't add risk, though your open positions stay yours to manage (auto-flatten is an opt-in checkbox, off by default). The pre-committed rule enforces itself.
       </p>
 
       <h2>Why behavioral enforcement works when willpower doesn't</h2>
@@ -82,7 +85,7 @@ const qaSchema = JSON.stringify({
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
       <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was reviewed and approved by NinjaTrader's compliance team, executive background check, and hands-on QA of the live add-on (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">
