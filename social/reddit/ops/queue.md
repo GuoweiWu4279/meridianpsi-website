@@ -39,11 +39,7 @@ Reddit username: u/<USERNAME>
 
 ## ① 待发队列
 
-### [1] r/MeridianPSI — 置顶帖更新 | 状态：待发
-**操作：** 打开 r/MeridianPSI 的现有置顶帖 → Edit → 全选替换为
-`Web/social/reddit/pinned-start-here.md` 里 "Body (paste from here)" 之下的全文 → 保存。
-**为什么：** 线上版还是旧文案，有两处必须换的错误：Guard 五级名（旧表 L1/L3 都叫 "Alert"）和隐私句（"No behavioral data ever leaves your computer" 在 v1.5.0 后不真实，合规风险）。
-**备注：** 自有 sub，无任何门槛，随时可发。
+### ~~[1] r/MeridianPSI — 置顶帖更新~~ ✅ 已发（2026-06-10，Gary 贴出 v7）→ 已搬到 log.md。链接待回填。
 
 ### [2] 评论批次 #1 | 状态：等 0a（拿到 karma 数后我立刻扫帖出稿）
 Phase 1 开跑：每天 2–5 条纯价值评论草稿（零产品、零链接）。我扫 r/Daytrading + r/FuturesTrading
