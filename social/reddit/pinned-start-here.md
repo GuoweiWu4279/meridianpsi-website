@@ -41,61 +41,61 @@ Copy below is the **canonical pinned post** for r/MeridianPSI. Paste into the Re
 
 **Start Here: What is Meridian PSI?**
 
-Meridian is a real-time psychological stability monitor for futures traders. It watches how you trade during a live session, scores your behavior against your own baseline, and can step in when your discipline starts to slip. This post is the pinned reference for the sub: what Meridian is, how it works, and who it's for.
+Meridian is a real-time psychological stability monitor for futures traders. During a live session it watches how you are trading, scores it against your own baseline, and can step in when your discipline starts to slip. This is the pinned reference for the sub: what Meridian is, how it works, and who it is for.
 
-**The problem it addresses**
+**The problem it solves**
 
-Most accounts are not lost to a bad strategy. They are lost in a single session, when discipline slips: re-entering too fast after a loss, sizing up to win it back, moving a stop that should have been honored. The standard risk tools, daily loss limits, drawdown caps, loss-streak cutoffs, all measure the result. They trigger after the damage is done. None of them watch the behavior that causes it.
+Most accounts are not lost to a bad strategy. They are lost in one session. A loss, then a faster re-entry at bigger size, then a stop moved one more time, and by the time a daily loss limit kicks in the money is already gone. The standard risk tools (daily loss limits, drawdown caps, loss-streak cutoffs) all measure the result. They act after the damage is done. None of them watch the behavior that causes it.
 
-Meridian is built for that gap. It is not a replacement for those limits but the layer they cannot see: the behavior that trips them in the first place.
+You do not have to give up any of those tools. Meridian sits alongside them and adds the layer they are blind to: the behavior itself, while there is still time to do something about it.
 
 **How it works**
 
-At the center is the PSI, a Psychological Stability Index. Meridian reads your live order flow and tracks seven behavioral patterns that tend to appear right before traders blow up: revenge entries, oversizing, stop manipulation, overtrading, holding losers too long, position overstay, and rule violations. Each one is measured against your own trading history rather than a fixed benchmark, so the system learns what normal looks like for you and recognizes when you start to drift from it.
+At the center is the PSI, a Psychological Stability Index. Meridian reads your live order flow and tracks seven behavioral patterns that tend to show up right before traders blow up: revenge entries, oversizing, stop manipulation, overtrading, holding losers too long, position overstay, and breaking your own rules. Each one is scored against your own trading history rather than a fixed benchmark, so the system learns what normal looks like for you and notices when you drift from it.
 
-The result is a single score from 0 to 100, shown on a HUD that sits over your chart and updates in under a tenth of a second after every fill. Because it reads behavior rather than P&L, it sees trouble early. A daily loss limit cannot act until the money is already gone; Meridian can flag a developing revenge sequence on the second trade, while there is still an account to protect.
+The result is a single score from 0 to 100, shown on a small HUD over your chart and updated in under a tenth of a second after every fill. Because it reads behavior instead of P&L, it sees trouble early. A daily loss limit cannot act until the money is already gone. Meridian can flag a revenge sequence on the second trade, while you still have an account to protect.
 
 [IMAGE 1: the live PSI HUD]
 
-**Guard: enforcement when seeing it isn't enough**
+**Guard: enforcement when seeing it is not enough**
 
-Watching the score fall is not always enough to stop. Meridian Guard is the enforcement layer. You define the rules while you are calm, and Guard holds you to them during the session, escalating only as far as you choose:
+Watching the number fall is not always enough to stop. That is what Meridian Guard does. You write the rules while you are calm, and Guard holds you to them during the session, escalating only as far as you choose:
 
 | Level | What it does |
 |---|---|
 | **L1 - Notify** | A quiet notification so you know what is building, without interrupting your trading |
-| **L2 - Risk Alert** | A persistent banner; every new entry requires an active confirmation before it is placed |
-| **L3 - Acknowledge** | You must type a phrase you wrote yourself before continuing, which breaks the autopilot loop |
+| **L2 - Risk Alert** | A persistent banner; every new entry needs an active confirmation before it is placed |
+| **L3 - Acknowledge** | You type a phrase you wrote yourself before you can continue, which breaks the autopilot |
 | **L4 - Trading Pause** | New entries are blocked for a cooldown you set in advance. Closing a position is never blocked |
-| **L5 - Disconnect** | Meridian disconnects you from your broker, ending the session |
+| **L5 - Disconnect** | Guard disconnects you from your broker, ending the session |
 
-For the moments when a trader might try to override their own rules, there is Strict Lock. Switched on while you are calm, it makes any pause Guard fires impossible to end early, reset, or disable until its window closes. Closing or reducing a position is always allowed; the only thing Strict Lock prevents is adding new risk.
+For the days when you might talk yourself out of your own rules, there is Strict Lock. Turn it on while you are calm, and any pause Guard fires cannot be ended early, reset, or switched off until its timer runs out. Closing or reducing a position is always allowed. The only thing it stops is adding new risk.
 
 [IMAGE 2: the Guard page with Strict Lock armed]
 
 **After the session: Intel**
 
-When a session ends, Meridian reviews it. It separates how disciplined you were from how the session actually turned out, so a green day built on luck is shown as luck rather than skill, and a disciplined losing day reads as normal variance. Over time it puts a dollar figure on the difference between your composed and tilted sessions, and breaks your results down by time of day, instrument, hold time, and direction. The goal is to show, in numbers, what discipline is actually worth to your account.
+When a session ends, Meridian reviews it on two axes: how disciplined you were, and how it actually turned out. A green day that came mostly from luck shows up as luck rather than skill, and a disciplined losing day reads as ordinary variance. Over time it attaches a dollar figure to the gap between your composed sessions and your tilted ones, and breaks your results down by time of day, instrument, hold time, and direction. The point is to put a real number on what your discipline is worth.
 
 [IMAGE 3: the Intel overview]
 
 *(Screenshots show simulated demo data.)*
 
-**Who it's for**
+**Who it is for**
 
-Meridian is built for active futures traders, and it matters most to anyone trading a funded account or working through prop firm evaluations. In that world the cost of one bad session is concrete. Passing an evaluation is the easy part; many funded traders never reach a meaningful payout, and it is usually a single undisciplined session, not the strategy, that ends the account. A reset costs a fee and another month. A tilt session can cost the account itself. Against that, monitoring the behavior that causes it is inexpensive.
+Meridian is for active futures traders, and it earns its place fastest for anyone on a funded account or working through evaluations. There the cost of one bad session is concrete. Passing the evaluation is the easy part. Plenty of funded traders never reach a real payout, and it is usually one undisciplined session, not the strategy, that ends the account. A reset is a fee and another month. A tilt session can be the whole account. Watching the behavior that causes it is cheap by comparison.
 
-Meridian does not place trades and does not guarantee results. It monitors behavior and gives you the means to stop yourself.
+Meridian does not place trades and does not promise results. It watches what you are doing and gives you a way to stop yourself.
 
-**Platforms, trial, and trust**
+**Platforms and trust**
 
-Meridian runs natively as a NinjaTrader 8 add-on today. Standalone apps for Tradovate and Ironbeam are in early access, and a single license covers every platform. There is a 7-day free trial.
+Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. There is a 7-day free trial.
 
-It is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader's Compliance, QA, and Executive teams. It is local-first: your sessions, baselines, and journal stay on your machine, and it never collects your name, broker credentials, account numbers, or funds. The only data that ever leaves your PC is a license check and anonymized research records tied to a random identifier, which you can opt out of at any time. That is also why it runs inside prop firm environments.
+It is an Official NinjaTrader Ecosystem Vendor, audited by NinjaTrader's compliance, QA, and executive teams. It is local-first: your sessions, baselines, and journal stay on your machine, and it never collects your name, broker credentials, account numbers, or funds. The only things that leave your PC are a license check and anonymized research records tied to a random ID, which you can opt out of. That is also why it runs inside prop firm environments.
 
 **Questions**
 
-I am the founder and I read this sub. Post questions in the comments and I will answer them. If you trade on Tradovate or Ironbeam and want early access, comment or send a message.
+I am the founder and I read this sub. Ask anything in the comments. If you are on Tradovate or Ironbeam and want in early, comment or send me a message.
 
 meridianpsi.com
 
@@ -113,4 +113,5 @@ meridianpsi.com
 | 2026-06-10 | Patch: Guard level names + privacy line corrected. |
 | 2026-06-10 | v3 rewrite: Strict Lock, multi-platform funnel, FTC cleanup, image plan. |
 | 2026-06-10 | v4 rewrite around CURRENT site positioning: superset reframe, "one bad session" thesis, edge-vs-luck, funded wedge. (Still in comment-voice — too first-person/fragmenty.) |
-| 2026-06-10 | v5 (canonical): genre fix to product-explainer register (the right voice for an official pinned intro). Passed VOICE.md gates. Now the exemplar for ARTIFACTS.md "Pinned intro". |
+| 2026-06-10 | v5: genre fix to product-explainer register. Passed VOICE.md gates. |
+| 2026-06-10 | v6 (canonical): re-derived end-to-end through the content system (write loop + 3 gates) as the system's first real test. Tightened: problem section to a single narrative (not a parallel triple), explicit superset reassurance ("you don't have to give up those tools"), Intel payoff de-cleverd to a concrete number. The reference exemplar for ARTIFACTS.md "Pinned intro". |
