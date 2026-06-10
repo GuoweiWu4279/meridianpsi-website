@@ -12,9 +12,9 @@ import Layout from '~/layouts/PageLayout.astro';
 const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
 
 const metadata = {
-  title: 'Support — Meridian',
+  title: 'Support',
   description:
-    'Get help with Meridian for NinjaTrader 8. Send a message and hear back within 24 hours, or jump straight to the installation guide, FAQ, your account, and the latest download.',
+    'Get help with Meridian. Send a message and hear back within 24 hours, or jump straight to the installation guide, FAQ, your account, and the latest download.',
   robots: { index: true, follow: true },
 };
 
@@ -26,7 +26,7 @@ const supportJsonLd = {
   name: 'Meridian Support',
   url: 'https://www.meridianpsi.com/support',
   description:
-    'Support for Meridian, the behavioral risk-management add-on for NinjaTrader 8. Contact the team for installation help, bug reports, and billing questions.',
+    'Support for Meridian, the behavioral risk manager for futures traders (NinjaTrader 8 add-on; Tradovate & Ironbeam apps in early access). Contact the team for installation help, bug reports, and billing questions.',
   publisher: {
     '@type': 'Organization',
     name: 'Meridian',
@@ -178,6 +178,7 @@ const resources = [
           >
             <option value="" disabled selected>Select a topic</option>
             <option value="Installation issue">Installation issue</option>
+            <option value="Platform compatibility / early access">Platform compatibility / early access</option>
             <option value="Bug report">Bug report</option>
             <option value="Subscription / billing">Subscription / billing</option>
             <option value="Feature question">Feature question</option>

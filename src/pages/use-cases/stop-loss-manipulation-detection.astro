@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'Stop-Loss Manipulation Detection — NinjaTrader 8 Behavioral Risk Manager | Meridian',
+  title: 'Stop-Loss Manipulation Detection — NinjaTrader 8 Behavioral Risk Manager',
   description: 'Detect stop-loss manipulation in NinjaTrader 8 — stop widening, protective-order removal, and post-entry risk changes — and enforce a behavioral response before P&L damage.',
   robots: { index: true, follow: true },
 };
@@ -15,7 +15,7 @@ const faqItems = [
   },
   {
     q: 'How does Guard respond when stop manipulation is detected?',
-    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment, a mandatory countdown pause, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. This sits alongside the traditional limits Meridian also enforces (daily loss, P&L and drawdown caps, max position size), giving you an earlier, behavior-based trigger on top of them. By design, you stay in full control of the existing order, with structural friction now between you and the next impulse.',
+    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment (with an optional countdown), a trading pause that blocks new entries, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. This sits alongside the traditional limits Meridian also enforces (daily loss, P&L and drawdown caps, single-trade loss cap), giving you an earlier, behavior-based trigger on top of them. By design, you stay in full control of the existing order, with structural friction now between you and the next impulse.',
   },
   {
     q: 'Does this work if I move stops using NinjaTrader\'s chart trader?',
@@ -53,7 +53,7 @@ const faqSchema = JSON.stringify({
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Meridian is complete risk management for NinjaTrader 8 — it enforces the traditional limits (daily loss, max position size, P&amp;L and drawdown caps) and adds a real-time behavioral layer on top. For stop-loss manipulation specifically, it identifies behaviors such as widening stops, removing protective orders, or changing risk after entry, allowing Guard to insert friction at the moment of the modification — before the next impulsive action, rather than after the loss is recorded.
+          Meridian is complete risk management for NinjaTrader 8 — it enforces the traditional limits (daily loss, single-trade loss cap, P&amp;L and drawdown caps) and adds a real-time behavioral layer on top. For stop-loss manipulation specifically, it identifies behaviors such as widening stops, removing protective orders, or changing risk after entry, allowing Guard to insert friction at the moment of the modification — before the next impulsive action, rather than after the loss is recorded.
         </p>
       </div>
       <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">

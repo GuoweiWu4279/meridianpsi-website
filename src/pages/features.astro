@@ -13,9 +13,9 @@ import signalsData from '~/data/signals.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Features — Everything Your NinjaTrader 8 Risk Tool Does, Plus Behavior',
+  title: 'Features — Everything Your Risk Tool Does, Plus Behavior',
   description:
-    'Meridian is the complete risk manager for NinjaTrader 8: every limit a traditional risk tool has — daily loss, max size, P&L and drawdown caps, loss-streak cutoff — plus real-time detection of seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) scored against your own baseline, with intervention before the order. 7-day free trial.',
+    'Meridian is the complete risk manager for serious futures traders: every limit a traditional risk tool has — daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — plus real-time detection of seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) scored against your own baseline, with intervention before the order. Native in NinjaTrader 8; Tradovate & Ironbeam in early access. 7-day free trial.',
   robots: { index: true, follow: true },
 };
 
@@ -37,8 +37,8 @@ const loop = [
 // Guard's five escalating action levels (calm → hard).
 const actionLevels = [
   { level: 'Notify', desc: 'A quiet nudge — you see the line approaching.' },
-  { level: 'Acknowledge', desc: 'A typed confirmation before you proceed.' },
-  { level: 'Cooldown', desc: 'A timed pause before the next entry is allowed.' },
+  { level: 'Risk Alert', desc: 'A persistent warning banner — every entry needs an active confirmation.' },
+  { level: 'Acknowledge', desc: 'A typed confirmation phrase — with an optional countdown — before you proceed.' },
   { level: 'Trading Pause', desc: 'Entries blocked for a window you defined.' },
   { level: 'Disconnect', desc: 'A full broker disconnect that blocks new orders; optional auto-flatten on disconnect is off by default and you turn it on yourself.' },
 ];
@@ -54,9 +54,9 @@ const featuresJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
-      softwareRequirements: 'NinjaTrader 8',
+      softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description:
-        'The complete behavioral risk manager for NinjaTrader 8 — every traditional limit (daily loss, max position size, P&L and drawdown caps, loss-streak cutoff) plus real-time detection of seven trading behaviors scored against your personal baseline, with intervention before the order.',
+        'The complete behavioral risk manager for serious futures traders — every traditional limit (daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff) plus real-time detection of seven trading behaviors scored against your personal baseline, with intervention before the order. Native in NinjaTrader 8; Tradovate and Ironbeam apps in early access.',
       url: 'https://www.meridianpsi.com/features',
       award: 'Official NinjaTrader Ecosystem Vendor',
       offers: [
@@ -75,17 +75,19 @@ const featuresJsonLd = {
       ],
       featureList: [
         'Daily loss limit',
-        'Max position size limit',
+        'Single-trade loss cap',
         'P&L and drawdown caps',
         'Loss-streak cutoff',
+        'Session-time stop',
         'Real-time Psychological Stability Index (PSI), 0–100, updated under 100ms',
         ...signals.map((s) => `${s.name} (${s.code}) detection — ${s.short}`),
         'Adaptive baseline calibrated from your own session history',
         'Meridian Guard — 6 trigger types × 5 escalating action levels',
-        'Strict Lock — un-bypassable enforcement for a window you choose',
+        'Strict Lock — makes every fired pause un-bypassable for its full window',
         'Intel & Stats — PSI × P&L correlation and behavioral breakdowns',
         'Local-first, anonymized, opt-out telemetry — never name, broker credentials, account numbers, or funds',
         'Native NinjaTrader 8 add-on',
+        'Standalone apps for Tradovate and Ironbeam accounts (early access)',
         'Prop firm evaluation compatible',
       ],
       publisher: {
@@ -102,7 +104,7 @@ const featuresJsonLd = {
           name: 'Is Meridian a replacement for my existing NinjaTrader risk tool?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'It is the upgrade, not a competing category. Meridian does everything a traditional risk tool does — daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff — and adds a behavioral layer no limit-based tool has: real-time detection of seven trading behaviors scored against your own baseline, with intervention before the order rather than after the loss.',
+            text: 'It is the upgrade, not a competing category. Meridian does everything a traditional risk tool does — daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — and adds a behavioral layer no limit-based tool has: real-time detection of seven trading behaviors scored against your own baseline, with intervention before the order rather than after the loss.',
           },
         },
         {
@@ -140,15 +142,15 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         Every limit your risk tool has.<br />Plus the layer that reads <span class="text-emerald-600">how you trade.</span>
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian is a superset, not a competitor. It enforces every traditional limit — daily loss, max size, P&amp;L and
-        drawdown caps, loss-streak cutoff — and then adds what none of them have: real-time detection of the seven
+        Meridian is a superset, not a competitor. It enforces every traditional limit — daily loss, P&amp;L and
+        drawdown caps, single-trade loss cap, loss-streak cutoff — and then adds what none of them have: real-time detection of the seven
         behaviors that actually blow up accounts, scored against <em>your</em> baseline, stopping you <em>before</em> the order.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
         <a href="#superset" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the whole superset</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/mo &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="win"><img src="/m/overview.png" alt="Meridian Overview — live PSI gauge, behavioral signal bars, and session context inside NinjaTrader 8" class="nozoom" /></div>
@@ -182,11 +184,11 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
         <ul class="space-y-3 text-zinc-700">
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Single-trade loss cap</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
         </ul>
-        <p class="mt-5 text-sm text-zinc-500">These literally are four of Guard's six trigger types. Meridian does all of it.</p>
+        <p class="mt-5 text-sm text-zinc-500">These literally are four of Guard's six trigger types &mdash; the other two are the session-time stop and the behavioral PSI floor. Meridian does all of it.</p>
       </div>
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
         <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
@@ -307,7 +309,7 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
           </li>
         ))}
       </ul>
-      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for a window you choose — for when the tilted version of you wants to switch it off.</p>
+      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window — for when the tilted version of you wants to switch it off.</p>
       <p class="mt-4 text-sm text-zinc-500">By default, Guard does not close your live positions — it only blocks you from <em>adding</em> risk, and you can always exit, any time. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule and Guard will close your positions for you.</p>
       <a href="/guard" class="mt-6 inline-flex items-center gap-2 font-semibold text-emerald-700 hover:text-emerald-800 transition">
         How Guard's triggers and ladder work
@@ -417,7 +419,7 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
         <a href="/pricing" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See pricing</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/month after &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/month after &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 </Layout>

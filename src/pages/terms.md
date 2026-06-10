@@ -1,6 +1,6 @@
 ---
 title: 'Terms of Service'
-description: 'The terms governing your use of Meridian, the behavioral risk-management add-on for NinjaTrader 8 — license, acceptable use, disclaimers, and no-guarantee-of-results.'
+description: 'The terms governing your use of Meridian, the behavioral risk manager for futures traders (NinjaTrader 8 add-on; Tradovate & Ironbeam apps in early access) — license, acceptable use, disclaimers, and no-guarantee-of-results.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
@@ -14,7 +14,7 @@ By downloading, installing, or using Meridian ("the Software"), you agree to be 
 
 ## 2. Description of Software
 
-Meridian is a psychological stability monitoring tool designed for use with NinjaTrader® 8. The Software computes a real-time composite score from your order flow and configured settings during trading sessions, surfacing behavioral patterns for your own awareness. **The Software does not provide trading signals, financial advice, or investment recommendations of any kind.**
+Meridian is a psychological stability monitoring tool delivered as a NinjaTrader® 8 add-on and, in early access, as standalone Windows applications that connect to your own Tradovate® or Ironbeam account. The Software computes a real-time composite score from your order flow and configured settings during trading sessions, surfacing behavioral patterns for your own awareness. **The Software does not provide trading signals, financial advice, or investment recommendations of any kind.**
 
 ## 3. License
 
@@ -47,7 +47,7 @@ Meridian is an **Official NinjaTrader Ecosystem Vendor**, audited and approved b
 
 ## 9. Payments and Refunds
 
-All purchases include a 7-day free trial — no charge until day 7, cancel anytime. After that: a 14-day money-back guarantee on your first charge, and a full refund anytime Meridian won't run on a supported NinjaTrader 8 setup. All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
+All purchases include a 7-day free trial — no charge until day 7, cancel anytime. After that: a 14-day money-back guarantee on your first charge, and a full refund anytime Meridian won't run on a supported setup (NinjaTrader 8, or an early-access Tradovate/Ironbeam configuration). All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
 
 ## 10. Updates and Changes
 

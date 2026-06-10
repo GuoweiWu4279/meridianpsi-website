@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    background: #09090b;
+    color: #fafafa;
+    position: relative;
+  }
+  /* ambient glows */
+  .glow-a {
+    position: absolute; right: -180px; top: -220px; width: 720px; height: 720px;
+    background: radial-gradient(circle, rgba(16,185,129,0.16) 0%, rgba(16,185,129,0.05) 45%, transparent 70%);
+  }
+  .glow-b {
+    position: absolute; left: -200px; bottom: -320px; width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 65%);
+  }
+  /* faint grid */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 40%, black 30%, transparent 75%);
+  }
+  .wrap { position: absolute; inset: 0; padding: 56px 64px 48px; display: flex; flex-direction: column; }
+
+  /* brand row */
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .brand svg { display: block; }
+  .wordmark { font-size: 30px; font-weight: 700; letter-spacing: 0.34em; color: #fafafa; }
+
+  /* main split */
+  .main { flex: 1; display: flex; align-items: center; gap: 48px; margin-top: 8px; }
+  .copy { width: 640px; }
+  h1 {
+    font-size: 64px; line-height: 1.08; font-weight: 800; letter-spacing: -0.025em;
+    color: #fafafa;
+  }
+  h1 .em { color: #34d399; }
+  .sub {
+    margin-top: 26px; font-size: 25px; line-height: 1.45; font-weight: 500; color: #a1a1aa;
+    max-width: 600px;
+  }
+  .sub b { color: #e4e4e7; font-weight: 600; }
+
+  /* gauge panel */
+  .panel {
+    width: 392px; flex-shrink: 0;
+    background: linear-gradient(180deg, #121214 0%, #0c0c0e 100%);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    padding: 30px 34px 26px;
+    box-shadow: 0 40px 90px -28px rgba(0,0,0,0.85), 0 0 60px -20px rgba(16,185,129,0.14);
+    position: relative;
+  }
+  .panel-head { display: flex; align-items: center; justify-content: space-between; }
+  .panel-title { font-size: 14px; font-weight: 600; letter-spacing: 0.14em; color: #71717a; }
+  .live {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.1em; color: #34d399;
+  }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 10px rgba(52,211,153,0.9); }
+  .gauge { display: flex; justify-content: center; margin-top: 10px; position: relative; }
+  .gauge-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 26px; }
+  .psi-num { font-size: 56px; font-weight: 800; letter-spacing: -0.02em; color: #fbbf24; line-height: 1; }
+  .psi-state { margin-top: 8px; font-size: 15px; font-weight: 700; letter-spacing: 0.22em; color: #f59e0b; }
+  .signals { margin-top: 14px; display: flex; flex-direction: column; gap: 11px; }
+  .sig { display: flex; align-items: center; gap: 12px; }
+  .sig-name { width: 92px; font-size: 14.5px; font-weight: 600; color: #a1a1aa; }
+  .bar { flex: 1; height: 7px; border-radius: 99px; background: rgba(255,255,255,0.07); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 99px; }
+  .sig-val { width: 30px; text-align: right; font-size: 14.5px; font-weight: 700; color: #e4e4e7; font-variant-numeric: tabular-nums; }
+
+  /* footer row */
+  .foot { display: flex; align-items: center; justify-content: space-between; }
+  .vendor {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(52,211,153,0.35); background: rgba(16,185,129,0.08);
+    border-radius: 999px; padding: 12px 22px;
+    font-size: 17px; font-weight: 600; color: #6ee7b7;
+  }
+  .vendor svg { flex-shrink: 0; }
+  .domain { font-size: 19px; font-weight: 600; color: #71717a; letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="grid"></div>
+  <div class="wrap">
+
+    <div class="brand">
+      <!-- pulse mark -->
+      <svg width="64" height="36" viewBox="0 0 64 36" fill="none">
+        <path d="M2 24 L22 24 L28 6 L36 32 L41 24 L62 24" stroke="#10b981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="wordmark">MERIDIAN</div>
+    </div>
+
+    <div class="main">
+      <div class="copy">
+        <h1>Complete risk management for NinjaTrader&nbsp;8</h1>
+        <div class="sub">Every limit your old risk tool has — <b>plus the live behavioral layer</b> that catches revenge trading and oversizing as they start.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">PSI MONITOR</div>
+          <div class="live"><i></i>LIVE</div>
+        </div>
+        <div class="gauge">
+          <svg width="240" height="156" viewBox="0 0 240 156">
+            <defs>
+              <linearGradient id="arc" x1="0%" y1="100%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ef4444"/>
+                <stop offset="38%" stop-color="#f59e0b"/>
+                <stop offset="72%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#10b981"/>
+              </linearGradient>
+            </defs>
+            <!-- track -->
+            <path d="M 24 140 A 96 96 0 0 1 216 140" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="17" stroke-linecap="round"/>
+            <!-- value arc: PSI 64 → sweep from left end, ~64% of semicircle -->
+            <path d="M 24 140 A 96 96 0 0 1 216 140" fill="none" stroke="url(#arc)" stroke-width="17" stroke-linecap="round"
+                  stroke-dasharray="301.6" stroke-dashoffset="108.6"/>
+            <!-- marker dot at arc head (64% along semicircle from left: angle = 180-115.2=64.8deg) -->
+            <circle cx="160.9" cy="53.2" r="11" fill="#0c0c0e" stroke="#fbbf24" stroke-width="4"/>
+          </svg>
+          <div class="gauge-label">
+            <div class="psi-num">64</div>
+            <div class="psi-state">WARNING</div>
+          </div>
+        </div>
+        <div class="signals">
+          <div class="sig">
+            <div class="sig-name">Revenge</div>
+            <div class="bar"><i style="width:58%; background:#fbbf24;"></i></div>
+            <div class="sig-val">58</div>
+          </div>
+          <div class="sig">
+            <div class="sig-name">Size</div>
+            <div class="bar"><i style="width:82%; background:#ef4444;"></i></div>
+            <div class="sig-val">82</div>
+          </div>
+          <div class="sig">
+            <div class="sig-name">Pace</div>
+            <div class="bar"><i style="width:24%; background:#34d399;"></i></div>
+            <div class="sig-val">24</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="vendor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2 L20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z" stroke="#34d399" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M8.5 12 L11 14.5 L15.5 9.5" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Official NinjaTrader Ecosystem Vendor
+      </div>
+      <div class="domain">meridianpsi.com</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'NinjaTrader Revenge Trading Lockout — Cooldowns & Entry Blocking | Meridian Guard',
+  title: 'NinjaTrader Revenge Trading Lockout — Guard Cooldowns & Entry Blocking',
   description: `${geoHooks.meridianGuardRevengeOpening} Behavioral lockout for NinjaTrader 8: detects revenge-trade signatures and enforces consecutive-loss cooldowns, typed acknowledgments, and PSI-based entry blocks.`,
   robots: { index: true, follow: true },
 };
@@ -15,7 +15,7 @@ const faqItems = [
   },
   {
     q: 'How does Meridian raise the cost of a revenge impulse?',
-    a: 'Guard rules introduce structural friction between the moment of emotional pressure and the next order: a mandatory countdown pause, a required typed acknowledgment, or an entry block at the PSI threshold. The trader cannot rationalize past these in the moment because they are enforced by the software.',
+    a: 'Guard rules introduce structural friction between the moment of emotional pressure and the next order: a required typed acknowledgment (with an optional countdown), an entry block at the PSI threshold, or — at the highest level — a broker disconnect. The trader cannot rationalize past these in the moment because they are enforced by the software.',
   },
   {
     q: 'How does Guard handle an open position during a lockout?',
@@ -80,7 +80,7 @@ const faqSchema = JSON.stringify({
         A daily loss limit stops trading after the financial damage has been registered. By that point, the revenge trade has already executed — and in a leveraged futures position, a single impulsive order can consume a significant share of the session's allowable drawdown before any hard limit fires.
       </p>
       <p>
-        The limit is the floor. It is not the intervention. An effective intervention has to fire at the moment of behavioral deterioration, not after the financial consequence has already been recorded. Meridian is not a replacement for those limits — it is the complete tool that contains them. It enforces every traditional control a NinjaTrader 8 risk manager would (daily loss limit, max position size, P&amp;L and drawdown caps, consecutive-loss cutoff) and adds the behavioral layer that fires earlier, on the revenge impulse itself.
+        The limit is the floor. It is not the intervention. An effective intervention has to fire at the moment of behavioral deterioration, not after the financial consequence has already been recorded. Meridian is not a replacement for those limits — it is the complete tool that contains them. It enforces every traditional control a NinjaTrader 8 risk manager would (daily loss limit, P&amp;L and drawdown caps, single-trade loss cap, consecutive-loss cutoff) and adds the behavioral layer that fires earlier, on the revenge impulse itself.
       </p>
 
       <h2>How Meridian detects the pattern</h2>
@@ -97,10 +97,13 @@ const faqSchema = JSON.stringify({
         <li><strong>Acknowledgment requirement</strong> — before re-entry is possible, the trader must type a pre-written phrase; introduces deliberate friction without a full stop</li>
         <li><strong>PSI-based entry block</strong> — new entries blocked when composite PSI drops below a configured threshold, regardless of loss count</li>
         <li><strong>Session end / broker disconnect after N consecutive losses</strong> — Guard ends the session entirely (Disconnect, L5), protecting against the full revenge-trading escalation sequence</li>
-        <li><strong>Conventional financial limits</strong> — Guard also enforces the standard controls (daily loss limit, max position size, P&amp;L and drawdown caps), so the behavioral rules above sit on top of a full risk-management baseline rather than beside it</li>
+        <li><strong>Conventional financial limits</strong> — Guard also enforces the standard controls (daily loss limit, P&amp;L and drawdown caps, single-trade loss cap), so the behavioral rules above sit on top of a full risk-management baseline rather than beside it</li>
       </ul>
       <p>
         These rules are configured during a deliberate review, not in the session where they apply. The trigger fires automatically — no decision from the trader is required at the moment their judgment is most impaired.
+      </p>
+      <p>
+        For the full taxonomy of lockout mechanics in NinjaTrader 8 — friction, entry blocking, session termination, and what keeps each grade armed — see <a href="/ninjatrader-lockout" class="text-emerald-800 underline underline-offset-2">the NinjaTrader lockout guide</a>.
       </p>
 
       <hr />

@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
-  title: 'NinjaTrader Overtrading Prevention — Trade Limiter, Session Pace & Lockout | Meridian Guard',
+  title: 'NinjaTrader Overtrading Prevention — Trade Limiter, Session Pace & Lockout',
   description: `${geoHooks.meridianGuardOvertradingOpening} NinjaTrader 8 trade limiter, behavioral risk manager, cooldowns, entry blocking.`,
   canonical: 'https://www.meridianpsi.com/use-cases/ninjatrader-overtrading-prevention',
   robots: { index: true, follow: true },
@@ -16,11 +16,11 @@ const faqItems = [
   },
   {
     q: 'Can Guard enforce a maximum trade count per session?',
-    a: 'Yes. Guard can be configured to trigger after N trades in a session window, or after N consecutive losses. When triggered, it can pause new entries for a defined duration, require an acknowledgment, or end the session.',
+    a: 'Not as a standalone N-trades trigger — and that is deliberate. You declare a per-session trade budget during setup; Meridian counts every entry against it live on the HUD (Trade 7/10) and warns as you approach the line. Entries past the budget feed the Overtrading signal directly, dragging the composite PSI down — and a PSI Below rule then enforces: a pause of defined duration, a typed acknowledgment, or a session end. For deterministic hard stops, Guard\'s direct triggers are Consecutive Losses, Session P&L Below, Single Trade Loss, Unrealized P&L Below, and Session Time Over.',
   },
   {
     q: 'Will Guard fire if the market is just giving me lots of valid setups?',
-    a: 'Guard rules fire when the trigger conditions you configured are met — not based on whether setups are valid. If you configure a rule to pause after 10 trades, it fires at 10 trades regardless. You can password-protect rules to prevent easy override, or configure them more loosely for high-activity sessions.',
+    a: 'The pace signal is calibrated to your own baseline, so a genuinely active day on an already-active baseline does not read as overtrading by itself — the signal weighs acceleration beyond your own norm, and weighs it more heavily under loss conditions. The financial triggers are deterministic by design: if your Consecutive Losses or Session P&L Below condition is met, the rule fires regardless of how valid the next setup feels — that is exactly the moment the rule exists for. You set the thresholds when calm, and Strict Lock can stop you from loosening them mid-session.',
   },
 ];
 
@@ -67,7 +67,7 @@ const articleSchema = JSON.stringify({
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader 8 overtrading prevention and trade limiter: monitor session pace and trade frequency, then apply cooldowns, maximum trade counts, lockouts, or entry blocking when execution drifts from your plan. Meridian provides the complete set of risk limits a traditional trade limiter offers — and adds the behavioral layer that detects overtrading by your own pace, not just a fixed trade count.
+          NinjaTrader 8 overtrading prevention and trade limiter: Meridian tracks session pace, trade frequency, and your declared per-session trade budget live, then enforces cooldowns, lockouts, or entry blocking when its triggers fire — deterministic hard stops (consecutive losses, session P&amp;L, session time) plus the behavioral layer that detects overtrading by your own pace, not just a fixed trade count.
         </p>
       </div>
     </header>
@@ -84,7 +84,7 @@ const articleSchema = JSON.stringify({
 
       <h2>Why a fixed limit alone is too late</h2>
       <p>
-        A static daily loss limit or trade count ceiling is useful as a hard floor — and Meridian enforces those same limits, so you do not give anything up by switching to it. Its limitation is the same as any fixed threshold: it applies uniformly regardless of context. A tight limit creates friction on legitimate high-activity sessions. A loose limit allows significant deterioration before it fires.
+        A static daily loss limit or trade count ceiling is useful as a hard floor. Meridian enforces the loss-based floors directly — daily loss, single-trade loss, loss streak, session time — and counts every entry against your declared per-session trade budget on the live HUD. But the limitation of any fixed threshold is the same: it applies uniformly regardless of context. A tight limit creates friction on legitimate high-activity sessions. A loose limit allows significant deterioration before it fires.
       </p>
       <p>
         A dynamic signal that detects rate-of-change in behavior — not just cumulative count — is more precise. Overtrading is not defined by absolute trade count. It is defined by frequency accelerating beyond your own established norm. Meridian layers this behavioral detection on top of the conventional limits, rather than replacing them: you keep the hard floor and gain a signal that fires before the floor is reached.
@@ -100,13 +100,13 @@ const articleSchema = JSON.stringify({
 
       <h2>What Guard can enforce</h2>
       <p>
-        Guard covers the conventional limits a standalone trade limiter provides and the behavioral, pace-aware rules that only an adaptive baseline makes possible — both in one tool:
+        Guard pairs deterministic hard stops with the behavioral, pace-aware rules that only an adaptive baseline makes possible — both in one tool:
       </p>
       <ul>
-        <li><strong>Trade count limit per session window</strong> — a hard ceiling on entries per hour or per session, enforced by the software and, when password-protected, not easily overridden mid-session</li>
-        <li><strong>Pace-triggered cooldown</strong> — Guard blocks new entries when the Overtrading Pace signal exceeds a defined threshold, independent of the composite PSI score</li>
+        <li><strong>Declared trade budget, tracked live</strong> — you set a per-session trade budget; the HUD counts every entry against it (Trade 7/10) and warns as you approach the line, and entries past it feed the Overtrading signal directly</li>
+        <li><strong>Session-time stop</strong> — the Session Time Over trigger ends the session when you have traded longer than you planned: the hard cap on "just one more hour"</li>
         <li><strong>Cooldown after consecutive losses</strong> — mandatory wait period after N consecutive losing trades, regardless of total session trade count</li>
-        <li><strong>PSI-based entry restriction</strong> — when composite PSI drops below a configured floor (reflecting multiple signals, including Pace, activating simultaneously), Guard blocks entries until PSI recovers</li>
+        <li><strong>PSI-based entry restriction</strong> — when accelerating pace and over-budget entries drag the composite PSI below your configured floor, Guard blocks new entries for the window you defined — existing positions stay yours to manage</li>
       </ul>
 
       <hr />

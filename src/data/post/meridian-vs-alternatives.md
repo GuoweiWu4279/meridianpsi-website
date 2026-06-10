@@ -2,6 +2,7 @@
 title: "Trade Journals, Analytics Platforms, and Risk Management Tools: An Honest Assessment — 2026"
 excerpt: "A detailed look at the most widely used retail trading software across three distinct categories. Each tool is evaluated on its own terms — what it was built to do, how well it does it, and where it falls short."
 publishDate: 2026-04-29T00:00:00Z
+updateDate: 2026-06-09T00:00:00Z
 author: "Meridian"
 image: /images/articles/comparison.jpg
 category: 'risk-management'
@@ -32,7 +33,7 @@ The core product allows trade import from a wide range of brokers — Interactiv
 
 Where Tradervue earns its reputation for depth is in the analytics available at higher tiers. Traders can filter performance data by any combination of tags and generate detailed statistical breakdowns — win rate, average win/loss, P&L by time of day, by day of week, by setup, by market condition. The shared note functionality and group features make it particularly useful for prop firms and trading communities where shared review adds accountability.
 
-**Where it falls short:** The emotional tagging system is only as reliable as the trader completing it honestly and promptly. Most traders fill out this data after the session, from memory, which introduces the same retrospective bias the journal is meant to address. There is no real-time component. Tradervue tells you what happened; it cannot influence what is happening.
+**Where it falls short:** The emotional tagging system is only as reliable as the trader completing it honestly and promptly. Most traders fill out this data after the session, from memory, which introduces the same retrospective bias the journal is meant to address. There is [no real-time component](/compare/meridian-vs-trading-journals). Tradervue tells you what happened; it cannot influence what is happening.
 
 **Who it is genuinely suited for:** Traders who want a mature, well-supported platform for post-session review with strong filtering and the ability to share performance with a group or coach.
 
@@ -84,7 +85,7 @@ For a trader who wants to understand their performance at a granular statistical
 
 ### NinjaTrader 8 — Built-in Risk Controls
 
-NinjaTrader 8 includes native account-level risk settings that operate at the order submission layer: maximum position size, contract limits, and, in combination with broker-level controls, daily loss thresholds. These are not add-ons — they are part of the platform configuration.
+NinjaTrader 8 includes [native account-level risk settings](/compare/meridian-vs-native-ninjatrader-risk) that operate at the order submission layer: maximum position size, contract limits, and, in combination with broker-level controls, daily loss thresholds. These are not add-ons — they are part of the platform configuration.
 
 The critical distinction between native controls and any journal or analytics platform is that they enforce rather than inform. A position size limit configured in NinjaTrader will physically reject a non-compliant order before it reaches the market. This is the most structurally reliable form of risk control because it removes the requirement for the trader to act on information — the constraint is embedded in the execution layer.
 
@@ -96,13 +97,13 @@ The critical distinction between native controls and any journal or analytics pl
 
 ### Meridian
 
-Meridian is a NinjaTrader 8 add-on that monitors behavioral signals during the live session and computes a Psychological Stability Index (PSI) in real time. The seven signals tracked include revenge-entry detection, overtrading pace, stop-loss manipulation, and abnormal size spikes after losses. The Guard module translates PSI readings into automated responses: advisories, blocks on adding new risk (you can still exit), or — if you opt into it — a full broker disconnect when thresholds you set are crossed. Meridian is local-first: your trades, names, broker credentials, and account numbers never leave your machine. Anonymized behavioral telemetry is collected for product research and you can opt out.
+Meridian is a risk manager that runs natively inside NinjaTrader 8 — with standalone apps for Tradovate and Ironbeam accounts in early access — and monitors behavioral signals during the live session and computes a [Psychological Stability Index (PSI)](/psi-monitor) in real time. The seven signals tracked include revenge-entry detection, overtrading pace, stop-loss manipulation, and abnormal size spikes after losses. The [Guard module](/guard) translates PSI readings into automated responses: advisories, blocks on adding new risk (you can still exit), or — if you opt into it — a full broker disconnect when thresholds you set are crossed. Meridian is local-first: your trades, names, broker credentials, and account numbers never leave your machine. Anonymized behavioral telemetry is collected for product research and you can opt out.
 
-The practical difference between Meridian and NinjaTrader's native controls is the level at which enforcement operates. Native controls catch individual orders that violate static rules. Meridian tracks the sequence and pattern of decisions across the session and can respond to behavioral deterioration before it produces a rule-violating order — or in cases where the deterioration never technically violates order-level rules but is producing consistent losses. Guard also enforces the conventional limits native controls provide — daily loss caps, max size, consecutive-loss cutoffs — so for a NinjaTrader 8 trader it is a superset rather than an add-on alongside them.
+The practical difference between Meridian and NinjaTrader's native controls is the level at which enforcement operates. Native controls catch individual orders that violate static rules. Meridian tracks the sequence and pattern of decisions across the session and can respond to behavioral deterioration before it produces a rule-violating order — or in cases where the deterioration never technically violates order-level rules but is producing consistent losses. Guard also enforces the conventional session limits — daily loss caps, single-trade loss caps, consecutive-loss cutoffs — so for a NinjaTrader 8 trader it is a superset rather than an add-on alongside them. (Native order-level checks like the max-position-size rejection are free and run underneath; Meridian watches sizing behaviorally — against your own declared cap — rather than rejecting orders.)
 
 **Where it falls short — stated honestly:**
 
-*Platform restriction.* Meridian works only on NinjaTrader 8 on Windows. This is a hard constraint. Traders using any other platform cannot use it.
+*Platform coverage.* Meridian is Windows-only. It runs natively inside NinjaTrader 8 today; standalone apps that connect directly to Tradovate and Ironbeam accounts are in early access (founding seats, hand-delivered builds). Traders on any other platform — including closed platforms like TopstepX — cannot use it yet.
 
 *Behavioral proxies rather than direct measurement.* The PSI is computed from observable trading actions, not physiological signals. A trader who is calm but experimenting with an unfamiliar strategy may generate similar signals to one who is emotionally compromised. The model reflects common behavioral failure patterns and is not equally precise for all trading styles or strategies.
 
@@ -110,7 +111,7 @@ The practical difference between Meridian and NinjaTrader's native controls is t
 
 *Relatively new product.* Meridian does not have the multi-year track record of Tradervue or Edgewonk. The behavioral model is grounded in behavioral finance research, but the tool itself has a shorter real-world track record than established competitors.
 
-**Who it is genuinely suited for:** NinjaTrader 8 traders whose primary performance problem is behavioral failure during live sessions — revenge trading, overtrading, abandoning stops, or escalating position sizes after losses — and who want automated enforcement rather than retrospective insight into patterns they already recognize.
+**Who it is genuinely suited for:** NinjaTrader 8 traders — and, in early access, traders on Tradovate or Ironbeam accounts — whose primary performance problem is behavioral failure during live sessions — revenge trading, overtrading, abandoning stops, or escalating position sizes after losses — and who want automated enforcement rather than retrospective insight into patterns they already recognize.
 
 ---
 

@@ -2,9 +2,9 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Trading Psychology Glossary — Meridian',
+  title: 'Trading Psychology Glossary',
   description:
-    'Plain-language definitions of the terms behind behavioral risk management for NinjaTrader 8: PSI, Composure, tilt, revenge trading, behavioral baseline, the Guard System, and more.',
+    'Plain-language definitions of the terms behind behavioral risk management for futures traders: PSI, Composure, tilt, revenge trading, behavioral baseline, the Guard System, and more.',
   robots: { index: true, follow: true },
 };
 
@@ -62,7 +62,7 @@ const terms = [
     id: 'guard-system',
     term: 'Guard System',
     definition:
-      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection so you cannot reconnect during the window; you manage open positions yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires.',
+      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection, by default re-disconnecting you if you reconnect before the window ends; your positions stay at your broker and you manage them yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires.',
     related: ['commitment-device', 'tilt', 'revenge-trading'],
   },
   {
@@ -97,7 +97,7 @@ const terms = [
     id: 'ninjatrader-addon',
     term: 'NinjaTrader 8 Add-On',
     definition:
-      'A third-party software module that extends the functionality of the NinjaTrader 8 trading platform. Add-ons are distributed as `.zip` files and imported via NinjaTrader\'s built-in import mechanism (Tools → Import NinjaScript Add-On). Meridian is a native NinjaTrader 8 add-on, meaning it runs directly inside the NinjaTrader process on the trader\'s Windows PC — accessing live order fill data, position data, and account state in real time. The only data that leaves your PC is anonymized, opt-out usage and research telemetry — tied to a random identifier, never your name, broker credentials, account numbers, or funds.',
+      'A third-party software module that extends the functionality of the NinjaTrader 8 trading platform. Add-ons are distributed as `.zip` files and imported via NinjaTrader\'s built-in import mechanism (Tools → Import NinjaScript Add-On). Meridian is a native NinjaTrader 8 add-on, meaning it runs directly inside the NinjaTrader process on the trader\'s Windows PC — accessing live order fill data, position data, and account state in real time. On Tradovate and Ironbeam accounts, Meridian instead runs as a standalone Windows app connected directly to the account (early access — see /platforms). The only data that leaves your PC is anonymized, opt-out usage and research telemetry — tied to a random identifier, never your name, broker credentials, account numbers, or funds.',
     related: ['behavioral-risk-management'],
   },
 ];
@@ -134,7 +134,7 @@ const schemaJson = JSON.stringify({
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">REFERENCE</p>
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.05]">Glossary</h1>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed max-w-3xl">
-        The vocabulary of trading psychology and behavioral risk management for NinjaTrader 8 — defined plainly and
+        The vocabulary of trading psychology and behavioral risk management — defined plainly and
         even-handedly. Industry terms appear alongside the specific metrics Meridian computes, so you can tell the two
         apart.
       </p>

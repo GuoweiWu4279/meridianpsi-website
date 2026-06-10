@@ -2,14 +2,14 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Can NinjaTrader Stop Revenge Trading? — Direct Answer | Meridian',
+  title: 'Can NinjaTrader Stop Revenge Trading? — Direct Answer',
   description:
     'Native NinjaTrader controls cap financial damage but do not detect the revenge-entry pattern itself. The behavioral leading-indicator layer is what intercepts revenge trading before the next order is placed.',
   robots: { index: true, follow: true },
 };
 
 const question = 'Can NinjaTrader stop revenge trading?';
-const directAnswer = 'NinjaTrader\'s built-in account controls cap financial damage at a fixed dollar threshold, but they do not detect the revenge-trading pattern itself — rapid re-entry after a loss, elevated size, accelerating pace. The layer that intercepts the pattern as it forms is what actually stops the next revenge entry from reaching the order window. On NinjaTrader 8, Meridian provides that as part of complete risk management: it enforces the conventional limits a risk tool is expected to handle (daily loss limit, max position size, P&L and drawdown caps, consecutive-loss cutoff) and adds real-time behavioral signal detection plus Meridian Guard\'s automated enforcement before the order.';
+const directAnswer = 'NinjaTrader\'s built-in account controls cap financial damage at a fixed dollar threshold, but they do not detect the revenge-trading pattern itself — rapid re-entry after a loss, elevated size, accelerating pace. The layer that intercepts the pattern as it forms is what actually stops the next revenge entry from reaching the order window. On NinjaTrader 8, Meridian provides that as part of complete risk management: it enforces the conventional limits a risk tool is expected to handle (daily loss limit, single-trade loss cap, P&L and drawdown caps, consecutive-loss cutoff) and adds real-time behavioral signal detection plus Meridian Guard\'s automated enforcement before the order.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -74,10 +74,10 @@ const qaSchema = JSON.stringify({
 
       <h2>What the behavioral layer adds</h2>
       <p>
-        Meridian runs as a NinjaTrader 8 add-on and is built as complete risk management: alongside the conventional limits any risk tool enforces — daily loss limit, max position size, P&amp;L and drawdown caps, consecutive-loss cutoff — it observes every order event as it happens. The Revenge Entry signal (D1 in the seven-signal model) fires when re-entry timing, size, and directional bias collectively match the revenge signature. The Overtrading Pace signal (D7) fires when subsequent entry frequency accelerates past the trader's session-history rhythm. Each signal contributes to a composite Psychological Stability Index calibrated to the individual trader.
+        Meridian runs as a NinjaTrader 8 add-on and is built as complete risk management: alongside the conventional limits any risk tool enforces — daily loss limit, single-trade loss cap, P&amp;L and drawdown caps, consecutive-loss cutoff — it observes every order event as it happens. The Revenge Entry signal (D1 in the seven-signal model) fires when re-entry timing, size, and directional bias collectively match the revenge signature. The Overtrading Pace signal (D7) fires when subsequent entry frequency accelerates past the trader's session-history rhythm. Each signal contributes to a composite Psychological Stability Index calibrated to the individual trader.
       </p>
       <p>
-        When the optional Meridian Guard layer is enabled, the trader can pre-commit to specific responses at specific behavioral thresholds: a typed acknowledgment phrase that has to be entered before the next order goes through, a mandatory countdown of any duration, an entry block at a configured PSI floor, or a broker disconnect at the highest enforcement level. The intervention happens before the order reaches the market, not after the loss has been realized.
+        When the optional Meridian Guard layer is enabled, the trader can pre-commit to specific responses at specific behavioral thresholds: a typed acknowledgment phrase — with an optional countdown — that has to be entered before the next order goes through, an entry block at a configured PSI floor, or a broker disconnect at the highest enforcement level. The intervention happens before the order reaches the market, not after the loss has been realized.
       </p>
 
       <h2>Why self-discipline rarely closes the gap alone</h2>
@@ -93,8 +93,8 @@ const qaSchema = JSON.stringify({
         For a NinjaTrader 8 trader who has had at least one revenge sequence end a session badly:
       </p>
       <ol>
-        <li>Install Meridian as complete risk management and set its conventional limits (daily loss, max size, drawdown, consecutive-loss cutoff) the same way you would in any risk tool.</li>
-        <li>Configure Guard's Consecutive Losses trigger to enforce a typed acknowledgment after two losses and a mandatory countdown after three.</li>
+        <li>Install Meridian as complete risk management and set its conventional limits (daily loss, single-trade loss cap, drawdown, consecutive-loss cutoff) the same way you would in any risk tool.</li>
+        <li>Configure Guard's Consecutive Losses trigger to enforce a typed acknowledgment after two losses and a trading pause after three.</li>
         <li>Leave the native account-level daily loss control on as a redundant financial-outcome backstop.</li>
       </ol>
       <p>

@@ -1,6 +1,6 @@
 {
   "headline": "Start the trial. See what your sessions show.",
-  "subhead": "Seven days, full access. Your behavioral signals live from day one. No charge until the trial ends.",
+  "subhead": "Seven days, full access. Your behavioral signals live from day one. No charge until the trial ends. One subscription covers every platform we support.",
   "tiers": [
     {
       "id": "meridian",
@@ -20,7 +20,7 @@
         "Real-time PSI — updates in under 100ms after every fill",
         "Seven independent behavioral dimensions in one composite score",
         "Baselines calibrated from your own session history",
-        "Native NinjaTrader 8 add-on — no login accounts",
+        "Native NinjaTrader 8 add-on — plus standalone Tradovate & Ironbeam apps in early access, one license",
         "5-year session history and post-session reports",
         "Cancel any time"
       ]
@@ -49,5 +49,5 @@
       ]
     }
   ],
-  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. One subscription covers every supported platform — NinjaTrader 8 today, Tradovate and Ironbeam in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }

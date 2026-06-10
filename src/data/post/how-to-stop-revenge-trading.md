@@ -2,6 +2,7 @@
 title: "How to Stop Revenge Trading: Why Willpower Fails and What Actually Works"
 excerpt: "Revenge trading is not a discipline problem. It is a structural problem — and it has a structural solution. Understanding the neurological mechanism behind it changes what kind of intervention is actually effective."
 publishDate: 2026-05-01T11:00:00Z
+updateDate: 2026-06-09T00:00:00Z
 author: "Meridian"
 category: 'trading-psychology'
 tags: ['revenge trading', 'overtrading prevention', 'trading psychology', 'behavioral finance', 'emotional trading', 'risk management', 'NinjaTrader']
@@ -125,4 +126,4 @@ That is the level at which the problem is actually solvable.
 
 ---
 
-*This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten and Richard Thaler. The author developed [Meridian](https://www.meridianpsi.com), a real-time psychological stability monitor for NinjaTrader 8 that detects behavioral deterioration during a live session and can intervene at the behavioral signal, before the next order. It detects Revenge Entry, Overtrading Pace, and five other behavioral signals and can enforce automated intervention. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.*
+*This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten and Richard Thaler. The author developed [Meridian](https://www.meridianpsi.com), the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every traditional hard limit plus a real-time behavioral layer that detects deterioration during a live session and can intervene at the behavioral signal, before the next order. It detects Revenge Entry, Overtrading Pace, and five other behavioral signals and can enforce automated intervention. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.*

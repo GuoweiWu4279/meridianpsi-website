@@ -3,9 +3,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian vs TradeZella — Complete NinjaTrader 8 Risk Management vs Post-Session Trade Analytics',
+  ignoreTitleTemplate: true,
   description:
-    'TradeZella analyzes your trades after the session ends. Meridian is complete NinjaTrader 8 risk management — every traditional risk limit plus a real-time behavioral layer — that monitors your psychological state while the session is running. Two products that care about trading psychology, operating at completely different points in the trading process.',
+    'TradeZella analyzes your trades after the session ends. Meridian is complete real-time risk management (native NinjaTrader 8 add-on; Tradovate & Ironbeam apps in early access) — every traditional risk limit plus a real-time behavioral layer — that monitors your psychological state while the session is running. Two products that care about trading psychology, operating at completely different points in the trading process.',
   robots: { index: true, follow: true },
 };
 
@@ -33,12 +35,12 @@ const compareRows = [
   {
     dim: 'Intervention capability',
     tradezella: 'None — analysis and journaling only',
-    meridian: 'Alert, typed acknowledgment (with a mandatory countdown), entry block, broker disconnect',
+    meridian: 'Alert, typed acknowledgment (with an optional countdown), entry block, broker disconnect',
   },
   {
     dim: 'Reads',
     tradezella: 'Imported trade history (broker export, CSV)',
-    meridian: 'Live NinjaTrader 8 order events as they occur',
+    meridian: 'Live order events as they occur (NinjaTrader 8, Tradovate, or Ironbeam account)',
   },
   {
     dim: 'Psychological Stability Index',
@@ -58,7 +60,7 @@ const compareRows = [
   {
     dim: 'Platform',
     tradezella: 'Web-based, works with most brokers',
-    meridian: 'NinjaTrader 8 (Windows), live order pipeline required',
+    meridian: 'NinjaTrader 8 native add-on (Windows) — standalone apps for Tradovate and Ironbeam accounts in early access; live order pipeline required',
   },
 ];
 
@@ -69,7 +71,7 @@ const faqItems = [
   },
   {
     q: 'How is Meridian different from TradeZella?',
-    a: 'TradeZella analyzes your trading history after the session. Meridian is complete risk management for NinjaTrader 8 that operates during the session: it enforces the traditional risk limits — daily loss cap, max position size, drawdown and loss-streak cutoffs — and adds real-time behavioral detection on top. TradeZella will show you, after the fact, that you had a bad run of revenge trades last Thursday. Meridian will detect the same pattern forming on Thursday afternoon and can require a typed acknowledgment, force a countdown, or block entries before the damage compounds. Both products engage with trading psychology. They do it at opposite ends of the clock.',
+    a: 'TradeZella analyzes your trading history after the session. Meridian is complete risk management for NinjaTrader 8 that operates during the session: it enforces the traditional risk limits — daily loss cap, single-trade loss cap, drawdown and loss-streak cutoffs — and adds real-time behavioral detection on top. TradeZella will show you, after the fact, that you had a bad run of revenge trades last Thursday. Meridian will detect the same pattern forming on Thursday afternoon and can require a typed acknowledgment — with an optional countdown — or block entries before the damage compounds. Both products engage with trading psychology. They do it at opposite ends of the clock.',
   },
   {
     q: 'TradeZella has psychology features. How are they different from Meridian?',
@@ -80,8 +82,8 @@ const faqItems = [
     a: 'Meridian generates its own behavioral session review: PSI trend across the session, monthly composure digest, PSI versus P&L correlation, weekday patterns, and a pre-session risk brief built from the trader\'s own history. For traders who also want broker-import trade tagging, multi-account portfolio analytics, or strategy-level P&L attribution, a journal platform serves a different purpose. The two products answer different questions.',
   },
   {
-    q: 'Why does Meridian only work on NinjaTrader 8?',
-    a: 'Meridian enforces both traditional risk limits and real-time behavioral detection at the order level, which requires a live order pipeline: every entry, modification, and exit observed the moment it occurs. Meridian reads the NinjaTrader 8 execution feed directly. That integration is what lets it intervene before an order rather than reporting after the fact. A post-session platform can import from any broker because it only needs completed trades. Meridian needs the live feed.',
+    q: 'Which platforms does Meridian work on?',
+    a: 'Meridian needs a live order pipeline — every entry, modification, and exit observed the moment it occurs — which is why it is platform-specific rather than import-anything like a journal. Today that pipeline exists in three places: natively inside NinjaTrader 8 (available now), and via standalone Windows apps that connect directly to Tradovate or Ironbeam accounts (early access). A post-session platform can import from any broker because it only needs completed trades. Meridian needs the live feed.',
   },
 ];
 
@@ -136,13 +138,13 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is complete risk management for NinjaTrader 8. It enforces the traditional risk controls a dedicated risk tool provides — daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff — and adds the layer none of those tools have: real-time behavioral detection. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
+        Meridian is complete risk management for NinjaTrader 8. It enforces the traditional risk controls a dedicated risk tool provides — daily loss limit, single-trade loss cap, P&L and drawdown caps, loss-streak cutoff — and adds the layer none of those tools have: real-time behavioral detection. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
       </p>
       <p>
         Those signals feed into a composite Psychological Stability Index (PSI), scored 0 to 100 and updated under 100 milliseconds after every order event. The baseline is personal: the system learns what each trader's own normal looks like across sessions and calibrates against that, not against a fixed standard. A session where your PSI is 40 looks different than it would for another trader at the same dollar loss, because your behavioral baseline is yours.
       </p>
       <p>
-        When Meridian Guard is enabled, this live monitoring can trigger actual intervention: a typed acknowledgment, a mandatory countdown, an entry block, or a broker disconnect. By default these interventions block you from adding risk rather than closing your open positions — you can still exit on your own; auto-flatten on a pause or disconnect is a separate opt-in. The intervention happens during the session, before the pattern fully plays out. That is the design difference from any post-session platform.
+        When Meridian Guard is enabled, this live monitoring can trigger actual intervention: a typed acknowledgment (with an optional countdown), an entry block, or a broker disconnect. By default these interventions block you from adding risk rather than closing your open positions — you can still exit on your own; auto-flatten on a pause or disconnect is a separate opt-in. The intervention happens during the session, before the pattern fully plays out. That is the design difference from any post-session platform.
       </p>
       <p>
         Meridian is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.

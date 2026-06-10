@@ -13,7 +13,7 @@ import Layout from '~/layouts/PageLayout.astro';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Trust & Security — Meridian',
+  title: 'Trust & Security',
   description:
     'Anonymous by design. Meridian never collects your name, credentials, account numbers, or funds — telemetry is local-first, anonymized, and opt-out. No profit guarantees.',
   robots: { index: true, follow: true },
@@ -28,7 +28,7 @@ const stored = [
   },
   {
     title: 'Your configuration',
-    body: "Guard rules, session parameters, and baseline preferences — stored locally in NinjaTrader's standard add-on data path.",
+    body: "Guard rules, session parameters, and baseline preferences — stored locally in the app's data folder (for the NT8 add-on, NinjaTrader's standard add-on data path).",
   },
   {
     title: '5 years of history',
@@ -43,7 +43,7 @@ const neverDoes = [
   },
   {
     title: 'Never asks for broker credentials',
-    body: "Meridian reads execution data from NinjaTrader's internal data layer, not your broker's API. No passwords or API keys are ever passed to Meridian.",
+    body: "The NinjaTrader 8 add-on reads execution data from NinjaTrader's internal data layer — your broker credentials never touch Meridian. The standalone Tradovate and Ironbeam apps (early access) sign in to your own account from your own PC; those credentials are used locally to open your session and are never transmitted to us.",
   },
   {
     title: 'Never gives trading signals',
@@ -69,7 +69,7 @@ const neverDoes = [
         Anonymous by design.<br />Honest about the rest.
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian runs inside NinjaTrader 8 on your Windows PC. It never collects your name, broker credentials, account
+        Meridian runs on your Windows PC — inside NinjaTrader 8, or as a standalone app connected to your Tradovate or Ironbeam account (early access). It never collects your name, broker credentials, account
         numbers, or funds. Telemetry is <strong class="text-zinc-800">local-first, anonymized, and opt-out</strong> — tied
         only to a random identifier, never sold. This page states exactly what the software does, and what it does not.
       </p>
@@ -174,25 +174,27 @@ const neverDoes = [
           already in completely alone: it does not close, flatten, or exit your trade.
         </p>
         <p class="mt-4 text-lg text-zinc-800 leading-relaxed">
-          <span class="text-emerald-700 font-semibold">The one exception is opt-in.</span> On the strictest level &mdash; a full
-          broker Disconnect &mdash; you can choose to enable auto-flatten, which closes your open positions at the moment the
+          <span class="text-emerald-700 font-semibold">The one exception is opt-in.</span> On a Trading Pause or a full
+          broker Disconnect &mdash; the two strictest levels &mdash; you can choose to enable auto-flatten, which closes your open positions at the moment the
           trigger fires. If you don't enable it, your positions stay open and under your full manual control.
         </p>
       </div>
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 text-sm text-zinc-700 leading-relaxed space-y-4">
         <p>
           <strong class="text-zinc-900">It blocks new order entry.</strong> When a threshold you configured is crossed, Guard
-          intercepts the next order at the NinjaTrader platform level — before it's submitted. Orders already working in the
+          intercepts the next order at the platform level — inside NinjaTrader 8, or at the account API on the standalone apps — before it's submitted. Orders already working in the
           market are left alone.
         </p>
         <p>
-          <strong class="text-zinc-900">Strict Lock can't be bypassed mid-tilt.</strong> For a window you choose, Guard's
-          settings are frozen — the heated version of you can't loosen a trigger, drop a level, or switch it off — but it still only blocks <em>adding</em> risk.
+          <strong class="text-zinc-900">Strict Lock can't be bypassed mid-tilt.</strong> With it on, any pause or disconnect
+          Guard fires runs its full window and Guard's settings are frozen — the heated version of you can't loosen a trigger, drop a level, or switch it off — but it still only blocks <em>adding</em> risk.
         </p>
         <p>
           <strong class="text-zinc-900">Broker disconnect is the ceiling, and it's yours to choose.</strong> The highest
-          level (Disconnect) halts new order activity &mdash; either by cancelling working orders or, in its strongest mode,
-          dropping the broker connection &mdash; and can optionally auto-flatten open positions at the trigger. It's an
+          level (Disconnect) drops the broker connection (through NinjaTrader's standard disconnect API on NT8, or the account session on the standalone apps) &mdash; and can
+          optionally auto-flatten open positions at the trigger. If you hold a
+          position it first offers a flatten countdown before severing, and by default it re-disconnects you if you reconnect
+          before the window ends. It's an
           advanced, opt-in mode for full disengagement — understand and test it in simulation before using it live.
         </p>
       </div>
@@ -228,8 +230,8 @@ const neverDoes = [
       <div class="rounded-2xl border border-zinc-200 bg-white p-7">
         <div class="font-semibold text-zinc-900 mb-2">Risk-free to try</div>
         <p class="text-sm text-zinc-600 leading-relaxed">
-          7-day free trial — no charge until day 7, cancel anytime. If Meridian won't run on a supported NinjaTrader 8
-          setup and we can't fix it, you get a full refund. We stand behind the software working; we never stand behind a
+          7-day free trial — no charge until day 7, cancel anytime. If Meridian won't run on a supported setup —
+          NinjaTrader 8, or an early-access Tradovate/Ironbeam configuration — and we can't fix it, you get a full refund. We stand behind the software working; we never stand behind a
           trading outcome.
         </p>
       </div>

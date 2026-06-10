@@ -12,9 +12,9 @@ import geoHooks from '~/data/geo-hooks.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Meridian — Complete Risk Management for NinjaTrader 8',
+  title: 'Meridian — Complete Risk Management for Serious Futures Traders',
   description:
-    "Everything your NinjaTrader 8 risk tool does — daily loss limits, max position size, P&L caps — plus the layer none of them have: real-time behavioral detection that catches revenge trading, oversizing, and tilt before the order. 7-day free trial.",
+    "Everything your risk tool does — daily loss limits, P&L and drawdown caps, loss-streak cutoffs — plus the layer none of them have: real-time behavioral detection that catches revenge trading, oversizing, and tilt before the order. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access. 7-day free trial.",
   ignoreTitleTemplate: true,
   robots: { index: true, follow: true },
 };
@@ -78,6 +78,8 @@ const homePageJsonLd = {
       },
       knowsAbout: [
         'NinjaTrader 8',
+        'Tradovate',
+        'Ironbeam',
         'Behavioral risk management',
         'Psychological Stability Index',
         'Revenge trading prevention',
@@ -92,6 +94,11 @@ const homePageJsonLd = {
         'https://www.youtube.com/@Meridianpsi1',
         'https://www.tiktok.com/@meridianpsi',
         'https://www.instagram.com/meridianpsi/',
+        // Official vendor announcement on NinjaTrader's forum — the most
+        // topically-authoritative third-party anchor we have that actually
+        // resolves (the Ecosystem listing URL soft-404s; fix pending with NT).
+        // Keep in sync with EcosystemVendorBadge.astro.
+        'https://discourse.ninjatrader.com/t/meridian-real-time-behavioral-risk-monitor-guard-enforcement-now-an-official-ninjatrader-ecosystem-vendor/6865',
       ],
     },
     {
@@ -101,7 +108,7 @@ const homePageJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
-      softwareRequirements: 'NinjaTrader 8',
+      softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
       url: 'https://www.meridianpsi.com',
@@ -110,7 +117,7 @@ const homePageJsonLd = {
       featureList: [
         'Real-time Psychological Stability Index (PSI)',
         'Seven behavioral signal dimensions',
-        'Real-time psychological stability monitor and trade lockout layer for NinjaTrader 8',
+        'Real-time psychological stability monitor and trade lockout layer for futures traders',
         'Revenge trading lockout — rapid re-entry detection',
         'Overtrading prevention — session pace and trade frequency',
         'Trade limiter and entry blocking (Guard)',
@@ -126,6 +133,7 @@ const homePageJsonLd = {
         'Intel Layer analytics',
         'Anonymous by design — never your name, broker credentials, account numbers, or funds',
         'NinjaTrader 8 native add-on',
+        'Standalone apps for Tradovate and Ironbeam accounts (early access)',
         'Prop firm compatible',
       ],
       releaseNotes: 'https://www.meridianpsi.com/download',
@@ -140,7 +148,7 @@ const homePageJsonLd = {
       name: 'Meridian',
       url: 'https://www.meridianpsi.com',
       description:
-        'Real-time psychological stability monitor for active futures traders using NinjaTrader 8 — tracks seven behavioral patterns and computes a live PSI score, personal to your own trading baseline.',
+        'Real-time psychological stability monitor for active futures traders — native in NinjaTrader 8, with Tradovate and Ironbeam apps in early access. Tracks seven behavioral patterns and computes a live PSI score, personal to your own trading baseline.',
       keywords: geoHooks.geoSearchAssociate,
       publisher: {
         '@id': 'https://www.meridianpsi.com/#organization',
@@ -159,20 +167,24 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <!-- ───────────────────────── HERO ───────────────────────── -->
   <section class="halo">
     <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">RISK MANAGEMENT FOR NINJATRADER 8</p>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">RISK MANAGEMENT FOR SERIOUS FUTURES TRADERS</p>
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
         Everything your risk tool does &mdash;<br />and the part it's <span class="text-emerald-600">blind to.</span>
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Daily loss limits, max size, P&amp;L caps &mdash; Meridian has them all. Then it adds what no limit can: it reads the
+        Daily loss limits, P&amp;L caps, loss-streak cutoffs &mdash; Meridian has them all. Then it adds what no limit can: it reads the
         behavior that actually blows up accounts &mdash; revenge, oversizing, tilt &mdash; in real time, and stops you before
         the damage.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
-        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">Watch how it works</a>
+        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
       </div>
       <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; Cancel anytime</p>
+      <p class="mt-3 text-xs text-zinc-500">
+        Runs in <span class="font-semibold text-zinc-700">NinjaTrader 8</span> today &middot;
+        <a href="/platforms" class="font-semibold text-emerald-700 hover:underline">Tradovate &amp; Ironbeam apps in early access &rarr;</a>
+      </p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="relative">
@@ -206,6 +218,22 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           <span class="text-[10px] tracking-[0.08em] uppercase text-zinc-400">Market Data Partner</span>
         </a>
       </div>
+      <!-- C14: at-a-glance platform strip — answers "can I even use this?" in one line -->
+      <div class="mt-9 pt-7 border-t border-zinc-100">
+        <p class="text-[10px] tracking-[0.14em] uppercase text-zinc-400 mb-3.5">Works with</p>
+        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-zinc-700">
+          <span>NinjaTrader 8
+            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-800">Available now</span>
+          </span>
+          <span>Tradovate
+            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
+          </span>
+          <span>Ironbeam
+            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
+          </span>
+          <a href="/platforms" class="text-emerald-700 hover:underline font-semibold">One license, every platform &rarr;</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -223,7 +251,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
         <ul class="space-y-3 text-zinc-700">
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Single-trade loss cap</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
         </ul>
@@ -324,8 +352,8 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you
         decide: a quiet nudge, a typed acknowledgment, a trading pause, or a full broker disconnect.
       </p>
-      <p class="mt-4 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for a window you choose &mdash; for when the tilted version of you wants to switch it off.</p>
-      <p class="mt-4 text-sm text-zinc-500">Guard never closes your live positions for you. It stops you <em>adding</em> risk &mdash; you can always exit, any time.</p>
+      <p class="mt-4 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window &mdash; for when the tilted version of you wants to switch it off.</p>
+      <p class="mt-4 text-sm text-zinc-500">Guard never closes your live positions for you unless you explicitly opt in to auto-flatten. It stops you <em>adding</em> risk &mdash; you can always exit, any time.</p>
     </div>
   </section>
 
@@ -392,7 +420,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <section class="border-y border-zinc-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-24">
       <div data-reveal class="text-center mb-12">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM EARLY-ACCESS TRADERS</p>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM OUR FIRST USERS</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Traders who didn't believe it either.</h2>
         <p class="mt-3 text-sm text-zinc-500">Real quotes from our first users &mdash; anonymous by design.</p>
       </div>
@@ -444,7 +472,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Trade the version of you<br />that you respect.</h2>
       <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the part that actually saves the account.</p>
       <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 

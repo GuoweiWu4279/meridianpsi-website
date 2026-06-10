@@ -5,6 +5,7 @@ author: "Meridian"
 category: 'trading-psychology'
 tags: ["overtrading", "ninjatrader", "risk management", "behavioral finance"]
 publishDate: 2026-05-02
+updateDate: 2026-06-09T00:00:00Z
 metadata:
   title: "Why Daily Loss Limits Don't Stop Overtrading in NinjaTrader 8"
   description: "Daily loss limits fire after the damage. Understanding exactly where they fail — and what behavioral monitoring adds — is the prerequisite for building risk controls that actually work."
@@ -43,7 +44,7 @@ The right threshold depends on the trading style, the instrument, and market con
 
 ## What NinjaTrader's native controls cannot detect
 
-NinjaTrader's account risk controls evaluate *each order independently* against *static account limits*. They do not observe:
+[NinjaTrader's account risk controls](/compare/meridian-vs-native-ninjatrader-risk) evaluate *each order independently* against *static account limits*. They do not observe:
 
 - Whether entry frequency has increased over the session
 - Whether the interval between a loss and the next entry has shortened
@@ -55,7 +56,7 @@ These are behavioral signals, and they require a different type of monitoring to
 
 ## The role of behavioral monitoring
 
-A behavioral monitor — like Meridian's Overtrading Pace signal — computes entry frequency across a rolling window and compares it against the trader's own historical baseline. It detects the *change* in behavior, not just the *level* of a static metric.
+A behavioral monitor — like [Meridian's Overtrading Pace signal](/use-cases/ninjatrader-overtrading-prevention) — computes entry frequency across a rolling window and compares it against the trader's own historical baseline. It detects the *change* in behavior, not just the *level* of a static metric.
 
 This distinction is what makes it useful where daily loss limits are not. The signal fires when entry frequency has accelerated *relative to your own pattern* — which is different for every trader and for every session. The flag appears before any hard threshold has been crossed, which is the only position from which it is possible to interrupt the behavior rather than just record its outcome.
 
@@ -79,10 +80,10 @@ For NinjaTrader 8 traders, the recommended configuration is:
 
 1. **Broker-level daily loss limit** active at the account level (configured with your broker or prop firm)
 2. **NinjaTrader account-level daily loss control** set slightly above the broker limit (as a platform-layer redundancy)
-3. **Behavioral monitoring** (Meridian PSI) running as an overlay, with Guard rules configured to trigger at behavioral thresholds rather than financial ones
+3. **Behavioral monitoring** ([Meridian PSI](/psi-monitor)) running as an overlay, with [Guard rules](/guard) configured to trigger at behavioral thresholds rather than financial ones
 
 The Guard rule triggers when the behavioral pattern indicates elevated risk — not when the financial damage has already registered. The financial limits are still present, but ideally they are never reached.
 
 ---
 
-*[Meridian](https://www.meridianpsi.com) is a real-time psychological stability monitor for NinjaTrader 8 that scores behavioral deterioration during a live session and can intervene before the next order rather than after the loss is recorded. It fires on the behavioral pattern before any financial threshold needs to engage. Meridian does not provide investment advice. Trading involves substantial risk of loss. Results may vary.*
+*[Meridian](https://www.meridianpsi.com) is the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every hard control a traditional risk tool has (daily loss limit, drawdown caps, single-trade loss caps, loss-streak cutoff) plus a real-time behavioral layer that scores deterioration during a live session and can intervene before the next order rather than after the loss is recorded. Meridian does not provide investment advice. Trading involves substantial risk of loss. Results may vary.*

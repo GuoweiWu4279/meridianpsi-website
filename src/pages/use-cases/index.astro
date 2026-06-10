@@ -3,7 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already appears in the title — suppress the site-wide "— Meridian" suffix.
   title: 'Use Cases — Meridian Risk Management for NinjaTrader 8',
+  ignoreTitleTemplate: true,
   description:
     'Problem-focused pages: revenge trading lockout, overtrading prevention, stop-loss manipulation, prop firm behavioral risk, and how Meridian Guard compares to daily loss limits.',
   robots: { index: true, follow: true },
@@ -18,7 +20,7 @@ const cases = [
   {
     title: 'NinjaTrader overtrading prevention',
     href: '/use-cases/ninjatrader-overtrading-prevention',
-    blurb: 'Session pace, trade frequency, and trade-count limits when execution drifts from the plan.',
+    blurb: 'Session pace, trade frequency, and your declared trade budget when execution drifts from the plan.',
   },
   {
     title: 'Stop-loss manipulation detection',
@@ -28,7 +30,7 @@ const cases = [
   {
     title: 'Prop firm behavioral risk control',
     href: '/use-cases/prop-firm-behavioral-risk-control',
-    blurb: 'Loss-limit and position-size guardrails plus behavioral detection, alongside evaluation account rules.',
+    blurb: 'Loss-limit guardrails plus behavioral detection, alongside evaluation account rules.',
   },
 ];
 
@@ -38,7 +40,7 @@ const compares = [
     href: '/compare/meridian-guard-vs-daily-loss-limits',
   },
   {
-    title: 'Meridian vs hard-limit risk tools (KosyGuard, ClickAlgo, RiskMaster & more)',
+    title: 'Meridian vs hard-limit risk tools (Arty, CrossTrade, ClickAlgo, RiskMaster & more)',
     href: '/compare/meridian-vs-hard-limit-tools',
   },
 ];
@@ -67,7 +69,7 @@ const itemListSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-4">Use cases</h1>
       <p class="text-xs text-zinc-400 mb-4">Last reviewed: June 2026</p>
       <p class="text-lg text-zinc-500 leading-relaxed">
-        Short pages for specific trading discipline problems. Meridian is complete risk management for NinjaTrader 8 — it does everything a traditional risk tool does (daily loss limits, max position size, P&amp;L and drawdown caps, loss-streak cutoffs) and adds the behavioral layer those tools miss. Each page explains the failure mode, what native limits miss, and how Meridian (and optionally Guard) can respond.
+        Short pages for specific trading discipline problems. Meridian is complete risk management — native in NinjaTrader 8 today, Tradovate &amp; Ironbeam apps in early access — it does everything a traditional risk tool does (daily loss limits, single-trade loss caps, P&amp;L and drawdown caps, loss-streak cutoffs) and adds the behavioral layer those tools miss. Each page explains the failure mode, what native limits miss, and how Meridian (and optionally Guard) can respond.
       </p>
     </header>
 

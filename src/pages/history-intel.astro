@@ -12,9 +12,12 @@ import pricing from '~/data/pricing.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'History & Intel — Put a Dollar Figure on Discipline | Meridian for NinjaTrader 8',
+  // Title ends in the brand word — suppress the layout's "— Meridian" suffix
+  // (same mechanism as guard/index/faq) or the SERP shows "…Meridian — Meridian".
+  title: 'History & Intel — Put a Dollar Figure on Discipline in Meridian',
+  ignoreTitleTemplate: true,
   description:
-    'Pick any date range and break your NinjaTrader 8 trading down by time of day, hold time, instrument, and long vs short. Meridian History & Intel grades composure, surfaces weekday risk patterns from your local session history, and shows the PSI × P&L correlation — what your composed sessions average versus your tilted ones.',
+    'Pick any date range and break your futures trading down by time of day, hold time, instrument, and long vs short. Meridian History & Intel grades composure, surfaces weekday risk patterns from your local session history, and shows the PSI × P&L correlation — what your composed sessions average versus your tilted ones.',
   robots: { index: true, follow: true },
 };
 
@@ -310,7 +313,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </h2>
       <p class="mt-6 text-lg text-zinc-600">Five years of your own behavior, sliced any way you need &mdash; and a dollar figure on the discipline that protects your account.</p>
       <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 

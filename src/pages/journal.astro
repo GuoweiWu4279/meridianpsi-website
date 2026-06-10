@@ -11,9 +11,9 @@ import Layout from '~/layouts/PageLayout.astro';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Session Journal — In-the-Moment Trade Journaling for NinjaTrader 8 | Meridian',
+  title: 'Session Journal — In-the-Moment Trade Journaling for Futures Traders',
   description:
-    'Most journals are written hours later, from memory. Meridian Journal captures mood chips and quick notes for NinjaTrader 8 traders in the moment — then auto-compiles a session report at close. Capture while you trade; review before the next open.',
+    'Most journals are written hours later, from memory. Meridian Journal captures mood chips and quick notes for futures traders in the moment — then auto-compiles a session report at close. Capture while you trade; review before the next open.',
   robots: { index: true, follow: true },
 };
 
@@ -70,7 +70,7 @@ const journalJsonLd = {
       operatingSystem: 'Windows',
       softwareRequirements: 'NinjaTrader 8',
       description:
-        'The in-session trade journal for NinjaTrader 8: capture mood chips and quick notes in the moment while you trade, then auto-compile a session report at the close. Built by an Official NinjaTrader Ecosystem Vendor.',
+        'The in-session trade journal for futures traders (NinjaTrader 8 native; Tradovate & Ironbeam apps in early access): capture mood chips and quick notes in the moment while you trade, then auto-compile a session report at the close. Built by an Official NinjaTrader Ecosystem Vendor.',
       url: 'https://www.meridianpsi.com/journal',
       award: 'Official NinjaTrader Ecosystem Vendor',
       featureList: [
@@ -117,7 +117,7 @@ const journalJsonLdHtml = JSON.stringify(journalJsonLd).replace(/</g, '\\u003c')
         <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
         <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required &middot; Cancel anytime</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access &middot; Cancel anytime</p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="win"><img src="/m/journal.png" alt="Meridian Journal — in-session mood chips, timestamped quick notes, and the auto-compiled session report" /></div>
@@ -284,7 +284,7 @@ const journalJsonLdHtml = JSON.stringify(journalJsonLd).replace(/</g, '\\u003c')
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Capture the session,<br />not the story you tell later.</h2>
       <p class="mt-6 text-lg text-zinc-600">Mood chips and quick notes in the moment &mdash; auto-compiled into the report waiting before your next open.</p>
       <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required &middot; Cancel anytime</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access &middot; Cancel anytime</p>
     </div>
   </section>
 </Layout>

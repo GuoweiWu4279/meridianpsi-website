@@ -12,16 +12,18 @@ import geoHooks from '~/data/geo-hooks.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'How Meridian Works — The Complete Behavioral Risk System for NinjaTrader 8',
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
+  title: 'How Meridian Works — The Complete Behavioral Risk System for Futures Traders',
+  ignoreTitleTemplate: true,
   description:
-    "Everything a NinjaTrader 8 risk tool does — daily loss limits, max size, P&L caps — plus the layer none have: real-time behavioral detection across 7 signals. Here's how the whole loop fits together, and what the PSI score actually measures.",
+    "Everything a futures risk tool does — daily loss limits, P&L caps, loss-streak cutoffs — plus the layer none have: real-time behavioral detection across 7 signals. Here's how the whole loop fits together, and what the PSI score actually measures.",
   robots: { index: true, follow: true },
 };
 
 const faqItems = [
   {
     q: 'What is Meridian, in one sentence?',
-    a: 'Meridian is the most complete risk management for NinjaTrader 8 — a superset. It does everything a traditional risk tool does (daily loss limit, max size, P&L and drawdown caps, loss-streak cutoff), plus a layer none of them have: real-time behavioral detection across seven signals, scored against your own adaptive baseline, that lets you intervene before the order rather than after the loss.',
+    a: 'Meridian is the most complete risk management for serious futures traders — a superset. Native in NinjaTrader 8 today, with standalone Tradovate and Ironbeam apps in early access. It does everything a traditional risk tool does (daily loss limit, single-trade loss cap, P&L and drawdown caps, loss-streak cutoff), plus a layer none of them have: real-time behavioral detection across seven signals, scored against your own adaptive baseline, that lets you intervene before the order rather than after the loss.',
   },
   {
     q: 'What is the PSI score, exactly?',
@@ -29,11 +31,11 @@ const faqItems = [
   },
   {
     q: 'Do I have to give up the risk tool I already use?',
-    a: 'No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, max size, P&L cap, loss-streak cutoff) literally are four of Guard\'s six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.',
+    a: 'No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, single-trade loss cap, P&L cap, loss-streak cutoff) literally are four of Guard\'s six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.',
   },
   {
     q: 'Is Meridian compatible with prop firm evaluation accounts?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts. It runs as a local behavioral overlay on top of your session, independent of the prop firm\'s own infrastructure.',
+    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts — and for programs that issue Tradovate-based accounts, a standalone Meridian app that connects directly to the account is in early access. It runs as a local behavioral overlay on top of your session, independent of the prop firm\'s own infrastructure.',
   },
   {
     q: 'How does Guard handle open positions?',
@@ -93,7 +95,7 @@ const loop = [
         The whole risk tool &mdash; and the<br class="hidden md:block" /> layer that catches what limits <span class="text-emerald-600">miss.</span>
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. It does everything a
+        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. Native in NinjaTrader&nbsp;8 today; Tradovate &amp; Ironbeam apps in early access. It does everything a
         traditional risk tool does, then adds real-time <strong class="text-zinc-800">behavioral detection</strong> none of
         them have. This page is the full tour: the loop, the seven signals, and what the PSI score actually measures.
       </p>
@@ -144,7 +146,7 @@ const loop = [
         <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
         <ul class="space-y-3 text-zinc-700">
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Single-trade loss cap</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
         </ul>
@@ -290,7 +292,7 @@ const loop = [
           </ul>
         </div>
       </div>
-      <p class="mt-6 text-zinc-800"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes a rule un-bypassable for a window you choose &mdash; for when the tilted version of you wants to switch it off.</p>
+      <p class="mt-6 text-zinc-800"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window &mdash; for when the tilted version of you wants to switch it off.</p>
       <p class="mt-4 text-sm text-zinc-500">By default Guard doesn't close your live positions &mdash; it stops you <em>adding</em> risk, and you can always exit any time. (Opt-in auto-flatten can close them for you when a pause or disconnect fires.) <a href="/guard" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">Full Guard breakdown &rarr;</a></p>
     </div>
   </section>
@@ -302,7 +304,7 @@ const loop = [
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHO IT'S FOR</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Built for traders whose biggest losses<br class="hidden md:block" /> aren't bad setups.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-          Meridian is for serious discretionary futures traders on NinjaTrader 8 (Windows) &mdash; especially those running
+          Meridian is for serious discretionary futures traders (Windows) &mdash; on NinjaTrader 8 today, Tradovate and Ironbeam in early access &mdash; especially those running
           prop-firm evaluations &mdash; whose accounts blow up from <em>behavior</em>, not strategy.
         </p>
       </div>
@@ -400,7 +402,7 @@ const loop = [
         <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
         <a href="/features" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See all features</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 </Layout>

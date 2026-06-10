@@ -3,7 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian Guard vs Daily Loss Limits — Behavioral Risk Manager for NinjaTrader 8',
+  ignoreTitleTemplate: true,
   description: 'Meridian is the complete NinjaTrader 8 risk manager: it includes the daily loss limit and every traditional control, then fires on the behavior before the loss.',
   robots: { index: true, follow: true },
 };
@@ -11,7 +13,7 @@ const metadata = {
 const faqItems = [
   {
     q: 'What is the difference between a daily loss limit and Meridian Guard?',
-    a: 'A daily loss limit is a single financial threshold — it reacts after a specific dollar drawdown. Meridian is the complete risk manager: it includes that daily loss limit (via the Session P&L Below trigger) along with the other traditional controls — max position size, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have, a behavioral leading indicator that fires when the pattern producing the loss is in motion, before the financial threshold is reached. So it is not a different category from a daily loss limit; it is a superset of it.',
+    a: 'A daily loss limit is a single financial threshold — it reacts after a specific dollar drawdown. Meridian is the complete risk manager: it includes that daily loss limit (via the Session P&L Below trigger) along with the other traditional controls — single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have, a behavioral leading indicator that fires when the pattern producing the loss is in motion, before the financial threshold is reached. So it is not a different category from a daily loss limit; it is a superset of it.',
   },
   {
     q: 'Can Guard act as a daily loss limit?',
@@ -74,7 +76,7 @@ const faqSchema = JSON.stringify({
         Guard monitors seven behavioral signals that commonly precede a blown session: rapid re-entry after a loss, stop manipulation, oversizing, accelerating entry pace, rule violations, position overstay, hold bias. It fires at the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus max position size, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene. The net effect: Meridian is the complete risk manager for NinjaTrader 8 — every traditional limit, plus the behavioral detection none of them have.
+        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus a single-trade loss cap, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene. The net effect: Meridian is the complete risk manager — native in NinjaTrader 8, with Tradovate and Ironbeam apps in early access — every traditional limit, plus the behavioral detection none of them have.
       </p>
 
       <!-- Comparison table -->
@@ -145,7 +147,7 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Guard sits in the stack</h2>
       <p>
-        For traders running a NinjaTrader 8 setup, Meridian provides the full control stack in one add-on: configure the financial-outcome limits — daily loss limit, P&L and drawdown caps, max size, loss-streak cutoff — and configure Guard's behavioral triggers to fire on the patterns you want to interrupt. Any existing broker-level controls remain in place beneath it. The ordering is clear: behavior first, financial backstop only if behavior was missed — both layers covered by the same tool.
+        For traders running a NinjaTrader 8 setup, Meridian provides the full control stack in one add-on: configure the financial-outcome limits — daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — and configure Guard's behavioral triggers to fire on the patterns you want to interrupt. Any existing broker-level controls remain in place beneath it. The ordering is clear: behavior first, financial backstop only if behavior was missed — both layers covered by the same tool.
       </p>
 
       <hr />

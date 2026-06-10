@@ -9,7 +9,9 @@ const guardTier = pricing.tiers[1]!;
 const usd = (n: number) => n.toFixed(2);
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
+  ignoreTitleTemplate: true,
   description:
     `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, a five-level escalation ladder, and an un-bypassable Strict Lock. After a 7-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
   robots: { index: true, follow: true },
@@ -59,7 +61,7 @@ const guardSchemaJson = JSON.stringify({
     "Five response levels: Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5)",
     "Trading Pause (L4): blocks new entries by cancelling orders while staying connected; Disconnect (L5): severs the broker connection",
     "Auto-flatten (opt-in, off by default): on a Trading Pause (L4) or Disconnect (L5) rule, optionally close all open positions the moment that rule fires",
-    "Strict Lock: an un-bypassable commitment window you choose in advance — survives NinjaTrader restart",
+    "Strict Lock: one switch set while calm — every pause or disconnect Guard fires becomes un-bypassable for its full window, rules frozen; survives NinjaTrader restart",
     "Pause persistence: lockout survives NinjaTrader restart or crash",
     "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation",
     "Anonymous by design — no name, credentials, or funds collected"
@@ -251,7 +253,7 @@ const { triggers, levels, examples } = guardData;
           Guard never closes your live<br class="hidden md:block" /> positions for you.
         </h2>
         <p class="mt-5 text-lg text-zinc-700 leading-relaxed">
-          It only blocks you from <strong class="text-zinc-900">adding</strong> risk &mdash; new entries, more size. Your open trades stay yours. You can always exit, scale out, or flatten manually, any time, at any level. Guard stops the next bad decision; it never makes a trading decision for you.
+          It only blocks you from <strong class="text-zinc-900">adding</strong> risk &mdash; new entries, more size. Your open trades stay yours: a close order is never cancelled, at any level. Even Disconnect, if you hold a position, first shows a countdown with a one-click <em>Flatten All</em> before it severs the connection &mdash; and your position itself lives at your broker, never locked away. Guard stops the next bad decision; it never makes a trading decision for you.
         </p>
         <p class="mt-4 text-sm text-zinc-600 leading-relaxed">
           The one exception is explicit and off by default: on a Trading Pause (L4) or Disconnect (L5) rule, you <em>may</em> tick a single checkbox &mdash; <em>Close all open positions immediately</em> &mdash; to auto-flatten the moment that rule fires. If you don't enable it, nothing closes &mdash; positions stay open and fully under your control.
@@ -268,16 +270,16 @@ const { triggers, levels, examples } = guardData;
         A lock only your calm self<br />can set &mdash; and your tilted<br />self can't undo.
       </h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        Any rule you can switch off in the moment isn't really a rule. Strict Lock is the fix: a commitment window you choose <em>in advance</em>. Once it's armed, Guard's settings are frozen &mdash; you can't loosen a trigger, drop a level, or quietly turn the whole thing off until the window ends.
+        Any rule you can switch off in the moment isn't really a rule. Strict Lock is the fix: one switch, set <em>while you're calm</em>. With it on, every pause or disconnect Guard fires is absolute for its full window &mdash; no early exit, no force-reset, your rules are frozen, and neither Guard nor the switch itself can be turned off until the clock releases you.
       </p>
       <ul class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>You set the duration when you're calm &mdash; the rest of the day, the eval, the week</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your rule decides how long &mdash; 15 minutes or the rest of the day &mdash; Strict Lock makes that window inescapable</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart</strong> &mdash; closing the platform doesn't reset it</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Built for the moment the tilted version of you goes looking for the off switch</span></li>
       </ul>
       <p class="mt-5 text-sm text-zinc-500">Lockout state persists across restarts and crashes &mdash; there's no "just reopen it" loophole.</p>
     </div>
-    <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock arms an un-bypassable commitment window that survives a NinjaTrader restart" /></div>
+    <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock makes every Guard pause un-bypassable and survives a NinjaTrader restart" /></div>
   </section>
 
   <!-- ───────────────────────── EXAMPLE CONFIGS ───────────────────────── -->
@@ -436,7 +438,7 @@ const { triggers, levels, examples } = guardData;
           ['Local-first; anonymized opt-out telemetry',   true,  true],
           ['Guard System (6 triggers, 5-level ladder)',   false, true],
           ['Trading Pause & broker Disconnect',           false, true],
-          ['Strict Lock — un-bypassable commitment window',false, true],
+          ['Strict Lock — makes every pause un-bypassable',false, true],
           ['Intel Layer — monthly digest',               false, true],
           ['PSI × P&L correlation',                       false, true],
           ["Today's Risk Brief",                          false, true],

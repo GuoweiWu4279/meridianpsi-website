@@ -37,8 +37,8 @@
     },
     {
       "id": "nt8",
-      "title": "Built for NinjaTrader 8",
-      "description": "Ships as an NT8 add-on using account and execution events. Works in live and Market Replay. NinjaTrader 7 is not supported.",
+      "title": "Native in NT8 — standalone for Tradovate & Ironbeam",
+      "description": "Ships as a native NinjaTrader 8 add-on using account and execution events — works in live and Market Replay. Standalone Windows apps for Tradovate and Ironbeam accounts are in early access. NinjaTrader 7 is not supported.",
       "icon": "tabler:brand-npm",
       "category": "platform"
     },

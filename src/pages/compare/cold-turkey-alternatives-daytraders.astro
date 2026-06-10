@@ -5,7 +5,7 @@ import geoHooks from '~/data/geo-hooks.json';
 const metadata = {
   title: 'Cold Turkey Alternatives for Day Traders — NinjaTrader 8 Session Enforcement',
   description:
-    'Traders use Cold Turkey to block trading platforms after bad sessions. Meridian is the purpose-built alternative: complete risk management for NinjaTrader 8 — the traditional limits (daily loss, max size, drawdown) plus a real-time behavioral layer that knows whether you should stop, before you do damage.',
+    'Traders use Cold Turkey to block trading platforms after bad sessions. Meridian is the purpose-built alternative: complete risk management for futures traders — native in NinjaTrader 8, standalone for Tradovate and Ironbeam accounts (early access) — the traditional limits (daily loss, single-trade loss, drawdown) plus a real-time behavioral layer that knows whether you should stop, before you do damage.',
   canonical: 'https://www.meridianpsi.com/compare/cold-turkey-alternatives-daytraders',
   robots: { index: true, follow: true },
 };
@@ -14,7 +14,7 @@ const compareRows = [
   {
     dim: 'What it is',
     ct: 'General-purpose website and app blocker',
-    meridian: 'Complete risk management for NinjaTrader 8: traditional limits plus a real-time behavioral layer',
+    meridian: 'Complete risk management for futures traders (NinjaTrader 8, Tradovate, Ironbeam): traditional limits plus a real-time behavioral layer',
   },
   {
     dim: 'Awareness of your trading state',
@@ -34,7 +34,7 @@ const compareRows = [
   {
     dim: 'Response options',
     ct: 'Block everything or block nothing',
-    meridian: 'Hard limits (daily loss, max position size, drawdown, loss-streak cutoff) plus graduated behavioral responses: alert (Notify), risk alert banner, typed acknowledgment + countdown, trading pause (block new entries), broker disconnect',
+    meridian: 'Hard limits (daily loss, single-trade loss cap, drawdown, loss-streak cutoff) plus graduated behavioral responses: alert (Notify), risk alert banner, typed acknowledgment + countdown, trading pause (block new entries), broker disconnect',
   },
   {
     dim: 'Can it tell a bad session from a good one?',
@@ -44,7 +44,7 @@ const compareRows = [
   {
     dim: 'Trading platform integration',
     ct: 'External process blocker with no order-level access',
-    meridian: 'Native NinjaTrader 8 add-on with direct access to the execution pipeline',
+    meridian: 'Native NinjaTrader 8 add-on with direct execution-pipeline access — plus standalone apps for Tradovate and Ironbeam accounts (early access)',
   },
   {
     dim: 'Revenge trading detection',
@@ -74,15 +74,15 @@ const faqItems = [
   },
   {
     q: 'How does Meridian work as a Cold Turkey alternative?',
-    a: 'Meridian is complete risk management built into NinjaTrader 8. It enforces the traditional limits a risk tool should — daily loss limit, max position size, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have: a real-time behavioral monitor. It reads your live order stream and computes a Psychological Stability Index (PSI) from seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. When the PSI or an individual signal crosses a threshold you configured while calm, the Meridian Guard layer can raise a persistent risk-alert banner, require a typed acknowledgment with a countdown, block new entries by cancelling orders, or disconnect the broker. The triggers are behavioral, not scheduled.',
+    a: 'Meridian is complete risk management built into NinjaTrader 8. It enforces the traditional limits a risk tool should — daily loss limit, single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have: a real-time behavioral monitor. It reads your live order stream and computes a Psychological Stability Index (PSI) from seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. When the PSI or an individual signal crosses a threshold you configured while calm, the Meridian Guard layer can raise a persistent risk-alert banner, require a typed acknowledgment with a countdown, block new entries by cancelling orders, or disconnect the broker. The triggers are behavioral, not scheduled.',
   },
   {
     q: 'What is the typed acknowledgment and why does it matter?',
     a: 'When Meridian Guard\'s acknowledgment level fires, the trader must type a phrase they wrote during a calm, pre-session state before they can place the next order. Examples: "I am not in a good state" or "I will wait 10 minutes." The friction is the point. It breaks the automatic behavior loop at the exact moment the pattern is detectable, rather than relying on the trader to self-impose a block after the fact.',
   },
   {
-    q: 'Is Meridian only for NinjaTrader 8 traders?',
-    a: 'Yes. Meridian is built into the NinjaTrader 8 execution pipeline and requires that platform on Windows. The real-time behavioral signal detection depends on access to the live order feed, which is why it is platform-specific. If you trade on NinjaTrader 8, Meridian is the complete risk tool for the platform — it covers the traditional limits any risk add-on enforces and adds the behavioral layer — making it the purpose-built solution to the discipline-enforcement problem that Cold Turkey addresses generically.',
+    q: 'Which platforms does Meridian run on?',
+    a: 'Meridian runs natively inside NinjaTrader 8 today, and the same engine also ships as a standalone Windows app that connects directly to a Tradovate or Ironbeam account — no NinjaTrader required (early access). Real-time behavioral detection needs a live order feed, which is why support is per-platform rather than universal. Wherever it runs, Meridian is the purpose-built solution to the discipline-enforcement problem that Cold Turkey addresses generically — see the full capability matrix on the Platforms page.',
   },
 ];
 
@@ -112,7 +112,7 @@ const faqSchema = JSON.stringify({
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Cold Turkey blocks trading platforms on a schedule or when you manually activate it. Meridian is complete risk management for NinjaTrader 8: it enforces the traditional limits a risk tool should (daily loss, max position size, drawdown caps, loss-streak cutoff) and adds the layer none of them have — a real-time behavioral monitor that knows your actual state during the session and intervenes when the signals say you should stop — escalating from an alert to acknowledgment friction to blocking new entries, up to disconnecting the broker. If you trade on NinjaTrader 8, Meridian is the purpose-built solution to the problem Cold Turkey solves generically.
+          Cold Turkey blocks trading platforms on a schedule or when you manually activate it. Meridian is complete risk management for NinjaTrader 8: it enforces the traditional limits a risk tool should (daily loss, single-trade loss cap, drawdown caps, loss-streak cutoff) and adds the layer none of them have — a real-time behavioral monitor that knows your actual state during the session and intervenes when the signals say you should stop — escalating from an alert to acknowledgment friction to blocking new entries, up to disconnecting the broker. If you trade on NinjaTrader 8, Meridian is the purpose-built solution to the problem Cold Turkey solves generically.
         </p>
       </div>
     </header>
@@ -140,7 +140,7 @@ const faqSchema = JSON.stringify({
 
       <h2>What a purpose-built trading alternative looks like</h2>
       <p>
-        Meridian is complete risk management built natively into NinjaTrader 8. It enforces the hard limits any risk tool should — daily loss limit, max position size, drawdown and P&L caps, loss-streak cutoff — and then adds the layer none of them have. Reading the live execution feed, it computes a Psychological Stability Index (PSI) from seven behavioral signals continuously: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. Each signal is measured against the trader's own historical session baseline, not a fixed threshold. The system learns what normal looks like for you specifically.
+        Meridian is complete risk management built natively into NinjaTrader 8. It enforces the hard limits any risk tool should — daily loss limit, single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and then adds the layer none of them have. Reading the live execution feed, it computes a Psychological Stability Index (PSI) from seven behavioral signals continuously: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. Each signal is measured against the trader's own historical session baseline, not a fixed threshold. The system learns what normal looks like for you specifically.
       </p>
       <p>
         When the behavioral signals or the composite PSI crosses thresholds you configured during a calm, pre-session state, the Meridian Guard layer fires. There are five response levels. The first is a quiet alert. The second is a persistent banner that requires active confirmation before each new entry. The third makes the trader type a phrase they wrote while calm and wait out a countdown before placing the next order, which breaks the automatic behavior loop at the exact decision point. The fourth blocks new entries entirely by cancelling orders. The fifth disconnects the broker connection.

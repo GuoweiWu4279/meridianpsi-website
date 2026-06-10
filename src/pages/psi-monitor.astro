@@ -16,9 +16,14 @@ import geoHooks from '~/data/geo-hooks.json';
 const { signals } = signalsData;
 
 const metadata = {
-  title: 'The Live Monitor — Meridian for NinjaTrader 8',
+  // Title carries the official feature name (nav/slug/schema all say "PSI Monitor")
+  // plus the searchable concept ("behavioral risk score"). Page H1/voice still
+  // treats PSI as the mechanism, never the sales lead — that principle governs
+  // copy, not the retrieval surface.
+  // ("— Meridian" is appended by the site-wide title template — never hand-add it.)
+  title: 'PSI Monitor — Live Behavioral Risk Score for Futures Traders',
   description:
-    'Meridian turns your NinjaTrader 8 order flow into one live discipline score, 0–100, updated under 100ms after every fill and measured against your own baseline — not a generic average. An always-on HUD that reads seven behavioral signals before the order, not after the loss.',
+    'Meridian turns your live order flow into one live discipline score, 0–100, updated under 100ms after every fill and measured against your own baseline — not a generic average. An always-on HUD that reads seven behavioral signals before the order, not after the loss.',
   robots: { index: true, follow: true },
 };
 
@@ -53,7 +58,7 @@ const monitorJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
-      softwareRequirements: 'NinjaTrader 8',
+      softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
       url: 'https://www.meridianpsi.com/psi-monitor',
@@ -172,7 +177,7 @@ const signalIcons: Record<string, string> = {
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="text-emerald-600 text-xs font-bold mb-3 tnum">01</div>
           <div class="text-zinc-900 font-semibold mb-1.5">An order event lands</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">A fill, a stop move, an exit, a re-entry. Meridian reads it natively inside NinjaTrader 8 the instant it happens &mdash; nothing to log by hand.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">A fill, a stop move, an exit, a re-entry. Meridian reads it natively the instant it happens &mdash; inside NinjaTrader 8 or straight from your Tradovate / Ironbeam account &mdash; nothing to log by hand.</p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="text-emerald-600 text-xs font-bold mb-3 tnum">02</div>
@@ -255,7 +260,7 @@ const signalIcons: Record<string, string> = {
   <!-- ───────────────────────── PRIVACY / TRUST ───────────────────────── -->
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div class="grid md:grid-cols-3 gap-5" data-reveal>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Runs natively in NinjaTrader 8</div><p class="text-sm text-zinc-600">The Monitor is a native add-on. No bridge, no second app, no manual logging &mdash; it reads your order flow where it already lives.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Runs where your orders live</div><p class="text-sm text-zinc-600">Native add-on inside NinjaTrader 8 &mdash; no bridge, no manual logging. On Tradovate or Ironbeam accounts, a standalone app reads your order flow directly (early access).</p></div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first; the only data that ever leaves is anonymized and opt-out.</p></div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">The score, then the action</div><p class="text-sm text-zinc-600">The Monitor reads and warns. When you want it to step in, <a href="/guard" class="text-emerald-700 font-medium hover:underline">Guard</a> enforces the limits you set &mdash; before the order, not after the loss.</p></div>
     </div>
@@ -288,7 +293,7 @@ const signalIcons: Record<string, string> = {
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">See the number move<br />before the loss does.</h2>
       <p class="mt-6 text-lg text-zinc-600">Put the live Monitor on your chart and read your discipline in real time &mdash; scored against you.</p>
       <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 

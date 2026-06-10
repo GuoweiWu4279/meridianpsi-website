@@ -48,7 +48,7 @@ Every signal is measured relative to your own trading history, not a fixed indus
 - A 3-second re-entry that's normal for a scalper is not flagged as revenge trading
 - As your strategy evolves, the baseline follows
 
-The system uses online adaptive statistics — continuous updates weighted toward recent sessions. There is no manual calibration required. The first 5–10 sessions are the "learning phase" where signals have wider confidence intervals; by session 20–30, the baseline is meaningfully calibrated.
+The system uses online adaptive statistics — continuous updates weighted toward recent sessions. There is no manual calibration required. The first ~5 sessions (roughly 30+ trades) are the "learning phase" where signals have wider confidence intervals; after that the baseline is meaningfully calibrated, and it keeps tightening through session 20–30 and beyond.
 
 **Playback isolation:** Market Replay sessions are tracked in a separate data context. They never contribute to or contaminate the live session baseline.
 
@@ -73,7 +73,7 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 2. **Risk Alert (L2)** — persistent banner; every new entry requires active confirmation
 3. **Acknowledge (L3)** — the user types a phrase they wrote in advance, with an optional countdown, before continuing (set when calm, typed when not — the most powerful friction of the five)
 4. **Trading Pause (L4)** — blocks new entries by cancelling orders; survives a NinjaTrader restart
-5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API); the strictest mode of a Trading Pause. The user reconnects through NT8 to resume trading.
+5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API); the strictest mode of a Trading Pause. By default Guard re-disconnects reconnect attempts made during the window (per-rule setting); the user reconnects through NT8 once the window ends.
 
 **Does Guard close your positions?** By default, no — Guard blocks you from *adding* risk, and you can always exit yourself. But auto-flatten is a clear opt-in: tick the checkbox on a Trading Pause or Disconnect rule and Guard will close all open positions the moment that rule fires. It's off until you turn it on.
 

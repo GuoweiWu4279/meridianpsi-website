@@ -2,6 +2,7 @@
 title: "What Is a Psychological Stability Index (PSI) in Trading?"
 excerpt: "The Psychological Stability Index is a composite real-time score that measures a trader's behavioral stability during a live session — computed from seven independent signal dimensions, updated in under 100 milliseconds after every execution."
 publishDate: 2026-05-01T10:00:00Z
+updateDate: 2026-06-09T00:00:00Z
 author: "Meridian"
 category: 'trading-psychology'
 tags: ['psychological stability index', 'PSI', 'trading psychology', 'behavioral finance', 'real-time monitoring', 'NinjaTrader']
@@ -47,7 +48,7 @@ PSI is a weighted composite of seven independent behavioral signal dimensions. E
 
 ### 1. Revenge Entry
 
-Tracks the speed and sizing of entries following a loss event. Specifically, it monitors whether the trader is re-entering the market within an anomalously short interval after a loss, with an elevated position size relative to their own baseline. This behavioral signature is the computational equivalent of what is colloquially called revenge trading — acting on the emotional state created by a loss rather than on market analysis.
+Tracks the speed and sizing of entries following a loss event. Specifically, it monitors whether the trader is re-entering the market within an anomalously short interval after a loss, with an elevated position size relative to their own baseline. This behavioral signature is the computational equivalent of what is colloquially called [revenge trading](/how-to-stop-revenge-trading) — acting on the emotional state created by a loss rather than on market analysis.
 
 ### 2. Stop Manipulation
 
@@ -81,7 +82,7 @@ The decision to compute PSI against personal behavioral baselines rather than po
 
 What constitutes normal hold time for a scalper is entirely different from what is normal for a swing trader. What constitutes an elevated entry pace for a position trader would be completely ordinary for a high-frequency day trader. Using a fixed population threshold would make PSI either meaningless or misleading for traders outside the statistical center.
 
-Meridian builds a baseline from each individual trader's own session history. The system requires an initial calibration period — typically several weeks of regular trading — before the signal thresholds become fully individualized. The more session data is recorded, the more accurately the system can distinguish between behavioral variation that is normal for that trader and behavioral variation that represents a genuine anomaly.
+Meridian [builds a baseline from each individual trader's own session history](/adaptive-learning-settings). The system requires an initial calibration period — typically several weeks of regular trading — before the signal thresholds become fully individualized. The more session data is recorded, the more accurately the system can distinguish between behavioral variation that is normal for that trader and behavioral variation that represents a genuine anomaly.
 
 ---
 
@@ -115,7 +116,7 @@ Scores are grouped into four zones based on the probability distribution of beha
 
 PSI is a real-time score that reflects the trader's current behavioral state. It fluctuates throughout the session as actions are taken and signals are activated or resolved.
 
-Composure is a different metric: a session-quality score calculated at the end of the session that reflects how much time was spent in each PSI zone, weighted by psychological cost. Stable time contributes most to a high Composure score; Critical time contributes almost nothing.
+[Composure](/history-intel) is a different metric: a session-quality score calculated at the end of the session that reflects how much time was spent in each PSI zone, weighted by psychological cost. Stable time contributes most to a high Composure score; Critical time contributes almost nothing.
 
 A session in which PSI briefly dipped to 40 and then recovered to 80 for the remainder of the day will have a different Composure score than a session in which PSI stayed in the Caution zone for six consecutive hours. Both might end with a PSI of 75. Only the Composure score reflects the full behavioral quality of the session.
 
@@ -125,7 +126,7 @@ A session in which PSI briefly dipped to 40 and then recovered to 80 for the rem
 
 The response to PSI data can be automated.
 
-When PSI crosses a defined threshold, a rule can trigger automatically — ranging from a quiet notification to a mandatory pause to an opt-in full disconnect that the trader configures deliberately. By default these responses block you from adding risk rather than closing your positions for you; severing the broker connection (and the optional auto-flatten that goes with it) is an extreme you choose to enable, not a default behavior. This matters because the moments when behavioral intervention would be most useful are precisely the moments when the trader is least capable of self-regulating.
+When PSI crosses a defined threshold, [a rule can trigger automatically](/guard) — ranging from a quiet notification to a mandatory pause to an opt-in full disconnect that the trader configures deliberately. By default these responses block you from adding risk rather than closing your positions for you; severing the broker connection (and the optional auto-flatten that goes with it) is an extreme you choose to enable, not a default behavior. This matters because the moments when behavioral intervention would be most useful are precisely the moments when the trader is least capable of self-regulating.
 
 A trader in a Critical state is, by the very signals that put them there, acting under the conditions most strongly associated with impaired self-regulation. Asking that trader to look at a PSI score and choose to stop trading relies on the same self-control that is least available in exactly those moments. It is not a reliable system.
 
@@ -133,4 +134,4 @@ Automated enforcement based on PSI removes that requirement. The rule is execute
 
 ---
 
-*[Meridian](https://www.meridianpsi.com) is the most complete risk manager for NinjaTrader 8 — every hard control a traditional risk tool has (daily loss limit, max position size, drawdown caps, loss-streak cutoff) plus a real-time behavioral layer that those tools lack. The Psychological Stability Index (PSI) is the composite score that powers that behavioral layer, computed from seven behavioral patterns during live sessions and calibrated to each trader's own baseline. Your session data is stored locally; anonymized data is used for product improvement and research only, with opt-out. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary.*
+*[Meridian](https://www.meridianpsi.com) is the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every hard control a traditional risk tool has (daily loss limit, drawdown caps, single-trade loss caps, loss-streak cutoff) plus a real-time behavioral layer that those tools lack. The Psychological Stability Index (PSI) is the composite score that powers that behavioral layer, computed from seven behavioral patterns during live sessions and calibrated to each trader's own baseline. Your session data is stored locally; anonymized data is used for product improvement and research only, with opt-out. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary.*

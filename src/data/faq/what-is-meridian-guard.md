@@ -1,10 +1,10 @@
 ---
-question: "What is Meridian Guard for NinjaTrader 8 — a lockout, trade limiter, or risk manager?"
+question: "What is Meridian Guard — a lockout, trade limiter, or risk manager?"
 category: general
 order: 0
 ---
 
-Meridian Guard is the automated enforcement layer of Meridian — the complete risk manager for NinjaTrader 8. Meridian does everything a traditional risk tool does (daily loss limit, max position size, P&L and drawdown caps, loss-streak cutoff) plus a behavioral layer that detects revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations. Guard then enforces user-defined cooldowns, lockouts, and entry blocking before traders break their own rules.
+Meridian Guard is the automated enforcement layer of Meridian — the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone Tradovate and Ironbeam apps in early access. Meridian does everything a traditional risk tool does (daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff, session-time stop) plus a behavioral layer that detects revenge trading, overtrading, stop-loss manipulation, oversizing, and rule violations. Guard then enforces user-defined cooldowns, lockouts, and entry blocking before traders break their own rules.
 
 Guard enforces the classic financial limits directly — session P&L floors, unrealized-loss and single-trade-loss caps, and consecutive-loss cutoffs — so it covers the same ground as your broker's daily loss limit or NinjaTrader's account risk settings, then goes further with a **behavior-first** layer: it reacts to rapid re-entry, session pace, stop manipulation, and rule pressure **before** P&L damage compounds — for example consecutive-loss cooldowns, mandatory pauses, and entry blocking when PSI or your triggers say the session is off-plan.
 

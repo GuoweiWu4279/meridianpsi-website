@@ -44,7 +44,7 @@ Meridian moves the analysis into the live session — the PSI score updates in r
 
 ### vs. Prop firm hard limits
 
-**The core distinction:** Prop firm evaluation limits are an external contract enforced by a third party — and only at the moment you breach it. Meridian runs the same kinds of hard caps (daily loss, drawdown, loss-streak, max size) on your own machine, *plus* a behavioral layer the firm's rules don't have.
+**The core distinction:** Prop firm evaluation limits are an external contract enforced by a third party — and only at the moment you breach it. Meridian runs the same kinds of hard caps (daily loss, drawdown, loss-streak, single-trade loss) on your own machine, *plus* a behavioral layer the firm's rules don't have.
 
 The structural problem with evaluation rules: they're designed to protect the firm, not improve you. A daily drawdown limit doesn't distinguish between a disciplined loss and a panic spiral. It fires the same way regardless of *why* the loss happened. And it provides no feedback during the session — just termination at the limit.
 
@@ -56,4 +56,4 @@ For traders preparing for prop firm evaluations, Meridian provides behavioral fe
 
 ### vs. Generic risk management tools
 
-Meridian includes the traditional guardrails — max size, drawdown caps, loss-streak and P&L limits all live inside Guard. What sets it apart is the layer on top: it doesn't just enforce a fixed threshold, it monitors *how* you're trading relative to your own established patterns. The distinction matters: a standalone calculator or fixed rule applies the same threshold to every trader, every session. Meridian's behavioral baseline is personal — it learns your rhythm and flags when you deviate from yourself.
+Meridian includes the traditional guardrails — single-trade loss caps, drawdown caps, loss-streak and P&L limits all live inside Guard. What sets it apart is the layer on top: it doesn't just enforce a fixed threshold, it monitors *how* you're trading relative to your own established patterns. The distinction matters: a standalone calculator or fixed rule applies the same threshold to every trader, every session. Meridian's behavioral baseline is personal — it learns your rhythm and flags when you deviate from yourself.

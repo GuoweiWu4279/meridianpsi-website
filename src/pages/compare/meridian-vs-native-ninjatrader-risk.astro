@@ -3,7 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian vs Native NinjaTrader Risk Management — Hard Limits Plus the Behavioral Layer',
+  ignoreTitleTemplate: true,
   description:
     'Native NinjaTrader 8 risk controls cap the financial outcome. Meridian does that hard-limit job too — and adds the layer native controls lack: real-time behavioral detection at the pattern that produces the outcome. A superset, not a separate niche.',
   robots: { index: true, follow: true },

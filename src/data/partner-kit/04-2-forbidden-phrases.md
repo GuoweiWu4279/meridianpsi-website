@@ -20,10 +20,10 @@ These aren't arbitrary restrictions. Each one protects you from FTC liability or
 | "Proven trading results" | Makes an evidential claim that doesn't exist at a per-user level | "Used by active NinjaTrader 8 traders who want behavioral feedback" |
 | "100% accurate" | Nothing in trading is 100% accurate | Remove — no qualifier makes this acceptable |
 | "Risk-free" | It's a paid subscription after the free trial, and trading itself is never risk-free | "7-day free trial — cancel anytime during the trial period" |
-| "Works on all platforms" | NT8 + Windows only | "Built exclusively for NinjaTrader 8 on Windows" |
+| "Works on all platforms" | NT8 native + Tradovate/Ironbeam early access, Windows only | "Native in NinjaTrader 8; standalone Tradovate & Ironbeam apps in early access — Windows only" |
 
 ---
 
-**The underlying principle:** Meridian is a complete risk manager — every traditional limit (daily loss, max size, P&L and drawdown caps, loss-streak) plus a behavioral layer that monitors patterns and can intervene. What happens after the intervention — whether the trader improves, whether outcomes change — is outside the product's scope to claim.
+**The underlying principle:** Meridian is a complete risk manager — every traditional limit (daily loss, single-trade loss, P&L and drawdown caps, loss-streak) plus a behavioral layer that monitors patterns and can intervene. What happens after the intervention — whether the trader improves, whether outcomes change — is outside the product's scope to claim.
 
 Keep claims inside the product's actual capability boundary and you'll be fine.

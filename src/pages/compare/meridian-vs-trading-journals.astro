@@ -3,9 +3,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian vs Trading Journals — Tradervue, Edgewonk, TraderSync, TradesViz',
+  ignoreTitleTemplate: true,
   description:
-    'Trading journals analyze sessions after the close. Meridian is complete real-time risk management for NinjaTrader 8 — every traditional limit (daily loss, max size, drawdown, loss-streak) plus a behavioral layer that intercepts the pattern in real time. Two different categories: retrospective analytics versus live risk management inside NinjaTrader 8.',
+    'Trading journals analyze sessions after the close. Meridian is complete real-time risk management for NinjaTrader 8 — every traditional limit (daily loss, single-trade loss, drawdown, loss-streak) plus a behavioral layer that intercepts the pattern in real time. Two different categories: retrospective analytics versus live risk management on your trading platform — native in NinjaTrader 8, with Tradovate and Ironbeam apps in early access.',
   robots: { index: true, follow: true },
 };
 
@@ -23,12 +25,12 @@ const compareRows = [
   {
     dim: 'Reads',
     journals: 'Imported trade history (CSV, broker export)',
-    meridian: 'Live NinjaTrader 8 order events',
+    meridian: 'Live order events (NinjaTrader 8, Tradovate, or Ironbeam account)',
   },
   {
     dim: 'Output',
     journals: 'Charts, dashboards, weekly summaries',
-    meridian: 'Daily loss / drawdown / position-size limits + composite PSI score + 7 behavioral signals + Guard enforcement',
+    meridian: 'Daily loss / drawdown / single-trade loss limits + composite PSI score + 7 behavioral signals + Guard enforcement',
   },
   {
     dim: 'Behavioral pattern detection',
@@ -38,7 +40,7 @@ const compareRows = [
   {
     dim: 'Intervention capability',
     journals: 'None — analysis only',
-    meridian: 'Guard: typed acknowledgment (with a mandatory countdown), entry block, broker disconnect',
+    meridian: 'Guard: typed acknowledgment (with an optional countdown), entry block, broker disconnect',
   },
   {
     dim: 'Data location',
@@ -55,19 +57,19 @@ const compareRows = [
 const faqItems = [
   {
     q: 'How is Meridian different from Tradervue or Edgewonk?',
-    a: 'Tradervue, Edgewonk, TraderSync, TradesViz, and similar journal platforms are post-session analytics tools. They import completed trades after the session ends and surface patterns through dashboards, group filters, and weekly summaries. Meridian is complete real-time risk management inside NinjaTrader 8: it enforces the traditional limits (daily loss, max position size, drawdown, loss-streak) and adds a behavioral layer that can intercept the pattern as it forms during the session — a different category entirely from a retrospective journal.',
+    a: 'Tradervue, Edgewonk, TraderSync, TradesViz, and similar journal platforms are post-session analytics tools. They import completed trades after the session ends and surface patterns through dashboards, group filters, and weekly summaries. Meridian is complete real-time risk management inside NinjaTrader 8: it enforces the traditional limits (daily loss, single-trade loss cap, drawdown, loss-streak) and adds a behavioral layer that can intercept the pattern as it forms during the session — a different category entirely from a retrospective journal.',
   },
   {
     q: 'Could a journal platform detect revenge trading or overtrading?',
-    a: 'A journal platform can show the trader, after the session ends, that they re-entered three times in twelve minutes after a stop-out. Meridian flags the same pattern as the second order is placed and can require a typed acknowledgment (with a mandatory countdown) or an entry block before the third one. Retrospective vs real-time is the category line.',
+    a: 'A journal platform can show the trader, after the session ends, that they re-entered three times in twelve minutes after a stop-out. Meridian flags the same pattern as the second order is placed and can require a typed acknowledgment (with an optional countdown) or an entry block before the third one. Retrospective vs real-time is the category line.',
   },
   {
     q: 'Does Meridian replace post-session analysis?',
     a: 'Meridian generates its own behavioral session review — PSI trend, weekday patterns, monthly digest, today\'s risk brief — focused on behavioral execution rather than position-level P&L attribution. Traders who also want broker-import trade tagging, multi-account portfolio analytics, or strategy-level statistical breakdowns will pick a journal platform for that specific job; the two products solve different problems.',
   },
   {
-    q: 'Why does Meridian only run on NinjaTrader 8?',
-    a: 'Real-time risk management — enforcing live limits and detecting behavioral signals as they form — requires a live order pipeline, with every entry, modification, and exit observed as it happens, not imported afterwards. NinjaTrader 8 is the platform Meridian was built into; that integration is what makes the complete real-time risk layer possible.',
+    q: 'Which platforms does Meridian run on?',
+    a: 'Real-time risk management — enforcing live limits and detecting behavioral signals as they form — requires a live order pipeline, with every entry, modification, and exit observed as it happens, not imported afterwards. Meridian was built natively into NinjaTrader 8, which is still home base; the same engine now also runs as a standalone Windows app that connects directly to a Tradovate or Ironbeam account (early access). One license covers every platform we support.',
   },
 ];
 
@@ -97,7 +99,7 @@ const faqSchema = JSON.stringify({
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Tradervue, Edgewonk, TraderSync, and TradesViz are post-session retrospective platforms. Meridian is complete real-time risk management inside NinjaTrader 8 — it enforces the traditional limits (daily loss, max position size, drawdown, loss-streak) and adds a behavioral layer that intercepts the pattern as it forms. They are different categories.
+          Tradervue, Edgewonk, TraderSync, and TradesViz are post-session retrospective platforms. Meridian is complete real-time risk management inside NinjaTrader 8 — it enforces the traditional limits (daily loss, single-trade loss cap, drawdown, loss-streak) and adds a behavioral layer that intercepts the pattern as it forms. They are different categories.
         </p>
       </div>
     </header>
@@ -114,10 +116,10 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Meridian operates instead</h2>
       <p>
-        Meridian is not a journal platform — it is complete risk management for NinjaTrader 8. It enforces every limit a traditional risk tool does — daily loss limit, maximum position size, drawdown and P&amp;L caps, loss-streak cutoff — and runs inside NinjaTrader 8 during the live session, observing every order event as it happens. On top of those limits, seven behavioral signals — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace — feed into a composite Psychological Stability Index in real time, calibrated to the trader's own session history. That behavioral layer is what no traditional risk tool has. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
+        Meridian is not a journal platform — it is complete risk management for NinjaTrader 8. It enforces every limit a traditional risk tool does — daily loss limit, single-trade loss cap, drawdown and P&amp;L caps, loss-streak cutoff — and runs inside NinjaTrader 8 during the live session, observing every order event as it happens. On top of those limits, seven behavioral signals — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace — feed into a composite Psychological Stability Index in real time, calibrated to the trader's own session history. That behavioral layer is what no traditional risk tool has. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        When the optional Meridian Guard layer is enabled, the same signals can require a typed acknowledgment with a mandatory countdown, block new entries, or disconnect the broker connection — the moment the behavioral threshold is crossed, not after the session ends. By default Guard does not close your open positions; it stops you from <em>adding</em> risk, and you can always exit yourself. Closing positions on a Trading Pause or Disconnect is a clear opt-in checkbox if you want it.
+        When the optional Meridian Guard layer is enabled, the same signals can require a typed acknowledgment with an optional countdown, block new entries, or disconnect the broker connection — the moment the behavioral threshold is crossed, not after the session ends. By default Guard does not close your open positions; it stops you from <em>adding</em> risk, and you can always exit yourself. Closing positions on a Trading Pause or Disconnect is a clear opt-in checkbox if you want it.
       </p>
 
       <!-- Comparison table -->

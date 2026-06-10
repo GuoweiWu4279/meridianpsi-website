@@ -231,14 +231,14 @@ const assetCategories: AssetCategory[] = [
   {
     title: 'B-roll Video',
     items: [
-      { label: 'B-roll demo video (1080p, MP4)', desc: 'Use as background footage or picture-in-picture overlay', thumb: '/screenshots/hud-stable.png', href: '/videos/hero-demo.mp4', type: 'video' },
+      { label: 'B-roll demo video (1080p, MP4)', desc: 'Background footage or picture-in-picture overlay. Note: recorded on the pre-v1.5 interface — for current-UI visuals use the screenshots above', thumb: '/screenshots/hud-stable.png', href: '/videos/hero-demo.mp4', type: 'video' },
     ],
   },
   {
     title: 'Feature Demo Videos',
     items: [
-      { label: 'PSI Monitor — feature walkthrough', desc: 'Live HUD, behavioral signals, and how PSI scores update in real time', thumb: '/screenshots/psi-monitor-thumb.jpg', href: 'https://www.youtube.com/watch?v=DjzPWxPGHs8', type: 'youtube' },
-      { label: 'Adaptive Learning — settings walkthrough', desc: 'How the baseline learns from your sessions and how to configure your trading profile', thumb: '/screenshots/adaptive-learning-thumb.jpg', href: 'https://www.youtube.com/watch?v=3T-5hDFjeNQ', type: 'youtube' },
+      { label: 'PSI Monitor — feature walkthrough', desc: 'Live HUD, behavioral signals, and how PSI scores update in real time. Note: shows the pre-v1.5 interface', thumb: '/screenshots/psi-monitor-thumb.jpg', href: 'https://www.youtube.com/watch?v=DjzPWxPGHs8', type: 'youtube' },
+      { label: 'Adaptive Learning — settings walkthrough', desc: 'How the baseline learns from your sessions and how to configure your trading profile. Note: shows the pre-v1.5 interface', thumb: '/screenshots/adaptive-learning-thumb.jpg', href: 'https://www.youtube.com/watch?v=3T-5hDFjeNQ', type: 'youtube' },
     ],
   },
 ];
@@ -250,7 +250,9 @@ const zipPath = fileURLToPath(new URL('../../../public/partner-kit/meridian-crea
 const zipAvailable = existsSync(zipPath);
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian Creator Kit',
+  ignoreTitleTemplate: true,
   description: 'Everything you need to create great Meridian content.',
   robots: { index: false, follow: false },
 };

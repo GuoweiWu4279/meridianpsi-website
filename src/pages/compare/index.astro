@@ -4,9 +4,11 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astro';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Compare Meridian — vs Native NinjaTrader, Hard-Limit Tools, Trading Journals',
+  ignoreTitleTemplate: true,
   description:
-    'Meridian vs every NinjaTrader 8 risk tool: the most complete NT8 risk manager — every traditional limit plus a real-time behavioral layer — compared head-to-head.',
+    'Meridian vs every risk-tool category — native NinjaTrader 8 controls, hard-limit add-ons, journals, app blockers: every traditional limit plus a real-time behavioral layer, compared head-to-head.',
   robots: { index: true, follow: true },
 };
 
@@ -97,7 +99,7 @@ const itemListSchema = JSON.stringify({
         How Meridian compares.
       </h1>
       <p class="text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-4">
-        Meridian does everything these tools do — daily loss limits, max position size, P&amp;L and drawdown caps, loss-streak cutoffs — and adds a real-time behavioral layer the others don't. The comparisons below lay out exactly where each tool sits: the native controls, the hard-limit add-ons, the post-session journals, the daily loss limit category, and generic app-blockers.
+        Meridian does everything these tools do — daily loss limits, single-trade loss caps, P&amp;L and drawdown caps, loss-streak cutoffs — and adds a real-time behavioral layer the others don't. The comparisons below lay out exactly where each tool sits: the native controls, the hard-limit add-ons, the post-session journals, the daily loss limit category, and generic app-blockers.
       </p>
       <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
       <div class="flex justify-center">
@@ -162,7 +164,7 @@ const itemListSchema = JSON.stringify({
 
   <!-- CTA -->
   <CallToAction
-    title="Try Meridian in your NinjaTrader 8 workspace."
+    title="Try Meridian on your platform."
     subtitle="See the behavioral signals fire in real time on your own session — 7-day free trial, cancel any time."
     actions={[
       { variant: 'primary', text: 'Start free trial', href: '/pricing' },

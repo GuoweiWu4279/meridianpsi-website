@@ -17,10 +17,10 @@ const guardFeatures = guard.features.map((f) =>
 const usd = (n: number) => n.toFixed(2);
 
 // SEO description — sharpened toward the superset positioning, kept price- and keyword-rich.
-const pricingPageDescription = `Meridian is the complete risk manager for NinjaTrader 8 — every limit a traditional risk tool has, plus real-time behavioral detection. Core: $${usd(core.monthlyPrice)}/mo or $${usd(core.annualPrice)}/yr. Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr. 7-day free trial, cancel anytime. Trading involves substantial risk.`;
+const pricingPageDescription = `Meridian is the complete risk manager for serious futures traders — every limit a traditional risk tool has, plus real-time behavioral detection. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access, one license. Core: $${usd(core.monthlyPrice)}/mo or $${usd(core.annualPrice)}/yr. Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr. 7-day free trial, cancel anytime. Trading involves substantial risk.`;
 
 const metadata = {
-  title: 'Pricing — Meridian',
+  title: 'Pricing — Meridian Risk Management for Futures Traders',
   ignoreTitleTemplate: true,
   description: pricingPageDescription,
 };
@@ -94,7 +94,7 @@ const faqs = [
   },
   {
     q: 'Can I cancel anytime?',
-    a: 'Yes. Cancel during the trial and you are never charged. Cancel an active subscription whenever you like and you keep access through the end of the period you have already paid for. Manage it yourself at whop.com/@me/settings/memberships using your checkout email.',
+    a: 'Yes. Cancel during the trial and you are never charged. Cancel an active subscription whenever you like and you keep access through the end of the period you have already paid for. Manage it yourself from the Account page (top right of this site) using your checkout email.',
   },
   {
     q: 'Core or Guard — which do I need?',
@@ -102,7 +102,11 @@ const faqs = [
   },
   {
     q: 'Do I need NinjaTrader 8?',
-    a: 'Yes. Meridian is a native NinjaTrader 8 add-on — it runs inside the platform you already use, with no separate login account. It does not work as a standalone app.',
+    a: 'Not necessarily. Meridian runs today as a native NinjaTrader 8 add-on — inside the platform, no separate login account. Standalone Meridian apps that connect directly to Tradovate and Ironbeam accounts are in early access; if you trade through one of those, request a founding seat on the Platforms page and skip NinjaTrader entirely.',
+  },
+  {
+    q: 'Do I pay more for Tradovate or Ironbeam?',
+    a: 'No. One subscription covers every platform we support. NinjaTrader 8 is available now; the Tradovate and Ironbeam apps are in early access and included in the same license as they roll out.',
   },
   {
     q: 'Monthly or annual?',
@@ -256,7 +260,7 @@ const faqs = [
         </span>
         <span class="flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          Native NinjaTrader 8 add-on
+          Native NT8 add-on &middot; Tradovate &amp; Ironbeam apps in early access
         </span>
         <span class="flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -276,7 +280,7 @@ const faqs = [
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT EVERY PLAN INCLUDES</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">More than a risk tool. The complete one.</h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-        Both plans do everything a traditional NinjaTrader 8 risk tool does — daily loss limits, max position size, P&amp;L
+        Both plans do everything a traditional NinjaTrader 8 risk tool does — daily loss limits, P&amp;L and drawdown
         caps, loss-streak cutoffs. Then they add the layer none of them have: real-time behavioral detection that catches
         the mistake before the order, not after the loss.
       </p>
@@ -286,7 +290,7 @@ const faqs = [
         <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
         <ul class="space-y-3 text-zinc-700">
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+          <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Single-trade loss cap</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
           <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
         </ul>
@@ -358,13 +362,13 @@ const faqs = [
   <section class="border-y border-zinc-200 bg-white">
     <div data-reveal class="max-w-3xl mx-auto px-6 py-24 text-center">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">Start the trial. Let your own data decide.</h2>
-      <p class="mt-5 text-lg text-zinc-600">From ${core.monthlyPrice}/month after the 7-day free trial. No charge until day 7. Cancel anytime.</p>
+      <p class="mt-5 text-lg text-zinc-600">Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 7. Cancel anytime.</p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start 7-day free trial</a>
+        <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start Guard free trial</a>
         <a href="/download#requirements" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">System requirements</a>
       </div>
       <p class="mt-5 text-xs text-zinc-500 max-w-xl mx-auto leading-relaxed">
-        NinjaTrader 8 required. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice.
+        Native in NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam apps in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice.
       </p>
     </div>
   </section>

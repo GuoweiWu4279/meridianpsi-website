@@ -12,7 +12,7 @@ import geoHooks from '~/data/geo-hooks.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Adaptive Learning & Settings — a Risk Baseline Calibrated to You | Meridian',
+  title: 'Adaptive Learning & Settings — a Risk Baseline Calibrated to You',
   description:
     "Meridian learns how you actually trade — your session window, size, hold time, and re-entry rhythm — and the baseline sharpens every session. Detection is calibrated to you, not a generic threshold. Configure your window, size rules, and hold-time / re-entry rules; accuracy improves as your history grows.",
   robots: { index: true, follow: true },
@@ -49,7 +49,7 @@ const pageJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
-      softwareRequirements: 'NinjaTrader 8',
+      softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
       url: 'https://www.meridianpsi.com/adaptive-learning-settings',
@@ -339,7 +339,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Detection that knows<br />how you trade.</h2>
       <p class="mt-6 text-lg text-zinc-600">Set your rules once. Every session, the baseline sharpens &mdash; fewer false signals, clearer feedback, calibrated to you.</p>
       <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 </Layout>

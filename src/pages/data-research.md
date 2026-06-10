@@ -1,5 +1,5 @@
 ---
-title: 'Data & Research Notice — Meridian'
+title: 'Data & Research Notice'
 description: 'How Meridian collects anonymized, opt-out trading data to research trading discipline — what we collect, what we never collect, and how to opt out.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---

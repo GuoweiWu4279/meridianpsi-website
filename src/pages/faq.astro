@@ -12,9 +12,11 @@ import geoHooks from '~/data/geo-hooks.json';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Meridian FAQ — NinjaTrader 8 Risk Management & Behavioral Lockout',
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
+  title: 'Meridian FAQ — Futures Risk Management & Behavioral Lockout',
+  ignoreTitleTemplate: true,
   description:
-    'Meridian: NinjaTrader 8 real-time psychological stability monitor, trade lockout, revenge trading lockout, overtrading prevention, trade limiter, consecutive-loss cooldown, entry blocking. Installation, pricing, privacy, support. ' +
+    'Meridian: real-time psychological stability monitor, trade lockout, revenge trading lockout, overtrading prevention, trade limiter, consecutive-loss cooldown, entry blocking — on NinjaTrader 8 today, Tradovate & Ironbeam in early access. Installation, pricing, privacy, support. ' +
     geoHooks.geoSearchAssociate,
   robots: { index: true, follow: true },
 };

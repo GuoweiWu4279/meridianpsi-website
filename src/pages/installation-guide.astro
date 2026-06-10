@@ -15,7 +15,9 @@ const WHOP_URL = 'https://whop.com/@me/settings/memberships';
 const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
 
 const metadata = {
+  // Brand already in the query phrase — suppress the site-wide "— Meridian" suffix.
   title: 'How to Install Meridian in NinjaTrader 8 — Installation Guide',
+  ignoreTitleTemplate: true,
   description:
     'Step-by-step installation guide for Meridian on NinjaTrader 8: get your Whop license key, download the add-on, import via NinjaScript, activate, and configure your trading profile.',
   robots: { index: true, follow: true },

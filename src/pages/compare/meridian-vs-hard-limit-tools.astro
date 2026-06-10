@@ -3,9 +3,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
+  // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian vs Hard-Limit Risk Tools for NinjaTrader 8',
+  ignoreTitleTemplate: true,
   description:
-    'Meridian is a superset of NinjaTrader 8 hard-limit tools (Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel Trader): same hard limits, plus the behavioral layer none have.',
+    'Meridian is a superset of NinjaTrader 8 hard-limit tools (Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel Trader): the same hard-floor protection — loss limits, streak cutoffs, session stops — plus the behavioral layer none have.',
   robots: { index: true, follow: true },
 };
 
@@ -20,8 +22,8 @@ const matrixCols = [
 
 const matrixRows = [
   { feature: 'Cumulative P&L threshold',     values: ['yes','yes','yes','yes','yes','yes'] },
-  { feature: 'Trade-count limit',            values: ['yes','yes','yes','yes','yes','yes'] },
-  { feature: 'Max position size cap',        values: ['yes','yes','yes','yes','yes','yes'] },
+  { feature: 'Trade-count limit',            values: ['yes','yes','yes','yes','yes','some'] },
+  { feature: 'Max position size cap',        values: ['yes','yes','yes','yes','yes','some'] },
   { feature: 'Consecutive-loss cooldown / timeout', values: ['no','no','no','some','no','yes'] },
   { feature: 'Real-time behavioral signals', values: ['no','no','no','no','no','yes'] },
   { feature: 'Adaptive baseline (per-trader calibration)', values: ['no','no','no','no','no','yes'] },
@@ -36,7 +38,7 @@ const matrixRows = [
 const faqItems = [
   {
     q: 'How are hard-limit risk tools different from Meridian?',
-    a: 'Hard-limit tools — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel Trader — refine the configuration UI on top of the same primitives that NinjaTrader\'s native controls watch: cumulative P&L, trade count, position size, and (in the newer tools) fixed consecutive-loss timeouts. They sit at the financial-outcome layer. Meridian is a superset: it enforces those same financial-outcome limits (daily loss / Session P&L, trade count, position size, consecutive-loss cooldown) and adds a layer one step earlier — at the behavior that produces the financial outcome — firing on seven distinct behavioral signals plus a composite Psychological Stability Index calibrated to each trader\'s own session history. If you already use a hard-limit tool, Meridian does its job and the behavioral layer above it.',
+    a: 'Hard-limit tools — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel Trader — refine the configuration UI on top of the same primitives that NinjaTrader\'s native controls watch: cumulative P&L, trade count, position size, and (in the newer tools) fixed consecutive-loss timeouts. They sit at the financial-outcome layer. Meridian is a superset at the protection level: it enforces the financial floors directly (daily loss / Session P&L, unrealized P&L, single-trade loss, consecutive-loss cooldown, session time), tracks your declared trade-count and size rules live and scores violations into its behavioral signals, and adds a layer one step earlier — at the behavior that produces the financial outcome — firing on seven distinct behavioral signals plus a composite Psychological Stability Index calibrated to each trader\'s own session history. If you already use a hard-limit tool, Meridian does its protection job and the behavioral layer above it.',
   },
   {
     q: 'How is Meridian different from a tool that markets itself as a way to stop revenge trading?',
@@ -48,7 +50,7 @@ const faqItems = [
   },
   {
     q: 'Can Meridian replace one of these tools?',
-    a: 'Meridian Guard\'s Session P&L Below trigger covers the same job a Generation 2 hard-limit tool covers — and more, because it fires on six trigger types across five escalating response levels — Notify, Risk Alert, Acknowledge, Trading Pause, and Disconnect — where Acknowledge can require a typed phrase or a mandatory countdown and Disconnect can cut the broker connection. The behavioral signal layer above it is what no Generation 2 tool offers.',
+    a: 'Meridian Guard\'s Session P&L Below trigger covers the same job a Generation 2 hard-limit tool covers — and more, because it fires on six trigger types across five escalating response levels — Notify, Risk Alert, Acknowledge, Trading Pause, and Disconnect — where Acknowledge can require a typed phrase (with an optional countdown) and Disconnect can cut the broker connection. The behavioral signal layer above it is what no Generation 2 tool offers.',
   },
   {
     q: 'Why has no other NinjaTrader 8 product built the behavioral layer?',
@@ -89,7 +91,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel Trader are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds, some with consecutive-loss cooldowns. Meridian is Generation 3 and a superset: it enforces every one of those same hard limits and adds the layer none of them have — real-time behavioral detection — in one platform. If you already run a hard-limit tool, Meridian is the more complete upgrade, not a separate niche.
+          Arty, CrossTrade, ClickAlgo, RiskMaster, and Guardian Angel Trader are mature Generation 2 hard-limit tools — refined UIs over P&amp;L, trade-count, and position-size thresholds, some with consecutive-loss cooldowns. Meridian is Generation 3 and a superset: it enforces the financial floors directly — daily loss, unrealized P&amp;L, single-trade loss, loss streaks, session time — tracks your declared trade-count and size rules live, and adds the layer none of them have — real-time behavioral detection — in one platform. If you already run a hard-limit tool, Meridian is the more complete upgrade, not a separate niche.
         </p>
       </div>
     </header>
@@ -106,10 +108,10 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is not only a refined hard-limit tool — it is a superset of one. It enforces the same financial-outcome limits the Generation 2 tools do (cumulative P&amp;L, trade count, position size, consecutive-loss cooldown) and is the first NinjaTrader 8 product to ship the behavioral layer above them: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement pipeline that converts behavioral thresholds into automated response actions. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
+        Meridian is not only a refined hard-limit tool — it is a superset of one. It enforces the financial-outcome floors the Generation 2 tools center on (cumulative P&amp;L, unrealized P&amp;L, single-trade loss, consecutive-loss cooldown, session time), tracks your declared trade-count and size rules live against the session, and is — as of 2026 — the only NinjaTrader 8 product shipping the behavioral layer above them: seven real-time behavioral signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement pipeline that converts behavioral thresholds into automated response actions. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        Guard also covers the hard-limit job a Generation 2 tool covers: a Session P&amp;L Below trigger ends the session at any threshold you configure, across five response levels — Notify, Risk Alert, Acknowledge, Trading Pause, and Disconnect — where Acknowledge can require a typed phrase or a mandatory countdown and Disconnect can sever the broker connection. The behavioral layer is what the previous generation did not build.
+        Guard also covers the hard-limit job a Generation 2 tool covers: a Session P&amp;L Below trigger ends the session at any threshold you configure, across five response levels — Notify, Risk Alert, Acknowledge, Trading Pause, and Disconnect — where Acknowledge can require a typed phrase (with an optional countdown) and Disconnect can sever the broker connection. The behavioral layer is what the previous generation did not build.
       </p>
 
       <!-- Capability matrix -->
@@ -140,6 +142,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
       </div>
       <p class="text-xs text-zinc-500 leading-relaxed">
         ✓ supported · ◐ partial / vendor-dependent · — not in scope. Capabilities for third-party products are based on publicly listed features as of 2026; verify on each vendor's site.
+        For Meridian, ◐ on trade count and position size means tracked-and-scored rather than order-rejected: your declared per-session trade budget and size cap are counted live (the HUD shows each trade against your budget) and feed the Overtrading and Size Spike signals, with enforcement through Guard's six triggers — PSI floor, consecutive losses, session P&amp;L, unrealized P&amp;L, single-trade loss, session time. NinjaTrader's free native Risk settings remain the order-level size rejection underneath.
       </p>
 
       <h2>The behavioral signal column</h2>
@@ -150,9 +153,23 @@ const cellClass = (v: string, isMeridian: boolean) => {
         Each of those is a Meridian signal. Each fires before any P&amp;L threshold has reason to. That is the layer the previous generation never built.
       </p>
 
+      <h2>What the category says about itself</h2>
+      <p>
+        The removability problem is not our framing — it is the category's own. Affordable Indicators, one of the longest-running vendors in this space, says it plainly on its Account Risk Manager page:
+      </p>
+      <div class="not-prose rounded-2xl border border-zinc-200 bg-zinc-50 px-6 py-5 my-6">
+        <p class="text-[16px] text-zinc-700 leading-relaxed italic">
+          “As a third-party provider, we're limited in our ability to fully restrict trading once a daily goal or loss limit is reached, since indicators can be manually removed.”
+        </p>
+        <p class="mt-3 text-xs text-zinc-500">— affordableindicators.com, Account Risk Manager product page, retrieved June 2026</p>
+      </div>
+      <p>
+        That is an honest description of a structural limit: a passive indicator that watches P&amp;L can be taken off the chart by the same tilted trader it was installed to stop. Meridian is a third-party add-on too — the difference is that its responses are enforcement actions, not displays. An Acknowledge gate can demand a typed phrase, a Trading Pause blocks new entries, Level 5 cuts the broker connection, and rules can be password-protected against a quiet mid-session edit. Strict Lock goes one step further: with it on, any pause or disconnect Guard fires runs its full window with no mid-session bypass — rules frozen, no early exit, Guard itself can't be switched off — built for exactly the moment that quote describes, when the person reaching for the off switch is the person the rules were written to stop.
+      </p>
+
       <h2>Where this comparison sits in context</h2>
       <p>
-        For the wider category map, including Generation 1 native controls and the relationship between all three generations, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.
+        For the wider category map, including Generation 1 native controls and the relationship between all three generations, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>. For lockout mechanics specifically — cooldowns, entry blocking, broker disconnect, and what keeps them armed — see <a href="/ninjatrader-lockout" class="text-emerald-800 underline underline-offset-2">the NinjaTrader lockout guide</a>.
       </p>
 
       <hr />

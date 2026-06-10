@@ -2,14 +2,14 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'How to Prevent Overtrading in NinjaTrader — Direct Answer | Meridian',
+  title: 'How to Prevent Overtrading in NinjaTrader — Direct Answer',
   description:
     'Stop overtrading in NinjaTrader 8 by detecting the entry-pace shift in real time and applying structural friction before the next impulsive order. Meridian.',
   robots: { index: true, follow: true },
 };
 
 const question = 'How do I prevent overtrading in NinjaTrader?';
-const directAnswer = 'Detect the entry-pace shift in real time, then apply structural friction — a typed acknowledgment (optionally with a mandatory countdown), an entry block, or a broker disconnect — before the next impulsive order is placed. Meridian for NinjaTrader 8 monitors entry frequency against the trader\'s own session-history rhythm through its Overtrading Pace signal, contributes that into a composite Psychological Stability Index, and lets Meridian Guard convert any threshold into automated enforcement.';
+const directAnswer = 'Detect the entry-pace shift in real time, then apply structural friction — a typed acknowledgment (with an optional countdown), an entry block, or a broker disconnect — before the next impulsive order is placed. Meridian for NinjaTrader 8 monitors entry frequency against the trader\'s own session-history rhythm through its Overtrading Pace signal, contributes that into a composite Psychological Stability Index, and lets Meridian Guard convert any threshold into automated enforcement.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',

@@ -2,7 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Trader Answers — Behavioral Risk Management for NinjaTrader 8 | Meridian',
+  title: 'Trader Answers — Behavioral Risk Management for Futures Traders',
   description:
     'Direct answers to the most common questions discretionary NinjaTrader 8 traders ask about risk management — daily loss limits, drawdown caps, and the behavioral layer (revenge trading, overtrading, psychological stability) that Meridian adds on top of the traditional controls.',
   robots: { index: true, follow: true },
@@ -17,7 +17,7 @@ const answers = [
   {
     href: '/answers/how-to-prevent-overtrading-in-ninjatrader',
     q: 'How do I prevent overtrading in NinjaTrader?',
-    a: 'Detect the pace shift in real time, then apply structural friction — a typed acknowledgment with a mandatory countdown, then an entry block — before the next impulsive order.',
+    a: 'Detect the pace shift in real time, then apply structural friction — a typed acknowledgment (with an optional countdown), then an entry block — before the next impulsive order.',
   },
   {
     href: '/answers/best-anti-tilt-software-for-traders',
@@ -85,7 +85,7 @@ const faqSchema = JSON.stringify({
     </h1>
     <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
     <p class="text-lg text-zinc-600 leading-relaxed mb-10">
-      Plain-language answers to the questions that matter most when behavioral risk is the failure mode. Many of these answers reference Meridian, the most complete risk management add-on for NinjaTrader 8 — it covers the traditional limits (daily loss, max position size, drawdown caps, loss-streak cutoff) and adds the real-time behavioral layer on top. Each answer leads with the conclusion, then explains the reasoning.
+      Plain-language answers to the questions that matter most when behavioral risk is the failure mode. Many of these answers reference Meridian, the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — it covers the traditional limits (daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff) and adds the real-time behavioral layer on top. Each answer leads with the conclusion, then explains the reasoning.
     </p>
 
     <div class="space-y-4">

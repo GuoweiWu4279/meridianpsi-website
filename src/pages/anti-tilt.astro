@@ -11,7 +11,7 @@ import Layout from '~/layouts/PageLayout.astro';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
-  title: 'Anti-Tilt for NinjaTrader 8 — Stop Revenge Trading Before the Order | Meridian',
+  title: 'Anti-Tilt for NinjaTrader 8 — Stop Revenge Trading Before the Order',
   description:
     'Tilt is what blows funded accounts — revenge entries, oversizing, stop manipulation, overtrading. Meridian reads the behavior in real time across 7 signals and steps in before the order, not after the loss. The behavioral layer limit-based risk tools miss, on NinjaTrader 8.',
   robots: { index: true, follow: true },
@@ -76,11 +76,11 @@ const faqItems = [
   },
   {
     q: 'How is anti-tilt different from a daily loss limit?',
-    a: 'A daily loss limit reacts to a number — it fires after the loss has already happened. Anti-tilt reacts to the behavior that produces the number, one layer earlier. Meridian does everything a limit-based tool does (daily loss limit, max size, P&L and drawdown caps, loss-streak cutoff), then adds the behavioral layer none of them have: it catches the revenge trade at trade two, not the breach at trade four.',
+    a: 'A daily loss limit reacts to a number — it fires after the loss has already happened. Anti-tilt reacts to the behavior that produces the number, one layer earlier. Meridian does everything a limit-based tool does (daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff), then adds the behavioral layer none of them have: it catches the revenge trade at trade two, not the breach at trade four.',
   },
   {
     q: 'Can Meridian stop a revenge trade before I place it?',
-    a: 'Yes — that is the point. When a behavioral threshold is crossed, Meridian Guard can escalate exactly as far as you decide in advance: a quiet alert (Notify), a persistent confirm-every-entry banner (Risk Alert), a type-your-phrase acknowledgment with a countdown (Acknowledge), a full trading pause that cancels new entries (Trading Pause), or a broker disconnect (Disconnect). By default Guard blocks you from adding risk rather than closing what you hold — you can always exit any position, any time — and if you tick auto-flatten on a Trading Pause or Disconnect rule, Guard will close your open positions for you the moment it fires.',
+    a: 'Yes — that is the point. When a behavioral threshold is crossed, Meridian Guard can escalate exactly as far as you decide in advance: a quiet alert (Notify), a persistent confirm-every-entry banner (Risk Alert), a type-your-phrase acknowledgment with an optional countdown (Acknowledge), a full trading pause that cancels new entries (Trading Pause), or a broker disconnect (Disconnect). By default Guard blocks you from adding risk rather than closing what you hold — you can always exit any position, any time — and if you tick auto-flatten on a Trading Pause or Disconnect rule, Guard will close your open positions for you the moment it fires.',
   },
   {
     q: 'Does anti-tilt only matter after a losing trade?',
@@ -105,7 +105,7 @@ const faqSchema = JSON.stringify({
   <!-- ───────────────────────── HERO ───────────────────────── -->
   <section class="halo">
     <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">ANTI-TILT FOR NINJATRADER 8</p>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">ANTI-TILT FOR FUTURES TRADERS</p>
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
         Tilt blows the account.<br />Meridian catches it <span class="text-emerald-600">before the order.</span>
       </h1>
@@ -118,7 +118,7 @@ const faqSchema = JSON.stringify({
         <a href="/pricing" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
         <a href="#sequence" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From $49.99/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars catching tilt as it builds" /></div>
@@ -233,7 +233,7 @@ const faqSchema = JSON.stringify({
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">4</span> <span><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders; survives an NT8 restart</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">5</span> <span><strong class="text-zinc-900">Disconnect</strong> &mdash; severs the broker connection; the session is over</span></li>
       </ol>
-      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for a window you choose &mdash; for exactly when the tilted version of you wants to switch it off.</p>
+      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window &mdash; for exactly when the tilted version of you wants to switch it off.</p>
       <p class="mt-4 text-sm text-zinc-500">By default Guard stops you <em>adding</em> risk rather than closing what you hold &mdash; you can always exit any position, any time. Tick <em>auto-flatten</em> on a Trading Pause or Disconnect rule and Guard will close your open positions the moment it fires.</p>
     </div>
   </section>
@@ -254,7 +254,7 @@ const faqSchema = JSON.stringify({
           <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
           <ul class="space-y-3 text-zinc-700">
             <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Daily loss limit</span></li>
-            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Max position size</span></li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Single-trade loss cap</span></li>
             <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
             <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
           </ul>
@@ -320,7 +320,7 @@ const faqSchema = JSON.stringify({
         <a href="/pricing" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
         <a href="/guard" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Explore Meridian Guard</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">7-day trial &middot; $49.99/mo after &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">7-day trial &middot; $49.99/mo after &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 </Layout>

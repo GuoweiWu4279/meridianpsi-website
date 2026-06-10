@@ -22,6 +22,58 @@ paste your final reply here
 
 ## Reddit
 
+**Pinned post (r/MeridianPSI):** see `social/reddit/pinned-start-here.md` — canonical “Start Here” copy. Do not duplicate here.
+
+**Instructions & index:** `social/reddit/README.md`, `social/reddit/instructions.md`
+
+**Voice rules:** `Web/.cursor/rules/social-voice.mdc`
+
+---
+
+### 2026-05-31 Reddit r/Daytrading — "bad strategy causes behavior, not reverse"
+
+**Original post:**
+> OP argues the causal chain is "bad strategy → behavioral problems," not the reverse. Claims traders with behavior problems are almost always discretionary traders with no statistically proven edge, so they panic/revenge trade/move stops. Key argument: algotraders have removed the behavioral variable (automatic execution) yet most still lose, which "proves" the main problem is strategy, not behavior. Solution: backtest with statistical significance to find real edge, then behavioral problems disappear on their own.
+
+**Reply:**
+> The algo example actually proves the opposite of what you intended. Algos remove the behavioral variable, and most still lose. So yes, you're right that strategy is foundational. No edge means nothing else matters.
+>
+> But that doesn't lead to "behavior doesn't matter." It only proves that good behavior alone isn't enough. Those are two different claims.
+>
+> There's also a bigger assumption buried in your argument: that retail traders can actually find statistically significant edge through backtesting. Wall Street spends billions just to shave microseconds off execution. Whatever systematic edge a retail strategy finds, it's been arbed out at speeds you can't compete with.
+>
+> Most discretionary traders who actually survive long term, their edge isn't the kind you can backtest cleanly. It's pattern recognition built from watching Level 2 and order flow for thousands of hours. That's not something you can replicate in a spreadsheet.
+>
+> When your edge comes from that kind of judgment, execution quality becomes load-bearing. Not because behavior creates edge. Because that type of edge requires a human to execute it, and how cleanly you execute under pressure is part of the edge itself.
+
+---
+
+### 2026-05-26 Reddit r/Trading — one lesson that changed trading
+
+**Original post:**
+> "What changed your trading the most? Not a strategy, indicator, or signal group. Just one lesson that completely changed how you approach the market." OP's answer: protecting capital matters more than catching every move. Asks what lesson changed things for others.
+
+**Reply:**
+> One time I lost $75k on a single trade. Since then I have never traded a single day without my risk management tool on. It protects me and takes over automatically when I am tilted.
+>
+> The single reason 99% of people can't stay profitable over 3 years is that trading is not like any other job. Think of it as doing a very dangerous job and trying to make money, but one mistake can kill you.
+
+---
+
+### 2026-05-26 Reddit r/FuturesTrading — journaling during session
+
+**Original post:**
+> OP finished journaling their past week and realized trades they thought were B/C were actually F's — they weren't following fundamental strategy rules. Good setups showed up during the bad eval trades they ignored. Shares their markup/report journaling process, doesn't focus much on emotions (set-and-forget, fixed $ risk per trade), asks what others' journaling experience is like.
+
+**Reply:**
+> Trading is a journey of figuring out what's working, what's not, and keeping at it. Journaling is the only way I've found to do that honestly.
+>
+> For me, I use my own software that lets me track everything during the session. Revenge trading, oversizing, holding losers too long, that kind of shift. I personally never use P&L to judge whether I'm trading right. It's the outcome, not the goal.
+>
+> Most journal tools on the market have a big problem: you have to remember what happened and write it down after a long session. You never remember exactly. That's why real-time journaling matters to me. I log while I'm actually trading.
+>
+> The session report shows exactly what happened to my behaviors, and it logs over time, so I can see longer trends. Like how my behavior this month compares to last month. Actual correlation of my composure vs. P&L, and so on.
+
 ---
 
 ### 2026-05-11 Reddit — adrenaline panic from market exposure

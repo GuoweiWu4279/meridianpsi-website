@@ -5,7 +5,7 @@ lastUpdated: "2026-05-15"
 order: 1
 copyables:
   - label: "One sentence"
-    content: "Meridian is a complete real-time risk manager for NinjaTrader 8 — every traditional limit (daily loss, max size, drawdown) plus a behavioral layer that watches your patterns live and intervenes before a bad trade happens, not just after a P&L cap fires."
+    content: "Meridian is a complete real-time risk manager for NinjaTrader 8 — every traditional limit (daily loss, single-trade loss, drawdown) plus a behavioral layer that watches your patterns live and intervenes before a bad trade happens, not just after a P&L cap fires."
   - label: "Three sentences"
     content: "Meridian is a NinjaTrader 8 add-on that computes a live Psychological Stability Index (PSI) on a 0–100 scale from seven behavioral signals — revenge re-entry speed, stop manipulation, size spikes, hold bias, position overstay, rule violations, and overtrading pace. Every signal is calibrated to your own trading baseline, not a generic threshold, so 'normal' for a scalper is different from 'normal' for a swing trader. When the score drops, Guard intervenes at the response level you configured — a quiet notification, a risk alert, a typed acknowledgment, a trading pause, or a full broker disconnect — before the next trade is placed."
   - label: "Full paragraph"
