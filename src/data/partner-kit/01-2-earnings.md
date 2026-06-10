@@ -15,6 +15,10 @@ A quick reminder of how the partnership pays — so the effort you put into cont
 - **10% permanent audience discount** — your promo code takes 10% off every renewal for your viewers, not just their first month. It's a real reason for them to use your link.
 - **Free Guard license** — yours for the duration of the partnership, so you can speak from real use.
 
+### One subscription, every platform — your whole audience counts
+
+You are not limited to the NinjaTrader crowd. One Meridian subscription covers **NinjaTrader 8, Tradovate, and Ironbeam** — the same license, the same checkout, the same commission to you. NinjaTrader 8 is live today; the Tradovate and Ironbeam apps are in paid early access and roll into the same plan as they ship. So a viewer who trades a funded account through Tradovate is just as monetizable for you as a NinjaTrader user — you earn 30% either way. That is most of the prop-firm and futures audience, not a slice of it.
+
 ---
 
 ### The recurring math
