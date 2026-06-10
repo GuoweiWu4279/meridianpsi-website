@@ -4,6 +4,10 @@
 **唯一留给 Gary 的动作 = 每天 ≤5 分钟把我备好的内容粘贴发出**（原因见"通道现实"——这是平台政策决定的，不是审核流程）。
 Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`。
 
+> 📐 **本文件管 Reddit 的策略/节奏/安全。写任何内容前,先走写作系统:**
+> 入口 `social/CONTENT-SYSTEM.md`(目标链 + 写作循环)→ 文体查 `ops/ARTIFACTS.md` → 定位读 `brand/POSITIONING.md` → 写 + 逐句扫 `brand/VOICE.md` → 教训读 `ops/LEARNINGS.md`。
+> **文案怎么写 = 那套系统;Reddit 怎么打 = 本文件。** 别在本文件里即兴定声音/文体。
+
 ---
 
 ## 为什么不是全自动（2026-06-10 研究定版，别再重新争论）

@@ -1,0 +1,75 @@
+# Reddit Artifact Table (文体决策表 — 写 Reddit 任何东西的第一步)
+
+> 对标 YouTube `STYLE.md §9.5` 的"内容→媒介决策表"。回答:**这一篇是什么文体,因此该用什么目标、对谁、什么声音、什么结构。**
+> **写之前先在这张表里定位这篇是哪一行。** 找不到对应行 = 先在这里定义它,再动笔。
+> 2026-06-10 三次返工的根因之一就是没有这张表:把"官方置顶帖"当成"别人帖里的评论"写(LEARNINGS L3)。
+> 声音细节(reg ister 怎么落地、AI 腔怎么扫)见 `brand/VOICE.md`;定位/事实见 `brand/POSITIONING.md` + `MERIDIAN.md`;平台策略/安全见本目录 `PLAYBOOK.md`。
+
+---
+
+## 核心原理:文案是"推导"的,不是"写"的
+
+和 YouTube 的 beat 一样:**一篇文案的声音和结构,由 (文体 × 读者状态 × 它在目标链的哪一环) 推导出来**,不是凭直觉。表给默认,内容可在不破坏文体目标的前提下微调。
+
+**两层推导:**
+1. **整篇** → 查下面的文体表,拿到 register + 结构骨架 + do/don't + 范例。
+2. **每段** → 每个 section 有一个 role(见 §2);同一篇里不同段的"任务"不同,声音随 role 微调(讲问题像人,讲功能临床)。
+
+---
+
+## 1. 文体表(Reddit)
+
+| 文体 | 在哪发 | 读者 + 心态 | 这篇的目标(目标链哪一环) | 声音 register | 结构(section-role 序列) | 长度 |
+|---|---|---|---|---|---|---|
+| **Pinned intro**(官方"What is Meridian") | 自己 sub r/MeridianPSI | 点进来、好奇、中性 | 理解 + 信任(权威锚) | **产品说明书**:自信第三人称讲产品,正常段落,分小节,clinical-precise。**几乎不用第一人称**(结尾一句"I'm the founder"可以) | define → problem → how → enforce → review → who-for → trust → CTA | 中长,可分小节 |
+| **Topic comment**(别人帖里回复) | 外部 sub(r/Daytrading 等) | OP 在求助,对广告/AI 高度敏感、敌意 | reach + 信任(被看见、被信) | **同行口吻**:第一人称、口语、具体、真诚;产品只在被问/天然相关时一句带过 + "obviously biased, NT8 only" | answer-first → 真实推理/经验 → (可选)一句披露式提及 | 短,3-8 句 |
+| **Founding / early-access 帖** | 自己 sub + r/alphaandbetausers | 在找新工具的早期采用者 | **转化**(招 founding user) | **builder-offer**:直接、透明、条款具体,"comment or DM if interested" | 一句这是什么 → 这个 offer(免费窗口换什么)→ 谁合适 → 怎么进 | 中短 |
+| **Data / insight 帖** | 自己 sub,成熟后外部 | 喜欢证据的交易者 | 信任 + reach(独立价值)| **分析师**:临床、数字在前、方法诚实、产品是脚注 | 发现 → 方法/样本 → 这意味着什么 → (一句)来源/我是谁 | 中 |
+| **AMA / 深度回答** | 自己 sub | 已投入、问尖锐问题 | 信任(可信度) | **创始人直答**:第一人称、坦诚、敢认局限 | 直接回答 → 背景 → 诚实 caveat | 视问题 |
+| **Software Sunday 帖** | r/Daytrading 官方周贴 | 在逛官方推广贴 | 转化(唯一合法产品帖,**年 2 次**) | **产品说明书精简版 + demo**:像 pinned 但更紧,**必须回评论** | 是什么 + 给谁 + 截图 + 诚实局限 + 邀请 | 中,截图为主 |
+| **Sub 描述 / 侧栏 / 规则** | 自己 sub | 第一眼印象 | 理解(orient) | **reference**:极简、事实、无修辞 | tagline + 一句是什么 + 规则 | 极短 |
+| **DM 回复(只回主动来的)** | 私信 | 主动联系我们的人(暖) | 转化(暖线) | **1:1 同行**:针对他原话、温暖、零模板 | 接住他的问题 → 答 → 下一步 | 短 |
+
+> ❌ 不存在的文体(别建):冷 DM(红线,PLAYBOOK)、伪装普通用户的夸自己帖(必死)。
+
+---
+
+## 2. Section-role 词表(篇内每段的"任务")
+
+一篇里每段挑一个 role,声音随之微调:
+
+| role | 这段在干什么 | 声音 |
+|---|---|---|
+| **orient** | 一句话告诉读者这是什么 / 这篇讲什么 | 平、准、第三人称 |
+| **resonate** | 让读者"这说的是我"(讲问题/处境) | 像人、具体、可共情 |
+| **inform** | 解释产品怎么运作 | clinical、准确、不夸张 |
+| **prove** | 给证据/机制让人信(数据、对比、可验证细节) | 数字在前、诚实 |
+| **qualify** | 说清这"给谁"、谁不合适 | 直接、不假装人人都需要 |
+| **de-risk** | 拆掉顾虑(隐私、合规、价格、试用) | 事实、克制 |
+| **CTA** | 下一步(试用 / 评论 / DM) | 一句、不催 |
+
+例:Pinned intro 的 section 序列 = orient · resonate · inform · inform(Guard)· prove(Intel)· qualify(who-for)· de-risk(trust)· CTA。**讲问题那段(resonate)可以有温度,讲功能那段(inform)必须 clinical**——这是"讲问题像人、讲产品像临床"在结构上的落地。
+
+---
+
+## 3. 范例库(positive exemplars,模型照着写比照着规则写强)
+
+- **Pinned intro 范例** = `reddit/pinned-start-here.md`(产品说明书 register 的标准)。
+- **Topic comment 范例** = `voice-samples.md`(已批准的真实评论;⚠️ 注意里面标了"勿模仿"的违规样本)。
+- 其它文体范例:随产出积累,新写出来过了三闸的好样本,回贴到 `voice-samples.md` 对应分区并在此登记。
+
+> 和 YouTube 一样:范例库越满,写作越接近"选文体 + 填结构 + 过扫描",而不是从零即兴。
+
+---
+
+## 4. 写完的硬闸(每篇都过,见 VOICE.md §5)
+1. AI 腔图鉴逐句扫,零命中。
+2. 合规闸零命中。
+3. 每个事实可追溯 MERIDIAN.md。
++ 文体闸:**register 对不对?**(把这篇拿去和本表对应行的范例并排读,声音一致吗?官方帖别像评论,评论别像官方帖。)
+
+---
+
+## 5. 维护
+- 出现新文体(比如要开始做 X/IG,或新的 Reddit 玩法)→ **先在本表加一行**(目标/读者/register/结构/范例),再动笔。
+- 某文体反复被 Gary 纠正 → 把教训写进 `LEARNINGS.md`,并回头修本表对应行(从源头改,不是每篇打补丁)。
