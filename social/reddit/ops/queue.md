@@ -33,6 +33,8 @@ Reddit username: u/<USERNAME>
 
 - [ ] **0d. 手机确认**：Reddit app 已装、能收到我的 push 通知。
 
+> 工单批复后的工具已提前建好在 `C:\Users\Administrator\reddit-ops\`（README 三步：建 script app → 跑 auth_setup.py 点一次 Allow → 跑 smoke.py 验证）。批复前不用碰。
+
 ---
 
 ## ① 待发队列
