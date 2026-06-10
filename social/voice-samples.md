@@ -84,6 +84,8 @@ paste your final reply here
 **Reply:**
 Your nervous system learnt to treat market exposure itself as a threat — not the losses, not the wins, just the uncertainty. At 170bpm your brain is already compromised, and your are being exposed to extreme danger. Becuase it's actual chemical released in your brain, and that happens to all trader, but it's not as extreme so they never realized it. But the deeper question is: if just being in a trade does this to you, the moment you actually approach your max loss, you're probably not stopping, and you'll find a way around whatever risk controls you've set. That's the real problem, not just "I need to learn to be calmer." For what it's worth, there's currently only one risk management tool out there that monitors behavior rather than just account data to intervene before the damage — things like detecting overtrading, cutting winners too fast, holding losers too long — rather than hard limit.
 
+> ⚠️ **DO NOT IMITATE this sample (annotated 2026-06-10).** It's kept as a posted-history record, but it breaks three current rules: ① "currently only one risk management tool out there" — banned "only tool on the market" claim (ops/PLAYBOOK.md hard rule, especially r/Daytrading); ② "chemical released in your brain" / "brain is compromised" — clinical-mechanism wording is banned in r/Daytrading; ③ typos ("Becuase", "your are"). The behavioral logic of the reply (threat response → you won't stop at your limit) is still a good angle — reuse the logic, not the wording.
+
 ---
 
 ### 2026-05-09 Reddit — AI reading CSVs vs real-time monitoring

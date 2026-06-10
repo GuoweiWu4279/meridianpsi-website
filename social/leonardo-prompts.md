@@ -1,4 +1,9 @@
-# Meridian — AI 素材生成指南
+# Meridian — AI 素材生成指南 — ⛔ SUPERSEDED (2026-06-10)
+
+> **状态：已被取代。** 视频视觉现在由 `Company/YouTube/pipeline/` 的 riso 纯代码渲染系统生成
+> （见 `STYLE.md` §9.5 内容→媒介决策表），不再使用 Leonardo/GPT Image 生成素材。
+> 本文件仅作历史参考；概念图库 `pipeline/assets/images/` 里既有图仍可用。
+
 **Version 2.0 — May 2026**
 
 ---

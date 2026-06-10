@@ -1,4 +1,11 @@
-# Video Automation Pipeline — Setup & Weekly Workflow
+# Video Automation Pipeline — Setup & Weekly Workflow — ⛔ SUPERSEDED (2026-06-10)
+
+> **STATUS: SUPERSEDED. Do NOT follow this workflow.** Video production now runs entirely through
+> the code-rendered pipeline in **`Company/YouTube/pipeline/`** (entry: `CLAUDE.md`; specs:
+> `ARCHITECTURE.md` / `STYLE.md` / `PLAYBOOK.md`). The Leonardo/CapCut toolchain below, the
+> em-dash voice-formatting advice, the weekly Saturday cadence, and the "homepage is locked"
+> rule are all obsolete — several directly contradict current rules (`writing-rules.md` bans
+> em dashes; the homepage has since been rebuilt for multi-platform positioning). Kept for history only.
 
 This document is the operational handbook for the YouTube + shorts engine described in the 90-day distribution plan. Read once, set up tools once, then refer to the **Weekly Workflow** section every Saturday.
 

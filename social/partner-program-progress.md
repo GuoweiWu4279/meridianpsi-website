@@ -1,8 +1,13 @@
 # Partner Program — Progress & Handoff
 
-**Last updated:** 2026-05-12 (evening — accordion + redirect pass)
+> ⚠️ **STATUS (2026-06-10):** cold-outreach recruitment is **stopped** (2026-06-09 founder decision — see
+> `Company/Meridian CEO Report 2026-06-09.md`). The program itself stays live for accepted partners,
+> the 3 in-negotiation creators, and inbound `/partners` applications. The phase plan below is the
+> historical build record, not a to-do list.
+
+**Last updated:** 2026-06-10 (status banner; content below frozen as of 2026-05-28)
 **Owner:** Gary
-**Goal:** Maximize *recurring revenue* from partner-channel signups (not just partner count). Cold outreach via Instantly from `garycaffrey@meridian-partnership.com` (new domain, currently in warm-up).
+**Goal:** Maximize *recurring revenue* from partner-channel signups (not just partner count). ~~Cold outreach via Instantly~~ (stopped 2026-06-09).
 **Target:** NT8-focused YouTubers / Twitter / podcasts / newsletters with 1k–20k followers (futures, prop firms, trading psychology).
 
 ---

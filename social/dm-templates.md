@@ -1,4 +1,11 @@
-# Social Media DM Templates
+# Social Media DM Templates — ⛔ DEPRECATED (2026-06-09)
+
+> **STATUS: ARCHIVED. Do NOT use these templates or resume cold DM outreach.**
+> Cold outbound to strangers (DM + email) was shut down 2026-06-09 by founder decision after
+> 287 sends → 24 conversations → 0 conversions — see `Company/Meridian CEO Report 2026-06-09.md` (判断 2).
+> What remains active: replying to inbound interest, the 3 in-negotiation creators, and the
+> partner program for inbound applications (`/partners`). This file is kept only as a historical
+> record of the template style.
 
 These templates are designed to be highly generic so they can be sent to multiple users without modification, yet feel personal and natural.
 

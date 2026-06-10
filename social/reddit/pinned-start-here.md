@@ -4,14 +4,17 @@ platform: reddit
 subreddit: r/MeridianPSI
 post_type: pinned
 status: canonical
-last_updated: 2026-05-26
+last_updated: 2026-06-10
 author: Gary / MeridianPSI
 notes: |
   Final version approved by founder 2026-05-26.
-  Guard level names in this post are simplified for Reddit readability;
-  canonical L1–L5 definitions live in MERIDIAN.md §6.
+  2026-06-10 consistency fix: Guard level names corrected to the canonical set
+  (the old table had "Alert" twice and wrong order — see MERIDIAN.md §6), and the
+  privacy line updated for v1.5.0's disclosed anonymized research collection
+  ("no data ever leaves" is no longer true and must not be re-posted).
+  ⚠️ THE LIVE PINNED POST ON r/MeridianPSI STILL HAS THE OLD TEXT — re-paste this
+  version via the Reddit SOP (ops/PLAYBOOK.md) at the next opportunity.
   Opening mentions "futures and stocks"; product is NT8 futures-focused — intentional breadth for Reddit intro or tighten later.
-  Minor grammar fix in repo copy only: "It know" → "It knows" (see body).
 ---
 
 # Start Here: What is Meridian PSI?
@@ -68,11 +71,11 @@ You set the rules when you are calm, and leave it to the system so you can focus
 
 | Level | What happens |
 |---|---|
-| **L1 - Alert** | Personalized notification so you know what's happening at all time |
-| **L2 - Acknowledge** | You must type a phrase you wrote yourself before you can continue. This is the most powerful and supported by psychology. It breaks the autopilot loop and force your brain to slow down. |
-| **L3 - Alert** | Constant alert to warn yourself of the situation. |
-| **L4 - Pause trade** | You have the option to let system auto-manage your trade and force you to take a mandatory cooldown. |
-| **L5 — Disconnect** | You have the option to let system auto-manage your trade and disconnect you from your broker to make sure your account is 100% protected. |
+| **L1 - Notify** | A quiet notification so you know what's happening, without getting in the way. |
+| **L2 - Risk Alert** | A persistent banner — every new entry needs an active confirmation before it goes through. |
+| **L3 - Acknowledge** | You must type a phrase you wrote yourself before you can continue. This is the most powerful and supported by psychology. It breaks the autopilot loop and forces your brain to slow down. |
+| **L4 - Trading Pause** | New entries are blocked entirely for a cooldown you chose in advance. Closing positions is never blocked. |
+| **L5 - Disconnect** | The system disconnects you from your broker so the session ends on your terms, not tilt's. |
 
 Think of Guard as a lock you set for your future self, written by the version of you that's thinking clearly.
 
@@ -98,7 +101,7 @@ You also get:
 
 Meridian is an **Official NinjaTrader Ecosystem Vendor**: reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams.
 
-Everything is stored **locally on your machine**. No behavioral data ever leaves your computer. This is why it works inside prop firm environments.
+Everything that identifies you stays **on your machine** — Meridian never collects your name, broker credentials, account numbers, or funds. The only things it ever sends out are a license check and anonymized research records (tied to a random ID, never to you; opt out anytime). This is why it works inside prop firm environments.
 
 **→ https://www.meridianpsi.com**
 

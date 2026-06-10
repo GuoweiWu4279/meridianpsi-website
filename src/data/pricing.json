@@ -21,6 +21,7 @@
         "Seven independent behavioral dimensions in one composite score",
         "Baselines calibrated from your own session history",
         "Native NinjaTrader 8 add-on — plus standalone Tradovate & Ironbeam apps in early access, one license",
+        "Intel workspace — monthly digest, PSI × P&L, weekday patterns, breakdowns & pre-session Risk Brief",
         "5-year session history and post-session reports",
         "Cancel any time"
       ]
@@ -40,11 +41,11 @@
       "monthlyCtaHref": "https://whop.com/checkout/plan_ZHX4ySB65fahf",
       "annualCtaHref": "https://whop.com/checkout/plan_frPOgHtDTvBkR",
       "features": [
-        "Everything in Meridian",
+        "Everything in Meridian Core",
         "Guard System — rules that enforce themselves (6 triggers · 5 action levels)",
-        "Intel Layer — monthly digest, weekday patterns & Composure progress",
-        "PSI × P&L correlation — see what your Stable sessions average vs Critical",
-        "Today's Risk Brief — personalized pre-session summary built from your history",
+        "Strict Lock — one switch, set when calm, that makes every pause un-bypassable for its window",
+        "Trading Pause & Disconnect that survive a NinjaTrader restart",
+        "Edge-triggered rules with cooldowns — fire once, no spam",
         "Priority support"
       ]
     }

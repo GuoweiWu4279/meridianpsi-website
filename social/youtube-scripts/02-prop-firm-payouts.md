@@ -1,6 +1,11 @@
 # YouTube Video — V01 (First to Produce)
 # "You Will Never Get Consistent Prop Firm Payouts Until You Fix This"
 
+> ⚠️ **EARLIER DRAFT (2026-05-09 morning).** A later revision of this same V01 script exists in
+> `01-prop-firm-payouts.md` (2026-05-09 evening). Consolidate the two before producing — do not
+> treat this file alone as final. Note also: "clean/light visual style per video-framework.md"
+> below is stale; production now runs through `Company/YouTube/pipeline/` (riso system).
+
 **Length target:** 6–9 minutes (1,000–1,400 words spoken)
 **Style:** Voiceover only (ElevenLabs), clean/light visual style per video-framework.md
 **Audience:** Discretionary futures traders who are attempting or have failed prop firm challenges

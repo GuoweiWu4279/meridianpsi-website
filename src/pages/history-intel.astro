@@ -28,7 +28,7 @@ const TRIAL = '/pricing';
 const COMPOSED_PER_SESSION = 1008;
 const TILTED_PER_SESSION = -247;
 
-// Pull the Guard tier (Intel ships with Guard) from data — never hardcode price.
+// Pull the Guard tier from data — never hardcode price. (Intel is a Core feature since v1.5.0; Guard is the enforcement tier.)
 const guardTier = pricing.tiers.find((t) => t.id === 'guard') ?? pricing.tiers[pricing.tiers.length - 1];
 
 /** JSON-LD via set:html — inline `{JSON.stringify({...})}` breaks Astro parsing on inner braces. */
@@ -109,7 +109,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
         <a href="#correlation" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the correlation</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">Built on your 5-year session history &middot; Intel analysis included with Meridian Guard &middot; Local-first, anonymized</p>
+      <p class="mt-4 text-xs text-zinc-500">Built on your 5-year session history &middot; Intel analysis included with every Meridian plan &middot; Local-first, anonymized</p>
     </div>
   </section>
 

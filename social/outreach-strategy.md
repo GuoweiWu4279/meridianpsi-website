@@ -1,6 +1,13 @@
 # Partner Outreach Strategy & Templates (v6)
 
-**Status:** Locked — 2026-05-12
+> ⛔ **STATUS UPDATE (2026-06-09): the automated cold-email machine this strategy drove is STOPPED.**
+> The Instantly campaign is paused and must not be resumed for Meridian — 287 sends → 24 real
+> conversations (8.4%, healthy) → 0 conversions; the failure is structural, not executional.
+> See `Company/Meridian CEO Report 2026-06-09.md` (判断 2). Still active: inbox handling/reconcile,
+> the 3 in-negotiation creators, and inbound partner applications. The locked v6 email craft below
+> remains valid as reference — the same machine is earmarked for the finance-automation business.
+
+**Status:** Locked v6 — 2026-05-12 (sending stopped 2026-06-09)
 **Owner:** Gary
 **Sending platform:** Instantly via `garycaffrey@meridian-partnership.com` (in domain warm-up)
 **Audience:** NT8-relevant creators with 1k–20k followers (YouTube, Twitter/X, podcasts, newsletters)
@@ -18,7 +25,7 @@ Three-email sequence. Body paragraphs are **locked**. Only personalization varia
 
 Each design decision below was chosen against alternatives we considered and rejected. Don't change without re-reading this:
 
-1. **Direct + personalized + honest** — not "say hi", not "pretend to be a fan", not "hide intent". Hidden-intent and fake-fan styles kill brand long-term and risk FTC §255 violations. "Just say hi" doesn't scale to 30–50/week and wastes the recipient's 8-second attention window.
+1. **Direct + personalized + honest** — not "say hi", not "pretend to be a fan", not "hide intent". Hidden-intent and fake-fan styles kill brand long-term and risk violations of the FTC Endorsement Guides (16 CFR Part 255). "Just say hi" doesn't scale to 30–50/week and wastes the recipient's 8-second attention window.
 2. **Differentiation-first body, offer-second** — the offer (30% recurring) is table stakes across every Whop affiliate program. Leading with the offer attracts mercenary partners who jump for higher %. Leading with the product attracts aligned partners who recommend because they believe in the product.
 3. **Preview-pane line signals commercial intent** — the first line "Reaching out about a partnership offer for NT8 creators" appears in the inbox preview, eliminating bait-and-switch feel without compromising body structure.
 4. **No generic praise** — "your point was great" patterns are detected as templated by sophisticated readers. Warmth is conveyed via shared-purpose framing ("this is exactly the problem I built Meridian to solve").

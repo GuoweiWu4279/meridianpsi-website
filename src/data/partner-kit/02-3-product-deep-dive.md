@@ -83,15 +83,16 @@ Guard is designed for traders who want hard enforcement, not just monitoring. Th
 
 ---
 
-### Intel Layer (Guard tier only)
+### Intel workspace (included with every tier since v1.5.0)
 
-The Intel Layer is **exclusive to the Guard tier** — it is not in Core. It turns 5 years of local session history into pre-session decisions and behavioral insight.
+The Intel tab turns 5 years of local session history into pre-session decisions and behavioral insight. **As of v1.5.0 it is included in Core as well as Guard** — the Guard tier gates only the enforcement engine. (If you made content before v1.5.0 that called Intel "Guard-exclusive", that was correct at the time but is no longer.)
 
-Four views:
+Key views:
 
 - **PSI × Performance** — P&L mapped against PSI zone. Shows exactly what Stable sessions average vs. Critical.
 - **Monthly Digest** — composure trend, stable days, win rate, average P&L, best and worst days — every month.
-- **Weekday Patterns** — identifies the trader's weakest trading day and tracks 6-month Composure progress.
+- **Weekday Patterns** — identifies the trader's weakest trading day and tracks Composure progress.
 - **Today's Risk Brief** — a pre-session summary built from the trader's own history; personalized before the first trade of the day.
+- **Stats & Breakdowns** *(new in v1.5.0)* — core trading statistics plus breakdowns by instrument, side, time of day, hold time, and "discipline leak" (which behavioral signal cost the most).
 
 This is the layer most useful for creators covering trading psychology or systematic improvement — it turns subjective "I need to be more disciplined" into quantifiable long-term data.

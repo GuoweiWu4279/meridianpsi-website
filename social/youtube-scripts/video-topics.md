@@ -38,7 +38,7 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 
 **Meridian mention:** Guard's lockout system removes the decision from the trader when behavioral signals spike — the only thing that actually works in a pressure environment.
 
-**Status:** SCRIPT IN PROGRESS → `02-prop-firm-payouts.md`
+**Status:** SCRIPT DRAFTED — two drafts of this V01 exist: `02-prop-firm-payouts.md` (earlier, 2026-05-09 morning) and `01-prop-firm-payouts.md` (later revision, 2026-05-09 evening — treat as current unless founder says otherwise). Consolidate before producing.
 
 ---
 
@@ -168,7 +168,7 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 
 **SEO keywords:** `NinjaTrader risk management, NinjaTrader settings, NinjaTrader 8 risk, NT8 daily loss limit`
 
-**Core argument:** NT8's built-in daily loss limit stops you *after* the damage — it's a circuit breaker, not a behavioral monitor. It doesn't detect the 6 behavioral signals that predict a blowup before it happens. It triggers after you've already lost the money.
+**Core argument:** NT8's built-in daily loss limit stops you *after* the damage — it's a circuit breaker, not a behavioral monitor. It doesn't detect the 7 behavioral signals that predict a blowup before it happens. It triggers after you've already lost the money.
 
 **Highest product conversion video.** Directly addresses the "I already have risk settings" objection.
 

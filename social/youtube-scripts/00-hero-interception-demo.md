@@ -17,19 +17,19 @@
 ## Storyboard (frame by frame)
 
 ### Beat 1 — 0:00–0:04 — Setup (caption: silent)
-**On screen:** NT8 with NQ chart, clean state. PSI HUD reads ~85 (Stable / green).
+**On screen:** NT8 with NQ chart, clean state. PSI HUD reads ~92 (Stable / green). *(Zone facts: Stable 88–100 · Caution 72–87 · Warning 55–71 · Critical below 55 — keep on-screen numbers consistent with these.)*
 **Caption (top center, fade in):** "A trader takes a normal loss."
 **Action:** Show a stop-out happening on a small position. Red candle, position closed at -$280.
 
 ### Beat 2 — 0:04–0:09 — The deviation begins
 **Caption:** "12 seconds later: same direction. Bigger size."
 **Action:** Cursor moves fast, opens order ticket. Size jumps from 1 contract to 3 contracts. Same direction as the trade that just stopped out.
-**Visual cue:** PSI HUD starts dropping — 85 → 71 (yellow zone).
+**Visual cue:** PSI HUD starts dropping — 92 → 74 (Caution / yellow).
 
 ### Beat 3 — 0:09–0:14 — The escalation
 **Caption:** "Stop on the new entry: pulled wider."
 **Action:** Click the active stop loss line, drag it 8 ticks wider on the chart.
-**Visual cue:** PSI continues dropping — 71 → 58 (orange).
+**Visual cue:** PSI continues dropping — 74 → 52 (Critical / red).
 **HUD signal bars:** "Revenge Entry" + "Stop Manipulation" + "Size Spike" all light up red.
 
 ### Beat 4 — 0:14–0:22 — The intervention
@@ -37,7 +37,7 @@
 **Action:** Trader tries to add another contract. **Meridian Guard modal appears, blocking the order ticket.**
 **Modal text (clearly readable):**
 ```
-PSI: 58 — CRITICAL
+PSI: 52 — CRITICAL
 Pattern detected: Revenge entry + size escalation + stop widening
 
 Type the phrase you wrote when calm to continue:

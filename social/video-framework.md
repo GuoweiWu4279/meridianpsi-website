@@ -1,6 +1,12 @@
-# Meridian YouTube Video Framework
+# Meridian YouTube Video Framework — ⛔ SUPERSEDED (2026-06-10)
+
+> **STATUS: SUPERSEDED by `Company/YouTube/pipeline/STYLE.md` + `PLAYBOOK.md`** (riso code-rendered
+> visual system; no Leonardo, no CapCut, no Excalidraw). Known stale claims in this file: Excalidraw
+> listed as usable (deprecated), em-dash pacing advice (banned by `writing-rules.md`), and a trial CTA
+> saying "No credit card" — **the trial REQUIRES a card at checkout**; never repeat that line. Kept for history only.
+
 **Version 1.0 — Established May 2026**
-**Do not modify mid-series. Treat this document as locked during any active 12-week content sprint.**
+**(was: do not modify mid-series — series concluded; see superseding docs above)**
 
 ---
 
