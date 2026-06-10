@@ -1,0 +1,282 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import products from '~/data/products.json';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PLATFORMS — the compatibility page. Voice: TEACH / PRECISE, zero overclaim.
+// Status is the load-bearing honesty here: NT8 is GA; Tradovate & Ironbeam are
+// EARLY ACCESS (founding seats, hand-delivered builds) until the installers are
+// signed and public. Capabilities differ per platform — the matrix states it.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const metadata = {
+  title: 'Platforms — Meridian on NinjaTrader 8, Tradovate & Ironbeam',
+  description:
+    'One Meridian license covers every platform we support. Native NinjaTrader 8 add-on available now; standalone apps for Tradovate and Ironbeam accounts in early access. See the full capability matrix.',
+  robots: { index: true, follow: true },
+};
+
+// Founding requests go through Formspree (same endpoint as /support) — a raw
+// mailto fails silently for webmail users and gives us no record.
+
+const platformsJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Platforms — Meridian',
+  url: 'https://www.meridianpsi.com/platforms',
+  description: metadata.description,
+}).replace(/</g, '\\u003c');
+
+// Capability matrix — keep claims exactly aligned with shipped/validated reality.
+const matrix = [
+  { cap: 'Real-time PSI monitor', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Seven behavioral signals (D1–D7)', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Adaptive baseline learning', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Session journal & reports', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Intel analytics workspace', nt8: 'Yes (Guard tier)', tdv: 'Yes (Guard tier)', ib: 'Yes (Guard tier)' },
+  { cap: 'Guard enforcement — cooldowns, entry blocking, optional flatten', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Hard lock (no-bypass commitment mode)', nt8: 'Yes — Strict Lock', tdv: 'Yes — broker-level lock', ib: 'App-level enforcement only' },
+  { cap: 'Requires NinjaTrader', nt8: 'Yes (it lives inside NT8)', tdv: 'No', ib: 'No' },
+];
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={platformsJsonLd} />
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div data-reveal class="max-w-4xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">PLATFORMS</p>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
+        One license.<br />Every platform we <span class="text-emerald-600">support.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
+        Meridian started as the most complete risk manager inside NinjaTrader&reg; 8 &mdash; and that is still home base.
+        The same engine now also runs as a standalone app that connects straight to your Tradovate&reg; or Ironbeam
+        account.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── PLATFORM CARDS ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="grid md:grid-cols-3 gap-5">
+      {products.platforms.map((p) => (
+        <div class={`rounded-2xl p-6 shadow-sm ${p.status === 'available' ? 'border-2 border-emerald-600/30 bg-gradient-to-b from-white to-emerald-50/30' : 'border border-zinc-200 bg-white'}`}>
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-bold text-zinc-900">{p.name}</h2>
+            <span class={`px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wide ${p.status === 'available' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+              {p.statusLabel}
+            </span>
+          </div>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">{p.delivery}</p>
+          {p.status === 'available' ? (
+            <a href="/download" class="inline-block text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2.5 rounded-xl transition">Download now</a>
+          ) : (
+            <a href="#early-access" class="inline-block text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-4 py-2.5 rounded-xl transition">Request a founding seat</a>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ───────────────────────── CAPABILITY MATRIX ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div data-reveal class="text-center mb-8">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT RUNS WHERE</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Same engine. Honest differences.</h2>
+      <p class="mt-4 max-w-2xl mx-auto text-zinc-600">
+        Enforcement depends on what each platform exposes. Here is exactly what you get on each &mdash; no fine-print surprises later.
+      </p>
+    </div>
+    <div class="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-sm">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-200 bg-zinc-50/60">
+            <th class="text-left font-semibold text-zinc-900 px-5 py-3.5">Capability</th>
+            <th class="text-left font-semibold text-zinc-900 px-5 py-3.5">
+              NinjaTrader 8
+              <span class="block text-[10px] font-bold uppercase tracking-wide text-emerald-700 mt-0.5">Available now</span>
+            </th>
+            <th class="text-left font-semibold text-zinc-900 px-5 py-3.5">
+              Tradovate
+              <span class="block text-[10px] font-bold uppercase tracking-wide text-amber-700 mt-0.5">Early access</span>
+            </th>
+            <th class="text-left font-semibold text-zinc-900 px-5 py-3.5">
+              Ironbeam
+              <span class="block text-[10px] font-bold uppercase tracking-wide text-amber-700 mt-0.5">Early access</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-100">
+          {matrix.map((row) => (
+            <tr>
+              <td class="px-5 py-3 text-zinc-700 font-medium">{row.cap}</td>
+              <td class="px-5 py-3 text-zinc-600">{row.nt8}</td>
+              <td class="px-5 py-3 text-zinc-600">{row.tdv}</td>
+              <td class="px-5 py-3 text-zinc-600">{row.ib}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-xs text-zinc-500 leading-relaxed max-w-3xl">
+      Early access means the app is feature-complete and validated against the platform's demo environment, and founding
+      users receive hand-delivered builds while we finish public packaging. The Tradovate&reg; broker-level lock is executed
+      through the platform's published account risk-control API; Ironbeam's API does not expose an account-level kill
+      switch, so enforcement there is app-level (entry blocking and flatten). On Tradovate, live unrealized-P&amp;L readouts
+      depend on the account's market-data setup — core monitoring and enforcement need no market-data subscription at
+      all. All Meridian apps are Windows, and Meridian never places entry orders for you.
+    </p>
+  </section>
+
+  <!-- ───────────────────────── PROP FIRMS (C13) ───────────────────────── -->
+  <section id="prop-firms" class="max-w-4xl mx-auto px-6 pb-16">
+    <div data-reveal class="text-center mb-8">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FUNDED ACCOUNTS</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Trading a funded account? Start here.</h2>
+      <p class="mt-4 max-w-2xl mx-auto text-zinc-600">
+        Meridian watches the account you trade, so what matters is the platform your firm gave you &mdash; not the firm's name on the door.
+      </p>
+    </div>
+    <div class="space-y-4">
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="font-semibold text-zinc-900 mb-1.5">Your firm lets you trade through NinjaTrader 8</h3>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Many funded programs (for example Apex Trader Funding, My Funded Futures, Take Profit Trader and most
+          Rithmic-based programs) let you run NinjaTrader 8 on your desktop. If that is your setup, install the Meridian
+          add-on inside NT8 &mdash; it works with your funded connection today. <a href="/download" class="text-emerald-700 font-medium hover:underline">Download &rarr;</a>
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="font-semibold text-zinc-900 mb-1.5">Your account runs on Tradovate</h3>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          If your program issues Tradovate-based accounts, the standalone Meridian app connects straight to that account
+          &mdash; no NinjaTrader anywhere. Early access. <a href="#early-access" class="text-emerald-700 font-medium hover:underline">Request a founding seat &rarr;</a>
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="font-semibold text-zinc-900 mb-1.5">Topstep (TopstepX)</h3>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Honest answer: not yet. TopstepX is a closed platform, and Meridian cannot run inside it today. If that changes, the
+          founding list hears it first.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="font-semibold text-zinc-900 mb-1.5">Something else, or not sure?</h3>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Email <a href="mailto:contactmeridianpsi@gmail.com?subject=Does%20Meridian%20work%20with%20my%20setup%3F" class="text-emerald-700 font-medium hover:underline">contactmeridianpsi@gmail.com</a>
+          with your firm and platform, and you will get a straight answer &mdash; including a straight no.
+        </p>
+      </div>
+    </div>
+    <p class="mt-4 text-xs text-zinc-500 leading-relaxed max-w-3xl">
+      Always confirm your own firm's rules on third-party tools before arming enforcement. Meridian reads only your own
+      account activity and never places entry orders for you.
+    </p>
+  </section>
+
+  <!-- ───────────────────────── EARLY ACCESS / FOUNDING ───────────────────────── -->
+  <section id="early-access" class="border-y border-zinc-200 bg-zinc-50/50">
+    <div data-reveal class="max-w-3xl mx-auto px-6 py-16 text-center">
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">EARLY ACCESS</p>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Founding seats: Tradovate &amp; Ironbeam</h2>
+      <div class="mt-8 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
+        <img
+          src="/screenshots/standalone-app-early-access.png"
+          alt="The standalone Meridian app — live composure ring, PSI timeline, behavioral signals and quick journal, connected to a broker account"
+          class="block w-full"
+          loading="lazy"
+        />
+      </div>
+      <p class="mt-2 text-xs text-zinc-400">Early-access build, June 2026 — shown on simulated data.</p>
+      <p class="mt-5 text-zinc-600 leading-relaxed">
+        We are opening a small founding group while the standalone apps move from early access to general release.
+        Founding traders get <strong>90 days free</strong>, a direct line to the builder, and first say in what ships next.
+        In return we ask that you actually trade with it and tell us the truth about what you see.
+      </p>
+      <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-8 max-w-md mx-auto text-left space-y-4">
+        <input type="hidden" name="subject" value="Founding seat request" />
+        <div>
+          <label for="fs-email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
+          <input
+            id="fs-email"
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+          />
+        </div>
+        <div>
+          <label for="fs-platform" class="block text-sm font-medium text-zinc-700 mb-1.5">Your platform</label>
+          <select
+            id="fs-platform"
+            name="platform"
+            required
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+          >
+            <option value="" disabled selected>Select your platform</option>
+            <option value="Tradovate">Tradovate</option>
+            <option value="Ironbeam">Ironbeam</option>
+          </select>
+        </div>
+        <div>
+          <label for="fs-setup" class="block text-sm font-medium text-zinc-700 mb-1.5">Broker / prop setup <span class="text-zinc-400 font-normal">(optional)</span></label>
+          <input
+            id="fs-setup"
+            type="text"
+            name="setup"
+            placeholder="e.g. Apex via Tradovate, MNQ"
+            class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+          />
+        </div>
+        <button type="submit" class="w-full font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">
+          Request a founding seat
+        </button>
+        <p class="text-xs text-zinc-500 text-center leading-relaxed">
+          Limited seats &middot; No card required &middot; Windows &middot;
+          <a href="/pricing" class="underline hover:text-zinc-700">See pricing</a> &middot;
+          Prefer email? <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-700">contactmeridianpsi@gmail.com</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── PLATFORM NOTES ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-14">
+    <h2 class="text-sm font-semibold text-zinc-500 uppercase tracking-widest mb-4">Common questions</h2>
+    <div class="space-y-5 text-sm leading-relaxed">
+      <div>
+        <p class="font-semibold text-zinc-900">I trade through TradingView or a DOM. Does Meridian see my trades?</p>
+        <p class="text-zinc-600 mt-1">
+          Meridian's standalone apps watch the <em>account</em>, not the charting software. If your front-end routes
+          orders through a Tradovate account, Meridian reads your orders and fills live no matter where you click.
+          If your setup runs on a different broker stack, write us and we will give you a straight answer on coverage.
+        </p>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-900">Is the license really shared across platforms?</p>
+        <p class="text-zinc-600 mt-1">Yes. One subscription, every platform we support, including new ones as they reach general release.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-900">Why early access instead of a public download?</p>
+        <p class="text-zinc-600 mt-1">
+          Because we would rather hand a validated build to fifty traders who run it on real sessions than push an
+          installer to everyone before the last mile is done. Early access is the last mile.
+        </p>
+      </div>
+    </div>
+    <p class="mt-10 text-[11px] text-zinc-400 leading-relaxed">
+      <strong>Platform compatibility notice.</strong> Meridian connects to trading platforms and brokerage accounts that
+      you hold with third parties. NinjaTrader&reg; 8 support is delivered as a NinjaScript add-on for the NinjaTrader
+      platform. Tradovate&reg; support and Ironbeam support are delivered as standalone Windows applications that connect
+      to your existing account using each provider's published API. You must have your own account, platform license, and
+      any required market-data subscriptions with the relevant provider; Meridian does not open, hold, or manage brokerage
+      accounts. All product and company names are trademarks of their respective owners; use of these names does not imply
+      any affiliation with, or endorsement, sponsorship, or approval by, the trademark owners. Meridian's monitoring and
+      lockout features are risk-management tools only &mdash; they do not guarantee the prevention of losses, and there is
+      a substantial risk of loss in trading futures. Losses in excess of your initial investment may occur.
+    </p>
+  </section>
+</Layout>

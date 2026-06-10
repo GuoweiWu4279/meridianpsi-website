@@ -1,0 +1,208 @@
+---
+// src/pages/admin/research.astro
+// Protected admin dashboard for the anonymized research-data program.
+// The page is a static shell: ALL data flows through /api/admin/research, which
+// requires the x-admin-key header (== RESEARCH_ADMIN_SECRET). The key is held in
+// the browser's sessionStorage only — never rendered into the HTML.
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Research Data — Admin</title>
+    <style>
+      :root { --bg:#0b0b0d; --panel:#161618; --panel2:#1d1d20; --line:#2a2a2e; --fg:#ededf0; --fg2:#a0a0a8; --accent:#34d399; --danger:#f06a6a; }
+      * { box-sizing:border-box; }
+      body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+      .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
+      h1 { font-size:20px; margin:0 0 4px; }
+      .sub { color:var(--fg2); font-size:13px; margin:0 0 24px; }
+      .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+      input { background:var(--panel2); border:1px solid var(--line); color:var(--fg); border-radius:8px; padding:9px 11px; font-size:14px; width:280px; }
+      button { background:var(--panel2); border:1px solid var(--line); color:var(--fg); border-radius:8px; padding:8px 13px; font-size:13px; cursor:pointer; }
+      button:hover { background:#26262a; }
+      button.primary { background:var(--accent); border-color:var(--accent); color:#06281c; font-weight:600; }
+      button.danger { color:var(--danger); border-color:#43292c; }
+      button.danger:hover { background:#2a1a1c; }
+      .totals { display:flex; gap:22px; margin:0 0 16px; color:var(--fg2); font-size:13px; }
+      .totals b { color:var(--fg); font-size:18px; display:block; }
+      table { width:100%; border-collapse:collapse; }
+      th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); font-size:13px; vertical-align:middle; }
+      th { color:var(--fg2); font-weight:500; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+      td.mono,.mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
+      .id { color:var(--accent); }
+      .muted { color:var(--fg2); }
+      .row-actions { display:flex; gap:8px; justify-content:flex-end; }
+      .hidden { display:none; }
+      .err { color:var(--danger); margin-top:10px; font-size:13px; }
+      pre { background:#0e0e10; border:1px solid var(--line); border-radius:8px; padding:14px; overflow:auto; max-height:60vh; font-size:12px; color:#d6d6da; white-space:pre-wrap; word-break:break-word; }
+      .back { color:var(--fg2); cursor:pointer; font-size:13px; }
+      .back:hover { color:var(--fg); }
+      .pill { display:inline-block; background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:1px 9px; font-size:11px; color:var(--fg2); margin:1px 3px 1px 0; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Research Data — Admin</h1>
+      <p class="sub">Anonymized session recordings from Meridian PSI installs (pseudonymous install id; no PII).</p>
+
+      <!-- Login gate -->
+      <div id="login" class="card">
+        <div style="margin-bottom:10px;">Enter admin key</div>
+        <div style="display:flex; gap:10px;">
+          <input id="key" type="password" placeholder="RESEARCH_ADMIN_SECRET" autocomplete="off" />
+          <button class="primary" id="loginBtn">Unlock</button>
+        </div>
+        <div id="loginErr" class="err hidden"></div>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dash" class="hidden">
+        <div class="totals" id="totals"></div>
+        <div class="card" id="installsCard">
+          <table>
+            <thead><tr><th>Install</th><th>Sessions</th><th>Objects</th><th>Size</th><th>First seen</th><th>Last seen</th><th></th></tr></thead>
+            <tbody id="installs"></tbody>
+          </table>
+        </div>
+
+        <!-- Sessions drill-in -->
+        <div id="sessionsView" class="hidden">
+          <p><span class="back" id="backToInstalls">← all installs</span></p>
+          <div class="card">
+            <div style="margin-bottom:12px;">Install <span class="mono id" id="curInstall"></span></div>
+            <table>
+              <thead><tr><th>Session</th><th>Size</th><th>Uploaded</th><th></th></tr></thead>
+              <tbody id="sessions"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Content viewer -->
+        <div id="contentView" class="hidden">
+          <p><span class="back" id="backToSessions">← sessions</span></p>
+          <div class="card">
+            <div class="mono muted" id="curPath" style="margin-bottom:10px; word-break:break-all;"></div>
+            <pre id="content"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      const $ = (id) => document.getElementById(id);
+      const API = '/api/admin/research';
+      let KEY = sessionStorage.getItem('mpsi_admin_key') || '';
+      let lastInstall = null;
+
+      function fmtBytes(n) { if (n < 1024) return n + ' B'; if (n < 1048576) return (n/1024).toFixed(0) + ' KB'; return (n/1048576).toFixed(1) + ' MB'; }
+      function fmtDate(s) { if (!s) return '—'; const d = new Date(s); return d.toISOString().slice(0,16).replace('T',' '); }
+
+      async function api(qs, opts) {
+        const res = await fetch(API + qs, { ...opts, headers: { 'x-admin-key': KEY, ...(opts?.headers||{}) } });
+        if (res.status === 401) { throw new Error('unauthorized'); }
+        return res.json();
+      }
+
+      function show(view) {
+        for (const v of ['installsCard','sessionsView','contentView']) $(v).classList.add('hidden');
+        $(view).classList.remove('hidden');
+      }
+
+      async function loadInstalls() {
+        const data = await api('?action=list');
+        $('totals').innerHTML =
+          `<div><b>${data.totals.installs}</b>installs</div>` +
+          `<div><b>${data.totals.objects}</b>objects</div>` +
+          `<div><b>${fmtBytes(data.totals.totalBytes)}</b>total</div>`;
+        $('installs').innerHTML = data.installs.map((i) => `
+          <tr>
+            <td class="mono id">${i.id}</td>
+            <td>${i.sessions}</td>
+            <td>${i.objects}</td>
+            <td>${fmtBytes(i.totalBytes)}</td>
+            <td class="muted">${fmtDate(i.firstSeen)}</td>
+            <td class="muted">${fmtDate(i.lastSeen)}</td>
+            <td><div class="row-actions">
+              <button data-view="${i.id}">View</button>
+              <button class="danger" data-del="${i.id}">Delete</button>
+            </div></td>
+          </tr>`).join('') || '<tr><td colspan="7" class="muted">No data yet — installs appear here as users run the add-on.</td></tr>';
+        show('installsCard');
+      }
+
+      async function loadSessions(install) {
+        lastInstall = install;
+        const data = await api('?action=sessions&install=' + encodeURIComponent(install));
+        $('curInstall').textContent = install;
+        $('sessions').innerHTML = data.sessions.map((s) => `
+          <tr>
+            <td class="mono">${s.path.split('/').pop()}</td>
+            <td>${fmtBytes(s.size)}</td>
+            <td class="muted">${fmtDate(s.uploadedAt)}</td>
+            <td><div class="row-actions">
+              <button data-get="${s.path}">View</button>
+              <button class="danger" data-delpath="${s.path}">Delete</button>
+            </div></td>
+          </tr>`).join('') || '<tr><td colspan="4" class="muted">No sessions.</td></tr>';
+        show('sessionsView');
+      }
+
+      async function loadContent(path) {
+        const data = await api('?action=get&path=' + encodeURIComponent(path));
+        $('curPath').textContent = data.path + '  ·  ' + fmtBytes(data.size);
+        // Pretty-print each NDJSON line.
+        const lines = (data.text || '').split('\n').filter(Boolean).map((l) => {
+          try { return JSON.stringify(JSON.parse(l)); } catch { return l; }
+        });
+        $('content').textContent = lines.join('\n');
+        show('contentView');
+      }
+
+      async function delInstall(install) {
+        if (!confirm('Delete ALL sessions for install ' + install + '? This cannot be undone.')) return;
+        const r = await api('', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ action:'delete', install }) });
+        alert('Deleted ' + r.deleted + ' object(s).');
+        loadInstalls();
+      }
+      async function delPath(path) {
+        if (!confirm('Delete this session?\n' + path)) return;
+        const r = await api('', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ action:'delete', path }) });
+        alert('Deleted ' + r.deleted + ' object(s).');
+        loadSessions(lastInstall);
+      }
+
+      document.addEventListener('click', (e) => {
+        const t = e.target.closest('button'); if (!t) return;
+        if (t.dataset.view) loadSessions(t.dataset.view);
+        else if (t.dataset.del) delInstall(t.dataset.del);
+        else if (t.dataset.get) loadContent(t.dataset.get);
+        else if (t.dataset.delpath) delPath(t.dataset.delpath);
+      });
+      $('backToInstalls').onclick = () => show('installsCard');
+      $('backToSessions').onclick = () => show('sessionsView');
+
+      async function enter() {
+        try {
+          $('dash').classList.remove('hidden');
+          $('login').classList.add('hidden');
+          await loadInstalls();
+        } catch (err) {
+          $('dash').classList.add('hidden');
+          $('login').classList.remove('hidden');
+          $('loginErr').textContent = 'Unauthorized — wrong key.';
+          $('loginErr').classList.remove('hidden');
+          sessionStorage.removeItem('mpsi_admin_key'); KEY = '';
+        }
+      }
+
+      $('loginBtn').onclick = () => { KEY = $('key').value.trim(); sessionStorage.setItem('mpsi_admin_key', KEY); enter(); };
+      $('key').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('loginBtn').click(); });
+      if (KEY) enter();
+    </script>
+  </body>
+</html>
