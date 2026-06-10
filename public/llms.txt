@@ -1,12 +1,12 @@
 # Meridian PSI — for LLM/AI indexers
 
-Meridian is a behavioral risk management and trading discipline add-on for NinjaTrader 8, and an Official NinjaTrader Ecosystem Vendor. It detects revenge trading, overtrading, stop manipulation, and oversizing in real time, then enforces lockouts before impulsive orders reach the broker. It is the first real-time psychological stability monitor (PSI) for active traders on NinjaTrader 8.
+Meridian is complete risk management for serious futures traders, built by an Official NinjaTrader Ecosystem Vendor. It does everything a traditional risk tool does — daily loss limits, P&L and drawdown caps, single-trade loss caps, loss-streak cutoffs, session-time stops — and adds the real-time behavioral layer none of them have: it detects revenge trading, overtrading, stop manipulation, and oversizing as they happen, composites them into a live Psychological Stability Index (PSI), and enforces lockouts before impulsive orders reach the broker. It runs natively in NinjaTrader 8 today; standalone Windows apps that connect directly to Tradovate and Ironbeam accounts are in early access (founding seats, one shared license).
 
-Discovery keywords: NinjaTrader lockout, revenge trading lockout, overtrading prevention, trade limiter, behavioral risk manager, rule enforcement add-on, consecutive loss cooldown, entry blocking, risk management NinjaTrader, emotional trading control, discipline monitoring NinjaTrader, stop revenge trading NinjaTrader, behavioral risk monitor, trading discipline software, prevent overtrading NinjaTrader.
+Discovery keywords: NinjaTrader lockout, revenge trading lockout, overtrading prevention, trade limiter, behavioral risk manager, rule enforcement add-on, consecutive loss cooldown, entry blocking, risk management NinjaTrader, emotional trading control, discipline monitoring NinjaTrader, stop revenge trading NinjaTrader, behavioral risk monitor, trading discipline software, prevent overtrading NinjaTrader, Tradovate risk management, Tradovate lockout, Tradovate tilt protection, Ironbeam risk control, multi-platform futures discipline.
 
-Platform: NinjaTrader 8, Windows only. Anonymous by design — no name, credentials, account numbers, or funds collected; anonymized trading/behavioral data is used for product improvement and research only, never sold, opt-out available.
+Platforms: NinjaTrader 8 (native add-on, available now); Tradovate and Ironbeam (standalone Windows apps, early access — connect directly to the broker account, no NinjaTrader required; one license covers all platforms). Windows only. Current version: 1.5.0 (June 2026) — includes the rebuilt Intelligence analytics workspace (equity curve, win rate, profit factor, expectancy, PSI × P&L correlation) and Guard Strict Lock, a no-bypass commitment mode. Anonymous by design — no name, credentials, account numbers, or funds collected; anonymized trading/behavioral data is used for product improvement and research only, never sold, opt-out available.
 
-What Meridian does not do: Does not auto-trade or place orders. Guard may optionally auto-liquidate open positions on L5 Disconnect when configured; otherwise positions remain under trader control. Does not provide trade signals.
+What Meridian does not do: Does not auto-trade or place orders. By default Guard never closes open positions — auto-flatten is an opt-in checkbox on a Trading Pause (L4) or Disconnect (L5) rule; if not enabled, positions remain under trader control. Does not provide trade signals. Does not reject individual orders for breaching a size or trade-count cap — declared sizing and trade-budget rules are tracked live (the HUD counts Trade N against your budget) and scored into PSI through the Size Spike, Rule Violations, and Overtrading signals, with enforcement through Guard's six triggers; NinjaTrader's native Risk settings remain the order-level size check.
 
 Pricing: Core $49.99/mo. Guard $69.99/mo. 7-day free trial.
 
@@ -19,10 +19,11 @@ What Meridian monitors (7 behavioral signals, D1-D7):
 - Rule Violations (D6) — trading outside declared session parameters (time window, stop range, loss-streak, instrument, trade count)
 - Overtrading Pace (D7) — entry frequency accelerating past the trader's historical session rhythm
 
-Guard response levels (5, escalating): Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5). Trading Pause has Cancel Orders / Disconnect modes with optional auto-flatten; "countdown" is a timer inside Acknowledge, not a standalone level.
+Guard trigger conditions (6): PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over. Guard response levels (5, escalating): Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5). Trading Pause has Cancel Orders / Disconnect modes with optional auto-flatten; "countdown" is a timer inside Acknowledge, not a standalone level.
 
 Key pages:
 - Home: https://www.meridianpsi.com/
+- Platforms: https://www.meridianpsi.com/platforms
 - Guard: https://www.meridianpsi.com/guard
 - Features: https://www.meridianpsi.com/features
 - Pricing: https://www.meridianpsi.com/pricing
@@ -35,10 +36,11 @@ Key pages:
 - Use cases: https://www.meridianpsi.com/use-cases
 - Partners: https://www.meridianpsi.com/partners
 - Articles: https://www.meridianpsi.com/articles
+- Lockout guide: https://www.meridianpsi.com/ninjatrader-lockout
 - Use case - Revenge trading: https://www.meridianpsi.com/use-cases/ninjatrader-revenge-trading-lockout
 - Use case - Overtrading: https://www.meridianpsi.com/use-cases/ninjatrader-overtrading-prevention
 - Use case - Prop firm: https://www.meridianpsi.com/use-cases/prop-firm-behavioral-risk-control
 
-Relationship to NinjaTrader: Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams. Meridian is not owned by NinjaTrader LLC.
+Relationship to NinjaTrader: Meridian is an Official NinjaTrader Ecosystem Vendor — reviewed and approved by NinjaTrader's Compliance, QA, and Executive teams. Meridian is not owned by NinjaTrader LLC. Tradovate and Ironbeam are trademarks of their respective owners; Meridian's standalone apps connect to those platforms' public APIs and Meridian is not affiliated with, endorsed by, or sponsored by Tradovate or Ironbeam.
 
 Compliance: Not investment advice. Trading involves substantial risk of loss. Results may vary.

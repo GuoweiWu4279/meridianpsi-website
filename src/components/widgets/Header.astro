@@ -69,11 +69,23 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
         <Logo />
       </a>
       <div class="flex items-center gap-2 md:hidden">
-        {actions?.length ? (
-          <a href={actions[0].href} class="btn btn-primary text-xs px-4 py-2">
-            {actions[0].text}
-          </a>
-        ) : null}
+        {/* Mobile: secondary actions as quiet text links, the PRIMARY action as the
+            one emerald button. Rendering actions[0] blindly once buried the trial
+            CTA behind "Account" — the costliest mobile regression we've shipped. */}
+        {actions
+          ?.filter((a) => a.variant !== 'primary')
+          .map((a) => (
+            <a href={a.href} class="text-xs font-semibold text-zinc-700 dark:text-zinc-300 px-1.5 py-2">
+              {a.text}
+            </a>
+          ))}
+        {actions
+          ?.filter((a) => a.variant === 'primary')
+          .map((a) => (
+            <a href={a.href} class="btn btn-primary text-xs px-4 py-2">
+              {a.text}
+            </a>
+          ))}
         <ToggleMenu />
       </div>
     </div>

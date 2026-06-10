@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Meridian — Real-Time Psychological Stability Monitor for Active Traders
+    default: Meridian — Complete Risk Management for Serious Futures Traders
     template: '%s — Meridian'
-  description: "Meridian is complete behavioral risk management for NinjaTrader 8 — a real-time monitor that catches revenge trading, overtrading, stop-loss manipulation, and oversizing before they damage a session, on top of every traditional risk limit. Official NinjaTrader Ecosystem Vendor."
+  description: "Meridian is complete behavioral risk management for serious futures traders — native in NinjaTrader 8 today, with standalone Tradovate and Ironbeam apps in early access. A real-time monitor that catches revenge trading, overtrading, stop-loss manipulation, and oversizing before they damage a session, on top of every traditional risk limit. Official NinjaTrader Ecosystem Vendor."
   robots:
     index: true
     follow: true

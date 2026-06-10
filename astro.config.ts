@@ -40,7 +40,26 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      // Keep the sitemap canonical-only: no 301 redirect stubs, no utility/
+      // internal pages, and nothing robots.txt already disallows. Redirect
+      // URLs in a sitemap surface as "Page with redirect" warnings in GSC,
+      // and advertising a robots-blocked URL (/partners/kit) is contradictory.
+      filter: (page) => {
+        const path = new URL(page).pathname.replace(/\/$/, '') || '/';
+        const excluded = [
+          '/releases', // 301 → /download
+          '/changelog', // 301 → /download
+          '/affiliate', // 301 → /partners
+          '/checkout', // utility page (Whop embed)
+          '/account', // utility page
+          '/partners/kit', // robots.txt-disallowed partner resource
+          '/mockup/dark', // internal design mockup (noindex)
+          '/mockup/light', // internal design mockup (noindex)
+        ];
+        return !excluded.includes(path);
+      },
+    }),
     mdx(),
     icon({
       include: {

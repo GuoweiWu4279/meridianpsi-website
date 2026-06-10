@@ -28,6 +28,11 @@
       "permanent": true
     },
     {
+      "source": "/checkout",
+      "destination": "/pricing",
+      "permanent": false
+    },
+    {
       "source": "/docs",
       "destination": "/faq",
       "permanent": false
