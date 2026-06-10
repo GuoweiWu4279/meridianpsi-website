@@ -51,7 +51,7 @@
           c. 事实闸:每个产品事实可追溯 MERIDIAN.md。
           + register 闸:和 ARTIFACTS 对应行的范例并排读,声音一致吗?
 6. 入列   写进 queue.md(目标 URL + 粘哪 + 成品)。push 给 Gary。
-7. 学习   Gary 给的任何纠正 → 立刻写进 LEARNINGS.md 成永久规则,并回头修对应层(ARTIFACTS/VOICE/POSITIONING)。
+7. 学习   走 §6 学习闭环:把这次的纠正 / Gary 的写作 捕获成永久规则,回灌对应层。
           这样同一个错不会犯第二次。
 ```
 
@@ -84,6 +84,36 @@
 
 **已降级为指针(别再当真理源):** `writing-rules.md`(并入 `brand/VOICE.md`)。
 **已停用/归档(别照着复活):** `dm-templates.md`、`outreach-strategy.md`(冷外联已停,见各自 DEPRECATED 头)。
+
+---
+
+## 6. ★ 学习闭环(系统怎么变好)
+
+> 这是 Gary 问的:系统会不会从"给我的反馈"和"我自己写的东西"学。
+> **诚实的前提:我是跨 session 无状态的,"学习"不可能是改权重。它只能是 = 结构化外部记忆 + 可靠的捕获 + 可靠的召回 + 定期提炼。** 召回是天生最弱的一环(下面有缓解)。一条学习只有进了硬闸或被可靠召回,才算真学到;躺在日志里没人读 = 没学到。
+
+### 两个输入源
+
+**A. 我收到的纠正/反馈**(Gary 否掉/改我的稿、口头指出)
+→ 立刻写进 `reddit/ops/LEARNINGS.md`(日期·症状·根因·永久规则·改了哪层)。
+
+**B. ★ Gary 自己写的东西**(他改我的稿、自己写一段评论/邮件、甩来一个他喜欢的样本)——**最高信号,他在直接示范目标声音**。程序(extraction):
+1. 当作金样本,不是一次性。
+2. **Diff 意图**:他做了什么我不会做的?和我的稿差在哪?
+3. **归类**这条教训:VOICE(怎么写)/ POSITIONING(说什么)/ ARTIFACTS(文体-register)/ 事实。
+4. **回灌**:在对应那一层加/改规则;干净的样本贴进 `voice-samples.md` 的"★ Gary 的真实写作"区。
+5. **登记**:LEARNINGS 记一条,触发写"Gary 写/改了 X"。
+6. **冲突时他赢**:他的写法和现有规则矛盾 → 改规则(他是声音的所有者),不是劝他。
+   (procedure 细节见 `brand/VOICE.md §7`。)
+
+### 四个环节(缺一不可)
+- **捕获**:A 走 step 7,B 走上面 extraction。**铁律:每次 Gary 给反馈或写东西,当场捕获,不留到"以后"**——以后=蒸发。
+- **提炼**:每攒 ~5 条 LEARNINGS,或每开一个新内容冲刺前,跑一次 consolidation:把反复出现的纠正压成 VOICE 的病征 / ARTIFACTS 的行 / POSITIONING 的句 / 金样本,然后把原始条目标记 "distilled"。(类比 memory consolidation。)一堆未提炼的日志不是学习。
+- **召回**(最弱):缓解 = ①把最重要的学习做成**硬闸里的一条**(AI 腔图鉴),硬闸每篇必扫,想忘都忘不掉;②`MEMORY.md` 里有指针 memory(做社媒先读本系统 + LEARNINGS),会自动浮现;③本文件 step 0 写死"session 开始读 LEARNINGS"。**真理:别指望召回松散的笔记——把高价值学习升级成被强制执行的规则。**
+- **强制**:学到的东西,优先级 = 进硬闸 > 进 ARTIFACTS/POSITIONING 规格 > 进 LEARNINGS 笔记。越往上越不会被忘。
+
+### 可选:强制捕获(hook)
+若要让"捕获"不靠我自觉,可在 `settings.json` 配一个 Stop hook:本回合若动过 `social/` 文件,收尾时提示"是否有该写进 LEARNINGS 的纠正?"。这是把软纪律变成硬提醒。默认没配(怕噪音);Gary 说要我就配。
 
 ---
 

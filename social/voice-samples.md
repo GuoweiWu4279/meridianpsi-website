@@ -5,6 +5,28 @@ Add new samples at the top of each section. For each entry, include:
 - The platform
 - The reply (final approved version)
 
+> 学习用法:这是金样本库。**Gary 改我的稿/自己写的东西** → 按 `brand/VOICE.md §7` 榨成规则,并把样本贴进下面"★ Gary 的真实写作"区。
+> 普通已批准回复贴进各平台分区(如 Reddit)。
+
+---
+
+## ★ Gary 的真实写作(研究他的真实 founder voice)
+
+> 这些是 Gary 亲手写/改的对外内容,是声音的第一手来源(权重高于任何规则)。**只放他写给交易者/用户的内容**,不放他写给我的管理消息(那是另一种声音,见 VOICE §7 注)。
+
+### 2026-05-26 — 置顶帖 founder 终稿(语境:r/MeridianPSI 官方 What-is 帖)
+- 样本位置:`reddit/pinned-start-here.md` 的 changelog "Canonical version saved from founder final edit"(那一版的正文,git 史可取)。
+- 从中观察到的他的真实倾向(榨出的规则,已回灌):
+  - 他**第一人称、直接、口语**地开场("I've been trading futures and stocks for years")——但这是他写**评论/personal-essay**时的自然 register。**注意:他后来明确否定把这种 register 用在官方置顶帖上**(2026-06-10),要求官方帖=清晰的产品介绍。→ 即:Gary 的"founder 评论声音"和"官方帖声音"是两种,见 ARTIFACTS。
+  - 他爱用 **Apple Watch stress monitor** 这个比喻(反复出现)→ 已收进 POSITIONING §5 冷启动比喻。
+  - 他要**具体、要诚实**,讨厌空话。
+
+### 2026-06-10 — 口头纠正里榨出的他的偏好(语境:重写置顶帖,他否了我三版)
+- "纯纯 AI 写的办法,谁会这么写" → 恨三连碎句 / 对仗句 / 抽象升华。已进 VOICE §2 Tell 1/2/7(硬闸)。
+- "我们这是在自己的 subreddit 发的公共 pin post" → 官方帖要权威产品介绍口吻,不是钻空子的评论。已进 ARTIFACTS + LEARNINGS L3。
+- "take a step back,先严谨分析目标再写" → 他要的工作方式 = **先定这篇的目标/读者/文体,再动笔**。这就是写作循环 step 1-3。
+- "整个系统怎么做……和 youtube 写文案相似,每一 part 目标不一样" → 他的心智模型 = 内容像 YouTube 一样有严谨架构、每段目标不同。已成为整个 CONTENT-SYSTEM 的设计依据。
+
 ---
 
 ## How to add a new sample
