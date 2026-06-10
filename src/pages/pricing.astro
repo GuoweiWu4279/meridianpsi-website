@@ -112,6 +112,18 @@ const faqs = [
     q: 'Monthly or annual?',
     a: `Same product, same features. Annual is billed once a year at a lower effective monthly rate — about $${core.annualSavings}/yr less on Core and about $${guard.annualSavings}/yr less on Guard. Both include the 7-day free trial. Use the toggle above to compare.`,
   },
+  {
+    q: 'Does Meridian place trades for me?',
+    a: 'No. Meridian never opens a position and never provides signals. The only orders it ever touches are the ones its Guard rules act on — cancelling a new entry or flattening a position — and only under rules you configured in advance. Exits and protective stops are never blocked.',
+  },
+  {
+    q: 'Can I override a lock mid-session?',
+    a: 'Standard Guard responses are configurable — you choose how firm each trigger is, from a quiet alert to a typed acknowledgment to an entry block. Strict Lock is the exception by design: once armed for a window, it cannot be bypassed mid-session. That is the entire point — you set it when you are calm, for the moment the tilted version of you wants to switch it off.',
+  },
+  {
+    q: 'Does Meridian see my account credentials or funds?',
+    a: 'The NinjaTrader 8 add-on reads execution data inside the platform — your broker credentials never touch Meridian. The standalone early-access apps sign in to your own account locally on your PC; credentials are used to open your session and are never transmitted to us. Meridian never holds, moves, or has any access to funds.',
+  },
 ];
 ---
 
@@ -363,6 +375,7 @@ const faqs = [
     <div data-reveal class="max-w-3xl mx-auto px-6 py-24 text-center">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">Start the trial. Let your own data decide.</h2>
       <p class="mt-5 text-lg text-zinc-600">Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 7. Cancel anytime.</p>
+      <p class="mt-3 text-sm text-zinc-500">Do the math: a single evaluation reset runs $100+, and one tilted session usually costs more than a month of Guard.</p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start Guard free trial</a>
         <a href="/download#requirements" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">System requirements</a>
