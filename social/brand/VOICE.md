@@ -15,7 +15,8 @@
 3. **讲产品时精确克制,讲问题时像人。**(这是 Meridian 声音的核心张力。)产品功能 = 临床、准确;交易者的处境 = 人话、共情。
 4. **交易者的语言**,不是学术、不是营销。tilt / revenge trade / blown session / funded / eval —— 用这些。禁 cortisol / prefrontal cortex / "neurological cascade"(尤其 r/Daytrading)。
 5. **每句都得挣到它的位置。** 删掉所有连接性废话、铺垫、自我提示。
-6. **register 由文体定,不是一刀切。** 官方置顶帖 = 自信的产品说明书口吻;别人帖里的评论 = 第一人称同行口吻。**先查 ARTIFACTS 这篇该用哪种**,再写。用错 register = 2026-06-10 的失败(把评论口吻用到官方置顶帖上)。
+6. **register 由文体定,不是一刀切。** 查 `reddit/ops/ARTIFACTS.md` 这篇该用哪种,再写。
+7. **★ 要力度,别抽干(Gary 2026-06-10 校正)。** 反 AI 腔 ≠ 把文案写得平、写得临床。**鲜活的、放大的比喻是力度的来源,不是 AI 腔**——心率监测/Apple Watch 这种核心比喻要展开用,别为了"显得克制"删掉。自信地下论断("we give you everything they have, and something much better")好过怯生生的对冲。段落要有有力的收尾。**判 AI 腔看的是"碎句/装饰对仗/抽象升华/搬口号",不是"有没有力度"——力度是要的。**
 
 ---
 
@@ -30,13 +31,13 @@
 - ✅ "You take a loss, get annoyed, and a minute later you're back in at double size with a stop you've already moved once."
 - 规则:三个并列碎片 → 合成一两句正常的话。一个例子讲透,胜过三个排比。
 
-### Tell 2 — 对仗 / 互文(antithesis / chiasmus)
-两半镜像句,常带省略动词的"机灵"。
-- ❌ "Discipline stops being a feeling you argue with and becomes a number you can't."
-- ❌ "the session ends on your terms instead of tilt's."
-- ❌ "A green day that was mostly luck is a warning, not a win."(轻度,但成对出现就是)
-- ✅ 把意思说一次:"The goal is to show, in numbers, what discipline is actually worth to your account."
-- 规则:看到句子结构左右对称/前后呼应,拆掉对称,只说一遍。
+### Tell 2 — 堆叠/装饰性对仗(antithesis / chiasmus)
+**⚠️ 2026-06-10 Gary 校正:一句干脆的对比是好的,别一刀切。** 该禁的是**堆叠的、装饰性的、省略动词卖机灵的**对仗,不是所有对比。
+- ✅ 好的对比(保留):"We monitor your behavior, not your P&L."(干脆、具体、有力——Gary 亲手写的)
+- ❌ 装饰性/机灵(改):"Discipline stops being a feeling you argue with and becomes a number you can't."(省略动词卖机灵)
+- ❌ "the session ends on your terms instead of tilt's."(为押韵)
+- ❌ 同一段里连着三四个对仗句排比下来(堆叠)
+- 规则:**单个具体的 "X, not Y" 对比 = 留;为押韵/机灵/堆节奏的对仗 = 改。** 判据:这个对比在传达一个清楚的事实,还是只在"显得漂亮"?
 
 ### Tell 3 — "Not just X, it's Y" 升格
 - ❌ "This isn't a journal. It's a safety belt." / "Not a faster tool. The next generation."

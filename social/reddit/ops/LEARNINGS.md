@@ -25,6 +25,17 @@
 
 ---
 
+## L5 — 我的"临床第三人称"register 把力度抽干了(2026-06-10,Gary 亲手改稿)
+- **症状**:我把 pinned 帖写成临床、第三人称、删了比喻的产品说明书。Gary 改写后说我的版本"根本没有力度,废话",还砍了我从网站搬的 "one bad session" 开头。
+- **根因**:① 我把现网首页一句标题("one bad session, not bad strategy")当 thesis 照搬,没判断它作为钩子其实很平;② 我为了"反 AI 腔"过度求稳,把鲜活比喻删了、把对比一刀切了、把语气写平了——结果反 AI 腔变成了反力度。
+- **永久规则(他赢,已改规则)**:
+  - 开头**点名现有工具的缺口 + 心率比喻展开**,不用 "one bad session"(POSITIONING §2)。
+  - 我们自己的官方帖 = **品牌 "we" 口吻 + 鲜活比喻 + 结尾一句 "I"**,不是冷第三人称(ARTIFACTS pinned register)。
+  - **鲜活/放大的比喻是力度来源,不是 AI 腔;反 AI 腔 ≠ 写平**(VOICE §1.7)。
+  - **干脆的单个对比(behavior, not P&L)是好的**;只禁堆叠/装饰对仗(VOICE Tell 2 放宽)。
+  - 网站文案≠圣经:POSITIONING 是从网站蒸馏的,但**声音所有者 Gary 的判断高于网站文案**。
+- **改的层**:POSITIONING §1/§2、VOICE §1.7 + Tell 2、ARTIFACTS pinned 行、voice-samples 加金样本。
+
 ## L0 — 元教训:现象 vs 系统(2026-06-10,Gary 点出)
 反复纠正同一类错(文案不对)是**现象**;**问题是没有像 YouTube pipeline 那样的严谨系统**。修复不是写得更小心,是建系统让文案变成"查表推导 + 硬扫描 + 学习环"。这套系统(CONTENT-SYSTEM / POSITIONING / VOICE / ARTIFACTS / LEARNINGS)就是这次的产物。**以后再出现"反复纠正同一类东西",先问:是哪一层缺了?补那一层,别再靠小心。**
 

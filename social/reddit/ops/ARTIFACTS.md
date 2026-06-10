@@ -21,7 +21,7 @@
 
 | 文体 | 在哪发 | 读者 + 心态 | 这篇的目标(目标链哪一环) | 声音 register | 结构(section-role 序列) | 长度 |
 |---|---|---|---|---|---|---|
-| **Pinned intro**(官方"What is Meridian") | 自己 sub r/MeridianPSI | 点进来、好奇、中性 | 理解 + 信任(权威锚) | **产品说明书**:自信第三人称讲产品,正常段落,分小节,clinical-precise。**几乎不用第一人称**(结尾一句"I'm the founder"可以) | define → problem → how → enforce → review → who-for → trust → CTA | 中长,可分小节 |
+| **Pinned intro**(官方"What is Meridian") | 自己 sub r/MeridianPSI | 点进来、好奇、中性 | 理解 + 信任(权威锚) | **自信的品牌"we"口吻 + 鲜活比喻 + 结尾一句"I"**(Gary 2026-06-10 校正:不是冷冰冰第三人称、不是抽干力度的临床体)。正常段落、分小节;讲问题用心率/Apple Watch 比喻展开,大胆说超集("we give you everything they have, and something much better"),段落有有力收尾 | define → **problem(点名现有工具缺口 + 心率比喻)** → how → enforce → review → who-for → trust → CTA | 中长,可分小节 |
 | **Topic comment**(别人帖里回复) | 外部 sub(r/Daytrading 等) | OP 在求助,对广告/AI 高度敏感、敌意 | reach + 信任(被看见、被信) | **同行口吻**:第一人称、口语、具体、真诚;产品只在被问/天然相关时一句带过 + "obviously biased, NT8 only" | answer-first → 真实推理/经验 → (可选)一句披露式提及 | 短,3-8 句 |
 | **Founding / early-access 帖** | 自己 sub + r/alphaandbetausers | 在找新工具的早期采用者 | **转化**(招 founding user) | **builder-offer**:直接、透明、条款具体,"comment or DM if interested" | 一句这是什么 → 这个 offer(免费窗口换什么)→ 谁合适 → 怎么进 | 中短 |
 | **Data / insight 帖** | 自己 sub,成熟后外部 | 喜欢证据的交易者 | 信任 + reach(独立价值)| **分析师**:临床、数字在前、方法诚实、产品是脚注 | 发现 → 方法/样本 → 这意味着什么 → (一句)来源/我是谁 | 中 |

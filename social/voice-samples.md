@@ -21,7 +21,20 @@ Add new samples at the top of each section. For each entry, include:
   - 他爱用 **Apple Watch stress monitor** 这个比喻(反复出现)→ 已收进 POSITIONING §5 冷启动比喻。
   - 他要**具体、要诚实**,讨厌空话。
 
-### 2026-06-10 — 口头纠正里榨出的他的偏好(语境:重写置顶帖,他否了我三版)
+### 2026-06-10 — 他亲手改写的置顶帖"problem"段(★最高信号金样本,语境:官方 pinned intro)
+Gary 改写后的原文(保留他的力度,仅他的拼写/语法是 ESL 滑误、不学进规则):
+> Most risk tool on the market right now all ignore a very significant part of risk management. Most tool only step in when you reach a certain hard limit you've set. Daily stop-loss, max draw-down, amount of losses. There is nothing wrong with that, but it can be done better. There is a very long time frame between when a trader hits it's hard limit, and when they are trading different from their normal behavior.
+> Think of it as the heart rate monitor on your watch. Old risk management tools are the one that call 9-1-1 when you hit a specific heart rate, let's say 180. But for Meridian, we watches the spikes, the infrequencies, the abnormal heart rate changes, and step in way before it hits the limit. That's why we are not another new risk tool. We give you everything they have, and something much better. We monitor your trading behaviors, not your PnL.
+
+榨出的规则(已回灌):
+- **开头点名现有工具的缺口**,不用 "one bad session"(他砍了)→ POSITIONING §2 重写。
+- **鲜活放大的心率比喻**(180 打 911 vs 提前看异常)是力度来源 → VOICE §1.7 + ARTIFACTS pinned register。
+- **品牌 "we" 口吻**(we give you / we monitor)→ ARTIFACTS pinned register 改(原定"几乎不用第一人称"是错的)。
+- **大胆超集**:"everything they have, and something much better" → POSITIONING §1 / §8。
+- **干脆对比** "behavior, not P&L" 是好的 → VOICE Tell 2 放宽。
+- 他还在 Intel 段加了有力收尾("no better way of improving discipline than seeing it in real numbers")→ ARTIFACTS:段落要有力收尾。
+
+
 - "纯纯 AI 写的办法,谁会这么写" → 恨三连碎句 / 对仗句 / 抽象升华。已进 VOICE §2 Tell 1/2/7(硬闸)。
 - "我们这是在自己的 subreddit 发的公共 pin post" → 官方帖要权威产品介绍口吻,不是钻空子的评论。已进 ARTIFACTS + LEARNINGS L3。
 - "take a step back,先严谨分析目标再写" → 他要的工作方式 = **先定这篇的目标/读者/文体,再动笔**。这就是写作循环 step 1-3。

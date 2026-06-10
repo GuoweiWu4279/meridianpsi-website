@@ -32,15 +32,19 @@
 
 ---
 
-## 2. 核心论点(THE THESIS):一个坏 session,不是坏策略
+## 2. 核心论点(THE THESIS):缺口 + 心率比喻(★ Gary 2026-06-10 校正)
 
-现网 "WHY IT MATTERS" 段的灵魂,几乎所有文案都从这里起:
+**主框架 = 点名现有风控工具的缺口,然后用心率监测比喻放大它。** 从这里起:
 
-> **"Most blown accounts aren't bad strategy. They're one bad session."**
+> 每个现有风控工具都只在你**撞到自己设的硬限**时才动手(daily stop-loss / max drawdown / 亏损次数)。这没错,但能做得更好。问题在于:**从一个交易者开始偏离他的正常行为,到他终于撞上硬限,中间有很长一段时间——没有任何工具在看这一段。**
+>
+> **心率比喻(核心,要鲜活地用,别删):** 老工具是"心率到 180 才打 911"的那种;Meridian 看的是 spike、不规律、偏离你正常节律的变化,在撞限**之前很久**就介入。这就是为什么 **"we are not just another risk tool. We give you everything they have, and something much better. We monitor your behavior, not your P&L."**
 
-你花几个月打磨的策略很少背叛你。一个 session 会:昨天你会拒掉的进场、你早戒了的手数、你挪了两次的止损。**daily loss limit 在最后才抓到这个。Meridian 抓造成它的行为。**
+> ⚠️ **不要再用 "one bad session, not bad strategy" 当开头/核心 thesis。** 它来自现网首页 "WHY IT MATTERS",但 Gary(声音所有者)2026-06-10 明确否了:作为钩子**没力度、是废话**。网站上有≠是最强框架。"一个坏 session 毁掉 funded 账户"这个**事实**仍可在 §4 funded 楔子里当具体成本论据用,但**不做开头,不做 thesis**。
 
 具体对比(可引用):一个 $500 日亏锁要等你已经 −$500 才动手,四笔 revenge trade 太晚了;Meridian 在第二笔就标出 revenge 模式。
+
+**Apple Watch / 心率监测比喻是 Meridian 的核心比喻(POSITIONING §5),力度的来源。讲问题时鲜活地展开它,不要为了"显得临床"把它删掉**(这是 2026-06-10 我抽干力度的根因)。
 
 ---
 
