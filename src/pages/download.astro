@@ -91,16 +91,26 @@ const { Content: LatestContent } = await render(latest);
       </div>
 
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-        <h2 class="text-base font-semibold mb-4 text-zinc-900">Installation</h2>
-        <ol class="space-y-2 text-sm text-zinc-600 list-decimal list-inside leading-relaxed">
-          <li>Download the latest build below.</li>
-          <li>NinjaTrader 8 → <strong>Tools → Import → NinjaScript Add-On</strong>.</li>
-          <li>Select the downloaded <code class="bg-zinc-100 px-1 rounded text-xs">.zip</code> and restart NinjaTrader.</li>
-          <li>Open the <strong>Meridian Dashboard</strong> from Control Center → <strong>New → Add-on → Meridian Dashboard</strong>.</li>
-          <li>Open the <strong>License</strong> tab, paste the license key from your Whop receipt, and click <strong>Activate</strong>.</li>
-        </ol>
+        <h2 class="text-base font-semibold mb-1 text-zinc-900">Step-by-step install guides</h2>
+        <p class="text-xs text-zinc-500 mb-4">Pick your version — each guide walks the whole setup, with screenshots.</p>
+        <div class="space-y-3">
+          <a href="/installation-guide" class="flex items-center justify-between gap-3 rounded-xl border border-zinc-200 hover:border-emerald-300 bg-zinc-50/60 px-4 py-3 transition group">
+            <span>
+              <span class="block text-sm font-semibold text-zinc-900">NinjaTrader 8 add-on</span>
+              <span class="block text-xs text-zinc-500">Import the .zip, activate, configure — ~10 min</span>
+            </span>
+            <span class="text-emerald-700 font-semibold text-sm group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+          <a href="/install-app" class="flex items-center justify-between gap-3 rounded-xl border border-zinc-200 hover:border-emerald-300 bg-zinc-50/60 px-4 py-3 transition group">
+            <span>
+              <span class="block text-sm font-semibold text-zinc-900">Standalone app — Tradovate &amp; Ironbeam</span>
+              <span class="block text-xs text-zinc-500">Install, sign in to your broker, activate — ~5 min</span>
+            </span>
+            <span class="text-emerald-700 font-semibold text-sm group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+          </a>
+        </div>
         <p class="mt-4 text-xs text-zinc-500">
-          Need help? Visit <a href="/support" class="underline text-zinc-600 hover:text-zinc-900">support</a> or read the <a href="/faq" class="underline text-zinc-600 hover:text-zinc-900">FAQ</a>.
+          Stuck? Visit <a href="/support" class="underline text-zinc-600 hover:text-zinc-900">support</a> or read the <a href="/faq" class="underline text-zinc-600 hover:text-zinc-900">FAQ</a>.
         </p>
       </div>
     </div>

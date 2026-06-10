@@ -111,7 +111,8 @@ export const footerData = {
       links: [
         { text: 'Contact', href: getPermalink('/support') },
         { text: 'Account', href: getPermalink('/account') },
-        { text: 'Installation Guide', href: getPermalink('/installation-guide') },
+        { text: 'Install Guide — NinjaTrader 8', href: getPermalink('/installation-guide') },
+        { text: 'Install Guide — Tradovate & Ironbeam app', href: getPermalink('/install-app') },
         { text: 'Trust & Security', href: getPermalink('/trust') },
         { text: 'Data & Research Notice', href: getPermalink('/data-research') },
         { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
