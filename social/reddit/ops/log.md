@@ -6,7 +6,7 @@
 
 | 日期 | Sub | 类型 | 链接 | 提了产品? | 备注 |
 |------|-----|------|------|-----------|------|
-| 2026-06-10 | r/MeridianPSI | 置顶帖(pinned intro) v7 | 待回填(Gary 贴出) | 是(自有sub) | 取代旧置顶；gap-first + 心率比喻 + we 口吻(Gary 改写后融合)；配图三张；ARTIFACTS pinned-intro 范例 |
+| 2026-06-10 | r/MeridianPSI | 置顶帖(pinned intro) v7 | https://www.reddit.com/r/MeridianPSI/comments/1t36tfc/start_here_what_is_meridian_psi/ | 是(自有sub) | 取代旧置顶；gap-first + 心率比喻 + we 口吻(Gary 改写后融合)；配图三张；ARTIFACTS pinned-intro 范例 |
 | 2026-05-31 | r/Daytrading | 评论 | 待补链接 | 否 | algo 论据反驳。已存入 voice-samples.md |
 
 ---

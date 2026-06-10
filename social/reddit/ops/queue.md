@@ -39,11 +39,11 @@ Reddit username: u/<USERNAME>
 
 ## ① 待发队列
 
-### ~~[1] r/MeridianPSI — 置顶帖更新~~ ✅ 已发（2026-06-10，Gary 贴出 v7）→ 已搬到 log.md。链接待回填。
+### ~~[1] r/MeridianPSI — 置顶帖更新~~ ✅ 已发（2026-06-10）：https://www.reddit.com/r/MeridianPSI/comments/1t36tfc/start_here_what_is_meridian_psi/
 
-### [2] 评论批次 #1 | 状态：等 0a（拿到 karma 数后我立刻扫帖出稿）
-Phase 1 开跑：每天 2–5 条纯价值评论草稿（零产品、零链接）。我扫 r/Daytrading + r/FuturesTrading
-的新帖，按打分表筛选，成稿后 push 你。
+### [2] 评论草稿 — ★主intake = Gary 贴帖 → 我出草稿（2026-06-10 定）
+Gary 刷帖看到感兴趣的就把帖子(标题+正文+sub，能带链接更好)贴给我；我按 ARTIFACTS "Topic comment" 文体出草稿（同行口吻、答在前、产品只在被问/天然相关时一句带过+披露），过三闸后给你，你贴。
+（我自己用 Arctic Shift/WebSearch/官方API 扫帖 = 补充,不是主路。）
 
 ---
 

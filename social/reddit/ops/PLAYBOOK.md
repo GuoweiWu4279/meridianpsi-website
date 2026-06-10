@@ -98,9 +98,11 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 
 ## 每次跑的步骤（我）
 
+> ★ **找帖的主路 = Gary 贴帖给我**（2026-06-10 定）。他刷 reddit 看到感兴趣的帖,把帖子(标题+正文+sub,带链接更好)贴给我,我出草稿。我自己用 Arctic Shift/WebSearch/官方API 扫帖 = 补充,不是主路(我够不着 reddit 实时,Gary 有)。
+
 1. 读本文件 + `log.md` + `queue.md`；先处理 followup 区。
-2. 扫帖（Arctic Shift / WebSearch / 官方 API）→ 打分 → 去重入账。
-3. 起草（5 步：中文分析→回复角度→中文稿→英文稿→过 writing-rules）→ 写入 `queue.md`（每条含：目标 URL、粘到哪、成品文本）。
+2. **收到 Gary 贴的帖**（或自己扫帖补充）→ 按打分表判这帖值不值得回(≥3)→ 去重入账。
+3. 起草:**先查 `ops/ARTIFACTS.md` 确认这是 "Topic comment" 文体**(同行口吻、答在前、产品只在被问/天然相关时一句带过+披露"I built it, biased")→ 5 步(中文分析→回复角度→中文稿→英文稿→过 `brand/VOICE.md` 三闸)→ 写入 `queue.md`（每条含：目标 URL、成品文本）。
 4. Push 通知 Gary（标题=今天 N 条 · 预计 X 分钟）。
 5. Gary 回报"发了"后：链接补进 `log.md`、好范例入 `voice-samples.md`。
 6. 每周日：周复盘写进 `log.md`（karma 进度、哪类评论得分高、下周重点）。
