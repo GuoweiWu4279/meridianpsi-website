@@ -1,24 +1,56 @@
-# Reddit Queue — 当前候选
+# Reddit Queue — 当前队列（v2 模式：我备稿 → push 通知 → Gary 粘贴发送 → 回"发了"）
 
-每次跑重新生成。Gary 审核区。状态：`待审` / `已批准` / `已发` / `毙`。
-发出去的搬到 `log.md`，并把回复追加到 `voice-samples.md`。
-
----
-
-## 模板（每条候选）
-
-```
-### [序号] r/Sub — [话题5字]  | 契合度 X/5 | 状态：待审
-**原帖：** [链接]  作者：u/xxx ｜ 发布：Xh ago
-**中文分析：**（OP 说了什么，逻辑是否合理）
-**回复角度（中文）：**（我们的切入点）
-**英文草稿：**
-> 草稿正文
-**备注：** 是否提产品 / r/Daytrading 注意点
-```
+状态：`待发` / `已发` / `毙`。发出去的搬到 `log.md`。
 
 ---
 
-## 本轮候选
+## ⓪ Gary 一次性设置（做完划掉，约 20 分钟）
 
-*(空。上一次写入的候选是工具失败时误生成的占位内容，非真实抓取，已作废清除。下次跑从真实 Chrome 抓取重填。)*
+- [ ] **0a. 回我两个数**：Reddit 账号 username + 当前 comment karma（设置页或 profile 可见）。我用它定 Phase 1 起跑点。
+- [ ] **0b. 注册 Reddit Pro**：浏览器开 `redditforpros.com` → 用你的 Reddit 账号登录 → 填公司信息（Meridian / meridianpsi.com / verified email 用 contactmeridianpsi@gmail.com）。免费。注册完告诉我，我接管 Trends 关键词配置清单。
+- [ ] **0c. 提交 API 只读审批工单**：开 `https://support.reddithelp.com/hc/en-us/requests/new` → 选 Developer Support → 粘贴下面文案提交（如有"use case"字段同样粘贴）：
+
+```
+Subject: API access request — read-only monitoring for a founder account
+
+Hi, I'm the founder of Meridian (meridianpsi.com), a behavioral risk-management
+add-on for NinjaTrader 8. I'm requesting approval for a small read-only script
+app on my own account (single account, no third-party users).
+
+Use case: reading new posts in a handful of trading subreddits (r/Daytrading,
+r/FuturesTrading, r/Trading) so I can personally join relevant discussions,
+plus monitoring my own inbox/mentions and managing my own community
+(r/MeridianPSI). Expected volume is far below the free-tier rate limit
+(a few hundred requests/day).
+
+To be explicit: no automated posting, no automated voting, no automated
+messaging, no data resale, no model training. All posting stays manual,
+done personally by me. I understand this is adjacent to my business, so
+I'm happy to provide any further details you need.
+
+Reddit username: u/<USERNAME>
+```
+
+- [ ] **0d. 手机确认**：Reddit app 已装、能收到我的 push 通知。
+
+---
+
+## ① 待发队列
+
+### [1] r/MeridianPSI — 置顶帖更新 | 状态：待发
+**操作：** 打开 r/MeridianPSI 的现有置顶帖 → Edit → 全选替换为
+`Web/social/reddit/pinned-start-here.md` 里 "Body (paste from here)" 之下的全文 → 保存。
+**为什么：** 线上版还是旧文案，有两处必须换的错误：Guard 五级名（旧表 L1/L3 都叫 "Alert"）和隐私句（"No behavioral data ever leaves your computer" 在 v1.5.0 后不真实，合规风险）。
+**备注：** 自有 sub，无任何门槛，随时可发。
+
+### [2] 评论批次 #1 | 状态：等 0a（拿到 karma 数后我立刻扫帖出稿）
+Phase 1 开跑：每天 2–5 条纯价值评论草稿（零产品、零链接）。我扫 r/Daytrading + r/FuturesTrading
+的新帖，按打分表筛选，成稿后 push 你。
+
+---
+
+## ② 排程中（我这边的工作，无需你动）
+
+- Founding User Program 帖（r/MeridianPSI + r/alphaandbetausers 两版）— Phase 2 发，草稿我先备
+- Software Sunday #1 满血帖 — 等多平台公告时点对齐，年度 2 发之首
+- Reddit Pro Trends 关键词清单（NinjaTrader / prop firm / tilt / revenge trading / daily loss limit …）— 等 0b
