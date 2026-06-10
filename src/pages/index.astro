@@ -94,10 +94,10 @@ const homePageJsonLd = {
         'https://www.youtube.com/@Meridianpsi1',
         'https://www.tiktok.com/@meridianpsi',
         'https://www.instagram.com/meridianpsi/',
-        // Official vendor announcement on NinjaTrader's forum — the most
-        // topically-authoritative third-party anchor we have that actually
-        // resolves (the Ecosystem listing URL soft-404s; fix pending with NT).
+        // Official vendor anchors: the live Ecosystem listing (canonical URL per
+        // NT's own publish email, 2026-05-29) + the forum announcement.
         // Keep in sync with EcosystemVendorBadge.astro.
+        'https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian',
         'https://discourse.ninjatrader.com/t/meridian-real-time-behavioral-risk-monitor-guard-enforcement-now-an-official-ninjatrader-ecosystem-vendor/6865',
       ],
     },
@@ -185,6 +185,20 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
         Runs in <span class="font-semibold text-zinc-700">NinjaTrader 8</span> today &middot;
         <a href="/platforms" class="font-semibold text-emerald-700 hover:underline">Tradovate &amp; Ironbeam apps in early access &rarr;</a>
       </p>
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-zinc-500">
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Runs locally &mdash; your data stays on your machine
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          No P&amp;L or account numbers ever leave your PC
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          Cancel anytime
+        </span>
+      </div>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="relative">
@@ -218,21 +232,45 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           <span class="text-[10px] tracking-[0.08em] uppercase text-zinc-400">Market Data Partner</span>
         </a>
       </div>
-      <!-- C14: at-a-glance platform strip — answers "can I even use this?" in one line -->
+      <!-- C14v2: platform coverage cards — answers "can I even use this?" AND
+           "is my broker / funded account covered?". Tradovate & Ironbeam are
+           infrastructure brands most funded traders don't recognize by name,
+           so each card says WHO it covers, and the line below teaches the
+           credentials test. Wordmark-style text for Tradovate/Ironbeam until
+           we have official logo files — do not hand-redraw third-party marks. -->
       <div class="mt-9 pt-7 border-t border-zinc-100">
-        <p class="text-[10px] tracking-[0.14em] uppercase text-zinc-400 mb-3.5">Works with</p>
-        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-zinc-700">
-          <span>NinjaTrader 8
-            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-800">Available now</span>
-          </span>
-          <span>Tradovate
-            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
-          </span>
-          <span>Ironbeam
-            <span class="ml-1.5 align-middle px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
-          </span>
-          <a href="/platforms" class="text-emerald-700 hover:underline font-semibold">One license, every platform &rarr;</a>
+        <p class="text-[10px] tracking-[0.14em] uppercase text-zinc-400 mb-4">Works with</p>
+        <div class="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto text-left">
+          <a href="/platforms" class="rounded-2xl border border-zinc-200 bg-white p-4 hover:border-emerald-300 transition group">
+            <div class="flex items-center justify-between gap-2 mb-2 min-h-[26px]">
+              <img src="/logos/ninjatrader-wordmark.png" alt="NinjaTrader 8" style="height:15px; width:auto; object-fit:contain; opacity:0.85;" class="group-hover:opacity-100 transition" />
+              <span class="shrink-0 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-800">Available now</span>
+            </div>
+            <p class="text-[11.5px] leading-snug text-zinc-500">Native add-on &mdash; works with any broker or funded account you trade through NinjaTrader&nbsp;8.</p>
+          </a>
+          <a href="/platforms" class="rounded-2xl border border-zinc-200 bg-white p-4 hover:border-emerald-300 transition group">
+            <div class="flex items-center justify-between gap-2 mb-2 min-h-[26px]">
+              <span class="flex items-center gap-1.5">
+                <img src="/logos/tradovate-mark.png" alt="" aria-hidden="true" style="height:18px; width:auto; object-fit:contain; opacity:0.9;" class="group-hover:opacity-100 transition" />
+                <span class="text-[16px] font-bold tracking-tight text-zinc-800" style="line-height:1;">Tradovate</span>
+              </span>
+              <span class="shrink-0 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
+            </div>
+            <p class="text-[11.5px] leading-snug text-zinc-500">Standalone app &mdash; the brokerage infrastructure behind many funded-trader programs.</p>
+          </a>
+          <a href="/platforms" class="rounded-2xl border border-zinc-200 bg-white p-4 hover:border-emerald-300 transition group">
+            <div class="flex items-center justify-between gap-2 mb-2 min-h-[26px]">
+              <img src="/logos/ironbeam-wordmark.png" alt="Ironbeam" style="height:15px; width:auto; object-fit:contain; opacity:0.9;" class="group-hover:opacity-100 transition" />
+              <span class="shrink-0 px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wide bg-amber-100 text-amber-800">Early access</span>
+            </div>
+            <p class="text-[11.5px] leading-snug text-zinc-500">Standalone app &mdash; connects to any account cleared through Ironbeam.</p>
+          </a>
         </div>
+        <p class="mt-4 text-[13px] text-zinc-500 max-w-2xl mx-auto">
+          Not sure what your funded account runs on? Check the credentials you sign in with &mdash; a NinjaTrader, Tradovate, or
+          Ironbeam login means Meridian covers it.
+          <a href="/platforms#prop-firms" class="text-emerald-700 hover:underline font-semibold whitespace-nowrap">Funded-account guide &rarr;</a>
+        </p>
       </div>
     </div>
   </section>
