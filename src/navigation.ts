@@ -14,21 +14,21 @@ export const headerData = {
   links: [
     { text: 'Guard', href: getPermalink('/guard') },
     {
-      // Enumerates the REAL product surfaces — every item is a full page a buyer
-      // can click into. Order = the product loop: intro → see (Monitor) → enforce
-      // (Guard) → capture (Journal) → review (Intel) → calibrate (Learning),
-      // with the catalog last. Guard repeats here on purpose: the top-level
-      // "Guard" item is the promoted money page; the dropdown stays complete.
+      // The dropdown enumerates the product's REAL surfaces (the dashboard tabs a
+      // buyer will actually live in) — every item is a full page. Clicking the
+      // "Features" parent itself opens the /features catalog; the intro page
+      // (/what-is-meridian-psi) and the catalog stay fully linked in the footer,
+      // so hiding them here costs no crawler coverage. Guard repeats on purpose:
+      // the top-level "Guard" item is the promoted money page.
       text: 'Features',
       href: getPermalink('/features'),
       links: [
-        { text: 'How Meridian works', href: getPermalink('/what-is-meridian-psi') },
         { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
         { text: 'Meridian Guard', href: getPermalink('/guard') },
-        { text: 'Session Journal', href: getPermalink('/journal') },
-        { text: 'History & Intel', href: getPermalink('/history-intel') },
         { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
-        { text: 'All features', href: getPermalink('/features') },
+        { text: 'Overview', href: getPermalink('/overview') },
+        { text: 'Session Journal', href: getPermalink('/journal') },
+        { text: 'Intel & Patterns', href: getPermalink('/history-intel') },
       ],
     },
     { text: 'Platforms', href: getPermalink('/platforms') },
@@ -70,8 +70,9 @@ export const footerData = {
       links: [
         { text: 'Meridian Guard', href: getPermalink('/guard') },
         { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
+        { text: 'Overview', href: getPermalink('/overview') },
         { text: 'Session Journal', href: getPermalink('/journal') },
-        { text: 'History & Intel', href: getPermalink('/history-intel') },
+        { text: 'Intel & Patterns', href: getPermalink('/history-intel') },
         { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
         { text: 'How Meridian Works', href: getPermalink('/what-is-meridian-psi') },
         { text: 'All Features', href: getPermalink('/features') },
