@@ -147,7 +147,7 @@ const appHowTo = (name, id) => ({
       '@type': 'HowToStep',
       position: 4,
       name: 'Activate your license',
-      text: 'Open the License tab, paste your Meridian key from Whop, and click Activate. A 7-day free trial runs before you activate.',
+      text: 'Start your subscription at meridianpsi.com/pricing (the 7-day free trial means no charge until day 7), copy the license key from your Whop membership, then open the License tab in Meridian, paste it, and click Activate.',
     },
     {
       '@type': 'HowToStep',
@@ -466,12 +466,12 @@ const howToGraph = JSON.stringify({
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Install the app for {b.name}.</h2>
                 <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
                   No NinjaTrader required. The same Meridian engine, as a standalone Windows app that connects straight to
-                  your {b.name} account. Setup takes about five minutes, and a 7-day free trial is built in.
+                  your {b.name} account. Setup takes about five minutes, and the standard 7-day free trial applies when you subscribe.
                 </p>
                 <ul class="mt-7 space-y-3 text-zinc-700">
                   <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Windows 10 or later (64-bit) &mdash; the installer bundles everything else</span></li>
                   <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A <strong>{b.name}</strong> account (including the ones your prop firm issues)</span></li>
-                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A Meridian subscription &mdash; or just start the built-in 7-day free trial</span></li>
+                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A Meridian subscription &mdash; new subscriptions start with a 7-day free trial at checkout</span></li>
                 </ul>
                 <p class="mt-7 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
                   One license covers every platform. The same Meridian subscription that runs your NinjaTrader 8 add-on
@@ -489,7 +489,7 @@ const howToGraph = JSON.stringify({
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Download <a class="text-emerald-700 underline font-medium" href={INSTALLER}>Meridian-win-Setup.exe</a> and run it.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Launch Meridian and click <strong>Sign in with {b.name}</strong>.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Authorize on your broker's page &mdash; the app picks the connection back up automatically.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the <strong>License</strong> tab, paste your key from Whop, click <strong>Activate</strong> (or run the 7-day trial first).</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the <strong>License</strong> tab, paste your key from Whop, and click <strong>Activate</strong>.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Set your profile in <strong>Settings</strong>; on Guard, add your rules.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span><em>Optional:</em> connect a demo account first to see it run.</span></li>
                 </ol>
@@ -536,9 +536,9 @@ const howToGraph = JSON.stringify({
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Activate your license</h3>
               </div>
               <p class="text-zinc-600 leading-relaxed">
-                A <strong>7-day free trial</strong> runs from first launch &mdash; full access, no key needed. To keep going, open the
-                <strong> License</strong> tab, paste the key from your Whop membership (the Software / License Key section), and click
-                <strong> Activate</strong>. The same key works here and in NinjaTrader 8.
+                Your subscription starts with a <strong>7-day free trial</strong> at checkout &mdash; no charge until day&nbsp;7. Once
+                you have subscribed, copy the key from your Whop membership (the Software / License Key section), open the
+                <strong> License</strong> tab in Meridian, paste it, and click <strong>Activate</strong>. The same key works here and in NinjaTrader 8.
               </p>
               <p class="mt-3 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
                 Don't have a key yet? <a href="/pricing" class="text-emerald-700 underline underline-offset-2">Start a subscription</a> &mdash; the
