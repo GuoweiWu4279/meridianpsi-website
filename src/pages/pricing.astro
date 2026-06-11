@@ -113,6 +113,10 @@ const faqs = [
     a: `Same product, same features. Annual is billed once a year at a lower effective monthly rate — about $${core.annualSavings}/yr less on Core and about $${guard.annualSavings}/yr less on Guard. Both include the 7-day free trial. Use the toggle above to compare.`,
   },
   {
+    q: 'How does the price compare to buying a risk tool, a journal, and an analytics app separately?',
+    a: "That's the comparison that matters. Many traders end up paying for a risk/lockout tool, a journaling app, and a stats/analytics platform as three separate subscriptions. Meridian is one subscription that does all three — real-time risk enforcement (Guard), an in-session journal that compiles in the moment with your fills and PSI score, and an Intel analytics workspace (PSI × P&L correlation, weekday patterns, hold-time and instrument breakdowns, a pre-session brief) — on top of the behavioral layer no standalone risk tool has. If a daily-loss limit is genuinely all you want, a one-time-license hard-limit tool is cheaper. If you want risk control and the journal and the review layer, one Meridian subscription replaces the stack at a lower total cost.",
+  },
+  {
     q: 'Does Meridian place trades for me?',
     a: 'No. Meridian never opens a position and never provides signals. The only orders it ever touches are the ones its Guard rules act on — cancelling a new entry or flattening a position — and only under rules you configured in advance. Exits and protective stops are never blocked.',
   },
@@ -294,7 +298,8 @@ const faqs = [
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
         Both plans do everything a traditional NinjaTrader 8 risk tool does — daily loss limits, P&amp;L and drawdown
         caps, loss-streak cutoffs. Then they add the layer none of them have: real-time behavioral detection that catches
-        the mistake before the order, not after the loss.
+        the mistake before the order, not after the loss — plus the in-session journal and the analytics workspace
+        traders usually buy as separate subscriptions, all in the one plan.
       </p>
     </div>
     <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">

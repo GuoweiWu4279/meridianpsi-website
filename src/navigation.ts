@@ -101,6 +101,7 @@ export const footerData = {
       links: [
         { text: 'vs Native NinjaTrader Risk', href: getPermalink('/compare/meridian-vs-native-ninjatrader-risk') },
         { text: 'vs Hard-Limit Tools', href: getPermalink('/compare/meridian-vs-hard-limit-tools') },
+        { text: 'vs Account Risk Managers', href: getPermalink('/compare/meridian-vs-account-risk-manager') },
         { text: 'vs Guardian Angel', href: getPermalink('/compare/meridian-vs-guardian-angel-ninjatrader') },
         { text: 'vs Trading Journals', href: getPermalink('/compare/meridian-vs-trading-journals') },
         { text: 'vs TradeZella', href: getPermalink('/compare/meridian-vs-tradezella') },
