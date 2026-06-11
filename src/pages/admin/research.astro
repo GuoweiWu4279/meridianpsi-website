@@ -1,9 +1,11 @@
 ---
 // src/pages/admin/research.astro
 // Protected admin dashboard for the anonymized research-data program.
-// The page is a static shell: ALL data flows through /api/admin/research, which
-// requires the x-admin-key header (== RESEARCH_ADMIN_SECRET). The key is held in
-// the browser's sessionStorage only — never rendered into the HTML.
+// Static shell: ALL data flows through /api/admin/research (x-admin-key header
+// == RESEARCH_ADMIN_SECRET). The key lives in the browser's localStorage only —
+// entered once, remembered across sessions, NEVER rendered into the HTML.
+// First screen auto-analyzes each install (real-user vs dev, timezone, profile,
+// activity) so you read the story without drilling in. Drill-in + delete remain.
 export const prerender = false;
 ---
 
@@ -15,12 +17,13 @@ export const prerender = false;
     <meta name="robots" content="noindex, nofollow" />
     <title>Research Data — Admin</title>
     <style>
-      :root { --bg:#0b0b0d; --panel:#161618; --panel2:#1d1d20; --line:#2a2a2e; --fg:#ededf0; --fg2:#a0a0a8; --accent:#34d399; --danger:#f06a6a; }
+      :root { --bg:#0b0b0d; --panel:#161618; --panel2:#1d1d20; --line:#2a2a2e; --fg:#ededf0; --fg2:#a0a0a8; --accent:#34d399; --amber:#f5c451; --danger:#f06a6a; }
       * { box-sizing:border-box; }
       body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
-      .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
+      .wrap { max-width:1040px; margin:0 auto; padding:28px 20px 80px; }
       h1 { font-size:20px; margin:0 0 4px; }
-      .sub { color:var(--fg2); font-size:13px; margin:0 0 24px; }
+      .sub { color:var(--fg2); font-size:13px; margin:0 0 20px; }
+      .topbar { display:flex; align-items:center; gap:10px; margin:0 0 18px; }
       .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
       input { background:var(--panel2); border:1px solid var(--line); color:var(--fg); border-radius:8px; padding:9px 11px; font-size:14px; width:280px; }
       button { background:var(--panel2); border:1px solid var(--line); color:var(--fg); border-radius:8px; padding:8px 13px; font-size:13px; cursor:pointer; }
@@ -28,6 +31,7 @@ export const prerender = false;
       button.primary { background:var(--accent); border-color:var(--accent); color:#06281c; font-weight:600; }
       button.danger { color:var(--danger); border-color:#43292c; }
       button.danger:hover { background:#2a1a1c; }
+      button.sm { padding:5px 10px; font-size:12px; }
       .totals { display:flex; gap:22px; margin:0 0 16px; color:var(--fg2); font-size:13px; }
       .totals b { color:var(--fg); font-size:18px; display:block; }
       table { width:100%; border-collapse:collapse; }
@@ -42,17 +46,29 @@ export const prerender = false;
       pre { background:#0e0e10; border:1px solid var(--line); border-radius:8px; padding:14px; overflow:auto; max-height:60vh; font-size:12px; color:#d6d6da; white-space:pre-wrap; word-break:break-word; }
       .back { color:var(--fg2); cursor:pointer; font-size:13px; }
       .back:hover { color:var(--fg); }
-      .pill { display:inline-block; background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:1px 9px; font-size:11px; color:var(--fg2); margin:1px 3px 1px 0; }
+      /* Install cards */
+      .inst { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-bottom:12px; }
+      .inst.real { border-color:#1f5a44; box-shadow:inset 3px 0 0 var(--accent); }
+      .inst-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+      .tag { display:inline-block; border-radius:20px; padding:2px 10px; font-size:11px; font-weight:600; }
+      .tag.user { background:#0f3b2c; color:var(--accent); }
+      .tag.dev { background:#2a2a2e; color:var(--fg2); }
+      .tag.unk { background:#3a2f12; color:var(--amber); }
+      .inst h3 { margin:8px 0 2px; font-size:14px; }
+      .inst .meta { color:var(--fg2); font-size:12.5px; margin:1px 0; }
+      .inst .meta b { color:var(--fg); font-weight:600; }
+      .kv { color:var(--fg); }
+      .loading { color:var(--fg2); font-size:12px; font-style:italic; }
     </style>
   </head>
   <body>
     <div class="wrap">
       <h1>Research Data — Admin</h1>
-      <p class="sub">Anonymized session recordings from Meridian PSI installs (pseudonymous install id; no PII).</p>
+      <p class="sub">Anonymized session recordings from Meridian installs (pseudonymous install id; no PII).</p>
 
       <!-- Login gate -->
       <div id="login" class="card">
-        <div style="margin-bottom:10px;">Enter admin key</div>
+        <div style="margin-bottom:10px;">Enter admin key <span class="muted">(remembered on this browser after the first time)</span></div>
         <div style="display:flex; gap:10px;">
           <input id="key" type="password" placeholder="RESEARCH_ADMIN_SECRET" autocomplete="off" />
           <button class="primary" id="loginBtn">Unlock</button>
@@ -62,12 +78,16 @@ export const prerender = false;
 
       <!-- Dashboard -->
       <div id="dash" class="hidden">
+        <div class="topbar">
+          <button class="sm" id="refreshBtn">↻ Refresh</button>
+          <button class="sm" id="logoutBtn">Forget key</button>
+          <span class="muted" id="stamp" style="font-size:12px;"></span>
+        </div>
         <div class="totals" id="totals"></div>
-        <div class="card" id="installsCard">
-          <table>
-            <thead><tr><th>Install</th><th>Sessions</th><th>Objects</th><th>Size</th><th>First seen</th><th>Last seen</th><th></th></tr></thead>
-            <tbody id="installs"></tbody>
-          </table>
+
+        <!-- Install cards (auto-analyzed) -->
+        <div id="installsCard">
+          <div id="installs"></div>
         </div>
 
         <!-- Sessions drill-in -->
@@ -96,11 +116,13 @@ export const prerender = false;
     <script is:inline>
       const $ = (id) => document.getElementById(id);
       const API = '/api/admin/research';
-      let KEY = sessionStorage.getItem('mpsi_admin_key') || '';
+      // localStorage (was sessionStorage): enter the key once, stays remembered.
+      let KEY = localStorage.getItem('mpsi_admin_key') || '';
       let lastInstall = null;
 
       function fmtBytes(n) { if (n < 1024) return n + ' B'; if (n < 1048576) return (n/1024).toFixed(0) + ' KB'; return (n/1048576).toFixed(1) + ' MB'; }
       function fmtDate(s) { if (!s) return '—'; const d = new Date(s); return d.toISOString().slice(0,16).replace('T',' '); }
+      function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
       async function api(qs, opts) {
         const res = await fetch(API + qs, { ...opts, headers: { 'x-admin-key': KEY, ...(opts?.headers||{}) } });
@@ -113,26 +135,91 @@ export const prerender = false;
         $(view).classList.remove('hidden');
       }
 
+      // Parse one session's NDJSON into a human-readable summary.
+      function anatomize(text) {
+        const a = { src:null, tz:null, profile:null, acct:null, psis:[], trades:0, wins:0, pnl:0, guard:[], tabs:new Set() };
+        for (const line of (text||'').split('\n')) {
+          const s = line.trim(); if (!s) continue;
+          let o; try { o = JSON.parse(s); } catch { continue; }
+          const t = o.type;
+          if (!a.src && o.source) a.src = o.source;
+          if (t === 'meta' && o.startedLocal) a.tz = String(o.startedLocal).slice(-6);
+          if (t === 'profile' && !a.profile) a.profile = o;
+          if (t === 'account') a.acct = o;
+          if (t === 'engine_poll' && typeof o.psi === 'number') a.psis.push(o.psi);
+          if (t === 'ui' && o.area === 'guard') a.guard.push((o.action||'') + '=' + (o.detail||''));
+          if (t === 'ui' && o.area === 'nav' && o.detail) a.tabs.add(o.detail);
+          if (t === 'exec_engine' && o.rtFinal) { a.trades++; if (o.isWin) a.wins++; a.pnl += (o.pnl||0); }
+        }
+        return a;
+      }
+
+      function summaryHTML(a) {
+        const rows = [];
+        if (a.profile) {
+          const p = a.profile;
+          rows.push(`<div class="meta">Profile: <b>$${p.maxDailyLossUsd}</b> daily loss · size <b>${p.sizeMin}–${p.sizeMax}</b> · ${p.tradesPerSessionMin}–${p.tradesPerSessionMax} trades/session · ${p.maxHoldMinutes}min hold · window ${p.sStartH}:${String(p.sStartM).padStart(2,'0')}–${p.sEndH}:${String(p.sEndM).padStart(2,'0')} · ${p.sensitivity}</div>`);
+        }
+        if (a.acct && a.acct.mode) {
+          rows.push(`<div class="meta">Account: mode <b>${esc(a.acct.mode)}</b> · class ${esc(a.acct.acctClass||'-')} · vendor ${esc(a.acct.vendor||'-')}</div>`);
+        }
+        const act = [];
+        if (a.tabs.size) act.push('visited ' + [...a.tabs].join(', '));
+        if (a.guard.length) act.push('Guard: ' + a.guard.slice(0,6).join(', '));
+        if (a.trades) act.push(`<b>${a.trades}</b> round-trips (${a.wins} wins) · net <b>${a.pnl>=0?'+':''}${a.pnl.toFixed(0)}</b>`);
+        else act.push('no trades');
+        if (a.psis.length) act.push(`PSI ${a.psis[0].toFixed(0)}→${Math.min(...a.psis).toFixed(0)}→${a.psis[a.psis.length-1].toFixed(0)}`);
+        rows.push(`<div class="meta">Activity (largest session): ${act.join(' · ')}</div>`);
+        return rows.join('');
+      }
+
       async function loadInstalls() {
+        $('installs').innerHTML = '<div class="loading">Loading…</div>';
         const data = await api('?action=list');
+        $('stamp').textContent = 'updated ' + new Date().toLocaleString();
         $('totals').innerHTML =
           `<div><b>${data.totals.installs}</b>installs</div>` +
-          `<div><b>${data.totals.objects}</b>objects</div>` +
+          `<div><b>${data.totals.objects}</b>sessions</div>` +
           `<div><b>${fmtBytes(data.totals.totalBytes)}</b>total</div>`;
+        if (!data.installs.length) {
+          $('installs').innerHTML = '<div class="card muted">No data yet — installs appear here as users run Meridian.</div>';
+          show('installsCard'); return;
+        }
+        // Render skeleton first, then fill each card's analysis.
         $('installs').innerHTML = data.installs.map((i) => `
-          <tr>
-            <td class="mono id">${i.id}</td>
-            <td>${i.sessions}</td>
-            <td>${i.objects}</td>
-            <td>${fmtBytes(i.totalBytes)}</td>
-            <td class="muted">${fmtDate(i.firstSeen)}</td>
-            <td class="muted">${fmtDate(i.lastSeen)}</td>
-            <td><div class="row-actions">
-              <button data-view="${i.id}">View</button>
-              <button class="danger" data-del="${i.id}">Delete</button>
-            </div></td>
-          </tr>`).join('') || '<tr><td colspan="7" class="muted">No data yet — installs appear here as users run the add-on.</td></tr>';
+          <div class="inst" id="inst-${i.id}">
+            <div class="inst-head">
+              <div><span class="tag unk" id="tag-${i.id}">analyzing…</span></div>
+              <div class="row-actions">
+                <button class="sm" data-view="${i.id}">View sessions</button>
+                <button class="sm danger" data-del="${i.id}">Delete</button>
+              </div>
+            </div>
+            <h3 class="mono id">${i.id}</h3>
+            <div class="meta"><b>${i.sessions}</b> sessions · ${fmtBytes(i.totalBytes)} · ${fmtDate(i.firstSeen)} → ${fmtDate(i.lastSeen)} UTC</div>
+            <div id="ana-${i.id}" class="loading">analyzing largest session…</div>
+          </div>`).join('');
         show('installsCard');
+        // Analyze each install's largest session in parallel.
+        for (const i of data.installs) {
+          (async () => {
+            try {
+              const ss = await api('?action=sessions&install=' + encodeURIComponent(i.id));
+              if (!ss.sessions.length) { $('ana-' + i.id).textContent = ''; return; }
+              const big = ss.sessions.reduce((m, s) => (s.size > m.size ? s : m), ss.sessions[0]);
+              const got = await api('?action=get&path=' + encodeURIComponent(big.path));
+              const a = anatomize(got.text);
+              const tag = $('tag-' + i.id);
+              if (a.src === 'user') { tag.className = 'tag user'; tag.textContent = '★ Real user'; $('inst-' + i.id).classList.add('real'); }
+              else if (a.src === 'dev') { tag.className = 'tag dev'; tag.textContent = 'Dev / test'; }
+              else { tag.className = 'tag unk'; tag.textContent = 'unknown'; }
+              const tz = a.tz ? `<div class="meta">Timezone: <b>${esc(a.tz)}</b></div>` : '';
+              $('ana-' + i.id).innerHTML = tz + summaryHTML(a);
+            } catch (e) {
+              $('ana-' + i.id).textContent = '';
+            }
+          })();
+        }
       }
 
       async function loadSessions(install) {
@@ -145,8 +232,8 @@ export const prerender = false;
             <td>${fmtBytes(s.size)}</td>
             <td class="muted">${fmtDate(s.uploadedAt)}</td>
             <td><div class="row-actions">
-              <button data-get="${s.path}">View</button>
-              <button class="danger" data-delpath="${s.path}">Delete</button>
+              <button class="sm" data-get="${s.path}">View</button>
+              <button class="sm danger" data-delpath="${s.path}">Delete</button>
             </div></td>
           </tr>`).join('') || '<tr><td colspan="4" class="muted">No sessions.</td></tr>';
         show('sessionsView');
@@ -155,7 +242,6 @@ export const prerender = false;
       async function loadContent(path) {
         const data = await api('?action=get&path=' + encodeURIComponent(path));
         $('curPath').textContent = data.path + '  ·  ' + fmtBytes(data.size);
-        // Pretty-print each NDJSON line.
         const lines = (data.text || '').split('\n').filter(Boolean).map((l) => {
           try { return JSON.stringify(JSON.parse(l)); } catch { return l; }
         });
@@ -185,6 +271,8 @@ export const prerender = false;
       });
       $('backToInstalls').onclick = () => show('installsCard');
       $('backToSessions').onclick = () => show('sessionsView');
+      $('refreshBtn').onclick = () => loadInstalls();
+      $('logoutBtn').onclick = () => { localStorage.removeItem('mpsi_admin_key'); KEY=''; location.reload(); };
 
       async function enter() {
         try {
@@ -196,11 +284,11 @@ export const prerender = false;
           $('login').classList.remove('hidden');
           $('loginErr').textContent = 'Unauthorized — wrong key.';
           $('loginErr').classList.remove('hidden');
-          sessionStorage.removeItem('mpsi_admin_key'); KEY = '';
+          localStorage.removeItem('mpsi_admin_key'); KEY = '';
         }
       }
 
-      $('loginBtn').onclick = () => { KEY = $('key').value.trim(); sessionStorage.setItem('mpsi_admin_key', KEY); enter(); };
+      $('loginBtn').onclick = () => { KEY = $('key').value.trim(); localStorage.setItem('mpsi_admin_key', KEY); enter(); };
       $('key').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('loginBtn').click(); });
       if (KEY) enter();
     </script>
