@@ -27,6 +27,8 @@ No personal information, trading data, or system identifiers are included.
 
 This website uses Google Analytics 4 to understand visitor traffic (page views, referral sources, approximate location, and device/browser type). Google Analytics sets cookies and processes your IP address and device information; IP anonymization is enabled where supported. We do not sell this data and do not use it for cross-site advertising. You can opt out by blocking analytics cookies in your browser or by using Google's opt-out browser add-on.
 
+We also use **Microsoft Clarity** for session analytics — anonymized session replay and heatmaps that show how visitors navigate and interact with the site (clicks, scrolling, and where people get stuck) so we can improve it. Text you type into form fields is masked by default and is not recorded. Clarity sets cookies and processes usage and device data; we do not sell it or use it for advertising. You can opt out by blocking analytics cookies in your browser.
+
 ### 2c. Support Communications
 
 If you contact us for support, we retain the email and information you provide solely to resolve your inquiry. We do not share this with third parties.
@@ -60,6 +62,7 @@ We use the following third-party services:
 - **Vercel** — website hosting (see [Vercel Privacy Policy](https://vercel.com/legal/privacy-policy))
 - **Whop** — payment processing for purchase transactions. We do not store credit card information. See [Whop's Privacy Policy](https://whop.com/privacy).
 - **Google Analytics (GA4)** — website traffic analytics. Sets cookies and processes IP/device data; we do not sell it or use it for advertising (see [Google's Privacy Policy](https://policies.google.com/privacy)).
+- **Microsoft Clarity** — anonymized session replay and heatmap analytics to understand how the site is used. Form inputs are masked by default; we do not sell it or use it for advertising (see [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement)).
 
 ## 6. Your Rights
 
