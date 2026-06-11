@@ -5,8 +5,9 @@ import products from '~/data/products.json';
 // ─────────────────────────────────────────────────────────────────────────────
 // PLATFORMS — the compatibility page. Voice: TEACH / PRECISE, zero overclaim.
 // Status is the load-bearing honesty here: NT8 is GA; Tradovate & Ironbeam are
-// EARLY ACCESS (founding seats, hand-delivered builds) until the installers are
-// signed and public. Capabilities differ per platform — the matrix states it.
+// PAID EARLY ACCESS, sold directly — signed self-serve installer (/install-app),
+// 7-day free trial, founding rate locked for life. No application program.
+// Capabilities differ per platform — the matrix states it.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const metadata = {
@@ -16,8 +17,9 @@ const metadata = {
   robots: { index: true, follow: true },
 };
 
-// Founding requests go through Formspree (same endpoint as /support) — a raw
-// mailto fails silently for webmail users and gives us no record.
+// The setup-check form goes through Formspree (same endpoint as /support) — a raw
+// mailto fails silently for webmail users and gives us no record. It is the
+// SECONDARY path; the primary CTA is the direct download via /install-app.
 
 const platformsJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -73,7 +75,7 @@ const matrix = [
           {p.status === 'available' ? (
             <a href="/download" class="inline-block text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2.5 rounded-xl transition">Download now</a>
           ) : (
-            <a href="#early-access" class="inline-block text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-4 py-2.5 rounded-xl transition">Request a founding seat</a>
+            <a href="/install-app" class="inline-block text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-4 py-2.5 rounded-xl transition">Download the app</a>
           )}
         </div>
       ))}
@@ -121,8 +123,8 @@ const matrix = [
       </table>
     </div>
     <p class="mt-4 text-xs text-zinc-500 leading-relaxed max-w-3xl">
-      Early access means the app is feature-complete and validated against the platform's demo environment, and founding
-      users receive hand-delivered builds while we finish public packaging. The Tradovate&reg; broker-level lock is executed
+      Early access means the app is feature-complete and validated against the platform's demo environment. It installs
+      from a signed Windows installer with a 7-day free trial built in. The Tradovate&reg; broker-level lock is executed
       through the platform's published account risk-control API; Ironbeam's API does not expose an account-level kill
       switch, so enforcement there is app-level (entry blocking and flatten). On Tradovate, live unrealized-P&amp;L readouts
       depend on the account's market-data setup — core monitoring and enforcement need no market-data subscription at
@@ -152,14 +154,14 @@ const matrix = [
         <h3 class="font-semibold text-zinc-900 mb-1.5">Your account runs on Tradovate</h3>
         <p class="text-sm text-zinc-600 leading-relaxed">
           If your program issues Tradovate-based accounts, the standalone Meridian app connects straight to that account
-          &mdash; no NinjaTrader anywhere. Early access. <a href="#early-access" class="text-emerald-700 font-medium hover:underline">Request a founding seat &rarr;</a>
+          &mdash; no NinjaTrader anywhere. Early access. <a href="/install-app" class="text-emerald-700 font-medium hover:underline">Get the app &rarr;</a>
         </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
         <h3 class="font-semibold text-zinc-900 mb-1.5">Topstep (TopstepX)</h3>
         <p class="text-sm text-zinc-600 leading-relaxed">
           Honest answer: not yet. TopstepX is a closed platform, and Meridian cannot run inside it today. If that changes, the
-          founding list hears it first.
+          early-access list hears it first.
         </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -176,11 +178,11 @@ const matrix = [
     </p>
   </section>
 
-  <!-- ───────────────────────── EARLY ACCESS / FOUNDING ───────────────────────── -->
+  <!-- ───────────────────────── EARLY ACCESS ───────────────────────── -->
   <section id="early-access" class="border-y border-zinc-200 bg-zinc-50/50">
     <div data-reveal class="max-w-3xl mx-auto px-6 py-16 text-center">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">EARLY ACCESS</p>
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Founding seats: Tradovate &amp; Ironbeam</h2>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Early access: Tradovate &amp; Ironbeam</h2>
       <div class="mt-8 rounded-2xl overflow-hidden border border-zinc-200 shadow-md">
         <img
           src="/screenshots/standalone-app-early-access.png"
@@ -206,20 +208,25 @@ const matrix = [
       </p>
       <p class="mt-5 text-zinc-600 leading-relaxed">
         The Tradovate and Ironbeam apps are in early access &mdash; the full Meridian system, validated against both
-        platforms, connecting straight to your account. We are opening a small <strong>founding group</strong> before
-        general release, and founding members lock in something that lasts: <strong>your founding rate never goes
-        up</strong> &mdash; not when we raise prices for everyone else, for as long as you stay. You also get a direct
-        line to the builder and first say in what ships next. It starts with the same <strong>7-day free trial</strong>
-        as everything else &mdash; no charge until day&nbsp;7. One subscription covers every platform: the same license
-        runs your NinjaTrader&nbsp;8, Tradovate, and Ironbeam.
+        platforms, connecting straight to your account. There is no application and no waitlist: download the app,
+        start the same <strong>7-day free trial</strong> as everything else &mdash; no charge until day&nbsp;7 &mdash;
+        and keep it if it earns its place. What early access changes is the rate: <strong>your early-access rate never
+        goes up</strong> &mdash; not when we raise prices for everyone else, for as long as you stay. You also get a
+        direct line to the builder and first say in what ships next. One subscription covers every platform: the same
+        license runs your NinjaTrader&nbsp;8, Tradovate, and Ironbeam.
       </p>
       <p class="mt-3 text-sm text-zinc-500 leading-relaxed">
         This is early-access software: it works and it is validated, but you will be among the first on it. In return for
-        the founding rate, we ask that you actually trade with it and tell us the truth about what you see &mdash; the
+        the early-access rate, we ask that you actually trade with it and tell us the truth about what you see &mdash; the
         rough edges included.
       </p>
-      <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-8 max-w-md mx-auto text-left space-y-4">
-        <input type="hidden" name="subject" value="Founding seat request" />
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="/install-app" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Download the app</a>
+        <a href="/pricing" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See pricing</a>
+      </div>
+      <p class="mt-10 text-sm font-semibold text-zinc-800">Not sure Meridian fits your setup? Ask first &mdash; you will get a straight answer.</p>
+      <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-4 max-w-md mx-auto text-left space-y-4">
+        <input type="hidden" name="subject" value="Early access setup check" />
         <div>
           <label for="fs-email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
           <input
@@ -254,11 +261,11 @@ const matrix = [
             class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
           />
         </div>
-        <button type="submit" class="w-full font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">
-          Claim a founding seat
+        <button type="submit" class="w-full font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition shadow-sm">
+          Check my setup
         </button>
         <p class="text-xs text-zinc-500 text-center leading-relaxed">
-          Limited founding seats &middot; Founding rate locked for life &middot; 7-day free trial when you start &middot; Windows &middot;
+          Early-access rate locked for life &middot; 7-day free trial &middot; Windows &middot;
           <a href="/pricing" class="underline hover:text-zinc-700">See pricing</a> &middot;
           Prefer email? <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-700">contactmeridianpsi@gmail.com</a>
         </p>
@@ -283,10 +290,11 @@ const matrix = [
         <p class="text-zinc-600 mt-1">Yes. One subscription, every platform we support, including new ones as they reach general release.</p>
       </div>
       <div>
-        <p class="font-semibold text-zinc-900">Why early access instead of a public download?</p>
+        <p class="font-semibold text-zinc-900">What does "early access" mean if I can just download it?</p>
         <p class="text-zinc-600 mt-1">
-          Because we would rather hand a validated build to fifty traders who run it on real sessions than push an
-          installer to everyone before the last mile is done. Early access is the last mile.
+          The engine is the same one that has shipped inside NinjaTrader&nbsp;8 for months. The standalone app around it
+          is newer: validated, signed, and self-installing, but you will be among the first to run it daily. Early access
+          is honest labeling of that last mile &mdash; and the reason the early-access rate stays locked for life.
         </p>
       </div>
     </div>

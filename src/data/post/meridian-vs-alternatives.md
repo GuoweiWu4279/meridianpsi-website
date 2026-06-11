@@ -103,7 +103,7 @@ The practical difference between Meridian and NinjaTrader's native controls is t
 
 **Where it falls short — stated honestly:**
 
-*Platform coverage.* Meridian is Windows-only. It runs natively inside NinjaTrader 8 today; standalone apps that connect directly to Tradovate and Ironbeam accounts are in early access (founding seats, hand-delivered builds). Traders on any other platform — including closed platforms like TopstepX — cannot use it yet.
+*Platform coverage.* Meridian is Windows-only. It runs natively inside NinjaTrader 8 today; standalone apps that connect directly to Tradovate and Ironbeam accounts are in early access (signed Windows installer, downloadable from the site). Traders on any other platform — including closed platforms like TopstepX — cannot use it yet.
 
 *Behavioral proxies rather than direct measurement.* The PSI is computed from observable trading actions, not physiological signals. A trader who is calm but experimenting with an unfamiliar strategy may generate similar signals to one who is emotionally compromised. The model reflects common behavioral failure patterns and is not equally precise for all trading styles or strategies.
 
