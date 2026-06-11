@@ -255,70 +255,74 @@ async function sendWelcomeEmail(toEmail: string, firstName: string): Promise<voi
 
   const from = process.env.RESEND_FROM ?? 'onboarding@resend.dev';
 
+  // Copy approved by Gary 2026-06-10 (multi-platform rewrite; see
+  // meridian-outreach/data/_customer_welcome_2026-06-10.md). Keep the manual
+  // backfill copy (meridian-outreach/customer/welcome-message.js) in sync when
+  // this changes. Layout rules: numbered steps on their own lines, menu paths
+  // as "A > B > C", no "then" chains, no em dashes, no exclamation points.
+  // The Settings/trading-profile step is the heart of onboarding.
   const text = `Hi ${firstName},
 
-Welcome to Meridian, and thank you for joining.
-
-Below is everything you need, in order. If anything is unclear or you get stuck, reply to this email or write to contactmeridianpsi@gmail.com and include the email address you used at checkout on Whop. We will respond within 24 hours.
+Thank you for joining Meridian. This email takes you from purchase to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.
 
 ---
 
-1) Get your license key (most important)
+1) Get your license key
 
 1. Sign in at https://whop.com/@me/settings/memberships using the same email you used at checkout.
-2. Open your Meridian membership / product.
-3. Find the Software section (exact placement can vary slightly depending on Whop's layout) and copy your license key in full, with no extra spaces before or after.
+2. Open your Meridian membership and copy your license key from the Software / License Key section, in full, with no extra spaces.
 
-If you cannot find the Software section, don't worry. Whop's interface changes from time to time, and we've seen that before. Email us with your checkout email and we'll help you locate it.
-
----
-
-2) Download and install
-
-1. Download the latest package: https://www.meridianpsi.com/download
-2. Do not unzip the file. NinjaTrader imports it as a .zip.
-3. In NinjaTrader 8: Tools → Import → NinjaScript Add-On → select the .zip.
-4. Restart NinjaTrader if it asks you to.
+One key activates Meridian on every platform we support. If you cannot find the Software section, email us with your checkout email and we will help you locate it.
 
 ---
 
-3) Open Meridian and activate
+2) Install Meridian for the platform you trade on
 
-1. Control Center → New → Add-on → Meridian Dashboard
-2. Open the License tab → paste your key → Activate.
+If you trade through NinjaTrader 8:
 
-Meridian is an add-on, not a chart indicator, so you will not find it under the chart Indicators list. That is expected.
+1. Download the latest MeridianPSI .zip from https://www.meridianpsi.com/download. Do not extract it.
+2. In NinjaTrader 8, go to Tools > Import > NinjaScript Add-On and select the .zip.
+3. Open the dashboard: Control Center > New > Add-on > Meridian Dashboard.
+4. Open the License tab, paste your key, and click Activate.
 
----
+Meridian is an add-on, not a chart indicator, so it will not appear in the chart Indicators list. That is expected.
 
-4) After activation: configure Settings first
+If you trade through a Tradovate or Ironbeam account:
 
-Open Settings and set your size, session window, signal weights, and response preset to match how you actually trade. Meridian uses this as the foundation it learns from.
+1. Download the Meridian app installer (Meridian-win-Setup.exe) from https://www.meridianpsi.com/download.
+2. Run the installer. It takes a few seconds and the app keeps itself updated from then on.
+3. Click Sign in with Tradovate (or Ironbeam). You authorize on the broker's own page, and your credentials never leave your machine.
+4. Open the License tab, paste your key, and click Activate.
 
-Guard rules (Guard tier only) are configured in the Guard tab, not in Settings.
+No NinjaTrader is required for this path.
 
----
-
-5) Practice without affecting your daily baseline
-
-If you want to explore the product without continuing to write to your personal baseline:
-
-- Open the Meridian Dashboard → go to the Profile tab → turn on Test Mode.
-  While Test Mode is on, PSI still runs in real time, but baseline recording is paused.
-
-Market Replay is also handled in a separate context from your live baseline, so it's a good way to get comfortable with the flow.
+The full guide with screenshots is at https://www.meridianpsi.com/installation-guide.
 
 ---
 
-6) What to expect in your first sessions
+3) Set up your trading profile
 
-Your first several sessions are a learning phase. Signals are intentionally gentler until Meridian has enough history to reflect your real patterns. That is normal.
+This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, signal weights, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.
+
+If you are on the Guard tier, set your rules in the Guard tab: choose the triggers you want watched and the response level for each. Nothing is enforced until you arm Guard, so you stay in full control of when it is active.
 
 ---
 
-Full step-by-step guide: https://www.meridianpsi.com/installation-guide
+4) Before going live
 
-Thanks again for choosing Meridian. If you ever have a question, run into any issue, or there's a feature you'd like to see, just reply to this email. We genuinely welcome your feedback and read every message.
+Recommended: connect a SIM or demo account first and place a few small practice trades, so you can watch the HUD and dashboard respond before real money is involved.
+
+On NinjaTrader 8 you can also turn on Test Mode (Meridian Dashboard > Profile tab) to explore freely: PSI still runs in real time, but baseline recording is paused. Market Replay is handled in a separate context from your live baseline as well.
+
+---
+
+5) What to expect in your first sessions
+
+Your first several sessions are a learning phase. Signals are intentionally gentler until Meridian has enough history to reflect your real patterns. That is normal, and the readings sharpen with every session you give it.
+
+---
+
+Thanks again for choosing Meridian. If you have a question, run into any issue, or there is a feature you would like to see, just reply to this email. I read every message myself.
 
 Gary Caffrey, Meridian Team
 Official NinjaTrader Ecosystem Vendor
@@ -334,7 +338,7 @@ www.Meridianpsi.com`;
       from,
       to: [toEmail],
       reply_to: 'contactmeridianpsi@gmail.com',
-      subject: 'Welcome to Meridian: your next steps',
+      subject: 'Welcome to Meridian, here is your setup',
       text,
     }),
   });
