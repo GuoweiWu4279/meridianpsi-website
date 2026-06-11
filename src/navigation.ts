@@ -28,11 +28,8 @@ export const headerData = {
       text: 'Download',
       href: getPermalink('/download'),
       links: [
-        { text: 'All downloads & release notes', href: getPermalink('/download') },
-        { text: 'NinjaTrader 8 add-on', href: getPermalink('/download') },
-        { text: 'Tradovate & Ironbeam app', href: getPermalink('/install-app') },
-        { text: 'Install guide — NinjaTrader 8', href: getPermalink('/installation-guide') },
-        { text: 'Install guide — standalone app', href: getPermalink('/install-app') },
+        { text: 'Download', href: getPermalink('/download') },
+        { text: 'Installation Guide', href: getPermalink('/installation-guide') },
       ],
     },
     { text: 'Compare', href: getPermalink('/compare') },
@@ -119,8 +116,7 @@ export const footerData = {
       links: [
         { text: 'Contact', href: getPermalink('/support') },
         { text: 'Account', href: getPermalink('/account') },
-        { text: 'Install Guide — NinjaTrader 8', href: getPermalink('/installation-guide') },
-        { text: 'Install Guide — Tradovate & Ironbeam app', href: getPermalink('/install-app') },
+        { text: 'Installation Guide', href: getPermalink('/installation-guide') },
         { text: 'Trust & Security', href: getPermalink('/trust') },
         { text: 'Data & Research Notice', href: getPermalink('/data-research') },
         { text: 'Risk Disclaimer', href: getPermalink('/disclaimer') },
