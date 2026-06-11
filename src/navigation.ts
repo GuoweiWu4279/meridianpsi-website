@@ -14,10 +14,19 @@ export const headerData = {
   links: [
     { text: 'Guard', href: getPermalink('/guard') },
     {
+      // Enumerates the REAL product surfaces — every item is a full page a buyer
+      // can click into. Order = the product loop: intro → see (Monitor) → enforce
+      // (Guard) → capture (Journal) → review (Intel) → calibrate (Learning),
+      // with the catalog last. Guard repeats here on purpose: the top-level
+      // "Guard" item is the promoted money page; the dropdown stays complete.
       text: 'Features',
+      href: getPermalink('/features'),
       links: [
         { text: 'How Meridian works', href: getPermalink('/what-is-meridian-psi') },
         { text: 'PSI Monitor', href: getPermalink('/psi-monitor') },
+        { text: 'Meridian Guard', href: getPermalink('/guard') },
+        { text: 'Session Journal', href: getPermalink('/journal') },
+        { text: 'History & Intel', href: getPermalink('/history-intel') },
         { text: 'Adaptive Learning & Settings', href: getPermalink('/adaptive-learning-settings') },
         { text: 'All features', href: getPermalink('/features') },
       ],

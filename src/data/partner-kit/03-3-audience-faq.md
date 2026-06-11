@@ -11,7 +11,7 @@ faqs:
   - q: "Can it close my open positions automatically?"
     a: "By default, no. Guard blocks you from adding risk — it stops new entries while leaving any open positions under your full control, and you can always exit yourself. Optionally, you can tick auto-flatten on a Trading Pause or Disconnect rule, and Guard will close all open positions the moment that rule fires — this is an explicit opt-in setting. If not enabled, open positions are never touched."
   - q: "What instruments does it support?"
-    a: "Any instrument you can trade through NinjaTrader 8. It works with futures, forex, stocks, and options on NT8. The behavioral signals are instrument-agnostic — they monitor your execution behavior, not the market you're trading."
+    a: "Any instrument you can trade through a supported platform. On NinjaTrader 8 that includes futures, forex, stocks, and options; the standalone apps cover whatever your Tradovate or Ironbeam account trades. The behavioral signals are instrument-agnostic — they monitor your execution behavior, not the market you're trading."
   - q: "Does my trading data go to the cloud?"
     a: "Only an anonymized copy, and only if you don't opt out. Your behavioral data, session history, and PSI baseline are stored locally on your machine. Two requests go out: license validation with Whop, and an anonymized research upload — trading and behavioral records tied only to a random identifier (no name, credentials, account numbers, or funds), never sold, used solely to improve the product and for research. It's best-effort (the product works fully if it's blocked) and you can opt out anytime by email."
   - q: "Does it affect execution speed or latency?"

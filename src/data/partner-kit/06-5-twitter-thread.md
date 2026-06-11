@@ -9,7 +9,7 @@ copyables:
   - label: "Tweet 2 of 7 — The problem"
     content: "Daily loss limits fire after the damage.\n\nMeridian keeps every hard limit you'd expect — daily loss, single-trade loss, drawdown, loss streaks — but adds a layer that fires during the behavioral breakdown that *causes* the damage.\n\nThat's the premise."
   - label: "Tweet 3 of 7 — What it is"
-    content: "Meridian is a @NinjaTrader 8 add-on.\n\nIt monitors 7 behavioral signals in real time:\n→ Revenge re-entry speed\n→ Stop manipulation\n→ Size spikes\n→ Hold bias (riding losers)\n→ Position overstay\n→ Rule violations\n→ Overtrading pace\n\nComputes a live Psychological Stability Index (PSI) from 0–100."
+    content: "Meridian is a @NinjaTrader 8 add-on (standalone Tradovate & Ironbeam apps in early access).\n\nIt monitors 7 behavioral signals in real time:\n→ Revenge re-entry speed\n→ Stop manipulation\n→ Size spikes\n→ Hold bias (riding losers)\n→ Position overstay\n→ Rule violations\n→ Overtrading pace\n\nComputes a live Psychological Stability Index (PSI) from 0–100."
   - label: "Tweet 4 of 7 — The baseline"
     content: "The baseline is personal.\n\nIt learns what *normal* looks like for YOU — your typical position size, hold time, re-entry patterns.\n\nA size spike means something different for a scalper than a swing trader. Meridian accounts for this."
   - label: "Tweet 5 of 7 — Guard"
