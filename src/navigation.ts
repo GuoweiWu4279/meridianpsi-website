@@ -24,9 +24,17 @@ export const headerData = {
     },
     { text: 'Platforms', href: getPermalink('/platforms') },
     { text: 'Pricing', href: getPermalink('/pricing') },
-    // Download is a primary buyer action (and the manage/update door for owners) —
-    // it lives top-level, not buried in a dropdown (Gary, 2026-06-10).
-    { text: 'Download', href: getPermalink('/download') },
+    {
+      text: 'Download',
+      href: getPermalink('/download'),
+      links: [
+        { text: 'All downloads & release notes', href: getPermalink('/download') },
+        { text: 'NinjaTrader 8 add-on', href: getPermalink('/download') },
+        { text: 'Tradovate & Ironbeam app', href: getPermalink('/install-app') },
+        { text: 'Install guide — NinjaTrader 8', href: getPermalink('/installation-guide') },
+        { text: 'Install guide — standalone app', href: getPermalink('/install-app') },
+      ],
+    },
     { text: 'Compare', href: getPermalink('/compare') },
     {
       text: 'Resources',
