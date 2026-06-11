@@ -11,6 +11,7 @@ import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
+import Clarity from '~/components/common/Clarity.astro';
 import VercelAnalytics from '@vercel/analytics/astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 
@@ -38,6 +39,7 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <Clarity />
     <VercelAnalytics />
     {/* Vercel Web Analytics — clean, bot-filtered real-visitor data (sources, geo, top pages).
         Must also be toggled ON in the Vercel project: Dashboard → your project → Analytics → Enable. */}
