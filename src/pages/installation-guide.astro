@@ -15,7 +15,12 @@ import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astr
 const DOWNLOAD_PAGE = 'https://www.meridianpsi.com/download';
 const WHOP_URL = 'https://whop.com/@me/settings/memberships';
 const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
-const INSTALLER = '/releases/Meridian-win-Setup.exe';
+// The signed installer + Velopack auto-update feed live in GitHub Releases
+// (GuoweiWu4279/meridian-releases), NOT in this repo — keeps the website git
+// lean (no ~80MB binaries) and lets the app self-update from the same place.
+// `releases/latest/download/...` always resolves to the newest published build,
+// so shipping a new version never requires touching the website.
+const INSTALLER = 'https://github.com/GuoweiWu4279/meridian-releases/releases/latest/download/Meridian-win-Setup.exe';
 
 const metadata = {
   // Brand already in the query phrase — suppress the site-wide "— Meridian" suffix.
