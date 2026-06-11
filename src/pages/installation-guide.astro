@@ -20,6 +20,11 @@ const SUPPORT_EMAIL = 'contactmeridianpsi@gmail.com';
 // lean (no ~80MB binaries) and lets the app self-update from the same place.
 // `releases/latest/download/...` always resolves to the newest published build,
 // so shipping a new version never requires touching the website.
+//
+// TEMPORARILY UNUSED (2026-06-11): Tradovate/Ironbeam are request-only early
+// access while we hand-onboard — the app panels link to an Apply form, not this
+// file. Kept here so restoring self-serve download is a one-line change once the
+// app is healthy again.
 const INSTALLER = 'https://github.com/GuoweiWu4279/meridian-releases/releases/latest/download/Meridian-win-Setup.exe';
 
 const metadata = {
@@ -34,8 +39,8 @@ const metadata = {
 // Platforms shown in the selector. `kind` drives the sub-label; `time` the eyebrow.
 const VERSIONS = [
   { id: 'ninjatrader', name: 'NinjaTrader 8', sub: 'NinjaScript add-on', time: '~10 min' },
-  { id: 'tradovate', name: 'Tradovate', sub: 'Standalone app', time: '~5 min' },
-  { id: 'ironbeam', name: 'Ironbeam', sub: 'Standalone app', time: '~5 min' },
+  { id: 'tradovate', name: 'Tradovate', sub: 'Standalone app', time: 'Early access' },
+  { id: 'ironbeam', name: 'Ironbeam', sub: 'Standalone app', time: 'Early access' },
 ];
 
 // The two standalone-app platforms share one flow; only the broker name and the
@@ -165,7 +170,10 @@ const appHowTo = (name, id) => ({
 
 const howToGraph = JSON.stringify({
   '@context': 'https://schema.org',
-  '@graph': [ntHowTo, appHowTo('Tradovate', 'tradovate'), appHowTo('Ironbeam', 'ironbeam')],
+  // Only the NinjaTrader 8 HowTo is emitted: Tradovate/Ironbeam are request-only
+  // early access right now (no self-serve install steps), so a HowTo for them
+  // would misdescribe the page. appHowTo() is kept above for when they return.
+  '@graph': [ntHowTo],
 }).replace(/</g, '\\u003c');
 ---
 
@@ -460,18 +468,20 @@ const howToGraph = JSON.stringify({
   {
     APP_BROKERS.map((b) => (
       <div id={`panel-${b.id}`} data-install-panel={b.id} role="tabpanel" aria-labelledby={`tab-${b.id}`} hidden>
-        {/* BEFORE YOU START */}
+        {/* EARLY ACCESS — by request (no self-serve download while we hand-onboard) */}
         <section class="border-y border-zinc-200 bg-white">
           <div class="max-w-5xl mx-auto px-6 py-20 md:py-24">
             <div class="grid lg:grid-cols-2 gap-12 items-start">
               <div data-reveal>
                 <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">
-                  {b.name.toUpperCase()} &middot; STANDALONE APP &middot; ~5 MIN
+                  {b.name.toUpperCase()} &middot; EARLY ACCESS &middot; BY REQUEST
                 </p>
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Install the app for {b.name}.</h2>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Meridian for {b.name}.</h2>
                 <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-                  No NinjaTrader required. The same Meridian engine, as a standalone Windows app that connects straight to
-                  your {b.name} account. Setup takes about five minutes, and the standard 7-day free trial applies when you subscribe.
+                  No NinjaTrader required &mdash; the same Meridian engine, as a standalone Windows app that connects
+                  straight to your {b.name} account. It's in <strong>early access</strong>, and we're onboarding traders by
+                  hand right now: request access below and we'll send you the signed installer and get your setup working
+                  with you, one on one.
                 </p>
                 <ul class="mt-7 space-y-3 text-zinc-700">
                   <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Windows 10 or later (64-bit) &mdash; the installer bundles everything else</span></li>
@@ -483,86 +493,64 @@ const howToGraph = JSON.stringify({
                   activates this app &mdash; you do not pay twice.
                 </p>
                 <div class="mt-7">
-                  <a href={INSTALLER} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm">Download the app</a>
+                  <a href={`#apply-${b.id}`} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm">Apply for early access</a>
                 </div>
               </div>
 
-              {/* Quick Start card */}
+              {/* How early access works card */}
               <div data-reveal class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
-                <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">QUICK START</p>
+                <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">HOW EARLY ACCESS WORKS</p>
                 <ol class="space-y-3 text-zinc-700 leading-relaxed">
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Download <a class="text-emerald-700 underline font-medium" href={INSTALLER}>Meridian-win-Setup.exe</a> and run it.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Launch Meridian and click <strong>Sign in with {b.name}</strong>.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Authorize on your broker's page &mdash; the app picks the connection back up automatically.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the <strong>License</strong> tab, paste your key from Whop, and click <strong>Activate</strong>.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Set your profile in <strong>Settings</strong>; on Guard, add your rules.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span><em>Optional:</em> connect a demo account first to see it run.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Request access below &mdash; just your email and the broker you trade.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>We reply by email with the <strong>signed installer</strong> and a short setup walk-through.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Install it, then click <strong>Sign in with {b.name}</strong> &mdash; you authorize on your broker's own page.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Activate with your Meridian license (same key as NinjaTrader 8), set your profile, and you're live.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>You get a direct line to the builder the whole way through.</span></li>
                 </ol>
               </div>
             </div>
           </div>
         </section>
 
-        {/* DETAILED STEPS */}
-        <section class="max-w-3xl mx-auto px-6 py-20 md:py-24">
-          <div data-reveal class="space-y-14">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-2xl font-extrabold text-emerald-600 tnum">1</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Download &amp; install</h3>
+        {/* APPLY — early access request form (Formspree, same inbox as the platforms setup-check) */}
+        <section id={`apply-${b.id}`} class="max-w-3xl mx-auto px-6 py-20 md:py-24 scroll-mt-24">
+          <div data-reveal class="rounded-2xl border-2 border-emerald-500 bg-white p-8 md:p-10 shadow-sm">
+            <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">REQUEST EARLY ACCESS &middot; {b.name.toUpperCase()}</p>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">Get on the {b.name} early-access list.</h2>
+            <p class="mt-4 text-zinc-600 leading-relaxed">
+              Tell us where to send it. We onboard new {b.name} traders in small batches so every setup gets attention
+              &mdash; you'll hear back by email with the signed installer and next steps.
+            </p>
+            <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-7 space-y-4">
+              <input type="hidden" name="subject" value={`Early access request — ${b.name}`} />
+              <input type="hidden" name="platform" value={b.name} />
+              <div>
+                <label for={`ea-email-${b.id}`} class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
+                <input
+                  id={`ea-email-${b.id}`}
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="you@example.com"
+                  class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                />
               </div>
-              <p class="text-zinc-600 leading-relaxed">
-                Download <a href={INSTALLER} class="text-emerald-700 underline underline-offset-2 font-medium">Meridian-win-Setup.exe</a> from
-                <a href={DOWNLOAD_PAGE} class="text-emerald-700 underline underline-offset-2"> meridianpsi.com/download</a> and run it. The installer is
-                code-signed and self-contained &mdash; no separate runtime to install. It sets up in a few seconds and keeps itself
-                up to date automatically after that.
-              </p>
-              <p class="mt-3 text-sm text-zinc-600 border-l-2 border-amber-400 pl-4 py-1 leading-relaxed">
-                If Windows shows a SmartScreen prompt on a brand-new build, choose <strong>More info &rarr; Run anyway</strong> &mdash; the
-                file is signed; the warning clears as the signature builds reputation.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-2xl font-extrabold text-emerald-600 tnum">2</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Sign in to {b.name}</h3>
+              <div>
+                <label for={`ea-setup-${b.id}`} class="block text-sm font-medium text-zinc-700 mb-1.5">Broker / prop setup <span class="text-zinc-400 font-normal">(optional)</span></label>
+                <input
+                  id={`ea-setup-${b.id}`}
+                  type="text"
+                  name="setup"
+                  placeholder={`e.g. Apex via ${b.name}, MNQ`}
+                  class="w-full rounded-xl border border-zinc-300 bg-white text-zinc-900 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                />
               </div>
-              <p class="text-zinc-600 leading-relaxed">
-                Open Meridian and click <strong>Sign in with {b.name}</strong>. You authorize on {b.name}'s own page &mdash; Meridian
-                never sees your password. It detects Demo vs Live for you and starts reading your session. Your credentials are
-                used locally on your PC to open the connection and are never transmitted to us.
+              <button type="submit" class="w-full font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Request early access</button>
+              <p class="text-xs text-zinc-500 text-center leading-relaxed">
+                Windows &middot; early-access rate locked for life &middot; 7-day free trial when you subscribe &middot;
+                Prefer email? <a href={`mailto:${SUPPORT_EMAIL}?subject=Early%20access%20%E2%80%94%20${b.name}`} class="underline hover:text-zinc-700">{SUPPORT_EMAIL}</a>
               </p>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-2xl font-extrabold text-emerald-600 tnum">3</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Activate your license</h3>
-              </div>
-              <p class="text-zinc-600 leading-relaxed">
-                Your subscription starts with a <strong>7-day free trial</strong> at checkout &mdash; no charge until day&nbsp;7. Once
-                you have subscribed, copy the key from your Whop membership (the Software / License Key section), open the
-                <strong> License</strong> tab in Meridian, paste it, and click <strong>Activate</strong>. The same key works here and in NinjaTrader 8.
-              </p>
-              <p class="mt-3 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
-                Don't have a key yet? <a href="/pricing" class="text-emerald-700 underline underline-offset-2">Start a subscription</a> &mdash; the
-                first 7 days are free, and early-access members lock in a rate that never goes up.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-2xl font-extrabold text-emerald-600 tnum">4</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Configure &amp; go</h3>
-              </div>
-              <p class="text-zinc-600 leading-relaxed">
-                In <strong>Settings</strong>, set your trading profile &mdash; typical size, session window, signal weights. On the Guard
-                tier, add the rules you want enforced (Guard is off until you turn it on). Connect a demo account first if you want to
-                watch the HUD and signals respond before you go live.
-              </p>
-              <p class="mt-3 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">{b.enforce}</p>
-            </div>
+            </form>
           </div>
         </section>
 
@@ -573,12 +561,12 @@ const howToGraph = JSON.stringify({
             <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">A few honest notes.</h2>
             <dl class="space-y-6">
               <div>
-                <dt class="font-semibold text-zinc-900">It's early access &mdash; and labeled that way.</dt>
-                <dd class="mt-1 text-zinc-600 leading-relaxed">The engine is the same one that's shipped in NinjaTrader 8 for months, validated against the {b.name} demo environment. The app wrapper is newer &mdash; you may meet a rough edge. Found one? Tell us; early-access members get a direct line to the builder.</dd>
+                <dt class="font-semibold text-zinc-900">It's early access &mdash; and onboarded by hand.</dt>
+                <dd class="mt-1 text-zinc-600 leading-relaxed">The engine is the same one that's shipped in NinjaTrader 8 for months. The standalone app around it is newer, so we're rolling it out one trader at a time &mdash; you get the signed installer directly from us, and a direct line to the builder if you hit a rough edge.</dd>
               </div>
               <div>
                 <dt class="font-semibold text-zinc-900">It updates itself.</dt>
-                <dd class="mt-1 text-zinc-600 leading-relaxed">Once installed, Meridian checks for new builds on launch and updates quietly in the background &mdash; you won't re-download installers for every version.</dd>
+                <dd class="mt-1 text-zinc-600 leading-relaxed">Once installed, Meridian checks for new builds on launch and updates quietly in the background &mdash; you won't re-install for every version.</dd>
               </div>
               <div>
                 <dt class="font-semibold text-zinc-900">Your funds and credentials stay yours.</dt>
@@ -590,7 +578,7 @@ const howToGraph = JSON.stringify({
               </div>
             </dl>
             <div class="mt-10 flex flex-wrap gap-3">
-              <a href={INSTALLER} class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">Download the app</a>
+              <a href={`#apply-${b.id}`} class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition-colors">Apply for early access</a>
               <a href="/platforms" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">What runs on each platform &rarr;</a>
             </div>
           </div>
