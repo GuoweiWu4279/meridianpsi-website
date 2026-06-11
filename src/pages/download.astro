@@ -161,8 +161,7 @@ const { Content: LatestContent } = await render(latest);
           <a
             id="download-btn"
             href={latest.data.downloadUrl ?? '#'}
-            class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-emerald-600 text-white font-semibold opacity-40 pointer-events-none transition-all hover:bg-emerald-700 text-sm"
-            aria-disabled="true"
+            class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-emerald-600 text-white font-semibold transition-all hover:bg-emerald-700 text-sm"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -173,7 +172,7 @@ const { Content: LatestContent } = await render(latest);
             Need a license? <a href="/pricing" class="text-emerald-700 font-medium hover:underline">Start free trial</a>
           </span>
         </div>
-        <p id="download-hint" class="mt-3 text-xs text-zinc-500">Confirm the disclaimer to enable download.</p>
+        <p id="download-hint" class="mt-3 text-xs text-zinc-500">Tick the risk-disclaimer box above, then click Download.</p>
         <p class="mt-2 text-xs text-zinc-500">
           Your license key arrives by email from Whop at checkout — activate it in the <strong>License</strong> tab after install.
           Need a key? <a href="/pricing" class="text-emerald-700 font-medium hover:underline">Start the free trial</a>.
@@ -230,28 +229,42 @@ const { Content: LatestContent } = await render(latest);
 </Layout>
 
 <script>
-  // Re-attach on every Astro client-side navigation (View Transitions).
+  // The download button is ALWAYS clickable (never greyed out). If the
+  // risk-disclaimer box isn't ticked, the click is intercepted and the user is
+  // nudged to the checkbox instead of silently doing nothing — that dead-button
+  // state is what sent people wandering off to /pricing. Re-attaches on every
+  // Astro client navigation (View Transitions).
   function initDownloadGate() {
     const checkbox = document.getElementById('disclaimer-confirm') as HTMLInputElement | null;
     const btn = document.getElementById('download-btn');
-    if (!checkbox || !btn) return;
+    const hint = document.getElementById('download-hint');
+    if (!checkbox || !btn || (btn as HTMLElement).dataset.gateBound === '1') return;
+    (btn as HTMLElement).dataset.gateBound = '1';
 
-    // Reset to disabled state on every page-load (in case browser auto-restored checkbox).
-    if (!checkbox.checked) {
-      btn.classList.add('opacity-40', 'pointer-events-none');
-      btn.setAttribute('aria-disabled', 'true');
-    } else {
-      btn.classList.remove('opacity-40', 'pointer-events-none');
-      btn.removeAttribute('aria-disabled');
-    }
+    btn.addEventListener('click', (e) => {
+      if (!checkbox.checked) {
+        e.preventDefault();
+        if (hint) {
+          hint.textContent = 'Please tick the box above to confirm you have read the risk disclaimer — then your download starts.';
+          hint.classList.remove('text-zinc-500', 'text-emerald-700');
+          hint.classList.add('text-rose-600', 'font-medium');
+        }
+        checkbox.classList.add('ring-2', 'ring-rose-400', 'ring-offset-1');
+        checkbox.focus();
+      }
+    });
 
     checkbox.addEventListener('change', () => {
+      if (!hint) return;
       if (checkbox.checked) {
-        btn.classList.remove('opacity-40', 'pointer-events-none');
-        btn.removeAttribute('aria-disabled');
+        hint.textContent = 'Thanks — your download is ready. Click Download above.';
+        hint.classList.remove('text-rose-600', 'font-medium', 'text-zinc-500');
+        hint.classList.add('text-emerald-700');
+        checkbox.classList.remove('ring-2', 'ring-rose-400', 'ring-offset-1');
       } else {
-        btn.classList.add('opacity-40', 'pointer-events-none');
-        btn.setAttribute('aria-disabled', 'true');
+        hint.textContent = 'Tick the risk-disclaimer box above, then click Download.';
+        hint.classList.remove('text-emerald-700', 'text-rose-600', 'font-medium');
+        hint.classList.add('text-zinc-500');
       }
     });
   }
