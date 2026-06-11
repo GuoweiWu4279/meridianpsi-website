@@ -408,6 +408,34 @@ const howToGraph = JSON.stringify({
           </ol>
           <p class="text-zinc-600 leading-relaxed">Market Replay sessions are tracked in a separate context &mdash; they won't affect your live baseline.</p>
         </section>
+
+        <!-- Updating to a new version -->
+        <section id="nt-update" class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24">
+          <div class="flex items-baseline gap-4 mb-5">
+            <span class="text-2xl font-extrabold text-emerald-600">&#8635;</span>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Updating to a new version</h3>
+          </div>
+          <p class="text-zinc-600 leading-relaxed mb-4">
+            Already running Meridian and want the latest build? NinjaTrader won't replace an add-on that's
+            already installed, so remove the old one first &mdash; it takes about a minute, and you never touch
+            any files by hand.
+          </p>
+          <ol class="space-y-2.5 text-zinc-700 mb-4">
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Close any open Meridian windows (Dashboard and the HUD).</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>In NinjaTrader, go to <strong>Control Center &rarr; Tools &rarr; Remove NinjaScript Assembly&hellip;</strong></span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Select <strong>MeridianPSI</strong> in the list and click <strong>Remove</strong>. (This only removes the program &mdash; your license, profile, journal and history are kept safe in a separate data folder.)</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Download the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}>{DOWNLOAD_PAGE}</a> &mdash; do not extract it.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Let NinjaTrader compile, and restart it if prompted.</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">7</span><span>Open the Dashboard &rarr; <strong>License tab</strong> and confirm the new version number is shown.</span></li>
+          </ol>
+          <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
+            <strong class="text-zinc-900">Your settings carry over automatically.</strong> Updating never resets
+            your license, trading profile, Guard rules, journal, or session history. If you ever import
+            <em>without</em> removing the old version first and NinjaTrader shows a compile error, just do the
+            Remove step above and import again.
+          </p>
+        </section>
       </div>
     </section>
 
@@ -450,10 +478,13 @@ const howToGraph = JSON.stringify({
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-            <h3 class="font-semibold text-zinc-900 mb-3">The import failed</h3>
-            <p class="text-sm text-zinc-700 mb-2">Make sure you're importing through:</p>
-            <p class="text-sm font-medium text-zinc-900 mb-2">Tools &rarr; Import &rarr; NinjaScript Add-On</p>
-            <p class="text-sm text-zinc-500">If NinjaTrader shows an error, send a screenshot to support.</p>
+            <h3 class="font-semibold text-zinc-900 mb-3">The import failed (or a compile error after importing)</h3>
+            <p class="text-sm text-zinc-700 mb-2">Almost always this means an older Meridian version is still installed &mdash; NinjaTrader won't replace it on import. Remove the old one first:</p>
+            <ol class="space-y-2 text-sm text-zinc-700 mb-3">
+              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span><strong>Tools &rarr; Remove NinjaScript Assembly&hellip;</strong> &rarr; select <strong>MeridianPSI</strong> &rarr; Remove</span></li>
+              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Then <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code></span></li>
+            </ol>
+            <p class="text-sm text-zinc-500">Your license and data are untouched by this. If NinjaTrader still shows an error, send a screenshot to support.</p>
           </div>
         </div>
 
