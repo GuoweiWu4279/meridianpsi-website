@@ -1,10 +1,14 @@
 ---
 import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
+
+// Production only — import.meta.env.PROD is false under `astro dev`, so local
+// development sessions never fire GA and never pollute the real visitor data.
+const enabled = import.meta.env.PROD && ANALYTICS?.vendors?.googleAnalytics?.id;
 ---
 
 {
-  ANALYTICS?.vendors?.googleAnalytics?.id ? (
+  enabled ? (
     <GoogleAnalytics
       id={String(ANALYTICS.vendors.googleAnalytics.id)}
       partytown={ANALYTICS?.vendors?.googleAnalytics?.partytown}
@@ -15,7 +19,7 @@ import { ANALYTICS } from 'astrowind:config';
 {/* Re-fire GA page_view on every Astro View Transitions client-side navigation.
     astro:after-swap fires only on navigations (not initial load), so the first
     page_view sent by gtag("config", id) above is never double-counted. */}
-{ANALYTICS?.vendors?.googleAnalytics?.id && (
+{enabled && (
   <script is:inline>
     document.addEventListener('astro:after-swap', () => {
       if (typeof gtag === 'function') {

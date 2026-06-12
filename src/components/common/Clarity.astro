@@ -12,9 +12,17 @@
 // session analytics when this is active.
 const CLARITY_ID = 'x5h8gmhtc5';
 
-const clarityTag = CLARITY_ID
-  ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_ID}");`
-  : '';
+// Production only. import.meta.env.PROD is false under `astro dev` (localhost),
+// so dev sessions never pollute the real visitor data. The runtime hostname
+// guard below adds belt-and-suspenders: even on a `vercel deploy` preview URL
+// (which IS a prod build) the tag stays dormant — it only fires on the live
+// domain. To test analytics from a preview, add that hostname here.
+const PROD_HOSTS = ['www.meridianpsi.com', 'meridianpsi.com'];
+
+const clarityTag =
+  CLARITY_ID && import.meta.env.PROD
+    ? `if(${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname)>-1){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_ID}");}`
+    : '';
 ---
 
 {clarityTag ? <script type="text/javascript" set:html={clarityTag} /> : null}
