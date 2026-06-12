@@ -17,7 +17,7 @@ const guardFeatures = guard.features.map((f) =>
 const usd = (n: number) => n.toFixed(2);
 
 // SEO description — sharpened toward the superset positioning, kept price- and keyword-rich.
-const pricingPageDescription = `Meridian is the complete risk manager for serious futures traders — every limit a traditional risk tool has, plus real-time behavioral detection. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access, one license. Core: $${usd(core.monthlyPrice)}/mo or $${usd(core.annualPrice)}/yr. Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr. 7-day free trial, cancel anytime. Trading involves substantial risk.`;
+const pricingPageDescription = `Meridian is the complete risk manager for serious futures traders — every limit a traditional risk tool has, plus real-time behavioral detection. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access, one license. Core: $${usd(core.monthlyPrice)}/mo or $${usd(core.annualPrice)}/yr. Guard: $${usd(guard.monthlyPrice)}/mo or $${usd(guard.annualPrice)}/yr. 14-day free trial, cancel anytime. Trading involves substantial risk.`;
 
 const metadata = {
   title: 'Pricing — Meridian Risk Management for Futures Traders',
@@ -90,7 +90,7 @@ const pricingPageJsonLd = JSON.stringify({
 const faqs = [
   {
     q: 'When am I charged?',
-    a: 'Not for seven days. The trial gives you full access from day one, and your card is not charged until day 7. Cancel any time before then and you pay nothing — no partial charge, no fine print.',
+    a: 'Not for fourteen days. The trial gives you full access from day one, and your card is not charged until day 14. Cancel any time before then and you pay nothing — no partial charge, no fine print.',
   },
   {
     q: 'Can I cancel anytime?',
@@ -102,7 +102,7 @@ const faqs = [
   },
   {
     q: 'Do I need NinjaTrader 8?',
-    a: 'Not necessarily. Meridian runs today as a native NinjaTrader 8 add-on — inside the platform, no separate login account. Standalone Meridian apps that connect directly to Tradovate and Ironbeam accounts are in early access; if you trade through one of those, request early access from the Platforms page and we will send you the installer — same 7-day free trial when you subscribe.',
+    a: 'Not necessarily. Meridian runs today as a native NinjaTrader 8 add-on — inside the platform, no separate login account. Standalone Meridian apps that connect directly to Tradovate and Ironbeam accounts are in early access; if you trade through one of those, request early access from the Platforms page and we will send you the installer — same 14-day free trial when you subscribe.',
   },
   {
     q: 'Do I pay more for Tradovate or Ironbeam?',
@@ -110,7 +110,7 @@ const faqs = [
   },
   {
     q: 'Monthly or annual?',
-    a: `Same product, same features. Annual is billed once a year at a lower effective monthly rate — about $${core.annualSavings}/yr less on Core and about $${guard.annualSavings}/yr less on Guard. Both include the 7-day free trial. Use the toggle above to compare.`,
+    a: `Same product, same features. Annual is billed once a year at a lower effective monthly rate — about $${core.annualSavings}/yr less on Core and about $${guard.annualSavings}/yr less on Guard. Both include the 14-day free trial. Use the toggle above to compare.`,
   },
   {
     q: 'How does the price compare to buying a risk tool, a journal, and an analytics app separately?',
@@ -145,7 +145,7 @@ const faqs = [
         Two tiers. First week free.
       </h1>
       <p class="mt-4 max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
-        Full access from day one. No charge until day 7 — cancel before then and you pay nothing.
+        Full access from day one. No charge until day 14 — cancel before then and you pay nothing.
       </p>
     </div>
   </section>
@@ -185,9 +185,9 @@ const faqs = [
               <span class="text-5xl font-extrabold text-zinc-900 tnum">${core.annualMonthly}</span>
               <span class="text-zinc-500 text-sm">/month</span>
             </div>
-            <p id="core-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 7-day free trial</p>
+            <p id="core-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 14-day free trial</p>
             <p id="core-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
-              Billed <span class="tnum">${core.annualPrice}</span>/year · saves ~<span class="tnum">${core.annualSavings}</span>/yr · 7-day free trial
+              Billed <span class="tnum">${core.annualPrice}</span>/year · saves ~<span class="tnum">${core.annualSavings}</span>/yr · 14-day free trial
             </p>
           </div>
 
@@ -228,9 +228,9 @@ const faqs = [
               <span class="text-5xl font-extrabold text-zinc-900 tnum">${guard.annualMonthly}</span>
               <span class="text-zinc-500 text-sm">/month</span>
             </div>
-            <p id="guard-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 7-day free trial</p>
+            <p id="guard-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 14-day free trial</p>
             <p id="guard-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
-              Billed <span class="tnum">${guard.annualPrice}</span>/year · saves ~<span class="tnum">${guard.annualSavings}</span>/yr · 7-day free trial
+              Billed <span class="tnum">${guard.annualPrice}</span>/year · saves ~<span class="tnum">${guard.annualSavings}</span>/yr · 14-day free trial
             </p>
           </div>
 
@@ -326,8 +326,8 @@ const faqs = [
       </div>
       <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <div class="font-semibold text-zinc-900 mb-2">7 days, on the house</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Full access from day one. Your card is not charged until day 7 — cancel before then and you pay nothing at all.</p>
+          <div class="font-semibold text-zinc-900 mb-2">14 days, on the house</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Full access from day one. Your card is not charged until day 14 — cancel before then and you pay nothing at all.</p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">Cancel in two clicks</div>
@@ -376,7 +376,7 @@ const faqs = [
   <section class="border-y border-zinc-200 bg-white">
     <div data-reveal class="max-w-3xl mx-auto px-6 py-24 text-center">
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">Start the trial. Let your own data decide.</h2>
-      <p class="mt-5 text-lg text-zinc-600">Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 7. Cancel anytime.</p>
+      <p class="mt-5 text-lg text-zinc-600">Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 14. Cancel anytime.</p>
       <p class="mt-3 text-sm text-zinc-500">Do the math: a single evaluation reset runs $100+, and one tilted session usually costs more than a month of Guard.</p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start Guard free trial</a>

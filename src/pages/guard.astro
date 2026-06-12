@@ -13,7 +13,7 @@ const metadata = {
   title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
   ignoreTitleTemplate: true,
   description:
-    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, a five-level escalation ladder, and an un-bypassable Strict Lock. After a 7-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
+    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, a five-level escalation ladder, and an un-bypassable Strict Lock. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
   robots: { index: true, follow: true },
 };
 
@@ -108,10 +108,10 @@ const { triggers, levels, examples } = guardData;
         decide, from a quiet nudge to a full broker disconnect. No decision required from the tilted version of you.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={guardCheckout} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href={guardCheckout} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
         <a href="#ladder" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it enforces</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime</p>
     </div>
     <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
       <div class="win"><img src="/m/guard.png" alt="Meridian Guard configuration — your own rules with an escalating enforcement ladder and an un-bypassable Strict Lock" /></div>
@@ -505,10 +505,10 @@ const { triggers, levels, examples } = guardData;
     <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Set the rules once.<br />Let them hold the line.</h2>
       <p class="mt-6 text-lg text-zinc-600">
-        Everything in Meridian Core, plus the Guard System, Strict Lock, and the Intel Layer. 7-day free trial &mdash; no charge until day 7.
+        Everything in Meridian Core, plus the Guard System, Strict Lock, and the Intel Layer. 14-day free trial &mdash; no charge until day 14.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={guardCheckout} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+        <a href={guardCheckout} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
         <a href="/pricing" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Compare all plans</a>
       </div>
       <p class="mt-4 text-xs text-zinc-500">${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime &middot; NinjaTrader 8 required</p>

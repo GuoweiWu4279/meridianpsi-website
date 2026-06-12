@@ -40,7 +40,7 @@
     "currency": "USD",
     "price": 49.99,
     "billing": "monthly subscription",
-    "trialDays": 7,
+    "trialDays": 14,
     "cancelAnytime": true
   },
   "purchase": {

@@ -17,7 +17,7 @@ copyables:
   - label: "Tweet 6 of 7 — Privacy"
     content: "Your history stays on your machine.\n\nNo login, no personal accounts. The only data that leaves is anonymized research — no name, account, or funds — and you can opt out anytime.\n\nWorks in live + Market Replay. Native on NT8 — Tradovate & Ironbeam apps in early access. Windows only."
   - label: "Tweet 7 of 7 — CTA"
-    content: "7-day trial at the link below.\n\nCode [YOURCODE] is 10% off every renewal — not just the first month.\n\n[YOUR AFFILIATE LINK]\n\n(Affiliate link — I earn a commission if you sign up)"
+    content: "14-day trial at the link below.\n\nCode [YOURCODE] is 10% off every renewal — not just the first month.\n\n[YOUR AFFILIATE LINK]\n\n(Affiliate link — I earn a commission if you sign up)"
 ---
 
 **Tips:**

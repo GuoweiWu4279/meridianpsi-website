@@ -52,7 +52,7 @@
 | "prevents blowups" / "eliminates emotions" | "intervenes when behavioral signals indicate elevated risk" |
 | "reduces losses" | "intervenes during behavioral patterns associated with loss spirals" |
 | "100% accurate" / "proven results" / "risk-free" | 删掉 |
-| "no credit card"（试用） | **试用需要绑卡**，写 "7-day free trial, cancel anytime during the trial" |
+| "no credit card"（试用） | **试用需要绑卡**，写 "14-day free trial, cancel anytime during the trial" |
 | "no telemetry" / "no data ever leaves your machine" | **v1.5.0 起不成立**。写 "local-first；仅两类外呼=license 验证+匿名研究数据（可随时 opt out）" |
 | "anti-tilt"（作为定位） | 已废弃。用 "real-time psychological stability monitor" |
 | "Intel 仅 Guard 档" | **v1.5.0 起 Intel 进 Core**。Guard 卖点=强制层（规则引擎+Strict Lock） |

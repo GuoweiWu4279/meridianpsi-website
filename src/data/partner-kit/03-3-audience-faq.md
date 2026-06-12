@@ -27,7 +27,7 @@ faqs:
   - q: "What's the difference between Meridian Core and Meridian Guard?"
     a: "Core includes real-time PSI monitoring, the seven behavioral signals, the floating HUD, the Session Journal, 5 years of local session history, and (since v1.5.0) the full Intel analytics workspace — monthly digest, PSI × P&L correlation, weekday patterns, breakdowns, and a personalized pre-session Risk Brief. Guard adds the enforcement layer: the Guard System — automated rules with six trigger conditions and five response levels, escalating from a quiet notify, to a persistent risk alert, to a typed acknowledgment, to a trading pause that blocks new entries, up to a full broker disconnect — plus Strict Lock, the un-bypassable commitment switch."
   - q: "Is there a free trial?"
-    a: "Yes — 7 days, credit card required at checkout. The trial auto-cancels if not converted; you won't be charged unless you actively keep the subscription after the trial ends."
+    a: "Yes — 14 days, credit card required at checkout. The trial auto-cancels if not converted; you won't be charged unless you actively keep the subscription after the trial ends."
   - q: "Does it work with prop firm accounts (APEX, TopStep, etc.)?"
     a: "Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8. Many traders use it specifically during prop firm evaluations, since the behavioral signals often start firing before the hard evaluation limits are reached."
   - q: "What happens if Guard disconnects me during a live trade?"

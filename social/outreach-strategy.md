@@ -160,7 +160,7 @@ Last follow-up — I won't keep cluttering your inbox.
 
 If timing isn't right, the partnership stays on the table — happy to reconnect in three or six months. If it's just not a fit, a single-word reply removes you from the list.
 
-If you'd rather just see the product before any partnership conversation, the 7-day free trial is at meridianpsi.com/download.
+If you'd rather just see the product before any partnership conversation, the 14-day free trial is at meridianpsi.com/download.
 
 Best,
 Gary
@@ -283,7 +283,7 @@ Replies fall into 4 buckets — handle each consistently:
 | Reply type | What they say | Response within | Action |
 |---|---|---|---|
 | Yes / interested | "send me the brief", "let's talk" | 24h | Send brief PDF + creator kit (when ready); start onboarding |
-| Curious / need info | "what's the product like?", "how do payouts work?" | 24h | Short, factual answer; link to /partners; offer 7-day trial |
+| Curious / need info | "what's the product like?", "how do payouts work?" | 24h | Short, factual answer; link to /partners; offer 14-day trial |
 | Not now | "busy", "maybe later" | 48h | "No worries — happy to reconnect in 3 months" + tag for future re-outreach |
 | No / pass | "not interested", "pass" | None — just remove | Remove from list, don't reply |
 

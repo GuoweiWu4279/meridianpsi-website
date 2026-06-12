@@ -4,4 +4,4 @@ category: general
 order: 1
 ---
 
-Meridian runs natively inside **NinjaTrader 8** today (Windows). The same engine also ships as standalone Windows apps that connect directly to a **Tradovate** or **Ironbeam** account — no NinjaTrader required — currently in **early access** (signed self-serve installer, 7-day free trial). One license covers every platform we support. TopstepX is a closed platform Meridian cannot run inside today. See [Platforms](/platforms) for the full capability matrix.
+Meridian runs natively inside **NinjaTrader 8** today (Windows). The same engine also ships as standalone Windows apps that connect directly to a **Tradovate** or **Ironbeam** account — no NinjaTrader required — currently in **early access** (signed self-serve installer, 14-day free trial). One license covers every platform we support. TopstepX is a closed platform Meridian cannot run inside today. See [Platforms](/platforms) for the full capability matrix.

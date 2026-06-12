@@ -8,4 +8,4 @@ Yes — two ways. If your firm lets you trade through **NinjaTrader 8** (Apex, M
 
 We do **not** require any API connection to your evaluation or funded accounts.
 
-See [pricing](/pricing) to start a 7-day free trial, read more about [Meridian Guard](/guard) — which can be configured to mirror your prop firm's daily loss and drawdown limits (it can't guarantee you pass an evaluation) — or see the detailed breakdown: [Risk management for NinjaTrader 8 prop firm traders](/use-cases/prop-firm-behavioral-risk-control).
+See [pricing](/pricing) to start a 14-day free trial, read more about [Meridian Guard](/guard) — which can be configured to mirror your prop firm's daily loss and drawdown limits (it can't guarantee you pass an evaluation) — or see the detailed breakdown: [Risk management for NinjaTrader 8 prop firm traders](/use-cases/prop-firm-behavioral-risk-control).

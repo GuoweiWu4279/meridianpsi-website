@@ -35,7 +35,7 @@ Note: use live prices from [meridianpsi.com/pricing](https://www.meridianpsi.com
 - 30% recurring is a meaningful, long-term incentive — creator value compounds as their audience subscribes and stays
 - Permanent discount (not first-purchase only) makes the code worth mentioning in every video, not just launch content
 - Free Guard license lets the creator use the product authentically — they review their own sessions with it
-- The trial does the convincing: 7-day free trial means audience installs and decides themselves; creator doesn't have to oversell
+- The trial does the convincing: 14-day free trial means audience installs and decides themselves; creator doesn't have to oversell
 
 ## Who To Invite
 
@@ -86,7 +86,7 @@ Creators must clearly disclose that:
 - Session review that goes beyond P&L
 - Personal adaptive baseline instead of generic thresholds
 - Native NinjaTrader 8 add-on, fully local — no cloud, no telemetry
-- 7-day free trial, credit card required
+- 14-day free trial, credit card required
 
 ## Operational Notes
 

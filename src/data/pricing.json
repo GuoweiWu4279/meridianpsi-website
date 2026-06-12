@@ -1,6 +1,6 @@
 {
   "headline": "Start the trial. See what your sessions show.",
-  "subhead": "Seven days, full access. Your behavioral signals live from day one. No charge until the trial ends. One subscription covers every platform we support.",
+  "subhead": "Fourteen days, full access. Your behavioral signals live from day one. No charge until the trial ends. One subscription covers every platform we support.",
   "tiers": [
     {
       "id": "meridian",
@@ -11,7 +11,7 @@
       "annualMonthly": 39.99,
       "annualSavings": 120,
       "currency": "USD",
-      "trialDays": 7,
+      "trialDays": 14,
       "badge": "",
       "highlight": false,
       "monthlyCtaHref": "https://whop.com/checkout/plan_4Z0XZqQl7TaDH",
@@ -35,7 +35,7 @@
       "annualMonthly": 55.99,
       "annualSavings": 168,
       "currency": "USD",
-      "trialDays": 7,
+      "trialDays": 14,
       "badge": "",
       "highlight": true,
       "monthlyCtaHref": "https://whop.com/checkout/plan_ZHX4ySB65fahf",
@@ -50,5 +50,5 @@
       ]
     }
   ],
-  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 7-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 7-day free trial. Cancel any time before the trial ends and you will not be charged. One subscription covers every supported platform — NinjaTrader 8 today, Tradovate and Ironbeam in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 14-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 14-day free trial. Cancel any time before the trial ends and you will not be charged. One subscription covers every supported platform — NinjaTrader 8 today, Tradovate and Ironbeam in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }

@@ -11,7 +11,7 @@ notes: |
   Section-role sequence: orient → offer → who this is for → how to get in.
   Passed voice scan: no three-fragment rules, no "not just X it's Y", no AI 升格.
   Facts per MERIDIAN.md: Tradovate standalone app, Ironbeam standalone app, 
-  same license all platforms, 7-day trial via Whop.
+  same license all platforms, 14-day trial via Whop.
   Post alongside or after the D1 key emails going out, so the email references 
   something findable on Reddit.
 ---
@@ -34,7 +34,7 @@ Both are in early access. Right now that means the download is behind a request 
 
 If your prop firm setup runs on something other than Tradovate or Ironbeam, reply or send a message with which platform and I will give you a straight answer on whether we cover it.
 
-The 7-day trial via Whop still applies to the NinjaTrader 8 add-on. If you want to trial the standalone app during early access, mention it when you fill out the form.
+The 14-day trial via Whop still applies to the NinjaTrader 8 add-on. If you want to trial the standalone app during early access, mention it when you fill out the form.
 
 ---
 

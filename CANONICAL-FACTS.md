@@ -54,7 +54,7 @@ same trade isn't double-counted in your behavioral score." Don't over-state as "
 ## TESTIMONIALS — Gary confirms ALL are REAL (homepage + checkout). Keep them; keep "real quotes" framing. (Audit's "fabricated" flag was wrong here.)
 
 ## PRICING / TIER LINE (pricing.json canonical)
-- Core $49.99/mo ($479.90/yr) · Guard $69.99/mo ($671.90/yr) · 7-day free trial.
+- Core $49.99/mo ($479.90/yr) · Guard $69.99/mo ($671.90/yr) · 14-day free trial.
 - **5-year session history + post-session reports = CORE** (every tier). The Intel/Stats ANALYSIS layer (monthly digest,
   weekday patterns, PSI×P&L correlation, Today's Risk Brief, custom-range Stats) = **Guard-only**. Don't pair "5-year history" with "Guard".
 - Subscription management = **Whop** (whop.com/@me/settings/memberships) — there is NO in-app "account dashboard" for billing.

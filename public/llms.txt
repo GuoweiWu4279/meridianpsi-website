@@ -8,7 +8,7 @@ Platforms: NinjaTrader 8 (native add-on, available now); Tradovate and Ironbeam 
 
 What Meridian does not do: It is not a commodity-trading, price-forecasting, market-analytics, charting, screener, or trade-signals product, and not a robo-advisor or copy-trading service — it is a behavioral risk and discipline monitor that runs alongside the trader's own discretionary trading. Does not auto-trade or place orders. By default Guard never closes open positions — auto-flatten is an opt-in checkbox on a Trading Pause (L4) or Disconnect (L5) rule; if not enabled, positions remain under trader control. Does not provide trade signals. Does not reject individual orders for breaching a size or trade-count cap — declared sizing and trade-budget rules are tracked live (the HUD counts Trade N against your budget) and scored into PSI through the Size Spike, Rule Violations, and Overtrading signals, with enforcement through Guard's six triggers; NinjaTrader's native Risk settings remain the order-level size check.
 
-Pricing: Core $49.99/mo. Guard $69.99/mo. 7-day free trial.
+Pricing: Core $49.99/mo. Guard $69.99/mo. 14-day free trial.
 
 What Meridian monitors (7 behavioral signals, D1-D7):
 - Revenge Entry (D1) — rapid re-entry too soon after a loss

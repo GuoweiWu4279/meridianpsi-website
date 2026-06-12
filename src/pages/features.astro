@@ -15,7 +15,7 @@ import signalsData from '~/data/signals.json';
 const metadata = {
   title: 'Features — Everything Your Risk Tool Does, Plus Behavior',
   description:
-    'Meridian is the complete risk manager for serious futures traders: every limit a traditional risk tool has — daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — plus real-time detection of seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) scored against your own baseline, with intervention before the order. Native in NinjaTrader 8; Tradovate & Ironbeam in early access. 7-day free trial.',
+    'Meridian is the complete risk manager for serious futures traders: every limit a traditional risk tool has — daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — plus real-time detection of seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) scored against your own baseline, with intervention before the order. Native in NinjaTrader 8; Tradovate & Ironbeam in early access. 14-day free trial.',
   robots: { index: true, follow: true },
 };
 
@@ -129,10 +129,10 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         behaviors that actually blow up accounts, scored against <em>your</em> baseline, stopping you <em>before</em> the order.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 7-day free trial</a>
+        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
         <a href="#superset" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the whole superset</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; From <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="win"><img src="/m/overview.png" alt="Meridian Overview — live PSI gauge, behavioral signal bars, and session context inside NinjaTrader 8" class="nozoom" /></div>
@@ -264,10 +264,10 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">See the tilt before<br />the next entry.</h2>
       <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does — plus the layer that actually saves the account.</p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 7-day free trial</a>
+        <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
         <a href="/pricing" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See pricing</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 7 &middot; <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/month after &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/month after &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
     </div>
   </section>
 </Layout>

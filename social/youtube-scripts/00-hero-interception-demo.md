@@ -55,7 +55,7 @@ Type the phrase you wrote when calm to continue:
 **On screen, full frame:**
 - Meridian wordmark
 - Sub-line: "Powered by the Psychological Stability Index (PSI). Built first for NinjaTrader 8."
-- CTA: "Try free for 7 days →" (linking to /pricing)
+- CTA: "Try free for 14 days →" (linking to /pricing)
 
 ---
 

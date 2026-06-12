@@ -89,7 +89,7 @@ Meridian does not place trades and does not promise results. It watches what you
 
 **Platforms and trust**
 
-Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. There is a 7-day free trial.
+Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. There is a 14-day free trial.
 
 It is an Official NinjaTrader Ecosystem Vendor, audited by NinjaTrader's compliance, QA, and executive teams. It is local-first: your sessions, baselines, and journal stay on your machine, and it never collects your name, broker credentials, account numbers, or funds. The only things that leave your PC are a license check and anonymized research records tied to a random ID, which you can opt out of. That is also why it runs inside prop firm environments.
 
