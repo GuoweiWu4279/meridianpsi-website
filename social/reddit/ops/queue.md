@@ -49,6 +49,16 @@ Gary 刷帖看到感兴趣的就把帖子(标题+正文+sub，能带链接更好
 
 ## ② 排程中（我这边的工作，无需你动）
 
-- Founding User Program 帖（r/MeridianPSI + r/alphaandbetausers 两版）— Phase 2 发，草稿我先备
+### [2] r/MeridianPSI — Tradovate/Ironbeam Early Access 公告帖 ★待发
+
+草稿完成：`social/reddit/founding-early-access-post.md`
+
+- 文体：Founding / early-access 帖（ARTIFACTS.md 对应行）
+- 定位：Tradovate/Ironbeam 平台解锁公告 + early access 申请入口
+- 时机：与 D1 钥匙信同步发出（创作者收到邮件时，Reddit 上能找到）
+- Gary：复制 `founding-early-access-post.md` 的 Post body，直接发到 r/MeridianPSI
+
+---
+
 - Software Sunday #1 满血帖 — 等多平台公告时点对齐，年度 2 发之首
 - Reddit Pro Trends 关键词清单（NinjaTrader / prop firm / tilt / revenge trading / daily loss limit …）— 等 0b

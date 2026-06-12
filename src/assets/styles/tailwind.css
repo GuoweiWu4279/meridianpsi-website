@@ -277,13 +277,24 @@ summary:focus-visible {
   box-shadow: none;
 }
 
-#header.expanded nav {
+/* Mobile expanded menu = full-viewport takeover. Everything above the nav
+   (announcement bar, header padding, logo row) varies in height per page, so
+   the nav must never be offset by a fixed pixel value: pin the header itself
+   to the viewport and let the nav fill whatever is left below the logo row. */
+#header.expanded {
   position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0 16px;
+  inset: 0;
+  height: 100vh;
+  height: 100dvh;
+}
+#header.expanded > div:last-child {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#header.expanded nav {
+  flex: 1 1 0%;
+  min-height: 0; /* lets the nav's own overflow-y-auto engage instead of stretching the column */
   padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 

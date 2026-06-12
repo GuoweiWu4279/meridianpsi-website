@@ -253,10 +253,13 @@ const assetCategories: AssetCategory[] = [
 ];
 
 // Detect if the optional "Download all" zip is shipped
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-const zipPath = fileURLToPath(new URL('../../../public/partner-kit/meridian-creator-kit.zip', import.meta.url));
-const zipAvailable = existsSync(zipPath);
+// The kit zip is COMMITTED at public/partner-kit/meridian-creator-kit.zip and
+// always ships with the site. The old existsSync(relative-path) detection broke
+// on Vercel builds (path resolved outside the build dir -> false -> BOTH
+// "Download all assets" buttons silently hidden on prod while the page prose
+// still told users to click them; a partner reported it 2026-06-12). Never
+// fs-detect committed public assets at build time.
+const zipAvailable = true;
 
 const metadata = {
   // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
