@@ -63,28 +63,49 @@ const faqSchema = JSON.stringify({
   })),
 }).replace(/</g, '\\u003c');
 
+// Pillar "what is Meridian" page — the most likely citation for the direct entity
+// query. Carry the canonical SoftwareApplication entity (publisher linked to the
+// homepage Organization @id) plus a DefinedTerm that pins PSI = Psychological
+// Stability Index, so AI indexers can't drift "PSI" toward a price/pressure index.
+const softwareSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Meridian',
+  alternateName: ['Meridian PSI', 'Meridian Guard'],
+  applicationCategory: 'FinanceApplication',
+  applicationSubCategory: 'TradingApplication',
+  operatingSystem: 'Windows',
+  softwareVersion: '1.5.0',
+  softwareRequirements:
+    'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
+  description: geoHooks.meridianPsiCanonical,
+  disambiguatingDescription:
+    'Meridian is behavioral trading-discipline software — a real-time psychological stability monitor for futures traders, not a commodity-price, market-analytics, price-forecasting, or trade-signals product. "PSI" is its Psychological Stability Index, not a price or pressure index.',
+  keywords: geoHooks.geoSearchAssociate,
+  url: 'https://www.meridianpsi.com/what-is-meridian-psi',
+  award: 'Official NinjaTrader Ecosystem Vendor (May 2026)',
+  publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
+}).replace(/</g, '\\u003c');
+
+const definedTermSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: 'Psychological Stability Index (PSI)',
+  termCode: 'PSI',
+  description:
+    'In Meridian, PSI (Psychological Stability Index) is a live 0–100 behavioral-discipline score composited from seven trading-behavior signals measured against the trader\'s own adaptive baseline; it updates within 100ms of each fill. It is not pounds-per-square-inch and not a price, strength, or commodity index.',
+  inDefinedTermSet: 'https://www.meridianpsi.com/glossary',
+  url: 'https://www.meridianpsi.com/what-is-meridian-psi',
+}).replace(/</g, '\\u003c');
+
 const TRIAL = '/pricing';
 
-const signals = [
-  { name: 'Revenge entry', desc: 'Re-entering too fast after a loss, at bigger size.' },
-  { name: 'Stop manipulation', desc: 'Widening or moving your stop against a losing trade.' },
-  { name: 'Size spike', desc: 'Sizing past your own rule — weighted heavier on losing streaks.' },
-  { name: 'Hold bias', desc: 'Holding losers far longer than winners. (Cutting losses fast is never penalized.)' },
-  { name: 'Position overstay', desc: 'Sitting in a losing trade past your own tolerance window.' },
-  { name: 'Rule violations', desc: 'Trading outside the rules you set — time window, stops, streaks.' },
-  { name: 'Overtrading pace', desc: 'Entries speeding up past your own normal session rhythm.' },
-];
-
-const loop = [
-  { n: '01', title: 'Monitor', desc: 'A live PSI read on your discipline, updated within 100ms of every fill.' },
-  { n: '02', title: 'Guard', desc: 'Enforcement the moment you cross a line you set when you were calm.' },
-  { n: '03', title: 'Journal', desc: 'What happened — and what you were feeling — captured in the moment.' },
-  { n: '04', title: 'Review', desc: 'Edge vs luck, composed vs tilted, with a dollar figure on the gap.' },
-  { n: '05', title: 'Improve', desc: 'A sharper baseline and tighter rules carry into the next session.' },
-];
 ---
 
 <Layout metadata={metadata}>
+  <!-- Structured data for GEO: SoftwareApplication + DefinedTerm(PSI) + FAQPage -->
+  <script type="application/ld+json" set:html={softwareSchema} />
+  <script type="application/ld+json" set:html={definedTermSchema} />
   <script type="application/ld+json" set:html={faqSchema} />
 
   <!-- ───────────────────────── HERO ───────────────────────── -->
@@ -209,91 +230,44 @@ const loop = [
     </div>
   </section>
 
-  <!-- ───────────────────────── THE 7 SIGNALS ───────────────────────── -->
-  <section class="max-w-6xl mx-auto px-6 py-24">
-    <div class="text-center mb-12" data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT FEEDS THE SCORE</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Seven behaviors. One baseline that's yours.</h2>
-      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-        Each signal is calibrated to <em>your</em> history, not a population average. A scalper who enters every 90 seconds is
-        judged against their own rhythm &mdash; never a swing trader's.
-      </p>
-    </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
-      {signals.map((s, idx) => (
-        <div class={`rounded-xl border border-zinc-200 bg-[#fafafa] p-5${idx === 6 ? ' sm:col-span-2 lg:col-span-1' : ''}`}>
-          <div class="font-semibold text-zinc-900">{s.name}</div>
-          <p class="mt-1 text-sm text-zinc-600">{s.desc}</p>
-        </div>
-      ))}
-    </div>
-    <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto">
-      Full signal definitions live on the <a href="/psi-monitor" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">PSI Monitor</a> page.
+  <!-- ───────────────────────── THE 7 SIGNALS (compact — /psi-monitor is the canonical host) -->
+  <section class="max-w-3xl mx-auto px-6 py-16 text-center">
+    <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3" data-reveal>WHAT FEEDS THE SCORE</p>
+    <p class="text-lg text-zinc-700 leading-relaxed" data-reveal>
+      PSI is fed by seven behavioral signals &mdash; revenge entries, size spikes, stop manipulation, hold bias,
+      position overstay, rule violations, and overtrading pace &mdash; each calibrated to <em>your</em> history,
+      never a population average.
+      <a href="/psi-monitor" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2">Full signal definitions &rarr;</a>
     </p>
   </section>
 
-  <!-- ───────────────────────── THE WHOLE LOOP ───────────────────────── -->
-  <section id="loop" class="border-y border-zinc-200 bg-white scroll-mt-24">
-    <div class="max-w-6xl mx-auto px-6 py-24">
-      <div class="text-center mb-14" data-reveal>
+  <!-- ───────────────────────── GO DEEPER (loop + Guard deep-dives live on their own pages) -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <div class="text-center mb-10" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE PIECES FIT</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One loop, five stages.</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Plan &middot; monitor &middot; enforce &middot; capture &middot; review.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-          Other tools sell you one piece &mdash; a limit, a journal, a dashboard. Meridian is the whole loop, and every
-          session feeds the next one. Read it left to right.
+          The score is stage one of a loop &mdash; every surface has its own deep dive.
         </p>
       </div>
-      <div class="grid sm:grid-cols-2 md:grid-cols-5 gap-4" data-reveal>
-        {loop.map((step) => (
-          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
-            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">{step.n}</div>
-            <div class="text-zinc-900 font-semibold mb-1">{step.title}</div>
-            <p class="text-sm text-zinc-600">{step.desc}</p>
-          </div>
-        ))}
+      <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto" data-reveal>
+        <a href="/features" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+          <div class="font-semibold text-zinc-900 mb-1">All six surfaces</div>
+          <p class="text-sm text-zinc-600 mb-3">The full catalog, one card per page.</p>
+          <span class="text-sm font-semibold text-emerald-700">Features &rarr;</span>
+        </a>
+        <a href="/guard" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+          <div class="font-semibold text-zinc-900 mb-1">Enforcement</div>
+          <p class="text-sm text-zinc-600 mb-3">6 triggers, 5 responses, Strict Lock.</p>
+          <span class="text-sm font-semibold text-emerald-700">Meridian Guard &rarr;</span>
+        </a>
+        <a href="/history-intel" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+          <div class="font-semibold text-zinc-900 mb-1">Review</div>
+          <p class="text-sm text-zinc-600 mb-3">PSI &times; P&amp;L, patterns, the brief.</p>
+          <span class="text-sm font-semibold text-emerald-700">Intel &amp; Patterns &rarr;</span>
+        </a>
       </div>
-      <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto">
-        Monitor, Journal, Review and Improve ship in <strong class="text-zinc-700">Core</strong>. Guard (enforcement) and the
-        Intel &amp; Stats analytics come with <strong class="text-zinc-700">Guard</strong>.
-      </p>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── GUARD: THE ENFORCEMENT STAGE ───────────────────────── -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div class="win order-2 lg:order-1" data-reveal><img src="/m/guard.png" alt="Meridian Guard — six trigger types and an escalating five-level enforcement ladder with Strict Lock" /></div>
-    <div class="order-1 lg:order-2" data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STAGE 2 — ENFORCEMENT</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">You set the rule calm. Guard holds it.</h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        Guard turns the monitor's read into action. You configure the rules when your judgment is clear; Guard executes them
-        automatically when it isn't &mdash; no judgment call required at the exact moment yours is most impaired.
-      </p>
-      <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-2">
-        <div>
-          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wide mb-2">Six triggers</div>
-          <ul class="space-y-1.5 text-sm text-zinc-700">
-            <li>PSI below a threshold</li>
-            <li>N consecutive losses</li>
-            <li>Session P&amp;L below a limit</li>
-            <li>Unrealized P&amp;L below a level</li>
-            <li>Single-trade loss over an amount</li>
-            <li>Session time over a duration</li>
-          </ul>
-        </div>
-        <div class="mt-5 sm:mt-0">
-          <div class="text-xs font-bold text-zinc-500 uppercase tracking-wide mb-2">Five responses</div>
-          <ul class="space-y-1.5 text-sm text-zinc-700">
-            <li>Notify &mdash; a quiet toast</li>
-            <li>Risk alert &mdash; confirm each entry</li>
-            <li>Acknowledge &mdash; type a phrase</li>
-            <li>Trading pause &mdash; block new entries</li>
-            <li>Disconnect &mdash; sever the connection</li>
-          </ul>
-        </div>
-      </div>
-      <p class="mt-6 text-zinc-800"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window &mdash; for when the tilted version of you wants to switch it off.</p>
-      <p class="mt-4 text-sm text-zinc-500">By default Guard doesn't close your live positions &mdash; it stops you <em>adding</em> risk, and you can always exit any time. (Opt-in auto-flatten can close them for you when a pause or disconnect fires.) <a href="/guard" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">Full Guard breakdown &rarr;</a></p>
     </div>
   </section>
 
@@ -350,31 +324,12 @@ const loop = [
     </p>
   </section>
 
-  <!-- ───────────────────────── PRICING ───────────────────────── -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-5xl mx-auto px-6 py-24">
-      <div class="text-center mb-12" data-reveal>
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">TWO TIERS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Start free. Keep what protects you.</h2>
-        <p class="mt-4 text-lg text-zinc-600">7-day free trial &middot; no charge until day 7 &middot; cancel anytime.</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto" data-reveal>
-        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-          <div class="font-semibold text-zinc-900">Meridian Core</div>
-          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$49.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
-          <p class="mt-3 text-sm text-zinc-600">The full real-time PSI monitor, all seven behavioral signals, your adaptive baseline, and 5-year session history.</p>
-          <a href={TRIAL} class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition">Start free trial</a>
-        </div>
-        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
-          <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
-          <div class="font-semibold text-zinc-900">Meridian Guard</div>
-          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$69.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
-          <p class="mt-3 text-sm text-zinc-600">Everything in Core, plus automatic enforcement, Strict Lock, and the full Intel &amp; Stats layer that prices your tilt.</p>
-          <a href={TRIAL} class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
-        </div>
-      </div>
-      <p class="text-center mt-6 text-sm text-zinc-500"><a href="/pricing" class="text-emerald-700 font-medium hover:text-emerald-800 underline-offset-2 hover:underline">Full plan comparison &rarr;</a></p>
-    </div>
+  <!-- ───────────────────────── PRICING (one line — /pricing owns the plan cards) -->
+  <section class="max-w-3xl mx-auto px-6 py-12 text-center">
+    <p class="text-sm text-zinc-500" data-reveal>
+      Two tiers, both with a 7-day free trial &mdash; full breakdown on the
+      <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2">pricing page</a>.
+    </p>
   </section>
 
   <!-- ───────────────────────── FAQ ───────────────────────── -->
@@ -383,14 +338,21 @@ const loop = [
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">QUESTIONS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Frequently asked</h2>
     </div>
-    <dl class="space-y-7" data-reveal>
+    {/* Collapsed accordions (same pattern as /faq and /pricing) — answers stay
+        in the DOM so the FAQPage schema and crawlers see everything. */}
+    <div class="rounded-2xl border border-zinc-200 bg-white overflow-hidden divide-y divide-zinc-100" data-reveal>
       {faqItems.map(({ q, a }) => (
-        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-          <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
-          <dd class="text-zinc-600 leading-relaxed">{a}</dd>
-        </div>
+        <details class="group">
+          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
+            <span class="font-semibold text-zinc-900 text-[15px]">{q}</span>
+            <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{a}</p>
+        </details>
       ))}
-    </dl>
+    </div>
   </section>
 
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->

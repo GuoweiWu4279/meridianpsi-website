@@ -134,40 +134,28 @@ const faqs = [
 <Layout metadata={metadata}>
   <script type="application/ld+json" set:html={pricingPageJsonLd} />
 
-  <!-- ───────────────────────── HERO / RISK REVERSAL ───────────────────────── -->
+  <!-- ───────────────────────── HERO ─────────────────────────
+       Kept to three lines on purpose: people who click "Pricing" came for the
+       number. The price cards must crest into the first viewport — the trial
+       pitch lives once, in THE RISK IS OURS section below, not here. -->
   <section class="halo">
-    <div data-reveal class="max-w-3xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center">
+    <div data-reveal class="max-w-3xl mx-auto px-6 pt-12 md:pt-14 pb-4 text-center">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">PRICING</p>
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
-        Try it free for 7 days.<br />No charge until day 7.
+        Two tiers. First week free.
       </h1>
-      <p class="mt-6 max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
-        Full access from day one — the live monitor and every behavioral signal, running on your own sessions. Decide
-        with a week of your real data in hand. Cancel any time before the trial ends and you pay nothing.
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-zinc-600 leading-relaxed">
+        Full access from day one. No charge until day 7 — cancel before then and you pay nothing.
       </p>
-      <div class="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-zinc-500">
-        <span class="inline-flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          7-day free trial
-        </span>
-        <span class="inline-flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          No charge until day 7
-        </span>
-        <span class="inline-flex items-center gap-1.5">
-          <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          Cancel anytime
-        </span>
-      </div>
     </div>
   </section>
 
   <!-- ───────────────────────── PLANS ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
-    <div data-reveal class="max-w-5xl mx-auto px-6 py-24">
+    <div data-reveal class="max-w-5xl mx-auto px-6 pt-10 pb-24">
 
       <!-- Billing toggle -->
-      <div class="flex items-center justify-center mb-12">
+      <div class="flex items-center justify-center mb-8">
         <div class="relative flex items-center bg-zinc-100 rounded-full p-1 gap-1">
           <button id="btn-monthly" class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm">
             Monthly
@@ -359,12 +347,21 @@ const faqs = [
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">BEFORE YOU CHECK OUT</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Straight answers.</h2>
     </div>
-    <div data-reveal class="space-y-4">
+    <!-- Collapsed accordions (same pattern as /faq): a buyer scans ten
+         questions in one screen and opens only what they care about. The
+         answers stay in the DOM, so the FAQPage schema and crawlers see
+         everything. -->
+    <div data-reveal class="rounded-2xl border border-zinc-200 bg-white overflow-hidden divide-y divide-zinc-100">
       {faqs.map((item) => (
-        <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-          <h3 class="font-semibold text-zinc-900">{item.q}</h3>
-          <p class="mt-2 text-zinc-600 leading-relaxed">{item.a}</p>
-        </div>
+        <details class="group">
+          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
+            <h3 class="font-semibold text-zinc-900 text-[15px]">{item.q}</h3>
+            <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{item.a}</p>
+        </details>
       ))}
     </div>
 

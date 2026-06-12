@@ -64,6 +64,8 @@ const homePageJsonLd = {
       url: 'https://www.meridianpsi.com',
       logo: 'https://www.meridianpsi.com/meridian-logo.png',
       description: geoHooks.meridianPsiCanonical,
+      disambiguatingDescription:
+        'Meridian (meridianpsi.com) is behavioral trading-discipline software for futures traders — a real-time psychological stability monitor and risk-enforcement add-on for NinjaTrader 8. It is not a commodity-price, energy, market-analytics, price-forecasting, or trade-signals product. "PSI" is its Psychological Stability Index, not pounds-per-square-inch or any price/strength index.',
       memberOf: {
         '@type': 'ProgramMembership',
         programName: 'NinjaTrader Ecosystem',
@@ -108,6 +110,7 @@ const homePageJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
+      softwareVersion: '1.5.0',
       softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
@@ -344,8 +347,11 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <section id="how" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center scroll-mt-24">
     <div data-reveal>
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">LIVE MONITOR</p>
+      {/* The "watches how you trade" line lives on /psi-monitor (its thesis) —
+          home teases the same idea with its own words so a visitor never reads
+          the identical headline twice. */}
       <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
-        It watches how you trade &mdash;<br />not just how much you've lost.
+        Your discipline, as one<br />live number: 0&ndash;100.
       </h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
         Meridian turns your order flow into one live score from 0&ndash;100, updated in under 100ms after every fill. When tilt
@@ -385,7 +391,9 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     <div data-reveal class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard — your own rules with an escalating enforcement ladder and Strict Lock" /></div>
     <div data-reveal class="order-1 lg:order-2">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">MERIDIAN GUARD</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Willpower is not a risk strategy.</h2>
+      {/* "Willpower is not a risk strategy" is /guard's H1 — home pitches Guard
+          in its own words so the click-through doesn't open with a rerun. */}
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Rules that enforce themselves.</h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
         You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you
         decide: a quiet nudge, a typed acknowledgment, a trading pause, or a full broker disconnect.

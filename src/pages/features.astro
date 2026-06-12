@@ -25,24 +25,6 @@ const signals = signalsData.signals;
 const core = pricing.tiers.find((t) => t.id === 'meridian')!;
 const guard = pricing.tiers.find((t) => t.id === 'guard')!;
 
-// The whole loop — five stages, every session sharpening the next.
-const loop = [
-  { n: '01', name: 'Plan', desc: 'Declare your rules and your one risk for the day, before the open.' },
-  { n: '02', name: 'Monitor', desc: 'A live read on your discipline as fills land — PSI 0–100.' },
-  { n: '03', name: 'Guard', desc: 'Enforcement the moment you cross a line you set.' },
-  { n: '04', name: 'Journal', desc: 'What happened, captured in the moment — not from memory.' },
-  { n: '05', name: 'Review', desc: 'Edge vs luck, and the one habit to fix next session.' },
-];
-
-// Guard's five escalating action levels (calm → hard).
-const actionLevels = [
-  { level: 'Notify', desc: 'A quiet nudge — you see the line approaching.' },
-  { level: 'Risk Alert', desc: 'A persistent warning banner — every entry needs an active confirmation.' },
-  { level: 'Acknowledge', desc: 'A typed confirmation phrase — with an optional countdown — before you proceed.' },
-  { level: 'Trading Pause', desc: 'Entries blocked for a window you defined.' },
-  { level: 'Disconnect', desc: 'A full broker disconnect that blocks new orders; optional auto-flatten on disconnect is off by default and you turn it on yourself.' },
-];
-
 // JSON-LD — GEO asset. SoftwareApplication featureList mirrors the superset so
 // answer engines associate Meridian with both limits AND behavior detection.
 const featuresJsonLd = {
@@ -209,176 +191,58 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
     </div>
   </section>
 
-  <!-- ───────────────────────── THE WHOLE LOOP ───────────────────────── -->
+  <!-- ───────────────────────── THE CATALOG ─────────────────────────
+       This page is the directory, not a second homepage. Each surface gets one
+       card and one link; the deep dive lives on its own page (the canonical
+       host for that argument). The full pre-rebuild sales sections are in git
+       history (435-line version) if ever needed. -->
   <section class="border-y border-zinc-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-24">
       <div data-reveal class="text-center mb-14">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE WHOLE LOOP</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One tool for the whole job.</h2>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SIX SURFACES, ONE LOOP</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Everything Meridian does, in six pages.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Others sell you one piece — a limit, a journal, a dashboard. Meridian is the full loop, and every session
-          makes the next one sharper.
+          Plan, monitor, enforce, capture, review — each surface has its own deep dive. Start where your problem is.
         </p>
       </div>
-      <div data-reveal class="grid sm:grid-cols-2 md:grid-cols-5 gap-4">
-        {loop.map((s) => (
-          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
-            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">{s.n}</div>
-            <div class="text-zinc-900 font-semibold mb-1">{s.name}</div>
-            <p class="text-sm text-zinc-600">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── LIVE MONITOR ───────────────────────── -->
-  <section id="live-psi" class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center scroll-mt-20">
-    <div data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">LIVE MONITOR</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
-        Your discipline, as one<br />live number, 0&ndash;100.
-      </h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        Meridian condenses all seven behavioral signals into the Psychological Stability Index (PSI) — recomputed in
-        under <span class="tnum">100ms</span> after every fill. When pressure builds, you watch the number fall, in the
-        decision window, before your P&amp;L does.
-      </p>
-      <ul class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A single PSI score, <span class="tnum">0&ndash;100</span>, with four readable zones: Stable, Caution, Warning, Critical</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Every drop maps to a visible driver — you see <em>which</em> behavior is creating pressure</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Measured against <strong>your</strong> baseline, not a generic industry average</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An always-on HUD that sits over your chart</span></li>
-      </ul>
-      <a href="/psi-monitor" class="mt-7 inline-flex items-center gap-2 font-semibold text-emerald-700 hover:text-emerald-800 transition">
-        How the PSI score is built
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-      </a>
-    </div>
-    <div data-reveal class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and per-signal behavioral bars" /></div>
-  </section>
-
-  <!-- ───────────────────────── 7 SIGNALS GRID (from signals.json) ───────────────────────── -->
-  <section id="seven-dimensions" class="border-y border-zinc-200 bg-white scroll-mt-20">
-    <div class="max-w-6xl mx-auto px-6 py-24">
-      <div data-reveal class="text-center mb-12">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE SEVEN SIGNALS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The behaviors that quietly kill accounts.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Each is scored independently, in real time, against your own history — then folded into one PSI score.
-        </p>
-      </div>
-      <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-        {signals.map((s) => (
-          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[11px] font-bold text-emerald-700 tnum">{s.code}</span>
-              <span class="text-[11px] font-medium text-zinc-400">HUD: {s.hudLabel}</span>
-            </div>
-            <div class="font-semibold text-zinc-900">{s.name}</div>
-            <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">{s.short}</p>
-          </div>
-        ))}
-        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-6 flex flex-col justify-center">
-          <div class="font-semibold text-zinc-900">All seven, one number.</div>
-          <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">
-            No single signal trips an alarm in isolation. PSI weighs them together — and weights them more confidently as
-            your profile matures.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── GUARD ───────────────────────── -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div data-reveal class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard — six trigger types, an escalating five-level enforcement ladder, and Strict Lock" /></div>
-    <div data-reveal class="order-1 lg:order-2">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">MERIDIAN GUARD</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Willpower is not a risk strategy.</h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        You write the rules when you're calm. Guard enforces them when you're not — <span class="tnum">6</span> trigger
-        types (the four classic limits plus PSI threshold and behavioral signals) crossed against
-        <span class="tnum">5</span> escalating action levels you choose.
-      </p>
-      <ul class="mt-6 space-y-2.5">
-        {actionLevels.map((a, idx) => (
-          <li class="flex gap-3 items-baseline">
-            <span class="text-emerald-600 font-bold tnum text-sm w-4 shrink-0">{idx + 1}</span>
-            <span class="text-zinc-800"><span class="font-semibold">{a.level}</span> <span class="text-zinc-500">— {a.desc}</span></span>
-          </li>
-        ))}
-      </ul>
-      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window — for when the tilted version of you wants to switch it off.</p>
-      <p class="mt-4 text-sm text-zinc-500">By default, Guard does not close your live positions — it only blocks you from <em>adding</em> risk, and you can always exit, any time. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule and Guard will close your positions for you.</p>
-      <a href="/guard" class="mt-6 inline-flex items-center gap-2 font-semibold text-emerald-700 hover:text-emerald-800 transition">
-        How Guard's triggers and ladder work
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── INTEL & STATS ───────────────────────── -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-      <div data-reveal>
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
-        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
-          See what tilt actually<br />costs you — in dollars.
-        </h2>
-        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          Pick any date range and break your trading down by time of day, hold time, instrument, and long vs short.
-          Meridian correlates PSI against P&amp;L so you can see what your <span class="text-emerald-700 font-semibold">Stable</span>
-          sessions average versus your <span class="text-rose-600 font-semibold">Critical</span> ones — discipline stops being a feeling.
-        </p>
-        <ul class="mt-6 space-y-3 text-zinc-700">
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>PSI × P&amp;L correlation — composed sessions vs tilted sessions, in dollars</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Weekday and time-of-day patterns from your own history</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A personalized pre-session Risk Brief built from what you've done before</span></li>
-        </ul>
-        <a href="/history-intel" class="mt-7 inline-flex items-center gap-2 font-semibold text-emerald-700 hover:text-emerald-800 transition">
-          Inside Intel &amp; Patterns
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <a href="/overview" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">01 · PLAN &amp; DEBRIEF</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Overview</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">Walk in briefed, walk out debriefed — the morning risk brief, the pre-session ritual, and the end-of-day report on one screen.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a href="/psi-monitor" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">02 · LIVE MONITOR</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">PSI Monitor</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">Your discipline as one live number, 0&ndash;100 — seven behavioral signals folded into a score that updates in under 100ms after every fill.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a href="/guard" class="group rounded-2xl border-2 border-emerald-500/50 bg-white p-7 transition-all hover:border-emerald-600 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">03 · ENFORCEMENT</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Meridian Guard</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">Rules you write calm, enforced when you're not — 6 trigger types &times; 5 escalating responses, plus Strict Lock for the moments that matter.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a href="/journal" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">04 · CAPTURE</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Session Journal</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">A journal that writes itself while you're still trading — fills, PSI, and your one-tap notes compiled into the session report.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a href="/history-intel" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">05 · REVIEW</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Intel &amp; Patterns</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">A dollar figure on your discipline — PSI &times; P&amp;L correlation, weekday and time-of-day patterns, and a personalized pre-session brief.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
+        </a>
+        <a href="/adaptive-learning-settings" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">
+          <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">06 · CALIBRATION</p>
+          <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Adaptive Learning &amp; Settings</h3>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">A baseline calibrated to you, not a generic trader — it learns your normal after every session, and practice never pollutes it.</p>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
         </a>
       </div>
-      <div data-reveal class="grid gap-4">
-        <div class="win"><img src="/m/intel.png" alt="Meridian Intel — monthly insights, weekday patterns, and Composure progress" /></div>
-        <div class="win"><img src="/m/stats-1.png" alt="Meridian Stats — composed vs tilted P&L per session, the equity curve, win rate, profit factor, and expectancy" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── ADAPTIVE BASELINE ───────────────────────── -->
-  <section class="max-w-6xl mx-auto px-6 py-24">
-    <div data-reveal class="text-center mb-12">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">ADAPTIVE BASELINE</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
-        It learns <span class="text-emerald-600">you</span> — not a generic trader.
-      </h2>
-      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-        Every signal is measured against your own statistics, updated after each session. Two traders with the same fill
-        can get different PSI moves — because normal looks different for each of them.
-      </p>
-    </div>
-    <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="font-semibold text-zinc-900 mb-2">Updates automatically</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Running statistics refresh after every session, so Meridian keeps current with what normal looks like for you — no manual calibration.</p>
-      </div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="font-semibold text-zinc-900 mb-2">Gentle early, sharp later</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Signal weighting grows more confident as your sample size grows. Early sessions stay less aggressive; mature profiles get more precise because the evidence is stronger.</p>
-      </div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="font-semibold text-zinc-900 mb-2">Practice never pollutes it</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Test Mode runs PSI live without writing to your baseline, and NinjaTrader's Market Replay sessions are excluded automatically — explore freely without skewing your live profile.</p>
-      </div>
-    </div>
-    <div data-reveal class="text-center mt-8">
-      <a href="/adaptive-learning-settings" class="inline-flex items-center gap-2 font-semibold text-emerald-700 hover:text-emerald-800 transition">
-        How the baseline learns you
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-      </a>
     </div>
   </section>
 
@@ -392,32 +256,6 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         credentials, account numbers, or funds.
       </p>
     </div>
-  </section>
-
-  <!-- ───────────────────────── PRICING ───────────────────────── -->
-  <section class="max-w-5xl mx-auto px-6 py-24">
-    <div data-reveal class="text-center mb-12">
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Two tiers. One free trial.</h2>
-      <p class="mt-4 text-lg text-zinc-600">7-day free trial &middot; no charge until day 7 &middot; cancel anytime.</p>
-    </div>
-    <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
-      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="font-semibold text-zinc-900">{core.name}</div>
-        <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">${core.monthlyPrice.toFixed(2)}<span class="text-base font-medium text-zinc-400">/mo</span></div>
-        <p class="mt-3 text-sm text-zinc-600">The full real-time monitor, all seven behavioral signals, the adaptive baseline, the Intel &amp; Patterns workspace, and 5-year session history.</p>
-        <a href={TRIAL} class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition">Start free trial</a>
-      </div>
-      <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
-        <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
-        <div class="font-semibold text-zinc-900">{guard.name}</div>
-        <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">${guard.monthlyPrice.toFixed(2)}<span class="text-base font-medium text-zinc-400">/mo</span></div>
-        <p class="mt-3 text-sm text-zinc-600">Everything in {core.name}, plus automatic enforcement &mdash; 6 trigger types, 5 action levels &mdash; and Strict Lock.</p>
-        <a href={TRIAL} class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
-      </div>
-    </div>
-    <p class="text-center mt-6 text-sm text-zinc-500">
-      Full breakdown on the <a href="/pricing" class="text-emerald-700 font-medium hover:text-emerald-800 underline underline-offset-2">pricing page</a>.
-    </p>
   </section>
 
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
