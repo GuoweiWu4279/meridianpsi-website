@@ -9,7 +9,7 @@ copyables:
   - label: "Angle — Psychology-focused traders"
     content: "Meridian makes discipline measurable. Not in the abstract — in the specific: here's your live PSI right now, here are the seven dimensions pulling it down, here's your trend over the last 30 sessions, here are the two rules you break most often, and here's the rate your compliance is improving."
   - label: "Angle — Systematic / technical traders"
-    content: "If you have a trading plan, Guard can enforce it. Six trigger conditions, five response levels — you configure both what trips the rule and how forcefully it intervenes. You can even password-lock the rule so you can't override it mid-session under pressure."
+    content: "If you have a trading plan, Guard can enforce it. Six trigger conditions on an escalating ladder (five levels on NinjaTrader 8; six tiers, up to a full-screen Cool-down Wall and a firewall-level order Cut, on the standalone apps) — you configure both what trips the rule and how forcefully it intervenes. You can even password-lock the rule so you can't override it mid-session under pressure."
 ---
 
 Different segments of the NT8 trading community respond to different entry points. Use the angle that matches what your audience already cares about.

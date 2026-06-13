@@ -4,18 +4,18 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Can Trading Software Automatically Block Me From Placing Orders?',
   description:
-    'Yes — Meridian Guard automatically blocks new entries when risk or behavioral thresholds are hit (loss limits, consecutive losses, session time, PSI) — natively in NinjaTrader 8, with standalone Tradovate and Ironbeam apps in early access — before the order reaches the market.',
+    'Yes — Meridian Guard automatically blocks new entries when risk or behavioral thresholds are hit (loss limits, consecutive losses, session time, PSI) — natively in NinjaTrader 8, with standalone Tradovate and Ironbeam apps in early access. Guard v2 on the standalone apps can even cut the network path to the broker, so an order physically cannot leave the PC.',
   robots: { index: true, follow: true },
 };
 
 const question = 'Can trading software automatically block me from placing orders?';
-const directAnswer = 'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance.';
+const directAnswer = 'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance. Guard v2 on the standalone apps adds a six-tier ladder whose top tier, Cut, blocks the broker order servers at the Windows-firewall level — an order physically cannot leave the PC, which holds even for a market order on a prop account.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
   datePublished: '2026-06-08',
-  dateModified: '2026-06-08',
+  dateModified: '2026-06-12',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -57,7 +57,7 @@ const qaSchema = JSON.stringify({
         Meridian Guard intercepts at the NinjaTrader order execution pipeline. When a Guard rule fires, new entry orders placed through the NinjaTrader interface are cancelled before they reach the broker. This applies to manual orders, hotkey orders, and orders placed via ATM strategies. Close-position orders (flatten, bracket stops) are never blocked — only new entry orders during an active pause.
       </p>
 
-      <h2>The five response levels</h2>
+      <h2>The five response levels (NinjaTrader 8)</h2>
       <p>
         Guard's block is not binary. It escalates across five levels, and you configure which level fires for which trigger:
       </p>
@@ -70,6 +70,18 @@ const qaSchema = JSON.stringify({
       </ul>
       <p>
         A common configuration is L3 (Acknowledge) for a first trigger, L4 (Trading Pause) for a second, and L5 (Disconnect) for the third. The escalation means early signals are informational; later signals are enforcement.
+      </p>
+
+      <h2>Guard v2: blocking at the network level (standalone apps)</h2>
+      <p>
+        The standalone Meridian apps for Tradovate and Ironbeam accounts (early access) run the next generation of Guard — a six-tier ladder: Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut. The top two tiers go beyond what any in-platform add-on can do:
+      </p>
+      <ul>
+        <li><strong>Cool-down Wall (tier 5)</strong> — a full-screen cool-down with guided breathing and a countdown. If you hold a position it first offers flatten/manage; it never traps an open trade.</li>
+        <li><strong>Cut (tier 6)</strong> — blocks the broker's order servers in the Windows firewall. The block is at the network layer, machine-wide: an order physically cannot leave the PC, which makes it the one stop that holds even a market order on a prop account. It needs admin rights, lifts automatically when the window ends, and a watchdog guarantees it can never lock the machine permanently.</li>
+      </ul>
+      <p>
+        On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only) — enforcement at the broker itself, not just on your machine.
       </p>
 
       <h2>What triggers the block</h2>

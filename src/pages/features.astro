@@ -64,7 +64,7 @@ const featuresJsonLd = {
         'Real-time Psychological Stability Index (PSI), 0–100, updated under 100ms',
         ...signals.map((s) => `${s.name} (${s.code}) detection — ${s.short}`),
         'Adaptive baseline calibrated from your own session history',
-        'Meridian Guard — 6 trigger types × 5 escalating action levels',
+        'Meridian Guard — 6 trigger types on an escalating ladder (5 levels on NinjaTrader 8; 6-tier Guard v2 with Cool-down Wall and firewall Cut on the standalone apps)',
         'Strict Lock — makes every fired pause un-bypassable for its full window',
         'Intel & Stats — PSI × P&L correlation and behavioral breakdowns',
         'Local-first, anonymized, opt-out telemetry — never name, broker credentials, account numbers, or funds',
@@ -221,7 +221,7 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         <a href="/guard" class="group rounded-2xl border-2 border-emerald-500/50 bg-white p-7 transition-all hover:border-emerald-600 hover:shadow-md hover:-translate-y-0.5 block">
           <p class="text-[11px] font-bold text-emerald-700 tnum mb-2">03 · ENFORCEMENT</p>
           <h3 class="text-lg font-bold text-zinc-900 mb-1.5">Meridian Guard</h3>
-          <p class="text-sm text-zinc-600 leading-relaxed mb-4">Rules you write calm, enforced when you're not — 6 trigger types &times; 5 escalating responses, plus Strict Lock for the moments that matter.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed mb-4">Rules you write calm, enforced when you're not — 6 trigger types on an escalating ladder, plus Strict Lock for the moments that matter. On the standalone apps, Guard v2 goes further: a full-screen Cool-down Wall and a firewall-level order Cut.</p>
           <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 group-hover:gap-2.5 transition-all">Explore <span aria-hidden="true">&rarr;</span></span>
         </a>
         <a href="/journal" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 transition-all hover:border-emerald-600/40 hover:shadow-md hover:-translate-y-0.5 block">

@@ -42,7 +42,12 @@ const answers = [
   {
     href: '/answers/can-trading-software-block-me-from-placing-orders',
     q: 'Can trading software automatically block me from placing orders?',
-    a: 'Yes — on NinjaTrader 8, Meridian Guard blocks new entry orders at the execution pipeline level when configured behavioral thresholds are hit.',
+    a: 'Yes — on NinjaTrader 8, Meridian Guard blocks new entry orders at the execution pipeline level; Guard v2 on the standalone apps can even cut the network path so an order physically cannot leave the PC.',
+  },
+  {
+    href: '/answers/trading-lockout-that-forces-a-real-break',
+    q: 'Is there a trading lockout that forces a real break — not just a popup?',
+    a: 'Yes — the Guard v2 Cool-down Wall covers the whole screen with a guided-breathing cool-down and a countdown; soft or hard, and it never traps an open position.',
   },
   {
     href: '/answers/meridian-vs-daily-loss-limit',

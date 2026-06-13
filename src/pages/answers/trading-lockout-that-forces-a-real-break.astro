@@ -1,0 +1,99 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Is There a Trading Lockout That Forces a Real Break — Not Just a Popup?',
+  description:
+    'Yes — Meridian Guard v2 on the standalone Tradovate and Ironbeam apps (early access) includes a Cool-down Wall: a full-screen lockout with guided breathing and a countdown. Soft or hard wall, never traps an open position. On NinjaTrader 8, Guard escalates up to a broker disconnect.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'Is there a trading lockout that forces a real break — not just a popup?';
+const directAnswer = 'Yes. Meridian Guard v2, on the standalone Meridian apps for Tradovate and Ironbeam accounts (early access), includes a Cool-down Wall: when your own pre-set rule fires, your screen is covered by a full-screen cool-down with a guided breathing pacer and a countdown — not a dialog you can click away. You pre-choose a soft wall (can be Alt-Tabbed in an emergency) or a hard wall (re-asserts focus until the timer releases you). If you hold a position, the wall first verifies you are flat — offering one-click flatten or manage-it-yourself — so it never traps an open trade. On NinjaTrader 8, Guard escalates through five levels up to a broker disconnect.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  datePublished: '2026-06-12',
+  dateModified: '2026-06-12',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/trading-lockout-that-forces-a-real-break',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Answer · Guard v2</p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
+
+      <h2>Why a popup is not a break</h2>
+      <p>
+        Every trader who has tilted knows the move: the warning dialog appears, the hand clicks it away, the next order goes in. The whole problem with tilt is that the person at the keyboard in that moment is not the person who set the rule. A lockout that can be dismissed by the tilted version of you is not a lockout — it's a speed bump.
+      </p>
+      <p>
+        That is the design brief behind the Cool-down Wall, tier 5 of Guard v2's six-tier ladder: the break has to actually happen.
+      </p>
+
+      <h2>What the Cool-down Wall does</h2>
+      <ul>
+        <li><strong>Covers the whole screen.</strong> Not a dialog — a full-screen takeover with your rule's name, a countdown, and nothing to trade on.</li>
+        <li><strong>Guides the break.</strong> A breathing pacer (in for four seconds, out for six) and occasional calm one-liners. The wall isn't a punishment screen; it's a structured cool-down, closer to a meditation timer than to a lock screen.</li>
+        <li><strong>Never traps an open position.</strong> If you hold a position when the rule fires, a small dialog comes first: close it for me, or I'll close it myself. The wall only takes over once you are verifiably flat — and closing or reducing a position is never blocked, at any tier.</li>
+        <li><strong>Soft or hard — your call, made in advance.</strong> The soft wall can be Alt-Tabbed for emergencies. The hard wall re-asserts focus until the timer releases you. You pick per rule, while calm.</li>
+      </ul>
+
+      <h2>When even a wall isn't enough</h2>
+      <p>
+        Above the wall sits tier 6, <strong>Cut</strong>: a Windows-firewall block of your broker's order servers, so an order physically cannot leave the PC — the one stop that holds even a market order on a prop account. See <a href="/answers/can-trading-software-block-me-from-placing-orders" class="text-emerald-700 underline">can trading software block me from placing orders?</a> for how that works.
+      </p>
+
+      <h2>And on NinjaTrader 8?</h2>
+      <p>
+        The NinjaTrader 8 add-on (GA) escalates through five levels — Notify, Risk Alert, Acknowledge, Trading Pause, and a full broker Disconnect — with the same philosophy: you write the rule calm, Guard enforces it tilted, and an un-bypassable <a href="/guard" class="text-emerald-700 underline">Strict Lock</a> can make every pause absolute for its full window. The Cool-down Wall and Cut are part of Guard v2, first on the standalone apps.
+      </p>
+
+      <p>
+        Full model: <a href="/guard#guard-v2" class="text-emerald-700 underline">Meridian Guard — the escalation ladders</a>. Platform availability: <a href="/platforms" class="text-emerald-700 underline">capability matrix</a>.
+      </p>
+    </div>
+
+    <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+    </div>
+
+    <div class="mt-8 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a href="/platforms" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+          Guard v2 early access
+        </a>
+        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

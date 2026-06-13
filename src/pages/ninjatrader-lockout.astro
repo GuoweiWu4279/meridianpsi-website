@@ -75,7 +75,7 @@ const faqItems = [
   },
   {
     q: 'What is the difference between a daily loss limit and a lockout?',
-    a: 'A daily loss limit is a trigger — a threshold that decides when something should happen. A lockout is a response — what actually happens. Most tools hard-wire one to the other: breach the limit, get locked out. Meridian separates them: any of six triggers can fire any of five response levels, so a daily loss limit can end the session at the connection, while a consecutive-loss streak earns a cooldown and a falling stability score earns escalating friction.',
+    a: 'A daily loss limit is a trigger — a threshold that decides when something should happen. A lockout is a response — what actually happens. Most tools hard-wire one to the other: breach the limit, get locked out. Meridian separates them: on NinjaTrader 8, any of six triggers can fire any of five response levels, so a daily loss limit can end the session at the connection, while a consecutive-loss streak earns a cooldown and a falling stability score earns escalating friction.',
   },
 ];
 
@@ -170,7 +170,7 @@ const articleSchema = JSON.stringify({
         <strong>Six triggers:</strong> PSI Below · Consecutive Losses · Session P&amp;L Below · Unrealized P&amp;L Below · Single Trade Loss · Session Time Over.
       </p>
       <p>
-        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration; Disconnect severs the broker connection.
+        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration; Disconnect severs the broker connection. (On the standalone Tradovate/Ironbeam apps, Guard v2 extends the ladder to six tiers — up to a full-screen Cool-down Wall and a firewall-level order Cut.)
       </p>
       <p>
         Two properties make the stack hold under pressure. Rules can be password-protected against a quiet mid-session edit. And <strong>Strict Lock</strong> makes any pause or disconnect Guard fires absolute for its full window — no early exit, rules frozen, and you cannot loosen a trigger, drop a level, or switch Guard off until the window ends. The full enforcement system is documented on <a href="/guard" class="text-emerald-800 underline underline-offset-2">the Meridian Guard page</a>.

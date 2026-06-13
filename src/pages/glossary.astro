@@ -62,8 +62,22 @@ const terms = [
     id: 'guard-system',
     term: 'Guard System',
     definition:
-      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection, by default re-disconnecting you if you reconnect before the window ends; your positions stay at your broker and you manage them yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires.',
-    related: ['commitment-device', 'tilt', 'revenge-trading'],
+      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection, by default re-disconnecting you if you reconnect before the window ends; your positions stay at your broker and you manage them yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires. On the standalone Tradovate/Ironbeam apps (early access), the Guard System runs as Guard v2 — a six-tier ladder that adds the Cool-down Wall and Cut.',
+    related: ['commitment-device', 'tilt', 'revenge-trading', 'cool-down-wall', 'network-cut'],
+  },
+  {
+    id: 'cool-down-wall',
+    term: 'Cool-down Wall',
+    definition:
+      'Tier 5 of Guard v2 (the six-tier Guard ladder on the standalone Meridian apps, early access). When a rule fires, the screen is covered by a full-screen cool-down with a guided breathing pacer (in for four seconds, out for six) and a countdown — a structured break, not a dismissible popup. The trader pre-chooses a soft wall (can be Alt-Tabbed in an emergency) or a hard wall (re-asserts focus until the timer releases). If a position is open, the wall first offers one-click flatten or self-managed close and only takes over once the account is verifiably flat — it never traps an open trade.',
+    related: ['guard-system', 'network-cut', 'tilt'],
+  },
+  {
+    id: 'network-cut',
+    term: 'Network Cut (Cut)',
+    definition:
+      'Tier 6 of Guard v2 — the hardest stop on the standalone Meridian apps (early access). Cut blocks the broker order servers in the Windows firewall, so an order physically cannot leave the PC. Because the block sits at the network layer and is machine-wide, it holds even for a market order on a prop account — and anything sharing that connection (including charts) can go dark for the window. It requires admin rights, lifts automatically when the rule window ends, and is fail-open by design: a watchdog and Force-reset both release the firewall, so it can never permanently lock the machine.',
+    related: ['guard-system', 'cool-down-wall'],
   },
   {
     id: 'commitment-device',

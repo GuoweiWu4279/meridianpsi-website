@@ -13,7 +13,7 @@ const metadata = {
   title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
   ignoreTitleTemplate: true,
   description:
-    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, a five-level escalation ladder, and an un-bypassable Strict Lock. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
+    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, an escalating enforcement ladder, and an un-bypassable Strict Lock. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
   robots: { index: true, follow: true },
 };
 
@@ -58,8 +58,11 @@ const guardSchemaJson = JSON.stringify({
   "url": "https://www.meridianpsi.com/guard",
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",
-    "Five response levels: Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5)",
+    "Five response levels on NinjaTrader 8: Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5)",
     "Trading Pause (L4): blocks new entries by cancelling orders while staying connected; Disconnect (L5): severs the broker connection",
+    "Guard v2 on the standalone Tradovate/Ironbeam apps (early access): a six-tier ladder — Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut",
+    "Cool-down Wall (standalone): full-screen guided cool-down with breathing pacing; soft or hard wall, never traps an open position",
+    "Cut (standalone): Windows-firewall block of the broker's order servers — an order physically cannot leave the PC; auto-lifts when the window ends",
     "Auto-flatten (opt-in, off by default): on a Trading Pause (L4) or Disconnect (L5) rule, optionally close all open positions the moment that rule fires",
     "Strict Lock: one switch set while calm — every pause or disconnect Guard fires becomes un-bypassable for its full window, rules frozen; survives NinjaTrader restart",
     "Pause persistence: lockout survives NinjaTrader restart or crash",
@@ -91,6 +94,7 @@ const intelSlides = [
 ];
 
 const { triggers, levels, examples } = guardData;
+const v2 = guardData.standalone;
 ---
 
 <Layout metadata={metadata}>
@@ -280,6 +284,64 @@ const { triggers, levels, examples } = guardData;
       <p class="mt-5 text-sm text-zinc-500">Lockout state persists across restarts and crashes &mdash; there's no "just reopen it" loophole.</p>
     </div>
     <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock makes every Guard pause un-bypassable and survives a NinjaTrader restart" /></div>
+  </section>
+
+  <!-- ───────────────────────── GUARD V2 — STANDALONE APPS ───────────────────────── -->
+  <section id="guard-v2" class="border-y border-zinc-200 bg-zinc-950 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">GUARD V2 &middot; FIRST ON THE STANDALONE APPS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white">The next ladder goes further.</h2>
+        <p class="mt-5 text-lg text-zinc-400 max-w-3xl mx-auto">
+          The standalone Meridian apps for Tradovate&reg; and Ironbeam accounts (early access) run the next generation of Guard:
+          a six-tier ladder where every tier does exactly one job &mdash; and the top two go where a NinjaTrader add-on can't.
+        </p>
+      </div>
+
+      <ol class="space-y-3 max-w-5xl mx-auto" data-reveal>
+        {v2.tiers.map((item) => (
+          <li class="rounded-2xl border border-zinc-800 bg-zinc-900 p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+            <div class="flex items-center gap-3 sm:w-64 shrink-0">
+              <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>T{item.tier}</span>
+              <span class="font-semibold text-white">{item.name}</span>
+            </div>
+            <div>
+              <p class="text-zinc-200 text-sm font-medium">{item.short}</p>
+              <p class="text-zinc-400 text-sm leading-relaxed mt-1">{item.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto mt-10" data-reveal>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-7">
+          <p class="text-[11px] font-bold tracking-[0.2em] text-emerald-400 uppercase mb-3">Tier 5 &middot; Cool-down Wall</p>
+          <p class="text-zinc-300 leading-relaxed text-sm">
+            Not a popup &mdash; a full-screen cool-down with a breathing pacer (in for four, out for six) and a countdown.
+            If you hold a position it first offers <em>flatten / manage</em>; it never traps an open trade. You pre-pick a
+            soft wall (Alt-Tab-able for emergencies) or a hard wall that re-asserts focus until the timer releases you.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-7">
+          <p class="text-[11px] font-bold tracking-[0.2em] text-rose-400 uppercase mb-3">Tier 6 &middot; Cut</p>
+          <p class="text-zinc-300 leading-relaxed text-sm">
+            A Windows-firewall block of your broker's order servers. Blunt and machine-wide by design &mdash; an order
+            physically cannot leave the PC, which makes it the one stop that holds even a market order on a prop account.
+            Honest fine print: anything sharing that connection can go dark too, it needs admin rights, and it lifts
+            automatically when the window ends &mdash; a watchdog guarantees it can never lock your machine permanently.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-center mt-8 text-sm text-zinc-500 max-w-3xl mx-auto" data-reveal>
+        Naming note: the standalone ladder re-cuts the NinjaTrader levels &mdash; Alert and Pause are leaner takes on Risk
+        Alert and Trading Pause, and the old Disconnect splits into the Wall and the Cut. Same philosophy, finer control:
+        reverse-market, soft/hard wall, flatten-first and broker presets are all set per rule.
+      </p>
+      <div class="text-center mt-6" data-reveal>
+        <a href="/platforms" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm inline-block">Guard v2 is in early access &mdash; see platforms</a>
+      </div>
+    </div>
   </section>
 
   <!-- ───────────────────────── EXAMPLE CONFIGS ───────────────────────── -->
