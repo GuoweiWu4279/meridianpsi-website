@@ -1,16 +1,13 @@
 ---
-description: After code changes, commit and push without waiting for a separate request
+description: Git commit/push policy for this repo — commit only when Gary asks; never auto-push
 alwaysApply: true
 ---
 
-# Git: commit and push
+# Git: commit & push policy
 
-When you finish changes to this repo that the user is likely to want saved (any substantive edit to tracked files), **commit and push in the same session** unless they explicitly say not to.
+**Do NOT auto-commit or auto-push.** Per Gary's standing rule (CANON `~/.claude/CLAUDE.md`) and the settings hard-gate, `git commit` and `git push` happen **only when Gary explicitly asks**.
 
-1. `git status` — if there are meaningful changes (not only lockfile noise the user did not touch), stage the files you changed.
-2. Write a short, accurate **imperative** commit message (what changed, not "updated files").
-3. `git push` to `origin` on the current branch.
-
-If `git push` fails (auth, network), report the error and leave clear next steps; do not claim the push succeeded.
-
-Skip auto-commit when: the user said to hold commits, only exploratory edits were reverted, or changes are clearly incomplete/WIP they asked to leave local.
+1. After finishing changes, leave them in the working tree and tell Gary what changed (concise summary) — let him decide when to commit.
+2. When he asks to commit: stage the files you actually changed (not unrelated lockfile noise), write a short, accurate **imperative** message, and commit.
+3. **Push only on an explicit push request.** Never push unprompted.
+4. Never claim a commit/push succeeded unless it did; on failure, report the error and stop — don't retry blindly.

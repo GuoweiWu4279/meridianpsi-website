@@ -91,7 +91,7 @@ Note `mt-0.5` on the check icon — this offsets it to align with the first line
 <section class="section-tight bg-zinc-50 dark:bg-zinc-900/50">
   <div class="container-narrow text-center">
     <h2 class="text-3xl font-bold text-zinc-900 dark:text-zinc-50">Ready to trade with discipline?</h2>
-    <p class="lead mt-4">Start your free trial today — no license required for the first 30 days.</p>
+    <p class="lead mt-4">Start your 14-day free trial today.</p>
     <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
       <a href="/download" class="btn btn-primary btn-lg">Download Free Trial</a>
       <a href="/pricing" class="btn btn-secondary btn-lg">View Pricing</a>

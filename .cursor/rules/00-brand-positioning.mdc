@@ -1,78 +1,53 @@
 ---
-description: Meridian brand positioning, tone, pricing, and copy guidelines — always apply when editing website copy or marketing content
+description: Meridian brand positioning, voice, and pricing pointers — always apply when editing website copy or marketing content
 alwaysApply: true
 ---
 
 # Meridian Brand Positioning
 
+> Cross-cutting positioning/pricing is owned in CANON (`~/.claude/CLAUDE.md`) + the live data files; this rule mirrors it for Cursor. On any conflict, **CANON + `src/data/*.json` win**. Keep this in sync when CANON changes.
+
 ## What Meridian Is
 
-Meridian is a **native NinjaTrader 8 add-on** (Windows only) that monitors trader behavior in real time, computes a **Psychological Stability Index (PSI)**, and enforces configurable **Guard Rules** that can automatically intervene — from a visual warning to a full automated broker disconnect — before emotional decision-making causes irreversible damage.
+Meridian is **complete, real-time risk management for futures traders** — a full **superset** of a traditional risk tool. It does everything the old tools do (daily-loss limits, drawdown / position-size caps, loss-streak cutoffs) **and** adds the layer none of them have: it learns each trader's own baseline, then catches the behavior that actually blows up accounts (revenge entries, oversizing, holding losers, overtrading) in real time — computing a **Psychological Stability Index (PSI)** and enforcing configurable **Guard Rules** that step in *before* the damage, from a quiet alert up to pausing new entries / auto-flatten.
 
-It is **not** a journal, not a signal tool, not a broker, not investment advice.
+**Multi-platform:** a native **NinjaTrader 8** add-on today, plus **standalone desktop apps** (early access) that connect directly to **Tradovate** and **Ironbeam** — so the audience isn't limited to NinjaTrader users. It **includes** a trading journal (it is not *only* a journal). Not a signal tool, not a broker, not investment advice.
 
 ## Core Positioning Statement
 
 > "Trading without a risk management system is like working on a skyscraper without a safety harness."
 
-This is the **anchor metaphor** and must remain prominent. Do not remove or demote it below the fold on the homepage. It can appear in hero, section headers, or as a standalone pull-quote.
+The **anchor metaphor** — keep it prominent (hero / section header / pull-quote); don't demote it below the fold on the homepage.
 
-## Tone: The Surgeon, Not the Salesman
+## Voice: confident, with edge — not timid, not clinical
 
-Meridian's voice is **clinical, objective, and data-driven**. The product speaks through evidence, not persuasion.
+Meridian speaks with **conviction and substance** — the expert who's sure of the work: direct, specific, evidence-backed, and unafraid to hold a point of view. *(This supersedes the older "surgeon / purely clinical / no-exclamations" voice.)*
 
 **Do:**
-- State facts and capabilities directly ("Meridian monitors 7 behavioral signals and updates PSI in <100ms")
-- Use passive, observational language ("the score dropped", "the session showed elevated re-entry speed")
-- Reference research, data, behavioral finance
-- Let the product's logic speak — do not editorialize
+- State capabilities concretely ("catches revenge entries against your own baseline in real time"; "PSI updates in <100ms").
+- Lead with the real mechanism and the real stakes; let evidence carry the weight.
+- Have an edge — a clear view on why discipline-by-design beats willpower.
 
-**Do not:**
-- Use exclamation marks in copy
-- Use words like "amazing", "powerful", "game-changer", "revolutionary"
-- Write sentences that beg or plead for the user to try the product
-- Repeat "cancel any time" or "free" as primary messaging — these are fine as factual footnotes, not headlines
-- Use phrases like "Join thousands of traders" (we have no such data)
+**Don't:**
+- Hype words: "amazing", "powerful", "game-changer", "revolutionary", "incredible".
+- Beg/plead for a try, or make "cancel anytime"/"free" the headline.
+- Fake social proof ("join thousands of traders" — no such data).
+- Compliance landmines: "guarantees", "guaranteed / risk-free returns", "will make you profitable", "eliminates emotions", "100% accurate".
 
-## Current Pricing (as of 2026-04-30)
+## Pricing — canonical source, do NOT hardcode here
 
-| Plan | Monthly | Annual |
-|---|---|---|
-| Meridian Core | $49.99/mo | $479.90/yr (~$39.99/mo) |
-| Meridian Guard | $69.99/mo | $671.90/yr (~$55.99/mo) |
-
-Annual savings: Core ~$120/yr · Guard ~$168/yr
-
-**7-day free trial applies to all plans. A credit card IS required at checkout.**
-
-## Whop Checkout Links
-
-| Plan | URL |
-|---|---|
-| Core — Monthly | https://whop.com/checkout/plan_4Z0XZqQl7TaDH |
-| Core — Annual | https://whop.com/checkout/plan_JhWetoQ39OCNz |
-| Guard — Monthly | https://whop.com/checkout/plan_ZHX4ySB65fahf |
-| Guard — Annual | https://whop.com/checkout/plan_frPOgHtDTvBkR |
-
-## Product Tiers
-
-**Meridian Core** — Real-time PSI monitor. 7 behavioral signal dimensions. Personal adaptive baseline. 5-year local session history. Post-session report. No cloud.
-
-**Meridian Guard** — Everything in Core, plus: Guard System (6 trigger types, 5 intervention levels including automated broker disconnect), Intel Layer (monthly digest, PSI × P&L correlation, weekday patterns, Today's Risk Brief).
+Plans: **Meridian Core** and **Meridian Guard**, via **Whop**, with a **14-day free trial** (card required at checkout). **Exact $ amounts, annual figures, and Whop checkout links live in `src/data/pricing.json` — read it; never paste prices/links from memory or this file.** (Tiers: Core = real-time PSI monitor + 7 behavioral signals + adaptive baseline + local session history + post-session report + Intel layer + journal; Guard = all Core + the Guard rules engine and its interventions.)
 
 ## Affiliate Program Terms
 
-- **Creator commission:** 30% recurring, for the lifetime of each referred subscription, paid via Whop
-- **Customer discount:** 10% permanent discount applied via creator's unique promo code at every renewal
-- **Creator access:** Complimentary Meridian Guard license for the duration of the active affiliate partnership (review license — not "lifetime", tied to active partnership)
-- Affiliates must disclose the affiliate arrangement per applicable regulations
-- Partner page: `/partners` (`/affiliate` 301-redirects here)
+- Creator commission: **30%** recurring for the lifetime of each referred subscription (climbs to **40%** as referrals grow), paid via Whop.
+- Customer discount: **10%** permanent via the creator's promo code.
+- Creator perk: a complimentary Meridian license for the active partnership.
+- Affiliates must disclose the arrangement per FTC. Partner page `/partners` (`/affiliate` 301s here); kit at `/partners/kit`.
 
 ## Platform & Compliance
 
-- NinjaTrader 8 is **required** (Windows only). NT7 is not supported.
-- All data is stored **locally**. No cloud, no telemetry, no external accounts.
-- **Meridian is an Official NinjaTrader Ecosystem Vendor.** Approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). When referring to the NinjaTrader relationship in copy, the canonical line is: *"Meridian is an Official NinjaTrader Ecosystem Vendor. NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8."*
-- **Do NOT** write "not affiliated with NinjaTrader" anywhere — that statement is no longer accurate as of May 2026. The correct framing is "independently operated" + "Official Ecosystem Vendor / approved."
-- The NinjaTrader affiliate link is `https://ninjatraderus.pxf.io/jROzm0` — use this anywhere the site links out to NinjaTrader (homepage logo strip, install guides, articles, etc.).
-- Every page that mentions trading must include or link to the risk disclaimer: **Trading involves substantial risk of loss.**
+- Runs as a **NinjaTrader 8 add-on (Windows)** or a **standalone app** (Tradovate / Ironbeam, early access). NT7 is not supported.
+- **Privacy:** data is local; no telemetry/analytics; the only outbound calls are license validation + update check (broker traffic is the user's own).
+- **Official NinjaTrader Ecosystem Vendor** (approved by NinjaTrader Compliance / QA / Executive, May 2026). Canonical line: *"Meridian is an Official NinjaTrader Ecosystem Vendor. NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8."* Do **not** write "not affiliated with NinjaTrader" (inaccurate since May 2026) — use "independently operated" + "Official Ecosystem Vendor". NT affiliate link: `https://ninjatraderus.pxf.io/jROzm0`.
+- Every page that mentions trading must include/link the risk disclaimer: **Trading involves substantial risk of loss.**
