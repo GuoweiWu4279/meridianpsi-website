@@ -7,7 +7,7 @@ copyables:
   - label: "vs. Daily loss limit (one sentence)"
     content: "A daily loss limit fires after the damage. Meridian fires during the behavioral pattern that causes it."
   - label: "vs. Trading journal (one sentence)"
-    content: "A journal reviews what happened yesterday. Meridian acts on what's happening now."
+    content: "Meridian already includes a journal — one that compiles itself as you trade — and adds what a journal can't: it acts on the pattern in the live session, not in tomorrow's review."
   - label: "vs. Prop firm hard limits (one sentence)"
     content: "Prop firm limits are a hard external rule. Meridian is an internal feedback loop — it tells you what's changing in your behavior before you hit the limit."
   - label: "vs. Generic risk tools (one sentence)"
@@ -32,13 +32,13 @@ Meridian includes the daily loss limit too — it's one of the hard caps Guard e
 
 ### vs. Trading journals
 
-**The core distinction:** A journal reviews what happened yesterday. Meridian acts on what's happening right now.
+**The core distinction:** Meridian *includes* a journal — and adds what a standalone journal can't.
 
-Post-session journaling is genuinely useful for long-term improvement. The limitation it can't solve: knowing you made a mistake in the debrief doesn't stop you from making the same mistake in the next session, under the same pressure, in the same emotional state. The insight arrives when you're calm; the problem happens when you're not.
+Meridian ships an in-session Journal that compiles itself as you trade: your fills, your live PSI, and one-tap mood tags become the session's debrief automatically — no blank page to fill at night. So you're not choosing between Meridian and a journaling app; Meridian replaces it.
 
-Meridian moves the analysis into the live session — the PSI score updates in real time as your behavior shifts, and the intervention happens at the moment of deviation, not hours later.
+What a standalone journal *can't* do is the part Meridian adds on top: knowing you made a mistake in last night's debrief doesn't stop you from repeating it in the next session, under the same pressure. The insight arrives when you're calm; the problem happens when you're not. Meridian moves the analysis into the live session — the PSI score updates in real time as your behavior shifts, and the intervention happens at the moment of deviation, not hours later.
 
-**One-sentence version:** "A journal reviews what happened yesterday. Meridian acts on what's happening now."
+**One-sentence version:** "Meridian already includes a journal that writes itself as you trade — and adds the real-time layer a post-session journal can't: it acts while the pattern is forming, not in tomorrow's review."
 
 ---
 

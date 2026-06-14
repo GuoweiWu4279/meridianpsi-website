@@ -79,7 +79,20 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 
 Each trigger fires once on entry and then resets — no spam. Any rule can be password-locked to prevent in-session override; most traders pick a password they won't remember under pressure as a deliberate friction device.
 
+**Strict Lock** is the headline commitment device: one switch, armed when you're calm, that makes every pause Guard fires un-bypassable for its whole window — no early exit, no talking yourself out of it. It exists for the exact moment the tilted version of you goes looking for the off switch. (It releases on its own when the window ends.)
+
 Guard is designed for traders who want hard enforcement, not just monitoring. The intervention is mechanical — it fires when the rule fires, regardless of whether the trader feels like they need a break.
+
+---
+
+### Session Journal (included with every tier)
+
+Meridian includes an in-session Journal that compiles itself while you trade — so the debrief is written by the time the session ends, not at 11pm in front of a blank page.
+
+- **Writes itself in the moment** — each fill, the live PSI at that fill, and one-tap mood tags (Great / Neutral / Frustrated) drop into the timeline as the session runs
+- **Quick notes, zero friction** — a one-line note per trade is optional; nothing is mandatory
+- **Compiles into the day's report** — the entries plus your "what went well / what to improve / focus for next session" reflection roll up into a single session journal you can review or copy
+- **Replaces a separate journaling app** — this is the "journal" leg of the one-subscription-replaces-three-tools value: risk enforcement (Guard) + this Journal + the Intel analytics workspace, in one product
 
 ---
 

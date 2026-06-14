@@ -38,7 +38,8 @@ Different segments of the NT8 trading community respond to different entry point
 **The angle:** Meridian makes discipline measurable. Not in the abstract sense of "you need to be more disciplined" — in the specific sense of: here is your PSI score right now, here are the seven dimensions pulling it down, here is the trend over your last 30 sessions, here are the two rules you break most often, and here is the rate at which your compliance is improving.
 
 **What to emphasize:**
-- The Intel Layer — long-term behavioral analytics (PSI × P&L, Monthly Digest, Weekday Patterns, pre-session Risk Brief). **Note:** Intel is Guard-tier exclusive — be explicit about this when recommending it to a psychology-focused audience.
+- The Intel workspace — long-term behavioral analytics (PSI × P&L, Monthly Digest, Weekday Patterns, pre-session Risk Brief, Stats & Breakdowns). **Included in every tier since v1.5.0** — Core and Guard both have it; Guard adds only the enforcement engine on top.
+- The in-session Journal — it writes itself as you trade (fills, PSI, one-tap mood tags), so the debrief is already compiled by the time the session ends — no blank page to fill at night
 - The personal adaptive baseline — the system measures *your* deviations from *your* patterns, not generic thresholds
 - The Monthly Digest as a structured debrief tool
 - The difference between knowing you revenge-trade and having a number that reflects when you're doing it
@@ -57,7 +58,7 @@ Different segments of the NT8 trading community respond to different entry point
 - Guard's configurability — you define both the rules (6 triggers) and the response severity (5 levels), independently per rule
 - The Rule Violations signal (D6) — specifically tracks whether you're following your own defined rules in real time
 - The "typed acknowledgment" response level — a phrase the trader writes when calm, typed when not; high signal-to-friction ratio
-- Password-locked rules — most traders pick a password they won't remember under pressure, making in-session overrides effectively impossible
+- Strict Lock — arm it when calm and a fired pause can't be bypassed for its whole window; the commitment device for the moment the tilted version of you goes looking for the off switch (per-rule password locks also exist for individual rules)
 - The idea of making your trading plan machine-enforceable, not just written down
 - Local processing and storage on your machine; the only data that leaves is anonymized research data (no PII), never sold or shared, opt-out anytime
 
