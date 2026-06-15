@@ -179,7 +179,7 @@ If you've failed a funded challenge and you're replaying the session trying to f
 
 That's where the answer is. Not in the strategy. In the behavioral sequence.
 
-There's a free trial of Meridian linked in the description. No credit card. You can see your own behavioral signals running in real time during your next session — and decide whether what you see explains anything about your recent challenges.
+There's a 14-day free trial of Meridian linked in the description — full access, and you won't be charged if you cancel before it ends. You can see your own behavioral signals running in real time during your next session — and decide whether what you see explains anything about your recent challenges.
 
 If you want more on the specific behavioral signals I track, I'll link the PSI explainer below as well.
 

@@ -97,7 +97,7 @@
 ## 7. 当前事实锚点(细节以 MERIDIAN.md 为准,这里只放最常用的)
 
 - 版本:v1.5.0 已发布,v1.5.1 已打包待发。
-- 价:Core $49.99 / Guard $69.99,7 天试用(**要绑卡**,绝不说 "no credit card")。
+- 价:Core $49.99 / Guard $69.99,14 天试用(**要绑卡**,绝不说 "no credit card")。
 - 两档边界(**v1.5.0 起反转**):Intel 分析进了 **Core**;Guard 档只 gate 强制层(规则引擎 + Strict Lock)+ priority support。旧的"Intel 仅 Guard"已废。
 - Guard 五级:**Notify · Risk Alert · Acknowledge · Trading Pause · Disconnect**(旧名 Alert/Countdown/Risk Alert Mode 已废)。
 - PSI 四区:Stable(88-100)/ Caution(72-87)/ Warning(55-71)/ Critical(0-54)。
