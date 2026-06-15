@@ -2,14 +2,7 @@
 
 ## Product Context
 
-This is the official website for a **NinjaTrader trading psychology stability index monitor** — a financial software plugin.
-
-- Product name: **PSI Monitor** (working title; in-product labels may differ)
-- Platform: NinjaTrader 8
-- Category: Trading psychology / behavioral tools
-- Target users: Retail futures/forex traders using NinjaTrader
-
-This is a **financial software product**. All content must be rigorous, conservative, and legally compliant. Never exaggerate capabilities.
+Official marketing site for **Meridian**. **Identity, positioning, voice, and pricing are CANONICAL in `~/.claude/CLAUDE.md` (CANON) + `src/data/*.json` — read those; do not rely on or restate this section.** In brief (CANON is the authority): Meridian is a real-time trading **risk-management superset** (PSI behavioral monitor + Guard) that **includes a journal**, **multi-platform** (NinjaTrader 8 add-on + standalone Tradovate/Ironbeam early-access). Voice = **confident, with edge** — NOT the older "PSI-Monitor / conservative / clinical" framing. It is financial software: stay accurate + legally compliant, never fabricate capabilities or outcomes. (The marketing-voice + page-inventory rules below are current and live here as the website playbook.)
 
 ---
 

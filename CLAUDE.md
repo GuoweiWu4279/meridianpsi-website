@@ -80,9 +80,9 @@ forbids em dashes and stays peer-toned — that is a *channel* rule, distinct fr
   Windows only", "**not** a journal", "Tone: the Surgeon… clinical, no exclamation marks", and "**7-day** free trial",
   all of which CANON now reverses (superset; includes a journal; confident-with-edge; 14-day). It also hardcodes prices +
   Whop plan IDs. Treat CANON + `src/data/pricing.json` as truth; this file needs a rewrite (flagged, not yet done).
-- **`AGENTS.md` is mixed:** its top half ("PSI Monitor (working title)", "conservative / never exaggerate") is the OLD
-  voice; its lower half (Marketing Voice Rules, Page Inventory Discipline, redirect/sitemap table) is current and useful.
-  Some external tooling reads `AGENTS.md`, so it's kept — but on voice/positioning, CANON wins over its top half.
+- **`AGENTS.md` = the detailed website playbook** (Marketing Voice Rules, Page Inventory Discipline, the canonical
+  sitemap + `vercel.json` redirect table, changelog/compliance workflow). Its Product Context top now references CANON
+  (de-staled 2026-06-14); use AGENTS.md for those ops rules. Cross-cutting facts still resolve to CANON.
 - **`.cursor/rules/04-git-commit-push.mdc` (`alwaysApply: true`) says "commit and push without asking" — IGNORE it.**
   CANON + settings hard-gate this: commit/push **only when Gary asks** (`git push` is gated).
 - Trial length: anything saying "7-day" or "no credit card" is wrong — it's **14-day, card required** (`pricing.json`).
