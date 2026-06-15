@@ -35,3 +35,7 @@ pnpm-lock.yaml
 /audit-low/
 /audit-digest.txt
 /.claude/
+
+# internal agent/dev docs — local-only, never publish
+CLAUDE.md
+AGENTS.md
