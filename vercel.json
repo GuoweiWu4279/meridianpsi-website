@@ -41,6 +41,21 @@
       "source": "/docs/(.*)",
       "destination": "/faq",
       "permanent": false
+    },
+    {
+      "source": "/contact",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
+      "source": "/imprint",
+      "destination": "/trust",
+      "permanent": true
+    },
+    {
+      "source": "/impressum",
+      "destination": "/trust",
+      "permanent": true
     }
   ],
   "headers": [
