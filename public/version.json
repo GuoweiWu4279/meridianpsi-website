@@ -1,8 +1,8 @@
 {
-  "version": "1.5.0",
-  "releaseDate": "2026-06-09",
+  "version": "1.5.2",
+  "releaseDate": "2026-06-16",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.0.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.2.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.0 — A rebuilt Intel tab with custom date ranges and real breakdowns (time of day, hold time, instrument, long/short), an optional Guard Strict Lock you can't talk yourself out of mid-session, and a hardened auto-flatten that verifies you're actually flat."
+  "notes": "v1.5.2 — If you blow through your declared Max Daily Loss and then stop trading, your PSI now registers it immediately the moment realised P&L crosses your stop, instead of waiting for a next trade that may never come. Plus stability hardening carried over since 1.5.1."
 }
