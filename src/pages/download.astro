@@ -94,7 +94,7 @@ const { Content: LatestContent } = await render(latest);
               <svg class="w-4 h-4 text-zinc-400 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
-              What's new in v{latest.data.version} — {latest.data.title}
+              What's new in {latest.data.title}
             </summary>
             <div class="prose prose-sm max-w-none prose-headings:font-semibold prose-headings:text-zinc-900 prose-headings:text-base prose-li:text-zinc-600 prose-p:text-zinc-600 mt-4">
               <LatestContent />
