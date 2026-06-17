@@ -1,8 +1,8 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.3",
   "releaseDate": "2026-06-16",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.2.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.3.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.2 — If you blow through your declared Max Daily Loss and then stop trading, your PSI now registers it immediately the moment realised P&L crosses your stop, instead of waiting for a next trade that may never come. Plus stability hardening carried over since 1.5.1."
+  "notes": "v1.5.3 — Your journal, your way: drag to reorder, rename, switch sections on or off, or add your own — with a live preview and nothing to learn. This build also brings the cleaner session debrief and patterns views to everyone. Your profile, Guard rules, and history carry over automatically — nothing to migrate."
 }
