@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- OG social card template. Edit copy here, then: node tools/og/render-og.mjs
+     The right-side visual is the REAL product render public/m/monitor.png. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--emerald:#10b981;--emerald-glow:#34d399;--text:#fafafa;--muted:#a1a1aa;--muted2:#6b6b74}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,-apple-system,"Segoe UI",sans-serif}
+  html,body{width:1200px;height:630px}
+  .card{width:1200px;height:630px;position:relative;overflow:hidden;background:
+      radial-gradient(900px 560px at 82% 42%,rgba(16,185,129,.14),transparent 60%),
+      radial-gradient(640px 460px at 0% 100%,rgba(16,185,129,.05),transparent 55%),#08080a}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);background-size:46px 46px;mask:radial-gradient(760px 540px at 78% 45%,#000,transparent 76%)}
+  .main{position:absolute;left:62px;right:54px;top:0;bottom:0;display:flex;align-items:center;gap:42px}
+  .left{width:438px;flex-shrink:0}
+  .brand{display:flex;align-items:center;gap:13px;margin-bottom:28px}
+  .wm{font-weight:800;letter-spacing:.2em;font-size:21px;color:#fff}
+  h1{font-size:47px;line-height:1.06;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+  h1 .em{color:var(--emerald-glow)}
+  .sub{margin-top:19px;font-size:19px;line-height:1.5;color:var(--muted);max-width:420px}
+  .sub b{color:#e6e6ea;font-weight:600}
+  .badge{margin-top:24px;display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(16,185,129,.35);background:rgba(16,185,129,.08);color:var(--emerald-glow);font-size:13.5px;font-weight:600;padding:9px 15px;border-radius:999px}
+  .shotwrap{flex:1;display:flex;align-items:center;justify-content:flex-end}
+  .shot{width:100%;max-width:618px;height:auto;display:block;border-radius:14px;box-shadow:0 40px 100px -28px rgba(0,0,0,.92);outline:1px solid rgba(255,255,255,.07);outline-offset:-1px}
+  .bottombar{position:absolute;left:62px;right:54px;bottom:40px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+  .plats{font-size:15px;color:var(--muted);font-weight:500}.plats .dot{color:var(--muted2);margin:0 9px}
+  .url{font-size:15.5px;color:var(--muted2);font-weight:500}
+</style></head>
+<body><div class="card"><div class="grid-bg"></div>
+  <div class="main">
+    <div class="left">
+      <div class="brand"><svg width="38" height="23" viewBox="0 0 40 24" fill="none"><polyline points="1,12 9,12 13,4 18,21 24,12 31,12 35,7 39,12" stroke="#10b981" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="wm">MERIDIAN</span></div>
+      <h1>Complete risk management for serious <span class="em">futures traders.</span></h1>
+      <p class="sub">Every limit your risk tool has &mdash; <b>plus the live behavioral layer</b> that catches revenge, oversizing, and tilt before the order.</p>
+      <div class="badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Official NinjaTrader Ecosystem Vendor</div>
+    </div>
+    <div class="shotwrap"><img class="shot" src="../../public/m/monitor.png" alt="Meridian PSI Monitor"></div>
+  </div>
+  <div class="bottombar">
+    <div class="plats">NinjaTrader&nbsp;8 <span class="dot">&middot;</span> Tradovate <span class="dot">&middot;</span> Ironbeam</div>
+    <div class="url">meridianpsi.com</div>
+  </div>
+</div></body></html>
