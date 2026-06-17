@@ -55,8 +55,8 @@ const pageJsonLd = {
       url: 'https://www.meridianpsi.com/adaptive-learning-settings',
       award: 'Official NinjaTrader Ecosystem Vendor',
       featureList: [
-        'Adaptive baseline calibrated to the individual trader, not a generic average',
-        'Two-layer model — declared profile settings plus a learned behavioral baseline',
+        'Adaptive baseline calibrated to the individual trader',
+        'Declared profile settings plus a learned behavioral baseline',
         'Baseline reflects your real patterns after roughly 30 sessions, sharpening every session',
         'Configurable trading window and schedule',
         'Configurable normal position-size range and expected trades per session',
@@ -64,7 +64,7 @@ const pageJsonLd = {
         'Optional maximum daily loss limit that doubles as a Guard enforcement trigger',
         'Three sensitivity presets — Conservative, Balanced, Aggressive — plus per-signal weights',
         'Per-account monitoring, automated-strategy fill exclusion, Test Mode, and Market Replay exclusion',
-        'Local-first, anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds',
+        'Local-first, anonymized, opt-out data — never your name, broker credentials, account numbers, or funds',
       ],
       publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
     },
@@ -109,8 +109,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           A generic threshold flags the wrong things.
         </h2>
         <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-          Three contracts is reckless for one trader and a quiet Tuesday for another. A fixed rule has to choose: too tight
-          and it cries wolf, too loose and it misses the trade that hurt you. Meridian doesn't choose &mdash; it measures
+          Three contracts is reckless for one trader and a quiet Tuesday for another. Meridian measures
           everything against <em>your</em> normal, so the same drift means the same thing every time.
         </p>
       </div>
@@ -202,7 +201,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum losing-trade hold time</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Pause-after-N-losses rule for re-entry rhythm</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum stop-loss width, in ticks</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>No-stop-loss trader mode &mdash; suppresses naked-position detection</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>No-stop-loss trader mode &mdash; skips the no-stop alert for traders who trade without stops</span></li>
           </ul>
         </div>
 
@@ -210,7 +209,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           <h3 class="font-semibold text-zinc-900 mb-4">Risk limits</h3>
           <ul class="space-y-2.5 text-zinc-600">
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Maximum daily loss in USD (optional)</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>These limits literally are Guard's enforcement triggers</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>These limits are Guard's enforcement triggers</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Set them when you're calm; Guard enforces them when you're not &mdash; blocking added risk at the line you drew</span></li>
           </ul>
         </div>
@@ -229,7 +228,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           <ul class="space-y-2.5 text-zinc-600">
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Choose which accounts Meridian monitors &mdash; or monitor all by default</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Exclude automated-strategy fills from PSI and the baseline</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Test Mode runs PSI live without writing to baseline history</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Test Mode runs PSI live</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Market Replay sessions are excluded from learning automatically</span></li>
           </ul>
         </div>

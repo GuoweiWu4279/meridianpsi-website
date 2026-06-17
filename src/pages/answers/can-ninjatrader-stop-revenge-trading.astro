@@ -55,7 +55,7 @@ const qaSchema = JSON.stringify({
         NinjaTrader 8 and the brokers connected through it — Tradovate, Rithmic, AMP, NinjaTrader Brokerage — can enforce an account-level daily loss limit that blocks new orders once a configured drawdown is reached, much of it at the clearing layer. Together, these constitute the financial-outcome floor on a session.
       </p>
       <p>
-        That floor catches the eventual financial damage from revenge trading. It does not catch the pattern itself. By the time the daily loss limit fires, the behavioral sequence is over: the trader has re-entered three times after the initial stop-out, sized up twice, moved one stop progressively wider, and produced enough cumulative loss to breach the threshold. Each of those decisions happened earlier — in the window the financial-outcome layer cannot see.
+        That floor catches the eventual financial damage from revenge trading. It does not catch the pattern itself. By the time the daily loss limit fires, the behavioral sequence is over: the trader has re-entered, sized up, and widened a stop in a window the financial-outcome layer cannot see.
       </p>
 
       <h2>What revenge trading actually looks like at the order level</h2>
@@ -74,7 +74,7 @@ const qaSchema = JSON.stringify({
 
       <h2>What the behavioral layer adds</h2>
       <p>
-        Meridian runs as a NinjaTrader 8 add-on and is built as complete risk management: alongside the conventional limits any risk tool enforces — daily loss limit, single-trade loss cap, P&amp;L and drawdown caps, consecutive-loss cutoff — it observes every order event as it happens. The Revenge Entry signal (D1 in the seven-signal model) fires when re-entry timing, size, and directional bias collectively match the revenge signature. The Overtrading Pace signal (D7) fires when subsequent entry frequency accelerates past the trader's session-history rhythm. Each signal contributes to a composite Psychological Stability Index calibrated to the individual trader.
+        Meridian runs as a NinjaTrader 8 add-on and is built as complete risk management: alongside the conventional limits any risk tool enforces — daily loss limit, single-trade loss cap, P&amp;L and drawdown caps, consecutive-loss cutoff — it observes every order event as it happens. The Revenge Entry signal fires when re-entry timing, size, and directional bias collectively match the revenge signature. The Overtrading Pace signal fires when subsequent entry frequency accelerates past the trader's session-history rhythm. Each signal contributes to a composite Psychological Stability Index calibrated to the individual trader.
       </p>
       <p>
         When the optional Meridian Guard layer is enabled, the trader can pre-commit to specific responses at specific behavioral thresholds: a typed acknowledgment phrase — with an optional countdown — that has to be entered before the next order goes through, an entry block at a configured PSI floor, or a broker disconnect at the highest enforcement level. The intervention happens before the order reaches the market, not after the loss has been realized.

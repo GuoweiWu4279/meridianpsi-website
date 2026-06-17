@@ -60,7 +60,7 @@ const qaSchema = JSON.stringify({
 
       <h2>What detection looks like in real time</h2>
       <p>
-        Meridian's Overtrading Pace signal (D7 in the seven-signal model) measures both intra-session acceleration and deviation from the trader's historical session rhythm. A cold-start ramp avoids false positives on the first trade. As soon as the pace meaningfully diverges from baseline, the signal contributes weight to the composite Psychological Stability Index in real time.
+        Meridian's Overtrading Pace signal measures both intra-session acceleration and deviation from the trader's historical session rhythm. A cold-start ramp avoids false positives on the first trade. As soon as the pace meaningfully diverges from baseline, the signal contributes weight to the composite Psychological Stability Index in real time.
       </p>
       <p>
         The Psychological Stability Index reflects more than pace alone. The seven signals — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace — combine into a single score that moves through normal, caution, and critical zones. Overtrading rarely arrives on its own; the pace shift usually correlates with one or more other signals. The composite score captures that combination.
@@ -71,7 +71,7 @@ const qaSchema = JSON.stringify({
         Detection alone is not the answer. The trader on a tilt-adjacent pace shift typically already knows they are trading too much; awareness is rarely the missing input. What is missing is structural friction between the impulse and the order.
       </p>
       <p>
-        Meridian Guard provides that friction. Its six trigger types cover the same hard limits a conventional risk tool enforces — Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, Session Time Over — and add the behavioral trigger none of them have, PSI Below. Each pairs with five response levels on NinjaTrader 8 (six tiers in Guard v2 on the standalone apps): Notify (a quiet toast notification), Risk Alert (every entry requires active confirmation), Acknowledge (a typed phrase the trader enters, with an optional countdown, before continuing), Trading Pause (new entries blocked by cancelling orders), and Disconnect (the broker connection is terminated). The trader pre-commits to a pairing when they are calm. Guard enforces it when they are not.
+        Meridian Guard provides that friction. Its six trigger types cover the same hard limits a conventional risk tool enforces — Consecutive Losses, Session P&amp;L Below, Unrealized P&amp;L Below, Single Trade Loss, Session Time Over — and add the behavioral trigger none of them have, PSI Below. Each pairs with five response levels on NinjaTrader 8 (six tiers in Guard v2 on the standalone apps): Notify (a quiet notification), Risk Alert (every entry requires active confirmation), Acknowledge (a typed phrase the trader enters, with an optional countdown, before continuing), Trading Pause (new entries blocked by cancelling orders), and Disconnect (the broker connection is terminated). The trader pre-commits to a pairing when they are calm. Guard enforces it when they are not.
       </p>
       <p>
         For overtrading specifically, the most common configurations are: PSI Below with the Acknowledge response level and its mandatory countdown enabled (a 5–15 minute mandatory pause once composite PSI drops into the caution zone), or Session Time Over with the Disconnect response level (the broker connection is terminated after the trader's pre-declared session duration ends, regardless of P&amp;L state).
@@ -79,7 +79,7 @@ const qaSchema = JSON.stringify({
 
       <h2>Why a static "max trades" cap underperforms</h2>
       <p>
-        A fixed cap on trade count cannot distinguish a normal high-volume session from a behavioral deterioration. It either fires on the wrong sessions or never fires on the right ones. A baseline-relative pace signal does both: it does not fire on a normal active session because the pace is consistent with the trader's history, and it does fire on a deviation session because the pace is significantly above baseline. Meridian can still enforce the conventional limits a fixed cap relies on — loss-streak, session P&amp;L, and session-time cutoffs are all built in — but it treats them as the floor and adds the baseline-relative behavioral layer on top.
+        A baseline-relative pace signal does not fire on a normal active session, because the pace is consistent with the trader's history, and does fire on a deviation session, because the pace is significantly above baseline. Meridian can still enforce the conventional limits a fixed cap relies on — loss-streak, session P&amp;L, and session-time cutoffs are all built in — but it treats them as the floor and adds the baseline-relative behavioral layer on top.
       </p>
 
       <h2>Practical setup</h2>

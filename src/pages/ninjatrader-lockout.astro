@@ -67,7 +67,7 @@ const faqItems = [
   },
   {
     q: 'What stops me from just removing the lockout tool when I want to trade?',
-    a: 'Honestly: with much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian\'s answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no escape — no early exit, no force-reset, rules frozen, and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.',
+    a: 'With much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian\'s answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no escape, and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.',
   },
   {
     q: 'Does a Meridian lockout close my open positions?',
@@ -146,7 +146,7 @@ const articleSchema = JSON.stringify({
         ))}
       </div>
       <p>
-        The grades matter because tilt escalates. A tool that only has the nuclear option gets configured loosely and fires too late; a tool that only nags gets ignored. The useful question is not "does it have a lockout" but "how many grades of lockout can I design, and what keeps them armed when I want them off."
+        The grades matter because tilt escalates. A tool that only has the nuclear option gets configured loosely and fires too late; a tool that only nags gets ignored. What matters is how many grades of lockout you can design, and what keeps them armed when you want them off.
       </p>
 
       <h2>What NinjaTrader 8 gives you natively</h2>
@@ -170,7 +170,7 @@ const articleSchema = JSON.stringify({
         <strong>Six triggers:</strong> PSI Below · Consecutive Losses · Session P&amp;L Below · Unrealized P&amp;L Below · Single Trade Loss · Session Time Over.
       </p>
       <p>
-        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration; Disconnect severs the broker connection. (On the standalone Tradovate/Ironbeam apps, Guard v2 extends the ladder to six tiers — up to a full-screen Cool-down Wall and a firewall-level order Cut.)
+        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration; Disconnect severs the broker connection. (On the standalone Tradovate/Ironbeam apps, Guard extends the ladder further, up to a full-screen cool-down and a hard order block.)
       </p>
       <p>
         Two properties make the stack hold under pressure. Rules can be password-protected against a quiet mid-session edit. And <strong>Strict Lock</strong> makes any pause or disconnect Guard fires absolute for its full window — no early exit, rules frozen, and you cannot loosen a trigger, drop a level, or switch Guard off until the window ends. The full enforcement system is documented on <a href="/guard" class="text-emerald-800 underline underline-offset-2">the Meridian Guard page</a>.

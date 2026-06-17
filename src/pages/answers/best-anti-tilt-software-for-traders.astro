@@ -62,13 +62,10 @@ const qaSchema = JSON.stringify({
       <p>
         A daily loss limit caps the financial outcome at a fixed dollar threshold; it does not detect the behavior that produced the outcome. A trade-count cap cannot distinguish a normal active session from a behavioral deterioration. A trading journal analyzes sessions retrospectively, not as the pattern is forming. A meditation app sits outside the trading platform entirely. None of these is anti-tilt software in the sense defined above.
       </p>
-      <p>
-        Each of those tools is useful for what it does. None of them sits at the layer anti-tilt software is defined by.
-      </p>
 
       <h2>The current landscape</h2>
       <p>
-        On NinjaTrader 8, the only platform shipping the full anti-tilt stack as of 2026 is Meridian. The product was built specifically around the design point: seven distinct behavioral signals tied to how discipline actually breaks down, a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement layer that converts its six trigger conditions into automated response actions — typed acknowledgment with an optional countdown, entry block, broker disconnect. It also covers the conventional limits a risk tool is expected to enforce — daily loss limit, P&amp;L and drawdown caps, single-trade loss cap, loss-streak cutoff — so anti-tilt is an added layer on top of complete risk management, not a substitute for it.
+        On NinjaTrader 8, the only platform shipping the full anti-tilt stack as of 2026 is Meridian. The product was built specifically around the design point: seven distinct behavioral signals tied to how discipline actually breaks down, a composite Psychological Stability Index calibrated to each trader's own session history, and the Meridian Guard enforcement layer that converts its six trigger conditions into automated response actions — typed acknowledgment with an optional countdown, entry block, broker disconnect. It also covers the conventional limits a risk tool is expected to enforce — daily loss limit, P&amp;L and drawdown caps, single-trade loss cap, loss-streak cutoff.
       </p>
       <p>
         Other NinjaTrader 8 products in adjacent categories — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian Angel — are mature hard-limit enforcers at the financial-outcome layer. They do that job well. Meridian covers the same protection job and adds the behavioral layer one step earlier, so for a trader already running one of these tools it is a superset rather than a separate category.
@@ -85,7 +82,7 @@ const qaSchema = JSON.stringify({
         <li><strong>Can it apply structural friction at thresholds, not just notifications?</strong> A push notification that the trader can dismiss is not enforcement. A typed acknowledgment, a forced countdown, an entry block, or a broker disconnect — those are.</li>
       </ol>
       <p>
-        A product that answers all four affirmatively is anti-tilt software. A product that answers fewer is in a related category — useful, but solving a different problem.
+        A product that answers fewer is in a related category — useful, but solving a different problem.
       </p>
 
       <h2>Where Meridian fits</h2>
@@ -93,10 +90,10 @@ const qaSchema = JSON.stringify({
         Meridian was designed against exactly that four-question framework. The seven-signal model handles behavioral pattern detection; the adaptive baseline handles per-trader calibration; the composite Psychological Stability Index aggregates the signals into one real-time score; and Meridian Guard provides the structural friction, with six trigger types and an escalating response ladder (five levels on NinjaTrader 8; six tiers, up to the full-screen Cool-down Wall and the firewall-level Cut, in Guard v2 on the standalone apps) — from a non-blocking notification up through typed acknowledgment, an entry-blocking trading pause, and a broker disconnect.
       </p>
       <p>
-        The same engine also enforces the standard risk limits — daily loss, P&amp;L and drawdown caps, single-trade loss cap, loss-streak cutoff — and carries the session through to a journal and review pass. The practical result is that Meridian does what a traditional risk tool does and adds the behavioral layer on top, rather than being a niche tool you bolt on beside one.
+        The same engine also enforces the standard risk limits — daily loss, P&amp;L and drawdown caps, single-trade loss cap, loss-streak cutoff — and carries the session through to a journal and review pass.
       </p>
       <p>
-        It runs as a standard NinjaTrader 8 add-on — and, in early access, as a standalone Windows app connected directly to a Tradovate or Ironbeam account; your session history is stored locally on your PC, and the only data it transmits is anonymized, opt-out research telemetry — never your identity, broker credentials, account numbers, or funds.
+        It runs as a standard NinjaTrader 8 add-on — and, in early access, as a standalone Windows app connected directly to a Tradovate or Ironbeam account; your session history is stored locally on your PC, and the only data it transmits is anonymized, opt-out data — never your identity, broker credentials, account numbers, or funds.
       </p>
 
       <p>

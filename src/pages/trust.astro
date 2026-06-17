@@ -55,7 +55,7 @@ const neverDoes = [
   },
   {
     title: 'Never sells your data',
-    body: 'No third-party ad tracking, no profiling, no resale. The only data that leaves is anonymized telemetry for product improvement and research — and you can turn it off.',
+    body: 'No third-party ad tracking, no profiling, no resale. The only data that leaves is anonymized data for product improvement and research — and you can turn it off.',
   },
 ];
 ---
@@ -78,7 +78,7 @@ const neverDoes = [
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
           Official NinjaTrader Ecosystem Vendor
         </span>
-        <span class="text-zinc-300">|</span><span>Local-first, anonymized telemetry</span>
+        <span class="text-zinc-300">|</span><span>Local-first, anonymized data</span>
         <span class="text-zinc-300">|</span><span>No profit guarantees</span>
       </div>
     </div>
@@ -91,8 +91,8 @@ const neverDoes = [
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT LEAVES THE MACHINE</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Local-first — and specific about it.</h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          We don't claim "fully offline" — Meridian does make two external requests, and we'd rather name them than hide
-          them. Both are stripped of anything that could identify you, and the product keeps working even if you block them.
+          We don't claim "fully offline" — Meridian does make two external requests. Both are stripped of anything that
+          could identify you, and the product keeps working even if you block them.
         </p>
       </div>
       <div class="grid md:grid-cols-2 gap-5" data-reveal>
@@ -105,7 +105,7 @@ const neverDoes = [
           </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <div class="font-semibold text-zinc-900 mb-2">Anonymized research telemetry</div>
+          <div class="font-semibold text-zinc-900 mb-2">Anonymized research data</div>
           <p class="text-sm text-zinc-600 leading-relaxed">
             Anonymized trading and behavioral records — tied only to a random identifier, never your name, credentials,
             account numbers, or funds — sent over HTTPS to improve the product and study trading discipline. Never sold,
@@ -145,7 +145,7 @@ const neverDoes = [
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT MERIDIAN NEVER DOES</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The lines we don't cross.</h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          A risk tool earns trust by what it refuses to touch. These are the hard limits — not preferences, not defaults.
+          A risk tool earns trust by what it refuses to touch. These are the hard limits.
         </p>
       </div>
       <div class="grid sm:grid-cols-2 gap-5" data-reveal>
@@ -169,7 +169,7 @@ const neverDoes = [
           By default, Guard never<br />closes your positions.
         </h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          This is the promise that matters most, so we'll be exact. Guard's job is to stop you from <em>adding</em> risk —
+          Guard's job is to stop you from <em>adding</em> risk —
           it intercepts new entries and size increases when you cross a line you set. By default it leaves the position you're
           already in completely alone: it does not close, flatten, or exit your trade.
         </p>
@@ -193,8 +193,7 @@ const neverDoes = [
           <strong class="text-zinc-900">Broker disconnect is the ceiling, and it's yours to choose.</strong> The highest
           level (Disconnect) drops the broker connection (through NinjaTrader's standard disconnect API on NT8, or the account session on the standalone apps) &mdash; and can
           optionally auto-flatten open positions at the trigger. If you hold a
-          position it first offers a flatten countdown before severing, and by default it re-disconnects you if you reconnect
-          before the window ends. It's an
+          position it first offers a flatten countdown before severing. It's an
           advanced, opt-in mode for full disengagement — understand and test it in simulation before using it live.
         </p>
       </div>

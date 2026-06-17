@@ -289,7 +289,7 @@ Meridian is an add-on, not a chart indicator, so it will not appear in the chart
 
 If you trade through a Tradovate or Ironbeam account:
 
-The Tradovate and Ironbeam apps are in early access, and we are onboarding traders by hand right now. Reply to this email (or write to contactmeridianpsi@gmail.com) with the broker you trade, and we will send you the signed installer and help get your setup running. Your Meridian license — the same key above — activates the app once you have it. No NinjaTrader is required for this path.
+The Tradovate and Ironbeam apps are in early access, and we are onboarding traders by hand right now. Reply to this email (or write to contactmeridianpsi@gmail.com) with the broker you trade, and we will send you the installer and help get your setup running. Your Meridian license — the same key above — activates the app once you have it. No NinjaTrader is required for this path.
 
 The full guide with screenshots is at https://www.meridianpsi.com/installation-guide.
 

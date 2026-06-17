@@ -80,7 +80,7 @@ const faqSchema = JSON.stringify({
         A daily loss limit stops trading after the financial damage has been registered. By that point, the revenge trade has already executed — and in a leveraged futures position, a single impulsive order can consume a significant share of the session's allowable drawdown before any hard limit fires.
       </p>
       <p>
-        The limit is the floor. It is not the intervention. An effective intervention has to fire at the moment of behavioral deterioration, not after the financial consequence has already been recorded. Meridian is not a replacement for those limits — it is the complete tool that contains them. It enforces every traditional control a NinjaTrader 8 risk manager would (daily loss limit, P&amp;L and drawdown caps, single-trade loss cap, consecutive-loss cutoff) and adds the behavioral layer that fires earlier, on the revenge impulse itself.
+        The limit is the floor. It is not the intervention. An effective intervention has to fire at the moment of behavioral deterioration, not after the financial consequence has already been recorded. Meridian is not a replacement for those limits — it is the complete tool that contains them, and adds the behavioral layer that fires earlier, on the revenge impulse itself.
       </p>
 
       <h2>How Meridian detects the pattern</h2>
@@ -88,7 +88,7 @@ const faqSchema = JSON.stringify({
         Meridian's <strong>Revenge Entry signal</strong> monitors the interval between a loss event and the next order entry, cross-referenced against position sizing at that moment. It fires when the re-entry interval and size combination falls outside your own historical baseline — not a population average.
       </p>
       <p>
-        This signal is one of seven behavioral dimensions that feed the composite Psychological Stability Index (PSI) — the behavioral layer Meridian adds on top of the conventional risk limits it also tracks. A single elevated signal may pull PSI down into Caution. Multiple signals activating simultaneously — Revenge Entry + Overtrading Pace + Size Spike — typically indicates a session in active behavioral deterioration, and drives PSI down toward Critical before any hard financial limit is reached.
+        This signal is one of seven behavioral dimensions that feed the composite Psychological Stability Index (PSI). A single elevated signal may pull PSI down into Caution. Multiple signals activating at once — Revenge Entry, Overtrading Pace, Size Spike — typically indicates active behavioral deterioration, and drives PSI toward Critical before any hard financial limit is reached.
       </p>
 
       <h2>What Guard can enforce</h2>
@@ -96,7 +96,7 @@ const faqSchema = JSON.stringify({
         <li><strong>Mandatory cooldown</strong> — an enforced pause of configurable duration (e.g., 10–20 minutes) after a consecutive-loss trigger fires; during this window no new entries are possible</li>
         <li><strong>Acknowledgment requirement</strong> — before re-entry is possible, the trader must type a pre-written phrase; introduces deliberate friction without a full stop</li>
         <li><strong>PSI-based entry block</strong> — new entries blocked when composite PSI drops below a configured threshold, regardless of loss count</li>
-        <li><strong>Session end / broker disconnect after N consecutive losses</strong> — Guard ends the session entirely (Disconnect, L5), protecting against the full revenge-trading escalation sequence</li>
+        <li><strong>Session end / broker disconnect after N consecutive losses</strong> — Guard ends the session entirely, protecting against the full revenge-trading escalation sequence</li>
         <li><strong>Conventional financial limits</strong> — Guard also enforces the standard controls (daily loss limit, P&amp;L and drawdown caps, single-trade loss cap), so the behavioral rules above sit on top of a full risk-management baseline rather than beside it</li>
       </ul>
       <p>

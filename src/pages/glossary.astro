@@ -13,7 +13,7 @@ const terms = [
     id: 'psi',
     term: 'Psychological Stability Index (PSI)',
     definition:
-      'A composite score from 0 to 100 that measures a trader\'s behavioral stability in real time during a live NinjaTrader 8 session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. PSI is grouped into four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55). PSI updates in under 100 milliseconds after every execution, stop move, or sizing decision.',
+      'A composite score from 0 to 100 that measures a trader\'s behavioral stability in real time during a live NinjaTrader 8 session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. PSI is grouped into four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55). PSI updates in real time after every execution, stop move, or sizing decision.',
     related: ['composure', 'behavioral-baseline', 'seven-signals'],
   },
   {
@@ -55,14 +55,14 @@ const terms = [
     id: 'overtrading',
     term: 'Overtrading',
     definition:
-      'A behavioral pattern characterized by excessive trade frequency beyond what the trader\'s own strategy or session rules prescribe. Overtrading often accompanies emotional states such as boredom, frustration, or overconfidence. Meridian\'s Overtrading Pace signal compares current entry frequency against the trader\'s own historical baseline, firing when acceleration is statistically anomalous — not against a generic market standard.',
+      'A behavioral pattern characterized by excessive trade frequency beyond what the trader\'s own strategy or session rules prescribe. Overtrading often accompanies emotional states such as boredom, frustration, or overconfidence. Meridian\'s Overtrading Pace signal compares current entry frequency against the trader\'s own historical baseline, firing when acceleration is statistically anomalous.',
     related: ['seven-signals', 'tilt', 'guard-system'],
   },
   {
     id: 'guard-system',
     term: 'Guard System',
     definition:
-      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection, by default re-disconnecting you if you reconnect before the window ends; your positions stay at your broker and you manage them yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires. On the standalone Tradovate/Ironbeam apps (early access), the Guard System runs as Guard v2 — a six-tier ladder that adds the Cool-down Wall and Cut.',
+      'A commitment device built into Meridian Guard that automatically enforces rules the trader defines during a calm, pre-session state. The Guard System operates across two dimensions: (1) Trigger conditions — six behavioral and P&L thresholds that activate the Guard response; (2) Action levels — five escalating responses, from a passive Notify (L1) up through Risk Alert, Acknowledge, and Trading Pause to a full broker Disconnect (L5). By default Guard does not close your live positions — it blocks you from adding risk, and at L5 severs the broker connection; your positions stay at your broker and you manage them yourself. Auto-flatten is a clear opt-in: tick it on a Trading Pause or Disconnect rule (off by default) and Guard will close all open positions for you the moment the rule fires. On the standalone Tradovate/Ironbeam apps (early access), the Guard System runs as Guard v2 — a six-tier ladder that adds the Cool-down Wall and Cut.',
     related: ['commitment-device', 'tilt', 'revenge-trading', 'cool-down-wall', 'network-cut'],
   },
   {
@@ -76,7 +76,7 @@ const terms = [
     id: 'network-cut',
     term: 'Network Cut (Cut)',
     definition:
-      'Tier 6 of Guard v2 — the hardest stop on the standalone Meridian apps (early access). Cut blocks the broker order servers in the Windows firewall, so an order physically cannot leave the PC. Because the block sits at the network layer and is machine-wide, it holds even for a market order on a prop account — and anything sharing that connection (including charts) can go dark for the window. It requires admin rights, lifts automatically when the rule window ends, and is fail-open by design: a watchdog and Force-reset both release the firewall, so it can never permanently lock the machine.',
+      'Tier 6 of Guard v2 — the hardest stop on the standalone Meridian apps (early access). Cut blocks the broker order servers in the Windows firewall, so an order physically cannot leave the PC. Because the block sits at the network layer and is machine-wide, it holds even for a market order on a prop account — and anything sharing that connection (including charts) can go dark for the window. It lifts automatically when the rule window ends.',
     related: ['guard-system', 'cool-down-wall'],
   },
   {

@@ -60,7 +60,7 @@ const compareRows = [
   {
     dim: 'Enforcement mechanism',
     native: 'Order block at threshold',
-    meridian: 'Daily-loss / drawdown / loss-streak limits plus behavioral triggers — six trigger types · five response levels (Notify → Disconnect); the standalone apps run the six-tier Guard v2',
+    meridian: 'Daily-loss / drawdown / loss-streak limits plus behavioral triggers — six trigger types · five response levels (Notify → Disconnect); the standalone apps run an extended enforcement ladder',
   },
 ];
 
@@ -79,7 +79,7 @@ const faqItems = [
   },
   {
     q: 'How is Meridian\'s threshold model different?',
-    a: 'Native controls compare each order against a fixed dollar amount you set once. Meridian compares your live behavior — entry pace, sizing, stop discipline, hold time — against a baseline built from your own session history. The threshold adapts to who you actually are as a trader, not to a generic average.',
+    a: 'Native controls compare each order against a fixed dollar amount you set once. Meridian compares your live behavior — entry pace, sizing, stop discipline, hold time — against a baseline built from your own session history. The threshold adapts to who you actually are as a trader.',
   },
 ];
 
@@ -121,7 +121,7 @@ const faqSchema = JSON.stringify({
         NinjaTrader 8's account-level daily loss control is exactly what every serious futures trader should have on by default: a configured dollar drawdown is reached, and new orders are blocked at the platform layer. Combined with the broker's own clearing-firm limits, it is a robust hard floor on a session.
       </p>
       <p>
-        It is purpose-built for one job — capping the financial outcome — and it does that job well. Its design point is the moment the damage has already been realized.
+        It is purpose-built for one job — capping the financial outcome — and it does that job well.
       </p>
 
       <h2>Where Meridian operates</h2>

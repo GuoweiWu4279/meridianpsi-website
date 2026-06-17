@@ -80,7 +80,7 @@ const faqItems = [
   },
   {
     q: 'Can Meridian stop a revenge trade before I place it?',
-    a: 'Yes — that is the point. When a behavioral threshold is crossed, Meridian Guard can escalate exactly as far as you decide in advance: a quiet alert (Notify), a persistent confirm-every-entry banner (Risk Alert), a type-your-phrase acknowledgment with an optional countdown (Acknowledge), a full trading pause that cancels new entries (Trading Pause), or a broker disconnect (Disconnect). By default Guard blocks you from adding risk rather than closing what you hold — you can always exit any position, any time — and if you tick auto-flatten on a Trading Pause or Disconnect rule, Guard will close your open positions for you the moment it fires.',
+    a: 'Yes — that is the point. When a behavioral threshold is crossed, Meridian Guard can escalate exactly as far as you decide in advance: Notify, Risk Alert, Acknowledge (a typed phrase with an optional countdown), Trading Pause, or a broker Disconnect. By default Guard blocks you from adding risk rather than closing what you hold — you can always exit any position, any time — and if you tick auto-flatten on a Trading Pause or Disconnect rule, Guard will close your open positions for you the moment it fires.',
   },
   {
     q: 'Does anti-tilt only matter after a losing trade?',
@@ -151,7 +151,7 @@ const faqSchema = JSON.stringify({
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE TILT, MAPPED TO THE SIGNAL</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Every way tilt shows up,<br />and the signal that catches it.</h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-        Each behavior is scored in real time, against your own history &mdash; not a generic average.
+        Each behavior is scored in real time, against your own history.
       </p>
     </div>
     <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
@@ -171,8 +171,7 @@ const faqSchema = JSON.stringify({
     </div>
     <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto leading-relaxed">
       A seventh signal &mdash; <strong class="text-zinc-700">Position Overstay</strong> &mdash; flags a single losing trade held past your historical
-      patience window into deep adverse excursion, even if it later recovers. Where Hold Bias compares how long you sit in losers
-      versus winners, Overstay watches that one trade overstaying its welcome. All seven combine into one live PSI score.
+      patience window into deep adverse excursion, even if it later recovers. All seven combine into one live PSI score.
     </p>
   </section>
 
@@ -230,7 +229,7 @@ const faqSchema = JSON.stringify({
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">1</span> <span><strong class="text-zinc-900">Notify</strong> &mdash; a quiet alert; you see your PSI dropping</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">2</span> <span><strong class="text-zinc-900">Risk Alert</strong> &mdash; a persistent banner; every entry requires active confirmation</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">3</span> <span><strong class="text-zinc-900">Acknowledge</strong> &mdash; type your own pre-written phrase and wait out a countdown</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">4</span> <span><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders; survives an NT8 restart</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">4</span> <span><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders</span></li>
         <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">5</span> <span><strong class="text-zinc-900">Disconnect</strong> &mdash; severs the broker connection; the session is over</span></li>
       </ol>
       <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes every pause it fires un-bypassable for its full window &mdash; for exactly when the tilted version of you wants to switch it off.</p>
@@ -289,7 +288,7 @@ const faqSchema = JSON.stringify({
     </p>
     <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
       Every earlier generation of risk tooling fires <em>after</em> that sequence has already played out. Anti-tilt fires
-      <em>inside</em> it &mdash; while you still have the option to step away. That is the entire difference between losing a funded
+      <em>inside</em> it &mdash; while you still have the option to step away. Often that is the difference between losing a funded
       account and keeping it.
     </p>
     </div>

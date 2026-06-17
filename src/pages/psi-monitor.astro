@@ -69,7 +69,7 @@ const monitorJsonLd = {
         'Adaptive baseline calibrated to the individual trader, not a generic average',
         'Always-on HUD overlay on the NinjaTrader 8 chart',
         ...signals.map((s) => `${s.name} detection`),
-        'Local-first, anonymized, opt-out telemetry — never your name, broker credentials, account numbers, or funds',
+        'Local-first, anonymized, opt-out data — never your name, broker credentials, account numbers, or funds',
       ],
       publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
     },
@@ -134,7 +134,7 @@ const signalIcons: Record<string, string> = {
       </span>
       <span class="text-zinc-300">|</span><span>Updates in &lt;100ms after every fill</span>
       <span class="text-zinc-300">|</span><span>Calibrated to your own baseline</span>
-      <span class="text-zinc-300">|</span><span>Local-first, anonymized, opt-out telemetry</span>
+      <span class="text-zinc-300">|</span><span>Local-first, anonymized, opt-out data</span>
     </div>
   </section>
 
@@ -170,7 +170,7 @@ const signalIcons: Record<string, string> = {
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE NUMBER MOVES</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">From a fill to a score, in three steps.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          The PSI is not a mood guess. It's a deterministic read of your order flow against your own history &mdash; the same inputs always produce the same number.
+          The PSI isn't a guess about your mood &mdash; it's a precise read of your order flow against your own history.
         </p>
       </div>
       <div class="grid sm:grid-cols-3 gap-5" data-reveal>
@@ -206,7 +206,6 @@ const signalIcons: Record<string, string> = {
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Seven reads. One score.</h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
         Each signal tracks one distinct way discipline breaks down. They run independently, then composite into the single PSI on the gauge.
-        On the HUD you'll see each one by its short label.
       </p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
@@ -220,10 +219,6 @@ const signalIcons: Record<string, string> = {
           </div>
           <div class="font-semibold text-zinc-900">{s.name}</div>
           <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">{s.short}</p>
-          <div class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-medium text-zinc-500">
-            <span class="text-zinc-400">HUD label</span>
-            <span class="rounded-md bg-[#0b0b0d] text-zinc-200 px-2 py-0.5 font-mono">{s.hudLabel}</span>
-          </div>
         </div>
       ))}
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-6 flex flex-col justify-center">

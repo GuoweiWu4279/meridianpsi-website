@@ -257,7 +257,7 @@ const v2 = guardData.standalone;
           Guard never closes your live<br class="hidden md:block" /> positions for you.
         </h2>
         <p class="mt-5 text-lg text-zinc-700 leading-relaxed">
-          It only blocks you from <strong class="text-zinc-900">adding</strong> risk &mdash; new entries, more size. Your open trades stay yours: a close order is never cancelled, at any level. Even Disconnect, if you hold a position, first shows a countdown with a one-click <em>Flatten All</em> before it severs the connection &mdash; and your position itself lives at your broker, never locked away. Guard stops the next bad decision; it never makes a trading decision for you.
+          It only blocks you from <strong class="text-zinc-900">adding</strong> risk &mdash; new entries, more size. Your open trades stay yours: a close order is never cancelled, at any level. Even Disconnect, if you hold a position, first shows a countdown with a one-click <em>Flatten All</em> before it severs the connection &mdash; and your position itself lives at your broker, never locked away.
         </p>
         <p class="mt-4 text-sm text-zinc-600 leading-relaxed">
           The one exception is explicit and off by default: on a Trading Pause (L4) or Disconnect (L5) rule, you <em>may</em> tick a single checkbox &mdash; <em>Close all open positions immediately</em> &mdash; to auto-flatten the moment that rule fires. If you don't enable it, nothing closes &mdash; positions stay open and fully under your control.
@@ -278,10 +278,8 @@ const v2 = guardData.standalone;
       </p>
       <ul class="mt-6 space-y-3 text-zinc-700">
         <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your rule decides how long &mdash; 15 minutes or the rest of the day &mdash; Strict Lock makes that window inescapable</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart</strong> &mdash; closing the platform doesn't reset it</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Built for the moment the tilted version of you goes looking for the off switch</span></li>
+        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart or crash</strong> &mdash; closing the platform doesn't reset it</span></li>
       </ul>
-      <p class="mt-5 text-sm text-zinc-500">Lockout state persists across restarts and crashes &mdash; there's no "just reopen it" loophole.</p>
     </div>
     <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock makes every Guard pause un-bypassable and survives a NinjaTrader restart" /></div>
   </section>
@@ -327,17 +325,12 @@ const v2 = guardData.standalone;
           <p class="text-zinc-300 leading-relaxed text-sm">
             A Windows-firewall block of your broker's order servers. Blunt and machine-wide by design &mdash; an order
             physically cannot leave the PC, which makes it the one stop that holds even a market order on a prop account.
-            Honest fine print: anything sharing that connection can go dark too, it needs admin rights, and it lifts
-            automatically when the window ends &mdash; a watchdog guarantees it can never lock your machine permanently.
+            It needs admin rights, anything sharing that connection can go dark too, and it always lifts on its own when
+            the window ends &mdash; it can never lock your machine for good.
           </p>
         </div>
       </div>
 
-      <p class="text-center mt-8 text-sm text-zinc-500 max-w-3xl mx-auto" data-reveal>
-        Naming note: the standalone ladder re-cuts the NinjaTrader levels &mdash; Alert and Pause are leaner takes on Risk
-        Alert and Trading Pause, and the old Disconnect splits into the Wall and the Cut. Same philosophy, finer control:
-        reverse-market, soft/hard wall, flatten-first and broker presets are all set per rule.
-      </p>
       <div class="text-center mt-6" data-reveal>
         <a href="/platforms" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm inline-block">Guard v2 is in early access &mdash; see platforms</a>
       </div>
@@ -497,7 +490,7 @@ const v2 = guardData.standalone;
           ['7 behavioral signal bars',                    true,  true],
           ['Personal baselines',                          true,  true],
           ['Session history (5 years)',                   true,  true],
-          ['Local-first; anonymized opt-out telemetry',   true,  true],
+          ['Local-first; anonymized opt-out data',   true,  true],
           ['Guard System (6 triggers, 5-level ladder)',   false, true],
           ['Trading Pause & broker Disconnect',           false, true],
           ['Strict Lock — makes every pause un-bypassable',false, true],

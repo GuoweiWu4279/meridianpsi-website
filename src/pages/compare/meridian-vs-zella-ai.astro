@@ -20,7 +20,7 @@ const compareRows = [
   {
     dim: 'When it works',
     zella: 'After trades are logged/imported — review and reflection',
-    meridian: 'During the live session, under 100ms after every order event',
+    meridian: 'During the live session, in real time after every order event',
   },
   {
     dim: 'Data source',
@@ -65,7 +65,7 @@ const faqItems = [
   },
   {
     q: 'Is Meridian “AI” the way Zella AI is?',
-    a: 'Meridian does not market itself as a chat-style AI reviewer. It runs a real-time behavioral engine: seven signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace) computed from order data and composited into a live Psychological Stability Index, calibrated to your own adaptive baseline. The value is not a post-session narrative — it is a live score and an intervention ladder that engage while the trade decision is still in front of you.',
+    a: 'Meridian is not a chat-style AI reviewer. It runs a real-time behavioral engine: seven signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace) computed from order data and composited into a live Psychological Stability Index, calibrated to your own adaptive baseline. The value is not a post-session narrative — it is a live score and an intervention ladder that engage while the trade decision is still in front of you.',
   },
   {
     q: 'Could I use both?',
@@ -115,12 +115,12 @@ const faqSchema = JSON.stringify({
         Zella AI is the AI layer inside TradeZella’s journal. It tags trades automatically against rules you set, reviews each session against your plan, and flags when sizing or rule adherence drifts from your norm — including the patterns that end most evaluations, like revenge trading after a loss or oversizing to catch up. It is a capable, well-built behavioral-review product, and on the reflective side of trading it does its job well: it turns a pile of trades into an explained read on where your discipline slipped.
       </p>
       <p>
-        It operates on trades that are already in the journal. The session happens, the data arrives, and the AI explains what happened. That is review — the same point on the clock as any post-session tool, with a smarter narrator.
+        It operates on trades that are already in the journal. The session happens, the data arrives, and the AI explains what happened. That is review — the same point on the clock as any post-session tool.
       </p>
 
       <h2>The one thing review can’t do</h2>
       <p>
-        A review tool, however intelligent, arrives after the trades exist. It can tell you on Sunday that you revenge-traded on Thursday. Next Thursday, while the spiral is forming live, the review from last week does nothing — and the spiral is precisely the moment your own judgment is least reliable. Knowing the pattern is not the same as not repeating it under pressure.
+        A review tool, however intelligent, arrives after the trades exist. It can tell you on Sunday that you revenge-traded on Thursday. Next Thursday, while the spiral is forming live, the review from last week does nothing — and the spiral is precisely the moment your own judgment is least reliable.
       </p>
       <p>
         The behavioral evidence that a session is turning exists in real time, in the order stream: re-entry intervals collapse, size spikes under loss conditions, stops get widened on losing positions, a loser is held past your own tolerance. Those are measurable the instant they happen — not only reconstructable afterward.
@@ -128,7 +128,7 @@ const faqSchema = JSON.stringify({
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian reads that live order stream and extracts seven behavioral signals — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace — composited into a Psychological Stability Index scored 0 to 100, updated under 100 milliseconds after every order event, and calibrated to your own adaptive baseline rather than a fixed rule. It also enforces the hard limits a risk engine should: daily loss, single-trade loss, P&L and drawdown caps, loss-streak cutoff.
+        Meridian reads that live order stream and extracts seven behavioral signals — Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace — composited into a Psychological Stability Index scored 0 to 100, updated in real time after every order event, and calibrated to your own adaptive baseline rather than a fixed rule. It also enforces the hard limits a risk engine should: daily loss, single-trade loss, P&L and drawdown caps, loss-streak cutoff.
       </p>
       <p>
         When Meridian Guard is on, that live read can intervene: a quiet notify, a risk alert, a typed acknowledgment, a trading pause, or a broker disconnect — escalating exactly as far as you decided when you were calm. By default it blocks you from adding risk rather than closing open positions; auto-flatten is a separate opt-in. The intervention lands at the trade you are about to place — the exact moment a review tool cannot reach.
@@ -160,7 +160,7 @@ const faqSchema = JSON.stringify({
 
       <h2>They complement — different halves of the loop</h2>
       <p>
-        This is not a teardown. Zella AI is good at the reflective half: broker-import analytics, trade tagging, plan adherence, AI-written review across accounts. Meridian owns the real-time half: live behavioral scoring and enforcement on your NinjaTrader 8 or Tradovate session, plus its own behavioral session review (PSI trend, composure digest, PSI × P&L correlation, pre-session risk brief). If you want an AI to narrate your history, Zella AI is a strong choice. If you want something to catch the revenge trade while your cursor is on the buy button, that is a real-time engine — and that is what Meridian is built to be.
+        Zella AI is good at the reflective half: broker-import analytics, trade tagging, plan adherence, AI-written review across accounts. Meridian owns the real-time half: live behavioral scoring and enforcement on your NinjaTrader 8 or Tradovate session, plus its own behavioral session review (PSI trend, composure digest, PSI × P&L correlation, pre-session risk brief). If you want an AI to narrate your history, Zella AI is a strong choice. If you want something to catch the revenge trade while your cursor is on the buy button, that is a real-time engine — and that is what Meridian is built to be.
       </p>
 
       <h2>Where this comparison sits in context</h2>

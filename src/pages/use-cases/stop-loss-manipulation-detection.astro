@@ -15,7 +15,7 @@ const faqItems = [
   },
   {
     q: 'How does Guard respond when stop manipulation is detected?',
-    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment (with an optional countdown), a trading pause that blocks new entries, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. This sits alongside the traditional limits Meridian also enforces (daily loss, P&L and drawdown caps, single-trade loss cap), giving you an earlier, behavior-based trigger on top of them. By design, you stay in full control of the existing order, with structural friction now between you and the next impulse.',
+    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment (with an optional countdown), a trading pause that blocks new entries, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. You stay in full control of the existing order, with structural friction now between you and the next impulse.',
   },
   {
     q: 'Does this work if I move stops using NinjaTrader\'s chart trader?',
@@ -100,7 +100,7 @@ const faqSchema = JSON.stringify({
         <li><strong>Immediate acknowledgment prompt</strong> — a required phrase confirmation fires when the signal activates; introduces a deliberate pause between the manipulation event and the next action</li>
         <li><strong>PSI-based entry block</strong> — if PSI drops below a configured floor as a result of the manipulation signal combining with other active signals, new entries are blocked</li>
         <li><strong>Mandatory pause</strong> — a fixed-duration cooldown enforced by the software after the signal fires</li>
-        <li><strong>Disconnect (Level 5)</strong> — at the highest tier you opt into, Guard can sever the broker connection to end the session. By default this does <strong>not</strong> close your open positions — auto-liquidation is a separate setting you must enable; otherwise positions remain open and under your full manual control</li>
+        <li><strong>Disconnect</strong> — at the highest tier you opt into, Guard can sever the broker connection to end the session. By default this does <strong>not</strong> close your open positions — auto-liquidation is a separate setting you must enable; otherwise positions remain open and under your full manual control</li>
       </ul>
 
       <hr />

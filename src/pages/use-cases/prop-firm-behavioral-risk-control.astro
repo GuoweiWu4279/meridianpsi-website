@@ -11,11 +11,11 @@ const metadata = {
 const faqItems = [
   {
     q: 'Does Meridian work with evaluation accounts on Tradovate or Rithmic?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. And if your program issues Tradovate-based accounts with no NinjaTrader access, the standalone Meridian app connects directly to that account — early access; see the Platforms page. Either way it runs as a complete local risk layer on top of your session — enforcing the traditional limits (daily loss, P&L caps, single-trade loss caps, loss-streak cutoffs) alongside its real-time behavioral detection — fully independent of the prop firm\'s own infrastructure.',
+    a: 'Yes. Meridian works with any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. And if your program issues Tradovate-based accounts with no NinjaTrader access, the standalone Meridian app connects directly to that account — early access; see the Platforms page. Either way it runs as a complete local risk layer on top of your session, fully independent of the prop firm\'s own infrastructure.',
   },
   {
     q: 'How does Guard sit alongside the prop firm\'s own risk controls?',
-    a: 'Guard operates independently at the NinjaTrader layer and fires at behavioral thresholds you configure — by design, before any firm-level hard limit is reached. The whole point is to end the session on your behavioral terms, not on a forced breach.',
+    a: 'Guard operates independently at the NinjaTrader layer and fires at behavioral thresholds you configure, before any firm-level hard limit is reached — so the session ends on your behavioral terms, not on a forced breach.',
   },
   {
     q: 'Can Guard end my session before I breach the evaluation\'s daily loss limit?',
@@ -23,7 +23,7 @@ const faqItems = [
   },
   {
     q: 'What about copy-filled positions from tools like Replikanto?',
-    a: 'Meridian de-duplicates copy-trading and mirrored fills, so the same trade fired across multiple accounts is not double-counted in your behavioral score. Duplicate fills matching on instrument, direction, and quantity within a short window are collapsed into one, which keeps mirrored execution from a tool like Replikanto from artificially inflating your behavioral signal readings.',
+    a: 'Meridian counts your own trades, not mirrored copies, so the same trade fired across multiple accounts by a tool like Replikanto is not double-counted in your behavioral score.',
   },
 ];
 

@@ -127,7 +127,7 @@ const ntHowTo = {
 const appHowTo = (name, id) => ({
   '@type': 'HowTo',
   name: `How to Install the Meridian App for ${name}`,
-  description: `Download the signed Meridian installer, sign in to your ${name} account, activate your license, and configure your profile. No NinjaTrader required.`,
+  description: `Download the Meridian installer, sign in to your ${name} account, activate your license, and configure your profile. No NinjaTrader required.`,
   url: `https://www.meridianpsi.com/installation-guide#${id}`,
   totalTime: 'PT5M',
   tool: [
@@ -139,7 +139,7 @@ const appHowTo = (name, id) => ({
       '@type': 'HowToStep',
       position: 1,
       name: 'Download the installer',
-      text: 'Download the signed Meridian installer (Meridian-win-Setup.exe) from meridianpsi.com/download.',
+      text: 'Download the Meridian installer (Meridian-win-Setup.exe) from meridianpsi.com/download.',
     },
     {
       '@type': 'HowToStep',
@@ -511,7 +511,7 @@ const howToGraph = JSON.stringify({
                 <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
                   No NinjaTrader required &mdash; the same Meridian engine, as a standalone Windows app that connects
                   straight to your {b.name} account. It's in <strong>early access</strong>, and we're onboarding traders by
-                  hand right now: request access below and we'll send you the signed installer and get your setup working
+                  hand right now: request access below and we'll send you the installer and get your setup working
                   with you, one on one.
                 </p>
                 <ul class="mt-7 space-y-3 text-zinc-700">
@@ -533,7 +533,7 @@ const howToGraph = JSON.stringify({
                 <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">HOW EARLY ACCESS WORKS</p>
                 <ol class="space-y-3 text-zinc-700 leading-relaxed">
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Request access below &mdash; just your email and the broker you trade.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>We reply by email with the <strong>signed installer</strong> and a short setup walk-through.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>We reply by email with the <strong>installer</strong> and a short setup walk-through.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Install it, then click <strong>Sign in with {b.name}</strong> &mdash; you authorize on your broker's own page.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Activate with your Meridian license (same key as NinjaTrader 8), set your profile, and you're live.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>You get a direct line to the builder the whole way through.</span></li>
@@ -550,7 +550,7 @@ const howToGraph = JSON.stringify({
             <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">Get on the {b.name} early-access list.</h2>
             <p class="mt-4 text-zinc-600 leading-relaxed">
               Tell us where to send it. We onboard new {b.name} traders in small batches so every setup gets attention
-              &mdash; you'll hear back by email with the signed installer and next steps.
+              &mdash; you'll hear back by email with the installer and next steps.
             </p>
             <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-7 space-y-4">
               <input type="hidden" name="subject" value={`Early access request — ${b.name}`} />
@@ -593,7 +593,7 @@ const howToGraph = JSON.stringify({
             <dl class="space-y-6">
               <div>
                 <dt class="font-semibold text-zinc-900">It's early access &mdash; and onboarded by hand.</dt>
-                <dd class="mt-1 text-zinc-600 leading-relaxed">The engine is the same one that's shipped in NinjaTrader 8 for months. The standalone app around it is newer, so we're rolling it out one trader at a time &mdash; you get the signed installer directly from us, and a direct line to the builder if you hit a rough edge.</dd>
+                <dd class="mt-1 text-zinc-600 leading-relaxed">The engine is the same one that's shipped in NinjaTrader 8 for months. The standalone app around it is newer, so we're rolling it out one trader at a time &mdash; you get the installer directly from us, and a direct line to the builder if you hit a rough edge.</dd>
               </div>
               <div>
                 <dt class="font-semibold text-zinc-900">It updates itself.</dt>

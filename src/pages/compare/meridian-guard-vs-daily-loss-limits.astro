@@ -13,11 +13,11 @@ const metadata = {
 const faqItems = [
   {
     q: 'What is the difference between a daily loss limit and Meridian Guard?',
-    a: 'A daily loss limit is a single financial threshold — it reacts after a specific dollar drawdown. Meridian is the complete risk manager: it includes that daily loss limit (via the Session P&L Below trigger) along with the other traditional controls — single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have, a behavioral leading indicator that fires when the pattern producing the loss is in motion, before the financial threshold is reached. So it is not a different category from a daily loss limit; it is a superset of it.',
+    a: 'A daily loss limit is a single financial threshold — it reacts after a specific dollar drawdown. Meridian is the complete risk manager: it includes that daily loss limit along with the other traditional controls — single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have, a behavioral leading indicator that fires when the pattern producing the loss is in motion, before the financial threshold is reached. So it is not a different category from a daily loss limit; it is a superset of it.',
   },
   {
     q: 'Can Guard act as a daily loss limit?',
-    a: 'Yes. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at Level 5 (which stops new orders; closing open positions on disconnect is optional and off by default). You can set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
+    a: 'Yes. Guard ends the session at any P&L level you configure, with a forced broker disconnect (which stops new orders; closing open positions on disconnect is optional and off by default). You can set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
   },
   {
     q: 'How does Guard see things a P&L threshold cannot?',
@@ -76,7 +76,7 @@ const faqSchema = JSON.stringify({
         Guard monitors seven behavioral signals that commonly precede a blown session: rapid re-entry after a loss, stop manipulation, oversizing, accelerating entry pace, rule violations, position overstay, hold bias. It fires at the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus a single-trade loss cap, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene. The net effect: Meridian is the complete risk manager — native in NinjaTrader 8, with Tradovate and Ironbeam apps in early access — every traditional limit, plus the behavioral detection none of them have.
+        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus a single-trade loss cap, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene.
       </p>
 
       <!-- Comparison table -->

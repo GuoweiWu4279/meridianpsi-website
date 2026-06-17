@@ -16,11 +16,11 @@ const faqItems = [
   },
   {
     q: 'Can Guard enforce a maximum trade count per session?',
-    a: 'Not as a standalone N-trades trigger — and that is deliberate. You declare a per-session trade budget during setup; Meridian counts every entry against it live on the HUD (Trade 7/10) and warns as you approach the line. Entries past the budget feed the Overtrading signal directly, dragging the composite PSI down — and a PSI Below rule then enforces: a pause of defined duration, a typed acknowledgment, or a session end. For deterministic hard stops, Guard\'s direct triggers are Consecutive Losses, Session P&L Below, Single Trade Loss, Unrealized P&L Below, and Session Time Over.',
+    a: 'Not as a standalone N-trades trigger. You declare a per-session trade budget during setup; Meridian counts every entry against it live on the HUD (Trade 7/10) and warns as you approach the line. Entries past the budget feed the Overtrading signal directly, dragging the composite PSI down — and a PSI Below rule then enforces a pause, a typed acknowledgment, or a session end. For deterministic hard stops, Guard also offers direct financial and time-based triggers.',
   },
   {
     q: 'Will Guard fire if the market is just giving me lots of valid setups?',
-    a: 'The pace signal is calibrated to your own baseline, so a genuinely active day on an already-active baseline does not read as overtrading by itself — the signal weighs acceleration beyond your own norm, and weighs it more heavily under loss conditions. The financial triggers are deterministic by design: if your Consecutive Losses or Session P&L Below condition is met, the rule fires regardless of how valid the next setup feels — that is exactly the moment the rule exists for. You set the thresholds when calm, and Strict Lock can stop you from loosening them mid-session.',
+    a: 'The pace signal is calibrated to your own baseline, so a genuinely active day does not read as overtrading by itself — the signal weighs acceleration beyond your own norm, and weighs it more heavily under loss conditions. The financial triggers are deterministic: if your Consecutive Losses or Session P&L Below condition is met, the rule fires regardless of how valid the next setup feels. You set the thresholds when calm, and Strict Lock can stop you from loosening them mid-session.',
   },
 ];
 

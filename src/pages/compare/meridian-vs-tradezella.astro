@@ -45,7 +45,7 @@ const compareRows = [
   {
     dim: 'Psychological Stability Index',
     tradezella: 'No',
-    meridian: 'Yes — composite 0 to 100 score, updated under 100ms after every order event',
+    meridian: 'Yes — composite 0 to 100 score, updated in real time after every order event',
   },
   {
     dim: 'Adaptive personal baseline',
@@ -55,7 +55,7 @@ const compareRows = [
   {
     dim: 'Data storage',
     tradezella: 'Cloud platform',
-    meridian: 'Local-first; anonymized, opt-out telemetry',
+    meridian: 'Local-first; anonymized, opt-out data',
   },
   {
     dim: 'Platform',
@@ -71,7 +71,7 @@ const faqItems = [
   },
   {
     q: 'How is Meridian different from TradeZella?',
-    a: 'TradeZella analyzes your trading history after the session. Meridian is complete risk management for NinjaTrader 8 that operates during the session: it enforces the traditional risk limits — daily loss cap, single-trade loss cap, drawdown and loss-streak cutoffs — and adds real-time behavioral detection on top. TradeZella will show you, after the fact, that you had a bad run of revenge trades last Thursday. Meridian will detect the same pattern forming on Thursday afternoon and can require a typed acknowledgment — with an optional countdown — or block entries before the damage compounds. Both products engage with trading psychology. They do it at opposite ends of the clock.',
+    a: 'TradeZella analyzes your trading history after the session. Meridian is complete risk management for NinjaTrader 8 that operates during the session: it enforces the traditional risk limits — daily loss cap, single-trade loss cap, drawdown and loss-streak cutoffs — and adds real-time behavioral detection on top. TradeZella will show you, after the fact, that you had a bad run of revenge trades last Thursday. Meridian will detect the same pattern forming on Thursday afternoon and can require a typed acknowledgment — with an optional countdown — or block entries before the damage compounds. Both products engage with trading psychology, at opposite points in the trading process.',
   },
   {
     q: 'TradeZella has psychology features. How are they different from Meridian?',
@@ -141,7 +141,7 @@ const faqSchema = JSON.stringify({
         Meridian is complete risk management for NinjaTrader 8. It enforces the traditional risk controls a dedicated risk tool provides — daily loss limit, single-trade loss cap, P&L and drawdown caps, loss-streak cutoff — and adds the layer none of those tools have: real-time behavioral detection. It reads the live NinjaTrader 8 order stream and extracts seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. These fire automatically from order data, without requiring the trader to tag anything or log any entry. The system computes the signals; the trader does not self-report them.
       </p>
       <p>
-        Those signals feed into a composite Psychological Stability Index (PSI), scored 0 to 100 and updated under 100 milliseconds after every order event. The baseline is personal: the system learns what each trader's own normal looks like across sessions and calibrates against that, not against a fixed standard. A session where your PSI is 40 looks different than it would for another trader at the same dollar loss, because your behavioral baseline is yours.
+        Those signals feed into a composite Psychological Stability Index (PSI), scored 0 to 100 and updated in real time after every order event. The baseline is personal: the system learns what each trader's own normal looks like across sessions and calibrates against that, not against a fixed standard. A session where your PSI is 40 looks different than it would for another trader at the same dollar loss, because your behavioral baseline is yours.
       </p>
       <p>
         When Meridian Guard is enabled, this live monitoring can trigger actual intervention: a typed acknowledgment (with an optional countdown), an entry block, or a broker disconnect. By default these interventions block you from adding risk rather than closing your open positions — you can still exit on your own; auto-flatten on a pause or disconnect is a separate opt-in. The intervention happens during the session, before the pattern fully plays out. That is the design difference from any post-session platform.
