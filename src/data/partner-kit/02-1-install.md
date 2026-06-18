@@ -1,7 +1,7 @@
 ---
 title: Install Meridian
 section: get-started
-lastUpdated: "2026-05-14"
+lastUpdated: "2026-06-17"
 order: 1
 ---
 
@@ -25,7 +25,7 @@ In NT8: **Tools → Import → NinjaScript Add-On** → select the downloaded `.
 
 Two ways, either works any time:
 
-- **Control Center → New → Add-on → Meridian Dashboard**, or
+- **Control Center → New → Meridian Dashboard**, or
 - Click the **hamburger icon (☰) in the top-right of the HUD** (after the HUD is up)
 
 Meridian runs as an NT8 add-on. It is **not a chart indicator** and does **not** appear in the chart Indicators list — do not look for it there.
@@ -36,7 +36,7 @@ In the Dashboard, open the **License tab**, paste your license key, and click **
 
 **Step 6 — Configure your profile**
 
-Open **Settings** and set your trading profile: trading size, session time window, signal weights, and the response preset (Sensitive / Balanced / Relaxed). Guard rules are configured separately, in the **Guard tab** — not in Settings.
+Open **Settings** and set your trading profile: trading size, session time window, and the response preset (Sensitive / Balanced / Relaxed); advanced users can fine-tune further. Guard rules are configured separately, in the **Guard tab** — not in Settings.
 
 **Step 7 — Optional: test in SIM**
 
@@ -48,5 +48,5 @@ SIM is not required, but it's a good way to confirm everything works before goin
 
 - *"Compilation failed"* — Make sure you're on NT8 64-bit and your .NET framework is current. Restart NT8 and try reimporting.
 - *"License key not accepted"* — Double-check the key (no extra spaces, full string). Confirm you're using the same Whop account that purchased the subscription. If still failing, contact us at [contactmeridianpsi@gmail.com](mailto:contactmeridianpsi@gmail.com).
-- *"I can't find Meridian in Indicators"* — That's expected. Meridian is not a chart indicator. Open it from **Control Center → New → Add-on → Meridian Dashboard**.
-- *HUD not visible* — Open the Dashboard from Control Center → New → Add-on → Meridian Dashboard; the HUD comes up with it. Re-position by dragging.
+- *"I can't find Meridian in Indicators"* — That's expected. Meridian is not a chart indicator. Open it from **Control Center → New → Meridian Dashboard**.
+- *HUD not visible* — The HUD overlay appears once you connect an account and a session starts (it doesn't open with the Dashboard on its own). Re-position by dragging.

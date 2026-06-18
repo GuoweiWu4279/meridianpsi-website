@@ -1,7 +1,7 @@
 ---
 title: Your First 30 Minutes
 section: get-started
-lastUpdated: "2026-05-14"
+lastUpdated: "2026-06-17"
 order: 2
 ---
 
@@ -11,11 +11,11 @@ The fastest way to understand Meridian is to run a real session — either Marke
 
 **Minutes 1–5: Get oriented**
 
-Open the Dashboard (Control Center → New → Add-on → Meridian Dashboard, or the ☰ icon on the HUD).
+Open the Dashboard (Control Center → New → Meridian Dashboard, or the ☰ icon on the HUD).
 
 Spend a minute on each tab:
 
-- **Settings** — your trading profile: size, session time window, signal weights, and the Sensitive / Balanced / Relaxed response preset
+- **Settings** — your trading profile: size, session time window, and the Sensitive / Balanced / Relaxed response preset
 - **Guard** *(Guard tier only)* — trigger and response-level configuration
 - **License** — where you paste and activate your Whop key
 - **Journal** — Quick Journal entries from past sessions; "Complete Journal" auto-compiles a structured draft from your chips, notes, and session stats
