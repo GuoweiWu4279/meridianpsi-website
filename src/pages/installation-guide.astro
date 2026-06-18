@@ -45,7 +45,8 @@ const VERSIONS = [
 // The two standalone-app platforms — their connect flow genuinely DIFFERS (Tradovate =
 // browser OAuth, password never touches Meridian; Ironbeam = in-app API credentials,
 // stored DPAPI-encrypted), so each carries its own connect copy here rather than sharing
-// one OAuth template. `enforce` is the broker-side risk-lock note (under review).
+// one OAuth template. `enforce` notes the eval/prop (broker-side) vs funded/live
+// (app-level) lock — Tradovate only; Ironbeam stays app-level (no reliable eval broker lock).
 const APP_BROKERS = [
   {
     id: 'tradovate',
@@ -65,7 +66,7 @@ const APP_BROKERS = [
     tsNoAccount: `Meridian auto-detects Demo vs Live and connects your active account &mdash; confirm the account you want is active on Tradovate's side.`,
     demoConnect: `New to Meridian? Sign in with a Tradovate <strong>demo</strong> account and place a few small trades to watch the PSI gauge and HUD respond before you go live. Demo activity is tracked separately and won't affect your live baseline.`,
     enforce:
-      "On Tradovate, the hard lock runs at the broker level, through the platform's account risk-control API — the strongest enforcement Meridian offers.",
+      "On eval and prop-evaluation accounts the lock also holds at the broker, so it stays put even if you switch to your phone or the web platform; on funded/live accounts it's enforced in-app while Meridian runs.",
   },
   {
     id: 'ironbeam',
