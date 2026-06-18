@@ -6,7 +6,7 @@ import products from '~/data/products.json';
 // PLATFORMS — the compatibility page. Voice: TEACH / PRECISE, zero overclaim.
 // Status is the load-bearing honesty here: NT8 is GA; Tradovate & Ironbeam are
 // PAID EARLY ACCESS, sold directly — self-serve installer, 14-day free
-// trial, founding rate locked for life. No application program. Install flows
+// trial, standard pricing, self-serve download. Install flow
 // live on the unified /installation-guide (#tradovate / #ironbeam panels).
 // Capabilities differ per platform — the matrix states it.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -81,7 +81,7 @@ const matrix = [
           {p.status === 'available' ? (
             <a href="/download" class="inline-block text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2.5 rounded-xl transition">Download now</a>
           ) : (
-            <a href={`/installation-guide#${p.name.toLowerCase()}`} class="inline-block text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-4 py-2.5 rounded-xl transition">Apply for early access</a>
+            <a href={`/installation-guide#${p.name.toLowerCase()}`} class="inline-block text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2.5 rounded-xl transition">Download &mdash; early access</a>
           )}
         </div>
       ))}
@@ -129,8 +129,8 @@ const matrix = [
       </table>
     </div>
     <p class="mt-4 text-xs text-zinc-500 leading-relaxed max-w-3xl">
-      Early access means the app is validated against the platform's demo environment and onboarded by request right now &mdash;
-      you receive the installer from us directly, and the standard 14-day free trial applies when you subscribe. The Tradovate&reg; broker-level lock is executed
+      Early access means the app is validated against the platform's demo environment and is newer than the NT8 add-on &mdash;
+      you download it yourself, and the standard 14-day free trial applies when you subscribe. The Tradovate&reg; broker-level lock is executed
       through the platform's published account risk-control API; Ironbeam's API does not expose an account-level kill
       switch, so enforcement there is app-level (entry blocking and flatten). On Tradovate, live unrealized-P&amp;L readouts
       depend on the account's market-data setup — core monitoring and enforcement need no market-data subscription at
@@ -160,7 +160,7 @@ const matrix = [
         <h3 class="font-semibold text-zinc-900 mb-1.5">Your account runs on Tradovate</h3>
         <p class="text-sm text-zinc-600 leading-relaxed">
           If your program issues Tradovate-based accounts, the standalone Meridian app connects straight to that account
-          &mdash; no NinjaTrader anywhere. Early access, by request. <a href="/installation-guide#tradovate" class="text-emerald-700 font-medium hover:underline">Apply for access &rarr;</a>
+          &mdash; no NinjaTrader anywhere. Early access &mdash; download it. <a href="/installation-guide#tradovate" class="text-emerald-700 font-medium hover:underline">Get the app &rarr;</a>
         </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -209,18 +209,16 @@ const matrix = [
       <p class="mt-2 text-xs text-zinc-400">Guided connect — pick your broker, follow three steps; Meridian detects Demo vs Live for you.</p>
       <p class="mt-5 text-zinc-600 leading-relaxed">
         The Tradovate and Ironbeam apps are in early access &mdash; the full Meridian system, connecting straight to your
-        account. We're onboarding traders by hand right now: <strong>request access and we'll send you the
-        installer</strong>, then subscribe with the same <strong>14-day free trial</strong> as everything else. What early
-        access buys you is the rate: <strong>your early-access rate never goes up</strong>, for as long as you stay &mdash;
-        plus a direct line to the builder and first say in what ships next. One subscription covers every platform: the
-        same license runs your NinjaTrader&nbsp;8, Tradovate, and Ironbeam.
+        account. <strong>Download the app and you're running in minutes</strong>, on the same <strong>14-day free
+        trial</strong> as everything else. One subscription covers every platform: the same license runs your
+        NinjaTrader&nbsp;8, Tradovate, and Ironbeam &mdash; you never pay twice.
       </p>
       <p class="mt-3 text-sm text-zinc-500 leading-relaxed">
-        This is early-access software &mdash; you will be among the first to run it daily, and you may meet a rough edge. In
-        return for the early-access rate, we ask that you actually trade with it and tell us the truth about what you see.
+        This is early-access software &mdash; the engine has shipped in NinjaTrader 8 for months, but the standalone app
+        around it is newer, so you may meet a rough edge. If you do, the builder is one email away.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/installation-guide#tradovate" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Apply for early access</a>
+        <a href="/installation-guide#tradovate" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Download the app</a>
         <a href="/pricing" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See pricing</a>
       </div>
       <p class="mt-10 text-sm font-semibold text-zinc-800">Not sure Meridian fits your setup? Ask first.</p>
@@ -264,7 +262,7 @@ const matrix = [
           Check my setup
         </button>
         <p class="text-xs text-zinc-500 text-center leading-relaxed">
-          Early-access rate locked for life &middot; 14-day free trial &middot; Windows &middot;
+          14-day free trial &middot; one license, every platform &middot; Windows &middot;
           <a href="/pricing" class="underline hover:text-zinc-700">See pricing</a> &middot;
           Prefer email? <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-700">contactmeridianpsi@gmail.com</a>
         </p>
@@ -293,7 +291,7 @@ const matrix = [
         <p class="text-zinc-600 mt-1">
           The engine is the same one that has shipped inside NinjaTrader&nbsp;8 for months. The standalone app around it
           is newer: validated and self-installing, but you will be among the first to run it daily. Early access
-          is honest labeling of that last mile &mdash; and the reason the early-access rate stays locked for life.
+          is honest labeling of that last mile &mdash; you download it today and trade with it on the standard 14-day trial.
         </p>
       </div>
     </div>
