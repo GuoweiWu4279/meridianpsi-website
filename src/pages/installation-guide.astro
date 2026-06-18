@@ -42,18 +42,48 @@ const VERSIONS = [
   { id: 'ironbeam', name: 'Ironbeam', sub: 'Standalone app', time: 'Early access' },
 ];
 
-// The two standalone-app platforms share one flow; only the broker name and the
-// enforcement-scope note differ. Render both from this list.
+// The two standalone-app platforms — their connect flow genuinely DIFFERS (Tradovate =
+// browser OAuth, password never touches Meridian; Ironbeam = in-app API credentials,
+// stored DPAPI-encrypted), so each carries its own connect copy here rather than sharing
+// one OAuth template. `enforce` is the broker-side risk-lock note (under review).
 const APP_BROKERS = [
   {
     id: 'tradovate',
     name: 'Tradovate',
+    account: `A <strong>Tradovate</strong> account, including prop-firm (eval and funded) accounts`,
+    quickConnect: `Click <strong>Sign in with Tradovate</strong> and authorize in your browser on Tradovate's own page. (Funded accounts can instead use a Tradovate API key.)`,
+    connectHeading: `Sign in with Tradovate`,
+    connectSteps: [
+      `Click <strong>Sign in with Tradovate</strong> on the Connect screen`,
+      `Authorize in your browser on <strong>Tradovate's own page</strong> &mdash; with this method your password never touches Meridian`,
+      `Meridian detects <strong>Demo vs Live</strong> automatically and connects your active account`,
+    ],
+    connectNote: `Funded accounts can switch to <strong>Use API key</strong> and enter Tradovate API credentials instead &mdash; those are stored only on your PC, encrypted with Windows DPAPI. Eval and prop accounts use the browser sign-in.`,
+    howToConnect: `Click Sign in with Tradovate and authorize in your browser on Tradovate's own page; with this method your password never touches Meridian. Meridian detects Demo vs Live automatically. Funded accounts may instead enter a Tradovate API key, which is stored encrypted on your PC.`,
+    tsConnectTitle: `Sign-in didn't complete`,
+    tsConnect: `The Tradovate authorization opens in your browser. Finish authorizing there, then return to Meridian. If it stalls, close the Connect window and click <strong>Sign in with Tradovate</strong> again. (If you used the API-key option instead, re-check your Tradovate API credentials.)`,
+    tsNoAccount: `Meridian auto-detects Demo vs Live and connects your active account &mdash; confirm the account you want is active on Tradovate's side.`,
+    demoConnect: `New to Meridian? Sign in with a Tradovate <strong>demo</strong> account and place a few small trades to watch the PSI gauge and HUD respond before you go live. Demo activity is tracked separately and won't affect your live baseline.`,
     enforce:
       "On Tradovate, the hard lock runs at the broker level, through the platform's account risk-control API — the strongest enforcement Meridian offers.",
   },
   {
     id: 'ironbeam',
     name: 'Ironbeam',
+    account: `An <strong>Ironbeam</strong> account with API access (request it at <a class="text-emerald-700 underline font-medium" href="https://www.ironbeam.com/api" target="_blank" rel="noopener noreferrer">ironbeam.com/api</a> &mdash; Ironbeam emails your API username and password). Prop-firm-issued accounts work too if they include API access.`,
+    quickConnect: `On the Connect screen choose <strong>Ironbeam</strong>, enter your Ironbeam API username, password and (tenant users only) API key, then click <strong>Connect</strong>.`,
+    connectHeading: `Connect your Ironbeam account`,
+    connectSteps: [
+      `On the Connect screen, choose <strong>Ironbeam</strong>`,
+      `Enter your Ironbeam <strong>API username (account #)</strong>, <strong>password</strong>, and &mdash; for tenant/vendor accounts only &mdash; your <strong>API key</strong>`,
+      `Click <strong>Connect</strong>. Meridian detects <strong>Demo vs Live</strong> automatically`,
+    ],
+    connectNote: `Your Ironbeam credentials are entered in Meridian and stored only on your PC, encrypted with Windows DPAPI &mdash; there's no browser step. Meridian uses them solely to read your account.`,
+    howToConnect: `On the Connect screen, choose Ironbeam and enter your Ironbeam API username, password, and (tenant users only) API key, then click Connect. Your credentials are stored on your PC, encrypted with Windows DPAPI, and used only to read your account. Meridian detects Demo vs Live automatically.`,
+    tsConnectTitle: `Connection didn't complete`,
+    tsConnect: `Double-check your Ironbeam API username, password, and (tenant users) API key are correct and for the right environment, then click <strong>Connect</strong> again. Ironbeam issues separate demo and live API logins &mdash; use the one for the world you trade. If it still fails, confirm your account has API access enabled at ironbeam.com/api.`,
+    tsNoAccount: `Meridian auto-detects Demo vs Live from your credentials &mdash; make sure you used the credentials for the world (demo or live) you actually trade.`,
+    demoConnect: `New to Meridian? Connect an Ironbeam <strong>demo</strong> account (enter your demo API credentials) and place a few small trades to watch the PSI gauge and HUD respond before you go live. Demo activity is tracked separately and won't affect your live baseline.`,
     enforce:
       "On Ironbeam, enforcement is app-level — entry blocking and flatten. Ironbeam's API doesn't expose an account-level kill switch, so the app does the enforcing while it's running.",
   },
@@ -96,7 +126,7 @@ const ntHowTo = {
       '@type': 'HowToStep',
       position: 4,
       name: 'Open the Meridian Dashboard',
-      text: 'Go to Control Center → New → Add-on → Meridian Dashboard, or click the ☰ icon in the top-right of the Meridian HUD.',
+      text: 'Go to Control Center → New → Meridian Dashboard, or click the ☰ icon in the top-right of the Meridian HUD.',
       url: 'https://www.meridianpsi.com/installation-guide#nt-step-4',
     },
     {
@@ -110,7 +140,7 @@ const ntHowTo = {
       '@type': 'HowToStep',
       position: 6,
       name: 'Configure your trading profile',
-      text: 'Open Settings and configure your trading profile: position size limits, session time window, signal weights, and response preset.',
+      text: 'Open Settings and configure your trading profile: position size limits, session time window, and a response preset (with optional Fine-tuning for advanced users).',
       url: 'https://www.meridianpsi.com/installation-guide#nt-step-6',
     },
     {
@@ -123,15 +153,15 @@ const ntHowTo = {
   ],
 };
 
-const appHowTo = (name, id) => ({
+const appHowTo = (b) => ({
   '@type': 'HowTo',
-  name: `How to Install the Meridian App for ${name}`,
-  description: `Download the Meridian installer, sign in to your ${name} account, activate your license, and configure your profile. No NinjaTrader required.`,
-  url: `https://www.meridianpsi.com/installation-guide#${id}`,
+  name: `How to Install the Meridian App for ${b.name}`,
+  description: `Download the Meridian installer, connect your ${b.name} account, activate your license, and configure your profile. No NinjaTrader required.`,
+  url: `https://www.meridianpsi.com/installation-guide#${b.id}`,
   totalTime: 'PT5M',
   tool: [
     { '@type': 'HowToTool', name: 'Windows 10 or later (64-bit)' },
-    { '@type': 'HowToTool', name: `A ${name} account` },
+    { '@type': 'HowToTool', name: `A ${b.name} account` },
   ],
   step: [
     {
@@ -144,13 +174,13 @@ const appHowTo = (name, id) => ({
       '@type': 'HowToStep',
       position: 2,
       name: 'Run the installer',
-      text: 'Run Meridian-win-Setup.exe. It installs in seconds and updates itself automatically from then on.',
+      text: 'Run Meridian-win-Setup.exe. It installs in seconds; from then on it downloads updates in the background and applies them the next time you open the app.',
     },
     {
       '@type': 'HowToStep',
       position: 3,
-      name: `Sign in to ${name}`,
-      text: `Click Sign in with ${name}. You authorize on the broker's own page; your credentials stay on your PC and Meridian never sees your password.`,
+      name: b.connectHeading,
+      text: b.howToConnect,
     },
     {
       '@type': 'HowToStep',
@@ -171,7 +201,7 @@ const howToGraph = JSON.stringify({
   '@context': 'https://schema.org',
   // One HowTo per platform: the NinjaTrader 8 add-on flow plus the self-serve
   // standalone-app download flow for Tradovate and Ironbeam.
-  '@graph': [ntHowTo, appHowTo('Tradovate', 'tradovate'), appHowTo('Ironbeam', 'ironbeam')],
+  '@graph': [ntHowTo, appHowTo(APP_BROKERS[0]), appHowTo(APP_BROKERS[1])],
 }).replace(/</g, '\\u003c');
 ---
 
@@ -255,9 +285,9 @@ const howToGraph = JSON.stringify({
               <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Get your license key from Whop (the Software / License Key section of your Meridian PSI membership).</span></li>
               <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Download the latest <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}>meridianpsi.com/download</a> &mdash; do not extract it.</span></li>
               <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>In NinjaTrader 8, go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>.</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the Dashboard from <strong>Control Center &rarr; New &rarr; Add-on &rarr; Meridian Dashboard</strong> (or the <strong>&#9776;</strong> icon in the top-right of the HUD).</span></li>
+              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the Dashboard from <strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong> (or the <strong>&#9776;</strong> icon in the top-right of the HUD).</span></li>
               <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>In the Dashboard, open the <strong>License tab</strong>, paste your key, click <strong>Activate</strong>.</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Open <strong>Settings</strong> and configure your trading profile (size, session window, signal weights, response preset).</span></li>
+              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Open <strong>Settings</strong> and configure your trading profile (size, session window, response preset).</span></li>
               <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">7</span><span><em>Optional:</em> test in SIM before going live.</span></li>
             </ol>
           </div>
@@ -345,10 +375,10 @@ const howToGraph = JSON.stringify({
           </div>
           <p class="text-zinc-600 leading-relaxed mb-3">Either method works any time:</p>
           <ul class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong>Control Center &rarr; New &rarr; Add-on &rarr; Meridian Dashboard</strong>, or</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong>, or</span></li>
             <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Click the <strong>hamburger icon (&#9776;, three lines)</strong> in the top-right of the HUD</span></li>
           </ul>
-          <p class="text-zinc-600 leading-relaxed">Both open the Dashboard window. The HUD overlay comes up with it.</p>
+          <p class="text-zinc-600 leading-relaxed">Both open the Dashboard window. The HUD overlay appears once you connect an account and a session starts.</p>
         </section>
 
         <!-- 5 -->
@@ -382,9 +412,9 @@ const howToGraph = JSON.stringify({
           <ol class="space-y-2.5 text-zinc-700 mb-4">
             <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Set your normal trading <strong>size</strong> (typical contracts/lots per trade)</span></li>
             <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Set your <strong>session time window</strong> (or toggle the Session Window off for 24/7 monitoring)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Review the <strong>signal weights</strong> &mdash; set any individual signal to zero to disable it, or leave defaults</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Pick a <strong>response preset</strong>: Sensitive, Balanced, or Relaxed (sets how aggressively PSI moves on a behavioral pattern)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Save the profile</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Pick a <strong>response preset</strong>: Sensitive, Balanced, or Relaxed (sets how aggressively PSI moves on a behavioral pattern)</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span><em>Optional:</em> open <strong>Fine-tuning</strong> to adjust alert sensitivity, recovery speed, and the direction-flip penalty &mdash; or leave the preset defaults</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Click <strong>Apply &amp; save</strong></span></li>
           </ol>
           <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
             Guard rules are configured separately in the <strong>Guard tab</strong> (Guard tier only) &mdash; not in
@@ -401,7 +431,7 @@ const howToGraph = JSON.stringify({
           <p class="text-zinc-600 leading-relaxed mb-3">SIM testing is optional but recommended for new installs:</p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
             <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Connect a SIM account in NinjaTrader</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Confirm your account appears in the Dashboard (use <strong>Refresh Accounts</strong> in Settings if not)</span></li>
+            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Confirm your account appears in the Dashboard (use <strong>Refresh accounts</strong> in Settings if not)</span></li>
             <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Place a few small SIM trades and confirm the HUD and Dashboard update</span></li>
           </ol>
           <p class="text-zinc-600 leading-relaxed">Market Replay sessions are tracked in a separate context &mdash; they won't affect your live baseline.</p>
@@ -451,7 +481,7 @@ const howToGraph = JSON.stringify({
             <h3 class="font-semibold text-zinc-900 mb-3">No accounts are showing</h3>
             <ol class="space-y-2 text-sm text-zinc-700 mb-3">
               <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span>Make sure your SIM or live account is connected in NinjaTrader</span></li>
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Click <strong>Refresh Accounts</strong> in Meridian</span></li>
+              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Click <strong>Refresh accounts</strong> in Meridian</span></li>
               <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">3</span><span>If needed, close and reopen the Meridian Dashboard</span></li>
             </ol>
             <p class="text-sm text-zinc-500">If the issue continues, send a screenshot to support.</p>
@@ -465,14 +495,14 @@ const howToGraph = JSON.stringify({
               <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Your position size is above your profile's typical size</span></li>
               <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Your profile isn't fully configured yet &mdash; defaults can be tight on a fresh install</span></li>
             </ul>
-            <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial in your profile, or lower the weight on the signal that's firing.</p>
+            <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial in your profile, or open <strong>Fine-tuning</strong> and lower the alert sensitivity.</p>
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <h3 class="font-semibold text-zinc-900 mb-3">I can't find Meridian in Indicators</h3>
             <p class="text-sm text-zinc-700 mb-2">That's expected. Meridian is an add-on, not a chart indicator &mdash; don't look for it in the chart Indicators list.</p>
             <p class="text-sm text-zinc-700">Open it from:</p>
-            <p class="text-sm font-medium text-zinc-900 mt-1">Control Center &rarr; New &rarr; Add-on &rarr; Meridian Dashboard</p>
+            <p class="text-sm font-medium text-zinc-900 mt-1">Control Center &rarr; New &rarr; Meridian Dashboard</p>
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
@@ -511,7 +541,7 @@ const howToGraph = JSON.stringify({
                 </p>
                 <ul class="mt-7 space-y-3 text-zinc-700">
                   <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Windows 10 or later (64-bit) &mdash; the installer bundles everything else</span></li>
-                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A <strong>{b.name}</strong> account (including the ones your prop firm issues)</span></li>
+                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span set:html={b.account}></span></li>
                   <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An active Meridian subscription &mdash; new subscriptions start with a 14-day free trial</span></li>
                 </ul>
                 <p class="mt-7 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
@@ -529,7 +559,7 @@ const howToGraph = JSON.stringify({
                 <ol class="space-y-3 text-zinc-700 leading-relaxed">
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Get your license key from Whop (the Software / License Key section of your Meridian PSI membership).</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Download <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">Meridian-win-Setup.exe</code> and run it &mdash; it installs in seconds.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Sign in with {b.name}</strong> &mdash; you authorize on your broker's own page.</span></li>
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span set:html={b.quickConnect}></span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the <strong>License tab</strong>, paste your key, click <strong>Activate</strong>.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Open <strong>Settings</strong> and configure your trading profile.</span></li>
                   <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span><em>Optional:</em> connect a demo account first to watch it run.</span></li>
@@ -596,7 +626,7 @@ const howToGraph = JSON.stringify({
                 <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Meridian opens automatically when it's done</span></li>
               </ol>
               <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
-                <strong class="text-zinc-900">It updates itself.</strong> From here on, Meridian checks for new builds on launch and updates quietly in the background &mdash; you won't re-download for new versions.
+                <strong class="text-zinc-900">It updates itself.</strong> From here on, Meridian checks for new builds on launch and downloads them quietly in the background, then applies the update the next time you open the app &mdash; you won't re-download by hand.
               </p>
             </section>
 
@@ -604,14 +634,15 @@ const howToGraph = JSON.stringify({
             <section class="rounded-2xl border border-zinc-200 bg-white p-7 md:p-9 scroll-mt-24">
               <div class="flex items-baseline gap-4 mb-5">
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">04</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Sign in with {b.name}</h3>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">{b.connectHeading}</h3>
               </div>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Click <strong>Sign in with {b.name}</strong> on the Connect screen</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>You authorize on <strong>{b.name}'s own page</strong> &mdash; your password never touches Meridian</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Meridian detects <strong>Demo vs Live</strong> for you; pick the account you want to monitor</span></li>
+                {b.connectSteps.map((s, i) => (
+                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">{i + 1}</span><span set:html={s}></span></li>
+                ))}
               </ol>
-              <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
+              <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed" set:html={b.connectNote}></p>
+              <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed mt-3">
                 Meridian reads only your own account activity and never places entry orders for you. {b.enforce}
               </p>
             </section>
@@ -645,8 +676,8 @@ const howToGraph = JSON.stringify({
               <ol class="space-y-2.5 text-zinc-700 mb-4">
                 <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Set your normal trading <strong>size</strong> (typical contracts per trade)</span></li>
                 <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Set your <strong>session time window</strong> (or toggle it off for 24/7 monitoring)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Review the <strong>signal weights</strong> and pick a <strong>response preset</strong> (Sensitive, Balanced, or Relaxed)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Save the profile</span></li>
+                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Pick a <strong>response preset</strong> (Sensitive, Balanced, or Relaxed); advanced users can open <strong>Fine-tuning</strong> for finer control</span></li>
+                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Click <strong>Apply &amp; save</strong></span></li>
               </ol>
               <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
                 Guard rules are configured in the <strong>Guard tab</strong> (Guard tier only) &mdash; off by default until you create them.
@@ -659,7 +690,7 @@ const howToGraph = JSON.stringify({
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">07</span>
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Optional: connect a demo account first</h3>
               </div>
-              <p class="text-zinc-600 leading-relaxed">New to Meridian? Sign in to a {b.name} <strong>demo</strong> account and place a few small trades to watch the PSI gauge and HUD respond before you go live. Demo activity is tracked separately and won't affect your live baseline.</p>
+              <p class="text-zinc-600 leading-relaxed" set:html={b.demoConnect}></p>
             </section>
           </div>
         </section>
@@ -675,19 +706,18 @@ const howToGraph = JSON.stringify({
 
             <div data-reveal class="grid md:grid-cols-2 gap-5">
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-                <h3 class="font-semibold text-zinc-900 mb-3">No account is showing after sign-in</h3>
+                <h3 class="font-semibold text-zinc-900 mb-3">No account is showing after connecting</h3>
                 <ol class="space-y-2 text-sm text-zinc-700 mb-3">
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span>Confirm you're connected on {b.name}'s side and your account is funded/active</span></li>
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Re-open the <strong>Connect</strong> screen and sign in again</span></li>
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">3</span><span>Make sure you picked Demo vs Live to match the account you trade</span></li>
+                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span>Confirm the account you want is active on {b.name}'s side</span></li>
+                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Re-open the <strong>Connect</strong> screen and connect again</span></li>
+                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">3</span><span set:html={b.tsNoAccount}></span></li>
                 </ol>
                 <p class="text-sm text-zinc-500">If the issue continues, send a screenshot to support.</p>
               </div>
 
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-                <h3 class="font-semibold text-zinc-900 mb-3">Sign-in didn't complete</h3>
-                <p class="text-sm text-zinc-700 mb-2">The {b.name} authorization opens in your browser. Finish authorizing there, then return to Meridian.</p>
-                <p class="text-sm text-zinc-700">If it stalls, close the Connect window and click <strong>Sign in with {b.name}</strong> again &mdash; your password is never entered in Meridian, only on {b.name}'s page.</p>
+                <h3 class="font-semibold text-zinc-900 mb-3" set:html={b.tsConnectTitle}></h3>
+                <p class="text-sm text-zinc-700" set:html={b.tsConnect}></p>
               </div>
 
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
@@ -707,7 +737,7 @@ const howToGraph = JSON.stringify({
                   <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Trading outside your configured session window</span></li>
                   <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Position size above your profile's typical size</span></li>
                 </ul>
-                <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial it in, or lower the weight on the signal that's firing.</p>
+                <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial it in, or open <strong>Fine-tuning</strong> and lower the alert sensitivity.</p>
               </div>
             </div>
 

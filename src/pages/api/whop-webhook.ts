@@ -282,22 +282,22 @@ If you trade through NinjaTrader 8:
 
 1. Download the latest MeridianPSI .zip from https://www.meridianpsi.com/download. Do not extract it.
 2. In NinjaTrader 8, go to Tools > Import > NinjaScript Add-On and select the .zip.
-3. Open the dashboard: Control Center > New > Add-on > Meridian Dashboard.
+3. Open the dashboard: Control Center > New > Meridian Dashboard.
 4. Open the License tab, paste your key, and click Activate.
 
 Meridian is an add-on, not a chart indicator, so it will not appear in the chart Indicators list. That is expected.
 
 If you trade through a Tradovate or Ironbeam account:
 
-The Tradovate and Ironbeam apps are in early access and downloadable now. Get the standalone app at meridianpsi.com/download (or meridianpsi.com/installation-guide for the step-by-step), sign in to your broker, and activate it with your Meridian license — the same key above. No NinjaTrader is required for this path.
+The Tradovate and Ironbeam apps are in early access and downloadable now. Get the standalone app at meridianpsi.com/download (or meridianpsi.com/installation-guide for the step-by-step), then connect your broker: on Tradovate you click Sign in with Tradovate and authorize in your browser; on Ironbeam you enter your Ironbeam API username, password and key in the app. Activate with your Meridian license — the same key above. No NinjaTrader is required for this path.
 
-The full guide with screenshots is at https://www.meridianpsi.com/installation-guide.
+The full step-by-step guide is at https://www.meridianpsi.com/installation-guide.
 
 ---
 
 3) Set up your trading profile
 
-This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, signal weights, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.
+This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.
 
 If you are on the Guard tier, set your rules in the Guard tab: choose the triggers you want watched and the response level for each. Nothing is enforced until you arm Guard, so you stay in full control of when it is active.
 

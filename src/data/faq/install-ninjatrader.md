@@ -9,7 +9,7 @@ Download the `.zip` from the [Download page](/download). **Do not extract it** �
 1. **Tools → Import → NinjaScript Add-On**, select the `.zip`
 2. Let NT8 compile; restart if prompted
 3. **Open the Dashboard** — either method works any time:
-   - **Control Center → New → Add-on → Meridian Dashboard**, or
+   - **Control Center → New → Meridian Dashboard**, or
    - Click the **hamburger icon (☰)** in the top-right of the HUD
 4. In the Dashboard, open the **License tab**, paste your Whop license key, click **Activate**
 
