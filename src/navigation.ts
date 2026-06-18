@@ -45,6 +45,7 @@ export const headerData = {
     {
       text: 'Resources',
       links: [
+        { text: 'Contact Us', href: getPermalink('/contact') },
         { text: 'Articles', href: getPermalink('/articles') },
         { text: 'Q&A Library', href: getPermalink('/answers') },
         { text: 'FAQ', href: getPermalink('/faq') },
