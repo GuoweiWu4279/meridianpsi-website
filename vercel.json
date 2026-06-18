@@ -51,6 +51,11 @@
       "source": "/impressum",
       "destination": "/trust",
       "permanent": true
+    },
+    {
+      "source": "/support",
+      "destination": "/contact",
+      "permanent": false
     }
   ],
   "headers": [

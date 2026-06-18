@@ -128,7 +128,7 @@ export const footerData = {
     {
       title: 'Support & Legal',
       links: [
-        { text: 'Contact', href: getPermalink('/support') },
+        { text: 'Contact', href: getPermalink('/contact') },
         { text: 'Account', href: getPermalink('/account') },
         { text: 'Installation Guide', href: getPermalink('/installation-guide') },
         { text: 'Trust & Security', href: getPermalink('/trust') },
