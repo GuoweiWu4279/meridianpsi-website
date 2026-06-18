@@ -62,7 +62,7 @@ const pageJsonLd = {
         'Configurable normal position-size range and expected trades per session',
         'Configurable hold-time and re-entry rules, max stop-loss width, and no-stop-loss trader mode',
         'Optional maximum daily loss limit that doubles as a Guard enforcement trigger',
-        'Three sensitivity presets — Conservative, Balanced, Aggressive — plus per-signal weights',
+        'Three response presets — Sensitive, Balanced, Relaxed — plus optional Fine-tuning (alert sensitivity, recovery speed, direction-flip penalty)',
         'Per-account monitoring, automated-strategy fill exclusion, Test Mode, and Market Replay exclusion',
         'Local-first, anonymized, opt-out data — never your name, broker credentials, account numbers, or funds',
       ],
@@ -215,11 +215,11 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         </div>
 
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <h3 class="font-semibold text-zinc-900 mb-4">Sensitivity &amp; signal weights</h3>
+          <h3 class="font-semibold text-zinc-900 mb-4">Response sensitivity</h3>
           <ul class="space-y-2.5 text-zinc-600">
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Three presets &mdash; Conservative, Balanced, Aggressive</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An individual weight for each of the seven behavioral signals</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Recovery-speed multiplier</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Three response presets &mdash; Sensitive, Balanced, Relaxed</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Each preset shifts how fast PSI reacts and recovers</span></li>
+            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Optional Fine-tuning &mdash; alert sensitivity, recovery speed, and the direction-flip penalty</span></li>
           </ul>
         </div>
 
@@ -286,7 +286,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
 
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <h3 class="font-semibold text-zinc-900 mb-2">Conservative</h3>
+          <h3 class="font-semibold text-zinc-900 mb-2">Sensitive</h3>
           <p class="text-sm text-zinc-600 leading-relaxed">
             Earlier warnings, faster PSI drops, slower recovery. More frequent alerts in exchange for catching pressure
             sooner.
@@ -303,7 +303,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         </div>
 
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <h3 class="font-semibold text-zinc-900 mb-2">Aggressive</h3>
+          <h3 class="font-semibold text-zinc-900 mb-2">Relaxed</h3>
           <p class="text-sm text-zinc-600 leading-relaxed">
             Higher thresholds &mdash; PSI only moves on more extreme behavior. For disciplined traders who want signals
             reserved for genuine outliers.
