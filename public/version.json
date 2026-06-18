@@ -1,8 +1,8 @@
 {
-  "version": "1.5.3",
-  "releaseDate": "2026-06-16",
+  "version": "1.5.4",
+  "releaseDate": "2026-06-17",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.3.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.4.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.3 — Your journal, your way: drag to reorder, rename, switch sections on or off, or add your own — with a live preview and nothing to learn. This build also brings the cleaner session debrief and patterns views to everyone. Your profile, Guard rules, and history carry over automatically — nothing to migrate."
+  "notes": "v1.5.4 — Guard can no longer be switched off mid-enforcement: while a pause, disconnect, or strict lock is active, turning Meridian off (the HUD toggle or the X close) is refused until it releases — flicking it off used to be a one-tap escape. You can still turn Meridian off normally any other time, and closing or reducing positions is never blocked."
 }
