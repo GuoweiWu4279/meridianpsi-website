@@ -18,10 +18,13 @@ notes: |
   MERIDIAN.md (Guard 5-level names, Strict Lock, honest v1.5 privacy, Intel-in-
   Core). Passed all three gates (VOICE.md AI-tell scan / compliance / fact).
   This post is the reference EXEMPLAR for the "Pinned intro" row in ops/ARTIFACTS.md.
-  ⚠️ LIVE PINNED POST still has the old text. To update: edit the post body and
-  insert the three screenshots at the [IMAGE] markers (rich-text editor). If
-  editing doesn't allow inserting images, delete the old pinned post, submit
-  this as a new image+text post, and re-pin (we are mod of r/MeridianPSI).
+  ⚠️ LIVE-SYNC CHECK (per PLAYBOOK "live-post re-sync" rule): this v7 source was PUBLISHED
+  2026-06-10, but the canonical free-trial length later changed 7-day -> 14-day (2026-06-14),
+  AFTER this went live. The live pinned snapshot Gary pasted may still say 7-day. Verify the
+  live post against this source (esp. trial length) and re-sync the body if it drifted.
+  To update: edit the post body and insert the three screenshots at the [IMAGE] markers
+  (rich-text editor). If editing doesn't allow inserting images, delete the old pinned post,
+  submit this as a new image+text post, and re-pin (we are mod of r/MeridianPSI).
   Title cannot change on edit; keep "Start Here: What is Meridian PSI?".
   IMAGES (v1.5 UI, simulated demo data):
     1. HUD            -> C:\Users\Administrator\meridian-testbench\ui-harness\out\hud.png

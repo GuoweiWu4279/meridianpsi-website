@@ -75,6 +75,7 @@
 - `brand/POSITIONING.md` — 当前定位简报(写前必读)
 - `brand/VOICE.md` — 声音 + AI 腔图鉴(三闸)
 - `reddit/ops/ARTIFACTS.md` — 文体决策表
+- `reddit/ops/COMMENT-ANATOMY.md` — 高信任评论的解剖模板(回复怎么写的逐项规格 + 80/20 删除测试 + 具体性闸)
 - `reddit/ops/PLAYBOOK.md` — Reddit 策略/节奏/安全/三阶段
 - `reddit/ops/LEARNINGS.md` — 教训库(session 开始读)
 - `reddit/ops/queue.md` / `log.md` — 队列 / 台账
@@ -83,7 +84,7 @@
 - `../../MERIDIAN.md` — 产品事实唯一来源
 
 **已降级为指针(别再当真理源):** `writing-rules.md`(并入 `brand/VOICE.md`)。
-**已停用/归档(别照着复活):** `dm-templates.md`、`outreach-strategy.md`(冷外联已停,见各自 DEPRECATED 头)。
+**已归档到 `docs/archive/`(别照着复活,见 `docs/archive/README.md`):** `dm-templates.md`、`outreach-strategy.md`、`welcome-email-template.md`(冷外联 2026-06-09 已停)、`automation-pipeline.md`、`video-framework.md`、`leonardo-prompts.md`、`youtube-scripts/`(视频已移 `Company/YouTube/pipeline/`)。
 
 ---
 

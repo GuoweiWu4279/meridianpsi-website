@@ -35,7 +35,7 @@ src/
 ## Key Docs
 
 - `AFFILIATE_PROGRAM.md` — canonical partner program terms (30% recurring, 10% permanent discount, free Guard)
-- `social/outreach-strategy.md` — locked email templates + Instantly campaign + Gemini personalization prompt + KPI tracking
-- `social/partner-program-progress.md` — phase tracker and open decisions
-- `social/reddit/` — r/MeridianPSI pinned post, Reddit instructions, index (`pinned-start-here.md`, `README.md`)
-- `social/` — YouTube framework, DM templates, automation pipeline, voice samples
+- `social/CONTENT-SYSTEM.md` — entry point for all Reddit/social content (the write loop + 3 hard gates); Reddit strategy/ops in `social/reddit/ops/` (PLAYBOOK, ARTIFACTS, COMMENT-ANATOMY, LEARNINGS)
+- `social/partner-program-progress.md` — partner program build log (frozen 2026-06-10; inbound `/partners` still live)
+- `social/reddit/` — r/MeridianPSI pinned post + founding post (`pinned-start-here.md`, `founding-early-access-post.md`)
+- `social/docs/archive/` — historical/dead docs (cold-outreach templates, old video pipeline, DM templates), kept for history only

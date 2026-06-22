@@ -1,57 +1,19 @@
-# Reddit Writing Instructions — Meridian
+# Reddit Writing Instructions — SUPERSEDED (use CONTENT-SYSTEM)
 
-Use this when drafting **r/MeridianPSI** posts or comments on other trading subreddits.
+> ⚠️ The old per-item approval workflow (analyze CN → draft CN → approve → draft EN → approve) is **dead**.
+> Live model: **Claude drafts → Gary pastes by hand**, no per-item approval gate (`ops/PLAYBOOK.md`).
 
----
+## How to write for Reddit now
+1. Read [`../CONTENT-SYSTEM.md`](../CONTENT-SYSTEM.md) (the write loop) + `ops/LEARNINGS.md` (don't repeat past mistakes).
+2. **Classify the genre** in `ops/ARTIFACTS.md`. Replies in other people's threads = the "Topic comment" row → then read `ops/COMMENT-ANATOMY.md`.
+3. Pull positioning from `../brand/POSITIONING.md` + facts from `../../MERIDIAN.md`. **Never start from an old post** (it carries dead positioning — LEARNINGS L1).
+4. Draft, then run the **3 hard gates** in `../brand/VOICE.md`: AI-tell scan (zero hits) / compliance / every fact traceable to MERIDIAN.md.
+5. Queue it in `ops/queue.md` (target URL + final text); push to Gary; he pastes.
+6. After it posts: log in `ops/log.md`; clean samples → `../voice-samples.md`.
 
-## Canonical content
+## Tone by context
+- **r/MeridianPSI (own sub):** fuller product explanation is expected; you own it.
+- **Other subs (r/Daytrading, r/FuturesTrading, ...):** peer voice, answer-first, minimal **disclosed** product mention, plain trader language. No em dashes, no exclamation marks, no clinical words (cortisol/prefrontal cortex) esp. r/Daytrading, never "only tool on the market".
 
-- **Pinned post (subreddit home):** `pinned-start-here.md` — do not drift from this without an explicit revision.
-- **Product facts:** `MERIDIAN.md` (pricing, Guard levels, compliance, support email).
-
----
-
-## Voice & workflow (required reading)
-
-1. **`Web/.cursor/rules/social-voice.mdc`** — persona, product mention rules, r/Daytrading moderation pitfalls, reply workflow.
-2. **`Web/social/voice-samples.md`** — real approved Reddit replies; match rhythm and honesty.
-3. **`Web/social/writing-rules.md`** — avoid em-dash overuse and other AI tells.
-
----
-
-## Reply workflow (other people’s threads)
-
-From `social-voice.mdc`:
-
-1. Analyze original post in **Chinese** (what they said, is it reasonable).
-2. Propose reply angle in **Chinese**.
-3. Draft reply in **Chinese** → wait for approval.
-4. Draft **English** → wait for final approval.
-5. Append final English to **`voice-samples.md`** (top of Reddit section).
-
-**Do not** mention the product in every reply. On r/Daytrading, prefer “I built this for myself on NT8” over “there’s only one tool that…”
-
----
-
-## r/MeridianPSI vs other subs
-
-| Context | Tone |
-|---------|------|
-| **r/MeridianPSI pinned / announcements** | Fuller product explanation OK. You are the sub owner; educational + founder story is expected. |
-| **r/Daytrading, r/FuturesTrading, etc.** | Shorter, personal anchor first, minimal product mention, avoid clinical/AI phrasing. See `social-voice.mdc`. |
-
----
-
-## Formatting tips (pinned post)
-
-- Short paragraphs; line breaks between beats.
-- Tables work in Reddit for Guard levels if pasted as markdown (old Reddit / some clients).
-- Risk disclosure at the bottom, plain text or italic.
-- Link: `https://www.meridianpsi.com` (full URL; Reddit may not always preview custom text links in all clients).
-
----
-
-## What we do **not** have yet
-
-- Automated Reddit posting pipeline (unlike Instantly outreach).
-- A dedicated “Reddit content calendar” file — only `automation-pipeline.md` weekly metrics row for manual tracking.
+## Formatting (pinned / long posts)
+Short paragraphs with line breaks between beats; Guard-level tables paste as markdown; risk disclosure italic at the bottom; link as the full `https://www.meridianpsi.com`.

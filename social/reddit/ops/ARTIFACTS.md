@@ -55,7 +55,7 @@
 ## 3. 范例库(positive exemplars,模型照着写比照着规则写强)
 
 - **Pinned intro 范例** = `reddit/pinned-start-here.md`(产品说明书 register 的标准)。
-- **Topic comment 范例** = `voice-samples.md`(已批准的真实评论;⚠️ 注意里面标了"勿模仿"的违规样本)。
+- **Topic comment** → 详细规格(逐项解剖 + 三个硬测试 + 子 sub 规则 + 发前清单)见 **`COMMENT-ANATOMY.md`**(这是日常 ~90% 的活,单独成档);范例 = `voice-samples.md`(已批准的真实评论;⚠️ 注意里面标了"勿模仿"的违规样本)。
 - 其它文体范例:随产出积累,新写出来过了三闸的好样本,回贴到 `voice-samples.md` 对应分区并在此登记。
 
 > 和 YouTube 一样:范例库越满,写作越接近"选文体 + 填结构 + 过扫描",而不是从零即兴。
