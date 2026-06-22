@@ -67,7 +67,7 @@ export const prerender = false;
 // ── Constants ──────────────────────────────────────────────────────────────
 
 const NT_PRODUCT_ID = 1468;
-const NT_API_BASE   = 'https://ecosystemapi.ninjatrader.com/v1';
+const NT_API_BASE = 'https://ecosystemapi.ninjatrader.com/v1';
 
 // Tradovate live auth endpoint (NT Ecosystem API uses live, not demo)
 const TRADOVATE_AUTH_URL = 'https://live.tradovateapi.com/v1/auth/accesstokenrequest';
@@ -84,11 +84,13 @@ export const POST: APIRoute = async ({ request }) => {
   const rawBody = await request.text();
 
   // 2. Verify Whop webhook signature (Standard Webhooks / Svix scheme)
-  if (!verifyWhopSignature(rawBody, {
-    id: request.headers.get('webhook-id') ?? undefined,
-    timestamp: request.headers.get('webhook-timestamp') ?? undefined,
-    signature: request.headers.get('webhook-signature') ?? undefined,
-  })) {
+  if (
+    !verifyWhopSignature(rawBody, {
+      id: request.headers.get('webhook-id') ?? undefined,
+      timestamp: request.headers.get('webhook-timestamp') ?? undefined,
+      signature: request.headers.get('webhook-signature') ?? undefined,
+    })
+  ) {
     console.error('[whop-webhook] Invalid signature');
     return new Response('Unauthorized', { status: 401 });
   }
@@ -180,14 +182,7 @@ export const POST: APIRoute = async ({ request }) => {
 // always reach the final `return 200`.
 
 type WelcomeEmailStatus = 'sent' | 'failed' | 'skipped(no-resend-key)' | 'n/a';
-type NtMirrorStatus =
-  | 'created'
-  | 'exists'
-  | 'expired'
-  | 'not-found'
-  | 'failed'
-  | 'skipped(no-nt-env)'
-  | 'n/a';
+type NtMirrorStatus = 'created' | 'exists' | 'expired' | 'not-found' | 'failed' | 'skipped(no-nt-env)' | 'n/a';
 
 async function tryWelcomeEmail(email: string, firstName: string): Promise<WelcomeEmailStatus> {
   if (!process.env.RESEND_API_KEY) return 'skipped(no-resend-key)';
@@ -280,7 +275,7 @@ One key activates Meridian on every platform we support. If you cannot find the 
 
 If you trade through NinjaTrader 8:
 
-1. Download the latest MeridianPSI .zip from https://www.meridianpsi.com/download. Do not extract it.
+1. Download the latest MeridianPSI .zip from https://www.meridianpsi.com/download (do not extract it).
 2. In NinjaTrader 8, go to Tools > Import > NinjaScript Add-On and select the .zip.
 3. Open the dashboard: Control Center > New > Meridian Dashboard.
 4. Open the License tab, paste your key, and click Activate.
@@ -291,7 +286,7 @@ If you trade through a Tradovate or Ironbeam account:
 
 The Tradovate and Ironbeam apps are in early access and downloadable now. Get the standalone app at meridianpsi.com/download (or meridianpsi.com/installation-guide for the step-by-step), then connect your broker: on Tradovate you click Sign in with Tradovate and authorize in your browser; on Ironbeam you enter your Ironbeam API username, password and key in the app. Activate with your Meridian license — the same key above. No NinjaTrader is required for this path.
 
-The full step-by-step guide is at https://www.meridianpsi.com/installation-guide.
+The full step-by-step guide is at https://www.meridianpsi.com/installation-guide if you get stuck.
 
 ---
 
@@ -323,10 +318,62 @@ Gary Caffrey, Meridian Team
 Official NinjaTrader Ecosystem Vendor
 www.Meridianpsi.com`;
 
+  // HTML version: same content, light formatting, logo on top. Links are
+  // explicit <a href> so a trailing period can never be swallowed into the URL
+  // (the plain-text fallback above keeps URLs off sentence-ending punctuation
+  // for the same reason). Keep both in sync with the manual backfill copy in
+  // meridian-outreach/customer/welcome-message.js.
+  const esc = (s: string) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const link = (url: string, label: string) => `<a href="${url}" style="color:#059669;">${label}</a>`;
+  const H = (s: string) =>
+    `<p style="margin:24px 0 10px;font-size:13px;font-weight:700;letter-spacing:.06em;color:#52525b;">${s}</p>`;
+  const html = `
+  <div style="margin:0;padding:0;background:#f5f5f5;">
+    <div style="max-width:560px;margin:0 auto;padding:32px 24px;background:#ffffff;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#27272a;line-height:1.6;font-size:16px;">
+      <div style="text-align:center;margin-bottom:28px;">
+        <img src="https://www.meridianpsi.com/meridian-logo.png" alt="Meridian" width="150" style="display:inline-block;height:auto;border:0;outline:none;" />
+      </div>
+      <p style="margin:0 0 16px;">Hi ${esc(firstName)},</p>
+      <p style="margin:0 0 16px;">Thank you for joining Meridian. This email takes you from purchase to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.</p>
+      ${H('1) GET YOUR LICENSE KEY')}
+      <ol style="margin:0 0 16px;padding-left:22px;">
+        <li style="margin:0 0 8px;">Sign in at ${link('https://whop.com/@me/settings/memberships', 'whop.com/@me/settings/memberships')} using the same email you used at checkout.</li>
+        <li style="margin:0 0 8px;">Open your Meridian membership and copy your license key from the Software / License Key section, in full, with no extra spaces.</li>
+      </ol>
+      <p style="margin:0 0 16px;">One key activates Meridian on every platform we support. If you cannot find the Software section, email us with your checkout email and we will help you locate it.</p>
+      ${H('2) INSTALL MERIDIAN FOR THE PLATFORM YOU TRADE ON')}
+      <p style="margin:0 0 8px;font-weight:600;">If you trade through NinjaTrader 8:</p>
+      <ol style="margin:0 0 16px;padding-left:22px;">
+        <li style="margin:0 0 8px;">Download the latest MeridianPSI .zip from ${link('https://www.meridianpsi.com/download', 'meridianpsi.com/download')} and do not extract it.</li>
+        <li style="margin:0 0 8px;">In NinjaTrader 8, go to Tools &gt; Import &gt; NinjaScript Add-On and select the .zip.</li>
+        <li style="margin:0 0 8px;">Open the dashboard: Control Center &gt; New &gt; Meridian Dashboard.</li>
+        <li style="margin:0 0 8px;">Open the License tab, paste your key, and click Activate.</li>
+      </ol>
+      <p style="margin:0 0 16px;">Meridian is an add-on, not a chart indicator, so it will not appear in the chart Indicators list. That is expected.</p>
+      <p style="margin:0 0 8px;font-weight:600;">If you trade through a Tradovate or Ironbeam account:</p>
+      <p style="margin:0 0 16px;">The Tradovate and Ironbeam apps are in early access and downloadable now. Get the standalone app at ${link('https://www.meridianpsi.com/download', 'meridianpsi.com/download')}, then connect your broker: on Tradovate you click Sign in with Tradovate and authorize in your browser; on Ironbeam you enter your Ironbeam API username, password and key in the app. Activate with your Meridian license, the same key above. No NinjaTrader is required for this path.</p>
+      <p style="margin:0 0 16px;">The full step-by-step guide is at ${link('https://www.meridianpsi.com/installation-guide', 'meridianpsi.com/installation-guide')}.</p>
+      ${H('3) SET UP YOUR TRADING PROFILE')}
+      <p style="margin:0 0 16px;">This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.</p>
+      <p style="margin:0 0 16px;">If you are on the Guard tier, set your rules in the Guard tab: choose the triggers you want watched and the response level for each. Nothing is enforced until you arm Guard, so you stay in full control of when it is active.</p>
+      ${H('4) BEFORE GOING LIVE')}
+      <p style="margin:0 0 16px;">Recommended: connect a SIM or demo account first and place a few small practice trades, so you can watch the HUD and dashboard respond before real money is involved.</p>
+      <p style="margin:0 0 16px;">On NinjaTrader 8 you can also turn on Test Mode (Meridian Dashboard &gt; Profile tab) to explore freely: PSI still runs in real time, but baseline recording is paused. Market Replay is handled in a separate context from your live baseline as well.</p>
+      ${H('5) WHAT TO EXPECT IN YOUR FIRST SESSIONS')}
+      <p style="margin:0 0 16px;">Your first several sessions are a learning phase. Signals are intentionally gentler until Meridian has enough history to reflect your real patterns. That is normal, and the readings sharpen with every session you give it.</p>
+      <p style="margin:0 0 16px;">Thanks again for choosing Meridian. If you have a question, run into any issue, or there is a feature you would like to see, just reply to this email. I read every message myself.</p>
+      <p style="margin:24px 0 0;color:#3f3f46;">
+        Gary Caffrey, Meridian Team<br/>
+        <span style="color:#71717a;">Official NinjaTrader Ecosystem Vendor</span><br/>
+        ${link('https://www.meridianpsi.com', 'www.Meridianpsi.com')}
+      </p>
+    </div>
+  </div>`;
+
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -335,6 +382,7 @@ www.Meridianpsi.com`;
       reply_to: 'contactmeridianpsi@gmail.com',
       subject: 'Welcome to Meridian, here is your setup',
       text,
+      html,
     }),
   });
 
@@ -352,14 +400,20 @@ function extractFirstName(name: string | undefined, email: string): string {
     const clean = name.trim();
     // Company / business names (e.g. "The Algo Trader, LLC") make a bad
     // greeting — fall back to a neutral "there" rather than "Hi The,".
-    const looksLikeCompany = /\b(LLC|L\.L\.C|Inc|Ltd|Co|Corp|Company|Capital|Group|Holdings|Trading|Trader|Markets?|Fund|Partners|Ventures|Labs?)\b/i.test(clean);
+    const looksLikeCompany =
+      /\b(LLC|L\.L\.C|Inc|Ltd|Co|Corp|Company|Capital|Group|Holdings|Trading|Trader|Markets?|Fund|Partners|Ventures|Labs?)\b/i.test(
+        clean
+      );
     const first = clean.split(/\s+/)[0];
     const isArticleOrTitle = /^(the|a|an|mr|mrs|ms|dr)$/i.test(first);
     if (looksLikeCompany || isArticleOrTitle || first.length < 2) return 'there';
     return first;
   }
   // Fall back to the part before @ in the email
-  const local = email.split('@')[0].replace(/[._\-+]/g, ' ').trim();
+  const local = email
+    .split('@')[0]
+    .replace(/[._\-+]/g, ' ')
+    .trim();
   const firstLocal = local.split(' ')[0];
   if (!firstLocal || firstLocal.length < 2) return 'there';
   return firstLocal.charAt(0).toUpperCase() + firstLocal.slice(1);
@@ -374,7 +428,7 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   // Source of truth for these IDs is MERIDIAN.md §2 (and `pricing.json` /
   // `LicenseManager.cs` GuardPlanIds / CorePlanIds — all four must agree).
   const GUARD_ANNUAL_PLAN = 'plan_frPOgHtDTvBkR'; // Guard Annual
-  const CORE_ANNUAL_PLAN  = 'plan_JhWetoQ39OCNz'; // Core Annual
+  const CORE_ANNUAL_PLAN = 'plan_JhWetoQ39OCNz'; // Core Annual
   const isAnnual = whopPlanId === GUARD_ANNUAL_PLAN || whopPlanId === CORE_ANNUAL_PLAN;
 
   // NT Ecosystem API does NOT accept a "Monthly" / "Annual" enum like the
@@ -396,7 +450,7 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   const response = await fetch(`${NT_API_BASE}/licenses`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -422,9 +476,7 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   }
 
   const cycle = isAnnual ? 'Annual' : 'Monthly';
-  console.log(
-    `[whop-webhook] NT license created for ${email} (${cycle}, expires ${expirationDateUTC})`
-  );
+  console.log(`[whop-webhook] NT license created for ${email} (${cycle}, expires ${expirationDateUTC})`);
   return true;
 }
 
@@ -439,7 +491,7 @@ async function expireNtLicense(email: string): Promise<boolean> {
   // Find the existing license for this email + product
   const searchResp = await fetch(
     `${NT_API_BASE}/licenses?email=${encodeURIComponent(email)}&productId=${NT_PRODUCT_ID}`,
-    { headers: { 'Authorization': `Bearer ${token}` } }
+    { headers: { Authorization: `Bearer ${token}` } }
   );
 
   if (!searchResp.ok) {
@@ -457,7 +509,7 @@ async function expireNtLicense(email: string): Promise<boolean> {
 
   const deleteResp = await fetch(`${NT_API_BASE}/licenses/${active.id}`, {
     method: 'DELETE',
-    headers: { 'Authorization': `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   if (!deleteResp.ok) {
@@ -483,9 +535,9 @@ async function getNtToken(): Promise<string> {
   const requiredEnv = {
     NT_TRADOVATE_USERNAME: process.env.NT_TRADOVATE_USERNAME,
     NT_TRADOVATE_PASSWORD: process.env.NT_TRADOVATE_PASSWORD,
-    NT_TRADOVATE_APP_ID:   process.env.NT_TRADOVATE_APP_ID,
-    NT_TRADOVATE_CID:      process.env.NT_TRADOVATE_CID,
-    NT_TRADOVATE_SEC:      process.env.NT_TRADOVATE_SEC,
+    NT_TRADOVATE_APP_ID: process.env.NT_TRADOVATE_APP_ID,
+    NT_TRADOVATE_CID: process.env.NT_TRADOVATE_CID,
+    NT_TRADOVATE_SEC: process.env.NT_TRADOVATE_SEC,
   };
   const missing = Object.entries(requiredEnv)
     .filter(([, v]) => !v)
@@ -496,9 +548,7 @@ async function getNtToken(): Promise<string> {
 
   const cidNum = Number(requiredEnv.NT_TRADOVATE_CID);
   if (!Number.isFinite(cidNum)) {
-    throw new Error(
-      `Tradovate auth: NT_TRADOVATE_CID must be a number (got: ${requiredEnv.NT_TRADOVATE_CID})`
-    );
+    throw new Error(`Tradovate auth: NT_TRADOVATE_CID must be a number (got: ${requiredEnv.NT_TRADOVATE_CID})`);
   }
 
   // Tradovate's request body must include all six fields exactly:
@@ -508,12 +558,12 @@ async function getNtToken(): Promise<string> {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name:       requiredEnv.NT_TRADOVATE_USERNAME,
-      password:   requiredEnv.NT_TRADOVATE_PASSWORD,
-      appId:      requiredEnv.NT_TRADOVATE_APP_ID,
+      name: requiredEnv.NT_TRADOVATE_USERNAME,
+      password: requiredEnv.NT_TRADOVATE_PASSWORD,
+      appId: requiredEnv.NT_TRADOVATE_APP_ID,
       appVersion: '1.0.0',
-      cid:        cidNum,
-      sec:        requiredEnv.NT_TRADOVATE_SEC,
+      cid: cidNum,
+      sec: requiredEnv.NT_TRADOVATE_SEC,
     }),
   });
 
@@ -566,14 +616,18 @@ function verifyWhopSignature(
   // defensive fallbacks (raw utf8) in case Whop changes the secret format.
   const afterPrefix = secret.includes('_') ? secret.slice(secret.indexOf('_') + 1) : secret;
   const candidateKeys: Buffer[] = [];
-  try { candidateKeys.push(Buffer.from(afterPrefix, 'base64')); } catch { /* ignore */ }
+  try {
+    candidateKeys.push(Buffer.from(afterPrefix, 'base64'));
+  } catch {
+    /* ignore */
+  }
   candidateKeys.push(Buffer.from(secret, 'utf8'));
   candidateKeys.push(Buffer.from(afterPrefix, 'utf8'));
 
   // The header may contain multiple "v{version},{sig}" entries separated by spaces.
   const passedSigs = signature
     .split(' ')
-    .map((part) => part.includes(',') ? part.split(',')[1] : part)
+    .map((part) => (part.includes(',') ? part.split(',')[1] : part))
     .filter(Boolean);
 
   for (const key of candidateKeys) {
@@ -585,7 +639,9 @@ function verifyWhopSignature(
         if (sigBuf.length === expectedBuf.length && crypto.timingSafeEqual(sigBuf, expectedBuf)) {
           return true;
         }
-      } catch { /* malformed sig entry — skip */ }
+      } catch {
+        /* malformed sig entry — skip */
+      }
     }
   }
 
