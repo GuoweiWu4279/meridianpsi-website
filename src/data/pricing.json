@@ -42,9 +42,10 @@
       "annualCtaHref": "https://whop.com/checkout/plan_frPOgHtDTvBkR",
       "features": [
         "Everything in Meridian Core",
-        "Guard System — rules that enforce themselves (6 triggers · 5 action levels)",
-        "Strict Lock — one switch, set when calm, that makes every pause un-bypassable for its window",
-        "Trading Pause & Disconnect that survive a NinjaTrader restart",
+        "Guard System — rules that enforce themselves (6 triggers · 5 levels on NinjaTrader 8, 6 tiers on the standalone apps)",
+        "Strict Lock — one switch, set when calm, that holds every pause for its full window (no in-app early exit) and survives a restart",
+        "Hard limits — a standing max-contracts cap and blocked entry order types (off by default)",
+        "Trading Pause, Disconnect & firewall Cut that survive a restart",
         "Edge-triggered rules with cooldowns — fire once, no spam",
         "Priority support"
       ]

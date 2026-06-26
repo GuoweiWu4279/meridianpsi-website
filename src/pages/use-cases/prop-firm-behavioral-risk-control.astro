@@ -106,6 +106,8 @@ const faqSchema = JSON.stringify({
         <li><strong>Consecutive-loss cooldown</strong> — mandatory pause after N consecutive losses (typically 3–4), regardless of current P&amp;L at that point</li>
         <li><strong>PSI threshold entry block</strong> — new entries blocked when composite PSI drops below a configured floor, even if no hard financial limit has been crossed</li>
         <li><strong>Password-locked rules</strong> — Guard rules can be configured with a lock that prevents in-session override; for prop firm traders, this is the critical feature — a rule that can be bypassed in the moment it matters is no rule at all</li>
+        <li><strong>Standing Hard limits</strong> — a max-contracts ceiling and blocked entry order types, off by default: an over-cap or blocked entry is stopped at submission and a slipped market order is trimmed back; closing or reducing is never blocked</li>
+        <li><strong>Broker-level lock (Tradovate eval/demo, standalone)</strong> — on a Tradovate evaluation or demo account, the standalone app writes Tradovate&rsquo;s own liquidate-only lock, so the stop is enforced at the broker itself — it holds even if you close the app, reboot, or log in from another device. It is the one device-proof stop for the exact &ldquo;can I just keep trading?&rdquo; moment. (Funded/live Tradovate and Ironbeam do not expose this API; NinjaTrader has no broker-side lock — there enforcement is app/connection-level.)</li>
       </ul>
 
       <hr />

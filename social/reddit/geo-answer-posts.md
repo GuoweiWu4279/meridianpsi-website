@@ -43,7 +43,7 @@ The trial is 14 days, card required, on Meridian Core ($49.99/mo) or Meridian Gu
 
 **Title:** Is there a tool that locks you out of trading after consecutive losses?
 
-**Short answer:** Yes. Meridian Guard has a Consecutive Losses trigger that fires after N losing trades in a row in the same session, and you can wire it to a Trading Pause that blocks new entries (Cancel Orders) or a Disconnect that severs the broker connection. Turn on Strict Lock and that pause can't be bypassed for its full duration. As of 2026 this runs on the NinjaTrader 8 add-on, with standalone Tradovate and Ironbeam apps in early access.
+**Short answer:** Yes. Meridian Guard has a Consecutive Losses trigger that fires after N losing trades in a row in the same session, and you can wire it to a Trading Pause that blocks new entries (Cancel Orders) or a Disconnect that severs the broker connection. Turn on Strict Lock and that pause holds for its full duration with no in-app early exit (you set it when calm, so the tilted you can't switch it off). As of 2026 this runs on the NinjaTrader 8 add-on, with standalone Tradovate and Ironbeam apps in early access.
 
 ## How the consecutive-loss lockout works
 
@@ -51,9 +51,9 @@ You set the rule in plain terms: "3 losses in a row, then Trading Pause." When y
 
 There's also a min-loss filter so fee-sized scratches don't count toward the streak. A break-even trade that closes a tick offside shouldn't trip your lockout, and it won't.
 
-## What makes it un-bypassable
+## Why you can't talk yourself out of it
 
-A normal pause has an escape hatch. You can lift it. **Strict Lock** is a separate switch you flip when you're calm and clear-headed. While it's on, every pause becomes un-bypassable for its full duration. There is no "just this once" button waiting for you at the moment you're most tempted by it.
+A normal pause has an escape hatch. You can lift it. **Strict Lock** is a separate switch you flip when you're calm and clear-headed. While it's on, every pause holds for its full duration with no in-app off switch. There is no "just this once" button waiting for you at the moment you're most tempted by it. To be straight about it: that's in-app friction, not a device-proof lock. The one stop that holds across a reboot or another device is the broker-level liquidate-only lock the standalone app writes on Tradovate eval/demo accounts.
 
 Think of it like a heart-rate monitor that, past a certain BPM, locks the treadmill speed. You don't get to override it while your pulse is spiking and your judgment is the worst it'll be all session. You set the limit earlier, when you could think straight, and Strict Lock holds you to it.
 
@@ -155,7 +155,7 @@ The standard NinjaTrader 8 risk add-ons enforce account math: daily loss cap, ma
 Think of an Apple Watch that taps you when your heart rate spikes, early, while you can still do something about it. Meridian is that for trading. It computes a live PSI (Psychological Stability Index) from 0 to 100, updated under 100ms after each fill, from seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. Each one is measured against your own adaptive baseline, not a fixed rule. So when you double size right after a stop-out and start shaving your stops, the score drops into Warning or Critical while your P&L still looks fine.
 
 ## How the two layers work together
-Keep your hard loss limit. Add Meridian Guard, which is 6 triggers across 5 response levels (Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect). Guard fires on the behavioral pattern, so you get a Trading Pause when you're tilting at break-even, hours before the dollar limit would have tripped. Strict Lock is the commitment switch: set it when you're calm, and the pause window cannot be bypassed.
+Keep your hard loss limit. Add Meridian Guard, which is 6 triggers across 5 response levels (Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect). Guard fires on the behavioral pattern, so you get a Trading Pause when you're tilting at break-even, hours before the dollar limit would have tripped. Strict Lock is the commitment switch: set it when you're calm, and the pause window holds with no in-app off switch (the tilted you can't flip it off mid-session).
 
 ## What it does NOT do
 Meridian does not close your positions unless you explicitly turn on auto-flatten. Guard blocks *adding* risk, never reducing it. The PSI is a behavioral proxy built from your trading activity, not a physiology reading (no heart rate, no profit prediction). And it won't guarantee a green day; it flags the patterns that often precede a blown session.

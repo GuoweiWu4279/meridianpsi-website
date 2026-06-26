@@ -9,7 +9,7 @@ const metadata = {
 };
 
 const question = 'Can trading software automatically block me from placing orders?';
-const directAnswer = 'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance. Guard v2 on the standalone apps adds a six-tier ladder whose top tier, Cut, blocks the broker order servers at the Windows-firewall level — an order physically cannot leave the PC, which holds even for a market order on a prop account.';
+const directAnswer = 'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance. Guard v2 on the standalone apps adds a six-tier ladder whose top tier, Cut, blocks the broker order servers at the Windows-firewall level — an order physically cannot leave that PC, which holds even for a market order placed from that machine (a phone or second device is outside it).';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -63,7 +63,7 @@ const qaSchema = JSON.stringify({
       </p>
       <ul>
         <li><strong>Notify</strong> — a quiet notification; no block on orders</li>
-        <li><strong>Risk Alert</strong> — persistent banner; confirmation required before each new entry</li>
+        <li><strong>Risk Alert</strong> — persistent banner; non-blocking (it doesn't gate entries — that's Acknowledge's job)</li>
         <li><strong>Acknowledge</strong> — must type a pre-written phrase (with an optional countdown) before the next entry is allowed</li>
         <li><strong>Trading Pause</strong> — new entries blocked by cancelling orders</li>
         <li><strong>Disconnect</strong> — severs the broker connection</li>
@@ -78,7 +78,7 @@ const qaSchema = JSON.stringify({
       </p>
       <ul>
         <li><strong>Cool-down Wall (tier 5)</strong> — a full-screen cool-down with guided breathing and a countdown. If you hold a position it first offers flatten/manage; it never traps an open trade.</li>
-        <li><strong>Cut (tier 6)</strong> — blocks the broker's order servers in the Windows firewall. The block is at the network layer, machine-wide: an order physically cannot leave the PC, which makes it the one stop that holds even a market order on a prop account. It lifts automatically when the window ends.</li>
+        <li><strong>Cut (tier 6)</strong> — blocks the broker's order servers in the Windows firewall. The block is at the network layer, machine-wide: an order physically cannot leave that PC, which makes it the one stop that holds even a market order from that machine (a phone or second device is outside it). It lifts automatically when the window ends.</li>
       </ul>
       <p>
         On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only) — enforcement at the broker itself, not just on your machine.

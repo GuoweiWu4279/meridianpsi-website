@@ -40,10 +40,11 @@ const matrix = [
   { cap: 'Intel analytics workspace', nt8: 'Yes (all tiers, v1.5.0+)', tdv: 'Yes (all tiers)', ib: 'Yes (all tiers)' },
   { cap: 'Guard enforcement — cooldowns, entry blocking, optional flatten', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
   { cap: 'Guard escalation ladder', nt8: '5 levels (up to broker Disconnect)', tdv: '6 tiers (Guard v2)', ib: '6 tiers (Guard v2)' },
+  { cap: 'Hard limits — standing max-contracts cap + blocked entry order types (off by default)', nt8: 'Yes (Guard tier)', tdv: 'Yes (Guard tier)', ib: 'Yes (Guard tier)' },
   { cap: 'Cool-down Wall — full-screen guided cool-down', nt8: '—', tdv: 'Yes (soft or hard wall)', ib: 'Yes (soft or hard wall)' },
   { cap: 'Cut — firewall-level order block (an order physically cannot leave the PC)', nt8: '—', tdv: 'Yes', ib: 'Yes' },
   { cap: 'Broker-level risk lock (enforced at the broker, not the app)', nt8: '—', tdv: 'Yes — demo & eval accounts', ib: '— (no account-level API)' },
-  { cap: 'Strict Lock (no-bypass commitment mode)', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
+  { cap: 'Strict Lock — holds a fired pause for its full window (in-app)', nt8: 'Yes', tdv: 'Yes', ib: 'Yes' },
   { cap: 'Requires NinjaTrader', nt8: 'Yes (it lives inside NT8)', tdv: 'No', ib: 'No' },
 ];
 ---

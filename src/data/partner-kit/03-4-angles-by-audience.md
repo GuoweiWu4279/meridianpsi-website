@@ -58,7 +58,7 @@ Different segments of the NT8 trading community respond to different entry point
 - Guard's configurability — you define both the rules (6 triggers) and the response severity (5 levels), independently per rule
 - The Rule Violations signal (D6) — specifically tracks whether you're following your own defined rules in real time
 - The "typed acknowledgment" response level — a phrase the trader writes when calm, typed when not; high signal-to-friction ratio
-- Strict Lock — arm it when calm and a fired pause can't be bypassed for its whole window; the commitment device for the moment the tilted version of you goes looking for the off switch (per-rule password locks also exist for individual rules)
+- Strict Lock — arm it when calm and a fired pause holds for its whole window with no in-app off switch; the commitment device for the moment the tilted version of you goes looking for the off switch (per-rule password locks also exist for individual rules)
 - The idea of making your trading plan machine-enforceable, not just written down
 - Local processing and storage on your machine; no login, no personal accounts, no PII collected
 

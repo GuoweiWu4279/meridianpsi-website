@@ -10,10 +10,10 @@ const usd = (n: number) => n.toFixed(2);
 
 const metadata = {
   // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
-  title: 'Meridian Guard — NinjaTrader 8 Behavioral Risk Manager & Trade Lockout',
+  title: 'Meridian Guard — Behavioral Trade Lockout for NinjaTrader 8, Tradovate & Ironbeam',
   ignoreTitleTemplate: true,
   description:
-    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, an escalating enforcement ladder, and an un-bypassable Strict Lock. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
+    `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, an escalating enforcement ladder (five levels on NinjaTrader 8, six tiers on the standalone Tradovate & Ironbeam apps), standing Hard limits, and a Strict Lock your tilted self cannot switch off. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
   robots: { index: true, follow: true },
 };
 
@@ -58,20 +58,20 @@ const guardSchemaJson = JSON.stringify({
   "url": "https://www.meridianpsi.com/guard",
   "featureList": [
     "Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over",
-    "Five response levels on NinjaTrader 8: Notify (L1), Risk Alert (L2), Acknowledge (L3), Trading Pause (L4), Disconnect (L5)",
+    "Five response levels on NinjaTrader 8: Notify (L1), Risk Alert (L2, a non-blocking persistent banner), Acknowledge (L3, the level that blocks the entry), Trading Pause (L4), Disconnect (L5)",
+    "Six-tier ladder on the standalone Tradovate/Ironbeam apps: Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut",
     "Trading Pause (L4): blocks new entries by cancelling orders while staying connected; Disconnect (L5): severs the broker connection",
-    "Guard v2 on the standalone Tradovate/Ironbeam apps (early access): a six-tier ladder — Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut",
     "Cool-down Wall (standalone): full-screen guided cool-down with breathing pacing; soft or hard wall, never traps an open position",
     "Cut (standalone): Windows-firewall block of the broker's order servers — an order physically cannot leave the PC; auto-lifts when the window ends",
+    "Hard limits (Guard tier, off by default; both NinjaTrader 8 and the standalone apps): a standing max-contracts cap and blocked entry order types — over-cap or blocked entries are stopped at submission, a slipped market order is trimmed back, and closing or reducing is never blocked",
+    "Broker-level lock (standalone, Tradovate demo and eval accounts only): Guard writes Tradovate's own liquidate-only lock — enforcement at the broker that holds even if you close the app, reboot, or log in from another device",
     "Auto-flatten (opt-in, off by default): on a Trading Pause (L4) or Disconnect (L5) rule, optionally close all open positions the moment that rule fires",
-    "Strict Lock: one switch set while calm — every pause or disconnect Guard fires becomes un-bypassable for its full window, rules frozen; survives NinjaTrader restart",
-    "Pause persistence: lockout survives NinjaTrader restart or crash",
-    "Intel Layer: monthly behavioral digest, weekday patterns, PSI × P&L correlation",
+    "Strict Lock: one switch set while calm — every pause or disconnect Guard fires holds for its full window with no in-app early exit, force-reset, or Guard-off, rules frozen; survives a NinjaTrader restart",
     "Anonymous by design — no name, credentials, or funds collected"
   ],
   "offers": guardOffers,
   "softwareVersion": "1.5.4",
-  "requirements": "NinjaTrader 8 (64-bit), Windows 10 or later, 4 GB RAM",
+  "requirements": "NinjaTrader 8 (64-bit) or the standalone Windows app for Tradovate/Ironbeam; Windows 10 or later, 4 GB RAM",
   "publisher": {
     "@type": "Organization",
     "name": "Meridian",
@@ -93,7 +93,7 @@ const intelSlides = [
   { img: '/screenshots/intel-stats-showcase.png', alt: 'Stats — custom date ranges with win rate, profit factor, and breakdowns by time of day, hold time, instrument, and long/short' },
 ];
 
-const { triggers, levels, examples } = guardData;
+const { triggers, levels, examples, standaloneExamples } = guardData;
 const v2 = guardData.standalone;
 ---
 
@@ -109,7 +109,7 @@ const v2 = guardData.standalone;
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
         You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you
-        decide, from a quiet nudge to a full broker disconnect. No decision required from the tilted version of you.
+        decide, from a quiet nudge to a hard cutoff between you and the next order. No decision required from the tilted version of you.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={guardCheckout} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
@@ -118,7 +118,7 @@ const v2 = guardData.standalone;
       <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime</p>
     </div>
     <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
-      <div class="win"><img src="/m/guard.png" alt="Meridian Guard configuration — your own rules with an escalating enforcement ladder and an un-bypassable Strict Lock" /></div>
+      <div class="win"><img src="/m/guard.png" alt="Meridian Guard configuration — your own rules with an escalating enforcement ladder and a Strict Lock your tilted self cannot switch off" /></div>
     </div>
   </section>
 
@@ -129,7 +129,7 @@ const v2 = guardData.standalone;
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
         Official NinjaTrader Ecosystem Vendor
       </span>
-      <span class="text-zinc-300">|</span><span>Un-bypassable lockout that survives a restart</span>
+      <span class="text-zinc-300">|</span><span>A lockout your tilted self can't switch off &mdash; and that survives a restart</span>
     </div>
   </section>
 
@@ -179,7 +179,7 @@ const v2 = guardData.standalone;
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP 1 &middot; THE 6 TRIGGERS</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Decide what "too far" means.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Six conditions Guard watches every session. Pick the ones that matter to you and set the numbers. Each fires once on entry, then resets &mdash; no nagging.
+          Six conditions Guard watches every session &mdash; the same six on every platform. Pick the ones that matter to you and set the numbers. Each fires once on entry, then resets &mdash; no nagging.
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
@@ -201,55 +201,232 @@ const v2 = guardData.standalone;
     </div>
   </section>
 
-  <!-- ───────────────────────── STEP 2 — THE ESCALATION LADDER ───────────────────────── -->
+  <!-- ───────────────────────── STEP 2 — THE ESCALATION LADDER (PLATFORM TOGGLE) ───────────────────────── -->
   <section class="max-w-6xl mx-auto px-6 py-24">
-    <div class="text-center mb-12" data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP 2 &middot; THE 5-LEVEL LADDER</p>
+    <div class="text-center mb-10" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP 2 &middot; THE ESCALATION LADDER</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Then decide how hard it bites.</h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-        The same trigger can be a whisper or a wall. You set the level. Severity climbs from a quiet toast to severing the broker connection &mdash; you choose exactly how far Guard goes.
+        The same trigger can be a whisper or a wall &mdash; you set the level. The ladder differs by where Guard runs:
+        five response levels inside NinjaTrader&nbsp;8, six tiers on the standalone Tradovate &amp; Ironbeam apps. Same engine, honest differences.
       </p>
     </div>
 
-    <!-- Severity bar -->
-    <div class="max-w-5xl mx-auto" data-reveal>
-      <div class="flex h-2 rounded-full overflow-hidden mb-3 gap-0.5">
-        {levels.map((l) => (
-          <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
-        ))}
+    <!-- Platform toggle -->
+    <div class="flex justify-center mb-10" data-reveal>
+      <div class="inline-flex rounded-xl border border-zinc-300 bg-white p-1 shadow-sm" role="tablist" aria-label="Choose platform">
+        <button type="button" role="tab" data-ladder-tab data-ladder-idx="0" aria-selected="true"
+          class="px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition text-white bg-emerald-600">
+          NinjaTrader 8 <span class="font-normal opacity-80">&middot; 5 levels</span>
+        </button>
+        <button type="button" role="tab" data-ladder-tab data-ladder-idx="1" aria-selected="false"
+          class="px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition text-zinc-700 hover:text-zinc-900">
+          Standalone &middot; Tradovate &amp; Ironbeam <span class="font-normal opacity-70">&middot; 6 tiers</span>
+        </button>
       </div>
-      <div class="flex justify-between text-xs text-zinc-500 mb-8 px-0.5">
-        <span>Softest &mdash; a nudge</span>
-        <span>Hardest &mdash; broker disconnect</span>
-      </div>
-
-      <ol class="space-y-3">
-        {levels.map((item) => (
-          <li class="rounded-2xl border border-zinc-200 bg-white p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 shadow-sm">
-            <div class="flex items-center gap-3 sm:w-56 shrink-0">
-              <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>{item.level}</span>
-              <span class="font-semibold text-zinc-900">{item.name}</span>
-            </div>
-            <p class="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
-          </li>
-        ))}
-      </ol>
     </div>
 
-    <!-- L3 spotlight -->
-    <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-8 md:px-10" data-reveal>
-      <p class="text-[11px] font-bold tracking-[0.2em] text-emerald-400 uppercase mb-4">The most underrated level &mdash; L3, Acknowledge</p>
+    <div data-ladder-root>
+      <!-- NT8 PANEL -->
+      <div data-ladder-panel data-ladder-idx="0" class="max-w-5xl mx-auto">
+        <div class="flex h-2 rounded-full overflow-hidden mb-3 gap-0.5">
+          {levels.map((l) => (
+            <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
+          ))}
+        </div>
+        <div class="flex justify-between text-xs text-zinc-500 mb-8 px-0.5">
+          <span>Softest &mdash; a nudge</span>
+          <span>Hardest &mdash; broker disconnect</span>
+        </div>
+        <ol class="space-y-3">
+          {levels.map((item) => (
+            <li class="rounded-2xl border border-zinc-200 bg-white p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 shadow-sm">
+              <div class="flex items-center gap-3 sm:w-56 shrink-0">
+                <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>{item.level}</span>
+                <span class="font-semibold text-zinc-900">{item.name}</span>
+              </div>
+              <p class="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-5 text-sm text-zinc-500 text-center max-w-2xl mx-auto">
+          Inside NinjaTrader&nbsp;8, the hardest stop is a broker <strong class="text-zinc-700">Disconnect</strong> &mdash; Guard severs the connection and cancels working orders. There is no firewall Cut or broker-side lock here; those are standalone-only.
+        </p>
+      </div>
+
+      <!-- STANDALONE PANEL -->
+      <div data-ladder-panel data-ladder-idx="1" class="max-w-5xl mx-auto" hidden>
+        <div class="flex h-2 rounded-full overflow-hidden mb-3 gap-0.5">
+          {v2.tiers.map((l) => (
+            <div class="flex-1 rounded-full" style={`background:${l.color};`}></div>
+          ))}
+        </div>
+        <div class="flex justify-between text-xs text-zinc-500 mb-8 px-0.5">
+          <span>Softest &mdash; a nudge</span>
+          <span>Hardest &mdash; a firewall Cut</span>
+        </div>
+        <ol class="space-y-3">
+          {v2.tiers.map((item) => (
+            <li class="rounded-2xl border border-zinc-200 bg-white p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 shadow-sm">
+              <div class="flex items-center gap-3 sm:w-56 shrink-0">
+                <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>T{item.tier}</span>
+                <span class="font-semibold text-zinc-900">{item.name}</span>
+              </div>
+              <div>
+                <p class="text-zinc-800 text-sm font-medium">{item.short}</p>
+                <p class="text-zinc-600 text-sm leading-relaxed mt-1">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-5 text-sm text-zinc-500 text-center max-w-2xl mx-auto">
+          The standalone apps connect straight to your Tradovate or Ironbeam account &mdash; no NinjaTrader &mdash; so the top two tiers go where an in-platform add-on can't: a full-screen <strong class="text-zinc-700">Cool-down Wall</strong> and a Windows-firewall <strong class="text-zinc-700">Cut</strong>. There is no broker Disconnect tier here.
+        </p>
+      </div>
+    </div>
+
+    <!-- L3 spotlight (applies to both) -->
+    <div class="max-w-3xl mx-auto mt-10 rounded-2xl calloutd text-zinc-100 px-7 py-8 md:px-10" data-reveal>
+      <p class="text-[11px] font-bold tracking-[0.2em] text-emerald-400 uppercase mb-4">The most underrated level &mdash; Acknowledge</p>
       <blockquote class="text-xl md:text-2xl font-semibold text-white leading-[1.4]">
         "I will not revenge trade. My plan is my edge."
       </blockquote>
       <p class="mt-5 text-zinc-400 leading-relaxed">
-        You write that phrase yourself, when you're calm, before the session. In the moment, Guard makes you type it back &mdash; word for word, against a countdown &mdash; before the platform lets you continue. Your own words, at the exact second you need them most. Often that's all it takes to break the loop.
+        You write that phrase yourself, when you're calm, before the session. In the moment, Guard makes you type it back &mdash; word for word, against a countdown &mdash; before it lets you continue. Your own words, at the exact second you need them most. Often that's all it takes to break the loop.
       </p>
     </div>
   </section>
 
-  <!-- ───────────────────────── HONESTY — GUARD NEVER CLOSES POSITIONS ───────────────────────── -->
+  <!-- ───────────────────────── ENFORCEMENT SPINE — WHAT ACTUALLY HOLDS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-zinc-950 scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-12" data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">THE HONEST PART &middot; WHAT ACTUALLY HOLDS</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white">A lock is only as strong as where it lives.</h2>
+        <p class="mt-5 text-lg text-zinc-400 max-w-3xl mx-auto">
+          Every Guard action sits at one of three layers &mdash; and the layer is exactly what a determined, tilting trader
+          can or can't get around. We'd rather you know this up front than find out at the worst moment.
+        </p>
+      </div>
+
+      <div class="space-y-4 max-w-4xl mx-auto" data-reveal>
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <span class="text-sm font-bold text-white">In-app friction</span>
+            <span class="text-[11px] font-semibold text-amber-400/90 bg-amber-400/10 px-2 py-0.5 rounded-full">bypass: close the app &middot; another device</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Notify, Alert/Risk Alert, Acknowledge, Pause, Cool-down Wall, Strict Lock and Hard limits all live in the app.
+            They put hard, deliberate friction between you and a tilt trade &mdash; the kind your in-the-moment self won't
+            push through. They don't pretend to stop someone who closes the app and trades from their phone.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-6">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <span class="text-sm font-bold text-white">OS / machine</span>
+            <span class="text-[11px] font-semibold text-amber-400/90 bg-amber-400/10 px-2 py-0.5 rounded-full">bypass: another device &middot; admin</span>
+          </div>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            <strong class="text-zinc-200">Cut</strong> (standalone) blocks your broker's order servers in the Windows
+            firewall. It's machine-wide: an order physically cannot leave that PC &mdash; the one stop that holds even a
+            market order <em>from that machine</em>. A phone or a second device is outside it.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-500/[0.07] p-6">
+          <div class="flex flex-wrap items-center gap-3 mb-2">
+            <span class="text-sm font-bold text-emerald-300">Broker-level &mdash; the one device-proof stop</span>
+            <span class="text-[11px] font-bold text-emerald-300 bg-emerald-400/15 px-2 py-0.5 rounded-full">holds across close &middot; reboot &middot; phone</span>
+          </div>
+          <p class="text-sm text-zinc-300 leading-relaxed">
+            On <strong class="text-white">Tradovate demo and eval accounts</strong>, the standalone app writes Tradovate's
+            <strong class="text-white"> own liquidate-only lock</strong> &mdash; enforcement at the broker, not in our app. That one
+            holds even if you close the app, reboot, or log in from another device. It's the real answer to "can a tilting
+            trader just keep going?" <span class="text-zinc-400">(Funded/live Tradovate and Ironbeam don't expose this API; NinjaTrader has no broker-side lock &mdash; there, enforcement is app/connection-level only.)</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto" data-reveal>
+        So when we say <em>un-bypassable</em>, we mean exactly one thing: the broker-level lock. Everywhere else, Guard sells
+        honest friction &mdash; the version of you that's tilting can't talk its way past it, and that's usually all it takes.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── HARD LIMITS ───────────────────────── -->
+  <section class="max-w-6xl mx-auto px-6 py-24">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STANDING ENFORCEMENT &middot; HARD LIMITS</p>
+        <h2 class="text-3xl md:text-[2.6rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          A ceiling that's<br />always on.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          The triggers above react to a session going wrong. Hard limits don't wait for anything &mdash; they're a standing
+          cap you set once while calm. A <strong class="text-zinc-900">max-contracts ceiling</strong> and
+          <strong class="text-zinc-900"> blocked entry order types</strong>, enforced on every order, all session.
+        </p>
+        <ul class="mt-6 space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A resting order over the cap, or of a blocked type, is <strong class="text-zinc-900">cancelled at submission</strong></span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A market order that slips through is <strong class="text-zinc-900">trimmed back to the cap</strong> &mdash; a single round-trip, never your existing position</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Closing or reducing is <strong class="text-zinc-900">never</strong> blocked</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">
+          Guard tier, off by default &mdash; on both NinjaTrader&nbsp;8 and the standalone apps. This is the literal contract cap the old size-limiter tools sell, built into the behavioral layer.
+        </p>
+      </div>
+      <div class="rounded-2xl border-2 border-zinc-200 bg-[#fafafa] p-8 shadow-sm" data-reveal>
+        <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-zinc-400 mb-5">Set once, holds all session</p>
+        <div class="space-y-4">
+          <div class="rounded-xl bg-white border border-zinc-200 p-4 flex items-center justify-between">
+            <span class="text-sm font-medium text-zinc-700">Max contracts</span>
+            <span class="text-sm font-bold text-zinc-900 tnum">3</span>
+          </div>
+          <div class="rounded-xl bg-white border border-zinc-200 p-4">
+            <span class="text-sm font-medium text-zinc-700">Blocked entry types</span>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded">Market</span>
+              <span class="text-[11px] font-semibold text-zinc-500 bg-white border border-zinc-200 px-2 py-0.5 rounded">Limit</span>
+              <span class="text-[11px] font-semibold text-zinc-500 bg-white border border-zinc-200 px-2 py-0.5 rounded">Stop</span>
+            </div>
+          </div>
+          <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-sm text-emerald-800 leading-relaxed">
+            A 4th-contract entry never reaches the broker. Your three existing contracts &mdash; and any exit &mdash; are untouched.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── STRICT LOCK ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div data-reveal>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STRICT LOCK</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          A lock only your calm self<br />can set &mdash; and your tilted<br />self can't undo.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          Any rule you can switch off in the moment isn't really a rule. Strict Lock is the fix: one switch, set <em>while you're calm</em>.
+          With it on, for a pause's full window it removes the in-app escape hatches &mdash; no early exit, no force-reset, Guard can't be
+          turned off, your rules are frozen &mdash; until the clock releases you. It's the lock your tilted self can't talk its way out of.
+        </p>
+        <ul class="mt-6 space-y-3 text-zinc-700">
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your rule decides how long &mdash; 15 minutes or the rest of the day &mdash; Strict Lock makes that window stick</span></li>
+          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart or crash</strong> &mdash; closing the platform doesn't reset it</span></li>
+        </ul>
+        <p class="mt-5 text-sm text-zinc-500">
+          Strict Lock is in-app friction, not a device-proof lock &mdash; the one stop that holds across devices is the Tradovate eval/demo broker lock above.
+        </p>
+      </div>
+      <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock makes every Guard pause hold for its full window with no in-app early exit, and survives a NinjaTrader restart" /></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── HONESTY — GUARD NEVER CLOSES POSITIONS ───────────────────────── -->
+  <section class="border-b border-zinc-200 bg-white">
     <div class="max-w-4xl mx-auto px-6 py-24" data-reveal>
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-8 md:p-10">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT GUARD WILL NOT DO</p>
@@ -266,95 +443,40 @@ const v2 = guardData.standalone;
     </div>
   </section>
 
-  <!-- ───────────────────────── STRICT LOCK ───────────────────────── -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STRICT LOCK</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
-        A lock only your calm self<br />can set &mdash; and your tilted<br />self can't undo.
-      </h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        Any rule you can switch off in the moment isn't really a rule. Strict Lock is the fix: one switch, set <em>while you're calm</em>. With it on, every pause or disconnect Guard fires is absolute for its full window &mdash; no early exit, no force-reset, your rules are frozen, and neither Guard nor the switch itself can be turned off until the clock releases you.
-      </p>
-      <ul class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your rule decides how long &mdash; 15 minutes or the rest of the day &mdash; Strict Lock makes that window inescapable</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong class="text-zinc-900">It survives a NinjaTrader restart or crash</strong> &mdash; closing the platform doesn't reset it</span></li>
-      </ul>
-    </div>
-    <div class="win" data-reveal><img src="/m/guard.png" alt="Meridian Guard — Strict Lock makes every Guard pause un-bypassable and survives a NinjaTrader restart" /></div>
-  </section>
-
-  <!-- ───────────────────────── GUARD V2 — STANDALONE APPS ───────────────────────── -->
-  <section id="guard-v2" class="border-y border-zinc-200 bg-zinc-950 scroll-mt-20">
-    <div class="max-w-6xl mx-auto px-6 py-24">
-      <div class="text-center mb-12" data-reveal>
-        <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">GUARD V2 &middot; FIRST ON THE STANDALONE APPS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white">The next ladder goes further.</h2>
-        <p class="mt-5 text-lg text-zinc-400 max-w-3xl mx-auto">
-          The standalone Meridian apps for Tradovate&reg; and Ironbeam accounts (early access) run the next generation of Guard:
-          a six-tier ladder where every tier does exactly one job &mdash; and the top two go where a NinjaTrader add-on can't.
-        </p>
-      </div>
-
-      <ol class="space-y-3 max-w-5xl mx-auto" data-reveal>
-        {v2.tiers.map((item) => (
-          <li class="rounded-2xl border border-zinc-800 bg-zinc-900 p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
-            <div class="flex items-center gap-3 sm:w-64 shrink-0">
-              <span class="text-[11px] font-bold tracking-widest px-2 py-1 rounded text-white tnum" style={`background:${item.color};`}>T{item.tier}</span>
-              <span class="font-semibold text-white">{item.name}</span>
-            </div>
-            <div>
-              <p class="text-zinc-200 text-sm font-medium">{item.short}</p>
-              <p class="text-zinc-400 text-sm leading-relaxed mt-1">{item.desc}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      <div class="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto mt-10" data-reveal>
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-7">
-          <p class="text-[11px] font-bold tracking-[0.2em] text-emerald-400 uppercase mb-3">Tier 5 &middot; Cool-down Wall</p>
-          <p class="text-zinc-300 leading-relaxed text-sm">
-            Not a popup &mdash; a full-screen cool-down with a breathing pacer (in for four, out for six) and a countdown.
-            If you hold a position it first offers <em>flatten / manage</em>; it never traps an open trade. You pre-pick a
-            soft wall (Alt-Tab-able for emergencies) or a hard wall that re-asserts focus until the timer releases you.
-          </p>
-        </div>
-        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 p-7">
-          <p class="text-[11px] font-bold tracking-[0.2em] text-rose-400 uppercase mb-3">Tier 6 &middot; Cut</p>
-          <p class="text-zinc-300 leading-relaxed text-sm">
-            A Windows-firewall block of your broker's order servers. Blunt and machine-wide by design &mdash; an order
-            physically cannot leave the PC, which makes it the one stop that holds even a market order on a prop account.
-            It needs admin rights, anything sharing that connection can go dark too, and it always lifts on its own when
-            the window ends &mdash; it can never lock your machine for good.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-6" data-reveal>
-        <a href="/platforms" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm inline-block">Guard v2 is in early access &mdash; see platforms</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ───────────────────────── EXAMPLE CONFIGS ───────────────────────── -->
-  <section class="border-y border-zinc-200 bg-white">
+  <!-- ───────────────────────── EXAMPLE CONFIGS (PLATFORM-AWARE) ───────────────────────── -->
+  <section class="border-b border-zinc-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-24">
       <div class="text-center mb-12" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">PUT TOGETHER</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A trigger, a level, a rule.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Pair any trigger with any level and you've written an enforceable rule. Here's how traders actually set Guard up.</p>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Pair any trigger with any level and you've written an enforceable rule. The examples follow the platform you picked above.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
-        {examples.map((item) => (
-          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
-            <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
-            <div class="space-y-1.5">
-              <p class="text-xs font-mono text-zinc-500">When: <span class="text-zinc-700">{item.rule}</span></p>
-              <p class="text-xs font-mono font-medium text-emerald-700">Then: {item.action}</p>
+
+      <div data-ladder-root-examples>
+        <!-- NT8 examples -->
+        <div data-ladder-panel data-ladder-idx="0" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
+          {examples.map((item) => (
+            <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+              <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
+              <div class="space-y-1.5">
+                <p class="text-xs font-mono text-zinc-500">When: <span class="text-zinc-700">{item.rule}</span></p>
+                <p class="text-xs font-mono font-medium text-emerald-700">Then: {item.action}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <!-- Standalone examples -->
+        <div data-ladder-panel data-ladder-idx="1" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" hidden>
+          {standaloneExamples.map((item) => (
+            <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+              <p class="font-semibold text-zinc-900 text-sm mb-3">{item.name}</p>
+              <div class="space-y-1.5">
+                <p class="text-xs font-mono text-zinc-500">When: <span class="text-zinc-700">{item.rule}</span></p>
+                <p class="text-xs font-mono font-medium text-emerald-700">Then: {item.action}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <!-- Utility features -->
@@ -372,12 +494,12 @@ const v2 = guardData.standalone;
   <!-- ───────────────────────── INTEL LAYER ───────────────────────── -->
   <section class="max-w-6xl mx-auto px-6 py-24">
     <div class="max-w-2xl mb-12" data-reveal>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">GUARD EXCLUSIVE &middot; INTEL LAYER</p>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INCLUDED ON EVERY PLAN &middot; INTEL LAYER</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
         Your session history,<br />turned into decisions.
       </h2>
       <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
-        Guard keeps 5 years of session history locally and surfaces the patterns no single session reveals &mdash; so the rules you set tomorrow are sharper than the ones you set today.
+        The Intel Layer ships with Meridian Core, so every Guard plan has it too. Five years of session history, kept locally, surfacing the patterns no single session reveals &mdash; so the rules you set tomorrow are sharper than the ones you set today.
       </p>
     </div>
 
@@ -471,7 +593,7 @@ const v2 = guardData.standalone;
       <div class="text-center mb-10" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">CORE VS GUARD</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Guard is Core, plus enforcement.</h2>
-        <p class="mt-4 text-lg text-zinc-600">Everything the monitor does &mdash; and the layer that acts on it.</p>
+        <p class="mt-4 text-lg text-zinc-600">Everything the monitor does &mdash; the Intel Layer included &mdash; and the layer that acts on it.</p>
       </div>
       <div class="rounded-2xl border border-zinc-200 overflow-hidden shadow-sm" data-reveal>
         <div class="grid grid-cols-3 text-sm font-semibold bg-zinc-900 text-white">
@@ -490,14 +612,13 @@ const v2 = guardData.standalone;
           ['7 behavioral signal bars',                    true,  true],
           ['Personal baselines',                          true,  true],
           ['Session history (5 years)',                   true,  true],
-          ['Local-first; anonymized opt-out data',   true,  true],
-          ['Guard System (6 triggers, 5-level ladder)',   false, true],
-          ['Trading Pause & broker Disconnect',           false, true],
-          ['Strict Lock — makes every pause un-bypassable',false, true],
-          ['Intel Layer — monthly digest',               false, true],
-          ['PSI × P&L correlation',                       false, true],
-          ["Today's Risk Brief",                          false, true],
-          ['Stats & breakdowns (custom date ranges)',     false, true],
+          ['Intel Layer — digest, PSI × P&L, Risk Brief, stats', true, true],
+          ['Local-first; anonymized opt-out data',        true,  true],
+          ['Guard System (6 triggers · 5-level NT8 / 6-tier standalone)', false, true],
+          ['Trading Pause, broker Disconnect, Cool-down Wall & Cut', false, true],
+          ['Hard limits — standing max-contracts cap & blocked order types', false, true],
+          ['Strict Lock — holds every pause for its full window',  false, true],
+          ['Broker-level lock (Tradovate demo/eval, standalone)',  false, true],
         ].map(([feature, core, guard], i) => (
           <div class="grid grid-cols-3 border-t border-zinc-100 text-sm" style={i % 2 === 1 ? 'background:#fafafa;' : ''}>
             <div class="px-5 py-3.5 text-zinc-700">{feature}</div>
@@ -549,7 +670,7 @@ const v2 = guardData.standalone;
         <p class="text-sm text-zinc-600 leading-relaxed">
           You declared a two-hour window and a trade budget, and both are gone &mdash; but the entries keep accelerating.
           Rule Violations and Overtrading Pace push PSI down, and Guard escalates exactly as far as you pre-committed:
-          notify, acknowledge, pause &mdash; up to a full broker disconnect.
+          notify, acknowledge, pause &mdash; up to a broker disconnect on NinjaTrader, or a Cool-down Wall and firewall Cut on the standalone apps.
         </p>
       </div>
     </div>
@@ -560,13 +681,13 @@ const v2 = guardData.standalone;
     <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Set the rules once.<br />Let them hold the line.</h2>
       <p class="mt-6 text-lg text-zinc-600">
-        Everything in Meridian Core, plus the Guard System, Strict Lock, and the Intel Layer. 14-day free trial &mdash; no charge until day 14.
+        Everything in Meridian Core &mdash; the Intel Layer included &mdash; plus the Guard System, Hard limits, and Strict Lock. 14-day free trial &mdash; no charge until day 14.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href={guardCheckout} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
-        <a href="/pricing" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Compare all plans</a>
+        <a href="/platforms" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See what runs on each platform</a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
+      <p class="mt-4 text-xs text-zinc-500">${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime &middot; NinjaTrader 8, or standalone for Tradovate &amp; Ironbeam</p>
     </div>
   </section>
 
@@ -585,6 +706,33 @@ const v2 = guardData.standalone;
   </style>
 
   <script>
+    // ── Platform ladder toggle (NT8 5-level ⟷ Standalone 6-tier) ──
+    function initGuardLadder() {
+      const tabs = Array.from(document.querySelectorAll('[data-ladder-tab]'));
+      if (!tabs.length) return;
+      const panelGroups = Array.from(document.querySelectorAll('[data-ladder-root], [data-ladder-root-examples]'));
+
+      function select(idx) {
+        tabs.forEach((tab) => {
+          const on = tab.getAttribute('data-ladder-idx') === String(idx);
+          tab.setAttribute('aria-selected', on ? 'true' : 'false');
+          tab.classList.toggle('bg-emerald-600', on);
+          tab.classList.toggle('text-white', on);
+          tab.classList.toggle('text-zinc-700', !on);
+          tab.classList.toggle('hover:text-zinc-900', !on);
+        });
+        panelGroups.forEach((group) => {
+          Array.from(group.querySelectorAll('[data-ladder-panel]')).forEach((panel) => {
+            panel.hidden = panel.getAttribute('data-ladder-idx') !== String(idx);
+          });
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => select(tab.getAttribute('data-ladder-idx')));
+      });
+    }
+
     function initGuardIntel() {
       const root = document.querySelector('[data-guard-intel]');
       if (!root || root.dataset.guardIntelInit === '1') return;
@@ -648,18 +796,19 @@ const v2 = guardData.standalone;
       nextBtn?.addEventListener('click', () => goTo(current + 1));
     }
 
-    function bootGuardIntel() {
+    function bootGuard() {
+      initGuardLadder();
       initGuardIntel();
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', bootGuardIntel);
+      document.addEventListener('DOMContentLoaded', bootGuard);
     } else {
-      bootGuardIntel();
+      bootGuard();
     }
-    if (!(window).hasOwnProperty('__meridianGuardIntelSwap')) {
+    if (!Object.prototype.hasOwnProperty.call(window, '__meridianGuardIntelSwap')) {
       (window).__meridianGuardIntelSwap = true;
-      document.addEventListener('astro:after-swap', bootGuardIntel);
+      document.addEventListener('astro:after-swap', bootGuard);
     }
   </script>
 

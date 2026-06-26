@@ -70,7 +70,7 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 **5 response levels (L1 → L5, increasing severity):**
 
 1. **Notify (L1)** — a quiet toast notification
-2. **Risk Alert (L2)** — persistent banner; every new entry requires active confirmation
+2. **Risk Alert (L2)** — persistent banner; non-blocking (it keeps the risk in front of you — Acknowledge is the level that gates the entry)
 3. **Acknowledge (L3)** — the user types a phrase they wrote in advance, with an optional countdown, before continuing (set when calm, typed when not — the most powerful friction of the five)
 4. **Trading Pause (L4)** — blocks new entries by cancelling orders; survives a NinjaTrader restart
 5. **Disconnect (L5)** — severs the broker connection (NT8's standard broker-disconnect API); the strictest mode of a Trading Pause. By default Guard re-disconnects reconnect attempts made during the window (per-rule setting); the user reconnects through NT8 once the window ends.
@@ -79,7 +79,7 @@ Guard is the enforcement layer on top of the monitoring layer. You configure rul
 
 Each trigger fires once on entry and then resets — no spam. Any rule can be password-locked to prevent in-session override; most traders pick a password they won't remember under pressure as a deliberate friction device.
 
-**Strict Lock** is the headline commitment device: one switch, armed when you're calm, that makes every pause Guard fires un-bypassable for its whole window — no early exit, no talking yourself out of it. It exists for the exact moment the tilted version of you goes looking for the off switch. (It releases on its own when the window ends.)
+**Strict Lock** is the headline commitment device: one switch, armed when you're calm, that holds every pause Guard fires for its whole window — no early exit, no force-reset, no talking yourself out of it (in-app friction, not a device-proof lock). It exists for the exact moment the tilted version of you goes looking for the off switch. (It releases on its own when the window ends.)
 
 Guard is designed for traders who want hard enforcement, not just monitoring. The intervention is mechanical — it fires when the rule fires, regardless of whether the trader feels like they need a break.
 

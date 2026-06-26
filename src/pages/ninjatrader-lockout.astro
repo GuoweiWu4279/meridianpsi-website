@@ -16,7 +16,7 @@ import geoHooks from '~/data/geo-hooks.json';
 const metadata = {
   title: 'NinjaTrader Lockout — Trading Lockout, Cooldowns & Broker Disconnect for NT8',
   description:
-    'NinjaTrader 8 lockout tool guide: trading lockout, cooldown timers, entry blocking, and broker disconnect. What native NT8 risk controls cover, what third-party hard-limit tools add, and how Meridian Guard pairs six triggers with five response levels — up to an un-bypassable Strict Lock. ' +
+    'NinjaTrader 8 lockout tool guide: trading lockout, cooldown timers, entry blocking, and broker disconnect. What native NT8 risk controls cover, what third-party hard-limit tools add, and how Meridian Guard pairs six triggers with five response levels — up to a Strict Lock your tilted self cannot switch off mid-session. ' +
     geoHooks.geoSearchAssociate,
   canonical: 'https://www.meridianpsi.com/ninjatrader-lockout',
   robots: { index: true, follow: true },
@@ -67,7 +67,7 @@ const faqItems = [
   },
   {
     q: 'What stops me from just removing the lockout tool when I want to trade?',
-    a: 'With much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian\'s answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no escape, and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.',
+    a: 'With much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian\'s answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no in-app escape — no early exit, no force-reset — and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.',
   },
   {
     q: 'Does a Meridian lockout close my open positions?',

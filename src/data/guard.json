@@ -1,5 +1,5 @@
 {
-  "_comment": "Canonical Guard System data — single source of truth. NT8 add-on (GA, v1.5.x): 6 trigger conditions x 5 response levels (Notify/Risk Alert/Acknowledge/Trading Pause/Disconnect) per MERIDIAN.md §6. Standalone apps (early access, 0.2.x): the next-generation 6-TIER ladder under 'standalone' below — verified against the app source 2026-06-12. Edit here; pages import this file. Do NOT hardcode triggers/levels in pages.",
+  "_comment": "Canonical Guard System data — single source of truth. NT8 add-on (GA, v1.5.x): 6 trigger conditions x 5 response levels (Notify/Risk Alert/Acknowledge/Trading Pause/Disconnect) per MERIDIAN.md §6. Standalone apps (early access, 0.2.x): the next-generation 6-TIER ladder under 'standalone' below. Hard limits (max contracts + blocked entry order types, Guard tier, off by default) ship on BOTH products — see 'hardLimits'. Verified against the two product truth docs (meridian-testbench/docs/GUARD-FOR-WEBSITE.md + NT8 AddOns/GUARD_REFERENCE.md) 2026-06-26. Honesty rule: 'un-bypassable' belongs ONLY to the Tradovate eval/demo broker-level lock (see standalone.safety); app/OS layers add real in-the-moment friction but a determined trader on another device can get around them. Edit here; pages import this file. Do NOT hardcode triggers/levels in pages.",
   "triggers": [
     {
       "name": "PSI Below",
@@ -37,13 +37,13 @@
       "level": "L2",
       "name": "Risk Alert",
       "color": "#0d9488",
-      "desc": "Persistent HUD banner. Every entry requires active confirmation."
+      "desc": "A persistent HUD banner that stays up while the condition holds and clears on its own. Non-blocking — it keeps the risk in your face, it does not gate entries."
     },
     {
       "level": "L3",
       "name": "Acknowledge",
       "color": "#d97706",
-      "desc": "Type your own pre-written phrase and wait out a countdown timer before continuing."
+      "desc": "Type your own pre-written phrase and wait out a countdown before continuing. This is the level that blocks the entry until you confirm."
     },
     {
       "level": "L4",
@@ -58,6 +58,13 @@
       "desc": "Severs broker connection. Optional re-disconnect if you try to bypass."
     }
   ],
+  "hardLimits": {
+    "_comment": "Standing enforcement, NOT a triggered rule. Guard-tier, off by default. Ships on BOTH NT8 and the standalone apps.",
+    "name": "Hard limits",
+    "short": "A standing cap you set while calm.",
+    "desc": "A max-contracts ceiling and blocked entry order types, set once while you're calm (Guard tier, off by default). A resting order over the cap or of a blocked type is cancelled at submission; a market order that slips through is trimmed back to the cap. Closing or reducing a position is never blocked.",
+    "platforms": "Both NinjaTrader 8 and the standalone Tradovate & Ironbeam apps."
+  },
   "examples": [
     {
       "name": "Daily Loss Limit",
@@ -88,6 +95,38 @@
       "name": "Session Length Rule",
       "rule": "Session over 180 minutes",
       "action": "Acknowledge required"
+    }
+  ],
+  "standaloneExamples": [
+    {
+      "name": "Daily Loss Limit",
+      "rule": "P&L below -$500",
+      "action": "Cut (firewall block)"
+    },
+    {
+      "name": "Revenge Trade Check",
+      "rule": "3 consecutive losses",
+      "action": "Acknowledge + phrase"
+    },
+    {
+      "name": "Tilt Early Warning",
+      "rule": "PSI below 65",
+      "action": "Notify"
+    },
+    {
+      "name": "Hard Tilt Stop",
+      "rule": "PSI below 45 + P&L below -$300",
+      "action": "Cool-down Wall"
+    },
+    {
+      "name": "Position Risk Monitor",
+      "rule": "Unrealized below -$400",
+      "action": "Alert"
+    },
+    {
+      "name": "Session Length Rule",
+      "rule": "Session over 180 minutes",
+      "action": "Pause (Cancel Orders)"
     }
   ],
   "utility": [
@@ -151,14 +190,14 @@
         "name": "Cut",
         "color": "#b91c5c",
         "short": "Blocks orders from leaving your PC.",
-        "desc": "Cuts this PC's network path to the broker's order servers via the Windows firewall — a blunt, machine-wide block, so an order physically cannot leave. The one stop that holds even a market order on a prop account. Needs admin rights; lifts automatically when the window ends."
+        "desc": "Cuts this PC's network path to the broker's order servers via the Windows firewall — a blunt, machine-wide block, so an order physically cannot leave. The one stop that holds even a market order from that PC (a phone or second device is outside it). Needs admin rights; lifts automatically when the window ends."
       }
     ],
     "perRuleOptions": [
       {
-        "name": "Reverse market order",
+        "name": "Automatic slipped-entry trim",
         "tier": "Pause",
-        "desc": "If a market order slips through in the firing instant, immediately send the opposite order (costs a round-trip commission)."
+        "desc": "Built in, not a toggle: if a market order slips through in the firing instant, Guard trims it back to where you were when the pause started — your existing position is never touched."
       },
       {
         "name": "Soft / hard wall",
@@ -187,7 +226,7 @@
       },
       {
         "name": "Broker-level lock",
-        "desc": "On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only) — enforcement at the broker, not just in the app. Funded/live accounts do not expose this API; Ironbeam enforcement is app-level."
+        "desc": "On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only) — enforcement at the broker, so it holds even if you close the app, reboot, or log in from your phone. This is the one device-proof stop. Funded/live accounts do not expose this API; Ironbeam enforcement is app-level."
       }
     ]
   }

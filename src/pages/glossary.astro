@@ -76,7 +76,7 @@ const terms = [
     id: 'network-cut',
     term: 'Network Cut (Cut)',
     definition:
-      'Tier 6 of Guard v2 — the hardest stop on the standalone Meridian apps (early access). Cut blocks the broker order servers in the Windows firewall, so an order physically cannot leave the PC. Because the block sits at the network layer and is machine-wide, it holds even for a market order on a prop account — and anything sharing that connection (including charts) can go dark for the window. It lifts automatically when the rule window ends.',
+      'Tier 6 of Guard v2 — the hardest stop on the standalone Meridian apps (early access). Cut blocks the broker order servers in the Windows firewall, so an order physically cannot leave the PC. Because the block sits at the network layer and is machine-wide, it holds even for a market order from that PC (a phone or second device is outside it) — and anything sharing that connection (including charts) can go dark for the window. It lifts automatically when the rule window ends.',
     related: ['guard-system', 'cool-down-wall'],
   },
   {
@@ -97,7 +97,7 @@ const terms = [
     id: 'intel-layer',
     term: 'Intel Layer',
     definition:
-      'An analytics feature in Meridian Guard that aggregates session history into actionable intelligence. It includes: Monthly Digest — a behavioral grade and trend summary across the prior month; Weekday Patterns — which days of the week historically show higher or lower PSI for that trader; PSI × P&L Correlation — whether Stable sessions produce better trading outcomes than Critical sessions for this individual; Today\'s Risk Brief — a pre-session summary generated each morning from the trader\'s own historical data.',
+      'An analytics feature included in Meridian Core (on every plan, Guard included) that aggregates session history into actionable intelligence. It includes: Monthly Digest — a behavioral grade and trend summary across the prior month; Weekday Patterns — which days of the week historically show higher or lower PSI for that trader; PSI × P&L Correlation — whether Stable sessions produce better trading outcomes than Critical sessions for this individual; Today\'s Risk Brief — a pre-session summary generated each morning from the trader\'s own historical data.',
     related: ['guard-system', 'session-review'],
   },
   {
