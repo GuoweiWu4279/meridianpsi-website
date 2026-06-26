@@ -61,6 +61,17 @@
 - **永久规则(Gary 2026-06-19 确认)**:前 8 周只看领先指标,**不设试用/收入硬指标**。目标 = 信任 + 节奏 + 一小撮试用。**Phase 1 成功判据 = comment karma ≥150 + 日常节奏真在跑 + 非零"自报来自 Reddit"的试用。**
 - **改的层**:本条 + `PLAYBOOK.md` 三阶段。
 
+## L8 — GEO 和 Reddit 是一个系统;闭环要"接线"不是"画图"(2026-06-25,Gary 点出 + rigor 审计)
+- **症状**:我把 GEO↔Reddit 整合写成了两篇好文档 + 一句"以后我手动把目标贴进 queue"。按 Gary 的工厂评分卡(memory `factory-rigor-audit`),这是"伪装成 self-improve 的 self-check":强制器是提醒型 = proven corpse,会触发 0 次;可引用性规则躺在"叫你去读"的文档里(producer-blind);没证明最小原子。
+- **根因**:把"系统"当"计划"做了。GEO 审计每周早就抓到了 AI 引用的 Reddit 帖 URL,但那条情报"流向虚无"——没有代码把 audit 接到 queue,全靠人手 narrate。
+- **永久规则**:① 闭环要**机械接线**——`geo_audit.py` 每轮自动 `write_geo_targets()` → `GEO-TARGETS.md`(生产时强制,不靠记)。② 质量规则进**起草者必过的闸**(COMMENT-ANATOMY §8 item 7),不另写"去读"文档。③ **先证明最小原子**(一条真帖→一条过闸评论→入列→下轮看动没动)再加底座。④ 学习写回是 self-improve 的另一半,本节(L9)就是第一条——别让它静默不发生。
+- **改的层**:`geo_audit.py`(加 forcing function)、`COMMENT-ANATOMY.md §8`(折入可引用性)、`GEO-INTEGRATION.md §2/§3/§6`、本条。
+
+## L9 — 第一条 GEO 数据反馈:我们的品类在 off-site 是无主之地(2026-06-25 多引擎实测)
+- **事实**:8 个定位最像的竞品(TradePit/MindGuard/Anchor/Tier Lock/Vyron/CTX/Zentra/PropPulser)**全部零 Reddit、零目录、零第三方报道**;AI"点名"它们只因自家页被爬到(`utm_source=openai`),脆且临时。真正有护城河的是另一个品类——硬锁工具。`reddit.com` 是 AI 引用的第 2 大域名。
+- **永久规则(targeting)**:这是**圈地窗口不是追赶**。打法 = 在 AI 已引用的 confessional 帖里(GEO-TARGETS Lane A)做披露式真价值评论,把 Meridian 接进引擎的来源;角度 = 桥接"硬锁(他们有/搜索者要)+ 行为层(只有我们有)",不跟硬锁比谁锁得狠。
+- **改的层**:本条 + `GEO-INTEGRATION.md §0/§5` + `GEO-FINDINGS-2026-06-25.md`。
+
 ---
 
 ## 帖子数据反馈(开始记 — 每周日复盘填,反哺 ARTIFACTS 和打分)

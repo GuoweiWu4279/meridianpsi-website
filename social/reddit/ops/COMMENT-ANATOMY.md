@@ -92,3 +92,12 @@ Study these approved samples in `../../voice-samples.md` (they pass all tests):
 4. If the product is named: disclosed, one sentence, no link, NT8 caveat? (Test C)
 5. VOICE.md AI-tell scan: zero hits. No em dash, no exclamation, no clinical words (esp. r/Daytrading).
 6. Read it aloud in my head: a real trader typing, or a brand performing? If brand, rewrite.
+7. **GEO add — ONLY if this thread came from `GEO-TARGETS.md` (a Lane-A cited thread).** These make a
+   trust-passing comment *retrievable/quotable* by AI engines. **They never override 1–6 — a comment that
+   fails any trust gate does not ship, citability be damned.** (Why: engines cite single comments, not threads,
+   and reward named entities + recency — see `../../GEO-INTEGRATION.md` §3.)
+   - a. **Self-contained:** reads correctly with zero thread context; the answer is in sentence 1.
+   - b. **If the product is already named** (it passed 3+4), name it *exactly* — "Meridian" / "PSI 0–100" / "Guard",
+     never "this tool / it". Do NOT add a mention just to name-drop; b only applies once C has cleared the mention.
+   - c. **The one trader-detail from item 2 is concrete + datable** ("as of 2026, …"). Same specificity as item 2,
+     not a second detail — just make it nameable and time-stamped.
