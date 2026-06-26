@@ -18,10 +18,13 @@ notes: |
   MERIDIAN.md (Guard 5-level names, Strict Lock, honest v1.5 privacy, Intel-in-
   Core). Passed all three gates (VOICE.md AI-tell scan / compliance / fact).
   This post is the reference EXEMPLAR for the "Pinned intro" row in ops/ARTIFACTS.md.
-  ⚠️ LIVE-SYNC CHECK (per PLAYBOOK "live-post re-sync" rule): this v7 source was PUBLISHED
-  2026-06-10, but the canonical free-trial length later changed 7-day -> 14-day (2026-06-14),
-  AFTER this went live. The live pinned snapshot Gary pasted may still say 7-day. Verify the
-  live post against this source (esp. trial length) and re-sync the body if it drifted.
+  ✅ LIVE-SYNC CHECK — RESOLVED 2026-06-26: the live pinned snapshot HAD drifted — it still said
+  "7-day free trial" plus several typos ("risk tool on the marker", "Most tool", "we watches the
+  infrequencies", "We also uses", "then seeing it in real number"). Gary re-pasted a corrected
+  version on 2026-06-26 (14-day card-required trial + typos fixed; facts re-verified vs MERIDIAN.md/
+  CANON: v1.5.4, multi-platform NT8+Tradovate/Ironbeam early access, Guard 5-level names, local-first).
+  This SOURCE was already 14-day + clean; only the live manual-paste snapshot (predating the 06-14
+  trial change) was stale. Live now matches source on facts.
   To update: edit the post body and insert the three screenshots at the [IMAGE] markers
   (rich-text editor). If editing doesn't allow inserting images, delete the old pinned post,
   submit this as a new image+text post, and re-pin (we are mod of r/MeridianPSI).
@@ -94,7 +97,7 @@ Meridian does not place trades and does not promise results. It watches what you
 
 Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. There is a 14-day free trial.
 
-It is an Official NinjaTrader Ecosystem Vendor, audited by NinjaTrader's compliance, QA, and executive teams. It is local-first: your sessions, baselines, and journal stay on your machine, and it never collects your name, broker credentials, account numbers, or funds. The only things that leave your PC are a license check and anonymized research records tied to a random ID, which you can opt out of. That is also why it runs inside prop firm environments.
+It is an Official NinjaTrader Ecosystem Vendor, audited by NinjaTrader's compliance, QA, and executive teams. It is local-first: your sessions, baselines, and journal live on your own machine, which is also why it runs inside prop firm environments.
 
 **Questions**
 

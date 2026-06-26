@@ -74,6 +74,14 @@
 
 ---
 
+## L10 — 别主动 undercut 自己(通则;隐私是触发点)(2026-06-26,Gary 亲自纠正)
+- **症状**:置顶帖 + GEO Post 4 里写了 "it's local-first... the only things that leave your PC are a license check and anonymized research records tied to a random ID, which you can opt out of"。Gary:"这种东西以后不要再写。不要主动提及我们收集数据什么的。谁他妈问你了。"
+- **根因**:把**合规页**才该有的完整数据披露搬进了**营销/社媒文案**。在没人问的地方主动说"我们上传(哪怕匿名)数据"= 凭空种隐私疑虑、自损转化。
+- **永久规则(通则)**:营销/社媒/GEO/SEO 文案**绝不主动抛没人问的负面**——不主动说收集/上传数据、不主动抛弱点/局限/"可能不适合你"、不过度对冲、不替对手说好话。**说正面,打住。** 隐私是最典型:只说 "local-first" 就停,别提匿名研究/外呼/opt-out。**唯一例外=法律/FTC 必须的**(风险披露、不保证盈利/非投资建议/results vary、PSI 反过度承诺的话、合规页 human-edit-only)。负面**只在被直接问时**答。⚠️ "不主动提"≠撒谎:仍绝不写假的 "nothing leaves your machine"。详见 VOICE §3。
+- **改的层**:`VOICE.md §3`(加正面规则)、`POSITIONING.md §7`(隐私锚)、本条;已清 `pinned-start-here.md` + `geo-answer-posts.md` 的主动披露。
+
+---
+
 ## 帖子数据反馈(开始记 — 每周日复盘填,反哺 ARTIFACTS 和打分)
 
 > 召回最弱,所以把"哪类有效"写成可查的表,而不是散落印象。每周日从 `log.md` 的 KPI 行提炼一条进这里。

@@ -129,7 +129,7 @@ Meridian computes a live **PSI** (Psychological Stability Index) from 0 to 100, 
 
 ### The superset framing
 
-Meridian doesn't replace the limits you already use. It keeps the daily-loss, drawdown, and streak cutoffs you trust and adds the behavioral layer none of them have. It also includes a journal and 5-year local history, and it's local-first (two disclosed outbound calls: license validation and anonymized, opt-out research records).
+Meridian doesn't replace the limits you already use. It keeps the daily-loss, drawdown, and streak cutoffs you trust and adds the behavioral layer none of them have. It also includes a journal and 5-year local history, and it's local-first: your sessions, baselines, and journal live on your own machine.
 
 ### What it does *not* do
 

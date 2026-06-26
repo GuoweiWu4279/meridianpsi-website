@@ -39,7 +39,12 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 
 ---
 
-## 账号策略（两个号，用途分清）— 2026-06-19 定
+## 账号策略 — 2026-06-26 改:**单号** u/MeridianPSI（Gary 定，下面的双号方案作废）
+
+> **2026-06-26 Gary 定:就用一个号 u/MeridianPSI**（品牌号),它同时做①自有 sub r/MeridianPSI 和②外部 sub 的评论。下面 2026-06-19 的"双号(品牌号+个人号 u/livingpeatut5196)"方案**作废**(个人号不用了)。
+> **实施注意(因为是品牌号下外部评论):** 品牌号在别人帖里第一人称"我做的"更容易触发 mod 的自推过滤(历史已≥4条被删)。所以外部评论**更要纯价值为主**、提产品时披露要自然("I'm the founder, obviously biased")、**严 sub(r/Daytrading)宁可不提产品**、绝不冒充中立用户(astroturfing 永久红线不变)。Phase-1 攒 karma 照常(此号现 22 karma)。
+
+### (历史)双号方案 — 2026-06-19 定（已被上面 2026-06-26 单号决定取代，留档）
 
 - **u/MeridianPSI（品牌号）= 只管自有 sub**：r/MeridianPSI 的置顶、公告、founding 帖、AMA、版本更新。品牌口吻在自己地盘名正言顺。
 - **u/livingpeatut5196（个人号）= 外部 sub 的 founder/同行评论**：r/Daytrading、r/FuturesTrading、r/Trading 等。这是 Gary 本人、一个真交易者；绝大多数评论纯帮忙不提产品，**真提产品必披露**"I built it, biased"。用户名不顶品牌 logo，读者看到的是"一个人"不是"一家公司"（默认 username 风格反而像普通潜水用户，挺好，不用改）。
