@@ -692,6 +692,10 @@ const v2 = guardData.standalone;
   </section>
 
   <style>
+    /* The example panels carry Tailwind `.grid`, whose author rule (display:grid)
+       overrides the UA `[hidden]{display:none}` — so the platform toggle could not
+       hide them. Force hidden to win so only the picked platform's panel shows. */
+    [hidden] { display: none !important; }
     .guard-intel-view {
       opacity: 0;
       z-index: 0;
