@@ -48,6 +48,6 @@ Plans: **Meridian Core** and **Meridian Guard**, via **Whop**, with a **14-day f
 ## Platform & Compliance
 
 - Runs as a **NinjaTrader 8 add-on (Windows)** or a **standalone app** (Tradovate / Ironbeam, early access). NT7 is not supported.
-- **Privacy:** data is local; no telemetry/analytics; the only outbound calls are license validation + update check (broker traffic is the user's own).
+- **Privacy:** local-first; the only outbound calls are (1) license validation/update check and (2) anonymized behavioral research data, which is opt-out. Broker traffic is the user's own.
 - **Official NinjaTrader Ecosystem Vendor** (approved by NinjaTrader Compliance / QA / Executive, May 2026). Canonical line: *"Meridian is an Official NinjaTrader Ecosystem Vendor. NinjaTrader® is a registered trademark of NinjaTrader LLC. Meridian is operated by an independent company and is a third-party add-on for NinjaTrader 8."* Do **not** write "not affiliated with NinjaTrader" (inaccurate since May 2026) — use "independently operated" + "Official Ecosystem Vendor". NT affiliate link: `https://ninjatraderus.pxf.io/jROzm0`.
 - Every page that mentions trading must include/link the risk disclaimer: **Trading involves substantial risk of loss.**

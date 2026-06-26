@@ -180,6 +180,10 @@ Your nervous system learnt to treat market exposure itself as a threat — not t
 ---
 
 ### 2026-05-09 Reddit — struggling to stop after hitting daily loss limit
+> ⚠️ **DO-NOT-IMITATE (flagged 2026-06-25 — reuse the LOGIC, not the wording).** Two now-banned moves: (1) "your brain
+> releases cortisol and adrenaline" = clinical-chemistry wording, banned esp. r/Daytrading (VOICE Tell / COMMENT-ANATOMY §5);
+> (2) "there were no tools on the market" = banned only/no-tools claim. The hard-friction mechanism + "drunk person
+> supervising themselves" analogy are good and reusable; the chemistry and the "no tools" framing are not.
 
 **Original post:**
 > "Anyone else struggle to stop trading after hitting your daily loss limit? I have been trading crypto futures... Hit my daily limit, know I should close the platform, and somehow find myself placing another trade 20 minutes later trying to make it back. The next hour is always worse. Do you actually stick to it? Have you tried anything to enforce it — alarms, accountability partners?"
@@ -420,6 +424,9 @@ Your nervous system learnt to treat market exposure itself as a threat — not t
 ---
 
 ### 2026-05-07 Reddit — NT8 risk management tools
+> ⚠️ **STALE PRIVACY CLAIM (flagged 2026-06-25 — do not reuse that line).** The reply says "Local-only, no data leaves
+> your machine" — FALSE since v1.5.0 (two disclosed outbound calls: license validation + anonymized research; MERIDIAN.md §9,
+> VOICE §3). Correct framing = "local-first". The behavioral-layer-vs-P&L-floor argument is good; the privacy sentence is wrong.
 
 **Original post:**
 > "What risk management tools do you guys use on NinjaTrader? Looking for something beyond the built-in daily loss limit."

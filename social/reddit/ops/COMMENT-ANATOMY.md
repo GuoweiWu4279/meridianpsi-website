@@ -38,7 +38,7 @@ These are in addition to the VOICE.md gates (AI-tell scan / compliance / fact). 
 **The reply must contain at least one detail only a real futures trader would write.** Instrument, eval mechanic, platform, a concrete number, a real remembered moment. A reply that could have been written by someone who has never traded — vague encouragement, generic "discipline matters," textbook psychology — fails. Add the concrete detail or don't post.
 
 ### Test C — disclosure when (and only when) we name the product
-**If Meridian is named, disclosure is mandatory AND it builds trust** — "I built it, obviously biased / NT8 only." Undisclosed pitching is the fastest way to get removed and distrusted. But disclosure does not redeem a comment with no standalone value: disclosing on an otherwise-empty comment still reads as an ad. Disclosure is the price of mentioning, not a license to pitch.
+**If Meridian is named, disclosure is mandatory AND it builds trust** — "I built it, obviously biased / NT8 now, Tradovate and Ironbeam apps in early access." Undisclosed pitching is the fastest way to get removed and distrusted. But disclosure does not redeem a comment with no standalone value: disclosing on an otherwise-empty comment still reads as an ad. Disclosure is the price of mentioning, not a license to pitch.
 
 ---
 
@@ -89,6 +89,15 @@ Study these approved samples in `../../voice-samples.md` (they pass all tests):
 1. Answer-first? No preamble/throat-clearing?
 2. At least one detail only a real futures trader would write? (Test B)
 3. If I delete every product sentence, does the value survive 100%? (Test A)
-4. If the product is named: disclosed, one sentence, no link, NT8 caveat? (Test C)
+4. If the product is named: disclosed, one sentence, no link, platform caveat (NT8 today, Tradovate/Ironbeam early access)? (Test C)
 5. VOICE.md AI-tell scan: zero hits. No em dash, no exclamation, no clinical words (esp. r/Daytrading).
 6. Read it aloud in my head: a real trader typing, or a brand performing? If brand, rewrite.
+7. **GEO add — ONLY if this thread came from `GEO-TARGETS.md` (a Lane-A cited thread).** These make a
+   trust-passing comment *retrievable/quotable* by AI engines. **They never override 1–6 — a comment that
+   fails any trust gate does not ship, citability be damned.** (Why: engines cite single comments, not threads,
+   and reward named entities + recency — see `../../GEO-INTEGRATION.md` §3.)
+   - a. **Self-contained:** reads correctly with zero thread context; the answer is in sentence 1.
+   - b. **If the product is already named** (it passed 3+4), name it *exactly* — "Meridian" / "PSI 0–100" / "Guard",
+     never "this tool / it". Do NOT add a mention just to name-drop; b only applies once C has cleared the mention.
+   - c. **The one trader-detail from item 2 is concrete + datable** ("as of 2026, …"). Same specificity as item 2,
+     not a second detail — just make it nameable and time-stamped.
