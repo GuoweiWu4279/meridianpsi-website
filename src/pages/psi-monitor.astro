@@ -69,7 +69,7 @@ const monitorJsonLd = {
         'Adaptive baseline calibrated to the individual trader, not a generic average',
         'Always-on HUD overlay on the NinjaTrader 8 chart',
         ...signals.map((s) => `${s.name} detection`),
-        'Local-first, anonymized, opt-out data — never your name, broker credentials, account numbers, or funds',
+        'Local-first — your data stays on your machine; never your name, broker credentials, account numbers, or funds',
       ],
       publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
     },
@@ -134,7 +134,7 @@ const signalIcons: Record<string, string> = {
       </span>
       <span class="text-zinc-300">|</span><span>Updates in &lt;100ms after every fill</span>
       <span class="text-zinc-300">|</span><span>Calibrated to your own baseline</span>
-      <span class="text-zinc-300">|</span><span>Local-first, anonymized, opt-out data</span>
+      <span class="text-zinc-300">|</span><span>Local-first — your data stays on your machine</span>
     </div>
   </section>
 
@@ -256,7 +256,7 @@ const signalIcons: Record<string, string> = {
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div class="grid md:grid-cols-3 gap-5" data-reveal>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Runs where your orders live</div><p class="text-sm text-zinc-600">Native add-on inside NinjaTrader 8 &mdash; no bridge, no manual logging. On Tradovate or Ironbeam accounts, a standalone app reads your order flow directly (early access).</p></div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first; the only data that ever leaves is anonymized and opt-out.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first — your fills, baseline, and session history stay on your machine.</p></div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">The score, then the action</div><p class="text-sm text-zinc-600">The Monitor reads and warns. When you want it to step in, <a href="/guard" class="text-emerald-700 font-medium hover:underline">Guard</a> enforces the limits you set &mdash; before the order, not after the loss.</p></div>
     </div>
   </section>

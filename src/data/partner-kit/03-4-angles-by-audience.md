@@ -60,7 +60,7 @@ Different segments of the NT8 trading community respond to different entry point
 - The "typed acknowledgment" response level — a phrase the trader writes when calm, typed when not; high signal-to-friction ratio
 - Strict Lock — arm it when calm and a fired pause can't be bypassed for its whole window; the commitment device for the moment the tilted version of you goes looking for the off switch (per-rule password locks also exist for individual rules)
 - The idea of making your trading plan machine-enforceable, not just written down
-- Local processing and storage on your machine; the only data that leaves is anonymized research data (no PII), never sold or shared, opt-out anytime
+- Local processing and storage on your machine; no login, no personal accounts, no PII collected
 
 **What to avoid:** Don't oversell Guard as a replacement for trading discipline. It creates friction against impulsive actions — the discipline itself still has to come from the trader.
 
@@ -89,7 +89,7 @@ Yes. Meridian works with any account connected through NT8, including prop firm 
 You can — unless you password-locked the rule. Most traders pick a password they won't remember under pressure as a deliberate friction device. You always design how much enforcement you want; we don't.
 
 **"Is my trading data safe? Going to the cloud?"**
-Your behavioral data, baselines, and session history live on your machine. Two requests go out: license validation with Whop, and an anonymized research upload — trading and behavioral records tied only to a random identifier (no name, credentials, account numbers, or funds), never sold, used solely to improve the product and for research. It's best-effort (the product works fully if it's blocked) and you can opt out anytime by email.
+Your behavioral data, baselines, and session history live on your machine — no name, credentials, account numbers, or funds are collected. The only routine outbound call is license validation with Whop; full detail on the limited anonymized research data, and how to turn it off, is in the Data & Research Notice.
 
 **"How long until it's actually useful?"**
 The first session works but signals are wide. By session 5–10 the baseline is meaningfully calibrated. By session 20–30 it's tight. There's no minimum session count to start, just diminishing wide-confidence-interval-ness as it learns you.

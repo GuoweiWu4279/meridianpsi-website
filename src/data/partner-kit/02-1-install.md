@@ -32,7 +32,7 @@ Meridian runs as an NT8 add-on. It is **not a chart indicator** and does **not**
 
 **Step 5 — Activate your license**
 
-In the Dashboard, open the **License tab**, paste your license key, and click **Activate**. License validation requires an internet connection (one outbound call to Whop, carrying only a license identifier). Meridian is local-first — your session history stays on your machine — and the only other data that leaves is anonymized, opt-out research telemetry you can turn off any time.
+In the Dashboard, open the **License tab**, paste your license key, and click **Activate**. License validation requires an internet connection (one outbound call to Whop, carrying only a license identifier). Meridian is local-first — your session history stays on your machine.
 
 **Step 6 — Configure your profile**
 

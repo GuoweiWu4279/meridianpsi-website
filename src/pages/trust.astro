@@ -15,7 +15,7 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Trust & Security',
   description:
-    'Anonymous by design. Meridian never collects your name, credentials, account numbers, or funds — telemetry is local-first, anonymized, and opt-out. No profit guarantees.',
+    'Local-first by design. Meridian never collects your name, credentials, account numbers, or funds. No profit guarantees.',
   robots: { index: true, follow: true },
 };
 
@@ -69,9 +69,7 @@ const neverDoes = [
         Anonymous by design.<br />Honest about the rest.
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian runs on your Windows PC — inside NinjaTrader 8, or as a standalone app connected to your Tradovate or Ironbeam account (early access). It never collects your name, broker credentials, account
-        numbers, or funds. Telemetry is <strong class="text-zinc-800">local-first, anonymized, and opt-out</strong> — tied
-        only to a random identifier, never sold. This page states exactly what the software does, and what it does not.
+        Meridian runs on your Windows PC — inside NinjaTrader 8, or as a standalone app connected to your Tradovate or Ironbeam account (early access). It never collects your name, broker credentials, account numbers, or funds, and never sells your data — your record is local-first and stays with you. This page states exactly what the software does, and what it does not.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[13px] text-zinc-500">
         <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
@@ -91,8 +89,7 @@ const neverDoes = [
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT LEAVES THE MACHINE</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Local-first — and specific about it.</h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          We don't claim "fully offline" — Meridian does make two external requests. Both are stripped of anything that
-          could identify you, and the product keeps working even if you block them.
+          Meridian is local-first. The two requests it does make — license check and optional research data — carry nothing that could identify you, and the product keeps working even if you block them.
         </p>
       </div>
       <div class="grid md:grid-cols-2 gap-5" data-reveal>

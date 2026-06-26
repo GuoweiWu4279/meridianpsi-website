@@ -31,7 +31,7 @@
     {
       "id": "local-only",
       "title": "No accounts, anonymous by design",
-      "description": "No login, no personal accounts. Meridian never collects your name, broker credentials, account numbers, or funds. Data used to improve the product is anonymized — tied to a random ID, never your identity — and is never sold. Opt out anytime.",
+      "description": "No login, no personal accounts. Meridian never collects your name, broker credentials, account numbers, or funds. Your trades, baselines, and session history stay on your machine.",
       "icon": "tabler:cloud-off",
       "category": "privacy"
     },

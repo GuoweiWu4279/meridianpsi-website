@@ -67,7 +67,7 @@ const featuresJsonLd = {
         'Meridian Guard — 6 trigger types on an escalating ladder (5 levels on NinjaTrader 8; 6-tier Guard v2 with Cool-down Wall and firewall Cut on the standalone apps)',
         'Strict Lock — makes every fired pause un-bypassable for its full window',
         'Intel & Stats — PSI × P&L correlation and behavioral breakdowns',
-        'Local-first, anonymized, opt-out telemetry — never name, broker credentials, account numbers, or funds',
+        'Local-first — your fills, baseline, and session history stay on your machine; never name, broker credentials, account numbers, or funds',
         'Native NinjaTrader 8 add-on',
         'Standalone apps for Tradovate and Ironbeam accounts (early access)',
         'Prop firm evaluation compatible',
@@ -102,7 +102,7 @@ const featuresJsonLd = {
           name: 'What data does Meridian collect?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Telemetry is local-first, anonymized, and opt-out. Meridian never collects your name, broker credentials, account numbers, or funds. Your fills, baseline, and session history stay on your machine.',
+            text: 'Your fills, baseline, and session history stay on your machine. Meridian never collects your name, broker credentials, account numbers, or funds.',
           },
         },
       ],
@@ -251,9 +251,7 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
     <div data-reveal class="max-w-3xl mx-auto px-6 py-16 text-center">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">ANONYMOUS BY DESIGN</p>
       <p class="text-xl md:text-2xl text-zinc-800 leading-relaxed">
-        No login, no accounts. Your fills, baseline, and session history stay on your machine. Telemetry is
-        <span class="font-semibold text-zinc-900">local-first, anonymized, and opt-out</span> — never your name, broker
-        credentials, account numbers, or funds.
+        No login, no accounts. Your fills, baseline, and session history stay on your machine — never your name, broker credentials, account numbers, or funds.
       </p>
     </div>
   </section>

@@ -13,7 +13,7 @@ faqs:
   - q: "What instruments does it support?"
     a: "Any instrument you can trade through a supported platform. On NinjaTrader 8 that includes futures, forex, stocks, and options; the standalone apps cover whatever your Tradovate or Ironbeam account trades. The behavioral signals are instrument-agnostic — they monitor your execution behavior, not the market you're trading."
   - q: "Does my trading data go to the cloud?"
-    a: "Only an anonymized copy, and only if you don't opt out. Your behavioral data, session history, and PSI baseline are stored locally on your machine. Two requests go out: license validation with Whop, and an anonymized research upload — trading and behavioral records tied only to a random identifier (no name, credentials, account numbers, or funds), never sold, used solely to improve the product and for research. It's best-effort (the product works fully if it's blocked) and you can opt out anytime by email."
+    a: "Your behavioral data, session history, and PSI baseline are stored locally on your machine — no name, credentials, account numbers, or funds are ever collected, and there are no logins or personal accounts. The only routine outbound call is license validation with Whop. Full detail on the limited anonymized data used for product research — and how to turn it off — is in the Data & Research Notice on the site."
   - q: "Does it affect execution speed or latency?"
     a: "No measurable impact. Meridian runs as a native NT8 add-on and processes account and execution events that NinjaTrader already fires internally. It does not intercept or delay your order routing."
   - q: "What exactly happens when Guard disconnects the broker?"
