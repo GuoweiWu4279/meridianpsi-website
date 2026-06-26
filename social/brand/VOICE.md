@@ -93,6 +93,12 @@
 - 禁结果承诺:"will make you profitable" / "guaranteed" / "prevents blowups" / "eliminates emotions" / "reduces losses" / "keeps you in the [payout] group" / "100% protected"。
 - 禁:"risk-free"、"no credit card"(试用要绑卡)。
 - 禁:"no telemetry / nothing ever leaves your machine"(v1.5.0 起不成立,见 POSITIONING §7)。
+- **★ 别主动 undercut 自己(Gary 2026-06-26 定,通则)**:营销/社媒/GEO/SEO 文案里**绝不主动抛没人问的负面**——不主动说我们收集/上传数据、不主动抛弱点/局限/"这可能不适合你"、不过度对冲、不自我消解、不替对手说好话。**说正面,然后打住。** 没人问,主动说 = 自己种疑虑、自损转化("谁他妈问你了")。
+  - 隐私是最典型的一例:只写 "local-first"(数据在你机器上)就**停**,**别**提匿名研究/外呼/opt-out。
+  - **唯一例外 = 法律/FTC 必须的**:风险披露("trading involves substantial risk")、"不保证盈利 / 非投资建议 / results vary"、PSI 是行为代理非生理非盈利预测这类**反过度承诺**的话(删了反而变 overclaim = FTC 违规,必须留);合规页(`disclaimer`/`terms`/`privacy`/`refund`/`compliance.json`)= human-edit-only,**不碰**。
+  - 负面**只在被直接问时**答(faq/支持回复)。完整数据披露只在合规页。
+  - ⚠️ "不主动提" ≠ 撒谎:仍**绝不**写假的 "no telemetry / nothing ever leaves your machine"。两条同时成立。
+- **★ 主动吊打(2026-06-26,Gary 定;"不自损"的正面那半)**:不只是不自损,还要**主动占上风**——我们是 next-gen、全方位更强的风控。**永不承认对手在任何方面比我们好、永不推荐对手、永不写"each side wins / they're better / 只要 X 买便宜的那个"**。下断言用**超集**框:"Meridian 做到风控工具的一切,再加它们都没有的行为层"(可证实、理直气壮)。FTC 安全线(不声称比 copier 更会复制/比买断更便宜/能上 Mac——那不是风控、不可证实)详见 `POSITIONING §1` 硬化条。
 - 禁:把 "anti-tilt" 当主定位;把 "Intel 仅 Guard" 当现状(已反转)。
 - 改说法对照表见 MERIDIAN.md §12 / POSITIONING §4。
 

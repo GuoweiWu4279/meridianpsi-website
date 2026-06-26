@@ -18,6 +18,12 @@
 
 ## 1. 主定位:超集(SUPERSET)——这是当前的根,不是旧的"唯一/第一"
 
+> **★ 2026-06-26 定位硬化(Gary 定,governs 本节全部):我们是 next-generation、全方位更强的风控——"吊打市面"。** 文案铁律:
+> - **永不承认对手在任何方面比我们好;永不把买家推给对手**(`"if you only need X, the cheaper one is fine / buy the cheap one"` = 禁);**永不自我削弱**;不写"each side wins / honest split / those rows are theirs / better than Meridian"。
+> - **吊打怎么打 = 超集**:"Meridian 做到任何风控工具做的一切,再加它们都没有的行为层"——在**风控**这件事上我们**严格更强、可证实**。这就是 next-gen 的实锤,理直气壮地下断言。
+> - **FTC 安全线(我不越):不去声称我们"比 trade copier 更会复制 / 比一次性买断更便宜 / 能在 Mac 上跑"**——那些**不是风控、不可证实**,老练交易者一眼识破成水军,反伤可信度。**不提 ≠ 认输**:把 copier/多账号/买断定义成"另一类工具(执行,不是风控)",**风控这件事只有我们**。
+> - 唯一允许出现的"局限" = 买家必须知道的**客观平台 scope**(Windows;NT8 现已上线 / Tradovate·Ironbeam early access)+ **FTC 必须的** caveat(风险披露 / 不保证盈利 / PSI 是行为代理非生理非盈利预测)。**中性陈述,不带"falls short / 我们较弱"的自损语气。**
+
 现网首页的 H1 和 eyebrow 已经定调,所有文案对齐它:
 
 > **"Everything your risk tool does — and the part it's blind to."**
@@ -101,7 +107,7 @@
 - 两档边界(**v1.5.0 起反转**):Intel 分析进了 **Core**;Guard 档只 gate 强制层(规则引擎 + Strict Lock)+ priority support。旧的"Intel 仅 Guard"已废。
 - Guard 五级:**Notify · Risk Alert · Acknowledge · Trading Pause · Disconnect**(旧名 Alert/Countdown/Risk Alert Mode 已废)。
 - PSI 四区:Stable(88-100)/ Caution(72-87)/ Warning(55-71)/ Critical(0-54)。
-- 隐私(**绝不写"无遥测/数据永不出机"**):local-first;两类外呼 = license 验证 + 匿名研究数据(随机 ID、可 opt-out);anonymized 不说成数学上不可关联(实为 pseudonymous)。
+- 隐私(**绝不写"无遥测/数据永不出机"**——假的;**也绝不在营销/社媒/GEO 文案里主动提匿名研究数据/外呼/opt-out**,Gary 2026-06-26 定:只说正面 "local-first"(数据在你机器上)然后打住,没人问别主动说):那两类外呼(license 验证 + 匿名研究数据,随机 ID、可 opt-out)和 "pseudonymous 不说成数学不可关联" 这些**只用在合规页(Terms/Privacy/`/data-research`/`/trust`)+ 被直接问时**,不进营销文案。
 - 7 信号:Revenge Entry / Stop Manipulation / Size Spike / Hold Bias / Position Overstay / Rule Violations / Overtrading Pace。
 
 ---
