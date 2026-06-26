@@ -14,9 +14,11 @@
 ```
 Subject: API access request — read-only monitoring for a founder account
 
-Hi, I'm the founder of Meridian (meridianpsi.com), a behavioral risk-management
-add-on for NinjaTrader 8. I'm requesting approval for a small read-only script
-app on my own account (single account, no third-party users).
+Hi, I'm the founder of Meridian (meridianpsi.com), a real-time trading-psychology
+and behavioral risk tool for futures traders. It runs as a NinjaTrader 8 add-on,
+with standalone desktop apps for Tradovate and Ironbeam in early access. I'm
+requesting approval for a small read-only script app on my own account (single
+account, no third-party users).
 
 Use case: reading new posts in a handful of trading subreddits (r/Daytrading,
 r/FuturesTrading, r/Trading) so I can personally join relevant discussions,

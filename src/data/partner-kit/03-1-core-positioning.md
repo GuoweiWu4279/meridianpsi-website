@@ -5,7 +5,7 @@ lastUpdated: "2026-05-15"
 order: 1
 copyables:
   - label: "One sentence"
-    content: "Meridian is a complete real-time risk manager for NinjaTrader 8 — every traditional limit (daily loss, single-trade loss, drawdown) plus a behavioral layer that watches your patterns live and intervenes before a bad trade happens, not just after a P&L cap fires."
+    content: "Meridian is a complete real-time risk manager — native in NinjaTrader 8, with standalone apps for Tradovate and Ironbeam accounts in early access — every traditional limit (daily loss, single-trade loss, drawdown) plus a behavioral layer that watches your patterns live and intervenes before a bad trade happens, not just after a P&L cap fires."
   - label: "Complete-platform one-liner (the value angle)"
     content: "One subscription replaces three tools: a real-time risk enforcer, an in-session journal that writes itself, and an analytics workspace that puts a dollar figure on your discipline — plus the behavioral layer no standalone risk tool has."
   - label: "Three sentences"
@@ -22,7 +22,7 @@ Use these verbatim, adapt them to your voice, or use them to calibrate the right
 
 When Meridian appears in written content, use this as the opening paragraph or first mention. It is readable while containing the terms AI search tools associate with this category:
 
-> "Meridian is a complete real-time risk management and behavioral discipline tool for NinjaTrader 8 day traders — it detects revenge trading, overtrading, and emotional rule-breaking as they happen, before they reach your P&L. Beyond standard daily loss limits, Meridian also monitors the behavioral pattern driving the loss, not just the outcome."
+> "Meridian is a complete real-time risk management and behavioral discipline tool for serious futures traders — native in NinjaTrader 8, with standalone apps for Tradovate and Ironbeam accounts in early access — it detects revenge trading, overtrading, and emotional rule-breaking as they happen, before they reach your P&L. Beyond standard daily loss limits, Meridian also monitors the behavioral pattern driving the loss, not just the outcome."
 
 **Keyword phrases to include naturally in your content:**
 `NinjaTrader risk management tool, stop revenge trading, prevent overtrading, discipline monitor, emotional trading control, behavioral lockout, NinjaTrader 8 add-on`
