@@ -29,6 +29,15 @@ see `GEO-FINDINGS §2`). This is a land-grab window, not a catch-up. That is the
 Using Reddit for GEO = **make `reddit.com` a source AI cites for our category**. Replying in other people's threads is
 only the smallest, slowest lever (and account-gated). Ranked by control × leverage:
 
+- **★ The full-source map drives all of this (`GEO-TARGETS.md`, upgraded 2026-06-26).** Every audit run now classifies
+  EVERY source AI cites per query — not just Reddit — and assigns the play per type (对症下药): **Reddit** → disclosed
+  comment + own-sub post; **content/editorial site** (daytrading.com, trademomentum…) → get cited there (pitch the
+  author / be the resource they link); **directory** → get listed (free land-grab); **broker forum/help-desk** (Tradovate
+  zendesk, tradeify…) → owned `/answers` page + community answers; **competitor product site** → can't enter, **DISPLACE**
+  via our `/compare`+`/answers` for that exact query + directory listings. It also captures the engine's literal search
+  terms when the API surfaces them. So each query is worked by its actual source mix; the levers below are the *plays*,
+  the map says which one each query needs. (06-26 aggregate: competitor sites ×47, ours ×17, broker/forum ×15, content
+  ×14, Reddit ×5.)
 - **★ Lever 1 — own subreddit (r/MeridianPSI) as a citable answer-corpus (BIGGEST, fully controllable, no karma gate,
   no astroturf risk).** Our own sub is on `reddit.com` (a domain AI trusts) and we control it 100%: we name Meridian /
   PSI / Guard freely, date facts, and structure each post so an engine can lift a clean chunk. We write one structured
