@@ -296,6 +296,31 @@ const howToGraph = JSON.stringify({
       </div>
     </section>
 
+    <!-- UPDATING? prominent amber callout (mirrors /download) -->
+    <section id="nt-update-callout" class="max-w-5xl mx-auto px-6 pt-10">
+      <div class="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6 md:p-7">
+        <div class="flex items-center gap-2.5 mb-2">
+          <svg class="w-6 h-6 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z" />
+          </svg>
+          <h2 class="text-lg md:text-xl font-bold text-amber-900">Already running Meridian? Update like this</h2>
+        </div>
+        <p class="text-sm text-amber-800 mb-4 leading-relaxed">
+          Meridian is a compiled add-on, so you must remove the old version first — otherwise NinjaTrader asks you to
+          &ldquo;replace&rdquo; dozens of files and can quietly keep running the old version.
+        </p>
+        <ol class="space-y-2 text-sm md:text-base text-amber-900">
+          <li class="flex gap-3"><span class="font-bold shrink-0">1</span><span>In NinjaTrader: <strong>Tools &rarr; Remove NinjaScript Assembly</strong> &rarr; select <strong>MeridianPSI</strong> &rarr; <strong>Remove</strong>.</span></li>
+          <li class="flex gap-3"><span class="font-bold shrink-0">2</span><span><strong>Restart NinjaTrader.</strong></span></li>
+          <li class="flex gap-3"><span class="font-bold shrink-0">3</span><span><strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> &rarr; choose the .zip you downloaded.</span></li>
+        </ol>
+        <p class="mt-4 text-sm text-amber-700 leading-relaxed">
+          Your license, settings, journal and Guard rules are kept automatically.
+          &nbsp;&middot;&nbsp; <span class="font-semibold text-amber-800">First-time install?</span> Skip these steps — just follow the walkthrough below.
+        </p>
+      </div>
+    </section>
+
     <!-- DETAILED STEPS -->
     <section id="nt-steps" class="max-w-5xl mx-auto px-6 py-20 md:py-24 scroll-mt-24">
       <div data-reveal class="text-center mb-14">
