@@ -23,6 +23,61 @@ const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
+// ── IndexNow auto-ping (PRODUCTION deploys only) ────────────────────────────
+// After every production build, tell Bing/Yandex (IndexNow) to re-crawl the
+// site so search engines — and the AI answer engines that read their index —
+// pick up updated copy in hours, not weeks. The key file lives at /<key>.txt
+// (public/). NEVER throws: a ping failure must not fail the deploy. Skips
+// preview + local builds (only fires when VERCEL_ENV === 'production').
+const INDEXNOW_KEY = 'b2a9d05eb97fd5a96328a790012c5155';
+const SITE_HOST = 'www.meridianpsi.com';
+
+function indexNowPing(): AstroIntegration {
+  return {
+    name: 'indexnow-ping',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        if (process.env.VERCEL_ENV !== 'production') {
+          logger.info(`indexnow: skip (not production; VERCEL_ENV=${process.env.VERCEL_ENV ?? 'undefined'})`);
+          return;
+        }
+        try {
+          const { readFileSync } = await import('node:fs');
+          let xml = '';
+          try {
+            // Prefer the freshly-built sitemap (includes any new pages).
+            xml = readFileSync(fileURLToPath(new URL('sitemap-0.xml', dir)), 'utf8');
+          } catch {
+            // Fallback: the live sitemap (URL list is stable across deploys).
+            const r = await fetch(`https://${SITE_HOST}/sitemap-0.xml`);
+            xml = r.ok ? await r.text() : '';
+          }
+          const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)]
+            .map((m) => m[1].trim())
+            .filter((u) => u.startsWith('http') && !u.endsWith('.xml'));
+          if (!urls.length) {
+            logger.warn('indexnow: no sitemap URLs found — skipped');
+            return;
+          }
+          const res = await fetch('https://api.indexnow.org/IndexNow', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
+            body: JSON.stringify({
+              host: SITE_HOST,
+              key: INDEXNOW_KEY,
+              keyLocation: `https://${SITE_HOST}/${INDEXNOW_KEY}.txt`,
+              urlList: urls,
+            }),
+          });
+          logger.info(`indexnow: submitted ${urls.length} URLs -> HTTP ${res.status}`);
+        } catch (e) {
+          logger.warn('indexnow: non-fatal error — ' + ((e as Error)?.message ?? String(e)));
+        }
+      },
+    },
+  };
+}
+
 export default defineConfig({
   // Astro 5 merged the old 'hybrid' mode into 'static': pages are
   // pre-rendered by default and individual routes can opt-in to
@@ -100,6 +155,10 @@ export default defineConfig({
     astrowind({
       config: './src/config.yaml',
     }),
+
+    // Production-only IndexNow ping. Must come after sitemap() so its
+    // astro:build:done hook runs after the sitemap file is written.
+    indexNowPing(),
   ],
 
   image: {
