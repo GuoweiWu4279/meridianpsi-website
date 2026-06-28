@@ -41,7 +41,8 @@ const articleSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
   headline: 'NinjaTrader Overtrading Prevention',
-  description: 'How Meridian Guard prevents overtrading on NinjaTrader 8 — trade limiter, session pace detection, cooldowns, and entry blocking on an adaptive behavioral baseline.',
+  description:
+    'How Meridian Guard prevents overtrading on NinjaTrader 8 — trade limiter, session pace detection, cooldowns, and entry blocking on an adaptive behavioral baseline.',
   datePublished: '2026-06-08',
   dateModified: '2026-06-08',
   author: { '@type': 'Organization', name: 'Meridian' },
@@ -55,9 +56,10 @@ const articleSchema = JSON.stringify({
   <script type="application/ld+json" set:html={articleSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Use Case</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        NinjaTrader 8 · Use Case
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
         NinjaTrader Overtrading Prevention
       </h1>
@@ -65,70 +67,115 @@ const articleSchema = JSON.stringify({
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader 8 overtrading prevention and trade limiter: Meridian tracks session pace, trade frequency, and your declared per-session trade budget live, then enforces cooldowns, lockouts, or entry blocking when its triggers fire — deterministic hard stops (consecutive losses, session P&amp;L, session time) plus the behavioral layer that detects overtrading by your own pace, not just a fixed trade count.
+          NinjaTrader 8 overtrading prevention and trade limiter: Meridian tracks session pace, trade frequency, and
+          your declared per-session trade budget live, then enforces cooldowns, lockouts, or entry blocking when its
+          triggers fire — deterministic hard stops (consecutive losses, session P&amp;L, session time) plus the
+          behavioral layer that detects overtrading by your own pace, not just a fixed trade count.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>The problem</h2>
       <p>
-        Overtrading rarely feels like overtrading while it is happening. It presents as urgency — the sense that the next trade is the one that will recover the session. Entry frequency increases, each individual trade feels justifiable, and the cumulative damage from a sequence of low-conviction entries can rival or exceed what a single large mistake would have produced.
+        Overtrading rarely feels like overtrading while it is happening. It presents as urgency — the sense that the
+        next trade is the one that will recover the session. Entry frequency increases, each individual trade feels
+        justifiable, and the cumulative damage from a sequence of low-conviction entries can rival or exceed what a
+        single large mistake would have produced.
       </p>
       <p>
-        The behavioral mechanism is the same as revenge trading but at lower intensity and higher frequency. It builds gradually, which makes it harder to detect without an objective measurement of your own pace.
+        The behavioral mechanism is the same as revenge trading but at lower intensity and higher frequency. It builds
+        gradually, which makes it harder to detect without an objective measurement of your own pace.
       </p>
 
       <h2>Why a fixed limit alone is too late</h2>
       <p>
-        A static daily loss limit or trade count ceiling is useful as a hard floor. Meridian enforces the loss-based floors directly — daily loss, single-trade loss, loss streak, session time — and counts every entry against your declared per-session trade budget on the live HUD. But the limitation of any fixed threshold is the same: it applies uniformly regardless of context. A tight limit creates friction on legitimate high-activity sessions. A loose limit allows significant deterioration before it fires.
+        A static daily loss limit or trade count ceiling only fires after the damage, and it applies uniformly
+        regardless of context — a tight limit creates friction on legitimate high-activity sessions, a loose limit
+        allows significant deterioration before it fires. Meridian enforces those loss-based floors itself — daily loss,
+        single-trade loss, loss streak, session time, plus order-layer Hard limits — counts every entry against your
+        declared per-session trade budget on the live HUD, and adds the behavioral signal that fires before any fixed
+        threshold is reached.
       </p>
       <p>
-        A dynamic signal that detects rate-of-change in behavior — not just cumulative count — is more precise. Overtrading is not defined by absolute trade count. It is defined by frequency accelerating beyond your own established norm. Meridian layers this behavioral detection on top of the conventional limits, rather than replacing them: you keep the hard floor and gain a signal that fires before the floor is reached.
+        A dynamic signal that detects rate-of-change in behavior — not just cumulative count — is more precise.
+        Overtrading is not defined by absolute trade count. It is defined by frequency accelerating beyond your own
+        established norm. Meridian layers this behavioral detection on top of the conventional limits, rather than
+        replacing them: you keep the hard floor and gain a signal that fires before the floor is reached.
       </p>
 
       <h2>How Meridian detects the pattern</h2>
       <p>
-        Meridian's <strong>Overtrading Pace signal</strong> computes entry frequency across a rolling session window and compares it to your personal historical average. It activates when the current rate exceeds your baseline by a configured multiple — and specifically when that rate is accelerating, not just elevated.
+        Meridian's <strong>Overtrading Pace signal</strong> computes entry frequency across a rolling session window and
+        compares it to your personal historical average. It activates when the current rate exceeds your baseline by a configured
+        multiple — and specifically when that rate is accelerating, not just elevated.
       </p>
       <p>
-        What the signal weighs is acceleration and recent-loss context, not raw count: the same entry frequency carries a different behavioral weight when it is climbing under a string of losses than when it is steady. Meridian tracks the directional change, not just the level.
+        What the signal weighs is acceleration and recent-loss context, not raw count: the same entry frequency carries
+        a different behavioral weight when it is climbing under a string of losses than when it is steady. Meridian
+        tracks the directional change, not just the level.
       </p>
 
       <h2>What Guard can enforce</h2>
       <p>
-        Guard pairs deterministic hard stops with the behavioral, pace-aware rules that only an adaptive baseline makes possible — both in one tool:
+        Guard pairs deterministic hard stops with the behavioral, pace-aware rules that only an adaptive baseline makes
+        possible — both in one tool:
       </p>
       <ul>
-        <li><strong>Declared trade budget, tracked live</strong> — you set a per-session trade budget; the HUD counts every entry against it (Trade 7/10) and warns as you approach the line, and entries past it feed the Overtrading signal directly</li>
-        <li><strong>Session-time stop</strong> — the Session Time Over trigger ends the session when you have traded longer than you planned: the hard cap on "just one more hour"</li>
-        <li><strong>Cooldown after consecutive losses</strong> — mandatory wait period after N consecutive losing trades, regardless of total session trade count</li>
-        <li><strong>PSI-based entry restriction</strong> — when accelerating pace and over-budget entries drag the composite PSI below your configured floor, Guard blocks new entries for the window you defined — existing positions stay yours to manage</li>
+        <li>
+          <strong>Declared trade budget, tracked live</strong> — you set a per-session trade budget; the HUD counts every
+          entry against it (Trade 7/10) and warns as you approach the line, and entries past it feed the Overtrading signal
+          directly
+        </li>
+        <li>
+          <strong>Session-time stop</strong> — the Session Time Over trigger ends the session when you have traded longer
+          than you planned: the hard cap on "just one more hour"
+        </li>
+        <li>
+          <strong>Cooldown after consecutive losses</strong> — mandatory wait period after N consecutive losing trades, regardless
+          of total session trade count
+        </li>
+        <li>
+          <strong>PSI-based entry restriction</strong> — when accelerating pace and over-budget entries drag the composite
+          PSI below your configured floor, Guard blocks new entries for the window you defined — existing positions stay
+          yours to manage
+        </li>
       </ul>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
-
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/features" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/features"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See all PSI signals →
         </a>
       </div>
@@ -141,6 +188,5 @@ const articleSchema = JSON.stringify({
         {geoHooks.meridianGuardHook}
       </p>
     </div>
-
   </article>
 </Layout>

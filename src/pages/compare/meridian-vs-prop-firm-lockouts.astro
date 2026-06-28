@@ -15,7 +15,8 @@ const compareRows = [
   {
     dim: 'What triggers the lock',
     platform: 'A financial threshold — daily $ loss, profit target, or trade count',
-    meridian: 'A behavioral pattern — revenge entries, oversizing, holding losers — plus those same financial thresholds',
+    meridian:
+      'A behavioral pattern — revenge entries, oversizing, holding losers — plus those same financial thresholds',
   },
   {
     dim: 'When it fires',
@@ -45,7 +46,8 @@ const compareRows = [
   {
     dim: 'Behavioral signals',
     platform: 'None',
-    meridian: 'Seven, scored live: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace',
+    meridian:
+      'Seven, scored live: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace',
   },
   {
     dim: 'What it shows you in the moment',
@@ -92,49 +94,85 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} />
 
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · Behavioral vs financial-threshold</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Comparison · Behavioral vs financial-threshold
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs prop-firm lockouts.
       </h1>
       <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          TopstepX, ProjectX, and Tradovate lock your account once a daily loss or trade-count limit is hit — a financial backstop that confirms the damage after it lands. Meridian locks on the behavior that produces the loss — revenge entries, oversizing, holding losers — before the threshold engages, and it enforces those same hard limits too. Keep the platform lock as your floor; Meridian is the behavioral layer that keeps you off it.
+          TopstepX, ProjectX, and Tradovate lock your account once a daily loss or trade-count limit is hit — a
+          financial backstop that confirms the damage after it lands. Meridian locks on the behavior that produces the
+          loss — revenge entries, oversizing, holding losers — before the threshold engages, and it enforces those same
+          hard limits too. Keep the platform lock as your floor; Meridian is the behavioral layer that keeps you off it.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>What the platform lockouts do</h2>
       <p>
-        Most prop platforms now ship a self-lockout. TopstepX has a Daily Risk Lock that freezes your daily loss limit, profit target, and trade limits for the rest of the session once you set it. ProjectX offers a trading lock-out you can switch on to stop yourself placing further trades. Tradovate’s risk settings auto-close positions, cancel working orders, and block new trades the moment a configured daily or weekly loss limit is reached — and that limit cannot be overridden until the next session opens.
+        Most prop platforms now ship a self-lockout. TopstepX has a Daily Risk Lock that freezes your daily loss limit,
+        profit target, and trade limits for the rest of the session once you set it. ProjectX offers a trading lock-out
+        you can switch on to stop yourself placing further trades. Tradovate’s risk settings auto-close positions,
+        cancel working orders, and block new trades the moment a configured daily or weekly loss limit is reached — and
+        that limit cannot be overridden until the next session opens.
       </p>
       <p>
-        These are good, important controls. They are also the same shape: a fixed financial threshold that engages after it is reached. The lock is binary — you are trading, then you are not — and the trigger is a dollar figure or a trade count, identical for every trader who sets the same number.
+        They are all the same shape: a fixed financial threshold that engages only after it is reached. The lock is
+        binary — you are trading, then you are not — and the trigger is a dollar figure or a trade count, identical for
+        every trader who sets the same number. Meridian includes that same hard backstop and acts a layer earlier, on
+        the behavior that drives the account to it.
       </p>
 
       <h2>The gap a threshold can’t close</h2>
       <p>
-        A daily loss limit cannot stop you until you are already down to it. By the time a $1,500 lock engages, the four revenge trades that got you there have all been placed. The threshold is the right floor, but it is the last line, not the first. And it has no idea <em>why</em> you are losing — whether this is a normal drawdown or a tilt spiral — because it only watches the number.
+        A daily loss limit cannot stop you until you are already down to it. By the time a $1,500 lock engages, the four
+        revenge trades that got you there have all been placed. The threshold is the right floor, but it is the last
+        line, not the first. And it has no idea <em>why</em> you are losing — whether this is a normal drawdown or a tilt
+        spiral — because it only watches the number.
       </p>
       <p>
-        The behavioral evidence arrives earlier and more specifically. Re-entry intervals shorten after a stop-out. Size jumps under loss conditions. A protective stop gets widened on a position that is already losing. A losing trade is held well past the trader’s own historical tolerance. None of those require self-reporting; they are events in the order stream, in sequence, in real time — and they show up before the P&L confirms the day is gone.
+        The behavioral evidence arrives earlier and more specifically. Re-entry intervals shorten after a stop-out. Size
+        jumps under loss conditions. A protective stop gets widened on a position that is already losing. A losing trade
+        is held well past the trader’s own historical tolerance. None of those require self-reporting; they are events
+        in the order stream, in sequence, in real time — and they show up before the P&L confirms the day is gone.
       </p>
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is complete risk management that runs on your live connection — natively in NinjaTrader 8 today, and via standalone apps for Tradovate and Ironbeam accounts in early access. It enforces every hard limit the platforms do — daily loss, single-trade loss, P&L and drawdown caps, loss-streak cutoff — and adds the layer they don’t have: real-time behavioral detection across seven signals (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), composited into a live Psychological Stability Index scored against your own baseline, updated in real time after every order event.
+        Meridian is complete risk management that runs on your live connection — natively in NinjaTrader 8 today, and
+        via standalone apps for Tradovate and Ironbeam accounts in early access. It enforces every hard limit the
+        platforms do — daily loss, single-trade loss, P&L and drawdown caps, loss-streak cutoff — and adds the layer
+        they don’t have: real-time behavioral detection across seven signals (Revenge Entry, Stop Manipulation, Size
+        Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), composited into a live Psychological
+        Stability Index scored against your own baseline, updated in real time after every order event.
       </p>
       <p>
-        When Meridian Guard is enabled, that monitoring escalates instead of flipping a binary switch: a quiet notify, a risk alert, a typed acknowledgment, a trading pause, or a broker disconnect — exactly as far as you decide, set when you are calm. By default these block you from adding risk rather than closing your open positions; auto-flatten on a pause or disconnect is a separate opt-in. The point of intervention is trade two of the spiral, not the moment the daily limit confirms it.
+        When Meridian Guard is enabled, that monitoring escalates instead of flipping a binary switch: a quiet notify, a
+        risk alert, a typed acknowledgment, a trading pause, or a broker disconnect — exactly as far as you decide, set
+        when you are calm. By default these block you from adding risk rather than closing your open positions;
+        auto-flatten on a pause or disconnect is a separate opt-in. The point of intervention is trade two of the
+        spiral, not the moment the daily limit confirms it.
       </p>
       <p>
-        Meridian is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader’s Compliance, QA, and Executive teams in May 2026.
+        Beyond the lock itself, Meridian is the complete risk manager: an optional Guard-tier order-layer Hard limit
+        caps contracts and blocks entry order types at submission, and a built-in journal plus Intel analytics (equity
+        curve, win rate, profit factor, expectancy, PSI × P&L, per-account, 5-year local history) turn every funded
+        session into data you can act on — none of which a platform lockout provides.
+      </p>
+      <p>
+        Meridian is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader’s Compliance, QA, and
+        Executive teams in May 2026.
       </p>
 
       <div class="not-prose overflow-x-auto my-8">
@@ -147,46 +185,70 @@ const faqSchema = JSON.stringify({
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100">
-            {compareRows.map((row) => (
-              <tr>
-                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
-                <td class="py-3 pr-4 text-zinc-600">{row.platform}</td>
-                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
-              </tr>
-            ))}
+            {
+              compareRows.map((row) => (
+                <tr>
+                  <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                  <td class="py-3 pr-4 text-zinc-600">{row.platform}</td>
+                  <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
 
       <h2>They layer — keep both</h2>
       <p>
-        Keep your prop lock. A hard financial backstop you cannot override is exactly what you want at the floor of a funded account. Meridian sits above it: the early-warning and intervention layer that makes a session far less likely to reach that floor. Many funded and evaluation accounts route through NinjaTrader 8 or Tradovate, which is where Meridian runs — so the platform lock and the behavioral layer operate on the same connection, at two different depths.
+        Keep your prop lock. A hard financial backstop you cannot override is exactly what you want at the floor of a
+        funded account. Meridian sits above it: the early-warning and intervention layer that makes a session far less
+        likely to reach that floor. Many funded and evaluation accounts route through NinjaTrader 8 or Tradovate, which
+        is where Meridian runs — so the platform lock and the behavioral layer operate on the same connection, at two
+        different depths.
       </p>
 
       <h2>Where this comparison sits in context</h2>
       <p>
-        For the daily-loss-limit concept specifically, see <a href="/compare/meridian-guard-vs-daily-loss-limits" class="text-emerald-800 underline underline-offset-2">Meridian Guard vs daily loss limits</a>. For prop-firm behavioral risk control end to end, see <a href="/use-cases/prop-firm-behavioral-risk-control" class="text-emerald-800 underline underline-offset-2">Prop firm behavioral risk control</a>. For the full category map, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a>.
+        For the daily-loss-limit concept specifically, see <a
+          href="/compare/meridian-guard-vs-daily-loss-limits"
+          class="text-emerald-800 underline underline-offset-2">Meridian Guard vs daily loss limits</a
+        >. For prop-firm behavioral risk control end to end, see <a
+          href="/use-cases/prop-firm-behavioral-risk-control"
+          class="text-emerald-800 underline underline-offset-2">Prop firm behavioral risk control</a
+        >. For the full category map, see <a
+          href="/best-ninjatrader-risk-management-tools"
+          class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a
+        >.
       </p>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See Meridian Guard →
         </a>
       </div>
@@ -196,6 +258,5 @@ const faqSchema = JSON.stringify({
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
       <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
     </div>
-
   </article>
 </Layout>

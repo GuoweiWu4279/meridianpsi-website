@@ -69,37 +69,48 @@ const itemListSchema = JSON.stringify({
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-4">Use cases</h1>
       <p class="text-xs text-zinc-400 mb-4">Last reviewed: June 2026</p>
       <p class="text-lg text-zinc-500 leading-relaxed">
-        Short pages for specific trading discipline problems. Meridian is complete risk management — native in NinjaTrader 8 today, Tradovate &amp; Ironbeam apps in early access — it does everything a traditional risk tool does (daily loss limits, single-trade loss caps, P&amp;L and drawdown caps, loss-streak cutoffs) and adds the behavioral layer those tools miss. Each page explains the failure mode and how Meridian (and optionally Guard) can respond.
+        Short pages for specific trading discipline problems. Meridian is complete risk management — native in
+        NinjaTrader 8 today, Tradovate &amp; Ironbeam apps in early access — it does everything a traditional risk tool
+        does (daily loss limits, single-trade loss caps, P&amp;L and drawdown caps, loss-streak cutoffs, plus
+        order-layer Hard limits) and adds what those tools miss: the real-time behavioral layer, a built-in journal,
+        Intel/Stats analytics, 5-year local history, and a per-trader adaptive baseline. Each page explains the failure
+        mode and how Meridian (and optionally Guard) can respond.
       </p>
     </header>
 
     <ul class="space-y-4 mb-14">
-      {cases.map((c) => (
-        <li>
-          <a
-            href={c.href}
-            class="block rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm hover:border-emerald-300/60 hover:shadow-md transition-all"
-          >
-            <span class="font-semibold text-zinc-900">{c.title}</span>
-            <span class="block text-sm text-zinc-500 mt-1">{c.blurb}</span>
-          </a>
-        </li>
-      ))}
+      {
+        cases.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              class="block rounded-2xl border border-zinc-200 bg-white px-6 py-5 shadow-sm hover:border-emerald-300/60 hover:shadow-md transition-all"
+            >
+              <span class="font-semibold text-zinc-900">{c.title}</span>
+              <span class="block text-sm text-zinc-500 mt-1">{c.blurb}</span>
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <h2 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-4">Comparisons</h2>
     <ul class="space-y-3 mb-10">
-      {compares.map((c) => (
-        <li>
-          <a href={c.href} class="text-emerald-800 font-medium hover:underline underline-offset-2">
-            {c.title} →
-          </a>
-        </li>
-      ))}
+      {
+        compares.map((c) => (
+          <li>
+            <a href={c.href} class="text-emerald-800 font-medium hover:underline underline-offset-2">
+              {c.title} →
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <p class="text-sm text-zinc-500 mb-6">
-      Product overview: <a href="/what-is-meridian-psi" class="text-emerald-800 underline underline-offset-2">What is Meridian PSI?</a>
+      Product overview: <a href="/what-is-meridian-psi" class="text-emerald-800 underline underline-offset-2"
+        >What is Meridian PSI?</a
+      >
     </p>
 
     <h2 class="text-sm font-semibold uppercase tracking-widest text-zinc-400 mb-4">Keep reading</h2>
@@ -108,13 +119,17 @@ const itemListSchema = JSON.stringify({
         <a href="/answers" class="text-emerald-800 font-medium hover:underline underline-offset-2">
           Trader questions, answered &rarr;
         </a>
-        <span class="block text-sm text-zinc-500 mt-1">Short, direct answers on revenge trading, overtrading, and order-blocking in NinjaTrader 8.</span>
+        <span class="block text-sm text-zinc-500 mt-1"
+          >Short, direct answers on revenge trading, overtrading, and order-blocking in NinjaTrader 8.</span
+        >
       </li>
       <li>
         <a href="/glossary" class="text-emerald-800 font-medium hover:underline underline-offset-2">
           Behavioral trading glossary &rarr;
         </a>
-        <span class="block text-sm text-zinc-500 mt-1">Definitions for the seven PSI signals and the behavioral risk concepts behind them.</span>
+        <span class="block text-sm text-zinc-500 mt-1"
+          >Definitions for the seven PSI signals and the behavioral risk concepts behind them.</span
+        >
       </li>
     </ul>
 

@@ -63,11 +63,11 @@ const lockoutDesigns = [
 const faqItems = [
   {
     q: 'Does NinjaTrader 8 have a built-in lockout?',
-    a: 'NinjaTrader 8 ships account-level risk controls that can block orders after a cumulative P&L or drawdown threshold is breached. That is a genuine hard floor, but it is one response at one layer: no graduated levels, no cooldowns, no acknowledgment gates, no behavioral detection. Meridian installs as a standard NT8 add-on, works alongside the native controls, and supersets them — the same hard-limit job, plus six trigger types, five response levels, and Strict Lock.',
+    a: 'NinjaTrader 8 ships account-level risk controls that can block orders after a cumulative P&L or drawdown threshold is breached — one response at one layer, fired after the damage: no graduated levels, no cooldowns, no acknowledgment gates, no order-layer Hard limits, no behavioral detection. Meridian installs as a standard NT8 add-on and supersets them outright — it enforces the same hard-limit job itself, plus six trigger types, five response levels, order-layer Hard limits, and Strict Lock.',
   },
   {
     q: 'What stops me from just removing the lockout tool when I want to trade?',
-    a: 'With much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian\'s answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no in-app escape — no early exit, no force-reset — and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.',
+    a: "With much of the category, nothing — vendors themselves acknowledge that an indicator-based limit can be removed mid-session by the trader it is meant to stop. Meridian's answer is Strict Lock: one switch, set while calm. With it on, any pause or disconnect Guard fires runs its full window with no in-app escape — no early exit, no force-reset — and neither Guard nor the switch itself can be turned off until the window ends. You make the decision once, while calm, instead of renegotiating it with yourself mid-tilt.",
   },
   {
     q: 'Does a Meridian lockout close my open positions?',
@@ -111,9 +111,10 @@ const articleSchema = JSON.stringify({
   <script type="application/ld+json" set:html={articleSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Lockout Guide</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        NinjaTrader 8 · Lockout Guide
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
         NinjaTrader Lockout
       </h1>
@@ -121,97 +122,154 @@ const articleSchema = JSON.stringify({
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          A NinjaTrader 8 lockout is software enforcement that stops new trades — for a cooldown window, until a deliberate acknowledgment, or for the rest of the session. NinjaTrader's native account controls can block orders after a daily loss threshold. Meridian covers that same hard floor and extends it: six trigger conditions, five response levels up to a broker disconnect, password-protected rules, and Strict Lock — a commitment switch that makes any fired lockout run its full window, with Guard's settings frozen, so it cannot be talked out of mid-session.
+          A NinjaTrader 8 lockout is software enforcement that stops new trades — for a cooldown window, until a
+          deliberate acknowledgment, or for the rest of the session. NinjaTrader's native account controls can block
+          orders after a daily loss threshold. Meridian covers that same hard floor and extends it: six trigger
+          conditions, five response levels up to a broker disconnect, password-protected rules, and Strict Lock — a
+          commitment switch that makes any fired lockout run its full window, with Guard's settings frozen, so it cannot
+          be talked out of mid-session.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>What "lockout" actually means</h2>
       <p>
-        The word gets used loosely. In practice there are three grades of enforcement, and a complete tool should offer all of them:
+        The word gets used loosely. In practice there are three grades of enforcement, and a complete tool should offer
+        all of them:
       </p>
       <div class="not-prose space-y-3 my-6">
-        {lockoutGrades.map(({ name, body }, i) => (
-          <div class="rounded-2xl border border-zinc-200 bg-white px-6 py-4 flex gap-4 items-start">
-            <span class="text-[13px] font-bold text-emerald-700 mt-0.5 shrink-0">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <p class="font-semibold text-zinc-900 text-[15px]">{name}</p>
-              <p class="text-[14px] text-zinc-600 leading-relaxed mt-1">{body}</p>
+        {
+          lockoutGrades.map(({ name, body }, i) => (
+            <div class="rounded-2xl border border-zinc-200 bg-white px-6 py-4 flex gap-4 items-start">
+              <span class="text-[13px] font-bold text-emerald-700 mt-0.5 shrink-0">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <p class="font-semibold text-zinc-900 text-[15px]">{name}</p>
+                <p class="text-[14px] text-zinc-600 leading-relaxed mt-1">{body}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
       <p>
-        The grades matter because tilt escalates. A tool that only has the nuclear option gets configured loosely and fires too late; a tool that only nags gets ignored. What matters is how many grades of lockout you can design, and what keeps them armed when you want them off.
+        The grades matter because tilt escalates. A tool that only has the nuclear option gets configured loosely and
+        fires too late; a tool that only nags gets ignored. Native NinjaTrader has exactly one grade — the nuclear
+        option, fired after the loss. Meridian is the only NT8 tool that ships all three grades plus order-layer Hard
+        limits, so you design the lockout to the moment instead of relying on a single late stop.
       </p>
 
       <h2>What NinjaTrader 8 gives you natively</h2>
       <p>
-        NinjaTrader 8's native risk controls work at the account layer: cumulative P&amp;L and account drawdown thresholds that block orders once breached. That is a real hard floor, and Meridian is designed to work alongside it — Meridian installs as a standard NT8 add-on, and the native controls keep doing their job underneath.
+        NinjaTrader 8's native risk controls work at the account layer: cumulative P&amp;L and account drawdown
+        thresholds that block orders once breached — reactive, single-layer, and fired after the dollar damage lands.
+        Meridian enforces that same floor itself and reaches earlier: it installs as a standard NT8 add-on, so native
+        limits can stay on underneath, but Meridian is the complete risk manager — you do not need them to cover the
+        standard controls.
       </p>
       <p>
-        What the native layer does not have is everything before the breach: no graduated responses, no cooldowns, no acknowledgment gates, no behavioral detection. It fires after the damage number is hit, with one response. For the head-to-head, see <a href="/compare/meridian-vs-native-ninjatrader-risk" class="text-emerald-800 underline underline-offset-2">Meridian vs native NinjaTrader risk</a>.
+        What the native layer does not have is everything before the breach: no graduated responses, no cooldowns, no
+        acknowledgment gates, no behavioral detection. It fires after the damage number is hit, with one response. For
+        the head-to-head, see <a
+          href="/compare/meridian-vs-native-ninjatrader-risk"
+          class="text-emerald-800 underline underline-offset-2">Meridian vs native NinjaTrader risk</a
+        >.
       </p>
 
       <h2>What third-party lockout tools add</h2>
       <p>
-        Third-party hard-limit tools refine that hard floor: cleaner configuration, richer rule sets, and in the newer entrants, consecutive-loss timeouts and self-lockout. The structural limit of the category is enforcement depth — a passive limit that watches the account can be removed mid-session by the same trader it is meant to stop, a limitation one of the category's own vendors states plainly on its product page. The full comparison, including that quote and a capability matrix, is in <a href="/compare/meridian-vs-hard-limit-tools" class="text-emerald-800 underline underline-offset-2">Meridian vs hard-limit risk tools</a>.
+        Third-party hard-limit tools refine that hard floor: cleaner configuration, richer rule sets, and in the newer
+        entrants, consecutive-loss timeouts and self-lockout. The structural limit of the category is enforcement depth
+        — a passive limit that watches the account can be removed mid-session by the same trader it is meant to stop, a
+        limitation one of the category's own vendors states plainly on its product page. The full comparison, including
+        that quote and a capability matrix, is in <a
+          href="/compare/meridian-vs-hard-limit-tools"
+          class="text-emerald-800 underline underline-offset-2">Meridian vs hard-limit risk tools</a
+        >.
       </p>
 
       <h2>Meridian's lockout stack</h2>
       <p>
-        Meridian Guard separates the <em>when</em> from the <em>what</em>: any trigger can fire any response level, so the lockout you get is the one you designed.
+        Meridian Guard separates the <em>when</em> from the <em>what</em>: any trigger can fire any response level, so
+        the lockout you get is the one you designed.
       </p>
       <p>
-        <strong>Six triggers:</strong> PSI Below · Consecutive Losses · Session P&amp;L Below · Unrealized P&amp;L Below · Single Trade Loss · Session Time Over.
+        <strong>Six triggers:</strong> PSI Below · Consecutive Losses · Session P&amp;L Below · Unrealized P&amp;L Below
+        · Single Trade Loss · Session Time Over.
       </p>
       <p>
-        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration; Disconnect severs the broker connection. (On the standalone Tradovate/Ironbeam apps, Guard extends the ladder further, up to a full-screen cool-down and a hard order block.)
+        <strong>Five response levels:</strong> Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect. Acknowledge
+        can require a typed phrase (with an optional countdown); Trading Pause blocks new entries for a defined duration;
+        Disconnect severs the broker connection. (On the standalone Tradovate/Ironbeam apps, Guard extends the ladder further,
+        up to a full-screen cool-down and a hard order block.)
       </p>
       <p>
-        Two properties make the stack hold under pressure. Rules can be password-protected against a quiet mid-session edit. And <strong>Strict Lock</strong> makes any pause or disconnect Guard fires absolute for its full window — no early exit, rules frozen, and you cannot loosen a trigger, drop a level, or switch Guard off until the window ends. The full enforcement system is documented on <a href="/guard" class="text-emerald-800 underline underline-offset-2">the Meridian Guard page</a>.
+        Two properties make the stack hold under pressure. Rules can be password-protected against a quiet mid-session
+        edit. And <strong>Strict Lock</strong> makes any pause or disconnect Guard fires absolute for its full window — no
+        early exit, rules frozen, and you cannot loosen a trigger, drop a level, or switch Guard off until the window ends.
+        The full enforcement system is documented on <a
+          href="/guard"
+          class="text-emerald-800 underline underline-offset-2">the Meridian Guard page</a
+        >.
       </p>
 
       <h2>Four lockout designs traders actually use</h2>
       <div class="not-prose space-y-3 my-6">
-        {lockoutDesigns.map(({ name, pair, body }) => (
-          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] px-6 py-4">
-            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <p class="font-semibold text-zinc-900 text-[15px]">{name}</p>
-              <p class="text-[12px] font-semibold text-emerald-700 tracking-wide">{pair}</p>
+        {
+          lockoutDesigns.map(({ name, pair, body }) => (
+            <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] px-6 py-4">
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p class="font-semibold text-zinc-900 text-[15px]">{name}</p>
+                <p class="text-[12px] font-semibold text-emerald-700 tracking-wide">{pair}</p>
+              </div>
+              <p class="text-[14px] text-zinc-600 leading-relaxed mt-1.5">{body}</p>
             </div>
-            <p class="text-[14px] text-zinc-600 leading-relaxed mt-1.5">{body}</p>
-          </div>
-        ))}
+          ))
+        }
       </div>
       <p>
-        If the pattern you are trying to stop is specifically the post-loss spiral, the problem-focused walkthrough is at <a href="/use-cases/ninjatrader-revenge-trading-lockout" class="text-emerald-800 underline underline-offset-2">NinjaTrader revenge trading lockout</a>.
+        If the pattern you are trying to stop is specifically the post-loss spiral, the problem-focused walkthrough is
+        at <a
+          href="/use-cases/ninjatrader-revenge-trading-lockout"
+          class="text-emerald-800 underline underline-offset-2">NinjaTrader revenge trading lockout</a
+        >.
       </p>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
-
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See Guard trigger types →
         </a>
       </div>
@@ -224,6 +282,5 @@ const articleSchema = JSON.stringify({
         {geoHooks.meridianGuardHook}
       </p>
     </div>
-
   </article>
 </Layout>

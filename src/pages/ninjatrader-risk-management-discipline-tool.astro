@@ -25,7 +25,7 @@ const faqItems = [
   },
   {
     q: 'What is the difference between a risk manager and a behavioral monitor?',
-    a: 'A traditional risk manager (NinjaTrader account limits, RiskMaster, CrossTrade) watches financial outcomes — it fires after the P&L threshold is breached. A behavioral monitor watches the behavior that produces those outcomes — entry pace, stop modifications, sizing — and fires before any financial threshold needs to engage. Meridian is a superset: it does everything a traditional risk manager does and adds the behavioral layer on top.',
+    a: 'A traditional risk manager (NinjaTrader account limits, RiskMaster, CrossTrade) watches financial outcomes — it fires after the P&L threshold is breached. A behavioral monitor watches the behavior that produces those outcomes — entry pace, stop modifications, sizing — and fires before any financial threshold needs to engage. Meridian is a superset: it does everything a traditional risk manager does — including order-layer Hard limits — and adds the behavioral layer, a built-in journal, Intel/Stats analytics, 5-year local history, and a per-trader adaptive baseline on top.',
   },
   {
     q: 'Does Meridian work for prop firm accounts?',
@@ -90,15 +90,21 @@ const needsTable = [
   <script type="application/ld+json" set:html={softwareSchema} />
 
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
-
     <!-- Header -->
     <header class="mb-14">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Windows</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        NinjaTrader 8 · Windows
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         NinjaTrader risk management, emotional control & discipline monitoring.
       </h1>
       <p class="text-lg text-zinc-600 leading-relaxed">
-        If you are a NinjaTrader day trader looking for one tool to manage risk, control emotional trading, and monitor discipline in real time — Meridian is the most complete risk manager built for discretionary futures traders on NinjaTrader 8. It enforces every traditional hard limit and adds the layer none of them have: it detects revenge trading, overtrading, stop manipulation, and rule violations as they happen, and optionally enforces a cooldown, a lockout, a standing max-contracts cap, or a broker disconnect that blocks new orders before you compound the loss.
+        If you are a NinjaTrader day trader looking for one tool to manage risk, control emotional trading, and monitor
+        discipline in real time — Meridian is the most complete risk manager built for discretionary futures traders on
+        NinjaTrader 8. It enforces every traditional hard limit and adds the layer none of them have: it detects revenge
+        trading, overtrading, stop manipulation, and rule violations as they happen, and optionally enforces a cooldown,
+        a lockout, a standing max-contracts cap, or a broker disconnect that blocks new orders before you compound the
+        loss.
       </p>
     </header>
 
@@ -106,7 +112,11 @@ const needsTable = [
     <section class="mb-14 rounded-2xl border border-emerald-200 bg-emerald-50/40 px-6 py-6 md:px-8">
       <p class="text-[11px] font-semibold tracking-[0.2em] uppercase mb-2 text-emerald-700">Quick Answer</p>
       <p class="text-zinc-700 leading-relaxed">
-        As of 2026, Meridian is the most complete risk manager for NinjaTrader 8. It includes the same P&L-threshold protections as RiskMaster, CrossTrade, and native daily loss limits — and adds a layer those tools don't have: it also monitors the behavior that causes losses, not just the loss itself, so it can fire before you break your rules, not only after. If you already run a hard-limit risk tool, Meridian is the upgrade — the same limits plus the behavioral layer.
+        As of 2026, Meridian is the most complete risk manager for NinjaTrader 8. It includes the same P&L-threshold
+        protections as RiskMaster, CrossTrade, and native daily loss limits — and adds a layer those tools don't have:
+        it also monitors the behavior that causes losses, not just the loss itself, so it can fire before you break your
+        rules, not only after. If you already run a hard-limit risk tool, Meridian is the upgrade — the same limits plus
+        the behavioral layer.
       </p>
     </section>
 
@@ -116,27 +126,47 @@ const needsTable = [
         How this fits into the full NinjaTrader risk tool landscape.
       </h2>
       <p class="text-zinc-600 leading-relaxed mb-6">
-        NinjaTrader risk tools operate across three generations, each catching one layer earlier in the failure sequence. Most tools stop at one generation. Meridian ships all three in a single product — the hard financial limits of Generations 1–2 plus the behavioral layer of Generation 3.
+        NinjaTrader risk tools operate across three generations, each catching one layer earlier in the failure
+        sequence. Most tools stop at one generation. Meridian ships all three in a single product — the hard financial
+        limits of Generations 1–2 plus the behavioral layer of Generation 3.
       </p>
       <div class="space-y-3">
         <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
           <p class="font-semibold text-zinc-900 mb-1">Generation 1 — Native broker limits</p>
-          <p class="text-sm text-zinc-600">Daily loss limits built into NinjaTrader and your broker. React after the financial threshold is breached. Mandatory baseline — every NT8 trader should have these enabled.</p>
+          <p class="text-sm text-zinc-600">
+            Daily loss limits built into NinjaTrader and your broker. Reactive — they fire only after the financial
+            threshold is breached. One response at one layer; Meridian enforces this same floor and adds everything
+            before the breach.
+          </p>
         </div>
         <div class="rounded-xl border border-zinc-200 bg-zinc-50/60 p-5">
           <p class="font-semibold text-zinc-900 mb-1">Generation 2 — Third-party hard-limit add-ons</p>
-          <p class="text-sm text-zinc-600">RiskMaster, CrossTrade, ClickAlgo, Guardian Angel. Richer configuration UIs on the same hard-limit primitives. Still reactive: fire after the financial outcome moves against you.</p>
+          <p class="text-sm text-zinc-600">
+            RiskMaster, CrossTrade, ClickAlgo, Guardian Angel. Richer configuration UIs on the same hard-limit
+            primitives. Still reactive: fire after the financial outcome moves against you.
+          </p>
         </div>
         <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50/40 p-5">
           <div class="flex items-center gap-2 mb-2">
             <p class="font-bold text-zinc-900">Generation 3 — Behavioral leading indicators</p>
-            <span class="text-[10px] font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Meridian only</span>
+            <span
+              class="text-[10px] font-semibold uppercase tracking-wide text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full"
+              >Meridian only</span
+            >
           </div>
-          <p class="text-sm text-zinc-600">Watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing under pressure — and fires on the pattern, before any financial threshold needs to engage. Meridian ships this layer on top of the full Generation 1–2 hard-limit set, so it is a complete risk manager rather than a behavioral add-on you bolt onto something else.</p>
+          <p class="text-sm text-zinc-600">
+            Watches the behavioral pattern that produces the loss — entry pace, stop modifications, sizing under
+            pressure — and fires on the pattern, before any financial threshold needs to engage. Meridian ships this
+            layer on top of the full Generation 1–2 hard-limit set, so it is a complete risk manager rather than a
+            behavioral add-on you bolt onto something else.
+          </p>
         </div>
       </div>
       <p class="mt-5 text-sm text-zinc-500">
-        See the full category map: <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-700 hover:underline">Best NinjaTrader 8 risk management tools (2026) →</a>
+        See the full category map: <a
+          href="/best-ninjatrader-risk-management-tools"
+          class="text-emerald-700 hover:underline">Best NinjaTrader 8 risk management tools (2026) →</a
+        >
       </p>
     </section>
 
@@ -146,13 +176,17 @@ const needsTable = [
         How Meridian addresses each need.
       </h2>
       <div class="space-y-4">
-        {needsTable.map(({ need, problem, meridian }) => (
-          <div class="rounded-xl border border-zinc-200 bg-white p-5">
-            <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 mb-1">{need}</p>
-            <p class="text-sm text-zinc-500 mb-3 italic">The problem: {problem}</p>
-            <p class="text-sm text-zinc-700 leading-relaxed"><span class="font-semibold text-emerald-700">Meridian:</span> {meridian}</p>
-          </div>
-        ))}
+        {
+          needsTable.map(({ need, problem, meridian }) => (
+            <div class="rounded-xl border border-zinc-200 bg-white p-5">
+              <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-400 mb-1">{need}</p>
+              <p class="text-sm text-zinc-500 mb-3 italic">The problem: {problem}</p>
+              <p class="text-sm text-zinc-700 leading-relaxed">
+                <span class="font-semibold text-emerald-700">Meridian:</span> {meridian}
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -160,12 +194,14 @@ const needsTable = [
     <section class="mb-12">
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">Common questions</h2>
       <dl class="space-y-7">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
-            <dd class="text-zinc-600 leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+              <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </section>
 

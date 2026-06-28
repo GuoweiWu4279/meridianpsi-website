@@ -60,9 +60,21 @@ const tiltMap = [
 // Where every other tool fires vs. where anti-tilt fires.
 const timeline = [
   { t: 'Trade 1 — stop-out', limit: 'Silent. P&L is fine.', meridian: 'Logs the loss. Baseline still calm.' },
-  { t: 'Trade 2 — fast re-entry, +1 contract', limit: 'Silent. Still under the cap.', meridian: 'PSI dips. Revenge Entry + Size Spike flag.' },
-  { t: 'Trade 3 — stop widened, size up again', limit: 'Silent. Still under the cap.', meridian: 'PSI hits Warning. Guard can require an Acknowledge — type your phrase, wait out the countdown.' },
-  { t: 'Trade 4 — the one that breaks the day', limit: 'Fires — at −$500, after the damage.', meridian: 'Already blocked the add, or paused the session.' },
+  {
+    t: 'Trade 2 — fast re-entry, +1 contract',
+    limit: 'Silent. Still under the cap.',
+    meridian: 'PSI dips. Revenge Entry + Size Spike flag.',
+  },
+  {
+    t: 'Trade 3 — stop widened, size up again',
+    limit: 'Silent. Still under the cap.',
+    meridian: 'PSI hits Warning. Guard can require an Acknowledge — type your phrase, wait out the countdown.',
+  },
+  {
+    t: 'Trade 4 — the one that breaks the day',
+    limit: 'Fires — at −$500, after the damage.',
+    meridian: 'Already blocked the add, or paused the session.',
+  },
 ];
 
 const faqItems = [
@@ -110,18 +122,35 @@ const faqSchema = JSON.stringify({
         Tilt blows the account.<br />Meridian catches it <span class="text-emerald-600">before the order.</span>
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Revenge trading, oversizing, moving stops, overtrading &mdash; the loss that ends a funded account is usually behavioral, not
-        strategic. A daily loss limit only sees the number, after the damage. Meridian reads the <em>behavior</em> across seven
-        signals in real time and steps in while you can still walk away.
+        Revenge trading, oversizing, moving stops, overtrading &mdash; the loss that ends a funded account is usually
+        behavioral, not strategic. A daily loss limit only sees the number, after the damage. Meridian reads the <em
+          >behavior</em
+        > across seven signals in real time and steps in while you can still walk away.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/pricing" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#sequence" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how it works</a>
+        <a
+          href="/pricing"
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+          >Start 14-day free trial</a
+        >
+        <a
+          href="#sequence"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+          >See how it works</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        No charge until day 14 &middot; From $49.99/mo &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
+        early access
+      </p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
-      <div class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars catching tilt as it builds" /></div>
+      <div class="win">
+        <img
+          src="/m/monitor.png"
+          alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars catching tilt as it builds"
+        />
+      </div>
     </div>
   </section>
 
@@ -131,16 +160,16 @@ const faqSchema = JSON.stringify({
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT TILT ACTUALLY IS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Tilt is a sequence, not a mood.</h2>
       <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
-        Tilt is the predictable shift in how you execute after something goes wrong &mdash; a stop-out, a missed setup, a string
-        of losses. The decision system that worked an hour ago quietly tips toward getting even and away from the plan. You
-        already know the shape of it: re-enter fast, size up, give the stop more room, trade more often, ignore the rules you set
-        when you were calm.
+        Tilt is the predictable shift in how you execute after something goes wrong &mdash; a stop-out, a missed setup,
+        a string of losses. The decision system that worked an hour ago quietly tips toward getting even and away from
+        the plan. You already know the shape of it: re-enter fast, size up, give the stop more room, trade more often,
+        ignore the rules you set when you were calm.
       </p>
       <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
         Because it is a sequence, it is <strong class="text-zinc-900">detectable</strong> &mdash; each step leaves a fingerprint
-        in your order flow before it shows up in your P&amp;L. Anti-tilt is the discipline of catching that sequence one layer
-        earlier than any financial threshold can. Limit-based tools watch the number; Meridian watches the behavior that
-        produces the number.
+        in your order flow before it shows up in your P&amp;L. Anti-tilt is the discipline of catching that sequence one
+        layer earlier than any financial threshold can. Limit-based tools watch the number; Meridian watches the behavior
+        that produces the number.
       </p>
     </div>
   </section>
@@ -149,29 +178,47 @@ const faqSchema = JSON.stringify({
   <section id="sequence" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-24">
     <div data-reveal class="text-center mb-12">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE TILT, MAPPED TO THE SIGNAL</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Every way tilt shows up,<br />and the signal that catches it.</h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Every way tilt shows up,<br />and the signal that catches it.
+      </h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
         Each behavior is scored in real time, against your own history.
       </p>
     </div>
     <div data-reveal class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-      {tiltMap.map((row) => (
-        <div class="rounded-2xl border border-zinc-200 bg-white p-7 hover:border-emerald-300 transition-colors">
-          <div class="font-bold text-zinc-900 text-lg">{row.move}</div>
-          <p class="mt-2 text-sm text-zinc-600 leading-relaxed">{row.feel}</p>
-          <div class="mt-5 pt-4 border-t border-zinc-100">
-            <div class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase text-emerald-700">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
-              Signal · {row.signal}
+      {
+        tiltMap.map((row) => (
+          <div class="rounded-2xl border border-zinc-200 bg-white p-7 hover:border-emerald-300 transition-colors">
+            <div class="font-bold text-zinc-900 text-lg">{row.move}</div>
+            <p class="mt-2 text-sm text-zinc-600 leading-relaxed">{row.feel}</p>
+            <div class="mt-5 pt-4 border-t border-zinc-100">
+              <div class="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase text-emerald-700">
+                <svg
+                  class="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <>
+                    <path d="M9 12l2 2 4-4" />
+                    <circle cx="12" cy="12" r="9" />
+                  </>
+                </svg>
+                Signal · {row.signal}
+              </div>
+              <p class="mt-2 text-sm text-zinc-500 leading-relaxed">{row.catches}</p>
             </div>
-            <p class="mt-2 text-sm text-zinc-500 leading-relaxed">{row.catches}</p>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
     <p class="text-center mt-8 text-sm text-zinc-500 max-w-2xl mx-auto leading-relaxed">
-      A seventh signal &mdash; <strong class="text-zinc-700">Position Overstay</strong> &mdash; flags a single losing trade held past your historical
-      patience window into deep adverse excursion, even if it later recovers. All seven combine into one live PSI score.
+      A seventh signal &mdash; <strong class="text-zinc-700">Position Overstay</strong> &mdash; flags a single losing trade
+      held past your historical patience window into deep adverse excursion, even if it later recovers. All seven combine
+      into one live PSI score.
     </p>
   </section>
 
@@ -180,7 +227,9 @@ const faqSchema = JSON.stringify({
     <div class="max-w-5xl mx-auto px-6 py-24">
       <div data-reveal class="text-center mb-12">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHEN EACH ONE FIRES</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A limit fires at trade four.<br />Anti-tilt flags at trade two.</h2>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          A limit fires at trade four.<br />Anti-tilt flags at trade two.
+        </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
           Same tilt sequence, one session. Watch where each layer reacts.
         </p>
@@ -195,13 +244,17 @@ const faqSchema = JSON.stringify({
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100">
-            {timeline.map((r, i) => (
-              <tr class={i === 3 ? 'bg-emerald-50/40' : ''}>
-                <td class={'px-5 py-4 ' + (i === 3 ? 'font-semibold text-zinc-900' : 'text-zinc-700')}>{r.t}</td>
-                <td class="px-5 py-4 text-zinc-500">{r.limit}</td>
-                <td class={'px-5 py-4 ' + (i === 3 ? 'text-emerald-800 font-medium' : 'text-zinc-700')}>{r.meridian}</td>
-              </tr>
-            ))}
+            {
+              timeline.map((r, i) => (
+                <tr class={i === 3 ? 'bg-emerald-50/40' : ''}>
+                  <td class={'px-5 py-4 ' + (i === 3 ? 'font-semibold text-zinc-900' : 'text-zinc-700')}>{r.t}</td>
+                  <td class="px-5 py-4 text-zinc-500">{r.limit}</td>
+                  <td class={'px-5 py-4 ' + (i === 3 ? 'text-emerald-800 font-medium' : 'text-zinc-700')}>
+                    {r.meridian}
+                  </td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
@@ -217,23 +270,61 @@ const faqSchema = JSON.stringify({
 
   <!-- ───────────────────────── GUARD: INTERVENTION BEFORE THE ORDER ───────────────────────── -->
   <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div data-reveal class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard — your own rules with an escalating enforcement ladder and Strict Lock, intervening before the next order" /></div>
+    <div data-reveal class="win order-2 lg:order-1">
+      <img
+        src="/m/guard.png"
+        alt="Meridian Guard — your own rules with an escalating enforcement ladder and Strict Lock, intervening before the next order"
+      />
+    </div>
     <div data-reveal class="order-1 lg:order-2">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTERVENTION, NOT A POST-MORTEM</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">It steps in before the order &mdash; not after the loss.</h2>
+      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+        It steps in before the order &mdash; not after the loss.
+      </h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        Detection is only half of anti-tilt. When PSI crosses a line you set while calm, Meridian Guard escalates exactly as far
-        as you decided in advance:
+        Detection is only half of anti-tilt. When PSI crosses a line you set while calm, Meridian Guard escalates
+        exactly as far as you decided in advance:
       </p>
       <ol class="mt-6 space-y-2.5 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">1</span> <span><strong class="text-zinc-900">Notify</strong> &mdash; a quiet alert; you see your PSI dropping</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">2</span> <span><strong class="text-zinc-900">Risk Alert</strong> &mdash; a persistent banner; it doesn't block entries, it keeps the risk in front of you</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">3</span> <span><strong class="text-zinc-900">Acknowledge</strong> &mdash; type your own pre-written phrase and wait out a countdown</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">4</span> <span><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold tnum">5</span> <span><strong class="text-zinc-900">Disconnect</strong> &mdash; severs the broker connection; the session is over</span></li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold tnum">1</span>
+          <span><strong class="text-zinc-900">Notify</strong> &mdash; a quiet alert; you see your PSI dropping</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold tnum">2</span>
+          <span
+            ><strong class="text-zinc-900">Risk Alert</strong> &mdash; a persistent banner; it doesn't block entries, it
+            keeps the risk in front of you</span
+          >
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold tnum">3</span>
+          <span
+            ><strong class="text-zinc-900">Acknowledge</strong> &mdash; type your own pre-written phrase and wait out a countdown</span
+          >
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold tnum">4</span>
+          <span
+            ><strong class="text-zinc-900">Trading Pause</strong> &mdash; blocks new entries by cancelling orders</span
+          >
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold tnum">5</span>
+          <span
+            ><strong class="text-zinc-900">Disconnect</strong> &mdash; severs the broker connection; the session is over</span
+          >
+        </li>
       </ol>
-      <p class="mt-6 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> holds every pause it fires for its full window &mdash; no in-app early exit or force-reset &mdash; for exactly when the tilted version of you wants to switch it off.</p>
-      <p class="mt-4 text-sm text-zinc-500">By default Guard stops you <em>adding</em> risk rather than closing what you hold &mdash; you can always exit any position, any time. Tick <em>auto-flatten</em> on a Trading Pause or Disconnect rule and Guard will close your open positions the moment it fires.</p>
+      <p class="mt-6 text-zinc-800 text-lg">
+        <span class="text-emerald-700 font-semibold">Strict Lock</span> holds every pause it fires for its full window &mdash;
+        no in-app early exit or force-reset &mdash; for exactly when the tilted version of you wants to switch it off.
+      </p>
+      <p class="mt-4 text-sm text-zinc-500">
+        By default Guard stops you <em>adding</em> risk rather than closing what you hold &mdash; you can always exit any
+        position, any time. Tick <em>auto-flatten</em> on a Trading Pause or Disconnect rule and Guard will close your open
+        positions the moment it fires.
+      </p>
     </div>
   </section>
 
@@ -242,10 +333,13 @@ const faqSchema = JSON.stringify({
     <div class="max-w-5xl mx-auto px-6 py-24">
       <div data-reveal class="text-center mb-12">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Keep every limit you trust.<br />Add the layer that stops tilt.</h2>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Keep every limit you trust.<br />Add the layer that stops tilt.
+        </h2>
         <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Anti-tilt is not a replacement for your loss limit &mdash; it is the upgrade that wraps around it. Tricycle vs. car: if
-          you already run a risk tool, Meridian does everything it does, plus the behavioral layer it is blind to.
+          Anti-tilt is not a replacement for your loss limit &mdash; it is the upgrade that wraps around it. Tricycle
+          vs. car: if you already run a risk tool, Meridian does everything it does, plus the behavioral layer it is
+          blind to.
         </p>
       </div>
       <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
@@ -257,21 +351,50 @@ const faqSchema = JSON.stringify({
             <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>P&amp;L / drawdown caps</span></li>
             <li class="flex gap-3"><span class="text-zinc-400">&check;</span><span>Loss-streak cutoff</span></li>
           </ul>
-          <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too &mdash; these are Guard's trigger types.</p>
+          <p class="mt-5 text-sm text-zinc-500">
+            Meridian does all of this too &mdash; these are Guard's trigger types.
+          </p>
         </div>
         <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
           <div class="text-sm font-semibold text-emerald-700 mb-4">What only anti-tilt adds</div>
           <ul class="space-y-3 text-zinc-800">
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection &mdash; revenge, oversizing, tilt</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Intervention <em>before</em> the order, not after the loss</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor &middot; guard &middot; journal &middot; review</span></li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >Real-time <strong>behavior</strong> detection &mdash; revenge, oversizing, tilt</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >A baseline that learns how <em>you</em> trade</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >Intervention <em>before</em> the order, not after the loss</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >Order-layer Hard limits &mdash; a max-contracts cap and blocked entry order types, rejected at
+                submission</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >The whole loop: monitor &middot; guard &middot; journal &middot; Intel analytics &middot; 5-year
+                history</span
+              >
+            </li>
           </ul>
           <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
         </div>
       </div>
       <p class="text-center mt-8">
-        <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-700 underline hover:text-emerald-900 font-medium">See the full NinjaTrader 8 risk-tool comparison</a>
+        <a
+          href="/best-ninjatrader-risk-management-tools"
+          class="text-emerald-700 underline hover:text-emerald-900 font-medium"
+          >See the full NinjaTrader 8 risk-tool comparison</a
+        >
       </p>
     </div>
   </section>
@@ -279,18 +402,20 @@ const faqSchema = JSON.stringify({
   <!-- ───────────────────────── WHY IT MATTERS ───────────────────────── -->
   <section class="max-w-3xl mx-auto px-6 py-24">
     <div data-reveal>
-    <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY THIS LAYER MATTERS</p>
-    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The losses that end accounts are behavioral.</h2>
-    <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
-      The strategy you spent months building is rarely the failure point. The failure point is one session where tilt produced a
-      loss sequence the strategy itself never permitted &mdash; entries you would have rejected the day before, sizing you had
-      explicitly ruled out, a stop you moved twice.
-    </p>
-    <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
-      Every earlier generation of risk tooling fires <em>after</em> that sequence has already played out. Anti-tilt fires
-      <em>inside</em> it &mdash; while you still have the option to step away. Often that is the difference between losing a funded
-      account and keeping it.
-    </p>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY THIS LAYER MATTERS</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        The losses that end accounts are behavioral.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
+        The strategy you spent months building is rarely the failure point. The failure point is one session where tilt
+        produced a loss sequence the strategy itself never permitted &mdash; entries you would have rejected the day
+        before, sizing you had explicitly ruled out, a stop you moved twice.
+      </p>
+      <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
+        Every earlier generation of risk tooling fires <em>after</em> that sequence has already played out. Anti-tilt fires
+        <em>inside</em> it &mdash; while you still have the option to step away. Often that is the difference between losing
+        a funded account and keeping it.
+      </p>
     </div>
   </section>
 
@@ -300,12 +425,14 @@ const faqSchema = JSON.stringify({
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">QUESTIONS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-10">Anti-tilt, answered.</h2>
       <dl class="space-y-8">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
-            <dd class="text-zinc-600 leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+              <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
   </section>
@@ -313,13 +440,28 @@ const faqSchema = JSON.stringify({
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
   <section class="halo">
     <div data-reveal class="max-w-3xl mx-auto px-6 py-28 text-center">
-      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Catch the behavior.<br />Skip the breach.</h2>
-      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the anti-tilt layer that actually saves the account.</p>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Catch the behavior.<br />Skip the breach.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600">
+        Everything your risk tool does &mdash; plus the anti-tilt layer that actually saves the account.
+      </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/pricing" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
-        <a href="/guard" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">Explore Meridian Guard</a>
+        <a
+          href="/pricing"
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start your 14-day free trial</a
+        >
+        <a
+          href="/guard"
+          class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition"
+          >Explore Meridian Guard</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">14-day trial &middot; $49.99/mo after &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        14-day trial &middot; $49.99/mo after &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early
+        access
+      </p>
     </div>
   </section>
 </Layout>

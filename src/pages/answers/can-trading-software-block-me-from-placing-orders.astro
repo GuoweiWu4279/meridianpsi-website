@@ -9,7 +9,8 @@ const metadata = {
 };
 
 const question = 'Can trading software automatically block me from placing orders?';
-const directAnswer = 'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance. Guard v2 on the standalone apps adds a six-tier ladder whose top tier, Cut, blocks the broker order servers at the Windows-firewall level — an order physically cannot leave that PC, which holds even for a market order placed from that machine (a phone or second device is outside it).';
+const directAnswer =
+  'Yes. Meridian Guard blocks new entries automatically when configured thresholds are hit. On NinjaTrader 8 the block is enforced at the order pipeline level — new entry orders are cancelled before they reach the market; the standalone Meridian apps for Tradovate and Ironbeam accounts (early access) enforce the same block at the account level, and on Tradovate a broker-level lock is available. Guard supports five escalating response levels, from a quiet alert up to a full broker disconnect. The specific trigger (N consecutive losses, PSI below a threshold, session P&L below a limit) and the response (typed acknowledgment, entry block, disconnect) are both user-configured in advance. Guard v2 on the standalone apps adds a six-tier ladder whose top tier, Cut, blocks the broker order servers at the Windows-firewall level — an order physically cannot leave that PC, which holds even for a market order placed from that machine (a phone or second device is outside it).';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -34,59 +35,90 @@ const qaSchema = JSON.stringify({
   <script type="application/ld+json" set:html={qaSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
-
     <header class="mb-10">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Answer · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Answer · NinjaTrader 8
+      </p>
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
       <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Short answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Short answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3"
+    >
       <h2>How Meridian Guard blocks orders on NinjaTrader 8</h2>
       <p>
-        Guard is the enforcement layer of Meridian. Unlike a traditional NinjaTrader risk tool, it covers both the conventional limits such a tool enforces — daily loss limit, single-trade loss cap, session P&L and drawdown caps, consecutive-loss cutoff — and a behavioral layer (revenge trading, oversizing, overtrading) that fires before the order. Guard turns any of those triggers into an actual block.
+        Guard is the enforcement layer of Meridian. Unlike a traditional NinjaTrader risk tool, it covers both the
+        conventional limits such a tool enforces — daily loss limit, single-trade loss cap, session P&L and drawdown
+        caps, consecutive-loss cutoff — and a behavioral layer (revenge trading, oversizing, overtrading) that fires
+        before the order. Guard turns any of those triggers into an actual block. Guard can also enforce a standing
+        v1.5.5 Hard limit — a max-contracts cap and blocked entry order types rejected at order submission, no trigger
+        required — so an over-size or disallowed entry is cancelled the moment you place it.
       </p>
       <p>
-        Meridian Guard intercepts at the NinjaTrader order execution pipeline. When a Guard rule fires, new entry orders placed through the NinjaTrader interface are cancelled before they reach the broker. This applies to manual, hotkey, and ATM-strategy orders. Close-position orders (flatten, bracket stops) are never blocked — only new entry orders during an active pause.
+        Meridian Guard intercepts at the NinjaTrader order execution pipeline. When a Guard rule fires, new entry orders
+        placed through the NinjaTrader interface are cancelled before they reach the broker. This applies to manual,
+        hotkey, and ATM-strategy orders. Close-position orders (flatten, bracket stops) are never blocked — only new
+        entry orders during an active pause.
       </p>
 
       <h2>The five response levels (NinjaTrader 8)</h2>
       <p>
-        Guard's block is not binary. It escalates across five levels, and you configure which level fires for which trigger:
+        Guard's block is not binary. It escalates across five levels, and you configure which level fires for which
+        trigger:
       </p>
       <ul>
         <li><strong>Notify</strong> — a quiet notification; no block on orders</li>
-        <li><strong>Risk Alert</strong> — persistent banner; non-blocking (it doesn't gate entries — that's Acknowledge's job)</li>
-        <li><strong>Acknowledge</strong> — must type a pre-written phrase (with an optional countdown) before the next entry is allowed</li>
+        <li>
+          <strong>Risk Alert</strong> — persistent banner; non-blocking (it doesn't gate entries — that's Acknowledge's job)
+        </li>
+        <li>
+          <strong>Acknowledge</strong> — must type a pre-written phrase (with an optional countdown) before the next entry
+          is allowed
+        </li>
         <li><strong>Trading Pause</strong> — new entries blocked by cancelling orders</li>
         <li><strong>Disconnect</strong> — severs the broker connection</li>
       </ul>
       <p>
-        A common configuration is Acknowledge for a first trigger, Trading Pause for a second, and Disconnect for the third. The escalation means early signals are informational; later signals are enforcement.
+        A common configuration is Acknowledge for a first trigger, Trading Pause for a second, and Disconnect for the
+        third. The escalation means early signals are informational; later signals are enforcement.
       </p>
 
       <h2>Blocking at the network level (standalone apps)</h2>
       <p>
-        The standalone Meridian apps for Tradovate and Ironbeam accounts (early access) run the next generation of Guard — a six-tier ladder: Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut. The top two tiers go beyond what any in-platform add-on can do:
+        The standalone Meridian apps for Tradovate and Ironbeam accounts (early access) run the next generation of Guard
+        — a six-tier ladder: Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut. The top two tiers go beyond what
+        any in-platform add-on can do:
       </p>
       <ul>
-        <li><strong>Cool-down Wall (tier 5)</strong> — a full-screen cool-down with guided breathing and a countdown. If you hold a position it first offers flatten/manage; it never traps an open trade.</li>
-        <li><strong>Cut (tier 6)</strong> — blocks the broker's order servers in the Windows firewall. The block is at the network layer, machine-wide: an order physically cannot leave that PC, which makes it the one stop that holds even a market order from that machine (a phone or second device is outside it). It lifts automatically when the window ends.</li>
+        <li>
+          <strong>Cool-down Wall (tier 5)</strong> — a full-screen cool-down with guided breathing and a countdown. If you
+          hold a position it first offers flatten/manage; it never traps an open trade.
+        </li>
+        <li>
+          <strong>Cut (tier 6)</strong> — blocks the broker's order servers in the Windows firewall. The block is at the
+          network layer, machine-wide: an order physically cannot leave that PC, which makes it the one stop that holds even
+          a market order from that machine (a phone or second device is outside it). It lifts automatically when the window
+          ends.
+        </li>
       </ul>
       <p>
-        On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only) — enforcement at the broker itself, not just on your machine.
+        On Tradovate demo and eval accounts, Guard can additionally write the platform's own risk lock (liquidate-only)
+        — enforcement at the broker itself, not just on your machine.
       </p>
 
       <h2>What triggers the block</h2>
       <p>
-        Six trigger types are available — the conventional risk limits a daily-loss or position-size tool would enforce, plus the behavioral signal that traditional tools lack:
+        Six trigger types are available — the conventional risk limits a daily-loss or position-size tool would enforce,
+        plus the behavioral signal that traditional tools lack:
       </p>
       <ul>
         <li>PSI (Psychological Stability Index) drops below a configured threshold</li>
@@ -96,26 +128,49 @@ const qaSchema = JSON.stringify({
         <li>A single trade loss exceeds a configured amount</li>
         <li>Session time exceeds a planned duration</li>
       </ul>
-      <p>
-        Rules can be password-locked so they cannot be overridden in-session.
-      </p>
+      <p>Rules can be password-locked so they cannot be overridden in-session.</p>
 
       <p>
-        Full documentation on setup: <a href="/guard" class="text-emerald-700 underline">Meridian Guard — trigger and response model</a>. For comparing Guard to a daily loss limit: <a href="/compare/meridian-guard-vs-daily-loss-limits" class="text-emerald-700 underline">Guard vs daily loss limits</a>.
+        Full documentation on setup: <a href="/guard" class="text-emerald-700 underline"
+          >Meridian Guard — trigger and response model</a
+        >. For comparing Guard to a daily loss limit: <a
+          href="/compare/meridian-guard-vs-daily-loss-limits"
+          class="text-emerald-700 underline">Guard vs daily loss limits</a
+        >.
       </p>
     </div>
 
     <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
-      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
-      <p class="text-[13px] text-zinc-600 leading-relaxed"><strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a href="https://ninjatrader.com/vendor-services/" class="text-emerald-700 underline" target="_blank" rel="noopener noreferrer">ninjatrader.com/vendor-services</a>.</p>
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"
+        ><path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"></path></svg
+      >
+      <p class="text-[13px] text-zinc-600 leading-relaxed">
+        <strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by
+        NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a
+          href="https://ninjatrader.com/vendor-services/"
+          class="text-emerald-700 underline"
+          target="_blank"
+          rel="noopener noreferrer">ninjatrader.com/vendor-services</a
+        >.
+      </p>
     </div>
 
     <div class="mt-8 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/answers" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/answers"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           More answers →
         </a>
       </div>

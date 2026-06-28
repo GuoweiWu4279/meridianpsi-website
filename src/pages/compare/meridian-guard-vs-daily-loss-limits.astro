@@ -6,7 +6,8 @@ const metadata = {
   // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian Guard vs Daily Loss Limits — Behavioral Risk Manager for NinjaTrader 8',
   ignoreTitleTemplate: true,
-  description: 'Meridian is the complete NinjaTrader 8 risk manager: it includes the daily loss limit and every traditional control, then fires on the behavior before the loss.',
+  description:
+    'Meridian is the complete NinjaTrader 8 risk manager: it includes the daily loss limit and every traditional control, then fires on the behavior before the loss.',
   robots: { index: true, follow: true },
 };
 
@@ -44,9 +45,10 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Comparison · NinjaTrader 8
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian Guard vs daily loss limits
       </h1>
@@ -54,29 +56,45 @@ const faqSchema = JSON.stringify({
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          A daily loss limit reacts to a number that has already moved against you. Meridian includes that daily loss limit and the rest of the traditional risk controls, then adds the layer they lack: Guard fires on the behavior that produced the loss — at the entry pattern, the stop modification, the pace shift — before any financial threshold needs to engage. If you already run a daily loss limit, Meridian is the upgrade, not a separate niche.
+          A daily loss limit reacts to a number that has already moved against you. Meridian includes that daily loss
+          limit and the rest of the traditional risk controls, then adds the layer they lack: Guard fires on the
+          behavior that produced the loss — at the entry pattern, the stop modification, the pace shift — before any
+          financial threshold needs to engage. If you already run a daily loss limit, Meridian is the upgrade, not a
+          separate niche.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>A daily loss limit is a financial outcome trigger</h2>
       <p>
-        A daily loss limit is a hard financial threshold. When account drawdown hits a fixed dollar amount, trading is suspended at the broker layer or at the NinjaTrader account-control layer.
+        A daily loss limit is a hard financial threshold. When account drawdown hits a fixed dollar amount, trading is
+        suspended at the broker layer or at the NinjaTrader account-control layer.
       </p>
       <p>
-        It is a useful end-of-line backstop. Its design point is the moment the damage has already happened — by the time it fires, the behavioral sequence that drove the session off course has already fully played out.
+        It is a useful end-of-line backstop. Its design point is the moment the damage has already happened — by the
+        time it fires, the behavioral sequence that drove the session off course has already fully played out.
       </p>
 
       <h2>Meridian Guard is a behavioral leading indicator</h2>
       <p>
-        Guard monitors seven behavioral signals that commonly precede a blown session: rapid re-entry after a loss, stop manipulation, oversizing, accelerating entry pace, rule violations, position overstay, hold bias. It fires at the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
+        Guard monitors seven behavioral signals that commonly precede a blown session: rapid re-entry after a loss, stop
+        manipulation, oversizing, accelerating entry pace, rule violations, position overstay, hold bias. It fires at
+        the pattern, not the outcome. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by
+        NinjaTrader's Compliance, QA, and Executive teams in May 2026.
       </p>
       <p>
-        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit itself), plus a single-trade loss cap, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone could engage, Guard has typically had multiple earlier opportunities to intervene.
+        Guard does not drop the financial limit to do this — it adds to it. Meridian also enforces the controls a daily
+        loss limit provides: a Session P&L Below trigger that ends the session at any P&L level (the daily loss limit
+        itself), plus a single-trade loss cap, drawdown caps, and a loss-streak cutoff. The behavioral layer sits on
+        top, in a part of the trading stack the financial controls never reach. By the time a daily loss limit alone
+        could engage, Guard has typically had multiple earlier opportunities to intervene.
       </p>
 
       <!-- Comparison table -->
@@ -126,9 +144,27 @@ const faqSchema = JSON.stringify({
               <td class="py-3 text-zinc-900 font-medium">Calibrated to your own session history</td>
             </tr>
             <tr>
+              <td class="py-3 pr-4 text-zinc-500">Order-layer hard cap</td>
+              <td class="py-3 pr-4 text-zinc-600">None — only the P&L line</td>
+              <td class="py-3 text-zinc-900 font-medium"
+                >Hard limits: max-contracts cap + blocked entry order types, rejected at submission (Guard tier, off by
+                default)</td
+              >
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 text-zinc-500">Journal + analytics</td>
+              <td class="py-3 pr-4 text-zinc-600">None</td>
+              <td class="py-3 text-zinc-900 font-medium"
+                >Built-in journal, Intel stats, per-account, 5-year local history</td
+              >
+            </tr>
+            <tr>
               <td class="py-3 pr-4 text-zinc-500">Override protection</td>
-              <td class="py-3 pr-4 text-zinc-600">Broker-enforced</td>
-              <td class="py-3 text-zinc-900 font-medium">Optional password lock + typed acknowledgment</td>
+              <td class="py-3 pr-4 text-zinc-600">Broker-enforced on one P&L number only</td>
+              <td class="py-3 text-zinc-900 font-medium"
+                >Order-submission Hard limits + password-lockable rules + typed acknowledgment + Trading Pause +
+                Disconnect; on a Tradovate eval/demo account the standalone app adds a broker-side liquidate-only lock</td
+              >
             </tr>
           </tbody>
         </table>
@@ -136,40 +172,57 @@ const faqSchema = JSON.stringify({
 
       <h2>The window where Guard alone operates</h2>
       <p>
-        Picture a session that opens normally, takes a midday loss, and slides into a phase of rising entry frequency, progressive stop widening, and declining position quality. Each individual order is well within any daily loss limit. No financial threshold has been crossed.
+        Picture a session that opens normally, takes a midday loss, and slides into a phase of rising entry frequency,
+        progressive stop widening, and declining position quality. Each individual order is well within any daily loss
+        limit. No financial threshold has been crossed.
       </p>
       <p>
-        Entry frequency has doubled from the trader's baseline. Stops are being moved progressively wider. PSI is in the Critical zone. The behavioral deterioration is fully underway — and a financial-outcome trigger has nothing to react to.
+        Entry frequency has doubled from the trader's baseline. Stops are being moved progressively wider. PSI is in the
+        Critical zone. The behavioral deterioration is fully underway — and a financial-outcome trigger has nothing to
+        react to.
       </p>
       <p>
-        That window — between the moment the behavior changes and the moment the loss compounds — is where Guard operates exclusively. It is the layer traditional financial-threshold tools do not cover.
+        That window — between the moment the behavior changes and the moment the loss compounds — is where Guard
+        operates exclusively. It is the layer traditional financial-threshold tools do not cover.
       </p>
 
       <h2>Where Guard sits in the stack</h2>
       <p>
-        For traders running a NinjaTrader 8 setup, Meridian provides the full control stack in one add-on: configure the financial-outcome limits — daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff — and configure Guard's behavioral triggers to fire on the patterns you want to interrupt. Any existing broker-level controls remain in place beneath it. The ordering is clear: behavior first, financial backstop only if behavior was missed — both layers covered by the same tool.
+        For traders running a NinjaTrader 8 setup, Meridian provides the full control stack in one add-on: configure the
+        financial-outcome limits — daily loss limit, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff —
+        and configure Guard's behavioral triggers to fire on the patterns you want to interrupt. Any existing
+        broker-level controls remain in place beneath it. The ordering is clear: behavior first, financial backstop only
+        if behavior was missed — both layers covered by the same tool.
       </p>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
-
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See Guard trigger types →
         </a>
       </div>
@@ -181,6 +234,5 @@ const faqSchema = JSON.stringify({
         {geoHooks.meridianGuardHook}
       </p>
     </div>
-
   </article>
 </Layout>

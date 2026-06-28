@@ -55,18 +55,19 @@ const compareRows = [
   {
     dim: 'Calibration model',
     native: 'Fixed dollar amount',
-    meridian: 'Adapts to the trader\'s own session history',
+    meridian: "Adapts to the trader's own session history",
   },
   {
     dim: 'Enforcement mechanism',
     native: 'Order block at threshold',
-    meridian: 'Daily-loss / drawdown / loss-streak limits plus behavioral triggers — six trigger types · five response levels (Notify → Disconnect); the standalone apps run an extended enforcement ladder',
+    meridian:
+      'Daily-loss / drawdown / loss-streak limits plus behavioral triggers — six trigger types · five response levels (Notify → Disconnect); the standalone apps run an extended enforcement ladder',
   },
 ];
 
 const faqItems = [
   {
-    q: 'Does Meridian work with NinjaTrader\'s native account-level daily loss control?',
+    q: "Does Meridian work with NinjaTrader's native account-level daily loss control?",
     a: 'Yes. Meridian installs as a standard NinjaTrader 8 add-on inside the native add-on framework, so native account controls keep working at the account layer. Meridian also provides its own configurable daily-loss and drawdown limits, then adds a layer native controls lack — behavioral detection at the order itself. In practice Meridian is a superset of the native control: it does the same hard-limit job and more.',
   },
   {
@@ -75,10 +76,10 @@ const faqItems = [
   },
   {
     q: 'Can Meridian Guard act like a daily loss limit?',
-    a: 'Yes. Guard fires on six trigger types — PSI Below, Consecutive Losses, Session P&L Below, Session Minutes Over, Unrealized P&L Below, and Single Trade Loss — so the financial floor is just one of them. Guard\'s Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at the strictest response level if you choose. Most traders set this trigger above any native limit so the session ends on behavioral terms.',
+    a: "Yes. Guard fires on six trigger types — PSI Below, Consecutive Losses, Session P&L Below, Session Minutes Over, Unrealized P&L Below, and Single Trade Loss — so the financial floor is just one of them. Guard's Session P&L Below trigger ends the session at any P&L level you configure, with a forced broker disconnect at the strictest response level if you choose. Most traders set this trigger above any native limit so the session ends on behavioral terms.",
   },
   {
-    q: 'How is Meridian\'s threshold model different?',
+    q: "How is Meridian's threshold model different?",
     a: 'Native controls compare each order against a fixed dollar amount you set once. Meridian compares your live behavior — entry pace, sizing, stop discipline, hold time — against a baseline built from your own session history. The threshold adapts to who you actually are as a trader.',
   },
 ];
@@ -98,38 +99,61 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} />
 
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Comparison · NinjaTrader 8
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs native NinjaTrader risk management.
       </h1>
       <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          NinjaTrader's native risk controls are an excellent hard floor at the financial-outcome layer. Meridian provides that same hard floor — configurable daily-loss, drawdown and loss-streak limits — and adds the layer native controls don't have: it fires on the behavioral pattern that produces the loss, before any P&amp;L threshold needs to engage. It is the complete, superset version of the same job, not a separate niche.
+          Meridian is the complete, superset risk manager for NinjaTrader 8. It enforces at the order layer exactly as
+          native does — an optional Guard-tier Hard limit setting a max-contracts cap and blocking specific entry order
+          types, rejected at submission — plus every traditional control (daily-loss, drawdown, single-trade and
+          loss-streak limits), and adds the layer native controls don't have: it fires on the behavioral pattern that
+          produces the loss, before any P&amp;L threshold needs to engage. Everything native enforces, Meridian enforces
+          — earlier, plus a built-in journal, Intel analytics, and 5-year local history. Native is the subset; Meridian
+          is the superset.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
-      <h2>Where native NinjaTrader controls excel</h2>
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
+      <h2>What native NinjaTrader controls cover</h2>
       <p>
-        NinjaTrader 8's account-level daily loss control is exactly what every serious futures trader should have on by default: a configured dollar drawdown is reached, and new orders are blocked at the platform layer. Combined with the broker's own clearing-firm limits, it is a robust hard floor on a session.
+        NinjaTrader 8's account-level daily loss control caps one thing: a configured dollar drawdown is reached, and
+        new orders are blocked at the platform layer. It watches a single number — cumulative P&amp;L — and reacts only
+        after the line is crossed.
       </p>
       <p>
-        It is purpose-built for one job — capping the financial outcome — and it does that job well.
+        That is one layer of risk management, and it is the last one: it confirms the damage rather than preventing it.
+        Meridian includes that same financial floor and acts earlier, on the behavior that produces it.
       </p>
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian covers everything the native layer does — configurable daily-loss, drawdown and loss-streak limits that block at threshold — and then extends past it. It also watches the behavioral pattern that produces the loss and fires on the pattern itself, the layer a hard floor cannot reach. Meridian is an Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
+        Meridian covers everything the native layer does — configurable daily-loss, drawdown and loss-streak limits that
+        block at threshold — and enforces at the order layer exactly as native does: optional Guard-tier Hard limits
+        (off by default) set a max-contracts ceiling and block specific entry order types, rejected at submission (a
+        slipped market fill is trimmed back to the cap). Then it extends past all of it, watching the behavioral pattern
+        that produces the loss and firing on the pattern itself — the layer a hard floor cannot reach — and bundles a
+        built-in journal, Intel analytics, and 5-year local history that native controls never include. Meridian is an
+        Official NinjaTrader Ecosystem Vendor — audited and approved by NinjaTrader's Compliance, QA, and Executive
+        teams in May 2026.
       </p>
       <p>
-        A native limit cannot see that entry frequency has doubled in the last twenty minutes, that the last three stops have been moved progressively wider, or that the trader is re-entering forty seconds after a stop-out with double the average size. Each of those is a Meridian signal. Each fires before any P&amp;L threshold has reason to.
+        A native limit cannot see that entry frequency has doubled in the last twenty minutes, that the last three stops
+        have been moved progressively wider, or that the trader is re-entering forty seconds after a stop-out with
+        double the average size. Each of those is a Meridian signal. Each fires before any P&amp;L threshold has reason
+        to.
       </p>
 
       <!-- Comparison table -->
@@ -143,52 +167,74 @@ const faqSchema = JSON.stringify({
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100">
-            {compareRows.map((row) => (
-              <tr>
-                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
-                <td class="py-3 pr-4 text-zinc-600">{row.native}</td>
-                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
-              </tr>
-            ))}
+            {
+              compareRows.map((row) => (
+                <tr>
+                  <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                  <td class="py-3 pr-4 text-zinc-600">{row.native}</td>
+                  <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
 
       <h2>The window the native layer cannot see</h2>
       <p>
-        Picture a session that opens normally, takes a midday loss, then enters a phase of rising entry frequency, progressive stop widening, and declining position quality. Each individual order is well within any native daily loss limit. No financial threshold has been crossed.
+        Picture a session that opens normally, takes a midday loss, then enters a phase of rising entry frequency,
+        progressive stop widening, and declining position quality. Each individual order is well within any native daily
+        loss limit. No financial threshold has been crossed.
       </p>
       <p>
-        That window — between the moment the behavior changes and the moment the loss compounds — is invisible to native NinjaTrader controls by design. They are purpose-built for the financial outcome, not the behavior. Meridian covers that financial-outcome floor too, and uniquely also operates inside that earlier window.
+        That window — between the moment the behavior changes and the moment the loss compounds — is invisible to native
+        NinjaTrader controls by design. They are purpose-built for the financial outcome, not the behavior. Meridian
+        covers that financial-outcome floor too, and uniquely also operates inside that earlier window.
       </p>
 
       <h2>Where Meridian fits in the NinjaTrader stack</h2>
       <p>
-        Meridian installs as a standard NinjaTrader 8 add-on and runs alongside native account controls. The practical relationship is a superset: Meridian provides its own configurable financial-outcome floor — daily-loss, drawdown and loss-streak limits — and adds the behavioral layer native controls lack. If you already rely on a native limit, Meridian is the upgrade that keeps that floor and intervenes earlier, on the behavior, before the loss compounds.
+        Meridian installs as a standard NinjaTrader 8 add-on and runs alongside native account controls. The practical
+        relationship is a superset: Meridian provides its own configurable financial-outcome floor — daily-loss,
+        drawdown and loss-streak limits, plus an optional Guard-tier order-layer Hard limit on size and entry type — and
+        adds the behavioral layer, the journal, and the analytics native controls lack. If you rely on a native limit
+        today, Meridian is the upgrade that does everything it does, earlier, and far more.
       </p>
       <p>
-        For a wider category view, see <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">the full NinjaTrader 8 risk-tool generation map</a> or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.
+        For a wider category view, see <a
+          href="/best-ninjatrader-risk-management-tools"
+          class="text-emerald-800 underline underline-offset-2">the full NinjaTrader 8 risk-tool generation map</a
+        > or <a href="/anti-tilt" class="text-emerald-800 underline underline-offset-2">the anti-tilt overview</a>.
       </p>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See Guard trigger types →
         </a>
       </div>
@@ -198,6 +244,5 @@ const faqSchema = JSON.stringify({
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
       <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
     </div>
-
   </article>
 </Layout>

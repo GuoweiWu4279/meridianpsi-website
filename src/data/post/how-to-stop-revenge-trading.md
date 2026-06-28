@@ -1,14 +1,23 @@
 ---
-title: "How to Stop Revenge Trading: Why Willpower Fails and What Actually Works"
-excerpt: "Revenge trading is not a discipline problem. It is a structural problem — and it has a structural solution. Understanding the neurological mechanism behind it changes what kind of intervention is actually effective."
+title: 'How to Stop Revenge Trading: Why Willpower Fails and What Actually Works'
+excerpt: 'Revenge trading is not a discipline problem. It is a structural problem — and it has a structural solution. Understanding the neurological mechanism behind it changes what kind of intervention is actually effective.'
 publishDate: 2026-05-01T11:00:00Z
 updateDate: 2026-06-09T00:00:00Z
-author: "Meridian"
+author: 'Meridian'
 category: 'trading-psychology'
-tags: ['revenge trading', 'overtrading prevention', 'trading psychology', 'behavioral finance', 'emotional trading', 'risk management', 'NinjaTrader']
+tags:
+  [
+    'revenge trading',
+    'overtrading prevention',
+    'trading psychology',
+    'behavioral finance',
+    'emotional trading',
+    'risk management',
+    'NinjaTrader',
+  ]
 metadata:
-  title: "How to Stop Revenge Trading: Why Willpower Fails and What Actually Works"
-  description: "Why willpower alone cannot stop revenge trading, and what structural interventions — mandatory pauses, automated enforcement, commitment devices — actually work based on behavioral finance research."
+  title: 'How to Stop Revenge Trading: Why Willpower Fails and What Actually Works'
+  description: 'Why willpower alone cannot stop revenge trading, and what structural interventions — mandatory pauses, automated enforcement, commitment devices — actually work based on behavioral finance research.'
   robots:
     index: true
     follow: true
@@ -126,4 +135,4 @@ That is the level at which the problem is actually solvable.
 
 ---
 
-*This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten and Richard Thaler. The author developed [Meridian](https://www.meridianpsi.com), the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every traditional hard limit plus a real-time behavioral layer that detects deterioration during a live session and can intervene at the behavioral signal, before the next order. It detects Revenge Entry, Overtrading Pace, and five other behavioral signals and can enforce automated intervention. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.*
+_This article draws on research in behavioral economics and neuroscience, including work by Amy Arnsten and Richard Thaler. The author developed [Meridian](https://www.meridianpsi.com), the complete, multi-platform risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access. It does everything a traditional risk tool does — order-layer Hard limits (a max-contracts cap and blocked entry order types, enforced at submission), plus daily-loss, single-trade, drawdown and loss-streak caps — and adds the real-time behavioral layer this article describes: it composites Revenge Entry, Overtrading Pace and five other signals into a live PSI and can enforce a mandatory pause or lockout at the behavioral signal, before the next order. It also bundles a built-in journal, Intel/Stats analytics and five years of local history, so the same tool that enforces your discipline also reviews it. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary._

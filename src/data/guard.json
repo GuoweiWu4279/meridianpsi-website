@@ -61,7 +61,7 @@
   "hardLimits": {
     "_comment": "Standing enforcement, NOT a triggered rule. Guard-tier, off by default. Ships on BOTH NT8 and the standalone apps.",
     "name": "Hard limits",
-    "short": "A standing cap you set while calm.",
+    "short": "A standing order-layer cap — the same hard floor native enforces, set while calm.",
     "desc": "A max-contracts ceiling and blocked entry order types, set once while you're calm (Guard tier, off by default). A resting order over the cap or of a blocked type is cancelled at submission; a market order that slips through is trimmed back to the cap. Closing or reducing a position is never blocked.",
     "platforms": "Both NinjaTrader 8 and the standalone Tradovate & Ironbeam apps."
   },

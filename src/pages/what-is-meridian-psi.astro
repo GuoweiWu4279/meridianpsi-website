@@ -31,11 +31,11 @@ const faqItems = [
   },
   {
     q: 'Do I have to give up the risk tool I already use?',
-    a: 'No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, single-trade loss cap, P&L cap, loss-streak cutoff) literally are four of Guard\'s six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.',
+    a: "No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, single-trade loss cap, P&L cap, loss-streak cutoff) literally are four of Guard's six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.",
   },
   {
     q: 'Is Meridian compatible with prop firm evaluation accounts?',
-    a: 'Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts — and for programs that issue Tradovate-based accounts, a standalone Meridian app that connects directly to the account is in early access. It runs as a local behavioral overlay on top of your session, independent of the prop firm\'s own infrastructure.',
+    a: "Yes. Meridian works with any NinjaTrader 8 connection, including Tradovate and Rithmic evaluation accounts — and for programs that issue Tradovate-based accounts, a standalone Meridian app that connects directly to the account is in early access. It runs as a local behavioral overlay on top of your session, independent of the prop firm's own infrastructure.",
   },
   {
     q: 'How does Guard handle open positions?',
@@ -93,13 +93,12 @@ const definedTermSchema = JSON.stringify({
   name: 'Psychological Stability Index (PSI)',
   termCode: 'PSI',
   description:
-    'In Meridian, PSI (Psychological Stability Index) is a live 0–100 behavioral-discipline score composited from seven trading-behavior signals measured against the trader\'s own adaptive baseline; it updates within 100ms of each fill. It is not pounds-per-square-inch and not a price, strength, or commodity index.',
+    "In Meridian, PSI (Psychological Stability Index) is a live 0–100 behavioral-discipline score composited from seven trading-behavior signals measured against the trader's own adaptive baseline; it updates within 100ms of each fill. It is not pounds-per-square-inch and not a price, strength, or commodity index.",
   inDefinedTermSet: 'https://www.meridianpsi.com/glossary',
   url: 'https://www.meridianpsi.com/what-is-meridian-psi',
 }).replace(/</g, '\\u003c');
 
 const TRIAL = '/pricing';
-
 ---
 
 <Layout metadata={metadata}>
@@ -113,22 +112,39 @@ const TRIAL = '/pricing';
     <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center" data-reveal>
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5">HOW MERIDIAN WORKS</p>
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
-        The whole risk tool &mdash; and the<br class="hidden md:block" /> layer that catches what limits <span class="text-emerald-600">miss.</span>
+        The whole risk tool &mdash; and the<br class="hidden md:block" /> layer that catches what limits <span
+          class="text-emerald-600">miss.</span
+        >
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. Native in NinjaTrader&nbsp;8 today; Tradovate &amp; Ironbeam apps in early access. It does everything a
-        traditional risk tool does, then adds real-time <strong class="text-zinc-800">behavioral detection</strong> none of
-        them have. This page is the full tour: the loop, the seven signals, and what the PSI score actually measures.
+        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. Native in NinjaTrader&nbsp;8
+        today; Tradovate &amp; Ironbeam apps in early access. It does everything a traditional risk tool does, then adds
+        real-time <strong class="text-zinc-800">behavioral detection</strong> none of them have. This page is the full tour:
+        the loop, the seven signals, and what the PSI score actually measures.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#loop" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the full loop</a>
+        <a
+          href={TRIAL}
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+          >Start 14-day free trial</a
+        >
+        <a
+          href="#loop"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+          >See the full loop</a
+        >
       </div>
       <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; Cancel anytime</p>
     </div>
     <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
       <div class="relative">
-        <div class="win"><img src="/m/overview.png" alt="Meridian Overview — the live PSI gauge, session timeline, and behavioral signal panel in one window" class="nozoom" /></div>
+        <div class="win">
+          <img
+            src="/m/overview.png"
+            alt="Meridian Overview — the live PSI gauge, session timeline, and behavioral signal panel in one window"
+            class="nozoom"
+          />
+        </div>
         <div
           class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
           style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
@@ -141,9 +157,19 @@ const TRIAL = '/pricing';
 
   <!-- ───────────────────────── TRUST STRIP ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
+    <div
+      class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500"
+    >
       <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle></svg
+        >
         Official NinjaTrader Ecosystem Vendor
       </span>
       <span class="text-zinc-300">|</span><span>One score, updated in real time</span>
@@ -176,18 +202,34 @@ const TRIAL = '/pricing';
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
         <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
         <ul class="space-y-3 text-zinc-800">
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection &mdash; 7 signals (revenge, oversizing, tilt&hellip;)</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An <strong>adaptive baseline</strong> that learns how <em>you</em> trade &mdash; not a generic average</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Intervention <em>before</em> the order, not after the loss</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The full loop: monitor &middot; guard &middot; journal &middot; review &middot; improve</span></li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >Real-time <strong>behavior</strong> detection &mdash; 7 signals (revenge, oversizing, tilt&hellip;)</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >An <strong>adaptive baseline</strong> that learns how <em>you</em> trade &mdash; not a generic average</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >Intervention <em>before</em> the order, not after the loss</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >The full loop: monitor &middot; guard &middot; journal &middot; review &middot; improve</span
+            >
+          </li>
         </ul>
         <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
       </div>
     </div>
     <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center" data-reveal>
       <p class="text-lg md:text-xl leading-relaxed">
-        A $500 daily loss limit fires at <span class="text-rose-400 font-semibold tnum">&minus;$500</span> &mdash; after the
-        damage is done.<br class="hidden md:block" />
+        A $500 daily loss limit fires at <span class="text-rose-400 font-semibold tnum">&minus;$500</span> &mdash; after
+        the damage is done.<br class="hidden md:block" />
         Meridian reads the <span class="text-emerald-400 font-semibold">behavior</span> doing the damage, and steps in first.
       </p>
     </div>
@@ -202,23 +244,47 @@ const TRIAL = '/pricing';
           PSI is one live number<br />for how you're trading.
         </h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          The Psychological Stability Index is a <strong class="text-zinc-800">live 0&ndash;100 composite</strong> of all seven
-          behavioral signals, scored against your own baseline and refreshed within 100ms of every fill. It isn't a separate
-          screen to check &mdash; it's the engine under everything else. A high PSI means calm and on-plan. A falling PSI is
-          tilt setting in, surfaced <em>before</em> your P&amp;L confirms it.
+          The Psychological Stability Index is a <strong class="text-zinc-800">live 0&ndash;100 composite</strong> of all
+          seven behavioral signals, scored against your own baseline and refreshed within 100ms of every fill. It isn't a
+          separate screen to check &mdash; it's the engine under everything else. A high PSI means calm and on-plan. A falling
+          PSI is tilt setting in, surfaced <em>before</em> your P&amp;L confirms it.
         </p>
         <div class="mt-7 space-y-4">
           <div class="flex gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 tnum">100</div>
-            <div><div class="font-semibold text-zinc-900">Stable</div><p class="text-sm text-zinc-600">Trading the way you do on your best days &mdash; on-plan, right-sized, patient.</p></div>
+            <div
+              class="shrink-0 w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center font-bold text-emerald-700 tnum"
+            >
+              100
+            </div>
+            <div>
+              <div class="font-semibold text-zinc-900">Stable</div><p class="text-sm text-zinc-600">
+                Trading the way you do on your best days &mdash; on-plan, right-sized, patient.
+              </p>
+            </div>
           </div>
           <div class="flex gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center font-bold text-amber-600 tnum">60</div>
-            <div><div class="font-semibold text-zinc-900">Warning</div><p class="text-sm text-zinc-600">Multiple signals firing &mdash; pace picking up, size creeping. Drift is compounding.</p></div>
+            <div
+              class="shrink-0 w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center font-bold text-amber-600 tnum"
+            >
+              60
+            </div>
+            <div>
+              <div class="font-semibold text-zinc-900">Warning</div><p class="text-sm text-zinc-600">
+                Multiple signals firing &mdash; pace picking up, size creeping. Drift is compounding.
+              </p>
+            </div>
           </div>
           <div class="flex gap-4">
-            <div class="shrink-0 w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center font-bold text-rose-600 tnum">25</div>
-            <div><div class="font-semibold text-zinc-900">Critical</div><p class="text-sm text-zinc-600">Multiple signals compounding &mdash; the state where accounts blow up. Guard can act here.</p></div>
+            <div
+              class="shrink-0 w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center font-bold text-rose-600 tnum"
+            >
+              25
+            </div>
+            <div>
+              <div class="font-semibold text-zinc-900">Critical</div><p class="text-sm text-zinc-600">
+                Multiple signals compounding &mdash; the state where accounts blow up. Guard can act here.
+              </p>
+            </div>
           </div>
         </div>
         <p class="mt-7 text-sm text-zinc-500">
@@ -226,7 +292,12 @@ const TRIAL = '/pricing';
           moment your behavior drifts, usually before your P&amp;L does.
         </p>
       </div>
-      <div class="win" data-reveal><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and the seven behavioral signal bars" /></div>
+      <div class="win" data-reveal>
+        <img
+          src="/m/monitor.png"
+          alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and the seven behavioral signal bars"
+        />
+      </div>
     </div>
   </section>
 
@@ -235,9 +306,11 @@ const TRIAL = '/pricing';
     <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3" data-reveal>WHAT FEEDS THE SCORE</p>
     <p class="text-lg text-zinc-700 leading-relaxed" data-reveal>
       PSI is fed by seven behavioral signals &mdash; revenge entries, size spikes, stop manipulation, hold bias,
-      position overstay, rule violations, and overtrading pace &mdash; each calibrated to <em>your</em> history,
-      never a population average.
-      <a href="/psi-monitor" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2">Full signal definitions &rarr;</a>
+      position overstay, rule violations, and overtrading pace &mdash; each calibrated to <em>your</em> history, never a
+      population average.
+      <a href="/psi-monitor" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2"
+        >Full signal definitions &rarr;</a
+      >
     </p>
   </section>
 
@@ -246,23 +319,34 @@ const TRIAL = '/pricing';
     <div class="max-w-5xl mx-auto px-6 py-16">
       <div class="text-center mb-10" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE PIECES FIT</p>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">Plan &middot; monitor &middot; enforce &middot; capture &middot; review.</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
+          Plan &middot; monitor &middot; enforce &middot; capture &middot; review.
+        </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
           The score is stage one of a loop &mdash; every surface has its own deep dive.
         </p>
       </div>
       <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto" data-reveal>
-        <a href="/features" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+        <a
+          href="/features"
+          class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block"
+        >
           <div class="font-semibold text-zinc-900 mb-1">All six surfaces</div>
           <p class="text-sm text-zinc-600 mb-3">The full catalog, one card per page.</p>
           <span class="text-sm font-semibold text-emerald-700">Features &rarr;</span>
         </a>
-        <a href="/guard" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+        <a
+          href="/guard"
+          class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block"
+        >
           <div class="font-semibold text-zinc-900 mb-1">Enforcement</div>
           <p class="text-sm text-zinc-600 mb-3">6 triggers, 5 responses, Strict Lock.</p>
           <span class="text-sm font-semibold text-emerald-700">Meridian Guard &rarr;</span>
         </a>
-        <a href="/history-intel" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block">
+        <a
+          href="/history-intel"
+          class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 transition-all hover:border-emerald-600/40 hover:shadow-md block"
+        >
           <div class="font-semibold text-zinc-900 mb-1">Review</div>
           <p class="text-sm text-zinc-600 mb-3">PSI &times; P&amp;L, patterns, the brief.</p>
           <span class="text-sm font-semibold text-emerald-700">Intel &amp; Patterns &rarr;</span>
@@ -276,25 +360,37 @@ const TRIAL = '/pricing';
     <div class="max-w-5xl mx-auto px-6 py-24">
       <div class="text-center mb-12" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHO IT'S FOR</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Built for traders whose biggest losses<br class="hidden md:block" /> aren't bad setups.</h2>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Built for any futures trader who<br class="hidden md:block" /> takes risk management seriously.
+        </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
           Meridian is for serious discretionary futures traders (Windows) &mdash; especially those running prop-firm
-          evaluations &mdash; whose accounts blow up from <em>behavior</em>, not strategy. NinjaTrader 8 today; Tradovate
-          and Ironbeam in early access.
+          evaluations. It does every standard control your risk tool does, then adds the behavioral layer that catches
+          what dollar limits miss. NinjaTrader 8 today; Tradovate and Ironbeam in early access.
         </p>
       </div>
       <div class="grid md:grid-cols-3 gap-5" data-reveal>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-          <div class="font-semibold text-zinc-900 mb-2">You've named your failure mode</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Revenge trading, overtrading, stop manipulation &mdash; you see it in your session history and want a structural fix, not another journaling reminder.</p>
+          <div class="font-semibold text-zinc-900 mb-2">You want every control in one tool</div>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Daily-loss, drawdown and size caps, loss-streak cutoffs &mdash; plus behavioral detection for revenge
+            trading, overtrading, and stop manipulation. One tool that enforces all of it, not a separate limiter and a
+            separate journal.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">You're protecting funded capital</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Prop-firm evaluation and funded accounts where one off-plan session ends the whole thing &mdash; you need behavioral guardrails on top of the firm's hard limits.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Prop-firm evaluation and funded accounts where one off-plan session ends the whole thing &mdash; you need
+            behavioral guardrails on top of the firm's hard limits.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">You're technically sound</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Your setups are fine. Your worst days come from execution breaking down under stress &mdash; the window Meridian is built to catch.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Your setups are fine. Your worst days come from execution breaking down under stress &mdash; the window
+            Meridian is built to catch.
+          </p>
         </div>
       </div>
     </div>
@@ -304,24 +400,36 @@ const TRIAL = '/pricing';
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div class="text-center mb-12" data-reveal>
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY TIMING IS THE WHOLE POINT</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">A journal looks back. A limit fires late.<br class="hidden md:block" /> Meridian acts in between.</h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        A journal looks back. A limit fires late.<br class="hidden md:block" /> Meridian acts in between.
+      </h2>
     </div>
     <div class="grid md:grid-cols-3 gap-5" data-reveal>
       <div class="rounded-2xl border border-zinc-200 bg-white p-7">
         <div class="text-sm font-semibold text-zinc-500 mb-2">A trading journal</div>
-        <p class="text-zinc-700 leading-relaxed">is <strong>retrospective</strong> &mdash; it records what happened after the session is over. Useful, but it can't interrupt a decision being made right now.</p>
+        <p class="text-zinc-700 leading-relaxed">
+          is <strong>retrospective</strong> &mdash; it records what happened after the session is over. Useful, but it can't
+          interrupt a decision being made right now.
+        </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="text-sm font-semibold text-zinc-500 mb-2">A P&amp;L limit</div>
-        <p class="text-zinc-700 leading-relaxed">is a <strong>hard floor</strong> &mdash; it stops you after the financial damage has already landed. A necessary backstop, but a lagging one.</p>
+        <div class="text-sm font-semibold text-zinc-500 mb-2">A standalone P&amp;L limit</div>
+        <p class="text-zinc-700 leading-relaxed">
+          only stops you <strong>after</strong> the financial damage has already landed &mdash; a lagging floor, firing at
+          the dollar line, never before it. Meridian enforces that same floor and reads the behavior approaching it first.
+        </p>
       </div>
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
         <div class="text-sm font-semibold text-emerald-700 mb-2">Meridian</div>
-        <p class="text-zinc-800 leading-relaxed">acts in the <strong>window between</strong> the behavior and the outcome &mdash; the only window where intervention is still possible. PSI updates after every fill; Guard can intervene before the cost compounds.</p>
+        <p class="text-zinc-800 leading-relaxed">
+          acts in the <strong>window between</strong> the behavior and the outcome &mdash; the only window where intervention
+          is still possible. PSI updates after every fill; Guard can intervene before the cost compounds.
+        </p>
       </div>
     </div>
     <p class="text-center mt-8 text-zinc-600 max-w-2xl mx-auto">
-      Meridian doesn't replace your journal or your loss limit &mdash; it adds the one stage they both leave out.
+      Meridian is your journal and your loss limit &mdash; both are built in &mdash; plus the one stage they both leave
+      out.
     </p>
   </section>
 
@@ -329,7 +437,9 @@ const TRIAL = '/pricing';
   <section class="max-w-3xl mx-auto px-6 py-12 text-center">
     <p class="text-sm text-zinc-500" data-reveal>
       Two tiers, both with a 14-day free trial &mdash; full breakdown on the
-      <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2">pricing page</a>.
+      <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2"
+        >pricing page</a
+      >.
     </p>
   </section>
 
@@ -339,33 +449,57 @@ const TRIAL = '/pricing';
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">QUESTIONS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Frequently asked</h2>
     </div>
-    {/* Collapsed accordions (same pattern as /faq and /pricing) — answers stay
-        in the DOM so the FAQPage schema and crawlers see everything. */}
+    {
+      /* Collapsed accordions (same pattern as /faq and /pricing) — answers stay
+        in the DOM so the FAQPage schema and crawlers see everything. */
+    }
     <div class="rounded-2xl border border-zinc-200 bg-white overflow-hidden divide-y divide-zinc-100" data-reveal>
-      {faqItems.map(({ q, a }) => (
-        <details class="group">
-          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
-            <span class="font-semibold text-zinc-900 text-[15px]">{q}</span>
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{a}</p>
-        </details>
-      ))}
+      {
+        faqItems.map(({ q, a }) => (
+          <details class="group">
+            <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
+              <span class="font-semibold text-zinc-900 text-[15px]">{q}</span>
+              <svg
+                class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{a}</p>
+          </details>
+        ))
+      }
     </div>
   </section>
 
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
   <section class="halo border-t border-zinc-200">
     <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
-      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Now you know how it works.<br />See it on your own session.</h2>
-      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the layer that actually saves the account.</p>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        Now you know how it works.<br />See it on your own session.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600">
+        Everything your risk tool does &mdash; plus the layer that actually saves the account.
+      </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
-        <a href="/features" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See all features</a>
+        <a
+          href={TRIAL}
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start your 14-day free trial</a
+        >
+        <a
+          href="/features"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition"
+          >See all features</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
+        early access
+      </p>
     </div>
   </section>
 </Layout>

@@ -20,7 +20,8 @@ const compareRows = [
   {
     dim: 'What it monitors',
     guardian: 'Cumulative P&L, trade count, position size',
-    meridian: 'Cumulative P&L, trade count, position size — plus seven real-time behavioral signals and a composite PSI score',
+    meridian:
+      'Cumulative P&L, trade count, position size — plus seven real-time behavioral signals and a composite PSI score',
   },
   {
     dim: 'When it fires',
@@ -30,12 +31,13 @@ const compareRows = [
   {
     dim: 'Behavioral signal detection',
     guardian: 'Not in scope',
-    meridian: 'Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace',
+    meridian:
+      'Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace',
   },
   {
     dim: 'Adaptive personal baseline',
     guardian: 'Fixed thresholds configured by the trader',
-    meridian: 'Learns each trader\'s own session patterns; calibrates continuously',
+    meridian: "Learns each trader's own session patterns; calibrates continuously",
   },
   {
     dim: 'Stop-modification detection',
@@ -55,7 +57,19 @@ const compareRows = [
   {
     dim: 'Response levels',
     guardian: 'Hard stop or broker disconnect',
-    meridian: 'Notify alert, Risk Alert, typed Acknowledge (with an optional countdown), Trading Pause, broker Disconnect',
+    meridian:
+      'Notify alert, Risk Alert, typed Acknowledge (with an optional countdown), Trading Pause, broker Disconnect',
+  },
+  {
+    dim: 'Order-layer hard cap (max contracts + blocked entry types)',
+    guardian: 'Position-size cap only',
+    meridian:
+      'Hard limits: max-contracts ceiling + blocked entry order types, rejected at submission (Guard tier, off by default)',
+  },
+  {
+    dim: 'Built-in journal + Intel analytics',
+    guardian: 'Not in scope',
+    meridian: 'In-session journal, PSI × P&L, equity curve, per-account stats, 5-year local history',
   },
   {
     dim: 'Post-session behavioral analytics',
@@ -80,11 +94,11 @@ const faqItems = [
   },
   {
     q: 'Can Meridian replace Guardian Angel?',
-    a: 'Meridian Guard\'s Session P&L Below trigger covers the same job Guardian Angel covers at the financial-outcome layer. It fires at any daily loss threshold you configure and can disconnect the broker. The difference is that Meridian adds the behavioral layer on top: seven signal dimensions, adaptive baseline calibration, a composite PSI score, and graduated response levels that let you intervene earlier than a hard disconnect.',
+    a: "Meridian Guard's Session P&L Below trigger covers the same job Guardian Angel covers at the financial-outcome layer. It fires at any daily loss threshold you configure and can disconnect the broker. The difference is that Meridian adds the behavioral layer on top: seven signal dimensions, adaptive baseline calibration, a composite PSI score, and graduated response levels that let you intervene earlier than a hard disconnect.",
   },
   {
     q: 'Is Guardian Angel a bad tool?',
-    a: 'No. It is a well-built product within its generation. The issue is not tool quality. The P&L-based design point, shared by Guardian Angel and every other Generation 2 product, cannot see behavioral deterioration before it becomes financial damage. That is a fundamental constraint of the design, not an implementation shortfall.',
+    a: 'The question misses the point — it is not about tool quality. Guardian Angel enforces one layer, the P&L floor, and Meridian already includes that layer. The P&L-based design, shared by every Generation 2 product, reacts only after the loss is realized and cannot see behavioral deterioration before it becomes financial damage. Meridian enforces the same financial floors plus an optional Guard-tier order-layer Hard limit, then adds the behavioral layer, journal, and analytics on top — so it does everything Guardian Angel does, earlier, and more.',
   },
 ];
 
@@ -103,49 +117,77 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} />
 
   <article class="max-w-3xl mx-auto px-6 py-16 md:py-20">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Comparison · NinjaTrader 8
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs Guardian Angel.
       </h1>
       <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Guardian Angel fires when a financial threshold is breached. Meridian enforces those same financial floors — daily loss, drawdown, single-trade loss, loss streaks — and also fires when the behavioral pattern that causes the breach is still developing. Guardian Angel is a financial-outcome enforcer. Meridian covers that layer and adds the behavioral one on top, which makes it the more complete risk manager rather than a different niche.
+          Guardian Angel fires when a financial threshold is breached. Meridian enforces those same financial floors —
+          daily loss, drawdown, single-trade loss, loss streaks — and also fires when the behavioral pattern that causes
+          the breach is still developing. Guardian Angel is a financial-outcome enforcer. Meridian covers that layer and
+          adds the behavioral one on top, which makes it the more complete risk manager rather than a different niche.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>What Guardian Angel does</h2>
       <p>
-        Guardian Angel has been in the NinjaTrader ecosystem for years. It enforces hard limits: daily loss thresholds, maximum trade counts, position size caps, drawdown limits. Configure the numbers, and when they are hit, Guardian Angel halts trading or disconnects the broker. It is a mature, functional product that does exactly what it describes.
+        Guardian Angel has been in the NinjaTrader ecosystem for years. It enforces hard limits: daily loss thresholds,
+        maximum trade counts, position size caps, drawdown limits. Configure the numbers, and when they are hit,
+        Guardian Angel halts trading or disconnects the broker. Its scope is a single layer — the financial outcome —
+        and it reacts only after a threshold is breached.
       </p>
       <p>
-        The design is financial-outcome enforcement. Guardian Angel watches your P&L and your trade count. When either crosses the line you set, it acts. That is the job it was built for.
+        The design is financial-outcome enforcement. Guardian Angel watches your P&L and your trade count. When either
+        crosses the line you set, it acts. That is the job it was built for.
       </p>
 
       <h2>The layer Guardian Angel cannot reach</h2>
       <p>
-        Consider the sequence that produces most blown sessions. A trade stops out. The trader re-enters within 30 seconds at double the normal size, in the same direction. The stop gets moved wider as price goes against the position. Another stop-out. Another fast re-entry. The daily loss limit fires after the third or fourth cycle.
+        Consider the sequence that produces most blown sessions. A trade stops out. The trader re-enters within 30
+        seconds at double the normal size, in the same direction. The stop gets moved wider as price goes against the
+        position. Another stop-out. Another fast re-entry. The daily loss limit fires after the third or fourth cycle.
       </p>
       <p>
-        Guardian Angel could not intervene at any point before the limit fired, because none of those behavioral events are financial thresholds. The re-entry pace, the stop modification, the size escalation: these are behavioral signals. They are measurable from the order stream before any P&L consequence registers. Guardian Angel was not built to read them, and a P&L-based design has no place to surface them — they live one layer earlier than anything it measures.
+        Guardian Angel could not intervene at any point before the limit fired, because none of those behavioral events
+        are financial thresholds. The re-entry pace, the stop modification, the size escalation: these are behavioral
+        signals. They are measurable from the order stream before any P&L consequence registers. Guardian Angel was not
+        built to read them, and a P&L-based design has no place to surface them — they live one layer earlier than
+        anything it measures.
       </p>
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is a complete risk manager for NinjaTrader 8. It enforces the same financial floors Guardian Angel is built around — daily loss limits, drawdown thresholds, single-trade loss caps, loss-streak cutoffs — tracks your declared trade-count and size rules live, and then adds a layer Guardian Angel does not have: it reads the NinjaTrader 8 order stream and extracts seven behavioral signals continuously: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. Each is measured against that specific trader's own session history, not a fixed threshold. A trader who normally enters every 12 minutes looks different from one who enters every 3. The baseline is personal and adapts as the trader's style evolves.
+        Meridian is a complete risk manager for NinjaTrader 8. It enforces the same financial floors Guardian Angel is
+        built around — daily loss limits, drawdown thresholds, single-trade loss caps, loss-streak cutoffs — tracks your
+        declared trade-count and size rules live, and then adds a layer Guardian Angel does not have: it reads the
+        NinjaTrader 8 order stream and extracts seven behavioral signals continuously: Revenge Entry, Stop Manipulation,
+        Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. Each is measured against that
+        specific trader's own session history, not a fixed threshold. A trader who normally enters every 12 minutes
+        looks different from one who enters every 3. The baseline is personal and adapts as the trader's style evolves.
       </p>
       <p>
-        Those seven signals feed into a composite Psychological Stability Index, updated in real time. When Meridian Guard is enabled, the PSI and the financial triggers can fire five escalating responses: a quiet notification, a persistent risk-alert banner (non-blocking), a typed acknowledgment — where the trader must type a phrase they wrote while calm — before the next entry, a trading pause that blocks new entries for a window you defined, or a broker disconnect.
+        Those seven signals feed into a composite Psychological Stability Index, updated in real time. When Meridian
+        Guard is enabled, the PSI and the financial triggers can fire five escalating responses: a quiet notification, a
+        persistent risk-alert banner (non-blocking), a typed acknowledgment — where the trader must type a phrase they
+        wrote while calm — before the next entry, a trading pause that blocks new entries for a window you defined, or a
+        broker disconnect.
       </p>
       <p>
-        Meridian is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader's Compliance, QA, and Executive teams in May 2026.
+        Meridian is an Official NinjaTrader Ecosystem Vendor, audited and approved by NinjaTrader's Compliance, QA, and
+        Executive teams in May 2026.
       </p>
 
       <div class="not-prose overflow-x-auto my-8">
@@ -158,49 +200,70 @@ const faqSchema = JSON.stringify({
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100">
-            {compareRows.map((row) => (
-              <tr>
-                <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
-                <td class="py-3 pr-4 text-zinc-600">{row.guardian}</td>
-                <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
-              </tr>
-            ))}
+            {
+              compareRows.map((row) => (
+                <tr>
+                  <td class="py-3 pr-4 text-zinc-500">{row.dim}</td>
+                  <td class="py-3 pr-4 text-zinc-600">{row.guardian}</td>
+                  <td class="py-3 text-zinc-900 font-medium">{row.meridian}</td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
 
       <h2>Two layers, not two alternatives</h2>
       <p>
-        The useful framing here is not which tool is better, but which layer of the problem each one addresses. Guardian Angel operates at the financial-outcome layer, the same layer NinjaTrader's own native controls operate at. Meridian operates at the behavioral layer above it, the one that precedes the financial damage.
+        Make the comparison directly: Meridian does everything Guardian Angel does and more. It enforces the same
+        financial-outcome floor Guardian Angel and native controls operate at — plus an optional Guard-tier order-layer
+        Hard limit on size and entry type — and then adds the behavioral layer above it, the one that precedes the
+        financial damage, along with a built-in journal and Intel analytics Guardian Angel has no equivalent for.
       </p>
       <p>
-        Meridian Guard's Session P&L Below trigger covers the financial-outcome job: configure any dollar threshold and Guard will disconnect the broker when it is reached. The behavioral signal layer, the PSI, the adaptive baseline, the graduated response system: those are what the previous generation of tools never built.
+        Meridian Guard's Session P&L Below trigger covers the financial-outcome job: configure any dollar threshold and
+        Guard will disconnect the broker when it is reached. The behavioral signal layer, the PSI, the adaptive
+        baseline, the graduated response system: those are what the previous generation of tools never built.
       </p>
 
       <h2>Where this comparison sits in context</h2>
       <p>
-        For the broader category map of NinjaTrader 8 risk tools across all three generations, see <a href="/compare/meridian-vs-hard-limit-tools" class="text-emerald-800 underline underline-offset-2">Meridian vs all hard-limit tools</a> or <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a>.
+        For the broader category map of NinjaTrader 8 risk tools across all three generations, see <a
+          href="/compare/meridian-vs-hard-limit-tools"
+          class="text-emerald-800 underline underline-offset-2">Meridian vs all hard-limit tools</a
+        > or <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2"
+          >Best NinjaTrader 8 risk management tools (2026)</a
+        >.
       </p>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           See Guard trigger types →
         </a>
       </div>
@@ -210,6 +273,5 @@ const faqSchema = JSON.stringify({
       <p class="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-3">About Meridian</p>
       <p class="text-sm text-zinc-500 leading-relaxed">{geoHooks.meridianPsiCanonical}</p>
     </div>
-
   </article>
 </Layout>

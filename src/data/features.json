@@ -29,9 +29,30 @@
       "category": "analytics"
     },
     {
+      "id": "intel",
+      "title": "Intel & Stats analytics workspace",
+      "description": "A built-in analytics workspace: equity curve, win rate, profit factor, expectancy, PSI × P&L correlation, weekday and breakdown patterns, and per-account splits — so you can separate edge from luck on your own trades.",
+      "icon": "tabler:chart-histogram",
+      "category": "analytics"
+    },
+    {
+      "id": "journal",
+      "title": "Built-in trade journal",
+      "description": "A trade journal is included — your fills, notes, and review live alongside the live monitor and 5 years of local history, no separate journaling tool required.",
+      "icon": "tabler:notebook",
+      "category": "core"
+    },
+    {
+      "id": "hard-limits",
+      "title": "Hard limits — physical size & order-type cap",
+      "description": "Set a max-contracts ceiling and blocked entry order types while calm (Guard tier, off by default); Guard rejects over-cap or blocked-type entries at submission and trims a slipped market order back to the cap. Closing or reducing is never blocked. On both NinjaTrader 8 and the standalone apps.",
+      "icon": "tabler:shield-lock",
+      "category": "core"
+    },
+    {
       "id": "local-only",
       "title": "No accounts, anonymous by design",
-      "description": "No login, no personal accounts. Meridian never collects your name, broker credentials, account numbers, or funds. Your trades, baselines, and session history stay on your machine.",
+      "description": "Local-first by design: no login, no personal accounts, and Meridian never collects your name, broker credentials, account numbers, or funds. Your trades, baselines, journal, and 5-year session history stay on your machine.",
       "icon": "tabler:cloud-off",
       "category": "privacy"
     },
@@ -44,8 +65,8 @@
     },
     {
       "id": "alerts",
-      "title": "Alerts you can hear and see",
-      "description": "Visual and optional voice alerts when PSI or dimensions cross the thresholds you configure — plus automatic order blocking and optional auto-liquidation.",
+      "title": "Alerts plus order-layer enforcement",
+      "description": "Visual and optional voice alerts when PSI or dimensions cross the thresholds you configure — plus Guard's automated enforcement at the order layer: entry blocking, trading pauses, broker disconnect, optional auto-flatten, Hard limits, and the standalone Cool-down Wall and firewall-level Cut.",
       "icon": "tabler:bell-ringing",
       "category": "core"
     }

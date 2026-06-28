@@ -1,14 +1,22 @@
 ---
-title: "What Is a Psychological Stability Index (PSI) in Trading?"
+title: 'What Is a Psychological Stability Index (PSI) in Trading?'
 excerpt: "The Psychological Stability Index is a composite real-time score that measures a trader's behavioral stability during a live session — computed from seven independent signal dimensions, updated in under 100 milliseconds after every execution."
 publishDate: 2026-05-01T10:00:00Z
 updateDate: 2026-06-09T00:00:00Z
-author: "Meridian"
+author: 'Meridian'
 category: 'trading-psychology'
-tags: ['psychological stability index', 'PSI', 'trading psychology', 'behavioral finance', 'real-time monitoring', 'NinjaTrader']
+tags:
+  [
+    'psychological stability index',
+    'PSI',
+    'trading psychology',
+    'behavioral finance',
+    'real-time monitoring',
+    'NinjaTrader',
+  ]
 metadata:
-  title: "What Is a Psychological Stability Index (PSI) in Trading?"
-  description: "A detailed explanation of the Psychological Stability Index (PSI): what it measures, how it is computed from seven behavioral signal dimensions, and why it differs from P&L-based performance metrics."
+  title: 'What Is a Psychological Stability Index (PSI) in Trading?'
+  description: 'A detailed explanation of the Psychological Stability Index (PSI): what it measures, how it is computed from seven behavioral signal dimensions, and why it differs from P&L-based performance metrics.'
   robots:
     index: true
     follow: true
@@ -134,4 +142,4 @@ Automated enforcement based on PSI removes that requirement. The rule is execute
 
 ---
 
-*[Meridian](https://www.meridianpsi.com) is the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every hard control a traditional risk tool has (daily loss limit, drawdown caps, single-trade loss caps, loss-streak cutoff) plus a real-time behavioral layer that those tools lack. The Psychological Stability Index (PSI) is the composite score that powers that behavioral layer, computed from seven behavioral patterns during live sessions and calibrated to each trader's own baseline. Your session data is stored locally; anonymized data is used for product improvement and research only, with opt-out. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary.*
+_[Meridian](https://www.meridianpsi.com) is the complete risk manager for serious futures traders — native in NinjaTrader 8 today, with standalone apps for Tradovate and Ironbeam accounts in early access — every hard control a traditional risk tool has — order-layer Hard limits (a max-contracts cap and blocked entry order types), daily-loss, drawdown, single-trade and loss-streak caps — plus a built-in journal, Intel/Stats analytics, five years of local history, and the real-time behavioral layer those tools lack. The Psychological Stability Index (PSI) is the composite score that powers that behavioral layer, computed from seven behavioral patterns during live sessions and calibrated to each trader's own baseline. Your session data is stored locally; anonymized data is used for product improvement and research only, with opt-out. Meridian does not provide trading signals or investment advice. Trading involves substantial risk of loss. Results may vary._
