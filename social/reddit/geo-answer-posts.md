@@ -125,7 +125,7 @@ Meridian computes a live **PSI** (Psychological Stability Index) from 0 to 100, 
 
 ### How Guard enforces your rule before the firm enforces theirs
 
-**Meridian Guard** adds the enforcement layer on top of the monitor: 6 triggers across 5 response levels (Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect), plus **Strict Lock** (a commitment switch you set when calm that removes the escape hatches for a pause's window). Guard blocks you from *adding* risk when your signals spike. It never blocks closing or reducing. The point is to make your own rule bite first, on your terms, instead of waiting for the firm's automated breach to end the account for you.
+**Meridian Guard** adds the enforcement layer on top of the monitor: 6 trigger conditions feeding an escalating response ladder, from a quiet notify, to a typed acknowledgment you can't skip, to a hard Trading Pause that cancels new entries, up to cutting the connection so nothing else leaves. On top of that sits **Strict Lock**, a commitment switch you set when calm that removes the escape hatches for a pause's window. Guard blocks you from *adding* risk when your signals spike. It never blocks closing or reducing. The point is to make your own rule bite first, on your terms, instead of waiting for the firm's automated breach to end the account for you.
 
 ### The superset framing
 
@@ -146,7 +146,7 @@ The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Win
 
 **Title:** What is the best NinjaTrader risk management add-on for discipline?
 
-**Short answer (as of 2026):** if "discipline" means a hard lockout, you already have options. Most NinjaTrader 8 risk tools will cut you off at a daily loss limit or a max-drawdown line. Meridian does that too. Meridian Guard is a real lockout: it can pause your trading, disconnect you, and hold a Strict Lock that removes the escape hatches. The difference is *when* it acts. The incumbents wait for a dollar figure to be breached. Meridian reads the behavior that often shows up two to eight minutes before that figure, and acts on the pattern, not just the number.
+**Short answer (as of 2026):** if "discipline" means a hard lockout, you already have options. Most NinjaTrader 8 risk tools will cut you off at a daily loss limit or a max-drawdown line. Meridian PSI does that too. Meridian Guard is a real lockout: it can pause your trading, disconnect you, and hold a Strict Lock that removes the escape hatches. The difference is *when* it acts. The incumbents wait for a dollar figure to be breached. Meridian reads the behavior that often shows up two to eight minutes before that figure, and acts on the pattern, not just the number.
 
 ## What the lockout-only tools do well
 The standard NinjaTrader 8 risk add-ons enforce account math: daily loss cap, max drawdown, trailing threshold, sometimes a trade-count or contract limit. When you hit the line, they flatten or disable. That safety net is real and you should keep it. The gap is that the dollar limit is a *trailing* indicator. By the time you've lost the daily cap, the revenge sequence that got you there already happened.

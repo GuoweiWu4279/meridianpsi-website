@@ -22,7 +22,7 @@ notes: |
   "7-day free trial" plus several typos ("risk tool on the marker", "Most tool", "we watches the
   infrequencies", "We also uses", "then seeing it in real number"). Gary re-pasted a corrected
   version on 2026-06-26 (14-day card-required trial + typos fixed; facts re-verified vs MERIDIAN.md/
-  CANON: v1.5.4, multi-platform NT8+Tradovate/Ironbeam early access, Guard 5-level names, local-first).
+  CANON: v1.5.5, multi-platform NT8+Tradovate/Ironbeam early access, Guard 5-level names, local-first).
   This SOURCE was already 14-day + clean; only the live manual-paste snapshot (predating the 06-14
   trial change) was stale. Live now matches source on facts.
   To update: edit the post body and insert the three screenshots at the [IMAGE] markers

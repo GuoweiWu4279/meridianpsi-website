@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     q: 'Can Guard act as a daily loss limit?',
-    a: 'Yes. Guard ends the session at any P&L level you configure, with a forced broker disconnect (which stops new orders; closing open positions on disconnect is optional and off by default). You can set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
+    a: 'Yes. Guard ends the session at any P&L level you configure: it cancels new orders with a Trading Pause, or on NinjaTrader 8 disconnects the broker connection (closing open positions stays optional and off by default). You can set this trigger above any broker-level limit so the session ends on behavioral terms, not on a forced breach.',
   },
   {
     q: 'How does Guard see things a P&L threshold cannot?',

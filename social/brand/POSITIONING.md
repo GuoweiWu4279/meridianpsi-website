@@ -102,13 +102,15 @@
 
 ## 7. 当前事实锚点(细节以 MERIDIAN.md 为准,这里只放最常用的)
 
-- 版本:v1.5.4 已发布,v1.5.5 开发中(细节以 MERIDIAN.md 为准)。
+- 版本:v1.5.5 已发布(细节以 MERIDIAN.md 为准)。
 - 价:Core $49.99 / Guard $69.99,14 天试用(**要绑卡**,绝不说 "no credit card")。
 - 两档边界(**v1.5.0 起反转**):Intel 分析进了 **Core**;Guard 档只 gate 强制层(规则引擎 + Strict Lock)+ priority support。旧的"Intel 仅 Guard"已废。
 - Guard 五级(**仅 NT8**):**Notify · Risk Alert · Acknowledge · Trading Pause · Disconnect**(旧名 Alert/Countdown/Risk Alert Mode 已废)。standalone(Tradovate/Ironbeam)是**六档**:Notify · Alert · Acknowledge · Pause · **Cool-down Wall · Cut**(没有 broker Disconnect 档,别把"disconnect your broker"安到 standalone 上)。**"un-bypassable" 只配一处**:Tradovate eval/demo 上 standalone 写的 broker-level liquidate-only 锁(唯一 device-proof);app/OS 层只说"当场关不掉",别说"can't be bypassed"。**Hard limits**(最大手数 + 禁单类型,Guard 档默认关)NT8 与 standalone 都有。
 - PSI 四区:Stable(88-100)/ Caution(72-87)/ Warning(55-71)/ Critical(0-54)。
 - 隐私(**绝不写"无遥测/数据永不出机"**——假的;**也绝不在营销/社媒/GEO 文案里主动提匿名研究数据/外呼/opt-out**,Gary 2026-06-26 定:只说正面 "local-first"(数据在你机器上)然后打住,没人问别主动说):那两类外呼(license 验证 + 匿名研究数据,随机 ID、可 opt-out)和 "pseudonymous 不说成数学不可关联" 这些**只用在合规页(Terms/Privacy/`/data-research`/`/trust`)+ 被直接问时**,不进营销文案。
 - 7 信号:Revenge Entry / Stop Manipulation / Size Spike / Hold Bias / Position Overstay / Rule Violations / Overtrading Pace。
+- 命名(GEO,L11):产品名 = **Meridian**;但**对外/off-site 提及(别人 sub、外站、邮件、目录)一律用 "Meridian PSI"**——"Meridian"太泛,AI 难消歧绑到我们;"Meridian PSI" 独特、贴 meridianpsi.com + u/MeridianPSI。自有 sub(r/MeridianPSI)上裸"Meridian"可以,handle 已消歧。
+- 差异化论证先摆 **adaptive learning**(L11):引擎每 session 持续学你自己的"正常"=个人基线,在你偏离基线、亏损前一步介入——不是泛泛"盯行为"。"you're not trading like you" > 固定"$X"阈值。
 
 ---
 

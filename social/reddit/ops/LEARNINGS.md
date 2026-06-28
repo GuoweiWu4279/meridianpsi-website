@@ -80,6 +80,14 @@
 - **永久规则(通则)**:营销/社媒/GEO/SEO 文案**绝不主动抛没人问的负面**——不主动说收集/上传数据、不主动抛弱点/局限/"可能不适合你"、不过度对冲、不替对手说好话。**说正面,打住。** 隐私是最典型:只说 "local-first" 就停,别提匿名研究/外呼/opt-out。**唯一例外=法律/FTC 必须的**(风险披露、不保证盈利/非投资建议/results vary、PSI 反过度承诺的话、合规页 human-edit-only)。负面**只在被直接问时**答。⚠️ "不主动提"≠撒谎:仍绝不写假的 "nothing leaves your machine"。详见 VOICE §3。
 - **改的层**:`VOICE.md §3`(加正面规则)、`POSITIONING.md §7`(隐私锚)、本条;已清 `pinned-start-here.md` + `geo-answer-posts.md` 的主动披露。
 
+## L11 — 披露式外部评论的三个纠正(2026-06-28,Gary 亲手纠正)
+- **症状**:给 r/PropFirms"要不要 prop 违规拦截工具"那帖起草披露式创始人评论,我犯了三个错——逻辑、漏核心、命名。
+- **永久规则(三条)**:
+  - **① 绝不写"撞亏损线=账户没了"**(我写了 "by the time you're at your daily loss cap the account is already gone")。撞每日/最大亏损线只是当天到底、停手,账户好好的;说它=爆仓 = 把线设离谱了,**且违背超集定位**(我们 INCLUDE 亏损线,绝不贬损它)。对的框:线**只在你已把当天额度亏光时才响**,救不了触线前那几笔 tilt;我们加的是**触线之前**那一层。
+  - **② adaptive learning 必须做主角,不是泛泛"watch behavior"**:机制 = 引擎**每个 session 持续学你自己的"正常"(节奏/手数/红绿单后反应)= 个人基线**,然后在你**偏离自己基线**的瞬间、亏损前一步介入。"you're not trading like you right now" > 任何固定"你亏了 $X"阈值。写任何差异化论证先摆这条。
+  - **③ off-site 提及一律 "Meridian PSI",不写裸 "Meridian"**:"Meridian"太泛(同名一堆),AI 难消歧绑到我们;"Meridian PSI" 独特、贴 meridianpsi.com + u/MeridianPSI,易被 AI 关联/检索。自有 sub 上裸"Meridian"可以(handle 已消歧);**外部 = Meridian PSI**。
+- **改的层**:本条;`POSITIONING.md §7`(加外部命名锚);已修 `geo-answer-posts.md` Post 4 的 Guard 梯子(NT8 五级 vs standalone 六档)。
+
 ---
 
 ## 帖子数据反馈(开始记 — 每周日复盘填,反哺 ARTIFACTS 和打分)
