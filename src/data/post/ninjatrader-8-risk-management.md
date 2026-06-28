@@ -132,9 +132,9 @@ So there is no trade-off to manage and nothing to combine by hand. Native contro
 
 **Always configure native controls.** These are free, built into the platform, and take less than five minutes to set up correctly. [Daily loss limits](/why-daily-loss-limits-fail) and maximum position size should be configured for every account, live or simulated. Treat them as non-optional hygiene, not an advanced feature.
 
-**Verify broker-level limits where available.** For funded accounts or accounts at brokers that support broker-level risk rules (Tradovate, Rithmic), configure those rules in the brokerage interface, not only in NinjaTrader. They persist independently of the platform session and are more robust.
+**Verify broker-level limits where available.** For funded accounts or accounts at brokers that support broker-level risk rules (Tradovate, Rithmic), configure those rules in the brokerage interface, not only in NinjaTrader. They persist independently of the platform session, so they hold even if NinjaTrader is closed.
 
-**Identify whether behavioral failure is part of your loss profile.** Review your trading history: what percentage of your significant losses came from orders that violated your declared rules while remaining within your platform's hard limits? If that percentage is meaningful, native controls alone are not sufficient for your specific failure profile.
+**Recognize where the real damage happens.** Review your trading history: what share of your significant losses came from orders that stayed within your platform's hard limits but still drained the account — the revenge re-entry, the size that crept up, the stops that widened? For most traders that share is large, and it is exactly the space native controls cannot see. That is why the complete setup — the order-layer floor plus the behavioral layer in one tool — is the stronger choice for any active trader, not a niche feature you have to diagnose yourself into.
 
 **Test add-on enforcement before using it in live trading.** Any automated enforcement tool should be fully understood before it is active in a live session. Specifically, understand what happens to open positions during a pause or disconnect event before that event occurs live.
 

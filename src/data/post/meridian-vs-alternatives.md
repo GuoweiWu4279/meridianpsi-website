@@ -35,7 +35,9 @@ Where Tradervue earns its reputation for depth is in the analytics available at 
 
 **Where it falls short:** The emotional tagging system is only as reliable as the trader completing it honestly and promptly. Most traders fill out this data after the session, from memory, which introduces the same retrospective bias the journal is meant to address. There is [no real-time component](/compare/meridian-vs-trading-journals). Tradervue tells you what happened; it cannot influence what is happening.
 
-**Who it is genuinely suited for:** Traders who want a mature, well-supported platform for post-session review with strong filtering and the ability to share performance with a group or coach.
+**Who it is suited for:** Traders who want a mature, well-supported platform for post-session review with strong filtering and the ability to share performance with a group or coach.
+
+**Where Meridian is stronger:** Meridian carries its own built-in journal and the same statistical review — win rate, P&L by time and setup, equity curve — and applies them to the live session, so the tool that enforces your risk is also the one that journals and analyzes it. Tradervue catalogs the session after it ends; Meridian is the one that can act on the behavior while it is still running.
 
 ---
 
@@ -49,7 +51,9 @@ The psychological dimension is taken more seriously here than in most competitor
 
 **Where it falls short:** Edgewonk is a desktop application with no cloud sync and no broker integration. All data entry is manual. For traders who execute many trades per session, this creates a real friction cost. The quality of the analysis scales directly with the consistency and honesty of the input — which is the fundamental limitation of all self-reported data. No real-time capability.
 
-**Who it is genuinely suited for:** Traders who are serious about treating their performance improvement as a structured process and are willing to invest significant time in deliberate journaling and review.
+**Who it is suited for:** Traders who are serious about treating their performance improvement as a structured process and are willing to invest significant time in deliberate journaling and review.
+
+**Where Meridian is stronger:** Edgewonk's psychological read is self-reported, by hand, after the trade. Meridian measures the same behavioral deterioration automatically from your live order flow in real time, journals it for you with no manual entry, and can intervene while the session is still open — scored and acted on as it happens, not rated after the fact.
 
 ---
 
@@ -61,7 +65,9 @@ At higher tiers, TraderSync generates statistical reports across the same dimens
 
 **Where it falls short:** The AI coaching is a useful starting point but it identifies patterns at the level of summary statistics, not at the level of the underlying decision-making process. It will tell you that your losing trades cluster in the last hour of the session, but it cannot tell you why, or distinguish between strategic error and psychological deterioration as the cause. The subscription pricing at higher tiers is meaningful. No real-time capability.
 
-**Who it is genuinely suited for:** Active traders who want low-friction journaling with automatic data import, cloud access, and a modern interface.
+**Who it is suited for:** Active traders who want low-friction journaling with automatic data import, cloud access, and a modern interface.
+
+**Where Meridian is stronger:** TraderSync's AI coaching reads summary statistics after the session closes. Meridian reads the live decision stream and flags the behavior itself — revenge entries, oversizing, accelerating pace — as it happens, then enforces the limit you set, with the journaling and analytics included in the same product.
 
 ---
 
@@ -71,13 +77,15 @@ Analytics platforms overlap with journals but sit further toward the data analys
 
 ### TradesViz
 
-TradesViz is the most analytically capable platform in this comparison. The visualization suite is extensive: heatmaps by time and day of week, equity curves with drawdown overlays, trade replay at session level, calendar views, cumulative P&L by instrument, and a large number of filtering and segmentation options. The platform supports import from most major brokers and execution platforms.
+TradesViz is the most analytics-focused platform among the journals and analytics tools here. The visualization suite is extensive: heatmaps by time and day of week, equity curves with drawdown overlays, trade replay at session level, calendar views, cumulative P&L by instrument, and a large number of filtering and segmentation options. The platform supports import from most major brokers and execution platforms.
 
 For a trader who wants to understand their performance at a granular statistical level — identifying which market conditions, times, and setup combinations produce edge, and which produce consistent loss — TradesViz provides more tools than any competitor in this category. The pricing is also considerably lower than comparable platforms, making it accessible for retail traders who are earlier in their development.
 
 **Where it falls short:** The interface reflects the breadth of its feature set. The learning curve is steeper than Tradervue or TraderSync, and traders who are not comfortable with statistical concepts may find the volume of data overwhelming rather than actionable. Like all analytics platforms, the analysis is retrospective and has no connection to the execution environment. There is no mechanism by which an insight generated in TradesViz can influence a trade being placed an hour later in the session.
 
-**Who it is genuinely suited for:** Quantitatively oriented traders who want maximum analytical depth and flexibility, and who are willing to invest time in learning the platform's capabilities.
+**Who it is suited for:** Quantitatively oriented traders who want maximum analytical depth and flexibility, and who are willing to invest time in learning the platform's capabilities.
+
+**Where Meridian is stronger:** Meridian ships its own Intel/Stats analytics — equity curve, win rate, profit factor, expectancy, PSI × P&L — so the risk tool already carries the analytics layer rather than sending you to a second platform for it. Deep retrospective analytics is what TradesViz is built around; Meridian's job is keeping the account alive in the live session, and it brings the analytics along — insight you can act on while it still matters, not a report you read afterward.
 
 ---
 
