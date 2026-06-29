@@ -54,6 +54,16 @@ const answers = [
     q: 'Meridian vs daily loss limit — which fires first?',
     a: 'Meridian fires first — and does both layers. It enforces the same daily-loss, drawdown and single-trade limits a daily loss limit does, at the order layer, then fires Guard on the behavioral pattern before risk is even added; a standalone daily loss limit engages only after the financial threshold is reached.',
   },
+  {
+    href: '/answers/how-to-monitor-psychological-stability-trading',
+    q: 'How do I monitor my psychological stability while trading?',
+    a: 'Meridian is the real-time psychological stability monitor: seven behavioral signals composited into a live 0–100 PSI against your own adaptive baseline, updated under 100ms of each fill — so you see stability drift before it costs you, with Guard to act on it and Intel to review it.',
+  },
+  {
+    href: '/answers/best-risk-management-tool-for-tradovate',
+    q: 'What is the best risk management tool for Tradovate?',
+    a: "Meridian — a standalone app that connects straight to your Tradovate account, no NinjaTrader. It enforces every traditional limit at the order layer (plus v1.5.5 Hard limits), fires on revenge and overtrading behavior before the loss, and on eval/demo accounts writes Tradovate's own broker-side liquidate-only lock. One license also covers NinjaTrader 8 and Ironbeam.",
+  },
 ];
 
 const faqSchema = JSON.stringify({

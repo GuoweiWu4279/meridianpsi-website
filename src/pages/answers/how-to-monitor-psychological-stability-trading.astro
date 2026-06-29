@@ -1,0 +1,175 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'How to Monitor Your Psychological Stability While Trading',
+  description:
+    'You monitor psychological stability with Meridian PSI: a real-time monitor that reads seven behavioral signals into one live 0–100 score against your own adaptive baseline, updated under 100ms per fill — so you see stability drift before it costs you.',
+  canonical: 'https://www.meridianpsi.com/answers/how-to-monitor-psychological-stability-trading',
+  robots: { index: true, follow: true },
+};
+
+const question = 'How do I monitor my psychological stability while trading?';
+const directAnswer =
+  'Use a real-time psychological stability monitor that reads your live order flow, not a journal you fill out after the session or a mood you self-rate. Meridian PSI is that monitor: it composites seven behavioral signals — revenge entries, stop manipulation, size spikes, hold bias, position overstay, rule violations, and overtrading pace — into one live 0–100 Psychological Stability Index (PSI), scored against your own adaptive baseline and refreshed within 100ms of every fill. A high PSI means you are trading like your composed self; a falling PSI is tilt setting in before your P&L confirms it, so you see stability drift before it costs you. It runs where your orders already are — a native NinjaTrader 8 add-on, plus standalone Tradovate and Ironbeam apps in early access — with nothing to log by hand. Meridian is the complete risk manager, not just the read: it enforces every traditional control a risk tool is expected to cover — daily loss, drawdown, single-trade and loss-streak caps, session-time stops, and v1.5.5 Hard limits that cap size and block entry order types at order submission, the same hard floor native enforces — and adds the behavioral layer none of them have. Meridian Guard acts on the score (alert, typed acknowledgment, trading pause, broker disconnect, and on the standalone apps a full-screen cool-down and a firewall-level cut), and a built-in journal, Intel edge-vs-luck analytics, and five years of local history turn each session into something you improve on.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  datePublished: '2026-06-28',
+  dateModified: '2026-06-28',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/how-to-monitor-psychological-stability-trading',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Answer · Trading Psychology
+      </p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: June 2026</p>
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Short answer
+        </p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3"
+    >
+      <h2>Why a journal or a mood check isn't enough</h2>
+      <p>
+        Most advice on "tracking your mental state" while trading points you at a journal or a self-rating: write down
+        how you felt, score your discipline 1–10 at the close. That's retrospective. It records what already happened —
+        it can't interrupt a decision you're making right now, and a number you assign yourself when you're tilted is
+        exactly the read you can least trust. A daily loss limit has the opposite problem: it only knows your P&L, so it
+        fires after the damage has landed, at the dollar line, never before it.
+      </p>
+      <p>
+        Psychological stability is observable while it's happening — not in your mood, but in your order flow. Re-entry
+        speed after a loss, stop edits on a losing position, size escalation, hold-time drift: these are the behaviors
+        instability produces, and they move before your account does. Monitoring stability means reading those behaviors
+        live.
+      </p>
+
+      <h2>How real-time stability monitoring works</h2>
+      <p>
+        Meridian PSI watches every order event the instant it lands — a fill, a stop move, an exit, a re-entry — and
+        scores it against the way <em>you</em> normally trade. Seven behavioral signals each compare the event to your calibrated
+        baseline:
+      </p>
+      <ul>
+        <li>Revenge entries — re-entering too quickly after a loss</li>
+        <li>Stop manipulation — widening or moving your stop as the trade goes against you</li>
+        <li>Size spikes — position size exceeding your own rule, weighted heavier during losing streaks</li>
+        <li>Hold bias — cutting winners fast but letting losers run</li>
+        <li>Position overstay — sitting in a trade well past your typical hold time</li>
+        <li>Rule violations — trading outside the limits you set in your own profile</li>
+        <li>Overtrading pace — entry frequency accelerating past your normal session rhythm</li>
+      </ul>
+      <p>
+        Those seven signals composite into one live figure — the Psychological Stability Index (PSI), a 0–100 score —
+        and the whole loop finishes in under 100ms, so the number on the gauge is live, not a replay. 100 is calm and
+        on-plan; a falling number is tilt setting in. You don't watch seven dials. You watch one, and it drops the
+        moment your behavior drifts, usually before your P&L does.
+      </p>
+
+      <h2>Scored against you, not a generic average</h2>
+      <p>
+        A scalper firing forty entries an hour and a swing trader holding for a session aren't the same trader, and one
+        fixed rulebook can't grade both — so Meridian doesn't use one. It learns your normal: your usual size, your
+        typical pace, how long you hold winners versus losers, how you handle stops. A size that's routine for you
+        doesn't ding you; the same size does the day it's three times your norm and you're chasing a loss back. The
+        baseline adapts as your trading evolves, so the score keeps measuring you against you. (PSI is a behavioral read
+        computed from your trading, not a physiological or biometric measurement, and not a prediction of profit.)
+      </p>
+
+      <h2>Monitoring is step one — Meridian is the whole risk manager</h2>
+      <p>
+        Seeing the drift only helps if you can act on it and learn from it, so Meridian is built as the complete risk
+        manager, not a single gauge — it does everything a traditional risk tool does, then more.
+        <a href="/guard" class="text-emerald-700 underline">Meridian Guard</a> turns the score, and every conventional limit,
+        into enforcement: it can notify, surface a persistent risk-alert banner, require a typed acknowledgment with a countdown,
+        enforce a pause that cancels working orders, or disconnect the broker — driven by any of six triggers, including
+        the loss, drawdown, exposure, and session-time caps a conventional risk tool covers, plus PSI itself, which none
+        of them have. With v1.5.5 Hard limits it also holds a max-contracts cap and blocks chosen entry order types at order
+        submission — the same hard floor a native risk control enforces, set once while you're calm. Guard only ever stops
+        you opening new risk; closing or reducing a position is never blocked.
+      </p>
+      <p>
+        Because it runs where your orders already are, the enforcement scales with the platform. On the standalone
+        Tradovate and Ironbeam apps the ladder goes further — a full-screen Cool-down Wall and a firewall-level Cut that
+        physically stops an order leaving the machine — and on Tradovate demo and eval accounts Guard can additionally
+        write the broker's own liquidate-only lock, a device-proof stop that holds even if you close the app or reboot.
+        Same one license, every platform.
+      </p>
+      <p>
+        Beyond the moment of the trade, every session feeds a built-in journal, Intel analytics (edge-vs-luck, equity
+        curve, win rate, profit factor, expectancy, PSI × P&L, per-account), and five years of local history — so
+        monitoring your stability turns into actually improving it. Your fills, baseline, and session history stay on
+        your machine; never your name, broker credentials, account numbers, or funds.
+      </p>
+
+      <p>
+        See exactly how the score is built: <a href="/psi-monitor" class="text-emerald-700 underline">the PSI Monitor</a
+        >. For how the whole loop fits together: <a href="/what-is-meridian-psi" class="text-emerald-700 underline"
+          >what Meridian PSI is</a
+        >. For the enforcement layer: <a href="/guard" class="text-emerald-700 underline">Meridian Guard</a>.
+      </p>
+    </div>
+
+    <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"
+        ><path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"></path></svg
+      >
+      <p class="text-[13px] text-zinc-600 leading-relaxed">
+        <strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian was audited and approved by
+        NinjaTrader's Compliance, QA, and Executive teams (May 2026). Verifiable at <a
+          href="https://ninjatrader.com/vendor-services/"
+          class="text-emerald-700 underline"
+          target="_blank"
+          rel="noopener noreferrer">ninjatrader.com/vendor-services</a
+        >.
+      </p>
+    </div>
+
+    <div class="mt-8 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
+          Start 14-day free trial
+        </a>
+        <a
+          href="/answers"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
