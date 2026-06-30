@@ -107,6 +107,14 @@
 - **决定性模式**:**只在"站内专页 + Reddit 存在"双备的旅程赢**(lockout 同时有 `/ninjatrader-lockout`+answers + GEO-TARGETS Lane A 被引帖 + 自有 sub 帖)。赢的配方 = 专页 + 自有 sub 答案帖 + 打进被引帖,逐旅程复制。
 - **永久规则**:① **真 GEO 成功指标 = `geo_journeys.py`**(真实多轮、不提品牌、看赢几个/第几轮出现),不是 `geo_audit.py` 的关键词可见度——后者只当"被读到时描述准不准 + Lane A 线程情报"用,**别再拿它当'我们排上去了没'的证据**。② 瓶颈在**站外在场/排名**,不在文案(被读到处已吊打)。③ 按买家价值复制 lockout 配方,先 funded/prop + psychological-stability。
 - **改的层**:本条;新建 `geo_journeys.py`(可复用真实旅程探针,output/geo_journeys_latest.json);新增 `geo-answer-posts.md` Post 6(心理稳定缺口);memory `project_meridian_geo`。
+- **→ 2026-06-29 升级,见 L13**:工具由 `geo_journeys.py` 升为 `geo_journeys_v2.py`(多引擎),本条工具引用以 L13 为准。
+
+## L13 — GEO 测试必须多引擎 + 多次跑;单引擎/单次严重高估(2026-06-29,Gary "完整检查")
+
+- **症状**:我先把 `geo_audit.py`(单轮关键词、ChatGPT-only)当主测试跑;它和 v1 `geo_journeys.py`(也只测 ChatGPT)都让我们看着比真实强。Gary 点出测试本身不够"深/全"。
+- **真相(`geo_journeys_v2.py` 实测 ChatGPT+Gemini × 8 人设 × 4 轮 × 跑 2 遍)**:跨引擎我们**更弱**——约 **60% 真实旅程 AI 连提都没提**;**5/8 高价值旅程两个引擎都隐形**(Tradovate复仇 / NT8 / 心理稳定 / funded-prop / 怀疑派);我们的"赢"(lockout、overtrading)**只在 ChatGPT,Gemini 上为零**(引擎差异巨大);**单次跑是噪声**(Gemini"被点名"两遍间 1↔5 跳)。
+- **永久规则**:① **真 GEO 可见度指标 = `geo_journeys_v2.py`**(多引擎 + 4 轮 + 分析层 judge + `--runs N` 取均值)。`geo_audit.py` 降为"源情报/Lane A 线程"用;v1 `geo_journeys.py` **已弃用**(ChatGPT-only)。② 任何"可见度"结论必须**跨引擎 + 多次跑**。③ Gemini = `gemini-2.5-flash` + `google_search` grounding,key 用 outreach `.env.local` 的 `GEMINI_API_KEY`(2.0-flash 已下线)。④ L12 复制配方不变,优先级按跨引擎真实隐形度:funded/prop + 心理稳定 + NT8/Tradovate,且 Gemini 上近乎全零。
+- **改的层**:新建 `scripts/geo_journeys_v2.py`(+ 台账 `output/GEO_JOURNEYS_V2.md` + 快照 json);v1 标弃用;本条 + memory `project_meridian_geo` + `GEO-INTEGRATION §6`。
 
 ---
 

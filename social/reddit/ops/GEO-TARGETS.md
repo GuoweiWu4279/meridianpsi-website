@@ -1,4 +1,4 @@
-# GEO targets — auto-emitted by geo_audit.py (2026-06-28)
+# GEO targets — auto-emitted by geo_audit.py (2026-06-29)
 
 > ⚙️ MACHINE-OWNED, REGENERATED EVERY RUN — do not hand-edit. The full per-query SOURCE MAP +
 > the play for each source type (对症下药). Wired per `../../GEO-INTEGRATION.md` §2. Reddit threads
@@ -16,22 +16,9 @@
 
 ## Lane A — Reddit threads AI already cites (highest leverage)
 
-- **software to stop revenge trading futures** — ✅ surfaced + accurate
-  - https://www.reddit.com/r/binaryoptions/comments/1sj70r6/how_i_stopped_revenge_trading_binary_options_3/?utm_source=openai
-  - https://www.reddit.com/r/Trading/comments/1r0hw16/what_finally_fixed_your_revengetrading_problem/?utm_source=openai
-  - https://www.reddit.com/r/Daytrading/comments/1rjm7tw/how_do_you_stop_revenge_trading/?utm_source=openai
-- **how to prevent overtrading as a day trader** — ⚠️ misdescribed → ""
-  - https://www.reddit.com/r/u_MeridianPSI/comments/1uhl8ao/how_do_you_prevent_overtrading_as_a_day_trader/?utm_source=openai
-  - https://www.reddit.com/r/Daytrading/comments/1taq3vj/how_to_stop_overtrading/?utm_source=openai
-  - https://www.reddit.com/r/Daytrading/comments/1tkgi2z/how_do_you_avoid_over_trading/?utm_source=openai
-- **Tradovate risk management / lockout tool** — ❌ invisible
-  - https://www.reddit.com/r/Daytrading/comments/1taixbh/prop_firms_remove_certain_risk_settings/?utm_source=openai
-- **behavioral risk management tool for prop firm traders** — ❌ invisible
-  - https://www.reddit.com/r/PropFirms/comments/1toopo9/traders_would_a_tool_that_stops_prop_firm_rule/?utm_source=openai
-  - https://www.reddit.com/r/propfirm/comments/1t4gasc/stop_trying_to_fix_your_trading_psychology_do/?utm_source=openai
-  - https://www.reddit.com/r/propfirm/comments/1saasa6/im_building_something_for_prop_traders_who_keep/?utm_source=openai
+- **best NinjaTrader risk management add-on for discipline** — ❌ invisible
+  - https://www.reddit.com/r/ninjatrader/comments/1irntto?utm_source=openai
 - **what is Meridian PSI trading tool** — ✅ surfaced + accurate
-  - https://www.reddit.com/r/u_MeridianPSI/comments/1uhl8ao/how_do_you_prevent_overtrading_as_a_day_trader/?utm_source=openai
   - https://www.reddit.com/r/u_MeridianPSI/comments/1tf7m39/meridian_is_officially_an_ninjatrader_ecosystem/?utm_source=openai
 
 ## Full source map — every source AI cites, by query, classified (对症下药)
@@ -39,31 +26,28 @@
 _Act on the ❌/⚠️ queries first. Each source's play is in the legend at the bottom._
 
 ### best NinjaTrader risk management add-on for discipline — ❌ invisible
-- **Directory/Aggregator** (2): aviramyagena.itch.io, ninjatraderecosystem.com
-- **Competitor / product site** (6): edgetradertools.com, jaoconsultingllc.com, lotscale.net, priceactiontools.com, riskrewardsuite.com, tierlocksoftware.com
+- **Reddit** (1): reddit.com
+- **Content/Editorial** (1): ninjatools.info
+- **Directory/Aggregator** (1): ninjatraderecosystem.com
+- **Competitor / product site** (3): artytrades.com, lotscale.net, riskrewardsuite.com
 
 ### software to stop revenge trading futures — ✅ surfaced + accurate
-- **Reddit** (1): reddit.com
-- **Competitor / product site** (8): candlesticktradepal.com, equity-safe.com, propmind.tech, safentry.app, trade-reign.com, trade-safe.ai, tradeintelx.com, tradepit.ai
+- **Competitor / product site** (7): bohoapp.com, propguard.cloud, propmind.tech, riskguard.net, trade-safe.ai, tradenrisk.com, tradepit.ai
 - **Ours** (1): meridianpsi.com
 
 ### tool that locks you out of trading after consecutive losses — ❌ invisible
-- **Broker/Forum/Help-desk** (2): help.topstepx.com, sierrachart.com
-- **Competitor / product site** (10): avoidtilt.com, bohoapp.com, chromewebstore.google.com, drawline.io, guardrail-trade.com, lossguardian.com, lotsmith.app, pub-cb8731fc79b643139ca69ff85ed3ef13.r2.dev, signalshieldhq.com, trade-reign.com
+- **Competitor / product site** (8): fundwarden.com, guardrail-trade.com, pattro.com, savemytrade.com, signalshieldhq.com, tiltguard.app, trade-reign.com, tradeguardhq.in
 
-### how to prevent overtrading as a day trader — ⚠️ misdescribed → ""
-- **Reddit** (1): reddit.com
-- **Content/Editorial** (5): crosstrade.io, daytrading.com, fxfoundations.com, trademomentum.org, traderssecondbrain.com
-- **Competitor / product site** (1): stoxra.com
+### how to prevent overtrading as a day trader — ❌ invisible
+- **Content/Editorial** (4): crosstrade.io, daytrading.com, trademomentum.org, traderssecondbrain.com
+- **Competitor / product site** (2): papertradingjournal.com, traderdetector.com
 
 ### Tradovate risk management / lockout tool — ❌ invisible
-- **Reddit** (1): reddit.com
-- **Broker/Forum/Help-desk** (2): help.tradeify.co, tradovate.zendesk.com
-- **Competitor / product site** (4): docs.pickmytrade.trade, khomaapi.com, theedgepad.com, tradecontrollers.com
+- **Broker/Forum/Help-desk** (4): partner.tradovate.com, prop.tradovate.com, tradeday.freshdesk.com, tradovate.zendesk.com
+- **Competitor / product site** (5): edgetrader.io, khomaapi.com, theedgepad.com, tikitrade.com, tradecontrollers.com
 
 ### behavioral risk management tool for prop firm traders — ❌ invisible
-- **Reddit** (1): reddit.com
-- **Competitor / product site** (6): ariatrade.app, ctxtraders.com, lotsmith.app, mytradeedge.com, tradenrisk.com, tradros.com
+- **Competitor / product site** (11): ariatrade.app, bohoapp.com, ctxtraders.com, equity-safe.com, lotsmith.app, propforge.io, proptector.com, tradenrisk.com, tradlogica.com, tradros.com, vyronos.com
 
 ### what is Meridian PSI trading tool — ✅ surfaced + accurate
 - **Reddit** (1): reddit.com
@@ -71,7 +55,7 @@ _Act on the ❌/⚠️ queries first. Each source's play is in the legend at the
 
 ## Aggregate — citations by source type (where the leverage is)
 
-**Competitor / product site** ×63 · **Content/Editorial** ×22 · **Reddit** ×12 · **Broker/Forum/Help-desk** ×5 · **Ours** ×4 · **Directory/Aggregator** ×2
+**Competitor / product site** ×39 · **Content/Editorial** ×9 · **Broker/Forum/Help-desk** ×9 · **Ours** ×5 · **Reddit** ×2 · **Directory/Aggregator** ×1
 
 ## The play per source type (对症下药)
 

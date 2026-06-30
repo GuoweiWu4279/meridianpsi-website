@@ -222,8 +222,13 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
   visibility/SoV move? which comment angle landed vs. didn't? Distill it into a rule (the citability gate or the
   targeting), and RETRACT dead targets (mark 毙 in `queue.md`). This is the loop *turning*, not just spinning — it is
   the part that compounds, and the part most likely to silently not happen, so it is named here as an explicit step.
-- **Periodic (monthly-ish):** a multi-engine probe like this one (workflow) to catch Perplexity/Google drift the
-  ChatGPT-only ledger misses. (Better: add a Perplexity probe to `geo_audit.py` — proposed, not built.)
+- **★ The REAL visibility measure (2026-06-29, multi-engine, BUILT):** `geo_journeys_v2.py` — ChatGPT + Gemini
+  (`gemini-2.5-flash` google_search grounding), 8 personas × 4-turn UNBRANDED journeys, a judge layer (Meridian rank /
+  who-beat-us), `--runs N` to average web-search noise. THIS answers "are we visible to real buyers" — NOT `geo_audit.py`
+  (= ChatGPT keyword source-intel only) nor v1 `geo_journeys.py` (ChatGPT-only, DEPRECATED). 06-29 baseline: invisible on
+  ~60% of journeys, **5/8 high-value journeys invisible on BOTH engines**, our wins (lockout/overtrading) are ChatGPT-only
+  (Gemini=0). Ledger `Company/YouTube/pipeline/output/GEO_JOURNEYS_V2.md`. (Perplexity still unmonitored — Gary chose
+  Gemini over a paid Perplexity key, 2026-06-29.)
 - **Leading metrics (8-week window, no hard trial/revenue target — LEARNINGS L7):** comment karma, median comment
   upvotes, inbound DMs, own-sub subs, **+ GEO-specific:** Meridian appearing in cited threads, audit visibility/SoV
   trend, and whether any audit cites a thread *we* contributed to.
@@ -234,8 +239,9 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
 
 ## 7. Dependencies + ownership
 
-- **★ BLOCKER (Gary, ~25 min, one-time):** Reddit Phase-0 setup is 100% undone (`queue.md §0`) — account hygiene, Reddit
-  Pro, read-only API ticket, and telling me the account's current comment karma. **The entire loop is blocked on this.**
+- **★ (RESOLVED 2026-06-29) Phase-0 DONE + Lever 1 SHIPPED:** account setup complete, comment karma confirmed
+  sufficient (Gary), all 8 own-sub GEO answer posts live on r/MeridianPSI. Now executing Lever 2 (disclosed founder
+  comments in cited threads; first funded/prop + psych-stability drafts in `queue.md [5]/[6]`). Loop is unblocked + running.
 - **Gary-gated:** external publishing (directory listings, fixing the NT Ecosystem listing copy, Wikidata), any spend,
   outbound email. I draft everything; Gary does the publish/spend step.
 - **Mine (autonomy):** the audits, the bridge translation, all drafting, the owned answer/compare pages, queue mgmt, the
@@ -246,7 +252,9 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
   **on-site / entity-signal ACTION list** (schema, llms.txt, disambiguation, directories, Wikidata). They are one
   program, two scopes: off-site/Reddit loop here, on-site/entity there. Neither restates the other; on conflict this
   file owns the loop, GEO_ACTION_PLAN owns the on-site actions.
-- Evidence snapshot: `GEO-FINDINGS-2026-06-25.md` · machine target feed: `reddit/ops/GEO-TARGETS.md` (auto) · Ledger:
-  `Company/YouTube/pipeline/output/GEO_AUDIT.md` (+ `geo_audit.py`, which now emits `GEO-TARGETS.md`).
+- Evidence snapshot: `GEO-FINDINGS-2026-06-25.md` · machine target feed: `reddit/ops/GEO-TARGETS.md` (auto) · Ledgers:
+  `Company/YouTube/pipeline/output/GEO_AUDIT.md` (`geo_audit.py` = ChatGPT source-intel, emits `GEO-TARGETS.md`) **+**
+  `…/output/GEO_JOURNEYS_V2.md` (`geo_journeys_v2.py` = the real multi-engine ChatGPT+Gemini visibility test, L13;
+  v1 `geo_journeys.py` deprecated).
 - Write system: `CONTENT-SYSTEM.md` · `reddit/ops/{PLAYBOOK,ARTIFACTS,COMMENT-ANATOMY,LEARNINGS,queue}.md` ·
   `brand/{POSITIONING,VOICE}.md`. Facts: `../../MERIDIAN.md` + CANON. Memory: `project_meridian_geo`, `project_meridian_reddit`.
