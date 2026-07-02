@@ -23,7 +23,7 @@ const metadata = {
 const faqItems = [
   {
     q: 'What is Meridian, in one sentence?',
-    a: 'Meridian is the most complete risk management for serious futures traders — a superset. Native in NinjaTrader 8 today, with standalone Tradovate and Ironbeam apps in early access. It does everything a traditional risk tool does (daily loss limit, single-trade loss cap, P&L and drawdown caps, loss-streak cutoff), plus a layer none of them have: real-time behavioral detection across seven signals, scored against your own adaptive baseline, that lets you intervene before the order rather than after the loss.',
+    a: 'Meridian is a new generation of risk management for futures traders: every other tool reacts after the loss, Meridian acts before the order — detecting revenge trading, oversizing, and tilt in real time across seven signals, scored against your own adaptive baseline. Native in NinjaTrader 8 today, with standalone Tradovate and Ironbeam apps in early access. It still does everything a traditional risk tool does (daily loss limit, single-trade loss cap, P&L and drawdown caps, loss-streak cutoff) — plus that behavioral layer none of them have.',
   },
   {
     q: 'What is the PSI score, exactly?',
@@ -31,7 +31,7 @@ const faqItems = [
   },
   {
     q: 'Do I have to give up the risk tool I already use?',
-    a: "No — think tricycle vs car. The four things a traditional risk tool gives you (loss limit, single-trade loss cap, P&L cap, loss-streak cutoff) literally are four of Guard's six trigger types. Meridian is the upgrade that contains them, plus the behavioral layer none of them have. If you use any risk tool today, Meridian is the stronger version of it, not a competing category.",
+    a: "No — you keep everything your risk tool does, but it works a generation ahead of it. A limit fires after the loss; Meridian acts before the order, reading the behavior that causes the loss and stepping in first. The four things a traditional risk tool gives you (loss limit, single-trade loss cap, P&L cap, loss-streak cutoff) literally are four of Guard's six trigger types — Meridian enforces all of them, then adds the real-time behavioral layer none of them have.",
   },
   {
     q: 'Is Meridian compatible with prop firm evaluation accounts?',
@@ -112,15 +112,13 @@ const TRIAL = '/pricing';
     <div class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-10 text-center" data-reveal>
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5">HOW MERIDIAN WORKS</p>
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06]">
-        The whole risk tool &mdash; and the<br class="hidden md:block" /> layer that catches what limits <span
-          class="text-emerald-600">miss.</span
+        The whole risk tool &mdash; and the<br class="hidden md:block" /> part that acts <span class="text-emerald-600"
+          >before the loss.</span
         >
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Meridian is the most complete risk management for NinjaTrader 8 &mdash; a superset. Native in NinjaTrader&nbsp;8
-        today; Tradovate &amp; Ironbeam apps in early access. It does everything a traditional risk tool does, then adds
-        real-time <strong class="text-zinc-800">behavioral detection</strong> none of them have. This page is the full tour:
-        the loop, the seven signals, and what the PSI score actually measures.
+        Real-time <strong class="text-zinc-800">behavioral detection</strong> that steps in before the order, not after the
+        loss &mdash; plus every limit your old tool had.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
@@ -181,11 +179,12 @@ const TRIAL = '/pricing';
     <div class="text-center mb-12" data-reveal>
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">START HERE: WHAT MERIDIAN IS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
-        Not a different category.<br />A bigger one.
+        A limit reacts after the loss.<br />Meridian acts before the order.
       </h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-        Tricycle vs car. The four things your current risk tool gives you literally <em>are</em> four of Guard's six trigger
-        types. Meridian contains all of them &mdash; then adds the layer that reads behavior, not just dollars.
+        You don't give up your risk tool &mdash; the four things it gives you literally <em>are</em> four of Guard's six
+        trigger types, and Meridian enforces all of them. It just works a generation ahead: it reads the behavior, not just
+        the dollars, and steps in first.
       </p>
     </div>
     <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto" data-reveal>
@@ -481,9 +480,7 @@ const TRIAL = '/pricing';
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
         Now you know how it works.<br />See it on your own session.
       </h2>
-      <p class="mt-6 text-lg text-zinc-600">
-        Everything your risk tool does &mdash; plus the layer that actually saves the account.
-      </p>
+      <p class="mt-6 text-lg text-zinc-600">Other risk tools react after the loss. Meridian acts before the order.</p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
           href={TRIAL}

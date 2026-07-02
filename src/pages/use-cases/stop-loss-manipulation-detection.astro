@@ -4,21 +4,22 @@ import geoHooks from '~/data/geo-hooks.json';
 
 const metadata = {
   title: 'Stop-Loss Manipulation Detection — NinjaTrader 8 Behavioral Risk Manager',
-  description: 'Detect stop-loss manipulation in NinjaTrader 8 — stop widening, protective-order removal, and post-entry risk changes — and enforce a behavioral response before P&L damage.',
+  description:
+    'Detect stop-loss manipulation in NinjaTrader 8 — stop widening, protective-order removal, and post-entry risk changes — and enforce a behavioral response before P&L damage.',
   robots: { index: true, follow: true },
 };
 
 const faqItems = [
   {
     q: 'What exactly does Meridian flag as stop-loss manipulation?',
-    a: 'Meridian\'s Stop Manipulation signal fires when a protective stop is widened or removed on an active losing position, or when risk parameters are changed after entry in a way that increases exposure. It compares the modification against your own declared plan parameters.',
+    a: "Meridian's Stop Manipulation signal fires when a protective stop is widened or removed on an active losing position, or when risk parameters are changed after entry in a way that increases exposure. It compares the modification against your own declared plan parameters.",
   },
   {
     q: 'How does Guard respond when stop manipulation is detected?',
-    a: 'Guard\'s response is behavioral and immediate: a warning, a required typed acknowledgment (with an optional countdown), a trading pause that blocks new entries, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. You stay in full control of the existing order, with structural friction now between you and the next impulse.',
+    a: "Guard's response is behavioral and immediate: a warning, a required typed acknowledgment (with an optional countdown), a trading pause that blocks new entries, or — at the highest tier you opt into — a broker disconnect that ends the session. By default a disconnect does not close your open positions; auto-liquidation is a separate setting you must enable. You stay in full control of the existing order, with structural friction now between you and the next impulse.",
   },
   {
-    q: 'Does this work if I move stops using NinjaTrader\'s chart trader?',
+    q: "Does this work if I move stops using NinjaTrader's chart trader?",
     a: 'Yes. Meridian monitors order modifications made through any NinjaTrader 8 interface, including chart trader, the order entry panel, and ATM modifications, provided they are executed through the NinjaTrader order layer.',
   },
 ];
@@ -41,9 +42,10 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} />
 
   <article class="max-w-2xl mx-auto px-6 py-16">
-
     <header class="mb-12">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">NinjaTrader 8 · Use Case</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        NinjaTrader 8 · Use Case
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-3">
         Stop-loss manipulation detection for NinjaTrader
       </h1>
@@ -51,9 +53,15 @@ const faqSchema = JSON.stringify({
 
       <!-- Quick Answer -->
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-6" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Meridian is complete risk management for NinjaTrader 8 — it enforces the traditional limits (daily loss, single-trade loss cap, P&amp;L and drawdown caps) and adds a real-time behavioral layer on top. For stop-loss manipulation specifically, it identifies behaviors such as widening stops, removing protective orders, or changing risk after entry, allowing Guard to insert friction at the moment of the modification — before the next impulsive action, rather than after the loss is recorded.
+          Every P&amp;L tool only reacts after the position closes and the enlarged loss is booked. Meridian flags the
+          stop the moment you widen it — before that loss is recorded — and lets Guard insert friction right at the
+          modification, before the next impulsive move. That is the next-generation edge: acting before the order, not
+          after the loss. It still enforces the traditional limits for NinjaTrader 8 too (daily loss, single-trade loss
+          cap, P&amp;L and drawdown caps).
         </p>
       </div>
       <p class="text-[17px] text-zinc-700 leading-relaxed mb-8">
@@ -61,25 +69,38 @@ const faqSchema = JSON.stringify({
       </p>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>The problem</h2>
       <p>
-        Stop-loss manipulation is one of the most costly behavioral failure modes in discretionary trading — and one of the most difficult to catch through journaling, because it rarely appears as a single catastrophic decision. It appears as a series of small adjustments: a stop widened by 2 ticks, then 5 more, then removed entirely as the position approaches the point of no return.
+        Stop-loss manipulation is one of the most costly behavioral failure modes in discretionary trading — and one of
+        the most difficult to catch through journaling, because it rarely appears as a single catastrophic decision. It
+        appears as a series of small adjustments: a stop widened by 2 ticks, then 5 more, then removed entirely as the
+        position approaches the point of no return.
       </p>
       <p>
-        The rationalization is always available in the moment: "the market needs more room," "price is about to turn," "my original stop was too tight." By the time the loss is final, the original risk plan has been completely abandoned — and no journal entry corrects a loss that has already been taken.
+        The rationalization is always available in the moment: "the market needs more room," "price is about to turn,"
+        "my original stop was too tight." By the time the loss is final, the original risk plan has been completely
+        abandoned — and no journal entry corrects a loss that has already been taken.
       </p>
       <p>
-        Stop manipulation is also directly relevant to prop firm traders. Most evaluation structures set a maximum per-trade loss. A trader who moves their stop progressively wider can exceed that limit on a single position without ever placing an oversized order.
+        Stop manipulation is also directly relevant to prop firm traders. Most evaluation structures set a maximum
+        per-trade loss. A trader who moves their stop progressively wider can exceed that limit on a single position
+        without ever placing an oversized order.
       </p>
 
       <h2>Why P&amp;L limits are too late</h2>
       <p>
-        A P&amp;L-based limit stops trading after the financial damage from the manipulated stop has already been recorded. For stop manipulation specifically, the damage often accumulates gradually — each widening adds incrementally to the loss, but the limit only fires after the position finally closes.
+        A P&amp;L-based limit stops trading after the financial damage from the manipulated stop has already been
+        recorded. For stop manipulation specifically, the damage often accumulates gradually — each widening adds
+        incrementally to the loss, but the limit only fires after the position finally closes.
       </p>
       <p>
-        An effective response has to fire when the manipulation happens — at the moment of the order modification — not after the enlarged loss has been recorded. Meridian still enforces the traditional P&amp;L, drawdown, and position-size limits as a backstop; the behavioral layer simply adds an earlier trigger, so the manipulation is caught before it reaches the financial threshold.
+        An effective response has to fire when the manipulation happens — at the moment of the order modification — not
+        after the enlarged loss has been recorded. Meridian still enforces the traditional P&amp;L, drawdown, and
+        position-size limits as a backstop; the behavioral layer simply adds an earlier trigger, so the manipulation is
+        caught before it reaches the financial threshold.
       </p>
 
       <h2>How Meridian detects the pattern</h2>
@@ -87,42 +108,71 @@ const faqSchema = JSON.stringify({
         Meridian's <strong>Stop Manipulation signal</strong> monitors active order modifications in real time. It fires when:
       </p>
       <ul>
-        <li>A protective stop on a losing position is widened beyond a threshold you set relative to your declared stop placement</li>
+        <li>
+          A protective stop on a losing position is widened beyond a threshold you set relative to your declared stop
+          placement
+        </li>
         <li>A stop order is cancelled without a corresponding position close</li>
-        <li>Risk exposure on an active position increases after entry in a way that departs from your declared session plan</li>
+        <li>
+          Risk exposure on an active position increases after entry in a way that departs from your declared session
+          plan
+        </li>
       </ul>
       <p>
-        Each trigger contributes to the PSI score. Combined with other active signals — revenge trading, overtrading — the composite PSI drops faster than any single signal would move it on its own. Stop manipulation rarely occurs in isolation; it is typically part of a broader pattern of behavioral deterioration within the same session window.
+        Each trigger contributes to the PSI score. Combined with other active signals — revenge trading, overtrading —
+        the composite PSI drops faster than any single signal would move it on its own. Stop manipulation rarely occurs
+        in isolation; it is typically part of a broader pattern of behavioral deterioration within the same session
+        window.
       </p>
 
       <h2>What Guard can enforce</h2>
       <ul>
-        <li><strong>Immediate acknowledgment prompt</strong> — a required phrase confirmation fires when the signal activates; introduces a deliberate pause between the manipulation event and the next action</li>
-        <li><strong>PSI-based entry block</strong> — if PSI drops below a configured floor as a result of the manipulation signal combining with other active signals, new entries are blocked</li>
-        <li><strong>Mandatory pause</strong> — a fixed-duration cooldown enforced by the software after the signal fires</li>
-        <li><strong>Disconnect</strong> — at the highest tier you opt into, Guard can sever the broker connection to end the session. By default this does <strong>not</strong> close your open positions — auto-liquidation is a separate setting you must enable; otherwise positions remain open and under your full manual control</li>
+        <li>
+          <strong>Immediate acknowledgment prompt</strong> — a required phrase confirmation fires when the signal activates;
+          introduces a deliberate pause between the manipulation event and the next action
+        </li>
+        <li>
+          <strong>PSI-based entry block</strong> — if PSI drops below a configured floor as a result of the manipulation
+          signal combining with other active signals, new entries are blocked
+        </li>
+        <li>
+          <strong>Mandatory pause</strong> — a fixed-duration cooldown enforced by the software after the signal fires
+        </li>
+        <li>
+          <strong>Disconnect</strong> — at the highest tier you opt into, Guard can sever the broker connection to end the
+          session. By default this does <strong>not</strong> close your open positions — auto-liquidation is a separate setting
+          you must enable; otherwise positions remain open and under your full manual control
+        </li>
       </ul>
 
       <hr />
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
-
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/guard" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           Explore Guard enforcement →
         </a>
       </div>
@@ -135,6 +185,5 @@ const faqSchema = JSON.stringify({
         {geoHooks.officialVendorStatement}
       </p>
     </div>
-
   </article>
 </Layout>

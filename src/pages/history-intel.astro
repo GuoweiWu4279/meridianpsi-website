@@ -53,7 +53,12 @@ const pageJsonLd = {
       '@id': 'https://www.meridianpsi.com/history-intel/#breadcrumb',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.meridianpsi.com' },
-        { '@type': 'ListItem', position: 2, name: 'Intel & Patterns', item: 'https://www.meridianpsi.com/history-intel' },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Intel & Patterns',
+          item: 'https://www.meridianpsi.com/history-intel',
+        },
       ],
     },
     {
@@ -125,10 +130,21 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         does the thing a P&amp;L statement never can: it tells you, in dollars, what composure is worth.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#correlation" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the correlation</a>
+        <a
+          href={TRIAL}
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+          >Start 14-day free trial</a
+        >
+        <a
+          href="#correlation"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+          >See the correlation</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">Built on your 5-year session history &middot; Intel analysis included with every Meridian plan &middot; Local-first, anonymized</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        Built on your 5-year session history &middot; Intel analysis included with every Meridian plan &middot;
+        Local-first
+      </p>
     </div>
   </section>
 
@@ -149,22 +165,34 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div>
           <div class="font-semibold text-zinc-900 mb-1">Time of day</div>
-          <p class="text-sm text-zinc-600">The first 30 minutes after the open behave nothing like the lunch lull. See which clock windows you trade well &mdash; and which ones quietly cost you.</p>
+          <p class="text-sm text-zinc-600">
+            The first 30 minutes after the open behave nothing like the lunch lull. See which clock windows you trade
+            well &mdash; and which ones quietly cost you.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div>
           <div class="font-semibold text-zinc-900 mb-1">Hold time</div>
-          <p class="text-sm text-zinc-600">Scalps versus the trades you sat in too long. Hold-time buckets reveal whether you're cutting losers fast or letting them run.</p>
+          <p class="text-sm text-zinc-600">
+            Scalps versus the trades you sat in too long. Hold-time buckets reveal whether you're cutting losers fast or
+            letting them run.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div>
           <div class="font-semibold text-zinc-900 mb-1">Instrument</div>
-          <p class="text-sm text-zinc-600">ES, NQ, CL, GC &mdash; your edge is rarely the same across all of them. Intel ranks each instrument by what it actually returned you.</p>
+          <p class="text-sm text-zinc-600">
+            ES, NQ, CL, GC &mdash; your edge is rarely the same across all of them. Intel ranks each instrument by what
+            it actually returned you.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div>
           <div class="font-semibold text-zinc-900 mb-1">Long vs short</div>
-          <p class="text-sm text-zinc-600">Many traders are a different person on each side of the book. Direction split shows where your bias is helping you &mdash; and where it isn't.</p>
+          <p class="text-sm text-zinc-600">
+            Many traders are a different person on each side of the book. Direction split shows where your bias is
+            helping you &mdash; and where it isn't.
+          </p>
         </div>
       </div>
     </div>
@@ -176,18 +204,32 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Two views of the same five years.</h2>
       <p class="mt-4 text-lg text-zinc-600">
-        <strong class="text-zinc-900">Insights</strong> tells you where you stand right now and what to do about it.
+        <strong class="text-zinc-900">Intel</strong> tells you where you stand right now and what to do about it.
         <strong class="text-zinc-900">Stats</strong> is the full breakdown &mdash; every slice, for any range you pick.
       </p>
     </div>
     <div data-reveal class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       <figure>
-        <div class="win"><img src="/m/intel.png" alt="Meridian Insights — where you stand this session, composure grade, and the next action to take" /></div>
-        <figcaption class="mt-3 text-center text-sm text-zinc-500">Insights &mdash; your standing, graded, with the next move spelled out.</figcaption>
+        <div class="win">
+          <img
+            src="/m/intel.png"
+            alt="Meridian Intel — where you stand this session, composure grade, and the next action to take"
+          />
+        </div>
+        <figcaption class="mt-3 text-center text-sm text-zinc-500">
+          Intel &mdash; your standing, graded, with the next move spelled out.
+        </figcaption>
       </figure>
       <figure>
-        <div class="win"><img src="/m/stats-2.png" alt="Meridian Stats — consistency and risk metrics (max drawdown, recovery factor, daily Sharpe and Sortino, streaks), average P&L by weekday, hold time of winners vs losers, and breakdowns by instrument and side" /></div>
-        <figcaption class="mt-3 text-center text-sm text-zinc-500">Stats &mdash; consistency &amp; risk, tempo &amp; timing, and every breakdown.</figcaption>
+        <div class="win">
+          <img
+            src="/m/stats-2.png"
+            alt="Meridian Stats — consistency and risk metrics (max drawdown, recovery factor, daily Sharpe and Sortino, streaks), average P&L by weekday, hold time of winners vs losers, and breakdowns by instrument and side"
+          />
+        </div>
+        <figcaption class="mt-3 text-center text-sm text-zinc-500">
+          Stats &mdash; consistency &amp; risk, tempo &amp; timing, and every breakdown.
+        </figcaption>
       </figure>
     </div>
   </section>
@@ -202,18 +244,25 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         </h2>
         <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
           You need both. PSI moves tick-to-tick during execution &mdash; it's what you watch when you're in a position.
-          Composure is the single grade Meridian assigns each session once it closes, so months of behavior become something
-          you can actually trend.
+          Composure is the single grade Meridian assigns each session once it closes, so months of behavior become
+          something you can actually trend.
         </p>
       </div>
       <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <p class="text-xs uppercase tracking-wide font-bold text-emerald-700 mb-2">PSI &mdash; live</p>
-          <p class="text-zinc-700 leading-relaxed">A real-time 0&ndash;100 behavioral pressure readout, updated after every fill. Drives the decision you make <em>right now</em>: take the trade, skip it, or step away.</p>
+          <p class="text-zinc-700 leading-relaxed">
+            A real-time 0&ndash;100 behavioral pressure readout, updated after every fill. Drives the decision you make <em
+              >right now</em
+            >: take the trade, skip it, or step away.
+          </p>
         </div>
         <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7">
           <p class="text-xs uppercase tracking-wide font-bold text-emerald-700 mb-2">Composure &mdash; after</p>
-          <p class="text-zinc-700 leading-relaxed">A post-session quality grade. The unit your history, monthly digest, and weekday patterns are built on &mdash; so progress is measured, not remembered.</p>
+          <p class="text-zinc-700 leading-relaxed">
+            A post-session quality grade. The unit your history, monthly digest, and weekday patterns are built on
+            &mdash; so progress is measured, not remembered.
+          </p>
         </div>
       </div>
     </div>
@@ -228,18 +277,21 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
         Meridian groups your closed sessions by the state you were in and lines them up against what they returned. The
-        gap is the whole argument: your <span class="text-emerald-700 font-semibold">composed</span> sessions (your top
-        composure grades) on one side, your <span class="text-rose-600 font-semibold">tilted</span> ones on the other
-        &mdash; in dollars.
+        gap is the whole argument: your <span class="text-emerald-700 font-semibold">composed</span> sessions (your top composure
+        grades) on one side, your <span class="text-rose-600 font-semibold">tilted</span> ones on the other &mdash; in dollars.
       </p>
       <div class="mt-8 grid grid-cols-2 gap-4 max-w-md">
         <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
           <div class="text-xs text-zinc-500 mb-1">Composed sessions</div>
-          <div class="text-3xl font-bold text-emerald-700 tnum">+${COMPOSED_PER_SESSION}<span class="text-base font-medium text-zinc-400">/session</span></div>
+          <div class="text-3xl font-bold text-emerald-700 tnum">
+            +${COMPOSED_PER_SESSION}<span class="text-base font-medium text-zinc-400">/session</span>
+          </div>
         </div>
         <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
           <div class="text-xs text-zinc-500 mb-1">Tilted sessions</div>
-          <div class="text-3xl font-bold text-rose-600 tnum">&minus;${Math.abs(TILTED_PER_SESSION)}<span class="text-base font-medium text-zinc-400">/session</span></div>
+          <div class="text-3xl font-bold text-rose-600 tnum">
+            &minus;${Math.abs(TILTED_PER_SESSION)}<span class="text-base font-medium text-zinc-400">/session</span>
+          </div>
         </div>
       </div>
       <p class="mt-5 text-xs text-zinc-400 max-w-md">
@@ -247,7 +299,12 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         guarantee trading results.
       </p>
     </div>
-    <div data-reveal class="win"><img src="/m/stats-1.png" alt="Meridian Stats — composed vs tilted P&L per session, the equity curve, win rate, profit factor, and expectancy" /></div>
+    <div data-reveal class="win">
+      <img
+        src="/m/stats-1.png"
+        alt="Meridian Stats — composed vs tilted P&L per session, the equity curve, win rate, profit factor, and expectancy"
+      />
+    </div>
   </section>
 
   <!-- ───────────────────────── THE PATTERNS TAB ───────────────────────── -->
@@ -265,13 +322,23 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
 
       <div data-reveal class="grid lg:grid-cols-5 gap-10 items-center max-w-6xl mx-auto">
         <div class="lg:col-span-3">
-          <div class="win"><img src="/m/patterns.png" alt="Meridian Patterns — month headline, average composure, sessions, net P&L, edge share and broke-down count, composure trend and equity curve side by side, and the month calendar of composure-graded days" /></div>
-          <p class="mt-2 text-xs text-zinc-400 text-center">The Patterns tab &mdash; rendered from simulated session data.</p>
+          <div class="win">
+            <img
+              src="/m/patterns.png"
+              alt="Meridian Patterns — month headline, average composure, sessions, net P&L, edge share and broke-down count, composure trend and equity curve side by side, and the month calendar of composure-graded days"
+            />
+          </div>
+          <p class="mt-2 text-xs text-zinc-400 text-center">
+            The Patterns tab &mdash; rendered from simulated session data.
+          </p>
         </div>
         <div class="lg:col-span-2 space-y-4">
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">The month's vitals</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">Average composure, sessions, net P&amp;L, <strong>edge share</strong> &mdash; how much of the month's profit came from disciplined trades &mdash; and how many days broke down.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Average composure, sessions, net P&amp;L, <strong>edge share</strong> &mdash; how much of the month's profit
+              came from disciplined trades &mdash; and how many days broke down.
+            </p>
           </div>
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">Two curves, side by side</div>
@@ -279,11 +346,17 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           </div>
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">A calendar you can open</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">Every day graded Stable, Caution, Warning, or Critical. Click a day and its full session report reopens &mdash; the debrief, the trades, the score.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Every day graded Stable, Caution, Warning, or Critical. Click a day and its full session report reopens
+              &mdash; the debrief, the trades, the score.
+            </p>
           </div>
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">Yours to keep</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">"What we noticed" reads the month back to you in sentences; recent sessions sit below; the whole history exports to CSV any time.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              "What we noticed" reads the month back to you in sentences; recent sessions sit below; the whole history
+              exports to CSV any time.
+            </p>
           </div>
         </div>
       </div>
@@ -297,22 +370,31 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">PATTERNS YOU CAN'T FEEL IN ONE SESSION</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Your worst day has a name.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Some risk only shows up at scale &mdash; a weekday that consistently runs hot, a session window where composure
-          dips. Intel surfaces it so you can prepare before the next one arrives.
+          Some risk only shows up at scale &mdash; a weekday that consistently runs hot, a session window where
+          composure dips. Intel surfaces it so you can prepare before the next one arrives.
         </p>
       </div>
       <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">Weekday risk patterns</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Composure averaged by day of week. If your Fridays tilt &mdash; or your Mondays overtrade &mdash; you'll see it as a trend, not a hunch, and tighten the rule that matters.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Composure averaged by day of week. If your Fridays tilt &mdash; or your Mondays overtrade &mdash; you'll see
+            it as a trend, not a hunch, and tighten the rule that matters.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">Monthly PSI digest</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">A once-a-month read on where your composure is heading, which signals fired most, and whether the habit you set out to fix is actually improving.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            A once-a-month read on where your composure is heading, which signals fired most, and whether the habit you
+            set out to fix is actually improving.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">Today's Risk Brief</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">A short pre-session summary built from your own history &mdash; the window to watch, the instrument that's burned you, the rule worth holding. Read it before the open.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            A short pre-session summary built from your own history &mdash; the window to watch, the instrument that's
+            burned you, the rule worth holding. Read it before the open.
+          </p>
         </div>
       </div>
     </div>
@@ -322,17 +404,27 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div data-reveal class="rounded-2xl calloutd text-zinc-100 px-8 py-12 text-center">
       <p class="eyebrow text-[11px] font-bold text-emerald-400 mb-3">FIVE-YEAR SESSION HISTORY</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
-        A long memory is the point.
-      </h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight">A long memory is the point.</h2>
       <p class="mt-5 text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed">
         Meridian keeps up to five years of sessions on your machine, so a pattern that takes months to appear isn't lost
-        to a cleared cache. Slice any window you want &mdash; the data is yours, kept local-first and anonymized.
+        to a cleared cache. Slice any window you want &mdash; the data is yours, kept local-first.
       </p>
       <div class="mt-9 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
-        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">5 yr</div><div class="mt-2 text-sm text-zinc-400">Session history retained</div></div>
-        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">4</div><div class="mt-2 text-sm text-zinc-400">Breakdown dimensions, any range</div></div>
-        <div class="rounded-xl border border-zinc-700 p-6"><div class="text-3xl font-extrabold text-white tnum">7</div><div class="mt-2 text-sm text-zinc-400">Behavioral signals scored per session</div></div>
+        <div class="rounded-xl border border-zinc-700 p-6">
+          <div class="text-3xl font-extrabold text-white tnum">5 yr</div><div class="mt-2 text-sm text-zinc-400">
+            Session history retained
+          </div>
+        </div>
+        <div class="rounded-xl border border-zinc-700 p-6">
+          <div class="text-3xl font-extrabold text-white tnum">4</div><div class="mt-2 text-sm text-zinc-400">
+            Breakdown dimensions, any range
+          </div>
+        </div>
+        <div class="rounded-xl border border-zinc-700 p-6">
+          <div class="text-3xl font-extrabold text-white tnum">7</div><div class="mt-2 text-sm text-zinc-400">
+            Behavioral signals scored per session
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -356,7 +448,9 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       {/* No mini pricing card here — /pricing owns the plan cards. One line, one link. */}
       <p data-reveal class="text-center text-sm text-zinc-500">
         Plans and the full tier breakdown live on the
-        <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2">pricing page</a>
+        <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2"
+          >pricing page</a
+        >
         — both start with a 14-day free trial.
       </p>
     </div>
@@ -368,9 +462,21 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
         Stop guessing what tilt costs.<br />Read it off the page.
       </h2>
-      <p class="mt-6 text-lg text-zinc-600">Five years of your own behavior, sliced any way you need &mdash; and a dollar figure on the discipline that protects your account.</p>
-      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-6 text-lg text-zinc-600">
+        Five years of your own behavior, sliced any way you need &mdash; and a dollar figure on the discipline that
+        protects your account.
+      </p>
+      <div class="mt-9">
+        <a
+          href={TRIAL}
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start your 14-day free trial</a
+        >
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">
+        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
+        early access
+      </p>
     </div>
   </section>
 
@@ -406,5 +512,3 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
     document.addEventListener('astro:page-load', initHistoryIntel);
   </script>
 </Layout>
-</content>
-</invoke>

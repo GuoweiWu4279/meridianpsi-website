@@ -70,7 +70,7 @@ const pageJsonLd = {
           name: 'What does "edge vs luck" mean in the session debrief?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: "The debrief splits your session P&L by where it actually came from. Profit earned on trades that followed your rules counts as your disciplined net — your edge. Profit that arrived on trades that broke your own rules (oversized entries, for example) is attributed to luck, and outsized single outcomes are flagged as variance. The point is the honest split: a green day built on rule-breaks is risk, not progress.",
+            text: 'The debrief splits your session P&L by where it actually came from. Profit earned on trades that followed your rules counts as your disciplined net — your edge. Profit that arrived on trades that broke your own rules (oversized entries, for example) is attributed to luck, and outsized single outcomes are flagged as variance. The point is the honest split: a green day built on rule-breaks is risk, not progress.',
           },
         },
       ],
@@ -96,14 +96,32 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         stop you. After the close, it tells you the truth about what just happened.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#morning" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See the morning brief</a>
+        <a
+          href={TRIAL}
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+          >Start 14-day free trial</a
+        >
+        <a
+          href="#morning"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+          >See the morning brief</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">The first tab of the dashboard &middot; included in every Meridian plan &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        The first tab of the dashboard &middot; included in every Meridian plan &middot; NinjaTrader 8 today &middot;
+        Tradovate &amp; Ironbeam early access
+      </p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
-      <div class="win"><img src="/m/overview.png" alt="Meridian Overview before the open — today's read, one thing to watch, composure trend, yesterday's lesson, what wrecks you most, pre-session ritual, and the Guard rules armed to stop you" /></div>
-      <p class="mt-2 text-xs text-zinc-400 text-center">Overview before the open &mdash; rendered from simulated session data.</p>
+      <div class="win">
+        <img
+          src="/m/overview.png"
+          alt="Meridian Overview before the open — today's read, one thing to watch, composure trend, yesterday's lesson, what wrecks you most, pre-session ritual, and the Guard rules armed to stop you"
+        />
+      </div>
+      <p class="mt-2 text-xs text-zinc-400 text-center">
+        Overview before the open &mdash; rendered from simulated session data.
+      </p>
     </div>
   </section>
 
@@ -125,22 +143,34 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div>
           <div class="font-semibold text-zinc-900 mb-1">Today's read</div>
-          <p class="text-sm text-zinc-600">Your 30-day composure, last session's grade, the month's net P&amp;L, and your stable-day count &mdash; the scoreboard before the first order.</p>
+          <p class="text-sm text-zinc-600">
+            Your 30-day composure, last session's grade, the month's net P&amp;L, and your stable-day count &mdash; the
+            scoreboard before the first order.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div>
           <div class="font-semibold text-zinc-900 mb-1">One thing to watch today</div>
-          <p class="text-sm text-zinc-600">One focus line built from your own history &mdash; "You're in rhythm. Don't force it." &mdash; plus the secondary habits worth keeping in mind.</p>
+          <p class="text-sm text-zinc-600">
+            One focus line built from your own history &mdash; "You're in rhythm. Don't force it." &mdash; plus the
+            secondary habits worth keeping in mind.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div>
           <div class="font-semibold text-zinc-900 mb-1">Yesterday's lesson</div>
-          <p class="text-sm text-zinc-600">The one-line takeaway from your last debrief, resurfaced where you'll actually see it &mdash; so yesterday's tuition isn't wasted.</p>
+          <p class="text-sm text-zinc-600">
+            The one-line takeaway from your last debrief, resurfaced where you'll actually see it &mdash; so yesterday's
+            tuition isn't wasted.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
           <div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div>
           <div class="font-semibold text-zinc-900 mb-1">What wrecks you most</div>
-          <p class="text-sm text-zinc-600">Your top leaks, ranked from your sessions &mdash; size creep, overstaying &mdash; with how often each one bites.</p>
+          <p class="text-sm text-zinc-600">
+            Your top leaks, ranked from your sessions &mdash; size creep, overstaying &mdash; with how often each one
+            bites.
+          </p>
         </div>
       </div>
     </div>
@@ -160,11 +190,18 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <ul class="mt-6 space-y-4 text-zinc-700">
         <li class="flex gap-3">
           <span class="text-emerald-600 font-bold">&check;</span>
-          <span><strong>Pre-session ritual</strong> &mdash; your own checklist, your own steps: <em>reviewed yesterday's lesson, size plan set, no open positions</em>&hellip; add or remove steps freely. Completion is tracked per session.</span>
+          <span
+            ><strong>Pre-session ritual</strong> &mdash; your own checklist, your own steps: <em
+              >reviewed yesterday's lesson, size plan set, no open positions</em
+            >&hellip; add or remove steps freely. Completion is tracked per session.</span
+          >
         </li>
         <li class="flex gap-3">
           <span class="text-emerald-600 font-bold">&check;</span>
-          <span><strong>Armed to stop you</strong> &mdash; the Guard rules live for today, shown as chips: loss cap, pause after losses, max size, session window. What's armed is visible before the first order, not discovered after it fires.</span>
+          <span
+            ><strong>Armed to stop you</strong> &mdash; the Guard rules live for today, shown as chips: loss cap, pause after
+            losses, max size, session window. What's armed is visible before the first order, not discovered after it fires.</span
+          >
         </li>
         <li class="flex gap-3">
           <span class="text-emerald-600 font-bold">&check;</span>
@@ -172,13 +209,21 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         </li>
       </ul>
       <p class="mt-6 text-sm text-zinc-500">
-        Rules are created and edited in <a href="/guard" class="text-emerald-700 font-medium hover:underline">Meridian Guard</a> &mdash;
-        Overview shows what's armed so the contract you set is in front of you when it matters.
+        Rules are created and edited in <a href="/guard" class="text-emerald-700 font-medium hover:underline"
+          >Meridian Guard</a
+        > &mdash; Overview shows what's armed so the contract you set is in front of you when it matters.
       </p>
     </div>
     <div data-reveal class="order-first lg:order-none">
-      <div class="win"><img src="/m/overview-ritual.png" alt="The bottom of Meridian Overview — the pre-session ritual checklist beside the Guard rules armed for the day, above the Start session button" /></div>
-      <p class="mt-2 text-xs text-zinc-400 text-center">The ritual and today's armed rules, directly above Start session.</p>
+      <div class="win">
+        <img
+          src="/m/overview-ritual.png"
+          alt="The bottom of Meridian Overview — the pre-session ritual checklist beside the Guard rules armed for the day, above the Start session button"
+        />
+      </div>
+      <p class="mt-2 text-xs text-zinc-400 text-center">
+        The ritual and today's armed rules, directly above Start session.
+      </p>
     </div>
   </section>
 
@@ -191,39 +236,63 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           The debrief your P&amp;L<br />can't give you.
         </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-          Once trades land, Overview becomes the session debrief &mdash; and it doesn't grade you on green or red.
-          It grades you on whether the money came from your rules or in spite of them.
+          Once trades land, Overview becomes the session debrief &mdash; and it doesn't grade you on green or red. It
+          grades you on whether the money came from your rules or in spite of them.
         </p>
       </div>
 
       <div data-reveal class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
         <figure>
-          <div class="win"><img src="/m/debrief.png" alt="Meridian session debrief — 'You got lucky today': profit attribution split into edge vs luck, the risk you didn't feel, what pulled your score down, PSI through the session, tomorrow's one fix, and the trade log" /></div>
-          <figcaption class="mt-3 text-center text-sm text-zinc-500">A real debrief layout &mdash; rendered from simulated session data.</figcaption>
+          <div class="win">
+            <img
+              src="/m/debrief.png"
+              alt="Meridian session debrief — 'You got lucky today': profit attribution split into edge vs luck, the risk you didn't feel, what pulled your score down, PSI through the session, tomorrow's one fix, and the trade log"
+            />
+          </div>
+          <figcaption class="mt-3 text-center text-sm text-zinc-500">
+            A real debrief layout &mdash; rendered from simulated session data.
+          </figcaption>
         </figure>
         <div class="space-y-4">
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">Profit attribution &mdash; edge vs luck</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">Every trade is tagged <em>earned</em>, <em>luck</em>, or <em>variance</em>. A +$390 day where $258 came from an oversized rule-break reads exactly that way: "Most of your profit came from a trade that broke your own size rule &mdash; not from your edge."</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Every trade is tagged <em>earned</em>, <em>luck</em>, or <em>variance</em>. A +$390 day where $258 came
+              from an oversized rule-break reads exactly that way: "Most of your profit came from a trade that broke
+              your own size rule &mdash; not from your edge."
+            </p>
           </div>
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">The risk you didn't feel</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">The debrief reconstructs the exposure you actually carried &mdash; what one normal stop-out on that oversized trade would have cost against your daily limit.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              The debrief reconstructs the exposure you actually carried &mdash; what one normal stop-out on that
+              oversized trade would have cost against your daily limit.
+            </p>
           </div>
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">What pulled your score down</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">The behaviors that cost you PSI today, ranked &mdash; oversizing, revenge entries, rule-breaks, holding losers too long &mdash; with the session's PSI line and equity curve side by side.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              The behaviors that cost you PSI today, ranked &mdash; oversizing, revenge entries, rule-breaks, holding
+              losers too long &mdash; with the session's PSI line and equity curve side by side.
+            </p>
           </div>
           <div class="rounded-2xl border-2 border-emerald-500 bg-white p-6">
             <div class="font-semibold text-zinc-900 mb-1.5">Tomorrow's one fix</div>
-            <p class="text-sm text-zinc-600 leading-relaxed">Not ten notes &mdash; one concrete instruction, derived from today: <em>"Hard-cap your size at 6 contracts. Your disciplined trades netted +$132 cleanly &mdash; the size spikes are the only thing risking a red month."</em> It resurfaces tomorrow morning as <strong>Yesterday's lesson</strong>.</p>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Not ten notes &mdash; one concrete instruction, derived from today: <em
+                >"Hard-cap your size at 6 contracts. Your disciplined trades netted +$132 cleanly &mdash; the size
+                spikes are the only thing risking a red month."</em
+              > It resurfaces tomorrow morning as <strong>Yesterday's lesson</strong>.
+            </p>
           </div>
         </div>
       </div>
 
       <p data-reveal class="mt-8 text-center text-sm text-zinc-500 max-w-2xl mx-auto">
-        Want the full anatomy of a session record &mdash; quick notes, mood chips, the compiled report?
-        That's the <a href="/journal" class="text-emerald-700 font-medium hover:underline">Session Journal</a>.
+        Want the full anatomy of a session record &mdash; quick notes, mood chips, the compiled report? That's the <a
+          href="/journal"
+          class="text-emerald-700 font-medium hover:underline">Session Journal</a
+        >.
       </p>
     </div>
   </section>
@@ -240,15 +309,21 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
     <div data-reveal class="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
       <div class="rounded-2xl border border-zinc-200 bg-white p-6">
         <div class="text-emerald-600 text-xs font-bold mb-2 tnum">01 &middot; BRIEF</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Read yourself before you read the market: composure trend, the one thing to watch, your top leak.</p>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Read yourself before you read the market: composure trend, the one thing to watch, your top leak.
+        </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6">
         <div class="text-emerald-600 text-xs font-bold mb-2 tnum">02 &middot; ARM</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Finish the ritual, see what Guard has armed, and start the session deliberately.</p>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Finish the ritual, see what Guard has armed, and start the session deliberately.
+        </p>
       </div>
       <div class="rounded-2xl border border-zinc-200 bg-white p-6">
         <div class="text-emerald-600 text-xs font-bold mb-2 tnum">03 &middot; DEBRIEF</div>
-        <p class="text-sm text-zinc-600 leading-relaxed">Close the day with attribution, not vibes &mdash; and carry exactly one fix into tomorrow.</p>
+        <p class="text-sm text-zinc-600 leading-relaxed">
+          Close the day with attribution, not vibes &mdash; and carry exactly one fix into tomorrow.
+        </p>
       </div>
     </div>
     <p data-reveal class="mt-8 text-center text-sm text-zinc-500">
@@ -263,19 +338,32 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
         Open on yourself,<br />not on a chart.
       </h2>
-      <p class="mt-6 text-lg text-zinc-600">Brief in, debrief out &mdash; with the rules you set armed in between. That's a trading day with a structure.</p>
+      <p class="mt-6 text-lg text-zinc-600">
+        Brief in, debrief out &mdash; with the rules you set armed in between. That's a trading day with a structure.
+      </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a>
-        <a href="/features" class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">See all features</a>
+        <a
+          href={TRIAL}
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start your 14-day free trial</a
+        >
+        <a
+          href="/features"
+          class="inline-block font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition"
+          >See all features</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
+        early access
+      </p>
     </div>
   </section>
 
   <p class="max-w-5xl mx-auto px-6 pb-10 text-xs text-zinc-400 leading-relaxed">
     Product imagery on this page is rendered from simulated session data for illustration. Figures shown (P&amp;L,
-    composure, counts) are examples, not customer results. Meridian is a behavioral monitoring and risk-management tool
-    &mdash; it does not provide trade signals or profit guarantees.
+    composure, counts) are examples, not customer results. Meridian is an all-in-one behavioral risk-management platform
+    &mdash; monitor, guard, journal, and intel in one &mdash; it does not provide trade signals or profit guarantees.
   </p>
 
   <!-- Lightbox: click any product screenshot in a .win frame to enlarge. -->

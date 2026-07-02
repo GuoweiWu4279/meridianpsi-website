@@ -15,7 +15,8 @@ const compareRows = [
   {
     dim: 'Category',
     journals: 'Post-session retrospective analytics',
-    meridian: 'Complete real-time risk management (traditional limits + behavioral layer)',
+    meridian:
+      'Next-gen risk management — acts on the pattern BEFORE the order; monitor + guard + journal + intel in one',
   },
   {
     dim: 'Operates',
@@ -46,7 +47,7 @@ const compareRows = [
   {
     dim: 'Data location',
     journals: 'Cloud platform',
-    meridian: 'Local-first — your data stays on your machine',
+    meridian: 'Local-first — your history stays on your machine',
   },
   {
     dim: 'Adapts to your style',
@@ -58,7 +59,7 @@ const compareRows = [
 const faqItems = [
   {
     q: 'How is Meridian different from Tradervue or Edgewonk?',
-    a: 'Tradervue, Edgewonk, TraderSync, TradesViz, and similar journal platforms are post-session analytics tools. They import completed trades after the session ends and surface patterns through dashboards, group filters, and weekly summaries. Meridian is complete real-time risk management inside NinjaTrader 8: it enforces the traditional limits (daily loss, single-trade loss cap, drawdown, loss-streak) and adds a behavioral layer that can intercept the pattern as it forms during the session — a different category entirely from a retrospective journal.',
+    a: "A journal shows you the mistake after the close. Meridian catches it before the order. Tradervue, Edgewonk, TraderSync, TradesViz, and similar journal platforms are post-session analytics tools: they import completed trades after the session ends and surface patterns through dashboards, group filters, and weekly summaries. Meridian includes a journal, and does the live-risk job a journal can't — it enforces every hard limit (daily loss, single-trade loss cap, drawdown, loss-streak) and reads the pattern producing the loss while it forms, so it can step in before the next order.",
   },
   {
     q: 'Could a journal platform detect revenge trading or overtrading?',
@@ -103,10 +104,10 @@ const faqSchema = JSON.stringify({
           Quick answer
         </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Tradervue, Edgewonk, TraderSync, and TradesViz are post-session retrospective platforms. Meridian is complete
-          real-time risk management inside NinjaTrader 8 — it enforces the traditional limits (daily loss, single-trade
-          loss cap, drawdown, loss-streak) and adds a behavioral layer that intercepts the pattern as it forms. They are
-          different categories.
+          A journal shows you the mistake after the close. Meridian catches it before the order. Tradervue, Edgewonk,
+          TraderSync, and TradesViz are post-session retrospective platforms. Meridian is complete real-time risk
+          management inside NinjaTrader 8 — it enforces every hard limit (daily loss, single-trade loss cap, drawdown,
+          loss-streak) and reads the pattern producing the loss while it forms. Different categories entirely.
         </p>
       </div>
     </header>

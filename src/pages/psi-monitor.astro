@@ -58,7 +58,8 @@ const monitorJsonLd = {
       applicationCategory: 'FinanceApplication',
       applicationSubCategory: 'TradingApplication',
       operatingSystem: 'Windows',
-      softwareRequirements: 'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
+      softwareRequirements:
+        'NinjaTrader 8 (native add-on) — or a Tradovate / Ironbeam account (standalone app, early access)',
       description: geoHooks.schemaSoftwarePsi,
       keywords: geoHooks.geoSearchAssociate,
       url: 'https://www.meridianpsi.com/psi-monitor',
@@ -69,7 +70,7 @@ const monitorJsonLd = {
         'Adaptive baseline calibrated to the individual trader, not a generic average',
         'Always-on HUD overlay on the NinjaTrader 8 chart',
         ...signals.map((s) => `${s.name} detection`),
-        'Local-first — your data stays on your machine; never your name, broker credentials, account numbers, or funds',
+        'Local-first — your history stays on your machine; never your name, broker credentials, account numbers, or funds',
       ],
       publisher: { '@id': 'https://www.meridianpsi.com/#organization' },
     },
@@ -107,19 +108,37 @@ const signalIcons: Record<string, string> = {
         <em>your</em> baseline. When discipline starts slipping, you see the number move before your P&amp;L does.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={TRIAL} class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#how" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">See how the score works</a>
+        <a
+          href={TRIAL}
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+          >Start 14-day free trial</a
+        >
+        <a
+          href="#how"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+          >See how the score works</a
+        >
       </div>
       <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; Cancel anytime</p>
     </div>
     <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
       <div class="relative">
-        <div class="win"><img src="/m/monitor.png" alt="Meridian live Monitor — radial discipline gauge, score timeline, and the seven behavioral signal bars over a NinjaTrader 8 chart" class="nozoom" /></div>
+        <div class="win">
+          <img
+            src="/m/monitor.png"
+            alt="Meridian live Monitor — radial discipline gauge, score timeline, and the seven behavioral signal bars over a NinjaTrader 8 chart"
+            class="nozoom"
+          />
+        </div>
         <div
           class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
           style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
         >
-          <img src="/m/ring.png" alt="Meridian live discipline gauge — the radial ring catching a critical behavioral state" class="block w-full" />
+          <img
+            src="/m/ring.png"
+            alt="Meridian live discipline gauge — the radial ring catching a critical behavioral state"
+            class="block w-full"
+          />
         </div>
       </div>
     </div>
@@ -127,14 +146,24 @@ const signalIcons: Record<string, string> = {
 
   <!-- ───────────────────────── TRUST STRIP ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
+    <div
+      class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500"
+    >
       <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle></svg
+        >
         Official NinjaTrader Ecosystem Vendor
       </span>
       <span class="text-zinc-300">|</span><span>Updates in &lt;100ms after every fill</span>
       <span class="text-zinc-300">|</span><span>Calibrated to your own baseline</span>
-      <span class="text-zinc-300">|</span><span>Local-first — your data stays on your machine</span>
+      <span class="text-zinc-300">|</span><span>Local-first — your history stays on your machine</span>
     </div>
   </section>
 
@@ -146,21 +175,33 @@ const signalIcons: Record<string, string> = {
         It watches <em>how</em> you trade &mdash; not just how much you've lost.
       </h2>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-        A daily loss limit only knows one fact: your P&amp;L. The Monitor reads the behavior underneath it.
-        Every fill, every stop edit, every re-entry is scored against the way <em>you</em> normally trade, then
-        composited into a single live figure &mdash; the Psychological Stability Index, or PSI.
+        A daily loss limit only knows one fact: your P&amp;L. The Monitor reads the behavior underneath it. Every fill,
+        every stop edit, every re-entry is scored against the way <em>you</em> normally trade, then composited into a single
+        live figure &mdash; the Psychological Stability Index, or PSI.
       </p>
       <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
-        You don't have to read seven dials. You read one. A high score means you're trading like your composed self.
-        A falling score is the early warning &mdash; it moves while you still have a choice, not after the account is already down.
+        You don't have to read seven dials. You read one. A high score means you're trading like your composed self. A
+        falling score is the early warning &mdash; it moves while you still have a choice, not after the account is
+        already down.
       </p>
       <ul class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Seven behavioral signals rolled into one number you can watch drop in real time</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Measured against <em>your</em> baseline &mdash; not a generic average</span></li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An always-on HUD that sits over your NinjaTrader 8 chart</span></li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold">&check;</span><span
+            >Seven behavioral signals rolled into one number you can watch drop in real time</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold">&check;</span><span
+            >Measured against <em>your</em> baseline &mdash; not a generic average</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="text-emerald-600 font-bold">&check;</span><span
+            >An always-on HUD that sits over your NinjaTrader 8 chart</span>
+        </li>
       </ul>
     </div>
-    <div class="win" data-reveal><img src="/m/ring.png" alt="Meridian PSI gauge — the live 0–100 discipline ring at the center of the Monitor" /></div>
+    <div class="win" data-reveal>
+      <img src="/m/ring.png" alt="Meridian PSI gauge — the live 0–100 discipline ring at the center of the Monitor" />
+    </div>
   </section>
 
   <!-- ───────────────────────── HOW THE NUMBER MOVES ───────────────────────── -->
@@ -168,7 +209,9 @@ const signalIcons: Record<string, string> = {
     <div class="max-w-5xl mx-auto px-6 py-24">
       <div class="text-center mb-14" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">HOW THE NUMBER MOVES</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">From a fill to a score, in three steps.</h2>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          From a fill to a score, in three steps.
+        </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
           The PSI isn't a guess about your mood &mdash; it's a precise read of your order flow against your own history.
         </p>
@@ -177,23 +220,35 @@ const signalIcons: Record<string, string> = {
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="text-emerald-600 text-xs font-bold mb-3 tnum">01</div>
           <div class="text-zinc-900 font-semibold mb-1.5">An order event lands</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">A fill, a stop move, an exit, a re-entry. Meridian reads it natively the instant it happens &mdash; inside NinjaTrader 8 or straight from your Tradovate / Ironbeam account &mdash; nothing to log by hand.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            A fill, a stop move, an exit, a re-entry. Meridian reads it natively the instant it happens &mdash; inside
+            NinjaTrader 8 or straight from your Tradovate / Ironbeam account &mdash; nothing to log by hand.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="text-emerald-600 text-xs font-bold mb-3 tnum">02</div>
           <div class="text-zinc-900 font-semibold mb-1.5">Seven signals re-score</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Each behavioral signal compares the event to <em>your</em> calibrated baseline &mdash; your normal size, pace, hold time, stop discipline &mdash; and updates its own contribution.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Each behavioral signal compares the event to <em>your</em> calibrated baseline &mdash; your normal size, pace,
+            hold time, stop discipline &mdash; and updates its own contribution.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="text-emerald-600 text-xs font-bold mb-3 tnum">03</div>
           <div class="text-zinc-900 font-semibold mb-1.5">The PSI composites</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">The seven signals roll into one figure on the gauge and the timeline &mdash; the whole loop finishing in under <span class="tnum font-semibold">100ms</span>, so the number is live, not a replay.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            The seven signals roll into one figure on the gauge and the timeline &mdash; the whole loop finishing in
+            under <span class="tnum font-semibold">100ms</span>, so the number is live, not a replay.
+          </p>
         </div>
       </div>
       <div class="max-w-3xl mx-auto mt-8 rounded-2xl calloutd text-zinc-100 px-7 py-6 text-center">
         <p class="text-lg md:text-xl leading-relaxed">
-          A loss limit fires once, at <span class="text-rose-400 font-semibold tnum">&minus;$500</span>.<br class="hidden md:block" />
-          The Monitor re-scores after <span class="text-emerald-400 font-semibold">every single fill</span> &mdash; so you see the drift, not just the damage.
+          A loss limit fires once, at <span class="text-rose-400 font-semibold tnum">&minus;$500</span>.<br
+            class="hidden md:block"
+          />
+          The Monitor re-scores after <span class="text-emerald-400 font-semibold">every single fill</span> &mdash; so you
+          see the drift, not just the damage.
         </p>
       </div>
     </div>
@@ -205,27 +260,40 @@ const signalIcons: Record<string, string> = {
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE SEVEN SIGNALS</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Seven reads. One score.</h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-        Each signal tracks one distinct way discipline breaks down. They run independently, then composite into the single PSI on the gauge.
+        Each signal tracks one distinct way discipline breaks down. They run independently, then composite into the
+        single PSI on the gauge.
       </p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto" data-reveal>
-      {signals.map((s) => (
-        <div class="rounded-2xl border border-zinc-200 bg-white p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d={signalIcons[s.code]} /></svg>
-            </span>
-            <span class="text-[11px] font-bold text-emerald-700 tnum tracking-wide">{s.code}</span>
+      {
+        signals.map((s) => (
+          <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-50 text-emerald-700">
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d={signalIcons[s.code]} />
+                </svg>
+              </span>
+              <span class="text-[11px] font-bold text-emerald-700 tnum tracking-wide">{s.code}</span>
+            </div>
+            <div class="font-semibold text-zinc-900">{s.name}</div>
+            <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">{s.short}</p>
           </div>
-          <div class="font-semibold text-zinc-900">{s.name}</div>
-          <p class="mt-1.5 text-sm text-zinc-600 leading-relaxed">{s.short}</p>
-        </div>
-      ))}
+        ))
+      }
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-6 flex flex-col justify-center">
         <div class="text-sm font-semibold text-emerald-700 mb-2">Cutting losses fast is never penalized.</div>
         <p class="text-sm text-zinc-700 leading-relaxed">
-          The signals only fire on the behaviors that quietly blow accounts &mdash; not on good discipline. Exit early, size down, walk away,
-          and the score reflects it.
+          The signals only fire on the behaviors that quietly blow accounts &mdash; not on good discipline. Exit early,
+          size down, walk away, and the score reflects it.
         </p>
       </div>
     </div>
@@ -234,20 +302,29 @@ const signalIcons: Record<string, string> = {
   <!-- ───────────────────────── YOUR BASELINE ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-      <div class="win order-2 lg:order-1" data-reveal><img src="/m/monitor.png" alt="Meridian Monitor — the signal bars and PSI timeline scored against the trader's own baseline" /></div>
+      <div class="win order-2 lg:order-1" data-reveal>
+        <img
+          src="/m/monitor.png"
+          alt="Meridian Monitor — the signal bars and PSI timeline scored against the trader's own baseline"
+        />
+      </div>
       <div class="order-1 lg:order-2" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">SCORED AGAINST YOU</p>
-        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">A generic average doesn't know your edge.</h2>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          A generic average doesn't know your edge.
+        </h2>
         <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-          A scalper firing 40 entries an hour and a swing trader holding for a session are not the same trader &mdash; and one fixed
-          rulebook can't grade both. So the Monitor doesn't use one. It learns <em>your</em> normal: your usual size, your typical pace,
-          how long you hold winners versus losers, how you handle stops.
+          A scalper firing 40 entries an hour and a swing trader holding for a session are not the same trader &mdash;
+          and one fixed rulebook can't grade both. So the Monitor doesn't use one. It learns <em>your</em> normal: your usual
+          size, your typical pace, how long you hold winners versus losers, how you handle stops.
         </p>
         <p class="mt-4 text-lg text-zinc-600 leading-relaxed">
-          That baseline is what makes the score honest. A size that's routine for you doesn't ding you &mdash; the same size does the
-          day it's three times your norm and you're chasing a loss back.
+          That baseline is what makes the score honest. A size that's routine for you doesn't ding you &mdash; the same
+          size does the day it's three times your norm and you're chasing a loss back.
         </p>
-        <p class="mt-5 text-sm text-zinc-500">The baseline adapts as your trading evolves, so the score keeps measuring you against you.</p>
+        <p class="mt-5 text-sm text-zinc-500">
+          The baseline adapts as your trading evolves, so the score keeps measuring you against you.
+        </p>
       </div>
     </div>
   </section>
@@ -255,9 +332,26 @@ const signalIcons: Record<string, string> = {
   <!-- ───────────────────────── PRIVACY / TRUST ───────────────────────── -->
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div class="grid md:grid-cols-3 gap-5" data-reveal>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Runs where your orders live</div><p class="text-sm text-zinc-600">Native add-on inside NinjaTrader 8 &mdash; no bridge, no manual logging. On Tradovate or Ironbeam accounts, a standalone app reads your order flow directly (early access).</p></div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first — your fills, baseline, and session history stay on your machine.</p></div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">The score, then the action</div><p class="text-sm text-zinc-600">The Monitor reads and warns. When you want it to step in, <a href="/guard" class="text-emerald-700 font-medium hover:underline">Guard</a> enforces the limits you set &mdash; before the order, not after the loss.</p></div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">Runs where your orders live</div><p class="text-sm text-zinc-600">
+          Native add-on inside NinjaTrader 8 &mdash; no bridge, no manual logging. On Tradovate or Ironbeam accounts, a
+          standalone app reads your order flow directly (early access).
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">
+          Never your name, broker credentials, account numbers, or funds. Local-first — your fills, baseline, and
+          session history stay on your machine.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+        <div class="font-semibold text-zinc-900 mb-2">The score, then the action</div><p class="text-sm text-zinc-600">
+          The Monitor reads and warns. When you want it to step in, <a
+            href="/guard"
+            class="text-emerald-700 font-medium hover:underline">Guard</a
+          > enforces the limits you set &mdash; before the order, not after the loss.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -267,16 +361,36 @@ const signalIcons: Record<string, string> = {
       <div class="text-center mb-12" data-reveal>
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHERE THE MONITOR FITS</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The read is step one of the loop.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">The Monitor is how Meridian sees. See the full picture &mdash; every layer, and what enforces it.</p>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          The Monitor is how Meridian sees. See the full picture &mdash; every layer, and what enforces it.
+        </p>
       </div>
       <div class="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto" data-reveal>
-        <a href="/features" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition">
-          <div class="font-semibold text-zinc-900 mb-1.5">All the features <span class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform">&rarr;</span></div>
-          <p class="text-sm text-zinc-600">Monitor, Guard, Journal, Intel &amp; Stats &mdash; the whole monitor → guard → journal → review loop in one tool.</p>
+        <a
+          href="/features"
+          class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition"
+        >
+          <div class="font-semibold text-zinc-900 mb-1.5">
+            All the features <span
+              class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform">&rarr;</span>
+          </div>
+          <p class="text-sm text-zinc-600">
+            Monitor, Guard, Journal, Intel &amp; Stats &mdash; the whole monitor → guard → journal → review loop in one
+            tool.
+          </p>
         </a>
-        <a href="/guard" class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition">
-          <div class="font-semibold text-zinc-900 mb-1.5">Meridian Guard <span class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform">&rarr;</span></div>
-          <p class="text-sm text-zinc-600">Turn the score into action: six triggers, five escalating response levels, and Strict Lock for when you're already tilted.</p>
+        <a
+          href="/guard"
+          class="group rounded-2xl border border-zinc-200 bg-[#fafafa] p-7 hover:border-emerald-400 transition"
+        >
+          <div class="font-semibold text-zinc-900 mb-1.5">
+            Meridian Guard <span class="text-emerald-600 group-hover:translate-x-0.5 inline-block transition-transform"
+              >&rarr;</span>
+          </div>
+          <p class="text-sm text-zinc-600">
+            Turn the score into action: six triggers, five escalating response levels, and Strict Lock for when you're
+            already tilted.
+          </p>
         </a>
       </div>
     </div>
@@ -285,10 +399,22 @@ const signalIcons: Record<string, string> = {
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
   <section class="halo">
     <div class="max-w-3xl mx-auto px-6 py-28 text-center" data-reveal>
-      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">See the number move<br />before the loss does.</h2>
-      <p class="mt-6 text-lg text-zinc-600">Put the live Monitor on your chart and read your discipline in real time &mdash; scored against you.</p>
-      <div class="mt-9"><a href={TRIAL} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access</p>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+        See the number move<br />before the loss does.
+      </h2>
+      <p class="mt-6 text-lg text-zinc-600">
+        Put the live Monitor on your chart and read your discipline in real time &mdash; scored against you.
+      </p>
+      <div class="mt-9">
+        <a
+          href={TRIAL}
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start your 14-day free trial</a>
+      </div>
+      <p class="mt-4 text-xs text-zinc-500">
+        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
+        early access
+      </p>
     </div>
   </section>
 

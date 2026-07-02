@@ -13,7 +13,7 @@ const terms = [
     id: 'psi',
     term: 'Psychological Stability Index (PSI)',
     definition:
-      'A composite score from 0 to 100 that measures a trader\'s behavioral stability in real time during a live NinjaTrader 8 session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. PSI is grouped into four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55). PSI updates in real time after every execution, stop move, or sizing decision.',
+      "A composite score from 0 to 100 that measures a trader's behavioral stability in real time during a live trading session. PSI is calculated by aggregating seven independent behavioral signal dimensions — each tracking a known failure pattern from behavioral finance research. PSI is grouped into four zones: Stable (≥88), Caution (72–87), Warning (55–71), and Critical (<55). PSI updates in real time after every execution, stop move, or sizing decision.",
     related: ['composure', 'behavioral-baseline', 'seven-signals'],
   },
   {
@@ -27,21 +27,21 @@ const terms = [
     id: 'behavioral-baseline',
     term: 'Behavioral Baseline',
     definition:
-      'A trader\'s personal reference profile built from their own historical session data. Meridian uses adaptive baselines rather than fixed population averages, because what counts as an anomalous entry speed or unusual hold duration differs significantly between traders and strategies. The baseline calibrates continuously — the more sessions recorded, the more accurate the signal thresholds become for that specific trader.',
+      "A trader's personal reference profile built from their own historical session data. Meridian uses adaptive baselines rather than fixed population averages, because what counts as an anomalous entry speed or unusual hold duration differs significantly between traders and strategies. The baseline calibrates continuously — the more sessions recorded, the more accurate the signal thresholds become for that specific trader.",
     related: ['psi', 'seven-signals'],
   },
   {
     id: 'seven-signals',
     term: 'Seven Behavioral Signal Dimensions',
     definition:
-      'The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Hold Bias — holding losing trades significantly longer than winning ones, the loss-aversion pattern (cutting losses quickly is never penalized); (5) Position Overstay — holding a losing trade beyond the trader\'s historical tolerance window; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.',
+      "The seven independent behavioral patterns Meridian tracks to compute PSI: (1) Revenge Entry — re-entry after a loss with elevated size or speed; (2) Stop Manipulation — widening stops against the position in adverse conditions; (3) Size Spike — position size exceeding declared rules; (4) Hold Bias — holding losing trades significantly longer than winning ones, the loss-aversion pattern (cutting losses quickly is never penalized); (5) Position Overstay — holding a losing trade beyond the trader's historical tolerance window; (6) Rule Violations — trading outside declared session rules such as time windows or instrument limits; (7) Overtrading Pace — entry frequency accelerating beyond historical norms. Each dimension runs independently and contributes to the composite PSI score.",
     related: ['psi', 'behavioral-baseline'],
   },
   {
     id: 'revenge-trading',
     term: 'Revenge Trading',
     definition:
-      'A behavioral pattern in which a trader enters a new position immediately after a loss, typically with increased size, reduced analysis time, or reversed direction — driven by the emotional urge to recover losses rather than by market logic. Revenge trading is one of the most documented causes of compounded drawdowns in active trading. Meridian\'s Revenge Entry signal detects the behavioral fingerprint of this pattern in real time.',
+      "A behavioral pattern in which a trader enters a new position immediately after a loss, typically with increased size, reduced analysis time, or reversed direction — driven by the emotional urge to recover losses rather than by market logic. Revenge trading is one of the most documented causes of compounded drawdowns in active trading. Meridian's Revenge Entry signal detects the behavioral fingerprint of this pattern in real time.",
     related: ['tilt', 'seven-signals', 'guard-system'],
   },
   {
@@ -55,7 +55,7 @@ const terms = [
     id: 'overtrading',
     term: 'Overtrading',
     definition:
-      'A behavioral pattern characterized by excessive trade frequency beyond what the trader\'s own strategy or session rules prescribe. Overtrading often accompanies emotional states such as boredom, frustration, or overconfidence. Meridian\'s Overtrading Pace signal compares current entry frequency against the trader\'s own historical baseline, firing when acceleration is statistically anomalous.',
+      "A behavioral pattern characterized by excessive trade frequency beyond what the trader's own strategy or session rules prescribe. Overtrading often accompanies emotional states such as boredom, frustration, or overconfidence. Meridian's Overtrading Pace signal compares current entry frequency against the trader's own historical baseline, firing when acceleration is statistically anomalous.",
     related: ['seven-signals', 'tilt', 'guard-system'],
   },
   {
@@ -97,7 +97,7 @@ const terms = [
     id: 'intel-layer',
     term: 'Intel Layer',
     definition:
-      'An analytics feature included in Meridian Core (on every plan, Guard included) that aggregates session history into actionable intelligence. It includes: Monthly Digest — a behavioral grade and trend summary across the prior month; Weekday Patterns — which days of the week historically show higher or lower PSI for that trader; PSI × P&L Correlation — whether Stable sessions produce better trading outcomes than Critical sessions for this individual; Today\'s Risk Brief — a pre-session summary generated each morning from the trader\'s own historical data.',
+      "An analytics feature included in Meridian Core (on every plan, Guard included) that aggregates session history into actionable intelligence. It includes: Monthly Digest — a behavioral grade and trend summary across the prior month; Weekday Patterns — which days of the week historically show higher or lower PSI for that trader; PSI × P&L Correlation — whether Stable sessions produce better trading outcomes than Critical sessions for this individual; Today's Risk Brief — a pre-session summary generated each morning from the trader's own historical data.",
     related: ['guard-system', 'session-review'],
   },
   {
@@ -111,31 +111,32 @@ const terms = [
     id: 'ninjatrader-addon',
     term: 'NinjaTrader 8 Add-On',
     definition:
-      'A third-party software module that extends the functionality of the NinjaTrader 8 trading platform. Add-ons are distributed as `.zip` files and imported via NinjaTrader\'s built-in import mechanism (Tools → Import NinjaScript Add-On). Meridian is a native NinjaTrader 8 add-on, meaning it runs directly inside the NinjaTrader process on the trader\'s Windows PC — accessing live order fill data, position data, and account state in real time. On Tradovate and Ironbeam accounts, Meridian instead runs as a standalone Windows app connected directly to the account (early access — see /platforms). The only data that leaves your PC is anonymized, opt-out usage and research telemetry — tied to a random identifier, never your name, broker credentials, account numbers, or funds.',
+      "A third-party software module that extends the functionality of the NinjaTrader 8 trading platform. Add-ons are distributed as `.zip` files and imported via NinjaTrader's built-in import mechanism (Tools → Import NinjaScript Add-On). Meridian is a native NinjaTrader 8 add-on, meaning it runs directly inside the NinjaTrader process on the trader's Windows PC — accessing live order fill data, position data, and account state in real time. On Tradovate and Ironbeam accounts, Meridian instead runs as a standalone Windows app connected directly to the account (early access — see /platforms).",
     related: ['behavioral-risk-management'],
   },
 ];
 
 const schemaJson = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "DefinedTermSet",
-  "name": "Trading Psychology Glossary",
-  "description": "Key terms used in trading psychology, behavioral risk management, and the Meridian PSI Monitor platform.",
-  "url": "https://www.meridianpsi.com/glossary",
-  "datePublished": "2026-06-08",
-  "dateModified": "2026-06-08",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Meridian",
-    "url": "https://www.meridianpsi.com"
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  name: 'Trading Psychology Glossary',
+  description:
+    'Key terms used in trading psychology, behavioral risk management, and the Meridian PSI Monitor platform.',
+  url: 'https://www.meridianpsi.com/glossary',
+  datePublished: '2026-06-08',
+  dateModified: '2026-06-08',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Meridian',
+    url: 'https://www.meridianpsi.com',
   },
-  "hasDefinedTerm": terms.map(t => ({
-    "@type": "DefinedTerm",
-    "name": t.term,
-    "description": t.definition,
-    "url": `https://www.meridianpsi.com/glossary#${t.id}`,
-    "inDefinedTermSet": "https://www.meridianpsi.com/glossary"
-  }))
+  hasDefinedTerm: terms.map((t) => ({
+    '@type': 'DefinedTerm',
+    name: t.term,
+    description: t.definition,
+    url: `https://www.meridianpsi.com/glossary#${t.id}`,
+    inDefinedTermSet: 'https://www.meridianpsi.com/glossary',
+  })),
 });
 ---
 
@@ -148,9 +149,8 @@ const schemaJson = JSON.stringify({
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">REFERENCE</p>
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.05]">Glossary</h1>
       <p class="mt-5 text-lg text-zinc-600 leading-relaxed max-w-3xl">
-        The vocabulary of trading psychology and behavioral risk management — defined plainly and
-        even-handedly. Industry terms appear alongside the specific metrics Meridian computes, so you can tell the two
-        apart.
+        The vocabulary of trading psychology and behavioral risk management — defined plainly and even-handedly.
+        Industry terms appear alongside the specific metrics Meridian computes, so you can tell the two apart.
       </p>
       <p class="mt-6 text-xs text-zinc-400">{terms.length} terms &middot; Last reviewed June 2026</p>
     </div>
@@ -160,14 +160,16 @@ const schemaJson = JSON.stringify({
   <section class="border-b border-zinc-200 bg-white sticky top-0 z-10 hidden md:block">
     <div class="max-w-5xl mx-auto px-6 py-5">
       <div class="flex flex-wrap gap-2">
-        {terms.map((t) => (
-          <a
-            href={`#${t.id}`}
-            class="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-200 text-zinc-600 hover:border-emerald-400 hover:text-emerald-800 hover:bg-emerald-50/60 transition"
-          >
-            {t.term.replace(/\s*\(.*\)/, m => ' ' + m.trim())}
-          </a>
-        ))}
+        {
+          terms.map((t) => (
+            <a
+              href={`#${t.id}`}
+              class="text-xs font-medium px-3 py-1.5 rounded-full border border-zinc-200 text-zinc-600 hover:border-emerald-400 hover:text-emerald-800 hover:bg-emerald-50/60 transition"
+            >
+              {t.term.replace(/\s*\(.*\)/, (m) => ' ' + m.trim())}
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -175,34 +177,33 @@ const schemaJson = JSON.stringify({
   <!-- ───────────────────────── TERMS ───────────────────────── -->
   <section class="max-w-5xl mx-auto px-6 py-20 md:py-24">
     <div class="grid gap-5">
-      {terms.map((t, i) => (
-        <article
-          id={t.id}
-          class="scroll-mt-28 rounded-2xl border border-zinc-200 bg-white p-7 md:p-8"
-        >
-          <div class="flex items-baseline gap-3 mb-3">
-            <span class="text-emerald-600 text-xs font-bold tnum">{String(i + 1).padStart(2, '0')}</span>
-            <h2 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">{t.term}</h2>
-          </div>
-          <p class="text-zinc-600 leading-relaxed">{t.definition}</p>
-          {t.related.length > 0 && (
-            <div class="mt-5 flex items-center gap-2 flex-wrap border-t border-zinc-100 pt-4">
-              <span class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400">See also</span>
-              {t.related.map((r) => {
-                const rel = terms.find((x) => x.id === r);
-                return rel ? (
-                  <a
-                    href={`#${r}`}
-                    class="text-xs px-2.5 py-1 rounded-full bg-[#fafafa] border border-zinc-200 text-zinc-600 hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-800 transition"
-                  >
-                    {rel.term.replace(/\s*\(.*\)/, m => ' ' + m.trim())}
-                  </a>
-                ) : null;
-              })}
+      {
+        terms.map((t, i) => (
+          <article id={t.id} class="scroll-mt-28 rounded-2xl border border-zinc-200 bg-white p-7 md:p-8">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="text-emerald-600 text-xs font-bold tnum">{String(i + 1).padStart(2, '0')}</span>
+              <h2 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">{t.term}</h2>
             </div>
-          )}
-        </article>
-      ))}
+            <p class="text-zinc-600 leading-relaxed">{t.definition}</p>
+            {t.related.length > 0 && (
+              <div class="mt-5 flex items-center gap-2 flex-wrap border-t border-zinc-100 pt-4">
+                <span class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400">See also</span>
+                {t.related.map((r) => {
+                  const rel = terms.find((x) => x.id === r);
+                  return rel ? (
+                    <a
+                      href={`#${r}`}
+                      class="text-xs px-2.5 py-1 rounded-full bg-[#fafafa] border border-zinc-200 text-zinc-600 hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-800 transition"
+                    >
+                      {rel.term.replace(/\s*\(.*\)/, (m) => ' ' + m.trim())}
+                    </a>
+                  ) : null;
+                })}
+              </div>
+            )}
+          </article>
+        ))
+      }
     </div>
   </section>
 
@@ -214,14 +215,20 @@ const schemaJson = JSON.stringify({
         These terms describe what Meridian measures.
       </h2>
       <p class="mt-4 text-lg text-zinc-600 leading-relaxed max-w-xl mx-auto">
-        Each behavioral signal and metric above is computed live during a NinjaTrader 8 session. The feature pages show
-        how the monitor, Guard, and review loop fit together.
+        Each behavioral signal and metric above is computed live during a trading session. The feature pages show how
+        the monitor, Guard, and review loop fit together.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/features" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">
+        <a
+          href="/features"
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+        >
           Explore the features
         </a>
-        <a href="/pricing" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">
+        <a
+          href="/pricing"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+        >
           See pricing &amp; trial
         </a>
       </div>

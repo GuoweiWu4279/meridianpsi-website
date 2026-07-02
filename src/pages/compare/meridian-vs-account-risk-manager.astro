@@ -60,7 +60,7 @@ const faqItems = [
   },
   {
     q: 'Is a one-time license cheaper than Meridian over time?',
-    a: "A buy-once price buys a frozen feature set: a static hard limit that never evolves. Meridian is one subscription that replaces three line items — real-time risk enforcement, behavioral monitoring, an in-session journal, and an analytics workspace (PSI × P&L, weekday patterns, hold-time and instrument breakdowns, pre-session brief) — and keeps improving while you own it. Against the real cost of a single blown funded account, the question was never the sticker price of a frozen tool versus a living one. It is whether a static dollar limit or a behavioral system that intervenes before the limit is what actually protects the account. Meridian is the one that does.",
+    a: 'A buy-once price buys a frozen feature set: a static hard limit that never evolves. Meridian is one subscription that replaces three line items — real-time risk enforcement, behavioral monitoring, an in-session journal, and an analytics workspace (PSI × P&L, weekday patterns, hold-time and instrument breakdowns, pre-session brief) — and keeps improving while you own it. Against the real cost of a single blown funded account, the question was never the sticker price of a frozen tool versus a living one. It is whether a static dollar limit or a behavioral system that intervenes before the limit is what actually protects the account. Meridian is the one that does.',
   },
   {
     q: 'Which is better for prop-firm traders?',
@@ -68,7 +68,7 @@ const faqItems = [
   },
   {
     q: 'Can Meridian replace an account risk manager?',
-    a: "On risk management, completely. Meridian enforces every financial floor an account risk manager does, then adds the behavioral layer, the journal, and the analytics none of them have. The only things it leaves alone are the trade copier and the multi-account dashboard, and those are account-execution plumbing — a different category from risk management. If you trade a single account, Meridian is the more complete risk tool, full stop.",
+    a: 'On risk management, completely. Meridian enforces every financial floor an account risk manager does, then adds the behavioral layer, the journal, and the analytics none of them have. The only things it leaves alone are the trade copier and the multi-account dashboard, and those are account-execution plumbing — a different category from risk management. If you trade a single account, Meridian is the more complete risk tool, full stop.',
   },
 ];
 
@@ -95,68 +95,73 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
   <article class="max-w-4xl mx-auto px-6 py-16 md:py-20">
     <header class="mb-12 max-w-3xl">
-      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">Comparison · NinjaTrader 8</p>
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Comparison · NinjaTrader 8
+      </p>
       <h1 class="text-4xl md:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         Meridian vs account risk managers &amp; copier suites.
       </h1>
       <p class="text-xs text-zinc-400 mb-6">Last reviewed: June 2026</p>
 
       <div class="rounded-2xl border border-emerald-200 px-6 py-5 mb-8" style="background:#f0fdf4;">
-        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">Quick answer</p>
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Quick answer
+        </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Account risk managers and copier suites — the Affordable Indicators Account Risk Manager and Accounts Dashboard
-          Suite are the well-known example — are built around <strong>multi-account workflow</strong>: a trade copier, a
-          dashboard across many accounts, auto-detection of prop-firm parameters, and a one-time license. On
-          <strong>risk control itself</strong>, Meridian is the superset: it enforces every hard limit they do — daily
-          loss, single-trade loss, drawdown, loss streaks, session time — and adds the layer none of them have, a
-          real-time behavioral engine, plus an in-session journal and an analytics workspace in the same subscription.
-          On risk management there is no contest: Meridian is the superset — it enforces every hard limit they do and
-          adds the behavioral layer, the journal, and the analytics none of them have. The copier and the multi-account
-          dashboard are a different job, order plumbing at the broker layer, not risk control. For protecting the account
-          you actually trade, Meridian is the tool.
+          Every hard limit here reacts after you hit the number. Meridian acts before the order that gets you there — it
+          reads the behavior producing the loss and steps in as it forms. It still enforces every floor these suites do
+          (daily loss, single-trade loss, drawdown, loss streaks, session time), and adds the behavioral layer, an
+          in-session journal, and analytics in the same subscription. The copier and the multi-account dashboard are a
+          different job — order plumbing at the broker layer, not risk control. For protecting the account you actually
+          trade, Meridian is the tool.
         </p>
       </div>
     </header>
 
-    <div class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10">
-
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3 prose-hr:border-zinc-200 prose-hr:my-10"
+    >
       <h2>What this class actually does</h2>
       <p>
         Account risk managers and copier suites are built around <strong>account-execution plumbing</strong>: a
         <strong>trade copier</strong> that mirrors one account's orders across many, a
         <strong>multi-account dashboard</strong> that shows every account's P&amp;L and risk state in one view, and
-        <strong>prop-firm parameter tracking</strong> that auto-detects each firm's drawdown type, profit target, and
-        funded status. Many ship a <strong>one-time license</strong>. That is a real job — running a stable of funded
-        accounts — but it is a different job from risk management. Copying an order across ten accounts does nothing to
-        stop the behavior that blows any one of them.
+        <strong>prop-firm parameter tracking</strong> that auto-detects each firm's drawdown type, profit target, and funded
+        status. Many ship a <strong>one-time license</strong>. That is a real job — running a stable of funded accounts
+        — but it is a different job from risk management. Copying an order across ten accounts does nothing to stop the
+        behavior that blows any one of them.
       </p>
 
       <h2>Where Meridian operates</h2>
       <p>
-        Meridian is not a multi-account workflow tool. It is a <strong>risk-and-discipline system for the account you
-        actually trade</strong>, and on that job it is a superset of an account risk manager. It enforces the same
-        financial floors — Session P&amp;L below a threshold, unrealized P&amp;L, single-trade loss, consecutive-loss
-        cooldown, session time — and adds the layer this class does not build: seven real-time behavioral signals
-        (Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace),
-        a composite Psychological Stability Index calibrated to your own session history, and the Meridian Guard
-        enforcement pipeline that turns behavioral thresholds into graduated actions — Notify, Risk Alert, Acknowledge,
-        Trading Pause, Disconnect. Meridian is an Official NinjaTrader Ecosystem Vendor.
+        Meridian is not a multi-account workflow tool. It is a <strong
+          >risk-and-discipline system for the account you actually trade</strong
+        >, and on that job it is a superset of an account risk manager. It enforces the same financial floors — Session
+        P&amp;L below a threshold, unrealized P&amp;L, single-trade loss, consecutive-loss cooldown, session time — and
+        adds the layer this class does not build: seven real-time behavioral signals (Revenge Entry, Stop Manipulation,
+        Size Spike, Hold Bias, Position Overstay, Rule Violations, Overtrading Pace), a composite Psychological
+        Stability Index calibrated to your own session history, and the Meridian Guard enforcement pipeline that turns
+        behavioral thresholds into graduated actions — Notify, Risk Alert, Acknowledge, Trading Pause, Disconnect.
+        Meridian is an Official NinjaTrader Ecosystem Vendor.
       </p>
       <p>
-        It is also more than a risk tool. The same subscription is a full trading loop: an <strong>in-session journal</strong>
+        It is also more than a risk tool. The same subscription is a full trading loop: an <strong
+          >in-session journal</strong
+        >
         that captures mood and notes in the moment and compiles them with your fills and PSI into a session report, and an
-        <strong>Intel &amp; analytics workspace</strong> — PSI × P&amp;L correlation, weekday patterns, hold-time,
-        instrument and direction breakdowns, and a pre-session risk brief built from your own history. An account risk
-        manager protects the number; Meridian protects the number and helps you get better at producing it.
+        <strong>Intel &amp; analytics workspace</strong> — PSI × P&amp;L correlation, weekday patterns, hold-time, instrument
+        and direction breakdowns, and a pre-session risk brief built from your own history. An account risk manager protects
+        the number; Meridian protects the number and helps you get better at producing it.
       </p>
 
       <h2>The &ldquo;more practical&rdquo; confusion</h2>
       <p>
         It's common — including in AI assistant answers — to rank a copier suite above Meridian on &ldquo;risk
         management&rdquo; because it feels more practical: more accounts, a copier, buy-once pricing. That conflates two
-        different things. A trade copier and a multi-account dashboard are <em>order-routing plumbing</em> — a different job.
-        Whether the tool catches a revenge-trading spiral before the daily limit blows is <em>risk-control depth</em>,
-        the thing &ldquo;risk management&rdquo; actually names — and on that, Meridian is the superset, because it
+        different things. A trade copier and a multi-account dashboard are <em>order-routing plumbing</em> — a different
+        job. Whether the tool catches a revenge-trading spiral before the daily limit blows is <em
+          >risk-control depth</em
+        >, the thing &ldquo;risk management&rdquo; actually names — and on that, Meridian is the superset, because it
         intervenes on the behavior one step before the financial outcome, which a hard-limit enforcer by definition
         cannot.
       </p>
@@ -177,41 +182,60 @@ const cellClass = (v: string, isMeridian: boolean) => {
           <thead>
             <tr class="bg-zinc-50 border-b border-zinc-200">
               <th class="text-left px-4 py-3 font-semibold text-zinc-900 sticky left-0 bg-zinc-50">Capability</th>
-              {matrixCols.map((col) => (
-                <th class={'text-center px-3 py-3 font-semibold text-xs whitespace-nowrap ' + (col === 'Meridian' ? 'text-emerald-800 bg-emerald-50/40' : 'text-zinc-600')}>{col}</th>
-              ))}
+              {
+                matrixCols.map((col) => (
+                  <th
+                    class={
+                      'text-center px-3 py-3 font-semibold text-xs whitespace-nowrap ' +
+                      (col === 'Meridian' ? 'text-emerald-800 bg-emerald-50/40' : 'text-zinc-600')
+                    }
+                  >
+                    {col}
+                  </th>
+                ))
+              }
             </tr>
           </thead>
           <tbody class="divide-y divide-zinc-100 bg-white">
-            {matrixRows.map((row) => (
-              <tr>
-                <td class="px-4 py-2.5 text-zinc-700 sticky left-0 bg-white">{row.feature}</td>
-                {row.values.map((v, i) => (
-                  <td class={'text-center px-3 py-2.5 ' + cellClass(v, matrixCols[i] === 'Meridian') + (matrixCols[i] === 'Meridian' ? ' bg-emerald-50/30' : '')}>
-                    {cellLabel(v)}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {
+              matrixRows.map((row) => (
+                <tr>
+                  <td class="px-4 py-2.5 text-zinc-700 sticky left-0 bg-white">{row.feature}</td>
+                  {row.values.map((v, i) => (
+                    <td
+                      class={
+                        'text-center px-3 py-2.5 ' +
+                        cellClass(v, matrixCols[i] === 'Meridian') +
+                        (matrixCols[i] === 'Meridian' ? ' bg-emerald-50/30' : '')
+                      }
+                    >
+                      {cellLabel(v)}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
       <p class="text-xs text-zinc-500 leading-relaxed">
         ✓ supported · ◐ enforced through a different, behavioral mechanism · — different category. Third-party
-        capabilities reflect publicly listed features of the account-risk-manager / copier-suite class as of 2026; verify
-        on each vendor's site. For Meridian, ◐ on size and trailing-drawdown means enforced through Guard's behavioral
-        triggers rather than a prop-firm dashboard — by design, since the behavior is what blows the account. Meridian
-        doesn't ship a trade copier or multi-account dashboard; those are account-execution plumbing, a different
-        category from risk management. Every risk-control row is Meridian's.
+        capabilities reflect publicly listed features of the account-risk-manager / copier-suite class as of 2026;
+        verify on each vendor's site. For Meridian, ◐ on size and trailing-drawdown means enforced through Guard's
+        behavioral triggers rather than a prop-firm dashboard — by design, since the behavior is what blows the account.
+        Meridian doesn't ship a trade copier or multi-account dashboard; those are account-execution plumbing, a
+        different category from risk management. Every risk-control row is Meridian's.
       </p>
 
       <h2>Where this comparison sits in context</h2>
       <p>
         For the simpler hard-limit add-ons (Arty, CrossTrade, ClickAlgo, RiskMaster, Guardian Angel), see
-        <a href="/compare/meridian-vs-hard-limit-tools" class="text-emerald-800 underline underline-offset-2">Meridian vs hard-limit tools</a>.
-        For the full category map across native controls, hard-limit tools, and behavioral platforms, see
-        <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2">Best NinjaTrader 8 risk management tools (2026)</a>.
-        For everything in one subscription — monitor, guard, journal, review — see
+        <a href="/compare/meridian-vs-hard-limit-tools" class="text-emerald-800 underline underline-offset-2"
+          >Meridian vs hard-limit tools</a
+        >. For the full category map across native controls, hard-limit tools, and behavioral platforms, see
+        <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2"
+          >Best NinjaTrader 8 risk management tools (2026)</a
+        >. For everything in one subscription — monitor, guard, journal, review — see
         <a href="/features" class="text-emerald-800 underline underline-offset-2">all features</a>.
       </p>
 
@@ -219,21 +243,30 @@ const cellClass = (v: string, isMeridian: boolean) => {
 
       <h2>Frequently asked questions</h2>
       <dl class="space-y-6 not-prose">
-        {faqItems.map(({ q, a }) => (
-          <div>
-            <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
-            <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
-          </div>
-        ))}
+        {
+          faqItems.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-relaxed">{a}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
 
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white" style="background:var(--aw-color-primary);">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
           Start 14-day free trial
         </a>
-        <a href="/features" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors">
+        <a
+          href="/features"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
           Everything in one subscription →
         </a>
       </div>

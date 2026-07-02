@@ -10,9 +10,7 @@ const [core, guard] = tiers;
 
 // Disambiguate the Guard tier's "Everything in Meridian" line on the card:
 // "Meridian" is the brand, "Meridian Core" is the tier the user sees in the other column.
-const guardFeatures = guard.features.map((f) =>
-  f === 'Everything in Meridian' ? `Everything in ${core.name}` : f
-);
+const guardFeatures = guard.features.map((f) => (f === 'Everything in Meridian' ? `Everything in ${core.name}` : f));
 
 const usd = (n: number) => n.toFixed(2);
 
@@ -114,7 +112,7 @@ const faqs = [
   },
   {
     q: 'How does the price compare to buying a risk tool, a journal, and an analytics app separately?',
-    a: "Many traders pay for three separate subscriptions: a risk/lockout tool, a journaling app, and a stats/analytics platform. Meridian is one subscription that does all three — risk enforcement (Guard), an in-session journal that compiles with your fills and PSI score, and an Intel analytics workspace — on top of the behavioral layer no standalone risk tool has. If a daily-loss limit is all you want, a one-time-license hard-limit tool is cheaper. If you want the risk control, the journal, and the review layer, one Meridian subscription replaces the stack for less.",
+    a: 'Many traders pay for three separate subscriptions: a risk/lockout tool, a journaling app, and a stats/analytics platform. Meridian is one subscription that does all three — risk enforcement (Guard), an in-session journal that compiles with your fills and PSI score, and an Intel analytics workspace — on top of the behavioral layer no standalone risk tool has. If a daily-loss limit is all you want, a one-time-license hard-limit tool is cheaper. If you want the risk control, the journal, and the review layer, one Meridian subscription replaces the stack for less.',
   },
   {
     q: 'Does Meridian place trades for me?',
@@ -153,22 +151,29 @@ const faqs = [
   <!-- ───────────────────────── PLANS ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
     <div data-reveal class="max-w-5xl mx-auto px-6 pt-10 pb-24">
-
       <!-- Billing toggle -->
       <div class="flex items-center justify-center mb-8">
         <div class="relative flex items-center bg-zinc-100 rounded-full p-1 gap-1">
-          <button id="btn-monthly" class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm">
+          <button
+            id="btn-monthly"
+            class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 bg-white text-zinc-900 shadow-sm"
+          >
             Monthly
           </button>
-          <button id="btn-annual" class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 text-zinc-500">
+          <button
+            id="btn-annual"
+            class="relative z-10 px-5 py-2 text-sm font-semibold rounded-full transition-all duration-200 text-zinc-500"
+          >
             Annual
-            <span class="ml-2 inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5">Save up to ${guard.annualSavings}/yr</span>
+            <span
+              class="ml-2 inline-block rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5"
+              >Save up to ${guard.annualSavings}/yr</span
+            >
           </button>
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-6 items-start max-w-4xl mx-auto">
-
         <!-- Meridian Core -->
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-8">
           <div class="mb-5">
@@ -187,7 +192,9 @@ const faqs = [
             </div>
             <p id="core-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 14-day free trial</p>
             <p id="core-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
-              Billed <span class="tnum">${core.annualPrice}</span>/year · saves ~<span class="tnum">${core.annualSavings}</span>/yr · 14-day free trial
+              Billed <span class="tnum">${core.annualPrice}</span>/year · saves ~<span class="tnum"
+                >${core.annualSavings}</span
+              >/yr · 14-day free trial
             </p>
           </div>
 
@@ -202,18 +209,31 @@ const faqs = [
           </a>
 
           <ul class="space-y-3">
-            {core.features.map((f) => (
-              <li class="flex items-start gap-2.5 text-sm text-zinc-700">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                {f}
-              </li>
-            ))}
+            {
+              core.features.map((f) => (
+                <li class="flex items-start gap-2.5 text-sm text-zinc-700">
+                  <svg
+                    class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {f}
+                </li>
+              ))
+            }
           </ul>
         </div>
 
         <!-- Meridian Guard (recommended) -->
         <div class="rounded-2xl border-2 border-emerald-500 bg-white p-8 relative shadow-sm">
-          <div class="absolute -top-3 left-8 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full tracking-wide">RECOMMENDED</div>
+          <div
+            class="absolute -top-3 left-8 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full tracking-wide"
+          >
+            RECOMMENDED
+          </div>
           <div class="mb-5">
             <h2 class="text-xl font-bold text-zinc-900">{guard.name}</h2>
             <p class="mt-1 text-sm text-zinc-600">{guard.description}</p>
@@ -230,7 +250,9 @@ const faqs = [
             </div>
             <p id="guard-monthly-note" class="text-xs text-zinc-500 mt-2">Billed monthly · 14-day free trial</p>
             <p id="guard-annual-note" class="text-xs text-zinc-500 mt-2 hidden">
-              Billed <span class="tnum">${guard.annualPrice}</span>/year · saves ~<span class="tnum">${guard.annualSavings}</span>/yr · 14-day free trial
+              Billed <span class="tnum">${guard.annualPrice}</span>/year · saves ~<span class="tnum"
+                >${guard.annualSavings}</span
+              >/yr · 14-day free trial
             </p>
           </div>
 
@@ -245,30 +267,46 @@ const faqs = [
           </a>
 
           <ul class="space-y-3">
-            {guardFeatures.map((f) => (
-              <li class="flex items-start gap-2.5 text-sm text-zinc-700">
-                <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                {f}
-              </li>
-            ))}
+            {
+              guardFeatures.map((f) => (
+                <li class="flex items-start gap-2.5 text-sm text-zinc-700">
+                  <svg
+                    class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {f}
+                </li>
+              ))
+            }
           </ul>
         </div>
-
       </div>
 
       <!-- Trust strip -->
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-xs text-zinc-500 max-w-3xl mx-auto">
+      <div
+        class="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-xs text-zinc-500 max-w-3xl mx-auto"
+      >
         <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg
+          >
           Checkout secured by Whop
         </span>
         <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg
+          >
           Native NT8 add-on &middot; Tradovate &amp; Ironbeam apps in early access
         </span>
         <span class="flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-          Anonymized, opt-out data — never your name, broker credentials, account numbers, or funds
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg
+          >
+          Local-first — never your name, broker credentials, account numbers, or funds
         </span>
       </div>
 
@@ -282,12 +320,13 @@ const faqs = [
   <section class="max-w-5xl mx-auto px-6 py-24">
     <div data-reveal class="text-center mb-12">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT EVERY PLAN INCLUDES</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">More than a risk tool. The complete one.</h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+        Acts before the order, not after the loss.
+      </h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
-        Both plans do everything a traditional NinjaTrader 8 risk tool does — daily loss limits, P&amp;L and drawdown
-        caps, loss-streak cutoffs. Then they add the layer none of them have: real-time behavioral detection that catches
-        the mistake before the order, not after the loss — plus the in-session journal and the analytics workspace
-        traders usually buy as separate subscriptions, all in the one plan.
+        Every risk tool reacts after the loss. Meridian acts before the order &mdash; real-time behavioral detection
+        that stops the mistake first. It still enforces every limit a traditional tool has: daily loss, P&amp;L,
+        drawdown, streak cutoffs. And the journal plus analytics you'd otherwise buy separately &mdash; all in one plan.
       </p>
     </div>
     <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
@@ -304,10 +343,26 @@ const faqs = [
       <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
         <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
         <ul class="space-y-3 text-zinc-800">
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Real-time <strong>behavior</strong> detection — 7 signals (revenge, oversizing, tilt&hellip;)</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>A baseline that learns how <em>you</em> trade — not a generic average</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>It steps in <em>before</em> the order, not after the loss</span></li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>The whole loop: monitor · guard · journal · review</span></li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >Real-time <strong>behavior</strong> detection — 7 signals (revenge, oversizing, tilt&hellip;)</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >A baseline that learns how <em>you</em> trade — not a generic average</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >It steps in <em>before</em> the order, not after the loss</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span><span
+              >The whole loop: monitor · guard · journal · review</span
+            >
+          </li>
         </ul>
         <p class="mt-5 text-sm text-emerald-700 font-medium">Guard adds the enforcement layer on top.</p>
       </div>
@@ -319,7 +374,9 @@ const faqs = [
     <div class="max-w-5xl mx-auto px-6 py-24">
       <div data-reveal class="text-center mb-12">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE RISK IS OURS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Try it on your own sessions, then decide.</h2>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Try it on your own sessions, then decide.
+        </h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto leading-relaxed">
           You should not have to pay to find out whether a tool works for you &mdash; so you don't.
         </p>
@@ -327,15 +384,26 @@ const faqs = [
       <div data-reveal class="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">14 days, on the house</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Full access from day one. Your card is not charged until day 14 — cancel before then and you pay nothing at all.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Full access from day one. Your card is not charged until day 14 — cancel before then and you pay nothing at
+            all.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">Cancel in two clicks</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">Manage your plan yourself through Whop, any time. Cancel and you keep access through the period you have already paid for.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            Manage your plan yourself through Whop, any time. Cancel and you keep access through the period you have
+            already paid for.
+          </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
           <div class="font-semibold text-zinc-900 mb-2">An honest refund</div>
-          <p class="text-sm text-zinc-600 leading-relaxed">If Meridian won't run on a supported NinjaTrader 8 setup and we can't fix it, we refund you in full. Email <a href="mailto:contactmeridianpsi@gmail.com" class="underline text-emerald-800 hover:text-emerald-900">contactmeridianpsi@gmail.com</a>.</p>
+          <p class="text-sm text-zinc-600 leading-relaxed">
+            If Meridian won't run on a supported NinjaTrader 8 setup and we can't fix it, we refund you in full. Email <a
+              href="mailto:contactmeridianpsi@gmail.com"
+              class="underline text-emerald-800 hover:text-emerald-900">contactmeridianpsi@gmail.com</a
+            >.
+          </p>
         </div>
       </div>
     </div>
@@ -352,17 +420,24 @@ const faqs = [
          answers stay in the DOM, so the FAQPage schema and crawlers see
          everything. -->
     <div data-reveal class="rounded-2xl border border-zinc-200 bg-white overflow-hidden divide-y divide-zinc-100">
-      {faqs.map((item) => (
-        <details class="group">
-          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
-            <h3 class="font-semibold text-zinc-900 text-[15px]">{item.q}</h3>
-            <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{item.a}</p>
-        </details>
-      ))}
+      {
+        faqs.map((item) => (
+          <details class="group">
+            <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer hover:bg-zinc-50 transition-colors list-none">
+              <h3 class="font-semibold text-zinc-900 text-[15px]">{item.q}</h3>
+              <svg
+                class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="px-6 pb-5 -mt-1 text-zinc-600 leading-relaxed text-[15px]">{item.a}</p>
+          </details>
+        ))
+      }
     </div>
 
     <!-- Billing terms (verbatim footnote) -->
@@ -375,15 +450,34 @@ const faqs = [
   <!-- ───────────────────────── FINAL CTA ───────────────────────── -->
   <section class="border-y border-zinc-200 bg-white">
     <div data-reveal class="max-w-3xl mx-auto px-6 py-24 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">Start the trial. Let your own data decide.</h2>
-      <p class="mt-5 text-lg text-zinc-600">Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 14. Cancel anytime.</p>
-      <p class="mt-3 text-sm text-zinc-500">Do the math: a single evaluation reset runs $100+, and one tilted session usually costs more than a month of Guard.</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-[1.08]">
+        Start the trial. Let your own data decide.
+      </h2>
+      <p class="mt-5 text-lg text-zinc-600">
+        Guard ${guard.monthlyPrice}/mo &middot; Core ${core.monthlyPrice}/mo &middot; No charge until day 14. Cancel
+        anytime.
+      </p>
+      <p class="mt-3 text-sm text-zinc-500">
+        Do the math: a single evaluation reset runs $100+, and one tilted session usually costs more than a month of
+        Guard.
+      </p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href={guard.monthlyCtaHref} target="_blank" rel="noopener" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start Guard free trial</a>
-        <a href="/download#requirements" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition">System requirements</a>
+        <a
+          href={guard.monthlyCtaHref}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+          >Start Guard free trial</a
+        >
+        <a
+          href="/download#requirements"
+          class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-8 py-4 rounded-xl text-lg transition"
+          >System requirements</a
+        >
       </div>
       <p class="mt-5 text-xs text-zinc-500 max-w-xl mx-auto leading-relaxed">
-        Native in NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam apps in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice.
+        Native in NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam apps in early access. Trading involves
+        substantial risk of loss. Meridian does not provide trading signals or investment advice.
       </p>
     </div>
   </section>
@@ -395,26 +489,26 @@ const faqs = [
   // initial load and every subsequent client-side navigation).
   function initPricingToggle() {
     const btnMonthly = document.getElementById('btn-monthly') as HTMLButtonElement | null;
-    const btnAnnual  = document.getElementById('btn-annual')  as HTMLButtonElement | null;
+    const btnAnnual = document.getElementById('btn-annual') as HTMLButtonElement | null;
     if (!btnMonthly || !btnAnnual) return;
 
     const coreMonthlyPrice = document.getElementById('core-monthly-price');
-    const coreAnnualPrice  = document.getElementById('core-annual-price');
-    const coreMonthlyNote  = document.getElementById('core-monthly-note');
-    const coreAnnualNote   = document.getElementById('core-annual-note');
-    const coreCta          = document.getElementById('core-cta') as HTMLAnchorElement | null;
+    const coreAnnualPrice = document.getElementById('core-annual-price');
+    const coreMonthlyNote = document.getElementById('core-monthly-note');
+    const coreAnnualNote = document.getElementById('core-annual-note');
+    const coreCta = document.getElementById('core-cta') as HTMLAnchorElement | null;
 
     const guardMonthlyPrice = document.getElementById('guard-monthly-price');
-    const guardAnnualPrice  = document.getElementById('guard-annual-price');
-    const guardMonthlyNote  = document.getElementById('guard-monthly-note');
-    const guardAnnualNote   = document.getElementById('guard-annual-note');
-    const guardCta          = document.getElementById('guard-cta') as HTMLAnchorElement | null;
+    const guardAnnualPrice = document.getElementById('guard-annual-price');
+    const guardMonthlyNote = document.getElementById('guard-monthly-note');
+    const guardAnnualNote = document.getElementById('guard-annual-note');
+    const guardCta = document.getElementById('guard-cta') as HTMLAnchorElement | null;
 
     // Canonical Whop checkout links (mirror src/data/pricing.json).
-    const CORE_MONTHLY_URL  = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
-    const CORE_ANNUAL_URL   = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
+    const CORE_MONTHLY_URL = 'https://whop.com/checkout/plan_4Z0XZqQl7TaDH';
+    const CORE_ANNUAL_URL = 'https://whop.com/checkout/plan_JhWetoQ39OCNz';
     const GUARD_MONTHLY_URL = 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
-    const GUARD_ANNUAL_URL  = 'https://whop.com/checkout/plan_frPOgHtDTvBkR';
+    const GUARD_ANNUAL_URL = 'https://whop.com/checkout/plan_frPOgHtDTvBkR';
 
     function setMonthly() {
       btnMonthly!.classList.add('bg-white', 'text-zinc-900', 'shadow-sm');

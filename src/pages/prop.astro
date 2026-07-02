@@ -1,0 +1,230 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+// Campaign landing page for prop-firm / funded futures traders.
+// Intentionally noindex: this is a single-purpose conversion LP for a channel test,
+// kept separate from the indexed SEO pages (/use-cases/prop-firm-behavioral-risk-control,
+// /compare/meridian-vs-prop-firm-lockouts) so it doesn't cannibalize them.
+const metadata = {
+  title: 'Meridian for Prop & Funded Futures Traders — Lock Out Tilt Before It Breaches',
+  ignoreTitleTemplate: true,
+  description:
+    "You passed the eval. Tilt is what takes it back. Meridian Guard reads the behavior that breaches drawdown limits — revenge entries, oversizing, holding losers — and locks you out at a line you set when calm. Strict Lock means you can't unset it in the moment. NinjaTrader 8 today; standalone Tradovate & Ironbeam in early access.",
+  robots: { index: false, follow: true },
+};
+
+const objections = [
+  {
+    q: "I don't want software stopping me from trading.",
+    a: "It doesn't trade for you and it doesn't decide your strategy. You set one line — your number — when you're calm. Guard only blocks adding risk past that line. Closing or reducing a position is never blocked. The only thing it takes away is the version of you that wants to double down at the worst possible moment.",
+  },
+  {
+    q: "Won't it interfere with my prop firm's platform?",
+    a: "No. Meridian runs as its own local layer on your NinjaTrader 8 or Tradovate connection, independent of the firm's infrastructure. Keep the firm's daily-loss lock as your hard floor — Meridian sits above it as the earlier line, so a session rarely reaches that floor at all.",
+  },
+  {
+    q: "Does it work on evaluation and funded accounts?",
+    a: "Yes — any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. License validation has a 7-day offline grace window for locked-down prop environments. On a Tradovate eval or demo account, the standalone app can additionally write Tradovate's own liquidate-only lock at the broker (funded/live Tradovate, Ironbeam, and NinjaTrader don't expose that API — there enforcement is at the app/connection level).",
+  },
+  {
+    q: "What stops me from just restarting to trade again?",
+    a: "A Guard pause and Strict Lock survive an NT8 restart or a crash — they hold for the full window you set. 'Close it and reopen' is not an exit. That's the whole point: the rule has to hold in the exact moment you'd want to break it.",
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 pt-16 pb-14 md:pt-20 md:pb-16">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-[11px] font-semibold tracking-[0.18em] uppercase mb-4" style="color:var(--aw-color-primary);">
+        For prop-firm &amp; funded futures traders
+      </p>
+      <h1 class="text-4xl md:text-6xl font-bold text-zinc-900 leading-[1.05] tracking-tight mb-6">
+        You passed the eval.<br />Don't let tilt take it back.
+      </h1>
+      <p class="text-[18px] md:text-[20px] text-zinc-700 leading-relaxed mb-8">
+        It's almost never the strategy that ends a funded account. It's one session — the revenge entries after a bad
+        stop, the size creeping up to make it back, the loser you hold too long — that breaches the drawdown limit before
+        you stop yourself. <strong class="text-zinc-900">Meridian Guard reads that behavior live and locks you out at a
+        line you set when you're calm.</strong> Strict Lock means you can't unset it when you're not.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-6">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-semibold text-white shadow-sm"
+          style="background:var(--aw-color-primary);"
+        >
+          Start your 14-day free trial
+        </a>
+        <a
+          href="/guard"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
+          How Guard enforcement works &rarr;
+        </a>
+      </div>
+
+      <p class="text-[12px] text-zinc-500 leading-relaxed">
+        Official NinjaTrader Ecosystem Vendor &middot; NinjaTrader 8 today &middot; standalone Tradovate &amp; Ironbeam
+        in early access &middot; one license covers every platform
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 py-12 border-t border-zinc-100">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-[1.6rem] font-bold text-zinc-900 tracking-tight mb-4">How a funded account actually dies</h2>
+      <p class="text-[17px] text-zinc-700 leading-[1.85] mb-4">
+        You take a stop you didn't deserve. The next entry comes in faster than your plan allows, a size larger, to get
+        it back. It loses too. Now the interval shrinks and the size climbs again — and somewhere in that sequence the
+        daily loss limit fires, the account is done, and the strategy that earned it never had anything to do with it.
+      </p>
+      <p class="text-[17px] text-zinc-700 leading-[1.85]">
+        The prop firm's limit is a real backstop, but it's the <em>last</em> line. It can only confirm the damage after
+        the trade that did it has already filled. The four trades that got you there were behavior — and behavior shows
+        up in your order stream long before the P&amp;L does.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 py-12 border-t border-zinc-100">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-[1.6rem] font-bold text-zinc-900 tracking-tight mb-6">
+        A stop your prop firm's limit can't give you
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-8">
+        <div class="rounded-2xl border border-zinc-200 px-6 py-5">
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase text-zinc-400 mb-2">The platform lock</p>
+          <p class="text-[15px] text-zinc-600 leading-relaxed">
+            Fires on a dollar figure, after the loss is realized. Binary: you're trading, then you're locked. It never
+            knows <em>why</em> you're losing — only the number.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+          <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+            Meridian Guard
+          </p>
+          <p class="text-[15px] text-zinc-700 leading-relaxed">
+            Fires on the behavior that drives you to the number — revenge entries, oversizing, holding losers — at a
+            threshold you set, before the breach line.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-[17px] text-zinc-700 leading-[1.85] mb-4">
+        Set Guard's <strong class="text-zinc-900">Session P&amp;L Below</strong> trigger a little above your evaluation's
+        maximum daily loss, and the session ends on your buffer — not on a forced breach. Stack the behavioral triggers
+        underneath it and the line moves even earlier:
+      </p>
+      <ul class="space-y-2.5 mb-2 text-[16px] text-zinc-700">
+        <li class="flex gap-3">
+          <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+          <span><strong class="text-zinc-900">PSI entry block</strong> — new entries blocked when your live stability score drops past a floor you choose, even if no dollar limit is close.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+          <span><strong class="text-zinc-900">Consecutive-loss cooldown</strong> — an enforced pause after N losses in a row, regardless of where P&amp;L sits at that moment.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+          <span><strong class="text-zinc-900">Escalating response</strong> — Notify, a typed acknowledgment, a full trading pause, or a broker disconnect. Exactly as far as you decide, set when calm.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="px-6 py-12 border-t border-zinc-100">
+    <div class="max-w-3xl mx-auto">
+      <div class="rounded-3xl border border-emerald-200 px-7 py-8 md:px-10 md:py-10" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.14em] uppercase mb-3" style="color:var(--aw-color-primary);">
+          The part that makes it actually work
+        </p>
+        <h2 class="text-[1.6rem] md:text-[1.9rem] font-bold text-zinc-900 tracking-tight mb-4">
+          Strict Lock: a rule you can't talk yourself out of
+        </h2>
+        <p class="text-[17px] text-zinc-700 leading-[1.85] mb-5">
+          Every self-lockout fails the same way — you bypass it in the one moment it matters. Strict Lock removes the
+          escape hatches. Arm it once, when you're calm, and for the full window of any pause it fires:
+        </p>
+        <ul class="space-y-2.5 text-[16px] text-zinc-700">
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+            <span>No ending the pause early, and the Force Reset button is hidden.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+            <span>Guard's master switch — and Strict Lock itself — can't be turned off until it releases.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+            <span>The rule set is frozen. You can add a stricter rule; you can't loosen or delete one.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+            <span>It survives an NT8 restart or crash, and releases on its own when the window expires.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
+            <span>Closing or reducing a position is always allowed — enforcement only ever blocks new or increasing risk.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-12 border-t border-zinc-100">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-[1.6rem] font-bold text-zinc-900 tracking-tight mb-7">Straight answers</h2>
+      <dl class="space-y-7">
+        {
+          objections.map(({ q, a }) => (
+            <div>
+              <dt class="font-semibold text-zinc-900 text-[17px] mb-1.5">{q}</dt>
+              <dd class="text-zinc-600 text-[16px] leading-[1.8]">{a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="px-6 py-14 border-t border-zinc-100">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-[1.7rem] md:text-[2rem] font-bold text-zinc-900 tracking-tight mb-4">
+        Protect the account you worked to earn.
+      </h2>
+      <p class="text-[17px] text-zinc-700 leading-relaxed mb-7">
+        Set the line once, while you're thinking clearly. Let Guard hold it when you're not.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mb-4">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-semibold text-white shadow-sm"
+          style="background:var(--aw-color-primary);"
+        >
+          Start your 14-day free trial
+        </a>
+        <a
+          href="/use-cases/prop-firm-behavioral-risk-control"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-[15px] font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
+          Read the full breakdown &rarr;
+        </a>
+      </div>
+      <p class="text-[12px] text-zinc-500">14-day free trial &middot; card required &middot; cancel any time before day 14 and you pay nothing</p>
+    </div>
+  </section>
+
+  <section class="px-6 pb-16">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-[12px] text-zinc-400 leading-relaxed border-t border-zinc-100 pt-6">
+        Trading involves substantial risk of loss. Meridian is a behavioral monitoring tool and does not provide trading
+        signals, financial advice, or profit guarantees. Past performance is not indicative of future results; results
+        may vary. NinjaTrader&reg; is a registered trademark of NinjaTrader LLC; Meridian is an independent third-party
+        add-on and is not owned by NinjaTrader LLC.
+      </p>
+    </div>
+  </section>
+</Layout>

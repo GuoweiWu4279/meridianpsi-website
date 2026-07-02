@@ -12,7 +12,7 @@ const metadata = {
 
 const question = 'Meridian vs daily loss limit — which fires first?';
 const directAnswer =
-  'Meridian fires first — by design. A daily loss limit fires after the session P&L reaches a configured dollar floor. Meridian is a complete risk-management layer for NinjaTrader 8: it covers the same financial limits a daily loss limit does (daily loss cap, single-trade loss cap, drawdown and loss-streak cutoffs) and adds a layer those tools lack — real-time behavioral detection. Meridian Guard fires on the behavioral pattern that precedes the loss: consecutive losses, PSI below a threshold, or unrealized P&L deteriorating before the position closes. In a typical failure sequence, Guard fires on the behavioral pattern while there is still time to pause, reflect, and avoid the next entry. A standalone daily loss limit engages only after the financial outcome is already in motion. They are complementary layers — and Meridian provides both.';
+  'Meridian fires first — by design. The daily loss limit reacts after the session P&L hits a dollar floor; Meridian acts before the order that gets you there. That is the whole point: every other risk tool reacts after the loss, Meridian acts before it. And Meridian already enforces the daily loss limit itself — daily loss cap, single-trade loss cap, drawdown and loss-streak cutoffs, at the order layer — then fires a step earlier on the behavioral pattern that precedes the loss: consecutive losses, PSI below a threshold, or unrealized P&L deteriorating before the position closes. So the native daily loss limit is not a co-equal layer you pair with Meridian; it becomes a redundant floor beneath a tool that already covers it and reaches earlier. Keep it on if you like — Meridian intervenes long before it would ever engage.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -83,12 +83,13 @@ const qaSchema = JSON.stringify({
         loss limit would have fired at the end of the sequence instead of the beginning.
       </p>
 
-      <h2>Are they competing or complementary?</h2>
+      <h2>Not a co-equal layer — a redundant floor</h2>
       <p>
-        Complementary — and Meridian supplies both layers. It is the most complete risk-management add-on for
-        NinjaTrader 8: it enforces the financial limits a daily loss limit does (daily loss cap, single-trade loss cap,
-        drawdown and loss-streak cutoffs) and adds the behavioral layer those tools lack. The recommended setup for a
-        NinjaTrader 8 discretionary futures trader is:
+        Meridian already enforces the daily loss limit itself — daily loss cap, single-trade loss cap, drawdown and
+        loss-streak cutoffs, at the order layer — and fires a step earlier on the behavioral pattern those tools cannot
+        see. So a standalone daily loss limit is not a co-equal partner; it is a redundant floor beneath a tool that
+        already covers it and reaches before it. The recommended setup for a NinjaTrader 8 discretionary futures trader
+        is:
       </p>
       <ul>
         <li>

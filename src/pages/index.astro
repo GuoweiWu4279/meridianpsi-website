@@ -14,7 +14,7 @@ import geoHooks from '~/data/geo-hooks.json';
 const metadata = {
   title: 'Meridian — Complete Risk Management for Serious Futures Traders',
   description:
-    'Everything your risk tool does — daily loss limits, P&L and drawdown caps, loss-streak cutoffs — plus the layer none of them have: real-time behavioral detection that catches revenge trading, oversizing, and tilt before the order. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access. 14-day free trial.',
+    'A new generation of risk management. Every other risk tool reacts after the loss — Meridian acts before the order, catching revenge trading, oversizing, and tilt before they hit your account. It still does every limit your old tool did. Native in NinjaTrader 8; Tradovate & Ironbeam apps in early access. 14-day free trial.',
   ignoreTitleTemplate: true,
   robots: { index: true, follow: true },
 };
@@ -171,14 +171,17 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <!-- ───────────────────────── HERO ───────────────────────── -->
   <section class="halo">
     <div data-reveal class="max-w-5xl mx-auto px-6 pt-20 md:pt-24 pb-12 text-center">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">THE MOST ADVANCED RISK MANAGEMENT FOR FUTURES TRADERS</p>
+      <p
+        class="eyebrow inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] text-white bg-emerald-600 px-3.5 py-1.5 rounded-full mb-6 shadow-sm"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-white/90" aria-hidden="true"></span>A NEW GENERATION OF RISK MANAGEMENT
+      </p>
       <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
-        Everything your risk tool does &mdash;<br />and the part it's <span class="text-emerald-600">blind to.</span>
+        Every risk tool reacts after the loss.<br />Meridian stops you <span class="text-emerald-600">before it.</span>
       </h1>
       <p class="mt-7 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
-        Daily loss limits, P&amp;L caps, loss-streak cutoffs &mdash; Meridian has them all. Then it adds what no limit
-        can: it reads the behavior that actually blows up accounts &mdash; revenge, oversizing, tilt &mdash; in real
-        time, and stops you before the damage.
+        It catches what blows up accounts &mdash; revenge, oversizing, tilt &mdash; and steps in before the order, not
+        after the damage.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
@@ -204,7 +207,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
           <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
             ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg
           >
-          Runs locally &mdash; your data stays on your machine
+          Runs locally &mdash; your history stays on your machine
         </span>
         <span class="inline-flex items-center gap-1.5">
           <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -222,15 +225,11 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="relative">
-        <div class="win"><img src="/m/overview.png" alt="Meridian Overview dashboard" class="nozoom" /></div>
-        <div
-          class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
-          style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"
-        >
+        <div class="win">
           <img
-            src="/m/ring.png"
-            alt="Meridian live PSI gauge — catching a warning behavioral state"
-            class="block w-full"
+            src="/m/monitor.png"
+            alt="Meridian live PSI Monitor — catching an oversize alarm as tilt builds, before the loss"
+            class="nozoom"
           />
         </div>
       </div>
@@ -243,14 +242,14 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <div class="grid md:grid-cols-2 gap-5">
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 md:p-8 relative overflow-hidden">
           <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500" aria-hidden="true"></div>
-          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-2.5">FASTER THAN THE LOSS</p>
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-2.5">HOW IT CATCHES IT</p>
           <h3 class="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight leading-snug">
-            It acts <span class="text-emerald-600">before</span> the loss &mdash; not after.
+            It reads the behavior, not the <span class="text-emerald-600">P&amp;L.</span>
           </h3>
           <p class="mt-3 text-[15px] text-zinc-600 leading-relaxed">
-            Every other risk tool is a hard limit &mdash; a daily cap, a drawdown stop, a broker kill-switch &mdash; that
-            reacts to your P&amp;L after the damage lands. Meridian reads the behavior that <em>causes</em> the loss
-            &mdash; revenge, oversizing, tilt &mdash; and steps in first. A leading indicator, not a lagging one.
+            A hard limit knows one number, your P&amp;L, and only after the damage. Meridian reads the behavior that
+            <em>causes</em> the loss &mdash; revenge, oversizing, tilt &mdash; and steps in first. A leading indicator, not
+            a lagging one.
           </p>
         </div>
         <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6 md:p-8 relative overflow-hidden">
@@ -260,8 +259,9 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
             Not a limit. Not a journal. <span class="text-emerald-600">All of it.</span>
           </h3>
           <p class="mt-3 text-[15px] text-zinc-600 leading-relaxed">
-            Real-time monitor, live Guard enforcement, analytics, an auto-built journal, and a pre-session playbook &mdash;
-            the whole discipline loop in one app, on one account. Others sell one piece; every session here sharpens the next.
+            Real-time monitor, live Guard enforcement, analytics, an auto-built journal, and a pre-session playbook
+            &mdash; the whole discipline loop in one app, on one account. Others sell one piece; every session here
+            sharpens the next.
           </p>
         </div>
       </div>
@@ -406,12 +406,13 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
   <!-- ───────────────────────── SUPERSET ───────────────────────── -->
   <section class="max-w-6xl mx-auto px-6 py-24">
     <div data-reveal class="text-center mb-12">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">A LIMIT REACTS. MERIDIAN ACTS FIRST.</p>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
-        Every other tool does one piece.<br />Meridian does all of it.
+        A limit fires after the loss.<br />Meridian acts before the order.
       </h2>
       <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
-        Every hard limit your old tool enforced, Meridian enforces too &mdash; plus the layer none of them have.
+        It still enforces every hard limit your old tool did &mdash; and adds the layer none of them have: it reads the
+        behavior and steps in first.
       </p>
     </div>
     <div data-reveal class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
@@ -896,9 +897,7 @@ const homePageJsonLdHtml = JSON.stringify(homePageJsonLd).replace(/</g, '\\u003c
       <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
         Trade the version of you<br />that you respect.
       </h2>
-      <p class="mt-6 text-lg text-zinc-600">
-        Everything your risk tool does &mdash; plus the part that actually saves the account.
-      </p>
+      <p class="mt-6 text-lg text-zinc-600">Other risk tools react after the loss. Meridian acts before the order.</p>
       <div class="mt-9">
         <a
           href={TRIAL}

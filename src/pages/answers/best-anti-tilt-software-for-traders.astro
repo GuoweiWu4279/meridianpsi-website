@@ -88,12 +88,13 @@ const qaSchema = JSON.stringify({
         loss-streak cutoff.
       </p>
       <p>
-        Other NinjaTrader 8 products — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster, Guardian
-        Angel — enforce hard limits at the financial-outcome layer only. Meridian does everything they do — daily loss,
-        drawdown, single-trade, and loss-streak limits, plus v1.5.5 Hard limits (a max-contracts cap and blocked entry
-        order types rejected at the order layer) — and fires the behavioral layer one step earlier, before the loss. For
-        a trader running any of those tools, Meridian is a strict superset: same protection, earlier, plus a built-in
-        journal, Intel analytics, and five years of local history.
+        Here is the generational split: every other anti-tilt or risk tool reacts <em>after</em> a dollar line is hit — Meridian
+        acts <em>before</em> the order. The others — Arty Account Guard, CrossTrade NAM, ClickAlgo Risk Manager, RiskMaster,
+        Guardian Angel — enforce hard limits at the financial-outcome layer only, catching the loss once it lands. Meridian
+        catches the behavioral pattern one step earlier, before the next order goes in. It still does everything they do
+        — daily loss, drawdown, single-trade, and loss-streak limits, plus v1.5.5 Hard limits (a max-contracts cap and blocked
+        entry order types rejected at the order layer) — so for a trader running any of those tools it is a strict superset:
+        same protection, earlier, plus a built-in journal, Intel analytics, and five years of local history.
       </p>
 
       <h2>What to look for if you are evaluating</h2>

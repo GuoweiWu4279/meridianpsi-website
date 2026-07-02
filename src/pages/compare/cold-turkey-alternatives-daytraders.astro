@@ -77,7 +77,7 @@ const faqItems = [
   },
   {
     q: 'How does Meridian work as a Cold Turkey alternative?',
-    a: 'Meridian is complete risk management built into NinjaTrader 8. It enforces the traditional limits a risk tool should — daily loss limit, single-trade loss cap, drawdown and P&L caps, loss-streak cutoff — and adds a layer none of them have: a real-time behavioral monitor. It reads your live order stream and computes a Psychological Stability Index (PSI) from seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. When the PSI or an individual signal crosses a threshold you configured while calm, the Meridian Guard layer can raise a persistent risk-alert banner, require a typed acknowledgment with a countdown, block new entries by cancelling orders, or disconnect the broker. The triggers are behavioral, not scheduled.',
+    a: 'Cold Turkey blocks the platform after the fact. Meridian is complete risk management that acts before you place the order — a full monitor + guard + journal + intel system built into NinjaTrader 8, not just an app blocker. It enforces every hard limit a risk tool should (daily loss limit, single-trade loss cap, drawdown and P&L caps, loss-streak cutoff), and it reads your live order stream to compute a Psychological Stability Index (PSI) from seven behavioral signals: Revenge Entry, Stop Manipulation, Size Spike, Hold Bias, Position Overstay, Rule Violations, and Overtrading Pace. When the PSI or an individual signal crosses a threshold you configured while calm, the Meridian Guard layer can raise a persistent risk-alert banner, require a typed acknowledgment with a countdown, block new entries by cancelling orders, or disconnect the broker. The triggers are behavioral, not scheduled.',
   },
   {
     q: 'What is the typed acknowledgment and why does it matter?',
@@ -118,13 +118,13 @@ const faqSchema = JSON.stringify({
           Quick answer
         </p>
         <p class="text-[15px] text-zinc-700 leading-relaxed">
-          Cold Turkey blocks trading platforms on a schedule or when you manually activate it. Meridian is complete risk
-          management for NinjaTrader 8: it enforces the traditional limits a risk tool should (daily loss, single-trade
-          loss cap, drawdown caps, loss-streak cutoff) and adds the layer none of them have — a real-time behavioral
-          monitor that knows your actual state during the session and intervenes when the signals say you should stop —
-          escalating from an alert to acknowledgment friction to blocking new entries, up to disconnecting the broker.
-          If you trade on NinjaTrader 8, Meridian is the purpose-built solution to the problem Cold Turkey solves
-          generically.
+          Cold Turkey blocks the platform after the fact, on a schedule or a manual toggle. Meridian is complete risk
+          management that acts before you place the order — a full monitor + guard + journal + intel system for
+          NinjaTrader 8. It enforces every hard limit a risk tool should (daily loss, single-trade loss cap, drawdown
+          caps, loss-streak cutoff) and reads your live state during the session, intervening when the signals say you
+          should stop — escalating from an alert to acknowledgment friction to blocking new entries, up to disconnecting
+          the broker. If you trade on NinjaTrader 8, Meridian is the purpose-built solution to the problem Cold Turkey
+          solves generically.
         </p>
       </div>
     </header>
