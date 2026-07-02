@@ -7,6 +7,7 @@
 **Length:** 30-45 seconds total. Hard cap at 60.
 
 **Setup before recording:**
+
 - NT8 chart open on NQ or ES (whatever has clean candles in Market Replay)
 - Meridian PSI HUD visible top-right
 - Pre-load Market Replay to a session where you'll simulate a realistic loss → revenge sequence
@@ -17,25 +18,30 @@
 ## Storyboard (frame by frame)
 
 ### Beat 1 — 0:00–0:04 — Setup (caption: silent)
-**On screen:** NT8 with NQ chart, clean state. PSI HUD reads ~92 (Stable / green). *(Zone facts: Stable 88–100 · Caution 72–87 · Warning 55–71 · Critical below 55 — keep on-screen numbers consistent with these.)*
+
+**On screen:** NT8 with NQ chart, clean state. PSI HUD reads ~92 (Stable / green). _(Zone facts: Stable 88–100 · Caution 72–87 · Warning 55–71 · Critical below 55 — keep on-screen numbers consistent with these.)_
 **Caption (top center, fade in):** "A trader takes a normal loss."
 **Action:** Show a stop-out happening on a small position. Red candle, position closed at -$280.
 
 ### Beat 2 — 0:04–0:09 — The deviation begins
+
 **Caption:** "12 seconds later: same direction. Bigger size."
 **Action:** Cursor moves fast, opens order ticket. Size jumps from 1 contract to 3 contracts. Same direction as the trade that just stopped out.
 **Visual cue:** PSI HUD starts dropping — 92 → 74 (Caution / yellow).
 
 ### Beat 3 — 0:09–0:14 — The escalation
+
 **Caption:** "Stop on the new entry: pulled wider."
 **Action:** Click the active stop loss line, drag it 8 ticks wider on the chart.
 **Visual cue:** PSI continues dropping — 74 → 52 (Critical / red).
 **HUD signal bars:** "Revenge Entry" + "Stop Manipulation" + "Size Spike" all light up red.
 
 ### Beat 4 — 0:14–0:22 — The intervention
+
 **Caption (centered, larger):** "Then this happens."
 **Action:** Trader tries to add another contract. **Meridian Guard modal appears, blocking the order ticket.**
 **Modal text (clearly readable):**
+
 ```
 PSI: 52 — CRITICAL
 Pattern detected: Revenge entry + size escalation + stop widening
@@ -47,12 +53,15 @@ Type the phrase you wrote when calm to continue:
 ```
 
 ### Beat 5 — 0:22–0:30 — The resolution
+
 **Caption:** "Mistake stopped before it reached the order window."
 **Action:** Trader hits "Stand down — 5 min cooldown." NT8 entries are locked. PSI starts recovering.
 **Final visual:** PSI climbs back to 67. Bottom-right text appears: "Meridian — Real-time behavioral monitoring for active traders."
 
 ### Beat 6 — 0:30 — End card (sticky)
+
 **On screen, full frame:**
+
 - Meridian wordmark
 - Sub-line: "Powered by the Psychological Stability Index (PSI). Built first for NinjaTrader 8."
 - CTA: "Try free for 14 days →" (linking to /pricing)

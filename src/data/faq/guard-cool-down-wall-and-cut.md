@@ -1,5 +1,5 @@
 ---
-question: "What are the Cool-down Wall and Cut in Guard v2?"
+question: 'What are the Cool-down Wall and Cut in Guard v2?'
 category: trading
 order: 3
 ---

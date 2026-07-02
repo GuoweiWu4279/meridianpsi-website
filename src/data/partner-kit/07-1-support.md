@@ -1,7 +1,7 @@
 ---
 title: Support
 section: support
-lastUpdated: "2026-05-01"
+lastUpdated: '2026-05-01'
 order: 1
 ---
 
@@ -12,6 +12,7 @@ order: 1
 **Response time:** Within 24 hours on weekdays. For urgent issues (e.g. your affiliate link isn't tracking), we aim for under 4 hours during business hours.
 
 **What to include when you write:**
+
 - Your channel name or the email address you used to apply
 - A clear description of what you need — one sentence is enough
 - Any relevant link, screenshot, or draft you want feedback on

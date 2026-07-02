@@ -1,14 +1,14 @@
 ---
 title: Angles by Audience Type
 section: talking-points
-lastUpdated: "2026-05-15"
+lastUpdated: '2026-05-15'
 order: 4
 copyables:
-  - label: "Angle — Prop firm traders"
+  - label: 'Angle — Prop firm traders'
     content: "Most evaluation failures aren't strategy failures — they're one emotionally-driven session. Meridian flags the behavioral breakdown as it happens, before the evaluation account hits its hard limit. Your PSI starts dropping before you're in trouble."
-  - label: "Angle — Psychology-focused traders"
+  - label: 'Angle — Psychology-focused traders'
     content: "Meridian makes discipline measurable. Not in the abstract — in the specific: here's your live PSI right now, here are the seven dimensions pulling it down, here's your trend over the last 30 sessions, here are the two rules you break most often, and here's the rate your compliance is improving."
-  - label: "Angle — Systematic / technical traders"
+  - label: 'Angle — Systematic / technical traders'
     content: "If you have a trading plan, Guard can enforce it. Six trigger conditions on an escalating ladder (five levels on NinjaTrader 8; six tiers, up to a full-screen Cool-down Wall and a firewall-level order Cut, on the standalone apps) — you configure both what trips the rule and how forcefully it intervenes. You can even password-lock the rule so you can't override it mid-session under pressure."
 ---
 
@@ -23,9 +23,10 @@ Different segments of the NT8 trading community respond to different entry point
 **The angle:** Meridian provides behavioral feedback during the session — which is the exact phase where evaluations get blown. Most evaluation failures happen in a single session: a few revenge trades, widening a stop once, sizing up after a loss. Meridian flags those behaviors as they happen, before the evaluation account hits its hard limit.
 
 **What to emphasize:**
+
 - The PSI score as an in-session signal that something is changing before the evaluation limit fires
 - Guard as an internal guardrail that can stop a spiral before it becomes a funded-account violation
-- The fact that prop firms don't care *why* you hit the limit — Meridian gives you a reason to stop before you do
+- The fact that prop firms don't care _why_ you hit the limit — Meridian gives you a reason to stop before you do
 
 **What to avoid:** Don't position Meridian as a "pass the evaluation" tool or imply it guarantees evaluation success. It monitors your behavior — what you do with that information is still up to you.
 
@@ -38,9 +39,10 @@ Different segments of the NT8 trading community respond to different entry point
 **The angle:** Meridian makes discipline measurable. Not in the abstract sense of "you need to be more disciplined" — in the specific sense of: here is your PSI score right now, here are the seven dimensions pulling it down, here is the trend over your last 30 sessions, here are the two rules you break most often, and here is the rate at which your compliance is improving.
 
 **What to emphasize:**
+
 - The Intel workspace — long-term behavioral analytics (PSI × P&L, Monthly Digest, Weekday Patterns, pre-session Risk Brief, Stats & Breakdowns). **Included in every tier since v1.5.0** — Core and Guard both have it; Guard adds only the enforcement engine on top.
 - The in-session Journal — it writes itself as you trade (fills, PSI, one-tap mood tags), so the debrief is already compiled by the time the session ends — no blank page to fill at night
-- The personal adaptive baseline — the system measures *your* deviations from *your* patterns, not generic thresholds
+- The personal adaptive baseline — the system measures _your_ deviations from _your_ patterns, not generic thresholds
 - The Monthly Digest as a structured debrief tool
 - The difference between knowing you revenge-trade and having a number that reflects when you're doing it
 
@@ -55,6 +57,7 @@ Different segments of the NT8 trading community respond to different entry point
 **The angle:** Meridian as an execution compliance layer. If you have a defined trading plan, Guard can enforce it: six trigger conditions (PSI threshold, consecutive losses, session/unrealized/single-trade P&L, session time) paired with five escalating response levels (Notify → Risk Alert → Acknowledge → Trading Pause → Disconnect). You configure both sides — the rule and how forcefully it intervenes.
 
 **What to emphasize:**
+
 - Guard's configurability — you define both the rules (6 triggers) and the response severity (5 levels), independently per rule
 - The Rule Violations signal (D6) — specifically tracks whether you're following your own defined rules in real time
 - The "typed acknowledgment" response level — a phrase the trader writes when calm, typed when not; high signal-to-friction ratio
@@ -74,7 +77,7 @@ When your audience pushes back, these are the most common objections and the acc
 A daily loss limit fires after the damage. Meridian fires during the behavioral breakdown that causes it. The limit is a stop sign; Meridian is the dashboard light that comes on before you need the stop sign.
 
 **"Doesn't this slow my trading down?"**
-Meridian doesn't intercept your orders or add latency. It reads execution events NinjaTrader is already firing internally. Guard adds friction *only when you've already configured it to* — and only when a behavioral rule you set in advance trips.
+Meridian doesn't intercept your orders or add latency. It reads execution events NinjaTrader is already firing internally. Guard adds friction _only when you've already configured it to_ — and only when a behavioral rule you set in advance trips.
 
 **"I don't have a tilt problem. I have a strategy problem."**
 Fair. Meridian doesn't fix strategy — it monitors execution against your own baseline. If your strategy is solid but you blow up sessions on revenge entries or sizing up after losses, that's the gap Meridian closes. If you don't break your own rules, you'll see a flat Stable score and Meridian will just feel like a quiet HUD.

@@ -1,11 +1,11 @@
 ---
 title: Your First 48 Hours
 section: get-started
-lastUpdated: "2026-06-01"
+lastUpdated: '2026-06-01'
 order: 0
 ---
 
-Everything in this kit is organized by topic so you can find things later. But right now you just want to know what to *do*. Here's the path — most partners get their first piece of content live within two days.
+Everything in this kit is organized by topic so you can find things later. But right now you just want to know what to _do_. Here's the path — most partners get their first piece of content live within two days.
 
 ---
 

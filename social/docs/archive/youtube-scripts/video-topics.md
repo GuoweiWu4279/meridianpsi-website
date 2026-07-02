@@ -1,6 +1,7 @@
 # Meridian YouTube — Video Topic Library
+
 **10 topics with catchy titles + SEO strategy**
-*Updated May 2026*
+_Updated May 2026_
 
 ---
 
@@ -11,6 +12,7 @@ SEO keywords = go in the video description + spoken content.
 Do NOT sacrifice catchiness for keyword matching in the title.
 
 Formula options:
+
 - `"[Conventional wisdom] is wrong. Here's what actually happens."`
 - `"You will never [outcome] until you fix this."`
 - `"Nobody tells you [hard truth about trading]."`
@@ -23,10 +25,13 @@ Formula options:
 ---
 
 ### V01 — Prop Firm Payouts
+
 **Catchy title:**
+
 > **"You Will Never Get Consistent Prop Firm Payouts Until You Fix This"**
 
 **Alt titles (if A/B testing thumbnails):**
+
 - "The Real Reason 95% of Traders Fail Their Funded Challenge"
 - "Your Strategy Isn't Why You Failed the Prop Firm Exam"
 
@@ -43,10 +48,13 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V02 — Stop Loss
+
 **Catchy title:**
+
 > **"The Real Reason You Keep Moving Your Stop Loss Has Nothing to Do With Discipline"**
 
 **Alt titles:**
+
 - "Stop Loss Manipulation Isn't a Discipline Problem. It's a Brain Problem."
 - "Why You Always Move Your Stop Loss at the Worst Possible Moment"
 
@@ -54,15 +62,18 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 
 **Core argument:** Under loss pressure, the brain literally recalibrates what counts as "acceptable" loss — the reference point shifts. This is a documented neurological response (loss aversion asymmetry). Discipline-based approaches fail here because the brain has already compromised the judge before you decide to move the stop.
 
-**Status:** Script ready → `01-stop-loss.md` *(rename from old file)*
+**Status:** Script ready → `01-stop-loss.md` _(rename from old file)_
 
 ---
 
 ### V03 — Revenge Trading
+
 **Catchy title:**
+
 > **"One Loss Becomes Five. The Anatomy of a Revenge Trade — Beat by Beat"**
 
 **Alt titles:**
+
 - "What Actually Happens in Your Brain Between Loss #1 and Loss #3"
 - "The 8-Minute Window That Kills Most Trading Days"
 
@@ -75,10 +86,13 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V04 — Discipline Myth
+
 **Catchy title:**
+
 > **"'Just Be More Disciplined' Is the Most Toxic Advice in Trading"**
 
 **Alt titles:**
+
 - "Why Discipline Is Not the Answer (And What Is)"
 - "The Traders Who Blow Up the Most Are Also the Most Disciplined"
 
@@ -93,10 +107,13 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V05 — Tilt
+
 **Catchy title:**
+
 > **"Nobody Tells You What Tilt Actually Is in Trading — Until It's Too Late"**
 
 **Alt titles:**
+
 - "Tilt Isn't an Emotion. It's a Measurable Behavioral State."
 - "How to Know You're in Tilt Before You Blow the Account"
 
@@ -111,10 +128,13 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V06 — Overtrading
+
 **Catchy title:**
+
 > **"Your Trading Plan Will Not Stop You From Overtrading. Here's What Will."**
 
 **Alt titles:**
+
 - "Why 'Trade Less' Is Useless Advice for Overtraders"
 - "Overtrading Is Not a Discipline Problem. It's a Compulsion."
 
@@ -127,10 +147,13 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V07 — Blown Accounts
+
 **Catchy title:**
+
 > **"Every Blown Account Has the Same Warning Signs. Here's What to Look For."**
 
 **Alt titles:**
+
 - "The Behavioral Pattern That Appears Before Every Blown Account"
 - "Blown Accounts Are Predictable. Here's the Data."
 
@@ -143,32 +166,38 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V08 — Trading Journals
+
 **Catchy title:**
+
 > **"Trading Journals Are Solving the Wrong Problem"**
 
 **Alt titles:**
+
 - "Why Your Trading Journal Isn't Making You a Better Trader"
 - "The Problem With Reviewing Trades After the Fact"
 
 **SEO keywords:** `trading journal, best trading journal, trading journal template, trade review`
 
-**Core argument:** Journals record what happened *after*. But the decision that cost you money was made *during* — in a compromised mental state. No amount of post-session reflection changes what your brain does under real-time pressure. You need in-session feedback, not post-session analysis.
+**Core argument:** Journals record what happened _after_. But the decision that cost you money was made _during_ — in a compromised mental state. No amount of post-session reflection changes what your brain does under real-time pressure. You need in-session feedback, not post-session analysis.
 
 **Status:** Not yet drafted
 
 ---
 
 ### V09 — NinjaTrader Risk
+
 **Catchy title:**
+
 > **"NinjaTrader's Risk Settings Are Not Actually Protecting You"**
 
 **Alt titles:**
+
 - "The Gap in NinjaTrader's Built-In Risk Management"
 - "What NT8's Daily Loss Limit Can't Stop"
 
 **SEO keywords:** `NinjaTrader risk management, NinjaTrader settings, NinjaTrader 8 risk, NT8 daily loss limit`
 
-**Core argument:** NT8's built-in daily loss limit stops you *after* the damage — it's a circuit breaker, not a behavioral monitor. It doesn't detect the 7 behavioral signals that predict a blowup before it happens. It triggers after you've already lost the money.
+**Core argument:** NT8's built-in daily loss limit stops you _after_ the damage — it's a circuit breaker, not a behavioral monitor. It doesn't detect the 7 behavioral signals that predict a blowup before it happens. It triggers after you've already lost the money.
 
 **Highest product conversion video.** Directly addresses the "I already have risk settings" objection.
 
@@ -177,16 +206,19 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 ---
 
 ### V10 — Oversizing
+
 **Catchy title:**
+
 > **"The Most Profitable Traders Still Self-Destruct. Here's the Pattern."**
 
 **Alt titles:**
+
 - "Oversizing Isn't Greed. It's Compensation."
 - "Why Good Traders Blow Up on Their Best Strategy Days"
 
 **SEO keywords:** `position sizing, oversizing trading, trading too large, position size psychology`
 
-**Core argument:** Oversizing after a loss isn't greed — it's compensation behavior. The brain tries to "earn back" the loss in a single trade, which means the riskiest bets come when the trader is *already in a degraded mental state*. The combination is lethal.
+**Core argument:** Oversizing after a loss isn't greed — it's compensation behavior. The brain tries to "earn back" the loss in a single trade, which means the riskiest bets come when the trader is _already in a degraded mental state_. The combination is lethal.
 
 **Status:** Not yet drafted
 
@@ -194,12 +226,12 @@ Most traders who fail prop firm challenges have a legitimate edge. They fail bec
 
 ## Suggested Production Order
 
-| Order | Video | Reason |
-|---|---|---|
-| 1st | V01 — Prop Firm | Highest search intent, direct pain point, strong product tie-in |
-| 2nd | V02 — Stop Loss | Already scripted, logical follow-up |
-| 3rd | V04 — Discipline Myth | Controversial = views, establishes brand POV strongly |
-| 4th | V03 — Revenge Trade | Already scripted, builds on discipline myth video |
-| 5th | V05 — Tilt | Precise audience, low competition |
-| 6th | V09 — NinjaTrader Risk | Best conversion video — needs audience trust first (build it with 5 videos) |
-| 7th–10th | V06–V08, V10 | Fill out the series |
+| Order    | Video                  | Reason                                                                      |
+| -------- | ---------------------- | --------------------------------------------------------------------------- |
+| 1st      | V01 — Prop Firm        | Highest search intent, direct pain point, strong product tie-in             |
+| 2nd      | V02 — Stop Loss        | Already scripted, logical follow-up                                         |
+| 3rd      | V04 — Discipline Myth  | Controversial = views, establishes brand POV strongly                       |
+| 4th      | V03 — Revenge Trade    | Already scripted, builds on discipline myth video                           |
+| 5th      | V05 — Tilt             | Precise audience, low competition                                           |
+| 6th      | V09 — NinjaTrader Risk | Best conversion video — needs audience trust first (build it with 5 videos) |
+| 7th–10th | V06–V08, V10           | Fill out the series                                                         |

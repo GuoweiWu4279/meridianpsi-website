@@ -182,7 +182,8 @@ const v2 = guardData.standalone;
         <ul class="space-y-3 text-zinc-700">
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span
-              >Pick the triggers that mean "I'm done for today"</span>
+              >Pick the triggers that mean "I'm done for today"</span
+            >
           </li>
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span>Choose how hard each one bites</span>
@@ -477,16 +478,19 @@ const v2 = guardData.standalone;
             <span class="text-emerald-600 font-bold">&check;</span><span
               >A resting order over the cap, or of a blocked type, is <strong class="text-zinc-900"
                 >cancelled at submission</strong
-              ></span>
+              ></span
+            >
           </li>
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span
               >A market order that slips through is <strong class="text-zinc-900">trimmed back to the cap</strong> &mdash;
-              a single round-trip, never your existing position</span>
+              a single round-trip, never your existing position</span
+            >
           </li>
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span
-              >Closing or reducing is <strong class="text-zinc-900">never</strong> blocked</span>
+              >Closing or reducing is <strong class="text-zinc-900">never</strong> blocked</span
+            >
           </li>
         </ul>
         <p class="mt-5 text-sm text-zinc-500">
@@ -544,12 +548,14 @@ const v2 = guardData.standalone;
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span
               >Your rule decides how long &mdash; 15 minutes or the rest of the day &mdash; Strict Lock makes that
-              window stick</span>
+              window stick</span
+            >
           </li>
           <li class="flex gap-3">
             <span class="text-emerald-600 font-bold">&check;</span><span
               ><strong class="text-zinc-900">It survives a NinjaTrader restart or crash</strong> &mdash; closing the platform
-              doesn't reset it</span>
+              doesn't reset it</span
+            >
           </li>
         </ul>
         <p class="mt-5 text-sm text-zinc-500">
@@ -960,6 +966,7 @@ const v2 = guardData.standalone;
   </style>
 
   <script>
+    // @ts-nocheck  (inline DOM script — types not checked; runtime unchanged)
     // ── Platform ladder toggle (NT8 5-level ⟷ Standalone 6-tier) ──
     function initGuardLadder() {
       const tabs = Array.from(document.querySelectorAll('[data-ladder-tab]'));

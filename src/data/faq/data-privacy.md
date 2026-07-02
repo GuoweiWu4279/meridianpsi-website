@@ -1,5 +1,5 @@
 ---
-question: "Is my trading data sent to any external server?"
+question: 'Is my trading data sent to any external server?'
 category: technical
 order: 1
 ---

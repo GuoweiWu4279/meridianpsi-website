@@ -1,4 +1,5 @@
 # YouTube Video — V01 (First to Produce)
+
 # "You Will Never Get Consistent Prop Firm Payouts Until You Fix This"
 
 > ⚠️ **EARLIER DRAFT (2026-05-09 morning).** A later revision of this same V01 script exists in
@@ -59,7 +60,7 @@ Most traders who fail prop firm challenges are not failing because their strateg
 
 They have a real edge. They've proven it. They passed the demo. They know their setups.
 
-They fail because of what happens *behaviorally* in the twenty minutes after the first bad trade.
+They fail because of what happens _behaviorally_ in the twenty minutes after the first bad trade.
 
 And no one in the prop firm space talks about this — because it's easier to sell you another challenge than to tell you the real problem.
 
@@ -103,7 +104,7 @@ Every funded account failure I've seen follows this exact four-stage sequence. T
 
 ---
 
-*[VISUAL NOTE: This entire section is ideal for a GPT-Image-2.0 infographic — a 4-step flow diagram labeled Stage 1 through Stage 4, with Stage 3 highlighted in amber and Stage 4 in red. Hold each stage on screen for 6-8 seconds while narrating.]*
+_[VISUAL NOTE: This entire section is ideal for a GPT-Image-2.0 infographic — a 4-step flow diagram labeled Stage 1 through Stage 4, with Stage 3 highlighted in amber and Stage 4 in red. Hold each stage on screen for 6-8 seconds while narrating.]_
 
 ---
 
@@ -119,7 +120,7 @@ Every solution you've probably tried is a discipline-based solution.
 
 These are reasonable responses. And they don't work. Not consistently.
 
-They don't work because they all require you to make a good decision *while you are already in Stage 2 or Stage 3*.
+They don't work because they all require you to make a good decision _while you are already in Stage 2 or Stage 3_.
 
 Think about what Stage 2 actually is. Your brain's loss-aversion response has already activated. Your reference point has already shifted. You're already running a different calculation than you were at the open.
 
@@ -131,7 +132,7 @@ This is not a motivation problem. This is not a lack of commitment. This is how 
 
 ---
 
-*[VISUAL NOTE: Type A asset (Leonardo abstract) — the "willpower battery depletion" image from the prompt library. Hold 5 seconds. Then cut to Type F GPT-Image-2.0 — a two-column comparison: "Discipline Approach" vs "Structural Approach"]*
+_[VISUAL NOTE: Type A asset (Leonardo abstract) — the "willpower battery depletion" image from the prompt library. Hold 5 seconds. Then cut to Type F GPT-Image-2.0 — a two-column comparison: "Discipline Approach" vs "Structural Approach"]_
 
 ---
 
@@ -169,7 +170,7 @@ The prop firm challenge that put you at Stage 3 yesterday — that's the scenari
 
 ---
 
-*[VISUAL NOTE: Cut to real OBS recording — Meridian Guard interface in NT8, showing behavioral signals and the lockout trigger. 45 seconds max. No narration over product demo — let the UI speak.]*
+_[VISUAL NOTE: Cut to real OBS recording — Meridian Guard interface in NT8, showing behavioral signals and the lockout trigger. 45 seconds max. No narration over product demo — let the UI speak.]_
 
 ---
 
@@ -190,22 +191,26 @@ See you in the next one.
 ## Production Notes
 
 ### Leonardo.ai Assets for This Script
-| Beat | Asset Type | Prompt to Use |
-|---|---|---|
-| Hook (00:00) | Type B video (Seedance 2.0) | Category 2D "Cascading Losses" prompt — save budget for this opener |
-| Beat 3 — 4 Stages | Type F (GPT-Image-2.0) | Prompt S1 "Labeled Process Flow" — 4 stages, Stage 3 amber, Stage 4 red |
-| Beat 4 — Willpower | Type A still (Phoenix) | Category 1D "Willpower Depletion Battery" |
-| Beat 4 — Comparison | Type F (GPT-Image-2.0) | Prompt S2 "Two-Column Comparison" — Discipline vs Structural |
-| Beat 5 — Implication | Type A still | Category 4C "System vs Willpower" |
-| Beat 6 — Product | Type C (OBS recording) | Real NT8 screen: Guard interface + behavioral signal spike |
+
+| Beat                 | Asset Type                  | Prompt to Use                                                           |
+| -------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| Hook (00:00)         | Type B video (Seedance 2.0) | Category 2D "Cascading Losses" prompt — save budget for this opener     |
+| Beat 3 — 4 Stages    | Type F (GPT-Image-2.0)      | Prompt S1 "Labeled Process Flow" — 4 stages, Stage 3 amber, Stage 4 red |
+| Beat 4 — Willpower   | Type A still (Phoenix)      | Category 1D "Willpower Depletion Battery"                               |
+| Beat 4 — Comparison  | Type F (GPT-Image-2.0)      | Prompt S2 "Two-Column Comparison" — Discipline vs Structural            |
+| Beat 5 — Implication | Type A still                | Category 4C "System vs Willpower"                                       |
+| Beat 6 — Product     | Type C (OBS recording)      | Real NT8 screen: Guard interface + behavioral signal spike              |
 
 ### Shorts Extraction (after main video is edited)
+
 Extract these 3 moments as standalone Shorts:
+
 1. **Beat 3 only (01:30–03:30)** → "The 4 stages of a prop firm failure" — standalone value
 2. **Beat 4 willpower section (03:30–05:00)** → "Why discipline doesn't work in prop firm challenges"
 3. **Beat 5 implication line (05:00–05:30)** → "The only question that matters for prop firm traders" — hook clip
 
 ### SEO Keywords to Say Out Loud in the Script (algorithm picks these up)
+
 ✓ "prop firm challenge" — spoken 4+ times
 ✓ "funded account" — spoken 3+ times
 ✓ "daily drawdown limit" — spoken 2+ times

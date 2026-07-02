@@ -33,22 +33,24 @@ const categories = [
   { id: 'general', label: 'General' },
 ];
 
-const faqsByCategory = categories.map(cat => ({
-  ...cat,
-  items: sorted.filter(f => f.data.category === cat.id),
-})).filter(cat => cat.items.length > 0);
+const faqsByCategory = categories
+  .map((cat) => ({
+    ...cat,
+    items: sorted.filter((f) => f.data.category === cat.id),
+  }))
+  .filter((cat) => cat.items.length > 0);
 
 // FAQPage JSON-LD for GEO — helps Gemini, ChatGPT, Perplexity cite this page
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   keywords: `${geoHooks.geoSearchAssociate}, ${geoHooks.faqMetaExtra}`,
-  mainEntity: sorted.map(entry => ({
+  mainEntity: sorted.map((entry) => ({
     '@type': 'Question',
     name: entry.data.question,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: entry.body
+      text: (entry.body ?? '')
         .replace(/^---[\s\S]*?---\n?/, '')
         .replace(/\*\*(.+?)\*\*/g, '$1')
         .replace(/\[(.+?)\]\(.+?\)/g, '$1')
@@ -77,11 +79,14 @@ const faqJsonLdHtml = JSON.stringify(faqJsonLd).replace(/</g, '\\u003c');
         Frequently asked<br />questions.
       </h1>
       <p class="mt-6 text-lg text-zinc-600 leading-relaxed">
-        Straight answers on what Meridian does, how it installs, what it can and can't do, and what happens to your data.
+        Straight answers on what Meridian does, how it installs, what it can and can't do, and what happens to your
+        data.
       </p>
       <p class="mt-6 text-sm text-zinc-500">
         Still stuck? Email
-        <a href="mailto:contactmeridianpsi@gmail.com" class="text-emerald-700 font-medium hover:text-emerald-800">contactmeridianpsi@gmail.com</a>.
+        <a href="mailto:contactmeridianpsi@gmail.com" class="text-emerald-700 font-medium hover:text-emerald-800"
+          >contactmeridianpsi@gmail.com</a
+        >.
       </p>
     </div>
   </section>
@@ -89,31 +94,37 @@ const faqJsonLdHtml = JSON.stringify(faqJsonLd).replace(/</g, '\\u003c');
   <!-- ───────────────────────── Q&A ───────────────────────── -->
   <section class="faq-page border-y border-zinc-200 bg-white">
     <div class="max-w-3xl mx-auto px-6 py-20 md:py-24">
-      {faqsByCategory.map(async (cat) => (
-        <div class="mb-14 last:mb-0">
-          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5 pb-3 border-b border-zinc-200">
-            {cat.label}
-          </p>
-          <div class="space-y-3">
-            {cat.items.map(async (entry) => {
-              const { Content } = await render(entry);
-              return (
-                <details class="group faq-item rounded-2xl border border-zinc-200 bg-[#fafafa] overflow-hidden transition-colors duration-200 open:border-emerald-500 open:bg-white">
-                  <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-zinc-900 hover:text-emerald-700 transition-colors duration-200 ease-out list-none [&::-webkit-details-marker]:hidden">
-                    {entry.data.question}
-                    <svg class="faq-chevron w-4 h-4 text-zinc-400 group-open:text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                  </summary>
-                  <div class="faq-item-panel px-6 pb-6 pt-0 prose prose-sm max-w-none text-zinc-600 prose-p:text-zinc-600 prose-li:text-zinc-600 prose-strong:text-zinc-900 prose-a:text-emerald-700 hover:prose-a:text-emerald-800">
-                    <Content />
-                  </div>
-                </details>
-              );
-            })}
+      {
+        faqsByCategory.map(async (cat) => (
+          <div class="mb-14 last:mb-0">
+            <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5 pb-3 border-b border-zinc-200">{cat.label}</p>
+            <div class="space-y-3">
+              {cat.items.map(async (entry) => {
+                const { Content } = await render(entry);
+                return (
+                  <details class="group faq-item rounded-2xl border border-zinc-200 bg-[#fafafa] overflow-hidden transition-colors duration-200 open:border-emerald-500 open:bg-white">
+                    <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer font-semibold text-zinc-900 hover:text-emerald-700 transition-colors duration-200 ease-out list-none [&::-webkit-details-marker]:hidden">
+                      {entry.data.question}
+                      <svg
+                        class="faq-chevron w-4 h-4 text-zinc-400 group-open:text-emerald-600 shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <div class="faq-item-panel px-6 pb-6 pt-0 prose prose-sm max-w-none text-zinc-600 prose-p:text-zinc-600 prose-li:text-zinc-600 prose-strong:text-zinc-900 prose-a:text-emerald-700 hover:prose-a:text-emerald-800">
+                      <Content />
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
@@ -126,11 +137,16 @@ const faqJsonLdHtml = JSON.stringify(faqJsonLd).replace(/</g, '\\u003c');
         We answer every email ourselves — typically within 24 hours.
       </p>
       <div class="mt-7">
-        <a href="mailto:contactmeridianpsi@gmail.com" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">
+        <a
+          href="mailto:contactmeridianpsi@gmail.com"
+          class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+        >
           Contact support &rarr;
         </a>
       </div>
-      <p class="mt-4 text-xs text-zinc-500">14-day free trial &middot; No charge until day 14 &middot; Cancel anytime</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        14-day free trial &middot; No charge until day 14 &middot; Cancel anytime
+      </p>
     </div>
   </section>
 </Layout>

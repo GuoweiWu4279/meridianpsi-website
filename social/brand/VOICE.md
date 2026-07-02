@@ -27,13 +27,17 @@
 > 扫描方法:**在脑子里把每句读出来,问自己——这是一个人在陈述一件事,还是 AI 在"表演"?** 命中下面任何一条 = 改。
 
 ### Tell 1 — 三连碎句 / rule-of-three(最高频,最致命)
+
 排比短句碎片堆节奏。
+
 - ❌ "The entries you'd have passed on yesterday. The size you swore you were done using. The stop you slid twice, just this once."
 - ✅ "You take a loss, get annoyed, and a minute later you're back in at double size with a stop you've already moved once."
 - 规则:三个并列碎片 → 合成一两句正常的话。一个例子讲透,胜过三个排比。
 
 ### Tell 2 — 堆叠/装饰性对仗(antithesis / chiasmus)
+
 **⚠️ 2026-06-10 Gary 校正:一句干脆的对比是好的,别一刀切。** 该禁的是**堆叠的、装饰性的、省略动词卖机灵的**对仗,不是所有对比。
+
 - ✅ 好的对比(保留):"We monitor your behavior, not your P&L."(干脆、具体、有力——Gary 亲手写的)
 - ❌ 装饰性/机灵(改):"Discipline stops being a feeling you argue with and becomes a number you can't."(省略动词卖机灵)
 - ❌ "the session ends on your terms instead of tilt's."(为押韵)
@@ -41,45 +45,58 @@
 - 规则:**单个具体的 "X, not Y" 对比 = 留;为押韵/机灵/堆节奏的对仗 = 改。** 判据:这个对比在传达一个清楚的事实,还是只在"显得漂亮"?
 
 ### Tell 3 — "Not just X, it's Y" 升格
+
 - ❌ "This isn't a journal. It's a safety belt." / "Not a faster tool. The next generation."
 - ✅ 直接说 Y 是什么,别用否定 X 来抬。
 - 规则:删掉 "not just / isn't a / more than a" 的抬升句式。
 
 ### Tell 4 — 同位语堆叠(em dash 的节奏,就算用逗号也算)
+
 就算把 em dash 换成逗号,那个"破折号韵律"还在。
+
 - ❌ "Meridian, the behavioral layer none of them have, reads the thing that actually blows accounts, the tilt, before the order."
 - ✅ 拆成两三句正常的话。
 - 规则:一句里超过两个逗号分隔的插入成分 = 拆句。
 
 ### Tell 5 — 自我提示 / 清嗓子
-- ❌ "to be clear," / "one thing up front," / "take this with a grain of salt," / "honestly," / "look,"  / "here's the thing,"
+
+- ❌ "to be clear," / "one thing up front," / "take this with a grain of salt," / "honestly," / "look," / "here's the thing,"
 - ✅ 删掉,直接说要点。
 - 规则:任何"我要开始说重点了"的预告 = 删,直接给重点。
 
 ### Tell 6 — 单行戏剧段落
+
 为了"冲击力"单独成段的碎句。
+
 - ❌(单独一行)"Until Meridian." / "And that changes everything."
 - ✅ 把它接回所属段落,或写成一句完整陈述。
 - 规则:一行以下的"段落",除非是真的清单项,否则并回段里。
 
 ### Tell 7 — 抽象名词收尾
+
 用一个抽象升华代替具体机制。
+
 - ❌ "discipline stops being a feeling." / "it gives you clarity when you need it most."
 - ✅ 说具体发生了什么:"it shows you, in dollars, what your tilted sessions cost versus your clean ones."
 - 规则:句尾若是 clarity / discipline / confidence / peace of mind 这类抽象名词,换成可观测的机制或数字。
 
 ### Tell 8 — 直接搬网站口号
+
 营销标题原样掉进 Reddit/邮件 = 立刻像广告。
+
 - ❌(Reddit 里)"Willpower is not a risk strategy." / "Everything your risk tool does, and the part it's blind to."
 - ✅ 用平实的话表达同一个意思:"Seeing the number drop isn't always enough to stop. That's what Guard is for."
 - 规则:网站的对仗标题是网站体裁。换平台先用大白话重述,别逐字搬。(canonical 句子见 POSITIONING §8,是"意思来源"不是"成品"。)
 
 ### Tell 9 — 回环收尾(callback for closure)
+
 结尾重复开头的短语图个"圆满"。
+
 - ❌ 开头 "one bad session" → 结尾又来 "...that one bad session."
 - ✅ 结尾落在实质信息或清楚的下一步,不为韵律重复。
 
 ### Tell 10 — 禁词 / 禁标点(从旧 writing-rules 并入)
+
 - 禁词:delve, navigate(比喻义), tapestry, multifaceted, game-changer, revolutionary, groundbreaking, unlock, leverage(动词), seamlessly, robust, innovative, cutting-edge, empower。
 - 禁短语:"It's worth noting", "In conclusion", "At the end of the day", "It is important to understand", "In today's world", "needle in a haystack"。
 - 禁标点:**em dash(—)和 en dash(–)做句中连接**(用句号/逗号/括号);**不用感叹号**(除非直接引语/证言);不用 emoji(除非平台 bio 这种特例)。
@@ -113,6 +130,7 @@
 ## 5. 三个硬闸总结(其余都是软提示)
 
 > 一篇文案能发,当且仅当三闸全过:
+>
 > 1. **AI 腔扫描**(第 2 节)逐句过,零命中。
 > 2. **合规闸**(第 3 节)零命中。
 > 3. **事实闸**(第 4 节):每个事实可追溯 MERIDIAN.md。
@@ -122,6 +140,7 @@
 ---
 
 ## 6. 自检话术(写完问自己这几句)
+
 - 这一段如果是一个真实交易者在 Reddit 打字,他会这么写吗?还是这是一个品牌在写 copy?
 - 我有没有为了"好听"牺牲"说清楚"?
 - 每个事实我能在 MERIDIAN.md 指出处吗?

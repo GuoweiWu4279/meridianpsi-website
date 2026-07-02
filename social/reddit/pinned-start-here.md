@@ -1,5 +1,5 @@
 ---
-title: "Start Here: What is Meridian PSI?"
+title: 'Start Here: What is Meridian PSI?'
 platform: reddit
 subreddit: r/MeridianPSI
 post_type: pinned
@@ -67,13 +67,13 @@ The result is a single score from 0 to 100, shown on a small HUD over your chart
 
 Watching the number fall is not always enough to stop. That is what Meridian Guard does. You write the rules while you are calm, and Guard holds you to them during the session, escalating only as far as you choose:
 
-| Level | What it does |
-|---|---|
-| **L1 - Notify** | A quiet notification so you know what is building, without interrupting your trading |
-| **L2 - Risk Alert** | A persistent banner; every new entry needs an active confirmation before it is placed |
-| **L3 - Acknowledge** | You type a phrase you wrote yourself before you can continue, which breaks the autopilot |
+| Level                  | What it does                                                                                   |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| **L1 - Notify**        | A quiet notification so you know what is building, without interrupting your trading           |
+| **L2 - Risk Alert**    | A persistent banner; every new entry needs an active confirmation before it is placed          |
+| **L3 - Acknowledge**   | You type a phrase you wrote yourself before you can continue, which breaks the autopilot       |
 | **L4 - Trading Pause** | New entries are blocked for a cooldown you set in advance. Closing a position is never blocked |
-| **L5 - Disconnect** | Guard disconnects you from your broker, ending the session |
+| **L5 - Disconnect**    | Guard disconnects you from your broker, ending the session                                     |
 
 For the days when you might talk yourself out of your own rules, there is Strict Lock. Turn it on while you are calm, and any pause Guard fires cannot be ended early, reset, or switched off until its timer runs out. Closing or reducing a position is always allowed. The only thing it stops is adding new risk.
 
@@ -85,7 +85,7 @@ When a session ends, Meridian reviews it on two axes: how disciplined you were, 
 
 [IMAGE 3: the Intel overview]
 
-*(Screenshots show simulated demo data.)*
+_(Screenshots show simulated demo data.)_
 
 **Who it is for**
 
@@ -107,18 +107,18 @@ meridianpsi.com
 
 ---
 
-*Risk disclosure: Trading futures involves substantial risk of loss and is not appropriate for all investors. Meridian is a behavioral monitoring and risk-management tool. It does not provide financial advice or guarantee trading performance. Results vary.*
+_Risk disclosure: Trading futures involves substantial risk of loss and is not appropriate for all investors. Meridian is a behavioral monitoring and risk-management tool. It does not provide financial advice or guarantee trading performance. Results vary._
 
 ---
 
 ## Changelog
 
-| Date | Change |
-|------|--------|
-| 2026-05-26 | Canonical version saved from founder final edit (replaces earlier draft in chat). |
-| 2026-06-10 | Patch: Guard level names + privacy line corrected. |
-| 2026-06-10 | v3 rewrite: Strict Lock, multi-platform funnel, FTC cleanup, image plan. |
-| 2026-06-10 | v4 rewrite around CURRENT site positioning: superset reframe, "one bad session" thesis, edge-vs-luck, funded wedge. (Still in comment-voice — too first-person/fragmenty.) |
-| 2026-06-10 | v5: genre fix to product-explainer register. Passed VOICE.md gates. |
-| 2026-06-10 | v6: re-derived through the content system (loop + 3 gates). |
+| Date       | Change                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-05-26 | Canonical version saved from founder final edit (replaces earlier draft in chat).                                                                                                                                                                                                                                                                                                   |
+| 2026-06-10 | Patch: Guard level names + privacy line corrected.                                                                                                                                                                                                                                                                                                                                  |
+| 2026-06-10 | v3 rewrite: Strict Lock, multi-platform funnel, FTC cleanup, image plan.                                                                                                                                                                                                                                                                                                            |
+| 2026-06-10 | v4 rewrite around CURRENT site positioning: superset reframe, "one bad session" thesis, edge-vs-luck, funded wedge. (Still in comment-voice — too first-person/fragmenty.)                                                                                                                                                                                                          |
+| 2026-06-10 | v5: genre fix to product-explainer register. Passed VOICE.md gates.                                                                                                                                                                                                                                                                                                                 |
+| 2026-06-10 | v6: re-derived through the content system (loop + 3 gates).                                                                                                                                                                                                                                                                                                                         |
 | 2026-06-10 | v7 (canonical): merged Gary's own rewrite — gap-first opening + heart-rate metaphor (replaces the flat "one bad session" website thesis), brand "we" voice, bold superset ("everything they have, and something much better"), punchier section closers. His edit fed back into POSITIONING/VOICE/ARTIFACTS (LEARNINGS L5). The reference exemplar for ARTIFACTS.md "Pinned intro". |

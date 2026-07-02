@@ -1,5 +1,5 @@
 ---
-question: "Is Meridian available for Mac?"
+question: 'Is Meridian available for Mac?'
 category: technical
 order: 3
 ---

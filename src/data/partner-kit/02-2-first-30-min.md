@@ -1,7 +1,7 @@
 ---
 title: Your First 30 Minutes
 section: get-started
-lastUpdated: "2026-06-17"
+lastUpdated: '2026-06-17'
 order: 2
 ---
 
@@ -16,7 +16,7 @@ Open the Dashboard (Control Center → New → Meridian Dashboard, or the ☰ ic
 Spend a minute on each tab:
 
 - **Settings** — your trading profile: size, session time window, and the Sensitive / Balanced / Relaxed response preset
-- **Guard** *(Guard tier only)* — trigger and response-level configuration
+- **Guard** _(Guard tier only)_ — trigger and response-level configuration
 - **License** — where you paste and activate your Whop key
 - **Journal** — Quick Journal entries from past sessions; "Complete Journal" auto-compiles a structured draft from your chips, notes, and session stats
 - **History** — a calendar view; click any past date to expand it in place and see that day's P&L, time spent in each PSI zone, and Journal entry

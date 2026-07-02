@@ -19,6 +19,7 @@
 ## 1. 主定位:超集(SUPERSET)——这是当前的根,不是旧的"唯一/第一"
 
 > **★ 2026-06-26 定位硬化(Gary 定,governs 本节全部):我们是 next-generation、全方位更强的风控——"吊打市面"。** 文案铁律:
+>
 > - **永不承认对手在任何方面比我们好;永不把买家推给对手**(`"if you only need X, the cheaper one is fine / buy the cheap one"` = 禁);**永不自我削弱**;不写"each side wins / honest split / those rows are theirs / better than Meridian"。
 > - **吊打怎么打 = 超集**:"Meridian 做到任何风控工具做的一切,再加它们都没有的行为层"——在**风控**这件事上我们**严格更强、可证实**。这就是 next-gen 的实锤,理直气壮地下断言。
 > - **FTC 安全线(我不越):不去声称我们"比 trade copier 更会复制 / 比一次性买断更便宜 / 能在 Mac 上跑"**——那些**不是风控、不可证实**,老练交易者一眼识破成水军,反伤可信度。**不提 ≠ 认输**:把 copier/多账号/买断定义成"另一类工具(执行,不是风控)",**风控这件事只有我们**。
@@ -30,6 +31,7 @@
 > eyebrow: **"NOT A DIFFERENT TOOL. A STRONGER ONE."**
 
 **含义:不要再写"市面上没有工具做过这个,直到 Meridian"(旧 anti-tilt / Gen-1-2-3 叙事,已废)。** 正确的框是:
+
 - 你已经有 daily loss limit / drawdown cap / loss-streak cutoff。**留着它们。Meridian 也全都有。**
 - Meridian 多的是它们**看不见的那一层:行为本身**——revenge、oversizing、tilt——在订单之前读到,而不是亏损之后。
 - 一句话:"Keep the safety net you already trust. Gain the layer none of them have."
@@ -82,10 +84,10 @@
 
 ## 5. 三层信息栈(MERIDIAN.md §12,按这个顺序铺)
 
-| 层 | 用语 | 用在 |
-|---|---|---|
-| 一·身份 | "real-time psychological stability monitor" | 第一段、定义、meta |
-| 二·竞争 | "behavioral leading indicator" / "fires before P&L, not after" | 对比、定位段 |
+| 层      | 用语                                                             | 用在                  |
+| ------- | ---------------------------------------------------------------- | --------------------- |
+| 一·身份 | "real-time psychological stability monitor"                      | 第一段、定义、meta    |
+| 二·竞争 | "behavioral leading indicator" / "fires before P&L, not after"   | 对比、定位段          |
 | 三·技术 | 7 个行为信号 + 认知科学 + 自适应学习,合成 PSI,对每个人自己的基线 | 产品页、FAQ、技术内容 |
 
 冷启动比喻(可用):**"Think Apple Watch stress monitor — but for trading discipline."**

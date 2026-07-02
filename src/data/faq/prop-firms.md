@@ -1,5 +1,5 @@
 ---
-question: "Does Meridian work with prop firm accounts (Apex, Topstep, etc.)?"
+question: 'Does Meridian work with prop firm accounts (Apex, Topstep, etc.)?'
 category: trading
 order: 3
 ---

@@ -1,5 +1,5 @@
 ---
-question: "Can I use Meridian in Market Replay or Sim mode?"
+question: 'Can I use Meridian in Market Replay or Sim mode?'
 category: trading
 order: 4
 ---

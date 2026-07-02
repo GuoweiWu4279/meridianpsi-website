@@ -1,5 +1,5 @@
 ---
-question: "What is the refund policy?"
+question: 'What is the refund policy?'
 category: billing
 order: 1
 ---

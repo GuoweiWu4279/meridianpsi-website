@@ -1,7 +1,7 @@
 # GEO ↔ Reddit — one loop (the merged system)
 
 > **Why this file exists (Gary, 2026-06-25):** GEO and Reddit were run as two systems. They are one. The GEO audit
-> already produces *exactly* what Reddit ops needs (which threads AI cites, which queries we're invisible on, who beats
+> already produces _exactly_ what Reddit ops needs (which threads AI cites, which queries we're invisible on, who beats
 > us) and Reddit is the **#1–2 lever** that moves those audits. This file wires them into a closed loop.
 >
 > **Read order for any GEO/Reddit work:** this file (the loop) → `CONTENT-SYSTEM.md` (the write loop) → `ARTIFACTS.md`
@@ -20,7 +20,7 @@ threads the engines mine — and to keep owned answer pages accurate as the dura
 the site keeps the description right when Reddit's volatile share dips.
 
 **The category is currently unclaimed off-site** (every psych-monitor competitor has zero Reddit + zero directories —
-see `GEO-FINDINGS §2`). This is a land-grab window, not a catch-up. That is the reason to run this loop *now*.
+see `GEO-FINDINGS §2`). This is a land-grab window, not a catch-up. That is the reason to run this loop _now_.
 
 ---
 
@@ -35,7 +35,7 @@ only the smallest, slowest lever (and account-gated). Ranked by control × lever
   author / be the resource they link); **directory** → get listed (free land-grab); **broker forum/help-desk** (Tradovate
   zendesk, tradeify…) → owned `/answers` page + community answers; **competitor product site** → can't enter, **DISPLACE**
   via our `/compare`+`/answers` for that exact query + directory listings. It also captures the engine's literal search
-  terms when the API surfaces them. So each query is worked by its actual source mix; the levers below are the *plays*,
+  terms when the API surfaces them. So each query is worked by its actual source mix; the levers below are the _plays_,
   the map says which one each query needs. (06-26 aggregate: competitor sites ×47, ours ×17, broker/forum ×15, content
   ×14, Reddit ×5.)
 - **★ Lever 1 — own subreddit (r/MeridianPSI) as a citable answer-corpus (BIGGEST, fully controllable, no karma gate,
@@ -43,19 +43,19 @@ only the smallest, slowest lever (and account-gated). Ranked by control × lever
   PSI / Guard freely, date facts, and structure each post so an engine can lift a clean chunk. We write one structured
   answer post for **each buyer query the audit shows us invisible on** — these become canonical sources AI can quote.
   Evidence it works: our own `r/u_MeridianPSI` content was already cited once (06-18 audit). **Honest limit:** a small
-  new sub won't out-rank a giant sub's viral thread, so Lever 1 is strongest for *entity/brand* queries ("what is
+  new sub won't out-rank a giant sub's viral thread, so Lever 1 is strongest for _entity/brand_ queries ("what is
   Meridian", "Meridian vs X" — where we already win) and as durable corroboration; competitive "best tool" queries
   still need Lever 2. This was the **underweighted lever** — most of this doc was Lever 2.
 - **Lever 2 — targeted presence in the threads AI already cites.** The audit hands us the exact `reddit.com` threads
   feeding answers (`GEO-TARGETS.md` Lane A). Disclosed, value-first presence there puts Meridian inside the engine's
-  source. This is where founder comments live — but the strategic move is *which ~10 threads*, not "reply to everything."
+  source. This is where founder comments live — but the strategic move is _which ~10 threads_, not "reply to everything."
 - **Lever 3 — pair every Reddit asset with an owned `/answers` page.** Reddit citation share is volatile; the owned page
   keeps the description accurate when it dips, and the two cross-reinforce in Google ranking (which AI retrieval rides).
   **2026-06-25 reality check:** the twins for all 5 invisible queries ALREADY EXIST and are factually current (scanned:
   no 7-day / no-telemetry / Intel-Guard-exclusive / 1.4.x defects) — e.g. `/answers/can-ninjatrader-stop-revenge-trading`,
   `/answers/best-ninjatrader-tool-to-stop-trading-after-a-loss`, `/answers/how-to-prevent-overtrading-in-ninjatrader`,
   `/use-cases/prop-firm-behavioral-risk-control`, `/best-ninjatrader-risk-management-tools`. **So do NOT build new pages
-  (page-inventory discipline, AGENTS.md).** That we're invisible *despite* accurate pages is the proof Failure B is an
+  (page-inventory discipline, AGENTS.md).** That we're invisible _despite_ accurate pages is the proof Failure B is an
   off-site problem (GEO_ACTION_PLAN §1: "no amount of on-site copy fixes this") — the lever is Reddit (Lever 1/2),
   blocked only on Phase-0. Lever-3 work = keep the existing twins in sync when facts change, not author duplicates.
 
@@ -102,7 +102,7 @@ it is the first thing that can ship once the account exists, unlike the comment 
 ## 2. The bridge — WIRED, not narrated (the forcing function)
 
 > 2026-06-25 rigor fix: the bridge used to be a sentence telling a future Claude to "derive targets by hand" — a
-> reminder, which the factory-rigor rubric calls a *proven corpse* (fires 0×). It is now **mechanical**: every
+> reminder, which the factory-rigor rubric calls a _proven corpse_ (fires 0×). It is now **mechanical**: every
 > `geo_audit.py` run calls `write_geo_targets()`, which filters the run's citations for `reddit.com` threads and
 > **auto-writes `reddit/ops/GEO-TARGETS.md`** (Lane A cited threads + Lane B invisible queries). No human "I derive"
 > step — the audit producing the intake is now code, not discipline. The human-in-the-loop steps (forced by the red
@@ -113,14 +113,14 @@ it is the first thing that can ship once the account exists, unlike the comment 
 The three lanes the emit produces (and the human curates):
 
 - **Lane A — Cited-thread targets.** The actual `reddit.com/...` URLs the audit shows the engines citing for our queries
-  → these threads are *already* feeding AI answers. If we add a genuinely useful, disclosed comment there (within red
+  → these threads are _already_ feeding AI answers. If we add a genuinely useful, disclosed comment there (within red
   lines), we put Meridian inside the engine's source. **Highest leverage.** Score each with the COMMENT-ANATOMY intake
   gate (≥3) and the freshness/lock check (§4) before queuing.
 - **Lane B — Invisible-query topics.** Every query where we're ❌/🟡 is an evergreen pain point traders post about
-  constantly. Turn it into (i) a standing search to find *fresh* threads asking it, and (ii) an own-sub / owned-page
+  constantly. Turn it into (i) a standing search to find _fresh_ threads asking it, and (ii) an own-sub / owned-page
   topic so the durable answer exists. (e.g. "stop tilt in real time", "lock me out after N losses".)
-- **Lane C — Competitor-gap angles.** Where the audit names a competitor, note the *gap* only we fill (behavioral layer
-  vs. their static lockout; both layers vs. their journal-only). That gap is the honest, non-promotional *substance* of
+- **Lane C — Competitor-gap angles.** Where the audit names a competitor, note the _gap_ only we fill (behavioral layer
+  vs. their static lockout; both layers vs. their journal-only). That gap is the honest, non-promotional _substance_ of
   a comment — never "we're better," always the mechanism distinction a real trader would find useful.
 
 > Maintenance tie-in (PLAYBOOK "canonical fact changed → re-sync live posts"): when an audit reveals a **stale fact in a
@@ -141,23 +141,23 @@ these make a trust-passing comment more likely to be retrieved and quoted by an 
 
 1. **Engines cite individual comments, not threads.** Write each reply **self-contained, 50–150 words, answer-first in
    sentence one**, readable with zero thread context. (Self-contained answer-first ≈ 2.3× citations, +40% retrieval.)
-2. **Name entities explicitly — never "this tool / it."** Say *Meridian*, *PSI 0–100*, *Guard*, *the 7 signals*,
-   *NinjaTrader 8 / Tradovate / Ironbeam*. (Stats +41%, quotations +28%, naming authoritative sources +115% — Princeton GEO.)
+2. **Name entities explicitly — never "this tool / it."** Say _Meridian_, _PSI 0–100_, _Guard_, _the 7 signals_,
+   _NinjaTrader 8 / Tradovate / Ironbeam_. (Stats +41%, quotations +28%, naming authoritative sources +115% — Princeton GEO.)
 3. **Specificity is the strongest lever** — 1–3 concrete facts per paragraph: an instrument (ES/NQ/MES), an eval mechanic
    (trailing drawdown, daily loss limit), a real number/moment ("2–8 min after a loss is where mine clustered"). This is
-   *also* COMMENT-ANATOMY Test B — the trust rule and the citation rule are the same rule.
-4. **Lead with the differentiation sentence:** real-time behavior vs. *your own baseline*, catching the impulse *before*
+   _also_ COMMENT-ANATOMY Test B — the trust rule and the citation rule are the same rule.
+4. **Lead with the differentiation sentence:** real-time behavior vs. _your own baseline_, catching the impulse _before_
    the order — not a static loss-limit that fires after you're already down. This is the one-line that distinguishes us
    from every lockout tool and every journal in the engine's eyes.
 5. **Date your facts** ("as of 2026…") — recency is ranked.
-6. **Earn a dominant comment.** A reply ~3× the #2's upvotes reads to the model as consensus. Win the *answer*, not the
-   thread. (And the dominant comment is usually the most *useful* one, not the most promotional — these align.)
+6. **Earn a dominant comment.** A reply ~3× the #2's upvotes reads to the model as consensus. Win the _answer_, not the
+   thread. (And the dominant comment is usually the most _useful_ one, not the most promotional — these align.)
 7. **Reply depth + speed:** stay in-thread for the first hours (first ~3h set ranking velocity). Genuine back-and-forth
    ranks; drive-by doesn't.
 
 **Pairing rule (non-negotiable):** every Reddit push has an **owned answer-page twin** (an `/answers` or `/compare` page
 saying the same thing). Reddit citation share is volatile (ChatGPT 60%→10% in weeks); the owned page is what keeps the
-*description* accurate when the Reddit citation drops out. GEO via Reddit without the owned backstop is half a system.
+_description_ accurate when the Reddit citation drops out. GEO via Reddit without the owned backstop is half a system.
 
 ---
 
@@ -169,7 +169,7 @@ audit caught ~4.7M vs ~5.1M for r/Daytrading between the two docs).** GEO adds o
 that roster:
 
 - **Prioritize by intent-per-member, not raw size.** AI over-cites tool/platform-specific subs, so a tiny exact-fit sub
-  (r/ninjatrader, r/Tradovate, r/PropFirm) can outweigh a giant general one for *citation*. **This does NOT loosen any
+  (r/ninjatrader, r/Tradovate, r/PropFirm) can outweigh a giant general one for _citation_. **This does NOT loosen any
   PLAYBOOK limit** — e.g. r/ninjatrader stays 禁 for any product mention (answer-only); the citation value there comes
   from genuinely useful answers, never a plug.
 - **Per-engine, don't spread effort evenly:** Perplexity = Reddit strongest (target Reddit work here first) → ChatGPT
@@ -180,7 +180,7 @@ that roster:
 **Constraint honesty — the red lines cap the speed, on purpose.** Research supports tightening account-level ratio from
 PLAYBOOK's 70/30 toward **~95/5** (≈9–19 genuine helpful contributions per disclosed mention), ≤2 subs/day, ≤~10
 posts/week, never identical text across subs, one disclosed founder account, cold DM permanent-never. **The
-no-automation, founder-led, disclosed model is a GEO *asset*, not a tax** — it's exactly what survives Reddit's spam
+no-automation, founder-led, disclosed model is a GEO _asset_, not a tax** — it's exactly what survives Reddit's spam
 filter + CQS (a filtered comment can't be cited at all) and what the Sept-2025 correction rewarded. This loop is a
 **slow compounding** engine (8–12 quality threads/mo), not a traffic faucet (LEARNINGS L7). Do not let GEO ambition push
 the ratio or cadence past the red lines — a shadowban zeroes the whole corpus.
@@ -192,20 +192,20 @@ the ratio or cadence past the red lines — a shadowban zeroes the whole corpus.
 Real threads the engines surface for our queries where a **disclosed founder comment can genuinely help** (within
 no-astroturf rules). **Before queuing any of these, Gary opens it in a browser to confirm it's not locked/archived and
 is still live** (our tooling can't read reddit.com; several IDs look 2023–24 and may be stale — a stale thread still
-ranks/cites but necrobumping reads badly, so prefer it as a *template* for finding the fresh equivalent).
+ranks/cites but necrobumping reads badly, so prefer it as a _template_ for finding the fresh equivalent).
 
-| Thread | Sub | OP's ask | Our honest angle |
-|---|---|---|---|
-| `…/1bk83sg/tips_for_combatting_revenge_trading_overtrading` | r/FuturesTrading | rules-on-paper but I ignore them in the moment | in-the-moment failure is the gap; real-time score + optional Guard you can't disable mid-tilt |
-| `…/163uveu/going_on_tilt` | r/FuturesTrading | how do I recognize/stop tilt in the moment | PSI drops as tilt builds *before* P&L; Guard cooldown |
-| `…/1cbn0vi/revenge_trading_keeping_me_from_being_profitable` | r/Daytrading | prop trader keeps blowing challenges to revenge trading | pre-commit rules when calm; behavioral flag + auto-lockout |
-| `…/1avv9ql/how_to_overcome_revenge_trades_and_overtrading` | r/Daytrading | concrete methods to stop revenge/overtrading | why willpower fails mid-tilt; external enforcement layer |
-| `…/yrvfvq/how_do_you_guys_control_your_impulses` | r/FuturesTrading | mechanisms to stop after a loss | lockout fires after the $ limit; detection fires before the order |
-| `…/1lcsf8q/how_i_finally_stopped_overtrading…` | r/TopStepX | prop trader shares their system, invites others | compare static prop kill-switch (P&L) vs behavior-based |
-| `…/18yp46w/serious_how_to_stop_overtrading` | r/Daytrading | how do I stop overtrading | enforced cooldown after N trades, not a mental note |
-| `…/1fy9yfp/any_advice_to_counter_overtrading…` | r/Daytrading | "need to always be green" compulsion | why the green-compulsion drives oversizing; baseline-deviation |
-| `…/15kknqa/trading_platform_with_loss_limit` | r/Daytrading | tool that auto-locks at a daily loss limit | list native options first; then the pre-emptive futures/NT8 angle |
-| `…/1899vxx/any_useful_ninjatrader_addons` | r/FuturesTrading | new NT8 trader, what add-ons are worth it | list several add-ons incl. Meridian, disclosed; not just ours |
+| Thread                                                       | Sub              | OP's ask                                                | Our honest angle                                                                              |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `…/1bk83sg/tips_for_combatting_revenge_trading_overtrading`  | r/FuturesTrading | rules-on-paper but I ignore them in the moment          | in-the-moment failure is the gap; real-time score + optional Guard you can't disable mid-tilt |
+| `…/163uveu/going_on_tilt`                                    | r/FuturesTrading | how do I recognize/stop tilt in the moment              | PSI drops as tilt builds _before_ P&L; Guard cooldown                                         |
+| `…/1cbn0vi/revenge_trading_keeping_me_from_being_profitable` | r/Daytrading     | prop trader keeps blowing challenges to revenge trading | pre-commit rules when calm; behavioral flag + auto-lockout                                    |
+| `…/1avv9ql/how_to_overcome_revenge_trades_and_overtrading`   | r/Daytrading     | concrete methods to stop revenge/overtrading            | why willpower fails mid-tilt; external enforcement layer                                      |
+| `…/yrvfvq/how_do_you_guys_control_your_impulses`             | r/FuturesTrading | mechanisms to stop after a loss                         | lockout fires after the $ limit; detection fires before the order                             |
+| `…/1lcsf8q/how_i_finally_stopped_overtrading…`               | r/TopStepX       | prop trader shares their system, invites others         | compare static prop kill-switch (P&L) vs behavior-based                                       |
+| `…/18yp46w/serious_how_to_stop_overtrading`                  | r/Daytrading     | how do I stop overtrading                               | enforced cooldown after N trades, not a mental note                                           |
+| `…/1fy9yfp/any_advice_to_counter_overtrading…`               | r/Daytrading     | "need to always be green" compulsion                    | why the green-compulsion drives oversizing; baseline-deviation                                |
+| `…/15kknqa/trading_platform_with_loss_limit`                 | r/Daytrading     | tool that auto-locks at a daily loss limit              | list native options first; then the pre-emptive futures/NT8 angle                             |
+| `…/1899vxx/any_useful_ninjatrader_addons`                    | r/FuturesTrading | new NT8 trader, what add-ons are worth it               | list several add-ons incl. Meridian, disclosed; not just ours                                 |
 
 (Lanes B/C: invisible queries "stop tilt in real time" / "lock me out after N losses" / "real-time psychology app" →
 build the fresh-thread search + the owned answer page. Full per-query data in `GEO-FINDINGS-2026-06-25.md`.)
@@ -218,9 +218,9 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
   score/curate the survivors into `queue.md` and note movement vs. last run (visibility, SoV, new competitors, new
   cited threads). The target-emit is code now, not a step I have to remember.
 - **★ Learning write-back (the self-IMPROVE half — without this it's a self-CHECK loop "cosplaying rigor"):** ~monthly,
-  write ONE `reddit/ops/LEARNINGS.md` entry answering: did any audit cite a thread *we* contributed to? did
+  write ONE `reddit/ops/LEARNINGS.md` entry answering: did any audit cite a thread _we_ contributed to? did
   visibility/SoV move? which comment angle landed vs. didn't? Distill it into a rule (the citability gate or the
-  targeting), and RETRACT dead targets (mark 毙 in `queue.md`). This is the loop *turning*, not just spinning — it is
+  targeting), and RETRACT dead targets (mark 毙 in `queue.md`). This is the loop _turning_, not just spinning — it is
   the part that compounds, and the part most likely to silently not happen, so it is named here as an explicit step.
 - **★ The REAL visibility measure (2026-06-29, multi-engine, BUILT):** `geo_journeys_v2.py` — ChatGPT + Gemini
   (`gemini-2.5-flash` google_search grounding), 8 personas × 4-turn UNBRANDED journeys, a judge layer (Meridian rank /
@@ -231,7 +231,7 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
   Gemini over a paid Perplexity key, 2026-06-29.)
 - **Leading metrics (8-week window, no hard trial/revenue target — LEARNINGS L7):** comment karma, median comment
   upvotes, inbound DMs, own-sub subs, **+ GEO-specific:** Meridian appearing in cited threads, audit visibility/SoV
-  trend, and whether any audit cites a thread *we* contributed to.
+  trend, and whether any audit cites a thread _we_ contributed to.
 - **Lagging:** GA4 `reddit.com` referral + (eventually) AI-engine referral (`python ~/.meridian/gdata.py ga4`), Whop
   outbound clicks. Attribution stays coarse (LEARNINGS) — read the weak signals together, don't chase a precise number.
 
@@ -248,6 +248,7 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
   proposed Perplexity probe. I run the loop; Gary supplies the hand + the gated publishes.
 
 ## 8. Cross-references (and who owns what — not two competing plans)
+
 - **This file = the operating LOOP** (audit→bridge→Reddit→corpus→re-audit). `Company/GEO_ACTION_PLAN.md` = the
   **on-site / entity-signal ACTION list** (schema, llms.txt, disambiguation, directories, Wikidata). They are one
   program, two scopes: off-site/Reddit loop here, on-site/entity there. Neither restates the other; on conflict this

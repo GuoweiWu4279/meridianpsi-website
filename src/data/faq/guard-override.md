@@ -1,5 +1,5 @@
 ---
-question: "Can I override a Guard rule mid-session?"
+question: 'Can I override a Guard rule mid-session?'
 category: trading
 order: 5
 ---

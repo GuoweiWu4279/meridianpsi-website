@@ -1,7 +1,7 @@
 ---
 title: What Not to Say
 section: compliance
-lastUpdated: "2026-05-01"
+lastUpdated: '2026-05-01'
 order: 2
 ---
 
@@ -9,18 +9,18 @@ These aren't arbitrary restrictions. Each one protects you from FTC liability or
 
 ---
 
-| Do not say | Why | Say instead |
-|---|---|---|
-| "Meridian will make you profitable" | False — Meridian manages risk and behavior; it does not control trade outcomes or guarantee profits | "Meridian monitors behavioral patterns that often precede losses" |
-| "Guaranteed to improve your trading" | Guarantees are a compliance red line | "Designed to support better execution discipline" |
-| "Eliminates emotions" / "no more emotional trading" | Impossible claim — Meridian creates friction, not emotional elimination | "Helps monitor behavioral pressure as it builds" |
-| "Prevents blowups" | Overclaims outcomes Meridian cannot guarantee | "Intervenes when behavioral signals indicate elevated risk" |
-| "Reduces losses" | Financial outcome claim — not provable per-user | "Intervenes during behavioral patterns associated with loss spirals" |
-| "This will make you a better trader" | Outcome claim | "Gives you real-time visibility into your behavioral patterns during the session" |
-| "Proven trading results" | Makes an evidential claim that doesn't exist at a per-user level | "Used by active NinjaTrader 8 traders who want behavioral feedback" |
-| "100% accurate" | Nothing in trading is 100% accurate | Remove — no qualifier makes this acceptable |
-| "Risk-free" | It's a paid subscription after the free trial, and trading itself is never risk-free | "14-day free trial — cancel anytime during the trial period" |
-| "Works on all platforms" | NT8 native + Tradovate/Ironbeam early access, Windows only | "Native in NinjaTrader 8; standalone Tradovate & Ironbeam apps in early access — Windows only" |
+| Do not say                                          | Why                                                                                                 | Say instead                                                                                    |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| "Meridian will make you profitable"                 | False — Meridian manages risk and behavior; it does not control trade outcomes or guarantee profits | "Meridian monitors behavioral patterns that often precede losses"                              |
+| "Guaranteed to improve your trading"                | Guarantees are a compliance red line                                                                | "Designed to support better execution discipline"                                              |
+| "Eliminates emotions" / "no more emotional trading" | Impossible claim — Meridian creates friction, not emotional elimination                             | "Helps monitor behavioral pressure as it builds"                                               |
+| "Prevents blowups"                                  | Overclaims outcomes Meridian cannot guarantee                                                       | "Intervenes when behavioral signals indicate elevated risk"                                    |
+| "Reduces losses"                                    | Financial outcome claim — not provable per-user                                                     | "Intervenes during behavioral patterns associated with loss spirals"                           |
+| "This will make you a better trader"                | Outcome claim                                                                                       | "Gives you real-time visibility into your behavioral patterns during the session"              |
+| "Proven trading results"                            | Makes an evidential claim that doesn't exist at a per-user level                                    | "Used by active NinjaTrader 8 traders who want behavioral feedback"                            |
+| "100% accurate"                                     | Nothing in trading is 100% accurate                                                                 | Remove — no qualifier makes this acceptable                                                    |
+| "Risk-free"                                         | It's a paid subscription after the free trial, and trading itself is never risk-free                | "14-day free trial — cancel anytime during the trial period"                                   |
+| "Works on all platforms"                            | NT8 native + Tradovate/Ironbeam early access, Windows only                                          | "Native in NinjaTrader 8; standalone Tradovate & Ironbeam apps in early access — Windows only" |
 
 ---
 

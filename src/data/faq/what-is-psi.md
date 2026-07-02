@@ -1,5 +1,5 @@
 ---
-question: "What is a Psychological Stability Index (PSI) in trading?"
+question: 'What is a Psychological Stability Index (PSI) in trading?'
 category: psychology
 order: 5
 ---
@@ -9,6 +9,7 @@ A Psychological Stability Index (PSI) is a real-time composite score that measur
 Unlike P&L, which only tells you what happened, PSI tells you **how you are behaving right now** — before the next trade closes.
 
 Meridian's PSI runs from 0 to 100:
+
 - **Stable (88–100):** Your behavior is consistent with your own session history. No significant stress signals are active.
 - **Caution (72–87):** One or more behavioral patterns are building pressure. Worth pausing to reassess.
 - **Warning (55–71):** Multiple behavioral patterns are active and the session is moving toward critical conditions. Strong prompt to slow down.

@@ -20,12 +20,26 @@ async function renderEntry(id: string) {
 
 // Render all prose sections upfront
 const [
-  r01, r012,
-  r020, r021, r022, r023,
-  r031, r032, r033, r034,
-  r041, r042, r043,
+  r01,
+  r012,
+  r020,
+  r021,
+  r022,
+  r023,
+  r031,
+  r032,
+  r033,
+  r034,
+  r041,
+  r042,
+  r043,
   r05,
-  r061, r062, r063, r064, r065, r066,
+  r061,
+  r062,
+  r063,
+  r064,
+  r065,
+  r066,
   r07,
 ] = await Promise.all([
   renderEntry('01-personal-details'),
@@ -52,63 +66,63 @@ const [
 ]);
 
 // Content components (capitalized for use as Astro components)
-const PersonalContent    = r01?.Content;
-const EarningsContent     = r012?.Content;
-const First48Content     = r020?.Content;
-const InstallContent     = r021?.Content;
-const First30Content     = r022?.Content;
-const DeepDiveContent    = r023?.Content;
+const PersonalContent = r01?.Content;
+const EarningsContent = r012?.Content;
+const First48Content = r020?.Content;
+const InstallContent = r021?.Content;
+const First30Content = r022?.Content;
+const DeepDiveContent = r023?.Content;
 const PositioningContent = r031?.Content;
-const DiffContent        = r032?.Content;
-const FaqContent         = r033?.Content;
-const AnglesContent      = r034?.Content;
-const FtcContent         = r041?.Content;
-const ForbiddenContent   = r042?.Content;
-const DoubtContent       = r043?.Content;
-const AssetsContent      = r05?.Content;
-const Script60Content    = r061?.Content;
-const Script3mContent    = r062?.Content;
-const Script30Content    = r063?.Content;
-const YtDescContent      = r064?.Content;
-const TweetContent       = r065?.Content;
-const NewsletterContent  = r066?.Content;
-const SupportContent     = r07?.Content;
+const DiffContent = r032?.Content;
+const FaqContent = r033?.Content;
+const AnglesContent = r034?.Content;
+const FtcContent = r041?.Content;
+const ForbiddenContent = r042?.Content;
+const DoubtContent = r043?.Content;
+const AssetsContent = r05?.Content;
+const Script60Content = r061?.Content;
+const Script3mContent = r062?.Content;
+const Script30Content = r063?.Content;
+const YtDescContent = r064?.Content;
+const TweetContent = r065?.Content;
+const NewsletterContent = r066?.Content;
+const SupportContent = r07?.Content;
 
 // Structured frontmatter data
-const heroData      = byId['00-hero']?.data;
-const lastUpdated   = heroData?.lastUpdated ?? '2026-05-15';
-const faqItems      = byId['03-3-audience-faq']?.data?.faqs ?? [];
-const positioningCopyables  = byId['03-1-core-positioning']?.data?.copyables ?? [];
-const diffCopyables         = byId['03-2-differentiation']?.data?.copyables ?? [];
-const anglesCopyables       = byId['03-4-angles-by-audience']?.data?.copyables ?? [];
-const ftcCopyables          = byId['04-1-ftc-disclosure']?.data?.copyables ?? [];
-const script60Copyables     = byId['06-1-video-60s-hook']?.data?.copyables ?? [];
-const script3mCopyables     = byId['06-2-video-3min-walkthrough']?.data?.copyables ?? [];
-const script30Copyables     = byId['06-3-video-30s-short']?.data?.copyables ?? [];
-const ytDescCopyables       = byId['06-4-youtube-description']?.data?.copyables ?? [];
-const tweetCopyables        = byId['06-5-twitter-thread']?.data?.copyables ?? [];
-const newsletterCopyables   = byId['06-6-newsletter-section']?.data?.copyables ?? [];
+const heroData = byId['00-hero']?.data;
+const lastUpdated = heroData?.lastUpdated ?? '2026-05-15';
+const faqItems = byId['03-3-audience-faq']?.data?.faqs ?? [];
+const positioningCopyables = byId['03-1-core-positioning']?.data?.copyables ?? [];
+const diffCopyables = byId['03-2-differentiation']?.data?.copyables ?? [];
+const anglesCopyables = byId['03-4-angles-by-audience']?.data?.copyables ?? [];
+const ftcCopyables = byId['04-1-ftc-disclosure']?.data?.copyables ?? [];
+const script60Copyables = byId['06-1-video-60s-hook']?.data?.copyables ?? [];
+const script3mCopyables = byId['06-2-video-3min-walkthrough']?.data?.copyables ?? [];
+const script30Copyables = byId['06-3-video-30s-short']?.data?.copyables ?? [];
+const ytDescCopyables = byId['06-4-youtube-description']?.data?.copyables ?? [];
+const tweetCopyables = byId['06-5-twitter-thread']?.data?.copyables ?? [];
+const newsletterCopyables = byId['06-6-newsletter-section']?.data?.copyables ?? [];
 
 // ── Section index for search + What's new ─────────────────────
 const sectionMeta: Record<string, { anchor: string; title: string }> = {
-  'personal-details':   { anchor: 's1', title: 'Your Details' },
-  'get-started':        { anchor: 's2', title: 'Get Started' },
-  'talking-points':     { anchor: 's3', title: 'Talking Points' },
-  'compliance':         { anchor: 's4', title: 'Compliance' },
-  'visual-assets':      { anchor: 's5', title: 'Visual Assets' },
-  'content-templates':  { anchor: 's6', title: 'Content Templates' },
-  'support':            { anchor: 's7', title: 'Support' },
-  'hero':               { anchor: '',   title: '' },
+  'personal-details': { anchor: 's1', title: 'Your Details' },
+  'get-started': { anchor: 's2', title: 'Get Started' },
+  'talking-points': { anchor: 's3', title: 'Talking Points' },
+  compliance: { anchor: 's4', title: 'Compliance' },
+  'visual-assets': { anchor: 's5', title: 'Visual Assets' },
+  'content-templates': { anchor: 's6', title: 'Content Templates' },
+  support: { anchor: 's7', title: 'Support' },
+  hero: { anchor: '', title: '' },
 };
 
 // Build the client-side search index
 function flattenMarkdown(raw: string): string {
   return raw
-    .replace(/```[\s\S]*?```/g, ' ')      // fenced code
-    .replace(/`[^`]+`/g, ' ')             // inline code
+    .replace(/```[\s\S]*?```/g, ' ') // fenced code
+    .replace(/`[^`]+`/g, ' ') // inline code
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ') // images
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // links → label
-    .replace(/[#>*_~|]/g, ' ')            // markdown syntax chars
+    .replace(/[#>*_~|]/g, ' ') // markdown syntax chars
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -162,7 +176,7 @@ type Asset = {
   label: string;
   desc: string;
   thumb?: string;
-  href?: string;          // direct download/view URL; absent ⇒ "coming soon"
+  href?: string; // direct download/view URL; absent ⇒ "coming soon"
   type: 'image' | 'video' | 'pdf' | 'youtube';
 };
 
@@ -175,79 +189,247 @@ const assetCategories: AssetCategory[] = [
   {
     title: 'Logo',
     items: [
-      { label: 'Logo — SVG (vector, transparent)', desc: 'Best quality at any size — use this for video, print, and high-res content', thumb: '/meridian-logo-light.png', href: '/meridian-logo.svg', type: 'image' },
-      { label: 'Logo — light (PNG, 16:9)', desc: 'Horizontal layout, white background — for banners, thumbnails, overlays', thumb: '/meridian-logo-light.png', href: '/meridian-logo-light.png', type: 'image' },
-      { label: 'Logo — dark (PNG, 16:9)', desc: 'Horizontal layout, black background — for dark content and overlays', thumb: '/meridian-logo-dark.png', href: '/meridian-logo-dark.png', type: 'image' },
-      { label: 'Logo — light square (PNG)', desc: 'Square format, white background — for social profiles and thumbnails', thumb: '/meridian-logo-square-light.png', href: '/meridian-logo-square-light.png', type: 'image' },
-      { label: 'Logo — dark square (PNG)', desc: 'Square format, black background — for dark social profiles and posts', thumb: '/meridian-logo-square-dark.png', href: '/meridian-logo-square-dark.png', type: 'image' },
-      { label: 'App icon (PNG, 256px)', desc: 'The desktop app icon — emerald pulse on a dark rounded square', thumb: '/meridian-app-icon.png', href: '/meridian-app-icon.png', type: 'image' },
+      {
+        label: 'Logo — SVG (vector, transparent)',
+        desc: 'Best quality at any size — use this for video, print, and high-res content',
+        thumb: '/meridian-logo-light.png',
+        href: '/meridian-logo.svg',
+        type: 'image',
+      },
+      {
+        label: 'Logo — light (PNG, 16:9)',
+        desc: 'Horizontal layout, white background — for banners, thumbnails, overlays',
+        thumb: '/meridian-logo-light.png',
+        href: '/meridian-logo-light.png',
+        type: 'image',
+      },
+      {
+        label: 'Logo — dark (PNG, 16:9)',
+        desc: 'Horizontal layout, black background — for dark content and overlays',
+        thumb: '/meridian-logo-dark.png',
+        href: '/meridian-logo-dark.png',
+        type: 'image',
+      },
+      {
+        label: 'Logo — light square (PNG)',
+        desc: 'Square format, white background — for social profiles and thumbnails',
+        thumb: '/meridian-logo-square-light.png',
+        href: '/meridian-logo-square-light.png',
+        type: 'image',
+      },
+      {
+        label: 'Logo — dark square (PNG)',
+        desc: 'Square format, black background — for dark social profiles and posts',
+        thumb: '/meridian-logo-square-dark.png',
+        href: '/meridian-logo-square-dark.png',
+        type: 'image',
+      },
+      {
+        label: 'App icon (PNG, 256px)',
+        desc: 'The desktop app icon — emerald pulse on a dark rounded square',
+        thumb: '/meridian-app-icon.png',
+        href: '/meridian-app-icon.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Live Monitor — HUD States',
     items: [
-      { label: 'HUD — Stable', desc: 'Green zone, all signals flat', thumb: '/screenshots/hud-stable.png', href: '/screenshots/hud-stable.png', type: 'image' },
-      { label: 'HUD — Warning', desc: 'Orange zone, Size Spike signal active (Oversize)', thumb: '/screenshots/hud-warning-journal.png', href: '/screenshots/hud-warning-journal.png', type: 'image' },
-      { label: 'HUD — Critical', desc: 'Red zone, high pressure, behavioral signals firing', thumb: '/screenshots/psi-critical.png', href: '/screenshots/psi-critical.png', type: 'image' },
+      {
+        label: 'HUD — Stable',
+        desc: 'Green zone, all signals flat',
+        thumb: '/screenshots/hud-stable.png',
+        href: '/screenshots/hud-stable.png',
+        type: 'image',
+      },
+      {
+        label: 'HUD — Warning',
+        desc: 'Orange zone, Size Spike signal active (Oversize)',
+        thumb: '/screenshots/hud-warning-journal.png',
+        href: '/screenshots/hud-warning-journal.png',
+        type: 'image',
+      },
+      {
+        label: 'HUD — Critical',
+        desc: 'Red zone, high pressure, behavioral signals firing',
+        thumb: '/screenshots/psi-critical.png',
+        href: '/screenshots/psi-critical.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Guard — Intervention Levels',
     items: [
-      { label: 'Guard — Acknowledge gate (L3)', desc: 'Must type a phrase to confirm before continuing', thumb: '/screenshots/guard-acknowledge.png', href: '/screenshots/guard-acknowledge.png', type: 'image' },
-      { label: 'Guard — Trading Pause (L4)', desc: 'New entries blocked until the pause expires', thumb: '/screenshots/guard-countdown.png', href: '/screenshots/guard-countdown.png', type: 'image' },
-      { label: 'Guard — Disconnect (L5)', desc: 'Broker connection cut', thumb: '/screenshots/guard-disconnect.png', href: '/screenshots/guard-disconnect.png', type: 'image' },
+      {
+        label: 'Guard — Acknowledge gate (L3)',
+        desc: 'Must type a phrase to confirm before continuing',
+        thumb: '/screenshots/guard-acknowledge.png',
+        href: '/screenshots/guard-acknowledge.png',
+        type: 'image',
+      },
+      {
+        label: 'Guard — Trading Pause (L4)',
+        desc: 'New entries blocked until the pause expires',
+        thumb: '/screenshots/guard-countdown.png',
+        href: '/screenshots/guard-countdown.png',
+        type: 'image',
+      },
+      {
+        label: 'Guard — Disconnect (L5)',
+        desc: 'Broker connection cut',
+        thumb: '/screenshots/guard-disconnect.png',
+        href: '/screenshots/guard-disconnect.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Session Report',
     items: [
-      { label: 'Session Report — PSI Insight', desc: 'PSI score, rule event log, overview stats', thumb: '/screenshots/session-report-full.png', href: '/screenshots/session-report-full.png', type: 'image' },
-      { label: 'Session Report — Composure detail', desc: 'Composure Score, zone breakdown, tilt cascade log', thumb: '/screenshots/session-report-detail.png', href: '/screenshots/session-report-detail.png', type: 'image' },
+      {
+        label: 'Session Report — PSI Insight',
+        desc: 'PSI score, rule event log, overview stats',
+        thumb: '/screenshots/session-report-full.png',
+        href: '/screenshots/session-report-full.png',
+        type: 'image',
+      },
+      {
+        label: 'Session Report — Composure detail',
+        desc: 'Composure Score, zone breakdown, tilt cascade log',
+        thumb: '/screenshots/session-report-detail.png',
+        href: '/screenshots/session-report-detail.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Intel — Analytics',
     items: [
-      { label: "Intel — Today's risk brief + digest", desc: 'Pre-session summary, monthly composure grade, P&L correlation', thumb: '/screenshots/intel-overview.png', href: '/screenshots/intel-overview.png', type: 'image' },
-      { label: 'Intel — Weekday patterns + progress', desc: 'Day-of-week breakdown, 6-month composure trend, crash patterns', thumb: '/screenshots/intel-performance-weekday.png', href: '/screenshots/intel-performance-weekday.png', type: 'image' },
+      {
+        label: "Intel — Today's risk brief + digest",
+        desc: 'Pre-session summary, monthly composure grade, P&L correlation',
+        thumb: '/screenshots/intel-overview.png',
+        href: '/screenshots/intel-overview.png',
+        type: 'image',
+      },
+      {
+        label: 'Intel — Weekday patterns + progress',
+        desc: 'Day-of-week breakdown, 6-month composure trend, crash patterns',
+        thumb: '/screenshots/intel-performance-weekday.png',
+        href: '/screenshots/intel-performance-weekday.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Journal & History',
     items: [
-      { label: 'Journal — compiled daily view', desc: 'Auto-compiled session journal with trade entries and P&L', thumb: '/screenshots/journal-compiled.png', href: '/screenshots/journal-compiled.png', type: 'image' },
-      { label: 'Journal — entries and reflection', desc: 'Session entries with mood tags, notes, and reflection prompts', thumb: '/screenshots/journal-entries.png', href: '/screenshots/journal-entries.png', type: 'image' },
-      { label: 'History — month calendar', desc: 'Composure trend, equity curve, and a color-coded session calendar, month over month', thumb: '/screenshots/history-month-calendar.png', href: '/screenshots/history-month-calendar.png', type: 'image' },
+      {
+        label: 'Journal — compiled daily view',
+        desc: 'Auto-compiled session journal with trade entries and P&L',
+        thumb: '/screenshots/journal-compiled.png',
+        href: '/screenshots/journal-compiled.png',
+        type: 'image',
+      },
+      {
+        label: 'Journal — entries and reflection',
+        desc: 'Session entries with mood tags, notes, and reflection prompts',
+        thumb: '/screenshots/journal-entries.png',
+        href: '/screenshots/journal-entries.png',
+        type: 'image',
+      },
+      {
+        label: 'History — month calendar',
+        desc: 'Composure trend, equity curve, and a color-coded session calendar, month over month',
+        thumb: '/screenshots/history-month-calendar.png',
+        href: '/screenshots/history-month-calendar.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Settings & Profile',
     items: [
-      { label: 'Settings — trading profile', desc: 'Session hours, position sizing, risk limits configuration', thumb: '/screenshots/settings-profile.png', href: '/screenshots/settings-profile.png', type: 'image' },
-      { label: 'Settings — advanced and display', desc: 'Response level (Balanced), fine-tuning sliders, display modes', thumb: '/screenshots/settings-advanced.png', href: '/screenshots/settings-advanced.png', type: 'image' },
-      { label: 'Profile — adaptive baseline', desc: 'A fully-calibrated baseline — average loss size, position size, risk:reward, and win/loss hold times, learned from your sessions', thumb: '/screenshots/profile-baseline.png', href: '/screenshots/profile-baseline.png', type: 'image' },
+      {
+        label: 'Settings — trading profile',
+        desc: 'Session hours, position sizing, risk limits configuration',
+        thumb: '/screenshots/settings-profile.png',
+        href: '/screenshots/settings-profile.png',
+        type: 'image',
+      },
+      {
+        label: 'Settings — advanced and display',
+        desc: 'Response level (Balanced), fine-tuning sliders, display modes',
+        thumb: '/screenshots/settings-advanced.png',
+        href: '/screenshots/settings-advanced.png',
+        type: 'image',
+      },
+      {
+        label: 'Profile — adaptive baseline',
+        desc: 'A fully-calibrated baseline — average loss size, position size, risk:reward, and win/loss hold times, learned from your sessions',
+        thumb: '/screenshots/profile-baseline.png',
+        href: '/screenshots/profile-baseline.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'Standalone App (Tradovate & Ironbeam)',
     items: [
-      { label: 'Standalone — live dashboard', desc: 'The broker-connected desktop app: composure ring, PSI timeline, behavioral signals, quick journal', thumb: '/screenshots/standalone-app-early-access.png', href: '/screenshots/standalone-app-early-access.png', type: 'image' },
-      { label: 'Standalone — guided connect', desc: 'Three-step broker connect with automatic Demo/Live detection and per-field help', thumb: '/screenshots/standalone-connect-guided.png', href: '/screenshots/standalone-connect-guided.png', type: 'image' },
-      { label: 'Standalone — Guard pause, live countdown', desc: 'An active trading pause: countdown, progress, the rule that fired, and End Early', thumb: '/screenshots/standalone-guard-paused.png', href: '/screenshots/standalone-guard-paused.png', type: 'image' },
+      {
+        label: 'Standalone — live dashboard',
+        desc: 'The broker-connected desktop app: composure ring, PSI timeline, behavioral signals, quick journal',
+        thumb: '/screenshots/standalone-app-early-access.png',
+        href: '/screenshots/standalone-app-early-access.png',
+        type: 'image',
+      },
+      {
+        label: 'Standalone — guided connect',
+        desc: 'Three-step broker connect with automatic Demo/Live detection and per-field help',
+        thumb: '/screenshots/standalone-connect-guided.png',
+        href: '/screenshots/standalone-connect-guided.png',
+        type: 'image',
+      },
+      {
+        label: 'Standalone — Guard pause, live countdown',
+        desc: 'An active trading pause: countdown, progress, the rule that fired, and End Early',
+        thumb: '/screenshots/standalone-guard-paused.png',
+        href: '/screenshots/standalone-guard-paused.png',
+        type: 'image',
+      },
     ],
   },
   {
     title: 'B-roll Video',
     items: [
-      { label: 'B-roll demo video (1080p, MP4)', desc: 'Background footage or picture-in-picture overlay. Note: recorded on the pre-v1.5 interface — for current-UI visuals use the screenshots above', thumb: '/screenshots/hud-stable.png', href: '/videos/hero-demo.mp4', type: 'video' },
+      {
+        label: 'B-roll demo video (1080p, MP4)',
+        desc: 'Background footage or picture-in-picture overlay. Note: recorded on the pre-v1.5 interface — for current-UI visuals use the screenshots above',
+        thumb: '/screenshots/hud-stable.png',
+        href: '/videos/hero-demo.mp4',
+        type: 'video',
+      },
     ],
   },
   {
     title: 'Feature Demo Videos',
     items: [
-      { label: 'PSI Monitor — feature walkthrough', desc: 'Live HUD, behavioral signals, and how PSI scores update in real time. Note: shows the pre-v1.5 interface', thumb: '/screenshots/psi-monitor-thumb.jpg', href: 'https://www.youtube.com/watch?v=DjzPWxPGHs8', type: 'youtube' },
-      { label: 'Adaptive Learning — settings walkthrough', desc: 'How the baseline learns from your sessions and how to configure your trading profile. Note: shows the pre-v1.5 interface', thumb: '/screenshots/adaptive-learning-thumb.jpg', href: 'https://www.youtube.com/watch?v=3T-5hDFjeNQ', type: 'youtube' },
+      {
+        label: 'PSI Monitor — feature walkthrough',
+        desc: 'Live HUD, behavioral signals, and how PSI scores update in real time. Note: shows the pre-v1.5 interface',
+        thumb: '/screenshots/psi-monitor-thumb.jpg',
+        href: 'https://www.youtube.com/watch?v=DjzPWxPGHs8',
+        type: 'youtube',
+      },
+      {
+        label: 'Adaptive Learning — settings walkthrough',
+        desc: 'How the baseline learns from your sessions and how to configure your trading profile. Note: shows the pre-v1.5 interface',
+        thumb: '/screenshots/adaptive-learning-thumb.jpg',
+        href: 'https://www.youtube.com/watch?v=3T-5hDFjeNQ',
+        type: 'youtube',
+      },
     ],
   },
 ];
@@ -270,18 +452,17 @@ const metadata = {
 };
 
 const tocItems = [
-  { id: 's1', label: 'Your Details',        icon: '01' },
-  { id: 's2', label: 'Get Started',         icon: '02' },
-  { id: 's3', label: 'Talking Points',      icon: '03' },
-  { id: 's4', label: 'Compliance',          icon: '04' },
-  { id: 's5', label: 'Visual Assets',       icon: '05' },
-  { id: 's6', label: 'Content Templates',   icon: '06' },
-  { id: 's7', label: 'Support',             icon: '07' },
+  { id: 's1', label: 'Your Details', icon: '01' },
+  { id: 's2', label: 'Get Started', icon: '02' },
+  { id: 's3', label: 'Talking Points', icon: '03' },
+  { id: 's4', label: 'Compliance', icon: '04' },
+  { id: 's5', label: 'Visual Assets', icon: '05' },
+  { id: 's6', label: 'Content Templates', icon: '06' },
+  { id: 's7', label: 'Support', icon: '07' },
 ];
 ---
 
 <Layout metadata={metadata}>
-
   <!-- Skip to main content (keyboard / screen reader users) -->
   <a
     href="#main-content"
@@ -291,7 +472,7 @@ const tocItems = [
   </a>
 
   <!-- Search index for client-side fuzzy search -->
-  <script type="application/json" id="kit-search-index" set:html={JSON.stringify(searchIndex)}></script>
+  <script type="application/json" id="kit-search-index" set:html={JSON.stringify(searchIndex)} />
 
   <!-- ═══════════════════════════════════════════════════════
        DASHBOARD HERO + WHAT'S NEW + QUICK ACTIONS + STRIP
@@ -315,22 +496,32 @@ const tocItems = [
     id="toc-mobile"
     class="lg:hidden border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900 print:hidden mt-8"
   >
-    <summary class="px-6 py-3.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-pointer list-none flex items-center justify-between select-none">
+    <summary
+      class="px-6 py-3.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 cursor-pointer list-none flex items-center justify-between select-none"
+    >
       <span>Jump to section</span>
-      <svg class="w-4 h-4 text-zinc-400 transition-transform [[open]_&]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      <svg
+        class="w-4 h-4 text-zinc-400 transition-transform [[open]_&]:rotate-180"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </summary>
     <nav aria-label="Section navigation (mobile)" class="px-6 pb-4 grid grid-cols-2 gap-1">
-      {tocItems.map((item) => (
-        <a
-          href={`#${item.id}`}
-          class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
-        >
-          <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 w-5 shrink-0">{item.icon}</span>
-          {item.label}
-        </a>
-      ))}
+      {
+        tocItems.map((item) => (
+          <a
+            href={`#${item.id}`}
+            class="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+          >
+            <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 w-5 shrink-0">{item.icon}</span>
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
   </details>
 
@@ -338,75 +529,115 @@ const tocItems = [
        TWO-COLUMN LAYOUT
        ═══════════════════════════════════════════════════════ -->
   <div class="max-w-6xl mx-auto px-6 flex gap-10 pt-8 pb-28">
-
     <!-- Sidebar TOC (hidden on mobile, sticky on desktop) -->
-    <aside
-      class="hidden lg:block w-56 shrink-0 print:hidden"
-      aria-label="Section navigation"
-    >
+    <aside class="hidden lg:block w-56 shrink-0 print:hidden" aria-label="Section navigation">
       <nav class="sticky top-24 space-y-3" id="toc-nav">
-
         <!-- Search trigger -->
         <KitSearch />
 
         <div class="border-t border-zinc-100 dark:border-zinc-800 pt-3 space-y-0.5">
-          {tocItems.map((item) => (
-            <a
-              href={`#${item.id}`}
-              data-toc-target={item.id}
-              class="toc-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-            >
-              <span class="text-xs font-mono text-zinc-300 dark:text-zinc-600 w-5 shrink-0 toc-icon" aria-hidden="true">{item.icon}</span>
-              {item.label}
-            </a>
-          ))}
+          {
+            tocItems.map((item) => (
+              <a
+                href={`#${item.id}`}
+                data-toc-target={item.id}
+                class="toc-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <span
+                  class="text-xs font-mono text-zinc-300 dark:text-zinc-600 w-5 shrink-0 toc-icon"
+                  aria-hidden="true"
+                >
+                  {item.icon}
+                </span>
+                {item.label}
+              </a>
+            ))
+          }
         </div>
 
-        {zipAvailable && (
-          <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800">
-            <a
-              href="/partner-kit/meridian-creator-kit.zip"
-              download
-              class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-            >
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Download all assets
-            </a>
-          </div>
-        )}
+        {
+          zipAvailable && (
+            <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800">
+              <a
+                href="/partner-kit/meridian-creator-kit.zip"
+                download
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
+              >
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+                Download all assets
+              </a>
+            </div>
+          )
+        }
       </nav>
     </aside>
 
     <!-- Main content -->
     <main id="main-content" class="flex-1 min-w-0 space-y-5">
-
       <!-- ── § 1 Your Personal Details ───────────────────── -->
-      <CollapsibleSection id="s1" numLabel="01" title="Your Personal Details" subtitle="Save your code and link once — every template auto-fills from here." defaultOpen={true}>
-
+      <CollapsibleSection
+        id="s1"
+        numLabel="01"
+        title="Your Personal Details"
+        subtitle="Save your code and link once — every template auto-fills from here."
+        defaultOpen={true}
+      >
         <!-- One-time personalization setup form -->
-        <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 mb-7" id="kit-setup-panel">
+        <div
+          class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-5 mb-7"
+          id="kit-setup-panel"
+        >
           <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 mb-4">Auto-fill your templates</p>
           <div class="grid sm:grid-cols-3 gap-3">
             <div>
               <label for="setup-name" class="block text-xs text-zinc-500 mb-1.5">Your name</label>
-              <input id="setup-name" type="text" placeholder="Gary" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400" />
+              <input
+                id="setup-name"
+                type="text"
+                placeholder="Gary"
+                autocomplete="off"
+                class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400"
+              />
             </div>
             <div>
               <label for="setup-code" class="block text-xs text-zinc-500 mb-1.5">Promo code</label>
-              <input id="setup-code" type="text" placeholder="YOURNAME10" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400" />
+              <input
+                id="setup-code"
+                type="text"
+                placeholder="YOURNAME10"
+                autocomplete="off"
+                class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400"
+              />
             </div>
             <div>
               <label for="setup-link" class="block text-xs text-zinc-500 mb-1.5">Affiliate link</label>
-              <input id="setup-link" type="text" placeholder="whop.com/meridian/?a=yourname" autocomplete="off" class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400" />
+              <input
+                id="setup-link"
+                type="text"
+                placeholder="whop.com/meridian/?a=yourname"
+                autocomplete="off"
+                class="w-full px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400"
+              />
             </div>
           </div>
           <div class="flex items-center gap-3 mt-4">
-            <button id="setup-save" type="button" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40">
+            <button
+              id="setup-save"
+              type="button"
+              class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+            >
               Save &amp; apply
             </button>
-            <p id="setup-status" class="text-xs text-zinc-400 opacity-0 transition-opacity">Saved — all templates updated.</p>
+            <p id="setup-status" class="text-xs text-zinc-400 opacity-0 transition-opacity">
+              Saved — all templates updated.
+            </p>
           </div>
         </div>
 
@@ -423,7 +654,13 @@ const tocItems = [
       </CollapsibleSection>
 
       <!-- ── § 2 Get Started ─────────────────────────────── -->
-      <CollapsibleSection id="s2" numLabel="02" title="Get Started with Meridian" subtitle="Install, configure, and understand the product before you make content about it." defaultOpen={true}>
+      <CollapsibleSection
+        id="s2"
+        numLabel="02"
+        title="Get Started with Meridian"
+        subtitle="Install, configure, and understand the product before you make content about it."
+        defaultOpen={true}
+      >
         <div class="space-y-10">
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-3">Your first 48 hours</h3>
@@ -456,65 +693,158 @@ const tocItems = [
       </CollapsibleSection>
 
       <!-- ── § 3 Talking Points ──────────────────────────── -->
-      <CollapsibleSection id="s3" numLabel="03" title="Talking Points" subtitle="Use these verbatim, paraphrase them, or use them to calibrate the right level of precision. Accuracy matters more than matching word-for-word." defaultOpen={true}>
+      <CollapsibleSection
+        id="s3"
+        numLabel="03"
+        title="Talking Points"
+        subtitle="Use these verbatim, paraphrase them, or use them to calibrate the right level of precision. Accuracy matters more than matching word-for-word."
+        defaultOpen={true}
+      >
         <div class="space-y-10">
-
           <!-- 3.1 Core Positioning -->
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Core positioning</h3>
-            {positioningCopyables.length > 0 ? (
-              <div class="space-y-3">
-                {positioningCopyables.map((item: { label: string; content: string }) => (
-                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                      <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
-                      <div class="flex items-center gap-3">
-                        <button type="button" class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-pin-label={item.label} data-pin-content={item.content} data-pin-source="Core positioning" aria-label={`Pin ${item.label}`} aria-pressed="false">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                          <span class="pin-label">Pin</span>
-                        </button>
-                        <button type="button" class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-copy={item.content} aria-label={`Copy ${item.label}`}>
-                          <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          <span class="copy-label">Copy</span>
-                        </button>
+            {
+              positioningCopyables.length > 0 ? (
+                <div class="space-y-3">
+                  {positioningCopyables.map((item: { label: string; content: string }) => (
+                    <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                      <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                        <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
+                        <div class="flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-pin-label={item.label}
+                            data-pin-content={item.content}
+                            data-pin-source="Core positioning"
+                            aria-label={`Pin ${item.label}`}
+                            aria-pressed="false"
+                          >
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                              />
+                            </svg>
+                            <span class="pin-label">Pin</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-copy={item.content}
+                            aria-label={`Copy ${item.label}`}
+                          >
+                            <svg
+                              class="w-3.5 h-3.5 copy-icon"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span class="copy-label">Copy</span>
+                          </button>
+                        </div>
                       </div>
+                      <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                        {item.content}
+                      </p>
                     </div>
-                    <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
-                {PositioningContent ? <PositioningContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
-              </div>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                  {PositioningContent ? (
+                    <PositioningContent />
+                  ) : (
+                    <p class="text-zinc-400 italic">Content coming soon.</p>
+                  )}
+                </div>
+              )
+            }
           </div>
 
           <!-- 3.2 Differentiation -->
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">How Meridian is different</h3>
-            {diffCopyables.length > 0 && (
-              <div class="space-y-3 mb-6">
-                {diffCopyables.map((item: { label: string; content: string }) => (
-                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                      <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
-                      <div class="flex items-center gap-3">
-                        <button type="button" class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-pin-label={item.label} data-pin-content={item.content} data-pin-source="Differentiation" aria-label={`Pin ${item.label}`} aria-pressed="false">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                          <span class="pin-label">Pin</span>
-                        </button>
-                        <button type="button" class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-copy={item.content} aria-label={`Copy ${item.label}`}>
-                          <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          <span class="copy-label">Copy</span>
-                        </button>
+            {
+              diffCopyables.length > 0 && (
+                <div class="space-y-3 mb-6">
+                  {diffCopyables.map((item: { label: string; content: string }) => (
+                    <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                      <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                        <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
+                        <div class="flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-pin-label={item.label}
+                            data-pin-content={item.content}
+                            data-pin-source="Differentiation"
+                            aria-label={`Pin ${item.label}`}
+                            aria-pressed="false"
+                          >
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                              />
+                            </svg>
+                            <span class="pin-label">Pin</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-copy={item.content}
+                            aria-label={`Copy ${item.label}`}
+                          >
+                            <svg
+                              class="w-3.5 h-3.5 copy-icon"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span class="copy-label">Copy</span>
+                          </button>
+                        </div>
                       </div>
+                      <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.content}</p>
                     </div>
-                    <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )
+            }
             <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
               {DiffContent ? <DiffContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
             </div>
@@ -522,55 +852,106 @@ const tocItems = [
 
           <!-- 3.3 Audience FAQ (accordion) -->
           <div>
-            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Questions your audience will ask</h3>
-            {faqItems.length > 0 ? (
-              <div class="space-y-2">
-                {faqItems.map((item: { q: string; a: string }) => (
-                  <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                    <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
-                      <span class="text-sm font-medium text-zinc-900 dark:text-zinc-100 pr-4">{item.q}</span>
-                      <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </summary>
-                    <div class="px-5 pb-4 pt-3 border-t border-zinc-100 dark:border-zinc-800">
-                      <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.a}</p>
-                    </div>
-                  </details>
-                ))}
-              </div>
-            ) : (
-              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
-                {FaqContent ? <FaqContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
-              </div>
-            )}
+            <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
+              Questions your audience will ask
+            </h3>
+            {
+              faqItems.length > 0 ? (
+                <div class="space-y-2">
+                  {faqItems.map((item: { q: string; a: string }) => (
+                    <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                      <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                        <span class="text-sm font-medium text-zinc-900 dark:text-zinc-100 pr-4">{item.q}</span>
+                        <svg
+                          class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </summary>
+                      <div class="px-5 pb-4 pt-3 border-t border-zinc-100 dark:border-zinc-800">
+                        <p class="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.a}</p>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              ) : (
+                <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                  {FaqContent ? <FaqContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+                </div>
+              )
+            }
           </div>
 
           <!-- 3.4 Audience angles -->
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Angles by audience type</h3>
-            {anglesCopyables.length > 0 && (
-              <div class="space-y-3 mb-6">
-                {anglesCopyables.map((item: { label: string; content: string }) => (
-                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                      <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
-                      <div class="flex items-center gap-3">
-                        <button type="button" class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-pin-label={item.label} data-pin-content={item.content} data-pin-source="Audience angles" aria-label={`Pin ${item.label}`} aria-pressed="false">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                          <span class="pin-label">Pin</span>
-                        </button>
-                        <button type="button" class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-copy={item.content} aria-label={`Copy ${item.label}`}>
-                          <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          <span class="copy-label">Copy</span>
-                        </button>
+            {
+              anglesCopyables.length > 0 && (
+                <div class="space-y-3 mb-6">
+                  {anglesCopyables.map((item: { label: string; content: string }) => (
+                    <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                      <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                        <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
+                        <div class="flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-pin-label={item.label}
+                            data-pin-content={item.content}
+                            data-pin-source="Audience angles"
+                            aria-label={`Pin ${item.label}`}
+                            aria-pressed="false"
+                          >
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                              />
+                            </svg>
+                            <span class="pin-label">Pin</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-copy={item.content}
+                            aria-label={`Copy ${item.label}`}
+                          >
+                            <svg
+                              class="w-3.5 h-3.5 copy-icon"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span class="copy-label">Copy</span>
+                          </button>
+                        </div>
                       </div>
+                      <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.content}</p>
                     </div>
-                    <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )
+            }
             <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
               {AnglesContent ? <AnglesContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
             </div>
@@ -579,37 +960,85 @@ const tocItems = [
       </CollapsibleSection>
 
       <!-- ── § 4 Compliance ──────────────────────────────── -->
-      <CollapsibleSection id="s4" numLabel="04" title="Compliance" subtitle="These rules protect you as much as they protect us. FTC enforcement falls on the creator, not the brand.">
+      <CollapsibleSection
+        id="s4"
+        numLabel="04"
+        title="Compliance"
+        subtitle="These rules protect you as much as they protect us. FTC enforcement falls on the creator, not the brand."
+      >
         <div class="space-y-10">
           <!-- 4.1 FTC Disclosure -->
           <div>
             <h3 class="text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Disclosure language</h3>
-            {ftcCopyables.length > 0 ? (
-              <div class="space-y-3">
-                {ftcCopyables.map((item: { label: string; content: string }) => (
-                  <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                      <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
-                      <div class="flex items-center gap-3">
-                        <button type="button" class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-pin-label={item.label} data-pin-content={item.content} data-pin-source="FTC disclosure" aria-label={`Pin ${item.label}`} aria-pressed="false">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                          <span class="pin-label">Pin</span>
-                        </button>
-                        <button type="button" class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-copy={item.content} aria-label={`Copy ${item.label}`}>
-                          <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                          <span class="copy-label">Copy</span>
-                        </button>
+            {
+              ftcCopyables.length > 0 ? (
+                <div class="space-y-3">
+                  {ftcCopyables.map((item: { label: string; content: string }) => (
+                    <div class="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                      <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                        <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
+                        <div class="flex items-center gap-3">
+                          <button
+                            type="button"
+                            class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-pin-label={item.label}
+                            data-pin-content={item.content}
+                            data-pin-source="FTC disclosure"
+                            aria-label={`Pin ${item.label}`}
+                            aria-pressed="false"
+                          >
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                              />
+                            </svg>
+                            <span class="pin-label">Pin</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                            data-copy={item.content}
+                            aria-label={`Copy ${item.label}`}
+                          >
+                            <svg
+                              class="w-3.5 h-3.5 copy-icon"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span class="copy-label">Copy</span>
+                          </button>
+                        </div>
                       </div>
+                      <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">
+                        {item.content}
+                      </p>
                     </div>
-                    <p class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-line">{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
-                {FtcContent ? <FtcContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
-              </div>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                  {FtcContent ? <FtcContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+                </div>
+              )
+            }
           </div>
 
           <!-- 4.2 Forbidden phrases -->
@@ -631,169 +1060,371 @@ const tocItems = [
       </CollapsibleSection>
 
       <!-- ── § 5 Visual Assets ───────────────────────────── -->
-      <CollapsibleSection id="s5" numLabel="05" title="Visual Assets" subtitle="Screenshots, Guard interventions, Intel views, Journal, History, and B-roll — all categorized and individually downloadable.">
+      <CollapsibleSection
+        id="s5"
+        numLabel="05"
+        title="Visual Assets"
+        subtitle="Screenshots, Guard interventions, Intel views, Journal, History, and B-roll — all categorized and individually downloadable."
+      >
         <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm mb-7">
           {AssetsContent ? <AssetsContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
         </div>
 
         <!-- Per-category asset grid -->
         <div class="space-y-8">
-          {assetCategories.map((category) => (
-            <div>
-              <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">{category.title}</p>
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" role="list">
-                {category.items.map((asset) => (
-                  <div
-                    class:list={[
-                      'rounded-xl border bg-white dark:bg-zinc-900 overflow-hidden',
-                      asset.href ? 'border-zinc-200 dark:border-zinc-700' : 'border-dashed border-zinc-300 dark:border-zinc-700 opacity-80',
-                    ]}
-                    role="listitem"
-                  >
-                    <div class="aspect-[16/10] bg-zinc-50 dark:bg-zinc-800/50 flex items-center justify-center overflow-hidden relative">
-                      {asset.thumb ? (
-                        <img src={asset.thumb} alt={asset.label} class="w-full h-full object-cover" loading="lazy" />
-                      ) : asset.type === 'video' || asset.type === 'youtube' ? (
-                        <svg class="w-10 h-10 text-zinc-300 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      ) : asset.type === 'pdf' ? (
-                        <svg class="w-10 h-10 text-zinc-300 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      ) : (
-                        <svg class="w-10 h-10 text-zinc-300 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      )}
-                      {(asset.type === 'video' || asset.type === 'youtube') && asset.thumb && (
-                        <div class="absolute inset-0 flex items-center justify-center">
-                          <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <div class="p-3.5">
-                      <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1 truncate">{asset.label}</p>
-                      <p class="text-xs text-zinc-500 mb-3 leading-snug">{asset.desc}</p>
-                      {asset.href ? (
-                        asset.type === 'youtube' ? (
-                          <a
-                            href={asset.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+          {
+            assetCategories.map((category) => (
+              <div>
+                <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-3">
+                  {category.title}
+                </p>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" role="list">
+                  {category.items.map((asset) => (
+                    <div
+                      class:list={[
+                        'rounded-xl border bg-white dark:bg-zinc-900 overflow-hidden',
+                        asset.href
+                          ? 'border-zinc-200 dark:border-zinc-700'
+                          : 'border-dashed border-zinc-300 dark:border-zinc-700 opacity-80',
+                      ]}
+                      role="listitem"
+                    >
+                      <div class="aspect-[16/10] bg-zinc-50 dark:bg-zinc-800/50 flex items-center justify-center overflow-hidden relative">
+                        {asset.thumb ? (
+                          <img src={asset.thumb} alt={asset.label} class="w-full h-full object-cover" loading="lazy" />
+                        ) : asset.type === 'video' || asset.type === 'youtube' ? (
+                          <svg
+                            class="w-10 h-10 text-zinc-300 dark:text-zinc-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
                           >
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Watch →
-                          </a>
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                            />
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                        ) : asset.type === 'pdf' ? (
+                          <svg
+                            class="w-10 h-10 text-zinc-300 dark:text-zinc-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
                         ) : (
-                        <a
-                          href={asset.href}
-                          download
-                          target={asset.type === 'video' ? '_self' : undefined}
-                          class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
-                        >
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          <svg
+                            class="w-10 h-10 text-zinc-300 dark:text-zinc-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="1.5"
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
                           </svg>
-                          Download
-                        </a>
-                        )
-                      ) : (
-                        <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 dark:text-zinc-500">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          Coming soon —{' '}
-                          {/* garycaffrey@meridian-partnership.com = the established partner-program mailbox used across all partner-kit content (src/data/partner-kit/*, DashboardHero) — intentional, not a placeholder. */}
-                          <a href="mailto:garycaffrey@meridian-partnership.com?subject=Asset request" class="underline hover:text-zinc-600 dark:hover:text-zinc-400">request</a>
-                        </span>
-                      )}
+                        )}
+                        {(asset.type === 'video' || asset.type === 'youtube') && asset.thumb && (
+                          <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+                              <svg
+                                class="w-5 h-5 text-white ml-0.5"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                              >
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      <div class="p-3.5">
+                        <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-1 truncate">{asset.label}</p>
+                        <p class="text-xs text-zinc-500 mb-3 leading-snug">{asset.desc}</p>
+                        {asset.href ? (
+                          asset.type === 'youtube' ? (
+                            <a
+                              href={asset.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+                            >
+                              <svg
+                                class="w-3.5 h-3.5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                              Watch →
+                            </a>
+                          ) : (
+                            <a
+                              href={asset.href}
+                              download
+                              target={asset.type === 'video' ? '_self' : undefined}
+                              class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+                            >
+                              <svg
+                                class="w-3.5 h-3.5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                                />
+                              </svg>
+                              Download
+                            </a>
+                          )
+                        ) : (
+                          <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 dark:text-zinc-500">
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                            Coming soon —{' '}
+                            {/* garycaffrey@meridian-partnership.com = the established partner-program mailbox used across all partner-kit content (src/data/partner-kit/*, DashboardHero) — intentional, not a placeholder. */}
+                            <a
+                              href="mailto:garycaffrey@meridian-partnership.com?subject=Asset request"
+                              class="underline hover:text-zinc-600 dark:hover:text-zinc-400"
+                            >
+                              request
+                            </a>
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
 
-        {zipAvailable && (
-          <div class="rounded-2xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 px-6 py-6 mt-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">Complete asset package</p>
-                <p class="text-xs text-zinc-500 mt-0.5">All available items in one download</p>
+        {
+          zipAvailable && (
+            <div class="rounded-2xl border border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/50 dark:bg-emerald-900/10 px-6 py-6 mt-6">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <p class="text-sm font-medium text-zinc-900 dark:text-zinc-100">Complete asset package</p>
+                  <p class="text-xs text-zinc-500 mt-0.5">All available items in one download</p>
+                </div>
+                <a
+                  href="/partner-kit/meridian-creator-kit.zip"
+                  download
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-colors shrink-0"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                  Download all assets
+                </a>
               </div>
-              <a
-                href="/partner-kit/meridian-creator-kit.zip"
-                download
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-colors shrink-0"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download all assets
-              </a>
             </div>
-          </div>
-        )}
+          )
+        }
       </CollapsibleSection>
 
       <!-- ── § 6 Content Templates ───────────────────────── -->
-      <CollapsibleSection id="s6" numLabel="06" title="Content Templates" subtitle="Starting points — not scripts to read verbatim. Adapt them to your voice. The structure matters more than the exact words." defaultOpen={true}>
+      <CollapsibleSection
+        id="s6"
+        numLabel="06"
+        title="Content Templates"
+        subtitle="Starting points — not scripts to read verbatim. Adapt them to your voice. The structure matters more than the exact words."
+        defaultOpen={true}
+      >
         <div class="space-y-4">
-
-          {[
-            { title: '60-second hook (YouTube Short / Reel)', source: '60s hook script',          copyables: script60Copyables,    Content: Script60Content },
-            { title: '3-minute walkthrough (YouTube long-form)', source: '3-min walkthrough',     copyables: script3mCopyables,    Content: Script3mContent },
-            { title: '30-second short', source: '30s short script',                               copyables: script30Copyables,    Content: Script30Content },
-            { title: 'YouTube description', source: 'YouTube description',                        copyables: ytDescCopyables,      Content: YtDescContent },
-            { title: 'Twitter / X thread (7 tweets)', source: 'Twitter thread',                   copyables: tweetCopyables,       Content: TweetContent },
-            { title: 'Newsletter section', source: 'Newsletter',                                  copyables: newsletterCopyables,  Content: NewsletterContent },
-          ].map(({ title, source, copyables, Content: SectionContent }: { title: string; source: string; copyables: {label:string;content:string}[]; Content: any }) => (
-            <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-              <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
-                <span class="text-sm font-medium text-zinc-900 dark:text-zinc-100">{title}</span>
-                <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div class="px-5 pb-5 pt-2 border-t border-zinc-100 dark:border-zinc-800 space-y-3">
-                {copyables.length > 0 ? (
-                  copyables.map((item: {label:string;content:string}) => (
-                    <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
-                      <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                        <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">{item.label}</span>
-                        <div class="flex items-center gap-3">
-                          <button type="button" class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-pin-label={item.label} data-pin-content={item.content} data-pin-source={source} aria-label={`Pin ${item.label}`} aria-pressed="false">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
-                            <span class="pin-label">Pin</span>
-                          </button>
-                          <button type="button" class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none" data-copy={item.content} aria-label={`Copy ${item.label}`}>
-                            <svg class="w-3.5 h-3.5 copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                            <span class="copy-label">Copy</span>
-                          </button>
+          {
+            [
+              {
+                title: '60-second hook (YouTube Short / Reel)',
+                source: '60s hook script',
+                copyables: script60Copyables,
+                Content: Script60Content,
+              },
+              {
+                title: '3-minute walkthrough (YouTube long-form)',
+                source: '3-min walkthrough',
+                copyables: script3mCopyables,
+                Content: Script3mContent,
+              },
+              {
+                title: '30-second short',
+                source: '30s short script',
+                copyables: script30Copyables,
+                Content: Script30Content,
+              },
+              {
+                title: 'YouTube description',
+                source: 'YouTube description',
+                copyables: ytDescCopyables,
+                Content: YtDescContent,
+              },
+              {
+                title: 'Twitter / X thread (7 tweets)',
+                source: 'Twitter thread',
+                copyables: tweetCopyables,
+                Content: TweetContent,
+              },
+              {
+                title: 'Newsletter section',
+                source: 'Newsletter',
+                copyables: newsletterCopyables,
+                Content: NewsletterContent,
+              },
+            ].map(
+              ({
+                title,
+                source,
+                copyables,
+                Content: SectionContent,
+              }: {
+                title: string;
+                source: string;
+                copyables: { label: string; content: string }[];
+                Content: any;
+              }) => (
+                <details class="group rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                  <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors">
+                    <span class="text-sm font-medium text-zinc-900 dark:text-zinc-100">{title}</span>
+                    <svg
+                      class="w-4 h-4 text-zinc-400 shrink-0 transition-transform group-open:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <div class="px-5 pb-5 pt-2 border-t border-zinc-100 dark:border-zinc-800 space-y-3">
+                    {copyables.length > 0 ? (
+                      copyables.map((item: { label: string; content: string }) => (
+                        <div class="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 overflow-hidden">
+                          <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                            <span class="text-xs font-medium text-zinc-400 uppercase tracking-widest">
+                              {item.label}
+                            </span>
+                            <div class="flex items-center gap-3">
+                              <button
+                                type="button"
+                                class="pin-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                                data-pin-label={item.label}
+                                data-pin-content={item.content}
+                                data-pin-source={source}
+                                aria-label={`Pin ${item.label}`}
+                                aria-pressed="false"
+                              >
+                                <svg
+                                  class="w-3.5 h-3.5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                                  />
+                                </svg>
+                                <span class="pin-label">Pin</span>
+                              </button>
+                              <button
+                                type="button"
+                                class="copy-btn flex items-center gap-1 text-xs text-zinc-400 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors focus-visible:outline-none"
+                                data-copy={item.content}
+                                aria-label={`Copy ${item.label}`}
+                              >
+                                <svg
+                                  class="w-3.5 h-3.5 copy-icon"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                  />
+                                </svg>
+                                <span class="copy-label">Copy</span>
+                              </button>
+                            </div>
+                          </div>
+                          <pre class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap font-sans overflow-x-auto">
+                            {item.content}
+                          </pre>
                         </div>
+                      ))
+                    ) : (
+                      <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
+                        {SectionContent ? <SectionContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
                       </div>
-                      <pre class="px-4 py-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed whitespace-pre-wrap font-sans overflow-x-auto">{item.content}</pre>
-                    </div>
-                  ))
-                ) : (
-                  <div class="prose prose-zinc dark:prose-invert max-w-none prose-sm">
-                    {SectionContent ? <SectionContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
+                    )}
                   </div>
-                )}
-              </div>
-            </details>
-          ))}
+                </details>
+              )
+            )
+          }
         </div>
       </CollapsibleSection>
 
@@ -803,7 +1434,6 @@ const tocItems = [
           {SupportContent ? <SupportContent /> : <p class="text-zinc-400 italic">Content coming soon.</p>}
         </div>
       </CollapsibleSection>
-
     </main>
   </div>
 
@@ -822,7 +1452,10 @@ const tocItems = [
     <!-- garycaffrey@meridian-partnership.com = the established partner-program contact mailbox, used consistently across all partner-kit content (src/data/partner-kit/*, DashboardHero). Intentional dedicated partner inbox — not a placeholder. -->
     <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
       <p class="text-xs text-zinc-400 dark:text-zinc-500 hidden sm:block">
-        Questions? <a href="mailto:garycaffrey@meridian-partnership.com" class="underline hover:text-zinc-600 dark:hover:text-zinc-300">garycaffrey@meridian-partnership.com</a>
+        Questions? <a
+          href="mailto:garycaffrey@meridian-partnership.com"
+          class="underline hover:text-zinc-600 dark:hover:text-zinc-300">garycaffrey@meridian-partnership.com</a
+        >
       </p>
       <div class="flex items-center gap-3 ml-auto">
         <a
@@ -838,7 +1471,11 @@ const tocItems = [
           aria-label="Open kit search"
         >
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
           <span class="hidden sm:inline">Search</span>
           <kbd class="hidden md:inline text-xs font-mono opacity-50">⌘K</kbd>
@@ -846,7 +1483,6 @@ const tocItems = [
       </div>
     </div>
   </div>
-
 </Layout>
 
 <style>
@@ -856,21 +1492,34 @@ const tocItems = [
     #toc-nav,
     #toc-mobile,
     .copy-btn,
-    .pin-btn { display: none !important; }
+    .pin-btn {
+      display: none !important;
+    }
     /* Force all sections open in print */
-    .kit-section { display: block !important; }
+    .kit-section {
+      display: block !important;
+    }
     .kit-section[open],
-    .kit-section:not([open]) > div { display: block !important; }
+    .kit-section:not([open]) > div {
+      display: block !important;
+    }
   }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
   }
 
   /* Copy button copied state */
-  .copy-btn.copied .copy-label { color: rgb(5 150 105); }
-  .copy-btn.copied .copy-icon { color: rgb(5 150 105); }
+  .copy-btn.copied .copy-label {
+    color: rgb(5 150 105);
+  }
+  .copy-btn.copied .copy-icon {
+    color: rgb(5 150 105);
+  }
 
   /* TOC active link */
   .toc-link.active {
@@ -943,7 +1592,9 @@ const tocItems = [
       const status = document.getElementById('setup-status');
       if (status) {
         status.style.opacity = '1';
-        setTimeout(() => { status.style.opacity = '0'; }, 2500);
+        setTimeout(() => {
+          status.style.opacity = '0';
+        }, 2500);
       }
     });
   })();

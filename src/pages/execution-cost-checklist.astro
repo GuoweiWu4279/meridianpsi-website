@@ -57,49 +57,71 @@ const fixes = [
   <!-- The four fixes -->
   <section class="max-w-3xl mx-auto px-6 mb-14">
     <div class="space-y-4">
-      {fixes.map((f) => (
-        <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-          <div class="flex items-start gap-4">
-            <span class="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">{f.n}</span>
-            <div>
-              <h2 class="text-lg font-bold text-zinc-900 mb-3">{f.title}</h2>
-              <ul class="space-y-2.5">
-                {f.points.map((p) => (
-                  <li class="flex gap-2.5 text-sm text-zinc-600 leading-relaxed">
-                    <svg class="w-4 h-4 mt-0.5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
+      {
+        fixes.map((f) => (
+          <div class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+            <div class="flex items-start gap-4">
+              <span class="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-sm">
+                {f.n}
+              </span>
+              <div>
+                <h2 class="text-lg font-bold text-zinc-900 mb-3">{f.title}</h2>
+                <ul class="space-y-2.5">
+                  {f.points.map((p) => (
+                    <li class="flex gap-2.5 text-sm text-zinc-600 leading-relaxed">
+                      <svg
+                        class="w-4 h-4 mt-0.5 shrink-0 text-emerald-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
 
     <p class="mt-6 text-xs text-zinc-500 leading-relaxed text-center">
       Once you account for these mechanical costs, any remaining gap between your corrected backtest and your live
-      results is genuine behavior drift — the entries you jumped, the stops you widened, the size you reached for
-      under pressure. That part you can measure straight from your broker's exported fills.
+      results is genuine behavior drift — the entries you jumped, the stops you widened, the size you reached for under
+      pressure. That part you can measure straight from your broker's exported fills.
     </p>
   </section>
 
   <!-- Soft product CTA -->
   <section class="max-w-3xl mx-auto px-6 pb-24">
-    <div class="rounded-2xl border-2 border-emerald-600/25 bg-gradient-to-b from-white to-emerald-50/30 p-7 shadow-md text-center">
-      <h2 class="text-xl font-bold text-zinc-900 mb-2">The mechanical tax you can model. The behavior, you can't feel.</h2>
+    <div
+      class="rounded-2xl border-2 border-emerald-600/25 bg-gradient-to-b from-white to-emerald-50/30 p-7 shadow-md text-center"
+    >
+      <h2 class="text-xl font-bold text-zinc-900 mb-2">
+        The mechanical tax you can model. The behavior, you can't feel.
+      </h2>
       <p class="text-sm text-zinc-600 leading-relaxed max-w-xl mx-auto mb-5">
-        That leftover behavior drift is exactly what Meridian reads back to you — live, before you click. It runs
-        every traditional risk limit, then adds the behavioral layer no limit can: it watches re-entry speed,
-        stop manipulation and oversizing against your own baseline, and can step in before the order.
+        That leftover behavior drift is exactly what Meridian reads back to you — live, before you click. It runs every
+        traditional risk limit, then adds the behavioral layer no limit can: it watches re-entry speed, stop
+        manipulation and oversizing against your own baseline, and can step in before the order.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="/pricing" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-emerald-600 text-white font-semibold transition-all hover:bg-emerald-700 text-sm">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-emerald-600 text-white font-semibold transition-all hover:bg-emerald-700 text-sm"
+        >
           Start the 14-day free trial
         </a>
-        <a href="/what-is-meridian-psi" class="text-sm text-emerald-700 font-medium hover:underline">How it works &rarr;</a>
+        <a href="/what-is-meridian-psi" class="text-sm text-emerald-700 font-medium hover:underline"
+          >How it works &rarr;</a
+        >
       </div>
-      <p class="mt-4 text-xs text-zinc-400">NinjaTrader 8 · Tradovate &amp; Ironbeam (early access) — one license covers every platform.</p>
+      <p class="mt-4 text-xs text-zinc-400">
+        NinjaTrader 8 · Tradovate &amp; Ironbeam (early access) — one license covers every platform.
+      </p>
     </div>
     <p class="mt-6 text-center text-xs text-zinc-400">
       Educational only — not financial advice. Trading involves substantial risk of loss.

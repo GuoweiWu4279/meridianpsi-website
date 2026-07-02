@@ -2,3 +2,25 @@ dist
 node_modules
 .github
 .changeset
+.vercel
+.astro
+
+# prettier-plugin-astro cannot parse these valid Astro files (SyntaxError on
+# template literals in attributes / is:inline scripts / JSX-in-map). Ignored so
+# `prettier --check .` (CI) passes; they are still type-checked by astro check.
+src/components/blog/RelatedPosts.astro
+src/components/common/Analytics.astro
+src/pages/articles.astro
+src/pages/download.astro
+
+# Rule-gated files — never auto-format (see Web/CLAUDE.md LOCAL RULES).
+# RULE 3: legal / compliance pages are human-edit-only.
+src/pages/disclaimer.astro
+src/pages/refund.astro
+src/pages/privacy.md
+src/pages/terms.md
+src/data/compliance.json
+# RULE 5: config.yaml is protected (change only with explicit sign-off).
+src/config.yaml
+# RULE 6: changelog is append-only — do not reformat historical entries.
+src/data/changelog/

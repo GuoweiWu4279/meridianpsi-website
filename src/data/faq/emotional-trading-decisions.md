@@ -1,5 +1,5 @@
 ---
-question: "How do I stop making emotional trading decisions in real time?"
+question: 'How do I stop making emotional trading decisions in real time?'
 category: psychology
 order: 3
 ---

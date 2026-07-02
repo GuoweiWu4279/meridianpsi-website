@@ -88,12 +88,18 @@ export const footerData = {
     {
       title: 'Solutions',
       links: [
-        { text: 'Risk, Emotion & Discipline Guide', href: getPermalink('/ninjatrader-risk-management-discipline-tool') },
+        {
+          text: 'Risk, Emotion & Discipline Guide',
+          href: getPermalink('/ninjatrader-risk-management-discipline-tool'),
+        },
         { text: 'Anti-Tilt Risk Management', href: getPermalink('/anti-tilt') },
         { text: 'Revenge Trading Lockout', href: getPermalink('/use-cases/ninjatrader-revenge-trading-lockout') },
         { text: 'Overtrading Prevention', href: getPermalink('/use-cases/ninjatrader-overtrading-prevention') },
         { text: 'Stop-Loss Manipulation Detection', href: getPermalink('/use-cases/stop-loss-manipulation-detection') },
-        { text: 'Prop Firm Behavioral Risk Control', href: getPermalink('/use-cases/prop-firm-behavioral-risk-control') },
+        {
+          text: 'Prop Firm Behavioral Risk Control',
+          href: getPermalink('/use-cases/prop-firm-behavioral-risk-control'),
+        },
         { text: 'All Use Cases', href: getPermalink('/use-cases') },
       ],
     },

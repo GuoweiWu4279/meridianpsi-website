@@ -1,5 +1,5 @@
 ---
-question: "Does Meridian Guard automatically close my open positions?"
+question: 'Does Meridian Guard automatically close my open positions?'
 category: trading
 order: 2
 ---

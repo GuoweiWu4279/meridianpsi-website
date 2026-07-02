@@ -23,11 +23,11 @@ const objections = [
     a: "No. Meridian runs as its own local layer on your NinjaTrader 8 or Tradovate connection, independent of the firm's infrastructure. Keep the firm's daily-loss lock as your hard floor — Meridian sits above it as the earlier line, so a session rarely reaches that floor at all.",
   },
   {
-    q: "Does it work on evaluation and funded accounts?",
+    q: 'Does it work on evaluation and funded accounts?',
     a: "Yes — any NinjaTrader 8 broker connection, including evaluation and funded accounts on Tradovate and Rithmic. License validation has a 7-day offline grace window for locked-down prop environments. On a Tradovate eval or demo account, the standalone app can additionally write Tradovate's own liquidate-only lock at the broker (funded/live Tradovate, Ironbeam, and NinjaTrader don't expose that API — there enforcement is at the app/connection level).",
   },
   {
-    q: "What stops me from just restarting to trade again?",
+    q: 'What stops me from just restarting to trade again?',
     a: "A Guard pause and Strict Lock survive an NT8 restart or a crash — they hold for the full window you set. 'Close it and reopen' is not an exit. That's the whole point: the rule has to hold in the exact moment you'd want to break it.",
   },
 ];
@@ -44,9 +44,10 @@ const objections = [
       </h1>
       <p class="text-[18px] md:text-[20px] text-zinc-700 leading-relaxed mb-8">
         It's almost never the strategy that ends a funded account. It's one session — the revenge entries after a bad
-        stop, the size creeping up to make it back, the loser you hold too long — that breaches the drawdown limit before
-        you stop yourself. <strong class="text-zinc-900">Meridian Guard reads that behavior live and locks you out at a
-        line you set when you're calm.</strong> Strict Lock means you can't unset it when you're not.
+        stop, the size creeping up to make it back, the loser you hold too long — that breaches the drawdown limit
+        before you stop yourself. <strong class="text-zinc-900"
+          >Meridian Guard reads that behavior live and locks you out at a line you set when you're calm.</strong
+        > Strict Lock means you can't unset it when you're not.
       </p>
 
       <div class="flex flex-wrap items-center gap-3 mb-6">
@@ -81,9 +82,9 @@ const objections = [
         daily loss limit fires, the account is done, and the strategy that earned it never had anything to do with it.
       </p>
       <p class="text-[17px] text-zinc-700 leading-[1.85]">
-        The prop firm's limit is a real backstop, but it's the <em>last</em> line. It can only confirm the damage after
-        the trade that did it has already filled. The four trades that got you there were behavior — and behavior shows
-        up in your order stream long before the P&amp;L does.
+        The prop firm's limit is a real backstop, but it's the <em>last</em> line. It can only confirm the damage after the
+        trade that did it has already filled. The four trades that got you there were behavior — and behavior shows up in
+        your order stream long before the P&amp;L does.
       </p>
     </div>
   </section>
@@ -115,21 +116,30 @@ const objections = [
 
       <p class="text-[17px] text-zinc-700 leading-[1.85] mb-4">
         Set Guard's <strong class="text-zinc-900">Session P&amp;L Below</strong> trigger a little above your evaluation's
-        maximum daily loss, and the session ends on your buffer — not on a forced breach. Stack the behavioral triggers
-        underneath it and the line moves even earlier:
+        maximum daily loss, and the session ends on your buffer — not on a forced breach. Stack the behavioral triggers underneath
+        it and the line moves even earlier:
       </p>
       <ul class="space-y-2.5 mb-2 text-[16px] text-zinc-700">
         <li class="flex gap-3">
           <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
-          <span><strong class="text-zinc-900">PSI entry block</strong> — new entries blocked when your live stability score drops past a floor you choose, even if no dollar limit is close.</span>
+          <span
+            ><strong class="text-zinc-900">PSI entry block</strong> — new entries blocked when your live stability score
+            drops past a floor you choose, even if no dollar limit is close.</span
+          >
         </li>
         <li class="flex gap-3">
           <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
-          <span><strong class="text-zinc-900">Consecutive-loss cooldown</strong> — an enforced pause after N losses in a row, regardless of where P&amp;L sits at that moment.</span>
+          <span
+            ><strong class="text-zinc-900">Consecutive-loss cooldown</strong> — an enforced pause after N losses in a row,
+            regardless of where P&amp;L sits at that moment.</span
+          >
         </li>
         <li class="flex gap-3">
           <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
-          <span><strong class="text-zinc-900">Escalating response</strong> — Notify, a typed acknowledgment, a full trading pause, or a broker disconnect. Exactly as far as you decide, set when calm.</span>
+          <span
+            ><strong class="text-zinc-900">Escalating response</strong> — Notify, a typed acknowledgment, a full trading
+            pause, or a broker disconnect. Exactly as far as you decide, set when calm.</span
+          >
         </li>
       </ul>
     </div>
@@ -167,7 +177,9 @@ const objections = [
           </li>
           <li class="flex gap-3">
             <span class="mt-2 h-1.5 w-1.5 rounded-full shrink-0" style="background:var(--aw-color-primary);"></span>
-            <span>Closing or reducing a position is always allowed — enforcement only ever blocks new or increasing risk.</span>
+            <span
+              >Closing or reducing a position is always allowed — enforcement only ever blocks new or increasing risk.</span
+            >
           </li>
         </ul>
       </div>
@@ -213,7 +225,9 @@ const objections = [
           Read the full breakdown &rarr;
         </a>
       </div>
-      <p class="text-[12px] text-zinc-500">14-day free trial &middot; card required &middot; cancel any time before day 14 and you pay nothing</p>
+      <p class="text-[12px] text-zinc-500">
+        14-day free trial &middot; card required &middot; cancel any time before day 14 and you pay nothing
+      </p>
     </div>
   </section>
 

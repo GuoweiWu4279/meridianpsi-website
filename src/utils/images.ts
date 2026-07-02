@@ -84,7 +84,9 @@ export const adaptOpenGraphImages = async (
           _image = (await unpicOptimizer(resolvedImage, [defaultWidth], defaultWidth, defaultHeight, 'jpg'))[0];
         } else if (typeof resolvedImage === 'string') {
           // Public static asset — build absolute URL using site base
-          const absoluteUrl = resolvedImage.startsWith('http') ? resolvedImage : String(new URL(resolvedImage, astroSite));
+          const absoluteUrl = resolvedImage.startsWith('http')
+            ? resolvedImage
+            : String(new URL(resolvedImage, astroSite));
           return { url: absoluteUrl, width: image.width, height: image.height };
         } else if (resolvedImage) {
           const dimensions =

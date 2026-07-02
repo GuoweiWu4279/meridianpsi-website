@@ -7,7 +7,7 @@
 
 **Last updated:** 2026-06-10 (status banner; content below frozen as of 2026-05-28)
 **Owner:** Gary
-**Goal:** Maximize *recurring revenue* from partner-channel signups (not just partner count). ~~Cold outreach via Instantly~~ (stopped 2026-06-09).
+**Goal:** Maximize _recurring revenue_ from partner-channel signups (not just partner count). ~~Cold outreach via Instantly~~ (stopped 2026-06-09).
 **Target:** NT8-focused YouTubers / Twitter / podcasts / newsletters with 1k–20k followers (futures, prop firms, trading psychology).
 
 ---
@@ -37,12 +37,12 @@
 
 ### PSI zones (canonical, from add-on code)
 
-| Zone | Range |
-|---|---|
-| Stable | PSI ≥ 88 |
-| Caution | 72 ≤ PSI < 88 |
-| Warning | 55 ≤ PSI < 72 |
-| Critical | PSI < 55 |
+| Zone     | Range         |
+| -------- | ------------- |
+| Stable   | PSI ≥ 88      |
+| Caution  | 72 ≤ PSI < 88 |
+| Warning  | 55 ≤ PSI < 72 |
+| Critical | PSI < 55      |
 
 ### 7 behavioral signals (canonical naming)
 
@@ -77,8 +77,8 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Hold Bias · D5 
 3. **Why this works** — 3 icon cards: Audience pays for NT8 software · Software not a guru · The trial does the convincing
 4. **Details on demand (accordion, default-collapsed)** — 4 items:
    - What's in the creator kit?
-   - How tracking & payouts work *(Whop affiliate-link attribution + separate 10%-off promo code, 30-day waiting period, monthly payouts via Whop affiliate panel)*
-   - Brand-safe partnership *(reverse-risk reframe)*
+   - How tracking & payouts work _(Whop affiliate-link attribution + separate 10%-off promo code, 30-day waiting period, monthly payouts via Whop affiliate panel)_
+   - Brand-safe partnership _(reverse-risk reframe)_
    - Program terms & fine print
 5. **Apply form** — Formspree endpoint `xaqalank` (same as `/support`), hidden `_subject = "Partner Application"`. 8 fields: name, email, channel name, channel URL, audience size, audience trades, fit reason, optional notes
 6. **Bottom disclaimer** — single line (FTC + program terms)
@@ -96,13 +96,13 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Hold Bias · D5 
 
 ## Open decisions (waiting on Gary)
 
-| Decision | Status | Notes |
-|---|---|---|
-| Add `/affiliate → /partners` 301 to `vercel.json` for proper edge-level redirect | ✅ Done 2026-05-12 PM | Added at the top of the `redirects` array. `affiliate.astro` retained as dev/preview fallback (Vercel only reads `vercel.json` on production). |
+| Decision                                                                                                      | Status                | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Add `/affiliate → /partners` 301 to `vercel.json` for proper edge-level redirect                              | ✅ Done 2026-05-12 PM | Added at the top of the `redirects` array. `affiliate.astro` retained as dev/preview fallback (Vercel only reads `vercel.json` on production).                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Confirm Whop affiliate mechanics actually match what's written in the "How tracking & payouts work" accordion | ✅ Done 2026-05-12 PM | Verified against `docs.whop.com/manage-your-business/growth-marketing/affiliate-program` + `whop.com/earnings-terms`. Real model: **affiliate link = attribution** (URL param `?a=name`), **promo code = audience discount** (separate mechanism). Old accordion incorrectly fused them. Rewritten to 5 bullets; tax-form and cancel/resubscribe bullets removed (out of scope for partner outreach — affiliates handle their own taxes). 30% commission rate, recurring-on-subscription, 30-day waiting, monthly payout via Whop panel — all confirmed accurate. |
-| Creator kit asset preparation | Waiting | Gary delivers: logo pack, screenshots, video footage. AI delivers: talking-points doc, 3 video script templates |
-| Default-expand any accordion item? (currently all collapsed) | Waiting | Brand-safe partnership might be worth defaulting open — it's the trust-building section that small bloggers care about most |
-| Reconcile stale root-level docs with canonical `/partners` offer | ✅ Done 2026-05-13 | `AFFILIATE_PROGRAM.md` — 30% recurring / 10% permanent / Whop. `CREATOR_OUTREACH_EMAIL.md` — terms confirmed correct (30% + 10% permanent); header updated to clearly mark it as legacy manual-only, pointing to `outreach-strategy.md` v6 as canonical. |
+| Creator kit asset preparation                                                                                 | Waiting               | Gary delivers: logo pack, screenshots, video footage. AI delivers: talking-points doc, 3 video script templates                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Default-expand any accordion item? (currently all collapsed)                                                  | Waiting               | Brand-safe partnership might be worth defaulting open — it's the trust-building section that small bloggers care about most                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Reconcile stale root-level docs with canonical `/partners` offer                                              | ✅ Done 2026-05-13    | `AFFILIATE_PROGRAM.md` — 30% recurring / 10% permanent / Whop. `CREATOR_OUTREACH_EMAIL.md` — terms confirmed correct (30% + 10% permanent); header updated to clearly mark it as legacy manual-only, pointing to `outreach-strategy.md` v6 as canonical.                                                                                                                                                                                                                                                                                                          |
 
 ---
 
@@ -122,7 +122,7 @@ Once Phase 3 (creator kit) is done, the next conversation is Phase 4:
 - Target: 1k–20k follower NT8-relevant creators
 - KPI: paid subscriptions converted, not partner count
 - **No fabricated testimonials in outreach materials** (separate from homepage marquee decision)
-- Reverse-risk wording (final): *"Your audience trusts you. We do not take that lightly. If the response to your first piece of content is not what either of us hoped for, we close the partnership clean — assets pulled, no further obligation, no awkward follow-up."*
+- Reverse-risk wording (final): _"Your audience trusts you. We do not take that lightly. If the response to your first piece of content is not what either of us hoped for, we close the partnership clean — assets pulled, no further obligation, no awkward follow-up."_
 
 ---
 

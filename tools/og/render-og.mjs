@@ -14,7 +14,8 @@ const tpl = 'file:///' + path.join(here, 'og-card.html').replace(/\\/g, '/');
 const out = path.join(here, '..', '..', 'public', 'og-image-v2.png');
 
 const browser = await puppeteer.launch({
-  executablePath: CHROME, headless: true,
+  executablePath: CHROME,
+  headless: true,
   args: ['--no-first-run', '--force-device-scale-factor=2', '--hide-scrollbars'],
 });
 const page = await browser.newPage();

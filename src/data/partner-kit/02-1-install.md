@@ -1,7 +1,7 @@
 ---
 title: Install Meridian
 section: get-started
-lastUpdated: "2026-06-17"
+lastUpdated: '2026-06-17'
 order: 1
 ---
 
@@ -46,7 +46,7 @@ SIM is not required, but it's a good way to confirm everything works before goin
 
 **Common issues:**
 
-- *"Compilation failed"* — Make sure you're on NT8 64-bit and your .NET framework is current. Restart NT8 and try reimporting.
-- *"License key not accepted"* — Double-check the key (no extra spaces, full string). Confirm you're using the same Whop account that purchased the subscription. If still failing, contact us at [contactmeridianpsi@gmail.com](mailto:contactmeridianpsi@gmail.com).
-- *"I can't find Meridian in Indicators"* — That's expected. Meridian is not a chart indicator. Open it from **Control Center → New → Meridian Dashboard**.
-- *HUD not visible* — The HUD overlay appears once you connect an account and a session starts (it doesn't open with the Dashboard on its own). Re-position by dragging.
+- _"Compilation failed"_ — Make sure you're on NT8 64-bit and your .NET framework is current. Restart NT8 and try reimporting.
+- _"License key not accepted"_ — Double-check the key (no extra spaces, full string). Confirm you're using the same Whop account that purchased the subscription. If still failing, contact us at [contactmeridianpsi@gmail.com](mailto:contactmeridianpsi@gmail.com).
+- _"I can't find Meridian in Indicators"_ — That's expected. Meridian is not a chart indicator. Open it from **Control Center → New → Meridian Dashboard**.
+- _HUD not visible_ — The HUD overlay appears once you connect an account and a session starts (it doesn't open with the Dashboard on its own). Re-position by dragging.

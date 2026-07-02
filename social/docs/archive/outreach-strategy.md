@@ -38,20 +38,20 @@ Each design decision below was chosen against alternatives we considered and rej
 ## Operational flow (pipeline)
 
 ```
-[Source list]                                                    
+[Source list]
     │   manual research: NT8 YouTubers, Twitter creators, podcasters
     ▼   producing CSV: { email, channel_url }
-[Gemini personalization]                                         
+[Gemini personalization]
     │   one Gemini API call per row, with the prompt below
     ▼   producing CSV: { email, first_name, channel_name,
                          video_topic, video_title, specific_point }
-[Manual QA]                                                      
+[Manual QA]
     │   review first 20 outputs; spot-check rest
     ▼   reject any row where Gemini returned `error: no_relevant_specific_point`
-[Instantly campaign]                                             
+[Instantly campaign]
     │   upload CSV; Instantly maps variables to {{handles}} in template
     ▼   3-step sequence: Day 0, Day 5, Day 12
-[Send]                                                           
+[Send]
     │   30–50/day in warm-up weeks 1–4
     ▼   ramp to 50–100/day weeks 5–8 if reputation is good
 [Track]
@@ -64,14 +64,14 @@ Each design decision below was chosen against alternatives we considered and rej
 
 These are the **only** things that change per recipient. Everything else in every email is hardcoded in the Instantly template.
 
-| Variable | Used in | Filled by | Example |
-|---|---|---|---|
-| `{{email}}` | Recipient address | Manual research | `creator@gmail.com` |
-| `{{first_name}}` | Greeting in all 3 emails | Manual or Gemini | `Alex` |
-| `{{channel_name}}` | Subject variant B only | Manual or Gemini | `TradingMindsetTV` |
-| `{{video_topic}}` | Subject + Email 1 paragraph 1 | Gemini | `revenge trading` |
-| `{{video_title}}` | Email 1 paragraph 1 | Gemini | `Why I Stopped Adding to Losers` |
-| `{{specific_point}}` | Email 1 paragraph 1 | Gemini | `letting one losing trade snowball because you couldn't accept a small loss` |
+| Variable             | Used in                       | Filled by        | Example                                                                      |
+| -------------------- | ----------------------------- | ---------------- | ---------------------------------------------------------------------------- |
+| `{{email}}`          | Recipient address             | Manual research  | `creator@gmail.com`                                                          |
+| `{{first_name}}`     | Greeting in all 3 emails      | Manual or Gemini | `Alex`                                                                       |
+| `{{channel_name}}`   | Subject variant B only        | Manual or Gemini | `TradingMindsetTV`                                                           |
+| `{{video_topic}}`    | Subject + Email 1 paragraph 1 | Gemini           | `revenge trading`                                                            |
+| `{{video_title}}`    | Email 1 paragraph 1           | Gemini           | `Why I Stopped Adding to Losers`                                             |
+| `{{specific_point}}` | Email 1 paragraph 1           | Gemini           | `letting one losing trade snowball because you couldn't accept a small loss` |
 
 ---
 
@@ -79,10 +79,10 @@ These are the **only** things that change per recipient. Everything else in ever
 
 ### Subject line A/B test
 
-| Variant | Subject |
-|---|---|
-| **A (primary, 70% volume)** | `Partnership idea after your {{video_topic}} video` |
-| **B (secondary, 30% volume)** | `{{channel_name}} × Meridian — partnership idea` |
+| Variant                       | Subject                                             |
+| ----------------------------- | --------------------------------------------------- |
+| **A (primary, 70% volume)**   | `Partnership idea after your {{video_topic}} video` |
+| **B (secondary, 30% volume)** | `{{channel_name}} × Meridian — partnership idea`    |
 
 After 100 sends per variant, compare reply rate and lock the winner.
 
@@ -257,14 +257,14 @@ Before running on the full target list:
 
 ### Funnel metrics (target ranges)
 
-| Stage | Metric | Healthy range |
-|---|---|---|
-| 1 | Open rate | 40–60% (personalized cold) |
-| 2 | Reply rate | 8–15% (B2B partnership cold) |
-| 3 | Apply-on-/partners rate | 2–5% of sends |
-| 4 | Application acceptance | 50%+ of applies |
-| 5 | Active partner (produced content within 30 days) | 30%+ of accepted |
-| 6 | Partner-driven paying subs | tracking starts here — this is the actual KPI |
+| Stage | Metric                                           | Healthy range                                 |
+| ----- | ------------------------------------------------ | --------------------------------------------- |
+| 1     | Open rate                                        | 40–60% (personalized cold)                    |
+| 2     | Reply rate                                       | 8–15% (B2B partnership cold)                  |
+| 3     | Apply-on-/partners rate                          | 2–5% of sends                                 |
+| 4     | Application acceptance                           | 50%+ of applies                               |
+| 5     | Active partner (produced content within 30 days) | 30%+ of accepted                              |
+| 6     | Partner-driven paying subs                       | tracking starts here — this is the actual KPI |
 
 ### UTM tagging
 
@@ -280,12 +280,12 @@ Track via Vercel Analytics or whatever GA setup is wired into the site.
 
 Replies fall into 4 buckets — handle each consistently:
 
-| Reply type | What they say | Response within | Action |
-|---|---|---|---|
-| Yes / interested | "send me the brief", "let's talk" | 24h | Send brief PDF + creator kit (when ready); start onboarding |
-| Curious / need info | "what's the product like?", "how do payouts work?" | 24h | Short, factual answer; link to /partners; offer 14-day trial |
-| Not now | "busy", "maybe later" | 48h | "No worries — happy to reconnect in 3 months" + tag for future re-outreach |
-| No / pass | "not interested", "pass" | None — just remove | Remove from list, don't reply |
+| Reply type          | What they say                                      | Response within    | Action                                                                     |
+| ------------------- | -------------------------------------------------- | ------------------ | -------------------------------------------------------------------------- |
+| Yes / interested    | "send me the brief", "let's talk"                  | 24h                | Send brief PDF + creator kit (when ready); start onboarding                |
+| Curious / need info | "what's the product like?", "how do payouts work?" | 24h                | Short, factual answer; link to /partners; offer 14-day trial               |
+| Not now             | "busy", "maybe later"                              | 48h                | "No worries — happy to reconnect in 3 months" + tag for future re-outreach |
+| No / pass           | "not interested", "pass"                           | None — just remove | Remove from list, don't reply                                              |
 
 ---
 
@@ -299,6 +299,7 @@ Replies fall into 4 buckets — handle each consistently:
 4. **A new differentiator emerges** that's stronger than the current ones (e.g., a major feature ships that changes the pitch). Then paragraph 2 or 4 may earn a revision.
 
 **Do NOT revise** because:
+
 - A specific creator didn't reply (one data point ≠ signal)
 - "I want to try a different angle this week" (kills the data signal you're trying to collect)
 - The team likes the new wording better (subjective; KPI > taste)

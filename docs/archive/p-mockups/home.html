@@ -1,316 +1,672 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex" />
-<title>Meridian — homepage draft</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<style>
-  body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.011em}
-  .win{background:#0b0b0d;border-radius:18px;padding:10px;box-shadow:0 50px 110px -35px rgba(4,40,28,.40),0 16px 40px -14px rgba(0,0,0,.18);border:1px solid rgba(0,0,0,.06)}
-  .win img{border-radius:10px;display:block;width:100%}
-  .winsm{background:#0b0b0d;border-radius:16px;padding:8px;box-shadow:0 40px 90px -30px rgba(4,40,28,.40),0 12px 30px -12px rgba(0,0,0,.16);border:1px solid rgba(0,0,0,.06)}
-  .winsm img{border-radius:9px;display:block;width:100%}
-  .halo{background:radial-gradient(70% 60% at 50% -5%, rgba(5,150,105,.12), transparent 70%)}
-  .eyebrow{letter-spacing:.16em}
-  .tnum{font-variant-numeric:tabular-nums}
-</style>
-</head>
-<body class="bg-[#fafafa] text-zinc-600 antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Meridian — homepage draft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: -0.011em;
+      }
+      .win {
+        background: #0b0b0d;
+        border-radius: 18px;
+        padding: 10px;
+        box-shadow:
+          0 50px 110px -35px rgba(4, 40, 28, 0.4),
+          0 16px 40px -14px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .win img {
+        border-radius: 10px;
+        display: block;
+        width: 100%;
+      }
+      .winsm {
+        background: #0b0b0d;
+        border-radius: 16px;
+        padding: 8px;
+        box-shadow:
+          0 40px 90px -30px rgba(4, 40, 28, 0.4),
+          0 12px 30px -12px rgba(0, 0, 0, 0.16);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .winsm img {
+        border-radius: 9px;
+        display: block;
+        width: 100%;
+      }
+      .halo {
+        background: radial-gradient(70% 60% at 50% -5%, rgba(5, 150, 105, 0.12), transparent 70%);
+      }
+      .eyebrow {
+        letter-spacing: 0.16em;
+      }
+      .tnum {
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body class="bg-[#fafafa] text-zinc-600 antialiased">
+    <!-- nav -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/75 border-b border-zinc-200/70">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#059669"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 12h4l2 6 4-16 2 10 2-2h4" />
+          </svg>
+          <span class="text-zinc-900 font-bold tracking-tight">MERIDIAN</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
+          <a class="hover:text-zinc-900" href="#">Guard</a><a class="hover:text-zinc-900" href="#">Intel</a
+          ><a class="hover:text-zinc-900" href="#">Compare</a><a class="hover:text-zinc-900" href="#">Pricing</a>
+        </nav>
+        <a
+          href="#"
+          class="text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg transition"
+          >Start free trial</a
+        >
+      </div>
+    </header>
 
-  <!-- nav -->
-  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/75 border-b border-zinc-200/70">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-16 2 10 2-2h4"/></svg>
-        <span class="text-zinc-900 font-bold tracking-tight">MERIDIAN</span>
+    <!-- hero -->
+    <section class="halo">
+      <div class="max-w-5xl mx-auto px-6 pt-24 pb-12 text-center">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">RISK MANAGEMENT FOR NINJATRADER 8</p>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">
+          Everything your risk tool does &mdash;<br />and the part it's <span class="text-emerald-600">blind to.</span>
+        </h1>
+        <p class="mt-7 max-w-2xl mx-auto text-xl text-zinc-600 leading-relaxed">
+          Daily loss limits, max size, P&amp;L caps &mdash; Meridian has them all. Then it adds what no limit can: it
+          reads the behavior that actually blows up accounts &mdash; revenge, oversizing, tilt &mdash; in real time, and
+          stops you before the damage.
+        </p>
+        <div class="mt-9 flex items-center justify-center gap-3">
+          <a
+            href="#"
+            class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
+            >Start 14-day free trial</a
+          >
+          <a
+            href="#"
+            class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition"
+            >Watch how it works</a
+          >
+        </div>
+        <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; Cancel anytime</p>
       </div>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-        <a class="hover:text-zinc-900" href="#">Guard</a><a class="hover:text-zinc-900" href="#">Intel</a><a class="hover:text-zinc-900" href="#">Compare</a><a class="hover:text-zinc-900" href="#">Pricing</a>
-      </nav>
-      <a href="#" class="text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-lg transition">Start free trial</a>
-    </div>
-  </header>
-
-  <!-- hero -->
-  <section class="halo">
-    <div class="max-w-5xl mx-auto px-6 pt-24 pb-12 text-center">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-6">RISK MANAGEMENT FOR NINJATRADER 8</p>
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 leading-[1.04]">Everything your risk tool does &mdash;<br/>and the part it's <span class="text-emerald-600">blind to.</span></h1>
-      <p class="mt-7 max-w-2xl mx-auto text-xl text-zinc-600 leading-relaxed">Daily loss limits, max size, P&amp;L caps &mdash; Meridian has them all. Then it adds what no limit can: it reads the behavior that actually blows up accounts &mdash; revenge, oversizing, tilt &mdash; in real time, and stops you before the damage.</p>
-      <div class="mt-9 flex items-center justify-center gap-3">
-        <a href="#" class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm">Start 14-day free trial</a>
-        <a href="#" class="font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 px-6 py-3.5 rounded-xl transition">Watch how it works</a>
-      </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; Cancel anytime</p>
-    </div>
-    <div class="max-w-5xl mx-auto px-6 pb-20">
-      <div class="relative">
-        <div class="win"><img src="/m/overview.png" alt="Meridian Overview dashboard" class="nozoom" /></div>
-        <div class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden" style="box-shadow:0 30px 70px -20px rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.06)"><img src="/m/ring.png" alt="Meridian live PSI gauge — catching a critical behavioral state" class="block w-full" /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- trust strip (endorsement up front) -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500">
-      <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Official NinjaTrader Ecosystem Vendor</span>
-      <span class="text-zinc-300">|</span><span>Runs natively inside NinjaTrader 8</span>
-      <span class="text-zinc-300">|</span><span>Local-first, anonymized telemetry</span>
-      <span class="text-zinc-300">|</span><span>5-year session history</span>
-    </div>
-  </section>
-
-  <!-- superset: not a different tool, a stronger one -->
-  <section class="max-w-6xl mx-auto px-6 py-24">
-    <div class="text-center mb-12">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Every other tool does one piece.<br/>Meridian does all of it.</h2>
-      <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Keep the safety net you already trust. Gain the layer none of them have.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-      <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-        <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
-        <ul class="space-y-3 text-zinc-700">
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Daily loss limit</li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Max position size</li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span> P&amp;L / drawdown caps</li>
-          <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Loss-streak cutoff</li>
-        </ul>
-        <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too.</p>
-      </div>
-      <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
-        <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
-        <ul class="space-y-3 text-zinc-800">
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> Real-time <strong>behavior</strong> detection &mdash; 7 signals (revenge, oversizing, tilt&hellip;)</li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> A baseline that learns how <em>you</em> trade &mdash; not a generic average</li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> It steps in <em>before</em> the order, not after the loss</li>
-          <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> The whole loop: monitor &middot; guard &middot; journal &middot; review</li>
-        </ul>
-        <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
-      </div>
-    </div>
-    <div class="max-w-3xl mx-auto mt-8 rounded-2xl bg-zinc-900 text-zinc-100 px-7 py-6 text-center">
-      <p class="text-lg md:text-xl leading-relaxed">A $500 daily loss limit fires at <span class="text-rose-400 font-semibold">&minus;$500</span> &mdash; after four revenge trades in twelve minutes.<br class="hidden md:block"/> Meridian starts flagging at <span class="text-emerald-400 font-semibold">trade two.</span></p>
-    </div>
-  </section>
-
-  <!-- why it matters -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-5xl mx-auto px-6 py-24">
-      <div class="text-center mb-12">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY IT MATTERS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Most blown accounts aren't<br/>bad strategy. They're one bad session.</h2>
-        <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">The strategy you spent months on rarely fails you. One session does &mdash; the entries you'd have rejected yesterday, the size you'd ruled out, the stop you moved twice. A daily loss limit catches that at the end. Meridian catches the behavior that's causing it.</p>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
-        <div class="rounded-2xl border border-zinc-200 p-6"><div class="text-3xl font-extrabold text-zinc-900 tnum">$89&ndash;540</div><div class="mt-2 text-sm text-zinc-600">A prop-firm evaluation. Lost if you fail it.</div></div>
-        <div class="rounded-2xl border border-zinc-200 p-6"><div class="text-3xl font-extrabold text-zinc-900 tnum">$300&ndash;800</div><div class="mt-2 text-sm text-zinc-600">One off-plan session, revenge-driven.</div></div>
-        <div class="rounded-2xl border-2 border-emerald-500 p-6"><div class="text-3xl font-extrabold text-emerald-700 tnum">$49.99</div><div class="mt-2 text-sm text-zinc-600">Meridian. One month.</div></div>
-      </div>
-      <p class="text-center mt-5 text-xs text-zinc-400 max-w-2xl mx-auto">Illustrative &mdash; prop-firm fees are publicly listed; session-loss ranges are self-reported by users. Meridian does not guarantee trading results.</p>
-    </div>
-  </section>
-
-  <!-- how it sees: live monitor -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">LIVE MONITOR</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">It watches how you trade &mdash;<br/>not just how much you've lost.</h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">Meridian turns your order flow into one live score from 0&ndash;100, updated in under 100ms after every fill. When tilt creeps in, you watch the number fall &mdash; before your P&amp;L does.</p>
-      <ul class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> Seven behavioral signals in one number you can feel slipping</li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> Measured against <em>your</em> baseline, not a generic average</li>
-        <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span> An always-on HUD that sits over your chart</li>
-      </ul>
-    </div>
-    <div class="win"><img src="/m/monitor.png" alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars" /></div>
-  </section>
-
-  <!-- the 7 signals -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-24">
-      <div class="text-center mb-12">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT IT CATCHES</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The 7 behaviors that quietly kill accounts.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Every one is scored in real time, against your own history.</p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Revenge entries</div><p class="mt-1 text-sm text-zinc-600">Re-entering too fast after a loss, at bigger size.</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Stop manipulation</div><p class="mt-1 text-sm text-zinc-600">Widening or moving your stop against a losing trade.</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Size spikes</div><p class="mt-1 text-sm text-zinc-600">Sizing past your own rule &mdash; worse on losing streaks.</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Hold bias</div><p class="mt-1 text-sm text-zinc-600">Holding losers far longer than winners. (Cutting losses fast is never penalized.)</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Position overstay</div><p class="mt-1 text-sm text-zinc-600">Sitting in a losing trade past your own tolerance.</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5"><div class="font-semibold text-zinc-900">Rule violations</div><p class="mt-1 text-sm text-zinc-600">Trading outside the rules you set &mdash; time, stops, streaks.</p></div>
-        <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5 sm:col-span-2 lg:col-span-1"><div class="font-semibold text-zinc-900">Overtrading pace</div><p class="mt-1 text-sm text-zinc-600">Entries speeding up past your normal rhythm.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- guard -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard" /></div>
-    <div class="order-1 lg:order-2">
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">MERIDIAN GUARD</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">Willpower is not a risk strategy.</h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as you decide: a quiet nudge, a typed acknowledgment, a trading pause, or a full broker disconnect.</p>
-      <p class="mt-4 text-zinc-800 text-lg"><span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for its full window &mdash; for when the tilted version of you wants to switch it off.</p>
-      <p class="mt-4 text-sm text-zinc-500">Guard never closes your live positions for you. It stops you <em>adding</em> risk &mdash; you can always exit, any time.</p>
-    </div>
-  </section>
-
-  <!-- the whole loop -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-24">
-      <div class="text-center mb-14">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE WHOLE LOOP</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One tool for the whole job.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Others sell you one piece &mdash; a limit, a journal, a dashboard. Meridian is the whole loop, and every session makes the next one sharper.</p>
-      </div>
-      <div class="grid md:grid-cols-5 gap-4">
-        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div><div class="text-zinc-900 font-semibold mb-1">Plan</div><p class="text-sm text-zinc-600">Your one risk for today, before the open.</p></div>
-        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div><div class="text-zinc-900 font-semibold mb-1">Monitor</div><p class="text-sm text-zinc-600">A live read on your discipline.</p></div>
-        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div><div class="text-zinc-900 font-semibold mb-1">Guard</div><p class="text-sm text-zinc-600">Enforcement when you cross your line.</p></div>
-        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div><div class="text-zinc-900 font-semibold mb-1">Journal</div><p class="text-sm text-zinc-600">What happened, captured in the moment.</p></div>
-        <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5"><div class="text-emerald-600 text-xs font-bold mb-2 tnum">05</div><div class="text-zinc-900 font-semibold mb-1">Review</div><p class="text-sm text-zinc-600">Edge vs luck, and the habit to fix.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- put a number on it -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
-    <div>
-      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
-      <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">See what tilt actually<br/>costs you.</h2>
-      <p class="mt-5 text-lg text-zinc-600 leading-relaxed">Pick any date range and break your trading down by time of day, hold time, instrument, and long vs short. Meridian puts a dollar figure on the difference between your <span class="text-emerald-700 font-semibold">composed</span> sessions and your <span class="text-rose-600 font-semibold">tilted</span> ones &mdash; so discipline stops being a feeling.</p>
-      <div class="mt-8 grid grid-cols-2 gap-4 max-w-md">
-        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5"><div class="text-xs text-zinc-500 mb-1">When you're composed</div><div class="text-3xl font-bold text-emerald-700 tnum">+$120<span class="text-base font-medium text-zinc-400">/session</span></div></div>
-        <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5"><div class="text-xs text-zinc-500 mb-1">When you're tilted</div><div class="text-3xl font-bold text-rose-600 tnum">&minus;$59<span class="text-base font-medium text-zinc-400">/session</span></div></div>
-      </div>
-    </div>
-    <div data-carousel class="relative">
-      <div class="win">
-        <div class="relative bg-[#0b0b0d] rounded-[10px] overflow-hidden" style="height:min(56vh,470px)">
-          <div data-slide data-cap="Insights &mdash; where you stand, every session" style="display:none"><img src="/m/intel.png" class="w-full h-full object-contain" alt="Meridian Intel — Insights" /></div>
-          <div data-slide data-cap="Stats &mdash; broken down by time, hold, instrument, long/short" style="display:none"><img src="/m/stats.png" class="w-full h-full object-contain" alt="Meridian Intel — Stats" /></div>
+      <div class="max-w-5xl mx-auto px-6 pb-20">
+        <div class="relative">
+          <div class="win"><img src="/m/overview.png" alt="Meridian Overview dashboard" class="nozoom" /></div>
+          <div
+            class="absolute -bottom-7 right-3 w-32 md:w-44 hidden sm:block rounded-2xl overflow-hidden"
+            style="box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.5); border: 1px solid rgba(0, 0, 0, 0.06)"
+          >
+            <img
+              src="/m/ring.png"
+              alt="Meridian live PSI gauge — catching a critical behavioral state"
+              class="block w-full"
+            />
+          </div>
         </div>
       </div>
-      <button data-prev aria-label="Previous" class="absolute left-1 md:-left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1">&#8249;</button>
-      <button data-next aria-label="Next" class="absolute right-1 md:-right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1">&#8250;</button>
-      <div class="mt-4 text-center">
-        <p data-caption class="text-xs font-medium text-zinc-600 mb-3 min-h-[16px]"></p>
-        <div class="flex justify-center items-center gap-2">
-          <button data-dot aria-label="Go to slide" class="h-2 rounded-full transition-all"></button>
-          <button data-dot aria-label="Go to slide" class="h-2 rounded-full transition-all"></button>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- testimonials -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-24">
+    <!-- trust strip (endorsement up front) -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[13px] text-zinc-500"
+      >
+        <span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-sm"
+          ><svg
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 12l2 2 4-4" />
+            <circle cx="12" cy="12" r="9" /></svg
+          >Official NinjaTrader Ecosystem Vendor</span
+        >
+        <span class="text-zinc-300">|</span><span>Runs natively inside NinjaTrader 8</span>
+        <span class="text-zinc-300">|</span><span>Local-first, anonymized telemetry</span>
+        <span class="text-zinc-300">|</span><span>5-year session history</span>
+      </div>
+    </section>
+
+    <!-- superset: not a different tool, a stronger one -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
       <div class="text-center mb-12">
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM EARLY-ACCESS TRADERS</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Traders who didn't believe it either.</h2>
-        <p class="mt-3 text-sm text-zinc-500">Real quotes from our first users &mdash; anonymous by design.</p>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NOT A DIFFERENT TOOL. A STRONGER ONE.</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          Every other tool does one piece.<br />Meridian does all of it.
+        </h2>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Keep the safety net you already trust. Gain the layer none of them have.
+        </p>
       </div>
-      <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"It's the first tool that actually catches me mid-session, when I'm tilting &mdash; not in the journal hours later."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">Independent trader</figcaption></figure>
-        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"I've restarted funded accounts more times than I want to count. A revenge-entry detector mattered more than another indicator &mdash; I wouldn't have believed that."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">Prop-firm trader</figcaption></figure>
-        <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6"><div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote class="text-zinc-700 leading-relaxed">"Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own rules. Took data to admit it."</blockquote><figcaption class="mt-4 text-sm text-zinc-500">ES / NQ futures</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- trust / credibility -->
-  <section class="max-w-5xl mx-auto px-6 py-24">
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Official NinjaTrader Ecosystem Vendor</div><p class="text-sm text-zinc-600">Reviewed and approved through NinjaTrader's Ecosystem &mdash; the same compliance bar every vendor clears. The product you install is the one their team tested.</p></div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div><p class="text-sm text-zinc-600">Never your name, broker credentials, account numbers, or funds. Local-first; the only data that leaves is anonymized and opt-out.</p></div>
-      <div class="rounded-2xl border border-zinc-200 bg-white p-6"><div class="font-semibold text-zinc-900 mb-2">Risk-free to try</div><p class="text-sm text-zinc-600">14-day free trial, no charge until day 14. If it won't run on a supported NinjaTrader 8 setup and we can't fix it, you get a full refund.</p></div>
-    </div>
-  </section>
-
-  <!-- pricing -->
-  <section class="border-y border-zinc-200 bg-white">
-    <div class="max-w-5xl mx-auto px-6 py-24">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Start free. Keep what protects you.</h2>
-        <p class="mt-4 text-lg text-zinc-600">14-day free trial &middot; no charge until day 14 &middot; cancel anytime.</p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
         <div class="rounded-2xl border border-zinc-200 bg-white p-7">
-          <div class="font-semibold text-zinc-900">Meridian Core</div>
-          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$49.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
-          <p class="mt-3 text-sm text-zinc-600">The full real-time monitor, all seven behavioral signals, and 5-year session history.</p>
-          <a href="#" class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition">Start free trial</a>
+          <div class="text-sm font-semibold text-zinc-500 mb-4">What every risk tool does</div>
+          <ul class="space-y-3 text-zinc-700">
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Daily loss limit</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Max position size</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span> P&amp;L / drawdown caps</li>
+            <li class="flex gap-3"><span class="text-zinc-400">&check;</span> Loss-streak cutoff</li>
+          </ul>
+          <p class="mt-5 text-sm text-zinc-500">Meridian does all of this too.</p>
         </div>
-        <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
-          <div class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full">RECOMMENDED</div>
-          <div class="font-semibold text-zinc-900">Meridian Guard</div>
-          <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">$69.99<span class="text-base font-medium text-zinc-400">/mo</span></div>
-          <p class="mt-3 text-sm text-zinc-600">Everything in Core, plus automatic enforcement, Strict Lock, and the full Intel &amp; Stats layer.</p>
-          <a href="#" class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition">Start free trial</a>
+        <div class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
+          <div class="text-sm font-semibold text-emerald-700 mb-4">What only Meridian adds</div>
+          <ul class="space-y-3 text-zinc-800">
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span> Real-time <strong>behavior</strong> detection
+              &mdash; 7 signals (revenge, oversizing, tilt&hellip;)
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span> A baseline that learns how <em>you</em> trade
+              &mdash; not a generic average
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span> It steps in <em>before</em> the order, not after
+              the loss
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span> The whole loop: monitor &middot; guard &middot;
+              journal &middot; review
+            </li>
+          </ul>
+          <p class="mt-5 text-sm text-emerald-700 font-medium">No limit-based tool can do this.</p>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="max-w-3xl mx-auto mt-8 rounded-2xl bg-zinc-900 text-zinc-100 px-7 py-6 text-center">
+        <p class="text-lg md:text-xl leading-relaxed">
+          A $500 daily loss limit fires at <span class="text-rose-400 font-semibold">&minus;$500</span> &mdash; after
+          four revenge trades in twelve minutes.<br class="hidden md:block" />
+          Meridian starts flagging at <span class="text-emerald-400 font-semibold">trade two.</span>
+        </p>
+      </div>
+    </section>
 
-  <!-- final cta -->
-  <section class="halo">
-    <div class="max-w-3xl mx-auto px-6 py-28 text-center">
-      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">Trade the version of you<br/>that you respect.</h2>
-      <p class="mt-6 text-lg text-zinc-600">Everything your risk tool does &mdash; plus the part that actually saves the account.</p>
-      <div class="mt-9"><a href="#" class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm">Start your 14-day free trial</a></div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 required</p>
-    </div>
-  </section>
+    <!-- why it matters -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div class="max-w-5xl mx-auto px-6 py-24">
+        <div class="text-center mb-12">
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHY IT MATTERS</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+            Most blown accounts aren't<br />bad strategy. They're one bad session.
+          </h2>
+          <p class="mt-5 text-lg text-zinc-600 max-w-2xl mx-auto">
+            The strategy you spent months on rarely fails you. One session does &mdash; the entries you'd have rejected
+            yesterday, the size you'd ruled out, the stop you moved twice. A daily loss limit catches that at the end.
+            Meridian catches the behavior that's causing it.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
+          <div class="rounded-2xl border border-zinc-200 p-6">
+            <div class="text-3xl font-extrabold text-zinc-900 tnum">$89&ndash;540</div>
+            <div class="mt-2 text-sm text-zinc-600">A prop-firm evaluation. Lost if you fail it.</div>
+          </div>
+          <div class="rounded-2xl border border-zinc-200 p-6">
+            <div class="text-3xl font-extrabold text-zinc-900 tnum">$300&ndash;800</div>
+            <div class="mt-2 text-sm text-zinc-600">One off-plan session, revenge-driven.</div>
+          </div>
+          <div class="rounded-2xl border-2 border-emerald-500 p-6">
+            <div class="text-3xl font-extrabold text-emerald-700 tnum">$49.99</div>
+            <div class="mt-2 text-sm text-zinc-600">Meridian. One month.</div>
+          </div>
+        </div>
+        <p class="text-center mt-5 text-xs text-zinc-400 max-w-2xl mx-auto">
+          Illustrative &mdash; prop-firm fees are publicly listed; session-loss ranges are self-reported by users.
+          Meridian does not guarantee trading results.
+        </p>
+      </div>
+    </section>
 
-  <footer class="border-t border-zinc-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-10 text-center">
-      <p class="text-xs text-zinc-400 leading-relaxed max-w-3xl mx-auto">Trading involves substantial risk of loss and is not suitable for everyone. Meridian does not provide trading signals or investment advice, and does not guarantee trading results. NinjaTrader&reg; is a registered trademark of NinjaTrader LLC; Meridian is an independent third-party add-on.</p>
-      <p class="mt-4 text-xs text-zinc-400">Homepage draft &middot; not the live site</p>
-    </div>
-  </footer>
-<script>
-(function(){
-  // Lightbox — click any product screen to enlarge
-  var lb=document.createElement('div');
-  lb.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(8,8,10,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out';
-  var img=document.createElement('img');
-  img.style.cssText='max-width:96vw;max-height:94vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)';
-  lb.appendChild(img); document.body.appendChild(lb);
-  function close(){lb.style.display='none';}
-  lb.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-  document.querySelectorAll('.win img:not(.nozoom), .winsm img').forEach(function(el){
-    el.style.cursor='zoom-in';
-    el.addEventListener('click',function(e){e.stopPropagation();img.src=el.currentSrc||el.src;lb.style.display='flex';});
-  });
-  // Carousels
-  document.querySelectorAll('[data-carousel]').forEach(function(c){
-    var slides=[].slice.call(c.querySelectorAll('[data-slide]'));
-    var dots=[].slice.call(c.querySelectorAll('[data-dot]'));
-    var cap=c.querySelector('[data-caption]'); var i=0;
-    function show(n){
-      i=(n%slides.length+slides.length)%slides.length;
-      slides.forEach(function(s,k){s.style.display=k===i?'block':'none';});
-      dots.forEach(function(d,k){d.style.width=k===i?'22px':'8px';d.style.background=k===i?'#059669':'#d4d4d8';});
-      if(cap){var t=slides[i].getAttribute('data-cap')||'';t=t.replace(/&mdash;/g,'—');cap.textContent=t;}
-    }
-    var p=c.querySelector('[data-prev]'),nx=c.querySelector('[data-next]');
-    if(p)p.addEventListener('click',function(){show(i-1);});
-    if(nx)nx.addEventListener('click',function(){show(i+1);});
-    dots.forEach(function(d,k){d.addEventListener('click',function(){show(k);});});
-    show(0);
-  });
-})();
-</script>
-</body>
+    <!-- how it sees: live monitor -->
+    <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">LIVE MONITOR</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          It watches how you trade &mdash;<br />not just how much you've lost.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          Meridian turns your order flow into one live score from 0&ndash;100, updated in under 100ms after every fill.
+          When tilt creeps in, you watch the number fall &mdash; before your P&amp;L does.
+        </p>
+        <ul class="mt-6 space-y-3 text-zinc-700">
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span> Seven behavioral signals in one number you can feel
+            slipping
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span> Measured against <em>your</em> baseline, not a
+            generic average
+          </li>
+          <li class="flex gap-3">
+            <span class="text-emerald-600 font-bold">&check;</span> An always-on HUD that sits over your chart
+          </li>
+        </ul>
+      </div>
+      <div class="win">
+        <img
+          src="/m/monitor.png"
+          alt="Meridian live PSI Monitor — radial gauge, PSI timeline, and behavioral signal bars"
+        />
+      </div>
+    </section>
+
+    <!-- the 7 signals -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-24">
+        <div class="text-center mb-12">
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">WHAT IT CATCHES</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+            The 7 behaviors that quietly kill accounts.
+          </h2>
+          <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+            Every one is scored in real time, against your own history.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Revenge entries</div>
+            <p class="mt-1 text-sm text-zinc-600">Re-entering too fast after a loss, at bigger size.</p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Stop manipulation</div>
+            <p class="mt-1 text-sm text-zinc-600">Widening or moving your stop against a losing trade.</p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Size spikes</div>
+            <p class="mt-1 text-sm text-zinc-600">Sizing past your own rule &mdash; worse on losing streaks.</p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Hold bias</div>
+            <p class="mt-1 text-sm text-zinc-600">
+              Holding losers far longer than winners. (Cutting losses fast is never penalized.)
+            </p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Position overstay</div>
+            <p class="mt-1 text-sm text-zinc-600">Sitting in a losing trade past your own tolerance.</p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="font-semibold text-zinc-900">Rule violations</div>
+            <p class="mt-1 text-sm text-zinc-600">Trading outside the rules you set &mdash; time, stops, streaks.</p>
+          </div>
+          <div class="rounded-xl border border-zinc-200 bg-[#fafafa] p-5 sm:col-span-2 lg:col-span-1">
+            <div class="font-semibold text-zinc-900">Overtrading pace</div>
+            <p class="mt-1 text-sm text-zinc-600">Entries speeding up past your normal rhythm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- guard -->
+    <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="win order-2 lg:order-1"><img src="/m/guard.png" alt="Meridian Guard" /></div>
+      <div class="order-1 lg:order-2">
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">MERIDIAN GUARD</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          Willpower is not a risk strategy.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          You write the rules when you're calm. Guard enforces them when you're not &mdash; escalating exactly as far as
+          you decide: a quiet nudge, a typed acknowledgment, a trading pause, or a full broker disconnect.
+        </p>
+        <p class="mt-4 text-zinc-800 text-lg">
+          <span class="text-emerald-700 font-semibold">Strict Lock</span> makes it un-bypassable for its full window
+          &mdash; for when the tilted version of you wants to switch it off.
+        </p>
+        <p class="mt-4 text-sm text-zinc-500">
+          Guard never closes your live positions for you. It stops you <em>adding</em> risk &mdash; you can always exit,
+          any time.
+        </p>
+      </div>
+    </section>
+
+    <!-- the whole loop -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-24">
+        <div class="text-center mb-14">
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">THE WHOLE LOOP</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">One tool for the whole job.</h2>
+          <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+            Others sell you one piece &mdash; a limit, a journal, a dashboard. Meridian is the whole loop, and every
+            session makes the next one sharper.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-5 gap-4">
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">01</div>
+            <div class="text-zinc-900 font-semibold mb-1">Plan</div>
+            <p class="text-sm text-zinc-600">Your one risk for today, before the open.</p>
+          </div>
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">02</div>
+            <div class="text-zinc-900 font-semibold mb-1">Monitor</div>
+            <p class="text-sm text-zinc-600">A live read on your discipline.</p>
+          </div>
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">03</div>
+            <div class="text-zinc-900 font-semibold mb-1">Guard</div>
+            <p class="text-sm text-zinc-600">Enforcement when you cross your line.</p>
+          </div>
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">04</div>
+            <div class="text-zinc-900 font-semibold mb-1">Journal</div>
+            <p class="text-sm text-zinc-600">What happened, captured in the moment.</p>
+          </div>
+          <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-5">
+            <div class="text-emerald-600 text-xs font-bold mb-2 tnum">05</div>
+            <div class="text-zinc-900 font-semibold mb-1">Review</div>
+            <p class="text-sm text-zinc-600">Edge vs luck, and the habit to fix.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- put a number on it -->
+    <section class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">INTEL &amp; STATS</p>
+        <h2 class="text-3xl md:text-[2.7rem] font-bold tracking-tight text-zinc-900 leading-[1.1]">
+          See what tilt actually<br />costs you.
+        </h2>
+        <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
+          Pick any date range and break your trading down by time of day, hold time, instrument, and long vs short.
+          Meridian puts a dollar figure on the difference between your
+          <span class="text-emerald-700 font-semibold">composed</span> sessions and your
+          <span class="text-rose-600 font-semibold">tilted</span> ones &mdash; so discipline stops being a feeling.
+        </p>
+        <div class="mt-8 grid grid-cols-2 gap-4 max-w-md">
+          <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+            <div class="text-xs text-zinc-500 mb-1">When you're composed</div>
+            <div class="text-3xl font-bold text-emerald-700 tnum">
+              +$120<span class="text-base font-medium text-zinc-400">/session</span>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-rose-200 bg-rose-50 p-5">
+            <div class="text-xs text-zinc-500 mb-1">When you're tilted</div>
+            <div class="text-3xl font-bold text-rose-600 tnum">
+              &minus;$59<span class="text-base font-medium text-zinc-400">/session</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-carousel class="relative">
+        <div class="win">
+          <div class="relative bg-[#0b0b0d] rounded-[10px] overflow-hidden" style="height: min(56vh, 470px)">
+            <div data-slide data-cap="Insights &mdash; where you stand, every session" style="display: none">
+              <img src="/m/intel.png" class="w-full h-full object-contain" alt="Meridian Intel — Insights" />
+            </div>
+            <div
+              data-slide
+              data-cap="Stats &mdash; broken down by time, hold, instrument, long/short"
+              style="display: none"
+            >
+              <img src="/m/stats.png" class="w-full h-full object-contain" alt="Meridian Intel — Stats" />
+            </div>
+          </div>
+        </div>
+        <button
+          data-prev
+          aria-label="Previous"
+          class="absolute left-1 md:-left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1"
+        >
+          &#8249;
+        </button>
+        <button
+          data-next
+          aria-label="Next"
+          class="absolute right-1 md:-right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-lg border border-zinc-200 text-zinc-700 hover:text-emerald-700 flex items-center justify-center text-xl leading-none pb-1"
+        >
+          &#8250;
+        </button>
+        <div class="mt-4 text-center">
+          <p data-caption class="text-xs font-medium text-zinc-600 mb-3 min-h-[16px]"></p>
+          <div class="flex justify-center items-center gap-2">
+            <button data-dot aria-label="Go to slide" class="h-2 rounded-full transition-all"></button>
+            <button data-dot aria-label="Go to slide" class="h-2 rounded-full transition-all"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- testimonials -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-24">
+        <div class="text-center mb-12">
+          <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">FROM EARLY-ACCESS TRADERS</p>
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+            Traders who didn't believe it either.
+          </h2>
+          <p class="mt-3 text-sm text-zinc-500">Real quotes from our first users &mdash; anonymous by design.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+            <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote class="text-zinc-700 leading-relaxed">
+              "It's the first tool that actually catches me mid-session, when I'm tilting &mdash; not in the journal
+              hours later."
+            </blockquote>
+            <figcaption class="mt-4 text-sm text-zinc-500">Independent trader</figcaption>
+          </figure>
+          <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+            <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote class="text-zinc-700 leading-relaxed">
+              "I've restarted funded accounts more times than I want to count. A revenge-entry detector mattered more
+              than another indicator &mdash; I wouldn't have believed that."
+            </blockquote>
+            <figcaption class="mt-4 text-sm text-zinc-500">Prop-firm trader</figcaption>
+          </figure>
+          <figure class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-6">
+            <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote class="text-zinc-700 leading-relaxed">
+              "Turned out I wasn't losing because of my entries. I was adding to losing positions and ignoring my own
+              rules. Took data to admit it."
+            </blockquote>
+            <figcaption class="mt-4 text-sm text-zinc-500">ES / NQ futures</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- trust / credibility -->
+    <section class="max-w-5xl mx-auto px-6 py-24">
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div class="font-semibold text-zinc-900 mb-2">Official NinjaTrader Ecosystem Vendor</div>
+          <p class="text-sm text-zinc-600">
+            Reviewed and approved through NinjaTrader's Ecosystem &mdash; the same compliance bar every vendor clears.
+            The product you install is the one their team tested.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div class="font-semibold text-zinc-900 mb-2">Anonymous by design</div>
+          <p class="text-sm text-zinc-600">
+            Never your name, broker credentials, account numbers, or funds. Local-first; the only data that leaves is
+            anonymized and opt-out.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 bg-white p-6">
+          <div class="font-semibold text-zinc-900 mb-2">Risk-free to try</div>
+          <p class="text-sm text-zinc-600">
+            14-day free trial, no charge until day 14. If it won't run on a supported NinjaTrader 8 setup and we can't
+            fix it, you get a full refund.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- pricing -->
+    <section class="border-y border-zinc-200 bg-white">
+      <div class="max-w-5xl mx-auto px-6 py-24">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">
+            Start free. Keep what protects you.
+          </h2>
+          <p class="mt-4 text-lg text-zinc-600">
+            14-day free trial &middot; no charge until day 14 &middot; cancel anytime.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
+          <div class="rounded-2xl border border-zinc-200 bg-white p-7">
+            <div class="font-semibold text-zinc-900">Meridian Core</div>
+            <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">
+              $49.99<span class="text-base font-medium text-zinc-400">/mo</span>
+            </div>
+            <p class="mt-3 text-sm text-zinc-600">
+              The full real-time monitor, all seven behavioral signals, and 5-year session history.
+            </p>
+            <a
+              href="#"
+              class="mt-6 block text-center font-semibold text-zinc-900 border border-zinc-300 hover:border-zinc-400 rounded-xl py-3 transition"
+              >Start free trial</a
+            >
+          </div>
+          <div class="rounded-2xl border-2 border-emerald-500 bg-white p-7 relative shadow-sm">
+            <div
+              class="absolute -top-3 left-7 text-[11px] font-bold text-white bg-emerald-600 px-2.5 py-1 rounded-full"
+            >
+              RECOMMENDED
+            </div>
+            <div class="font-semibold text-zinc-900">Meridian Guard</div>
+            <div class="mt-2 text-4xl font-extrabold text-zinc-900 tnum">
+              $69.99<span class="text-base font-medium text-zinc-400">/mo</span>
+            </div>
+            <p class="mt-3 text-sm text-zinc-600">
+              Everything in Core, plus automatic enforcement, Strict Lock, and the full Intel &amp; Stats layer.
+            </p>
+            <a
+              href="#"
+              class="mt-6 block text-center font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl py-3 transition"
+              >Start free trial</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- final cta -->
+    <section class="halo">
+      <div class="max-w-3xl mx-auto px-6 py-28 text-center">
+        <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.05]">
+          Trade the version of you<br />that you respect.
+        </h2>
+        <p class="mt-6 text-lg text-zinc-600">
+          Everything your risk tool does &mdash; plus the part that actually saves the account.
+        </p>
+        <div class="mt-9">
+          <a
+            href="#"
+            class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
+            >Start your 14-day free trial</a
+          >
+        </div>
+        <p class="mt-4 text-xs text-zinc-500">
+          No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 required
+        </p>
+      </div>
+    </section>
+
+    <footer class="border-t border-zinc-200 bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-10 text-center">
+        <p class="text-xs text-zinc-400 leading-relaxed max-w-3xl mx-auto">
+          Trading involves substantial risk of loss and is not suitable for everyone. Meridian does not provide trading
+          signals or investment advice, and does not guarantee trading results. NinjaTrader&reg; is a registered
+          trademark of NinjaTrader LLC; Meridian is an independent third-party add-on.
+        </p>
+        <p class="mt-4 text-xs text-zinc-400">Homepage draft &middot; not the live site</p>
+      </div>
+    </footer>
+    <script>
+      (function () {
+        // Lightbox — click any product screen to enlarge
+        var lb = document.createElement('div');
+        lb.style.cssText =
+          'position:fixed;inset:0;z-index:100;background:rgba(8,8,10,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out';
+        var img = document.createElement('img');
+        img.style.cssText = 'max-width:96vw;max-height:94vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)';
+        lb.appendChild(img);
+        document.body.appendChild(lb);
+        function close() {
+          lb.style.display = 'none';
+        }
+        lb.addEventListener('click', close);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') close();
+        });
+        document.querySelectorAll('.win img:not(.nozoom), .winsm img').forEach(function (el) {
+          el.style.cursor = 'zoom-in';
+          el.addEventListener('click', function (e) {
+            e.stopPropagation();
+            img.src = el.currentSrc || el.src;
+            lb.style.display = 'flex';
+          });
+        });
+        // Carousels
+        document.querySelectorAll('[data-carousel]').forEach(function (c) {
+          var slides = [].slice.call(c.querySelectorAll('[data-slide]'));
+          var dots = [].slice.call(c.querySelectorAll('[data-dot]'));
+          var cap = c.querySelector('[data-caption]');
+          var i = 0;
+          function show(n) {
+            i = ((n % slides.length) + slides.length) % slides.length;
+            slides.forEach(function (s, k) {
+              s.style.display = k === i ? 'block' : 'none';
+            });
+            dots.forEach(function (d, k) {
+              d.style.width = k === i ? '22px' : '8px';
+              d.style.background = k === i ? '#059669' : '#d4d4d8';
+            });
+            if (cap) {
+              var t = slides[i].getAttribute('data-cap') || '';
+              t = t.replace(/&mdash;/g, '—');
+              cap.textContent = t;
+            }
+          }
+          var p = c.querySelector('[data-prev]'),
+            nx = c.querySelector('[data-next]');
+          if (p)
+            p.addEventListener('click', function () {
+              show(i - 1);
+            });
+          if (nx)
+            nx.addEventListener('click', function () {
+              show(i + 1);
+            });
+          dots.forEach(function (d, k) {
+            d.addEventListener('click', function () {
+              show(k);
+            });
+          });
+          show(0);
+        });
+      })();
+    </script>
+  </body>
 </html>

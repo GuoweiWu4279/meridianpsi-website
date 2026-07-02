@@ -1,5 +1,5 @@
 ---
-question: "Which versions of NinjaTrader are supported?"
+question: 'Which versions of NinjaTrader are supported?'
 category: technical
 order: 2
 ---

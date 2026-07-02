@@ -1,5 +1,5 @@
 ---
-question: "Why do traders keep breaking their own trading rules?"
+question: 'Why do traders keep breaking their own trading rules?'
 category: psychology
 order: 1
 ---

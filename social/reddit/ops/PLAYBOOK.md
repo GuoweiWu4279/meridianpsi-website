@@ -27,15 +27,15 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 
 ## 通道现实（2026-06-10 实测）
 
-| 通道 | 状态 | 用途 |
-|---|---|---|
-| Claude-in-Chrome 驱动浏览器 | **❌ 死**——扩展层安全策略禁开 reddit.com（实测报 "This site is not allowed due to safety restrictions"），不是配置问题，v1 的"Chrome 主通道"作废 | 无 |
-| 服务端直抓 reddit.com/.json | ❌ 403（2026-05 起匿名 json 全面封） | 无 |
-| **WebSearch** | ✅ | 找帖兜底、查 sub 规则 |
-| **Arctic Shift 镜像 API**（arctic-shift.photon-reddit.com） | ✅ 实测可用 | 读 sub 侧栏/规则/帖子存档（有滞后）——当前主力监控通道 |
-| **Reddit 官方 API（只读）** | ⏳ 待审批（Gary 提工单，文案在 queue.md 顶部） | 批下来后 = 实时监控目标 sub 的 /new、收件箱、提及 |
-| **Reddit Pro**（redditforpros.com，免费官方品牌工具） | ⏳ 待 Gary 注册 | Trends 关键词监听（NinjaTrader/prop firm/tilt 等无限关键词）+ 自有 profile/sub 的**官方原生定时发帖** |
-| **Gary 的手**（手机/电脑粘贴） | ✅ | 一切对外发送的最后一步；我用 push 通知推成品给他 |
+| 通道                                                        | 状态                                                                                                                                             | 用途                                                                                                  |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| Claude-in-Chrome 驱动浏览器                                 | **❌ 死**——扩展层安全策略禁开 reddit.com（实测报 "This site is not allowed due to safety restrictions"），不是配置问题，v1 的"Chrome 主通道"作废 | 无                                                                                                    |
+| 服务端直抓 reddit.com/.json                                 | ❌ 403（2026-05 起匿名 json 全面封）                                                                                                             | 无                                                                                                    |
+| **WebSearch**                                               | ✅                                                                                                                                               | 找帖兜底、查 sub 规则                                                                                 |
+| **Arctic Shift 镜像 API**（arctic-shift.photon-reddit.com） | ✅ 实测可用                                                                                                                                      | 读 sub 侧栏/规则/帖子存档（有滞后）——当前主力监控通道                                                 |
+| **Reddit 官方 API（只读）**                                 | ⏳ 待审批（Gary 提工单，文案在 queue.md 顶部）                                                                                                   | 批下来后 = 实时监控目标 sub 的 /new、收件箱、提及                                                     |
+| **Reddit Pro**（redditforpros.com，免费官方品牌工具）       | ⏳ 待 Gary 注册                                                                                                                                  | Trends 关键词监听（NinjaTrader/prop firm/tilt 等无限关键词）+ 自有 profile/sub 的**官方原生定时发帖** |
+| **Gary 的手**（手机/电脑粘贴）                              | ✅                                                                                                                                               | 一切对外发送的最后一步；我用 push 通知推成品给他                                                      |
 
 ---
 
@@ -54,18 +54,18 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 
 ## 目标阵地（v2 修订，依据逐 sub 规则核查）
 
-| Sub | 订阅量级 | 角色 | 硬门槛 | 关键规则 |
-|---|---|---|---|---|
-| **r/Daytrading** | ~4.7M | 主战场（评论）+ **Software Sunday**（年 2 次产品帖） | 评论需账龄 3 天 + 10 comment karma | 严管 AI 文风；正区产品帖必死；Software Sunday 四规：指定 flair、详细描述产品、必回评论区、**同一产品每年最多 2 次**。发前用真人通道读一遍其 wiki 的 content-creator 指引 |
-| **r/FuturesTrading** | ~120K+ | 主战场（评论先行） | **发文字帖需 50+ comment karma**（评论无门槛；mod 帖原文阶梯：50 文字/100 图/1000 链接） | 自我推广=当场封；内容创作者永不 approve。先攒 karma，后期只发纯价值文字帖 |
-| **r/Trading** | ~250K | 次要 | restrict_posting | 链接到付费订阅站=必删 → 只发纯文字 |
-| **r/MeridianPSI** | 自有 | 大本营：置顶帖、founding 计划帖、版本公告、AMA | 无 | 随便讲产品；AutoModerator / 官方 Automations / Reddit Pro 排程 = 完全合法的自动化 |
-| **r/alphaandbetausers** | ~18K | founding user 招募专用（该 sub 即为"创新者找早期用户"而生） | 无 | 直接发招募帖=绿 |
-| **r/Tradovate** | 小 | 只答题、被问才提 | — | broker 地盘，谦逊 |
-| ~~r/FuturesTradingNQ~~ | 195 人 | **v2 移除**——个人领地小 sub（RonPosit 私地），无流量有风险 | — | — |
-| ❌ r/ninjatrader | — | **禁**：简介明文 "NO LICENSE SALES, DEVELOPER SOLICITATIONS" | — | — |
-| ❌ r/TopstepX / r/ApexTraderFunding 等 prop 官方 sub | — | **禁**发产品：别人官方场子；只可纯答题 | — | — |
-| r/algotrading | ~1.7M | 仅纯技术分享 | — | 反卖软规则极硬，禁 paysites，不适合招募 |
+| Sub                                                  | 订阅量级 | 角色                                                         | 硬门槛                                                                                   | 关键规则                                                                                                                                                                 |
+| ---------------------------------------------------- | -------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **r/Daytrading**                                     | ~4.7M    | 主战场（评论）+ **Software Sunday**（年 2 次产品帖）         | 评论需账龄 3 天 + 10 comment karma                                                       | 严管 AI 文风；正区产品帖必死；Software Sunday 四规：指定 flair、详细描述产品、必回评论区、**同一产品每年最多 2 次**。发前用真人通道读一遍其 wiki 的 content-creator 指引 |
+| **r/FuturesTrading**                                 | ~120K+   | 主战场（评论先行）                                           | **发文字帖需 50+ comment karma**（评论无门槛；mod 帖原文阶梯：50 文字/100 图/1000 链接） | 自我推广=当场封；内容创作者永不 approve。先攒 karma，后期只发纯价值文字帖                                                                                                |
+| **r/Trading**                                        | ~250K    | 次要                                                         | restrict_posting                                                                         | 链接到付费订阅站=必删 → 只发纯文字                                                                                                                                       |
+| **r/MeridianPSI**                                    | 自有     | 大本营：置顶帖、founding 计划帖、版本公告、AMA               | 无                                                                                       | 随便讲产品；AutoModerator / 官方 Automations / Reddit Pro 排程 = 完全合法的自动化                                                                                        |
+| **r/alphaandbetausers**                              | ~18K     | founding user 招募专用（该 sub 即为"创新者找早期用户"而生）  | 无                                                                                       | 直接发招募帖=绿                                                                                                                                                          |
+| **r/Tradovate**                                      | 小       | 只答题、被问才提                                             | —                                                                                        | broker 地盘，谦逊                                                                                                                                                        |
+| ~~r/FuturesTradingNQ~~                               | 195 人   | **v2 移除**——个人领地小 sub（RonPosit 私地），无流量有风险   | —                                                                                        | —                                                                                                                                                                        |
+| ❌ r/ninjatrader                                     | —        | **禁**：简介明文 "NO LICENSE SALES, DEVELOPER SOLICITATIONS" | —                                                                                        | —                                                                                                                                                                        |
+| ❌ r/TopstepX / r/ApexTraderFunding 等 prop 官方 sub | —        | **禁**发产品：别人官方场子；只可纯答题                       | —                                                                                        | —                                                                                                                                                                        |
+| r/algotrading                                        | ~1.7M    | 仅纯技术分享                                                 | —                                                                                        | 反卖软规则极硬，禁 paysites，不适合招募                                                                                                                                  |
 
 > ⚠️ **逐 sub 规则最后人工核验 = 2026-06-19;reddit.com 对我们所有工具是封的(匿名 .json 403、wiki 403)。** 这些转化关键/封号关键的硬门槛(**r/Daytrading Software Sunday 四规**、**r/FuturesTrading 50 comment karma 文字帖阶梯**)依赖早先的人工读,可能已漂移。**临 Software Sunday 发帖前、临近 50 karma 前,Gary 用浏览器打开该 sub 的现行规则再确认一次**,别让阶段闸卡在一个核不动的数字上。
 
@@ -77,21 +77,25 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 ## 运营节奏（三阶段）
 
 ### Phase 1 — 攒 karma（现在 → comment karma ≥50，预计 2–3 周）
+
 - 每天 **2–5 条**高质量评论（r/Daytrading + r/FuturesTrading 为主），**零产品提及、零链接**。
 - 目的：解锁 r/FuturesTrading 文字帖资格 + 建立"真参与者"行为曲线 + 喂高 CQS（隐藏账号信誉分，决定发帖/DM 配额）。
 - 我每天出一批草稿（含原帖链接+分析+成品评论），push 给 Gary，他 5 分钟粘贴。
 
 ### Phase 2 — 建阵地（karma 达标后）
+
 - r/MeridianPSI：重贴修正版置顶帖（`pinned-start-here.md` 2026-06-10 版）、发 **Founding User Program 帖**（60–90 天免费换证言；帖内声明 "comment or DM me if interested"）。
 - r/alphaandbetausers：发招募帖。
 - r/FuturesTrading / r/Trading：第一条纯价值文字帖（行为数据/方法论，无链接）；founder 身份放 profile 自然导流。
 - 开启"**对方先动作 → 我们再 DM**"漏斗：只私信主动评论/来信的人；草稿我备，发送走 Gary 队列。
 
 ### Phase 3 — 满血一击（与多平台公告/Tradovate GA 对齐）
+
 - **Software Sunday #1**：年度 2 发的第一发。截图+机制讲解+诚实局限+founding 邀请；发后 24h 内我备好每条评论的回复。第二发预留给下个大版本（间隔 ≥5 个月）。
 - 数据帖系列化：研究 pipeline 产出（"PSI 预警提前 X 分钟"类）= 天然高赞素材。
 
 ### 持续（全阶段）
+
 - 我监控：Arctic Shift + WebSearch（官方 API 批后换实时；Reddit Pro 注册后加 Trends 关键词监听）。
 - 任何人回复我们/来 DM → 我尽快备好回复草稿入队（目标当天）。
 - `log.md` 记一切：已发、followup、去重台账、karma 进度。
@@ -137,14 +141,16 @@ v2 漏了这一节,但它决定账号活不活:
 ## ★ 维护:canonical 事实变了,回灌已发的帖（长期质量铁律）
 
 已发的帖不是"发完就忘"。**当一个 canonical 事实变化时**(价格/试用天数/平台状态/Guard 级名/版本/隐私口径——以 `src/data/pricing.json`、CANON、`MERIDIAN.md` 为准),必须:
+
 1. 翻 `log.md` 里所有已发的**长青帖**(尤其 r/MeridianPSI 置顶帖、founding 帖),看哪条正文含这个事实。
 2. 含的 → 改源文件(`pinned-start-here.md` 等)→ 标进 queue 让 Gary 重编线上帖那一段。
 3. **源文件改对 ≠ 线上改对**:线上是 Gary 早先手动粘的快照,会和源文件脱节。源改完要专门生成"线上回灌"待办。
-> 真实案例(2026-06):公司把试用 7 天改 14 天,06-14 维护把所有**源文件**扫成 14-day,但**线上置顶帖**当时是早先粘的 7-day 快照,没人回灌——这就是这条规则要堵的缝(LEARNINGS 可记)。
+   > 真实案例(2026-06):公司把试用 7 天改 14 天,06-14 维护把所有**源文件**扫成 14-day,但**线上置顶帖**当时是早先粘的 7-day 快照,没人回灌——这就是这条规则要堵的缝(LEARNINGS 可记)。
 
 ## Gary 的全部工作
 
 **一次性（约 25 分钟）：**
+
 1. **账号 hygiene（先做这个）**：验证邮箱 + 绑手机 + 开 2FA，头像/简介填好。CQS 直接输入 + 最便宜的防 shadowban 保险。
 2. 告诉我账号 username + 当前 comment karma（对照门槛定起跑点）。
 3. 注册 **Reddit Pro**（redditforpros.com，免费，5 分钟）。
@@ -156,6 +162,7 @@ v2 漏了这一节,但它决定账号活不活:
 ---
 
 ## 相关文件
+
 - 语气/人设：`Web/.cursor/rules/social-voice.mdc`；范例库：`voice-samples.md`（注意其中标注"勿模仿"的违规样本）
 - 防 AI + 合规禁语总表：`Web/social/writing-rules.md`
 - 置顶帖正文（2026-06-10 修正版，待重贴）：`pinned-start-here.md`
@@ -163,6 +170,7 @@ v2 漏了这一节,但它决定账号活不活:
 - `queue.md`（当前队列）、`log.md`（台账）
 
 ## v1 → v2 变更记录（2026-06-10）
+
 - 触发方式：手动"Gary 叫我跑" → **我自主排程跑，Gary 只做发送的手**
 - 发帖通道：Chrome 代发（已被扩展政策封死）→ **queue + push + Gary 粘贴**（Postpone 同款模式）
 - 审核门：逐条审批 → **默认发出、粘贴时过目、一票否决**（Gary 2026-06-10 授权）

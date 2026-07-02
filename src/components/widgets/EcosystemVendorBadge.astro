@@ -32,65 +32,95 @@ const { variant = 'compact', align = 'center', class: className = '' } = Astro.p
 const alignClass = align === 'center' ? 'mx-auto text-center' : 'text-left';
 ---
 
-{variant === 'compact' && (
-  <a
-    href="https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian"
-    target="_blank"
-    rel="noopener"
-    aria-label="Official NinjaTrader Vendor — view Meridian's listing in the NinjaTrader Ecosystem"
-    class:list={['inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60', className]}
-    style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
-  >
-    <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-    <span class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">
-      Official NinjaTrader Vendor
-    </span>
-  </a>
-)}
-
-{variant === 'strip' && (
-  <div class:list={['flex flex-col gap-2 max-w-2xl', alignClass, className]}>
+{
+  variant === 'compact' && (
     <a
       href="https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian"
       target="_blank"
       rel="noopener"
       aria-label="Official NinjaTrader Vendor — view Meridian's listing in the NinjaTrader Ecosystem"
-      class={`inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60 ${align === 'center' ? 'mx-auto' : ''}`}
-      style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07); width: fit-content;"
+      class:list={[
+        'inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60',
+        className,
+      ]}
+      style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07);"
     >
-      <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true"></span>
-      <span class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase" style="color:var(--aw-color-primary);">
+      <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true" />
+      <span
+        class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase"
+        style="color:var(--aw-color-primary);"
+      >
         Official NinjaTrader Vendor
       </span>
     </a>
-    <p class="text-[11px] md:text-xs text-zinc-500 leading-relaxed">
-      Audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams.
-    </p>
-  </div>
-)}
+  )
+}
 
-{variant === 'card' && (
-  <div class:list={['rounded-2xl border border-emerald-100 bg-emerald-50/40 px-6 py-5', className]}>
-    <div class="flex items-start gap-4">
-      <div class="shrink-0 mt-1">
-        <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-sm" style="border:1px solid rgba(5,150,105,0.35);">
-          <svg class="w-4 h-4" fill="none" stroke="var(--aw-color-primary)" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-          </svg>
-        </span>
-      </div>
-      <div class="flex-1">
-        <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:var(--aw-color-primary);">
+{
+  variant === 'strip' && (
+    <div class:list={['flex flex-col gap-2 max-w-2xl', alignClass, className]}>
+      <a
+        href="https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian"
+        target="_blank"
+        rel="noopener"
+        aria-label="Official NinjaTrader Vendor — view Meridian's listing in the NinjaTrader Ecosystem"
+        class={`inline-flex items-center gap-2 px-3 py-1 rounded-full border transition-colors hover:bg-emerald-50/60 ${align === 'center' ? 'mx-auto' : ''}`}
+        style="border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.07); width: fit-content;"
+      >
+        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--aw-color-primary);" aria-hidden="true" />
+        <span
+          class="text-[10px] md:text-[11px] font-semibold tracking-[0.15em] uppercase"
+          style="color:var(--aw-color-primary);"
+        >
           Official NinjaTrader Vendor
-        </p>
-        <p class="text-sm text-zinc-700 leading-relaxed">
-          Meridian is audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams &mdash;
-          the same review every NinjaTrader vendor must pass.
-          <a href="https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian" target="_blank" rel="noopener" class="underline hover:text-emerald-800">
-            View Meridian&rsquo;s listing in the NinjaTrader Ecosystem &rarr;
-          </a>
-        </p>
+        </span>
+      </a>
+      <p class="text-[11px] md:text-xs text-zinc-500 leading-relaxed">
+        Audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams.
+      </p>
+    </div>
+  )
+}
+
+{
+  variant === 'card' && (
+    <div class:list={['rounded-2xl border border-emerald-100 bg-emerald-50/40 px-6 py-5', className]}>
+      <div class="flex items-start gap-4">
+        <div class="shrink-0 mt-1">
+          <span
+            class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-sm"
+            style="border:1px solid rgba(5,150,105,0.35);"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="var(--aw-color-primary)"
+              stroke-width="2.4"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+        </div>
+        <div class="flex-1">
+          <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mb-1" style="color:var(--aw-color-primary);">
+            Official NinjaTrader Vendor
+          </p>
+          <p class="text-sm text-zinc-700 leading-relaxed">
+            Meridian is audited and approved by NinjaTrader&rsquo;s Compliance, QA, and Executive teams &mdash; the same
+            review every NinjaTrader vendor must pass.
+            <a
+              href="https://ninjatraderecosystem.com/search-results/?fwp_vendors=meridian"
+              target="_blank"
+              rel="noopener"
+              class="underline hover:text-emerald-800"
+            >
+              View Meridian&rsquo;s listing in the NinjaTrader Ecosystem &rarr;
+            </a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-)}
+  )
+}

@@ -53,32 +53,38 @@ const articleSchema = {
 <div class="bg-zinc-50 min-h-screen">
   <!-- Article column: white, narrow, centered -->
   <article class="bg-white max-w-[740px] mx-auto px-8 sm:px-14 pt-10 pb-16 shadow-[0_0_0_1px_rgba(0,0,0,0.06)]">
-
     <!-- Author / meta row -->
     <div class="flex items-center justify-between mb-7">
       <div class="flex items-center gap-3">
         <!-- Avatar -->
         <div class="w-9 h-9 rounded-full bg-zinc-200 flex items-center justify-center shrink-0">
           <svg class="w-4.5 h-4.5 text-zinc-500" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            <path
+              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+            ></path>
           </svg>
         </div>
         <div class="flex items-center gap-1.5 text-sm text-zinc-500">
           <span class="font-medium text-zinc-700">{post.author ?? 'Meridian'}</span>
           <span class="text-zinc-300">·</span>
           <time datetime={String(post.publishDate)}>{getFormattedDate(post.publishDate)}</time>
-          {mins && (
-            <>
-              <span class="text-zinc-300">·</span>
-              <span>{mins} min read</span>
-            </>
-          )}
+          {
+            mins && (
+              <>
+                <span class="text-zinc-300">·</span>
+                <span>{mins} min read</span>
+              </>
+            )
+          }
         </div>
       </div>
       <!-- Three-dot menu -->
       <div class="opacity-30 hover:opacity-60 cursor-pointer p-1">
         <svg class="w-4 h-4 text-zinc-700" fill="currentColor" viewBox="0 0 24 24">
-          <circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/>
+          <circle cx="12" cy="5" r="1.5"></circle><circle cx="12" cy="12" r="1.5"></circle><circle
+            cx="12"
+            cy="19"
+            r="1.5"></circle>
         </svg>
       </div>
     </div>
@@ -89,28 +95,30 @@ const articleSchema = {
     </h1>
 
     <!-- Excerpt / subtitle -->
-    {post.excerpt && (
-      <p class="text-lg text-zinc-500 leading-relaxed mb-7 border-b border-zinc-100 pb-7">
-        {post.excerpt}
-      </p>
-    )}
+    {
+      post.excerpt && (
+        <p class="text-lg text-zinc-500 leading-relaxed mb-7 border-b border-zinc-100 pb-7">{post.excerpt}</p>
+      )
+    }
 
     <!-- Cover image -->
-    {post.image && (
-      <div class="mb-8 -mx-8 sm:-mx-14">
-        <img
-          src={typeof post.image === 'string' ? post.image : (post.image as any).src ?? String(post.image)}
-          alt={post.excerpt ?? post.title}
-          class="w-full"
-          loading="eager"
-          decoding="async"
-        />
-      </div>
-    )}
+    {
+      post.image && (
+        <div class="mb-8 -mx-8 sm:-mx-14">
+          <img
+            src={typeof post.image === 'string' ? post.image : ((post.image as any).src ?? String(post.image))}
+            alt={post.excerpt ?? post.title}
+            class="w-full"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
 
     <!-- Body — newspaper prose -->
-    <div class="
-      prose prose-zinc max-w-none
+    <div
+      class="prose prose-zinc max-w-none
       prose-p:text-[17px] prose-p:leading-[1.85] prose-p:text-zinc-700
       prose-headings:font-bold prose-headings:text-zinc-950 prose-headings:tracking-tight
       prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3
@@ -120,8 +128,8 @@ const articleSchema = {
       prose-blockquote:border-l-4 prose-blockquote:border-zinc-300 prose-blockquote:pl-5 prose-blockquote:text-zinc-600 prose-blockquote:not-italic prose-blockquote:font-normal
       prose-hr:border-zinc-200 prose-hr:my-10
       prose-li:text-[17px] prose-li:text-zinc-700
-      prose-img:rounded-sm
-    ">
+      prose-img:rounded-sm"
+    >
       <slot />
     </div>
 
@@ -130,6 +138,5 @@ const articleSchema = {
       <span class="text-sm text-zinc-400 font-medium mr-2">Share</span>
       <SocialShare url={url} text={post.title} class="flex items-center gap-0" />
     </div>
-
   </article>
 </div>

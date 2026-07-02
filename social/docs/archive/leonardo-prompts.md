@@ -20,12 +20,12 @@
 
 ## 模型选择
 
-| 需求 | 模型 | 说明 |
-|---|---|---|
-| 需要带**精准文字**的图（信息图、流程图、对比图） | **GPT-Image-2.0** | 唯一能准确生成文字的模型 |
-| 需要**高质量动态视频**（最重要的场景） | **Seedance 2.0** | 最贵，每条视频最多用1次 |
-| 需要**普通动态视频** | **LTX 2.3 Fast** | 每条视频最多用4次 |
-| 需要**静态插图/概念图**（无文字） | **Phoenix / Flux** | 最便宜，配合 CapCut Ken Burns |
+| 需求                                             | 模型               | 说明                          |
+| ------------------------------------------------ | ------------------ | ----------------------------- |
+| 需要带**精准文字**的图（信息图、流程图、对比图） | **GPT-Image-2.0**  | 唯一能准确生成文字的模型      |
+| 需要**高质量动态视频**（最重要的场景）           | **Seedance 2.0**   | 最贵，每条视频最多用1次       |
+| 需要**普通动态视频**                             | **LTX 2.3 Fast**   | 每条视频最多用4次             |
+| 需要**静态插图/概念图**（无文字）                | **Phoenix / Flux** | 最便宜，配合 CapCut Ken Burns |
 
 ---
 
@@ -46,6 +46,7 @@
 ## GPT-Image-2.0 使用建议
 
 **适合场景：**
+
 - 需要文字标注的图（流程图、对比表、PSI解释图）
 - 需要观众"读"而不只是"看"的内容
 
@@ -54,6 +55,7 @@
 GPT-Image-2.0 理解自然语言，越清楚描述内容，出来越准确。
 
 **基础收尾语（每次加在 prompt 末尾）：**
+
 > Aesthetic: Dark slate background. Clean, sharp vector lines. High contrast for readability but using soft muted colors (e.g., sage green and deep terracotta red) instead of glowing neon. No blur, no haze, no unnecessary text. The visual logic must be instantly understandable. Include very minimal, elegant graphic details to emphasize the core concept, but keep it highly professional.
 
 ---
@@ -61,6 +63,7 @@ GPT-Image-2.0 理解自然语言，越清楚描述内容，出来越准确。
 ## Phoenix / Flux 使用建议
 
 **适合场景：**
+
 - 情感性的、氛围性的画面（开头 hook、比喻场景）
 - 不需要文字的纯视觉素材
 
@@ -69,6 +72,7 @@ GPT-Image-2.0 理解自然语言，越清楚描述内容，出来越准确。
 可以生成真实的人、真实的场景、抽象的概念——任何都行。
 
 **基础收尾语（每次加在 prompt 末尾）：**
+
 > Aesthetic: Dark, moody, premium cinematic quality. Use muted and sophisticated colors. Clean composition with generous padding. 16:9 ratio.
 
 ---
@@ -81,4 +85,4 @@ GPT-Image-2.0 理解自然语言，越清楚描述内容，出来越准确。
 
 ---
 
-*Last updated: May 2026.*
+_Last updated: May 2026._

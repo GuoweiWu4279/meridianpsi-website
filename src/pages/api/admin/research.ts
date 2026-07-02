@@ -71,10 +71,20 @@ export const GET: APIRoute = async ({ request, url }) => {
 
   if (action === 'list') {
     const blobs = await listAll(token);
-    const map = new Map<string, { objects: number; sessions: Set<string>; bytes: number; first: number; last: number; dates: Set<string> }>();
+    const map = new Map<
+      string,
+      { objects: number; sessions: Set<string>; bytes: number; first: number; last: number; dates: Set<string> }
+    >();
     for (const b of blobs) {
       const id = installOf(b.pathname);
-      const e = map.get(id) ?? { objects: 0, sessions: new Set(), bytes: 0, first: Infinity, last: 0, dates: new Set() };
+      const e = map.get(id) ?? {
+        objects: 0,
+        sessions: new Set(),
+        bytes: 0,
+        first: Infinity,
+        last: 0,
+        dates: new Set(),
+      };
       e.objects++;
       e.sessions.add(b.pathname.split('/').pop() || b.pathname);
       e.bytes += b.size;
@@ -133,7 +143,11 @@ export const POST: APIRoute = async ({ request }) => {
   if (!ok) return json(401, { error: 'unauthorized' });
 
   let body: any;
-  try { body = await request.json(); } catch { return json(400, { error: 'bad json' }); }
+  try {
+    body = await request.json();
+  } catch {
+    return json(400, { error: 'bad json' });
+  }
 
   const token = blobToken();
   if (!token) return json(503, { error: 'blob token not configured (set BLOB_READ_WRITE_TOKEN)' });
@@ -144,7 +158,11 @@ export const POST: APIRoute = async ({ request }) => {
     if (body.install) victims = blobs.filter((b) => installOf(b.pathname) === body.install);
     else if (body.path) victims = blobs.filter((b) => b.pathname === body.path);
     else return json(400, { error: 'install or path required' });
-    if (victims.length) await del(victims.map((v) => v.url), { token });
+    if (victims.length)
+      await del(
+        victims.map((v) => v.url),
+        { token }
+      );
     return json(200, { deleted: victims.length, paths: victims.map((v) => v.pathname) });
   }
 

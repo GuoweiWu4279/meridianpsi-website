@@ -1,5 +1,5 @@
 ---
-question: "How do I install Meridian in NinjaTrader 8?"
+question: 'How do I install Meridian in NinjaTrader 8?'
 category: installation
 order: 1
 ---

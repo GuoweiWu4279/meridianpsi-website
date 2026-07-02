@@ -1,7 +1,7 @@
 ---
 title: Your Personal Details
 section: personal-details
-lastUpdated: "2026-05-01"
+lastUpdated: '2026-05-01'
 order: 1
 ---
 

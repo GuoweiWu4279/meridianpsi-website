@@ -6,6 +6,7 @@
 **Entry point for ALL Reddit/social writing:** [`../CONTENT-SYSTEM.md`](../CONTENT-SYSTEM.md) — the write loop + 3 hard gates. Read it first.
 
 ## What's in this folder
+
 - `ops/PLAYBOOK.md` — Reddit strategy / cadence / safety / phases (read when you start a run)
 - `ops/ARTIFACTS.md` — genre decision table (classify the piece before writing)
 - `ops/COMMENT-ANATOMY.md` — how to write a high-trust reply (the "Topic comment" deep spec)
@@ -16,6 +17,7 @@
 - `founding-early-access-post.md` — Tradovate/Ironbeam early-access recruiting post
 
 ## Where the cross-cutting layers live
+
 Voice + anti-AI hard gate = [`../brand/VOICE.md`](../brand/VOICE.md). Positioning = [`../brand/POSITIONING.md`](../brand/POSITIONING.md). Product facts = `../../MERIDIAN.md`. Channel reply-voice quick-ref = `../../.cursor/rules/social-voice.mdc`.
 
 r/MeridianPSI = our **branded home base** (pinned / announcements / founding / AMA). Topic content (discipline, surviving prop evals) goes to the **big subs** (r/Daytrading, r/FuturesTrading), not a second sub.

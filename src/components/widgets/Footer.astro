@@ -25,10 +25,22 @@ export interface Props {
   theme?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', ntDisclaimers = '', theme = 'light' } = Astro.props;
+const {
+  socialLinks = [],
+  secondaryLinks = [],
+  links = [],
+  footNote = '',
+  ntDisclaimers = '',
+  theme = 'light',
+} = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 not-prose']}>
+<footer
+  class:list={[
+    { dark: theme === 'dark' },
+    'relative border-t border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-950 not-prose',
+  ]}
+>
   <div
     class="relative max-w-7xl mx-auto px-6 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
@@ -77,13 +89,15 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', ntDisc
         ))
       }
     </div>
-    {ntDisclaimers && (
-      <div class="border-t border-zinc-100 dark:border-zinc-800 py-8">
-        <div class="text-[11px] leading-relaxed text-zinc-400 dark:text-zinc-500 space-y-3">
-          <Fragment set:html={ntDisclaimers} />
+    {
+      ntDisclaimers && (
+        <div class="border-t border-zinc-100 dark:border-zinc-800 py-8">
+          <div class="text-[11px] leading-relaxed text-zinc-400 dark:text-zinc-500 space-y-3">
+            <Fragment set:html={ntDisclaimers} />
+          </div>
         </div>
-      </div>
-    )}
+      )
+    }
     <div class="border-t border-zinc-100 dark:border-zinc-800 md:flex md:items-center md:justify-between py-6">
       {
         socialLinks?.length ? (

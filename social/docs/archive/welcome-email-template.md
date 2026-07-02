@@ -65,18 +65,21 @@ garycaffrey@meridian-partnership.com
 ## Whop operations reference (do these before or immediately after sending)
 
 **To generate the affiliate link:**
+
 1. Go to your Whop seller dashboard
 2. Affiliates → Add affiliate
 3. Enter the creator's email and set the affiliate handle (the `?a=` parameter)
 4. Whop generates the link automatically
 
 **To generate the promo code:**
+
 1. Whop seller dashboard → Promotions → Create discount
 2. Set to 10% off, recurring (applies to every renewal), no expiry
 3. Name the code `[CREATORNAME10]` or similar
 4. Assign it to the affiliate
 
 **To comp the Guard license:**
+
 1. Whop seller dashboard → Members → Add member
 2. Enter the creator's email
 3. Select Meridian Guard → Complimentary (no charge)

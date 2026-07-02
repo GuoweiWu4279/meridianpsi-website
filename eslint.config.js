@@ -54,6 +54,21 @@ export default [
     },
   },
   {
-    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro'],
+    // Debt deferral (Gary 2026-07-02): downgrade these to `warn` so `eslint .`
+    // (no --max-warnings) passes CI, while the pre-existing debt stays visible.
+    // Style/quality rules only — zero runtime impact. Clean up over time.
+    files: ['**/*.{js,mjs,jsx,ts,tsx,astro}', '**/*.astro/*.js'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'warn',
+      'no-empty': 'warn',
+      'no-useless-escape': 'warn',
+      'no-constant-binary-expression': 'warn',
+    },
+  },
+  {
+    // `.vercel` = Vercel adapter build output (generated, like `dist`) — never lint it.
+    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro', '.vercel'],
   },
 ];

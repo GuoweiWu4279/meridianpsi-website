@@ -94,7 +94,8 @@ const APP_BROKERS = [
 const ntHowTo = {
   '@type': 'HowTo',
   name: 'How to Install Meridian in NinjaTrader 8',
-  description: 'Install the Meridian add-on, activate your license, and configure your trading profile in NinjaTrader 8.',
+  description:
+    'Install the Meridian add-on, activate your license, and configure your trading profile in NinjaTrader 8.',
   url: 'https://www.meridianpsi.com/installation-guide#ninjatrader',
   totalTime: 'PT10M',
   tool: [
@@ -248,7 +249,9 @@ const howToGraph = JSON.stringify({
           ))
         }
       </div>
-      <p class="mt-4 text-xs text-zinc-500">One Meridian subscription activates every platform &mdash; you never pay twice.</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        One Meridian subscription activates every platform &mdash; you never pay twice.
+      </p>
     </div>
   </section>
 
@@ -259,23 +262,37 @@ const howToGraph = JSON.stringify({
       <div class="max-w-5xl mx-auto px-6 py-20 md:py-24">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
           <div data-reveal>
-            <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NINJATRADER 8 &middot; ADD-ON &middot; ~10 MIN</p>
+            <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">
+              NINJATRADER 8 &middot; ADD-ON &middot; ~10 MIN
+            </p>
             <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">What you'll need.</h2>
             <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
-              Three things, and the whole install takes about ten minutes. Have them ready and the steps below go without
-              a hitch.
+              Three things, and the whole install takes about ten minutes. Have them ready and the steps below go
+              without a hitch.
             </p>
             <ul class="mt-7 space-y-3 text-zinc-700">
-              <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>NinjaTrader 8 installed (Windows, 64-bit)</span></li>
-              <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An active Meridian subscription</span></li>
-              <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Your Whop login</span></li>
+              <li class="flex gap-3">
+                <span class="text-emerald-600 font-bold">&check;</span><span
+                  >NinjaTrader 8 installed (Windows, 64-bit)</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="text-emerald-600 font-bold">&check;</span><span>An active Meridian subscription</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="text-emerald-600 font-bold">&check;</span><span>Your Whop login</span>
+              </li>
             </ul>
             <p class="mt-7 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
               Recommended for first use: finish your trading profile in Settings, then place a few SIM trades to confirm
               the HUD and Dashboard respond before going live. Guard rules are off by default until you configure them.
             </p>
             <div class="mt-7">
-              <a href={DOWNLOAD_PAGE} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm">Download the add-on</a>
+              <a
+                href={DOWNLOAD_PAGE}
+                class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm"
+                >Download the add-on</a
+              >
             </div>
           </div>
 
@@ -283,13 +300,50 @@ const howToGraph = JSON.stringify({
           <div data-reveal class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
             <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">QUICK START</p>
             <ol class="space-y-3 text-zinc-700 leading-relaxed">
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Get your license key from Whop (the Software / License Key section of your Meridian PSI membership).</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Download the latest <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}>meridianpsi.com/download</a> &mdash; do not extract it.</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>In NinjaTrader 8, go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>.</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the Dashboard from <strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong> (or the <strong>&#9776;</strong> icon in the top-right of the HUD).</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>In the Dashboard, open the <strong>License tab</strong>, paste your key, click <strong>Activate</strong>.</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Open <strong>Settings</strong> and configure your trading profile (size, session window, response preset).</span></li>
-              <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">7</span><span><em>Optional:</em> test in SIM before going live.</span></li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">1</span><span
+                  >Get your license key from Whop (the Software / License Key section of your Meridian PSI membership).</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">2</span><span
+                  >Download the latest <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded"
+                    >.zip</code
+                  > from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}
+                    >meridianpsi.com/download</a
+                  > &mdash; do not extract it.</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">3</span><span
+                  >In NinjaTrader 8, go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the
+                  <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>.</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">4</span><span
+                  >Open the Dashboard from <strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong> (or the <strong
+                    >&#9776;</strong
+                  > icon in the top-right of the HUD).</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">5</span><span
+                  >In the Dashboard, open the <strong>License tab</strong>, paste your key, click <strong
+                    >Activate</strong
+                  >.</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">6</span><span
+                  >Open <strong>Settings</strong> and configure your trading profile (size, session window, response preset).</span
+                >
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-emerald-600 tnum">7</span><span
+                  ><em>Optional:</em> test in SIM before going live.</span
+                >
+              </li>
             </ol>
           </div>
         </div>
@@ -301,7 +355,11 @@ const howToGraph = JSON.stringify({
       <div class="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6 md:p-7">
         <div class="flex items-center gap-2.5 mb-2">
           <svg class="w-6 h-6 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"></path>
           </svg>
           <h2 class="text-lg md:text-xl font-bold text-amber-900">Already running Meridian? Update like this</h2>
         </div>
@@ -310,13 +368,26 @@ const howToGraph = JSON.stringify({
           &ldquo;replace&rdquo; dozens of files and can quietly keep running the old version.
         </p>
         <ol class="space-y-2 text-sm md:text-base text-amber-900">
-          <li class="flex gap-3"><span class="font-bold shrink-0">1</span><span>In NinjaTrader: <strong>Tools &rarr; Remove NinjaScript Assembly</strong> &rarr; select <strong>MeridianPSI</strong> &rarr; <strong>Remove</strong>.</span></li>
-          <li class="flex gap-3"><span class="font-bold shrink-0">2</span><span><strong>Restart NinjaTrader.</strong></span></li>
-          <li class="flex gap-3"><span class="font-bold shrink-0">3</span><span><strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> &rarr; choose the .zip you downloaded.</span></li>
+          <li class="flex gap-3">
+            <span class="font-bold shrink-0">1</span><span
+              >In NinjaTrader: <strong>Tools &rarr; Remove NinjaScript Assembly</strong> &rarr; select <strong
+                >MeridianPSI</strong
+              > &rarr; <strong>Remove</strong>.</span
+            >
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold shrink-0">2</span><span><strong>Restart NinjaTrader.</strong></span>
+          </li>
+          <li class="flex gap-3">
+            <span class="font-bold shrink-0">3</span><span
+              ><strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> &rarr; choose the .zip you downloaded.</span
+            >
+          </li>
         </ol>
         <p class="mt-4 text-sm text-amber-700 leading-relaxed">
-          Your license, settings, journal and Guard rules are kept automatically.
-          &nbsp;&middot;&nbsp; <span class="font-semibold text-amber-800">First-time install?</span> Skip these steps — just follow the walkthrough below.
+          Your license, settings, journal and Guard rules are kept automatically. &nbsp;&middot;&nbsp; <span
+            class="font-semibold text-amber-800">First-time install?</span
+          > Skip these steps — just follow the walkthrough below.
         </p>
       </div>
     </section>
@@ -326,7 +397,9 @@ const howToGraph = JSON.stringify({
       <div data-reveal class="text-center mb-14">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP BY STEP</p>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The full walkthrough.</h2>
-        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Follow them in order. Each step is short and self-contained.</p>
+        <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+          Follow them in order. Each step is short and self-contained.
+        </p>
       </div>
 
       <div data-reveal class="space-y-6">
@@ -336,13 +409,34 @@ const howToGraph = JSON.stringify({
             <span class="text-2xl font-extrabold text-emerald-600 tnum">01</span>
             <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Get your license key</h3>
           </div>
-          <p class="text-zinc-600 leading-relaxed mb-4">Your Meridian license key is stored inside your Whop membership.</p>
+          <p class="text-zinc-600 leading-relaxed mb-4">
+            Your Meridian license key is stored inside your Whop membership.
+          </p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Go to <a class="text-emerald-700 underline font-medium" href={WHOP_URL} target="_blank" rel="noopener noreferrer">{WHOP_URL}</a></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Sign in with the same email you used at checkout</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Open your Meridian PSI membership</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Find the Software / License Key section</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Copy your license key</span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span
+                >Go to <a
+                  class="text-emerald-700 underline font-medium"
+                  href={WHOP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer">{WHOP_URL}</a
+                ></span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span
+                >Sign in with the same email you used at checkout</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span>Open your Meridian PSI membership</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">4</span><span>Find the Software / License Key section</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">5</span><span>Copy your license key</span>
+            </li>
           </ol>
           <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
             Copy the key exactly &mdash; no extra spaces before or after. Can't find it? Email
@@ -361,11 +455,15 @@ const howToGraph = JSON.stringify({
           <p class="mb-4">
             <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}>{DOWNLOAD_PAGE}</a>
           </p>
-          <p class="text-zinc-600 leading-relaxed mb-4">Save the file somewhere easy to find, such as your Downloads folder.</p>
+          <p class="text-zinc-600 leading-relaxed mb-4">
+            Save the file somewhere easy to find, such as your Downloads folder.
+          </p>
           <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
             <strong class="text-zinc-900">Important:</strong> the download is a NinjaScript
-            <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> package. Do not
-            extract it &mdash; import the <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>
+            <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> package. Do not extract
+            it &mdash; import the <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded"
+              >.zip</code
+            >
             file directly into NinjaTrader.
           </p>
         </section>
@@ -374,22 +472,48 @@ const howToGraph = JSON.stringify({
         <section id="nt-step-3" class="rounded-2xl border border-zinc-200 bg-white p-7 md:p-9 scroll-mt-24">
           <div class="flex items-baseline gap-4 mb-5">
             <span class="text-2xl font-extrabold text-emerald-600 tnum">03</span>
-            <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Import Meridian into NinjaTrader 8</h3>
+            <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">
+              Import Meridian into NinjaTrader 8
+            </h3>
           </div>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Open NinjaTrader 8</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Go to the Control Center</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Tools</strong></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Click <strong>Import</strong></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Click <strong>NinjaScript Add-On</strong></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Select the Meridian <code class="text-[13px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> file you downloaded</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">7</span><span>Confirm the import</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">8</span><span>Allow NinjaTrader to compile the add-on</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">9</span><span>Restart NinjaTrader if prompted</span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span>Open NinjaTrader 8</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span>Go to the Control Center</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Tools</strong></span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">4</span><span>Click <strong>Import</strong></span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">5</span><span
+                >Click <strong>NinjaScript Add-On</strong></span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">6</span><span
+                >Select the Meridian <code class="text-[13px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded"
+                  >.zip</code
+                > file you downloaded</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">7</span><span>Confirm the import</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">8</span><span>Allow NinjaTrader to compile the add-on</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">9</span><span>Restart NinjaTrader if prompted</span>
+            </li>
           </ol>
           <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
-            <strong class="text-zinc-900">Important:</strong> Meridian is not a chart indicator. Don't look for it in
-            the chart Indicators list.
+            <strong class="text-zinc-900">Important:</strong> Meridian is not a chart indicator. Don't look for it in the
+            chart Indicators list.
           </p>
         </section>
 
@@ -401,10 +525,20 @@ const howToGraph = JSON.stringify({
           </div>
           <p class="text-zinc-600 leading-relaxed mb-3">Either method works any time:</p>
           <ul class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span><strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong>, or</span></li>
-            <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Click the <strong>hamburger icon (&#9776;, three lines)</strong> in the top-right of the HUD</span></li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                ><strong>Control Center &rarr; New &rarr; Meridian Dashboard</strong>, or</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-emerald-600 font-bold">&check;</span><span
+                >Click the <strong>hamburger icon (&#9776;, three lines)</strong> in the top-right of the HUD</span
+              >
+            </li>
           </ul>
-          <p class="text-zinc-600 leading-relaxed">Both open the Dashboard window. The HUD overlay appears once you connect an account and a session starts.</p>
+          <p class="text-zinc-600 leading-relaxed">
+            Both open the Dashboard window. The HUD overlay appears once you connect an account and a session starts.
+          </p>
         </section>
 
         <!-- 5 -->
@@ -415,15 +549,31 @@ const howToGraph = JSON.stringify({
           </div>
           <p class="text-zinc-600 leading-relaxed mb-3">In the Dashboard:</p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Open the <strong>License tab</strong></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Paste your Whop license key</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Activate</strong></span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span>Open the <strong>License tab</strong></span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span>Paste your Whop license key</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Activate</strong></span>
+            </li>
           </ol>
           <p class="text-zinc-600 leading-relaxed mb-2">If activation fails, check that:</p>
           <ul class="space-y-2 text-zinc-700">
-            <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>You copied the full key with no extra spaces</span></li>
-            <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>You're using the same Whop account that purchased the subscription</span></li>
-            <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>Your machine has an active internet connection (one-time validation call)</span></li>
+            <li class="flex gap-3">
+              <span class="text-zinc-400">&bull;</span><span>You copied the full key with no extra spaces</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-zinc-400">&bull;</span><span
+                >You're using the same Whop account that purchased the subscription</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="text-zinc-400">&bull;</span><span
+                >Your machine has an active internet connection (one-time validation call)</span
+              >
+            </li>
           </ul>
         </section>
 
@@ -433,61 +583,138 @@ const howToGraph = JSON.stringify({
             <span class="text-2xl font-extrabold text-emerald-600 tnum">06</span>
             <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Configure your trading profile</h3>
           </div>
-          <p class="text-zinc-600 leading-relaxed mb-4">Open <strong>Settings</strong> in the Dashboard and configure your profile before going live.</p>
+          <p class="text-zinc-600 leading-relaxed mb-4">
+            Open <strong>Settings</strong> in the Dashboard and configure your profile before going live.
+          </p>
           <p class="font-semibold text-zinc-900 mb-3">Recommended first setup:</p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Set your normal trading <strong>size</strong> (typical contracts/lots per trade)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Set your <strong>session time window</strong> (or toggle the Session Window off for 24/7 monitoring)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Pick a <strong>response preset</strong>: Sensitive, Balanced, or Relaxed (sets how aggressively PSI moves on a behavioral pattern)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span><em>Optional:</em> open <strong>Fine-tuning</strong> to adjust alert sensitivity, recovery speed, and the direction-flip penalty &mdash; or leave the preset defaults</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Click <strong>Apply &amp; save</strong></span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span
+                >Set your normal trading <strong>size</strong> (typical contracts/lots per trade)</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span
+                >Set your <strong>session time window</strong> (or toggle the Session Window off for 24/7 monitoring)</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span
+                >Pick a <strong>response preset</strong>: Sensitive, Balanced, or Relaxed (sets how aggressively PSI
+                moves on a behavioral pattern)</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">4</span><span
+                ><em>Optional:</em> open <strong>Fine-tuning</strong> to adjust alert sensitivity, recovery speed, and the
+                direction-flip penalty &mdash; or leave the preset defaults</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">5</span><span>Click <strong>Apply &amp; save</strong></span>
+            </li>
           </ol>
           <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
-            Guard rules are configured separately in the <strong>Guard tab</strong> (Guard tier only) &mdash; not in
-            Settings. Guard rules are off by default until you create them.
+            Guard rules are configured separately in the <strong>Guard tab</strong> (Guard tier only) &mdash; not in Settings.
+            Guard rules are off by default until you create them.
           </p>
         </section>
 
         <!-- 7 -->
-        <section id="nt-step-7" class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24">
+        <section
+          id="nt-step-7"
+          class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24"
+        >
           <div class="flex items-baseline gap-4 mb-5">
             <span class="text-2xl font-extrabold text-emerald-600 tnum">07</span>
             <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Optional: test in SIM</h3>
           </div>
           <p class="text-zinc-600 leading-relaxed mb-3">SIM testing is optional but recommended for new installs:</p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Connect a SIM account in NinjaTrader</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Confirm your account appears in the Dashboard (use <strong>Refresh accounts</strong> in Settings if not)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Place a few small SIM trades and confirm the HUD and Dashboard update</span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span>Connect a SIM account in NinjaTrader</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span
+                >Confirm your account appears in the Dashboard (use <strong>Refresh accounts</strong> in Settings if not)</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span
+                >Place a few small SIM trades and confirm the HUD and Dashboard update</span
+              >
+            </li>
           </ol>
-          <p class="text-zinc-600 leading-relaxed">Market Replay sessions are tracked in a separate context &mdash; they won't affect your live baseline.</p>
+          <p class="text-zinc-600 leading-relaxed">
+            Market Replay sessions are tracked in a separate context &mdash; they won't affect your live baseline.
+          </p>
         </section>
 
         <!-- Updating to a new version -->
-        <section id="nt-update" class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24">
+        <section
+          id="nt-update"
+          class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24"
+        >
           <div class="flex items-baseline gap-4 mb-5">
             <span class="text-2xl font-extrabold text-emerald-600">&#8635;</span>
             <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Updating to a new version</h3>
           </div>
           <p class="text-zinc-600 leading-relaxed mb-4">
-            Already running Meridian and want the latest build? NinjaTrader won't replace an add-on that's
-            already installed, so remove the old one first &mdash; it takes about a minute, and you never touch
-            any files by hand.
+            Already running Meridian and want the latest build? NinjaTrader won't replace an add-on that's already
+            installed, so remove the old one first &mdash; it takes about a minute, and you never touch any files by
+            hand.
           </p>
           <ol class="space-y-2.5 text-zinc-700 mb-4">
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Close any open Meridian windows (Dashboard and the HUD).</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>In NinjaTrader, go to <strong>Control Center &rarr; Tools &rarr; Remove NinjaScript Assembly&hellip;</strong></span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Select <strong>MeridianPSI</strong> in the list and click <strong>Remove</strong>. (This only removes the program &mdash; your license, profile, journal and history are kept safe in a separate data folder.)</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Download the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code> from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}>{DOWNLOAD_PAGE}</a> &mdash; do not extract it.</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code>.</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span>Let NinjaTrader compile, and restart it if prompted.</span></li>
-            <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">7</span><span>Open the Dashboard &rarr; <strong>License tab</strong> and confirm the new version number is shown.</span></li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">1</span><span
+                >Close any open Meridian windows (Dashboard and the HUD).</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">2</span><span
+                >In NinjaTrader, go to <strong
+                  >Control Center &rarr; Tools &rarr; Remove NinjaScript Assembly&hellip;</strong
+                ></span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">3</span><span
+                >Select <strong>MeridianPSI</strong> in the list and click <strong>Remove</strong>. (This only removes
+                the program &mdash; your license, profile, journal and history are kept safe in a separate data folder.)</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">4</span><span
+                >Download the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded"
+                  >.zip</code
+                > from <a class="text-emerald-700 underline font-medium break-all" href={DOWNLOAD_PAGE}
+                  >{DOWNLOAD_PAGE}</a
+                > &mdash; do not extract it.</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">5</span><span
+                >Go to <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code
+                  class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code
+                >.</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">6</span><span
+                >Let NinjaTrader compile, and restart it if prompted.</span
+              >
+            </li>
+            <li class="flex gap-3">
+              <span class="font-bold text-emerald-600 tnum">7</span><span
+                >Open the Dashboard &rarr; <strong>License tab</strong> and confirm the new version number is shown.</span
+              >
+            </li>
           </ol>
           <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
-            <strong class="text-zinc-900">Your settings carry over automatically.</strong> Updating never resets
-            your license, trading profile, Guard rules, journal, or session history. If you ever import
-            <em>without</em> removing the old version first and NinjaTrader shows a compile error, just do the
-            Remove step above and import again.
+            <strong class="text-zinc-900">Your settings carry over automatically.</strong> Updating never resets your license,
+            trading profile, Guard rules, journal, or session history. If you ever import
+            <em>without</em> removing the old version first and NinjaTrader shows a compile error, just do the Remove step
+            above and import again.
           </p>
         </section>
       </div>
@@ -499,46 +726,98 @@ const howToGraph = JSON.stringify({
         <div data-reveal class="text-center mb-14">
           <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">TROUBLESHOOTING</p>
           <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Common issues.</h2>
-          <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Quick fixes for the things new installs run into most.</p>
+          <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+            Quick fixes for the things new installs run into most.
+          </p>
         </div>
 
         <div data-reveal class="grid md:grid-cols-2 gap-5">
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <h3 class="font-semibold text-zinc-900 mb-3">No accounts are showing</h3>
             <ol class="space-y-2 text-sm text-zinc-700 mb-3">
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span>Make sure your SIM or live account is connected in NinjaTrader</span></li>
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Click <strong>Refresh accounts</strong> in Meridian</span></li>
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">3</span><span>If needed, close and reopen the Meridian Dashboard</span></li>
+              <li class="flex gap-2.5">
+                <span class="font-bold text-emerald-600 tnum">1</span><span
+                  >Make sure your SIM or live account is connected in NinjaTrader</span
+                >
+              </li>
+              <li class="flex gap-2.5">
+                <span class="font-bold text-emerald-600 tnum">2</span><span
+                  >Click <strong>Refresh accounts</strong> in Meridian</span
+                >
+              </li>
+              <li class="flex gap-2.5">
+                <span class="font-bold text-emerald-600 tnum">3</span><span
+                  >If needed, close and reopen the Meridian Dashboard</span
+                >
+              </li>
             </ol>
             <p class="text-sm text-zinc-500">If the issue continues, send a screenshot to support.</p>
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <h3 class="font-semibold text-zinc-900 mb-3">PSI shows Warning or Critical on the first SIM trade</h3>
-            <p class="text-sm text-zinc-700 mb-2">Usually a behavioral signal fired against your configured profile. Common causes:</p>
+            <p class="text-sm text-zinc-700 mb-2">
+              Usually a behavioral signal fired against your configured profile. Common causes:
+            </p>
             <ul class="space-y-1.5 text-sm text-zinc-700 mb-3">
-              <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>You're trading outside your configured session window</span></li>
-              <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Your position size is above your profile's typical size</span></li>
-              <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Your profile isn't fully configured yet &mdash; defaults can be tight on a fresh install</span></li>
+              <li class="flex gap-2.5">
+                <span class="text-zinc-400">&bull;</span><span
+                  >You're trading outside your configured session window</span
+                >
+              </li>
+              <li class="flex gap-2.5">
+                <span class="text-zinc-400">&bull;</span><span
+                  >Your position size is above your profile's typical size</span
+                >
+              </li>
+              <li class="flex gap-2.5">
+                <span class="text-zinc-400">&bull;</span><span
+                  >Your profile isn't fully configured yet &mdash; defaults can be tight on a fresh install</span
+                >
+              </li>
             </ul>
-            <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial in your profile, or open <strong>Fine-tuning</strong> and lower the alert sensitivity.</p>
+            <p class="text-sm text-zinc-500">
+              Switch the response preset to <strong>Relaxed</strong> in Settings while you dial in your profile, or open
+              <strong>Fine-tuning</strong> and lower the alert sensitivity.
+            </p>
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <h3 class="font-semibold text-zinc-900 mb-3">I can't find Meridian in Indicators</h3>
-            <p class="text-sm text-zinc-700 mb-2">That's expected. Meridian is an add-on, not a chart indicator &mdash; don't look for it in the chart Indicators list.</p>
+            <p class="text-sm text-zinc-700 mb-2">
+              That's expected. Meridian is an add-on, not a chart indicator &mdash; don't look for it in the chart
+              Indicators list.
+            </p>
             <p class="text-sm text-zinc-700">Open it from:</p>
             <p class="text-sm font-medium text-zinc-900 mt-1">Control Center &rarr; New &rarr; Meridian Dashboard</p>
           </div>
 
           <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
             <h3 class="font-semibold text-zinc-900 mb-3">The import failed (or a compile error after importing)</h3>
-            <p class="text-sm text-zinc-700 mb-2">Almost always this means an older Meridian version is still installed &mdash; NinjaTrader won't replace it on import. Remove the old one first:</p>
+            <p class="text-sm text-zinc-700 mb-2">
+              Almost always this means an older Meridian version is still installed &mdash; NinjaTrader won't replace it
+              on import. Remove the old one first:
+            </p>
             <ol class="space-y-2 text-sm text-zinc-700 mb-3">
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span><strong>Tools &rarr; Remove NinjaScript Assembly&hellip;</strong> &rarr; select <strong>MeridianPSI</strong> &rarr; Remove</span></li>
-              <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Then <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code></span></li>
+              <li class="flex gap-2.5">
+                <span class="font-bold text-emerald-600 tnum">1</span><span
+                  ><strong>Tools &rarr; Remove NinjaScript Assembly&hellip;</strong> &rarr; select <strong
+                    >MeridianPSI</strong
+                  > &rarr; Remove</span
+                >
+              </li>
+              <li class="flex gap-2.5">
+                <span class="font-bold text-emerald-600 tnum">2</span><span
+                  >Then <strong>Tools &rarr; Import &rarr; NinjaScript Add-On</strong> and select the new <code
+                    class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">.zip</code
+                  ></span
+                >
+              </li>
             </ol>
-            <p class="text-sm text-zinc-500">Your license and data are untouched by this. If NinjaTrader still shows an error, send a screenshot to support.</p>
+            <p class="text-sm text-zinc-500">
+              Your license and data are untouched by this. If NinjaTrader still shows an error, send a screenshot to
+              support.
+            </p>
           </div>
         </div>
 
@@ -559,23 +838,47 @@ const howToGraph = JSON.stringify({
           <div class="max-w-5xl mx-auto px-6 py-20 md:py-24">
             <div class="grid lg:grid-cols-2 gap-12 items-start">
               <div data-reveal>
-                <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">{b.name.toUpperCase()} &middot; STANDALONE APP &middot; EARLY ACCESS &middot; ~5 MIN</p>
+                <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">
+                  {b.name.toUpperCase()} &middot; STANDALONE APP &middot; EARLY ACCESS &middot; ~5 MIN
+                </p>
                 <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">What you'll need.</h2>
                 <p class="mt-5 text-lg text-zinc-600 leading-relaxed">
                   No NinjaTrader required &mdash; the standalone Windows app connects straight to your {b.name} account.
                   Three things, and you're running in about five minutes.
                 </p>
                 <ul class="mt-7 space-y-3 text-zinc-700">
-                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>Windows 10 or later (64-bit) &mdash; the installer bundles everything else</span></li>
-                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span set:html={b.account}></span></li>
-                  <li class="flex gap-3"><span class="text-emerald-600 font-bold">&check;</span><span>An active Meridian subscription &mdash; new subscriptions start with a 14-day free trial</span></li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="text-emerald-600 font-bold">&check;</span>
+                      <span>Windows 10 or later (64-bit) &mdash; the installer bundles everything else</span>
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="text-emerald-600 font-bold">&check;</span>
+                      <span set:html={b.account} />
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="text-emerald-600 font-bold">&check;</span>
+                      <span>
+                        An active Meridian subscription &mdash; new subscriptions start with a 14-day free trial
+                      </span>
+                    </>
+                  </li>
                 </ul>
                 <p class="mt-7 text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
                   One license covers every platform &mdash; the same subscription that runs your NinjaTrader 8 add-on
                   activates this app. You don't pay twice.
                 </p>
                 <div class="mt-7">
-                  <a href={INSTALLER} class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm">Download Meridian (.exe)</a>
+                  <a
+                    href={INSTALLER}
+                    class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm"
+                  >
+                    Download Meridian (.exe)
+                  </a>
                 </div>
               </div>
 
@@ -583,12 +886,57 @@ const howToGraph = JSON.stringify({
               <div data-reveal class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7">
                 <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">QUICK START</p>
                 <ol class="space-y-3 text-zinc-700 leading-relaxed">
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Get your license key from Whop (the Software / License Key section of your Meridian PSI membership).</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Download <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">Meridian-win-Setup.exe</code> and run it &mdash; it installs in seconds.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span set:html={b.quickConnect}></span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Open the <strong>License tab</strong>, paste your key, click <strong>Activate</strong>.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">5</span><span>Open <strong>Settings</strong> and configure your trading profile.</span></li>
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">6</span><span><em>Optional:</em> connect a demo account first to watch it run.</span></li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">1</span>
+                      <span>
+                        Get your license key from Whop (the Software / License Key section of your Meridian PSI
+                        membership).
+                      </span>
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">2</span>
+                      <span>
+                        Download{' '}
+                        <code class="text-[13px] bg-white border border-zinc-200 px-1.5 py-0.5 rounded">
+                          Meridian-win-Setup.exe
+                        </code>{' '}
+                        and run it &mdash; it installs in seconds.
+                      </span>
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">3</span>
+                      <span set:html={b.quickConnect} />
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">4</span>
+                      <span>
+                        Open the <strong>License tab</strong>, paste your key, click <strong>Activate</strong>.
+                      </span>
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">5</span>
+                      <span>
+                        Open <strong>Settings</strong> and configure your trading profile.
+                      </span>
+                    </>
+                  </li>
+                  <li class="flex gap-3">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">6</span>
+                      <span>
+                        <em>Optional:</em> connect a demo account first to watch it run.
+                      </span>
+                    </>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -600,7 +948,9 @@ const howToGraph = JSON.stringify({
           <div data-reveal class="text-center mb-14">
             <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">STEP BY STEP</p>
             <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">The full walkthrough.</h2>
-            <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Follow them in order. Each step is short and self-contained.</p>
+            <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+              Follow them in order. Each step is short and self-contained.
+            </p>
           </div>
 
           <div data-reveal class="space-y-6">
@@ -610,15 +960,48 @@ const howToGraph = JSON.stringify({
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">01</span>
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Get your license key</h3>
               </div>
-              <p class="text-zinc-600 leading-relaxed mb-4">Your Meridian license key is stored inside your Whop membership.</p>
+              <p class="text-zinc-600 leading-relaxed mb-4">
+                Your Meridian license key is stored inside your Whop membership.
+              </p>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Go to <a class="text-emerald-700 underline font-medium" href={WHOP_URL} target="_blank" rel="noopener noreferrer">{WHOP_URL}</a></span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Sign in with the same email you used at checkout</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Open your Meridian PSI membership and find the Software / License Key section</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Copy your license key</span></li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">1</span>
+                    <span>
+                      Go to{' '}
+                      <a
+                        class="text-emerald-700 underline font-medium"
+                        href={WHOP_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {WHOP_URL}
+                      </a>
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">2</span>
+                    <span>Sign in with the same email you used at checkout</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">3</span>
+                    <span>Open your Meridian PSI membership and find the Software / License Key section</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">4</span>
+                    <span>Copy your license key</span>
+                  </>
+                </li>
               </ol>
               <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
-                It's the same key for every platform &mdash; if you already activated NinjaTrader 8, reuse it here. Copy it exactly, no extra spaces.
+                It's the same key for every platform &mdash; if you already activated NinjaTrader 8, reuse it here. Copy
+                it exactly, no extra spaces.
               </p>
             </section>
 
@@ -628,15 +1011,28 @@ const howToGraph = JSON.stringify({
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">02</span>
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Download the app</h3>
               </div>
-              <p class="text-zinc-600 leading-relaxed mb-4">Download the standalone installer and save it somewhere easy to find, like your Downloads folder:</p>
+              <p class="text-zinc-600 leading-relaxed mb-4">
+                Download the standalone installer and save it somewhere easy to find, like your Downloads folder:
+              </p>
               <div class="mb-4">
-                <a href={INSTALLER} class="inline-flex items-center gap-2 font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                <a
+                  href={INSTALLER}
+                  class="inline-flex items-center gap-2 font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3 rounded-xl transition shadow-sm"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
                   Download Meridian-win-Setup.exe
                 </a>
               </div>
               <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
-                <strong class="text-zinc-900">One app, both brokers.</strong> The same installer covers Tradovate and Ironbeam &mdash; you pick your broker inside the app after it opens.
+                <strong class="text-zinc-900">One app, both brokers.</strong> The same installer covers Tradovate and
+                Ironbeam &mdash; you pick your broker inside the app after it opens.
               </p>
             </section>
 
@@ -647,12 +1043,34 @@ const howToGraph = JSON.stringify({
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Run the installer</h3>
               </div>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Double-click <code class="text-[13px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded">Meridian-win-Setup.exe</code></span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>It installs in a few seconds &mdash; nothing else to set up, no NinjaTrader needed</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Meridian opens automatically when it's done</span></li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">1</span>
+                    <span>
+                      Double-click{' '}
+                      <code class="text-[13px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded">
+                        Meridian-win-Setup.exe
+                      </code>
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">2</span>
+                    <span>It installs in a few seconds &mdash; nothing else to set up, no NinjaTrader needed</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">3</span>
+                    <span>Meridian opens automatically when it's done</span>
+                  </>
+                </li>
               </ol>
               <p class="text-sm text-zinc-700 bg-[#fafafa] border border-zinc-200 rounded-xl px-4 py-3 leading-relaxed">
-                <strong class="text-zinc-900">It updates itself.</strong> From here on, Meridian checks for new builds on launch and downloads them quietly in the background, then applies the update the next time you open the app &mdash; you won't re-download by hand.
+                <strong class="text-zinc-900">It updates itself.</strong> From here on, Meridian checks for new builds
+                on launch and downloads them quietly in the background, then applies the update the next time you open
+                the app &mdash; you won't re-download by hand.
               </p>
             </section>
 
@@ -664,10 +1082,16 @@ const howToGraph = JSON.stringify({
               </div>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
                 {b.connectSteps.map((s, i) => (
-                  <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">{i + 1}</span><span set:html={s}></span></li>
+                  <li class="flex gap-3">
+                    <span class="font-bold text-emerald-600 tnum">{i + 1}</span>
+                    <span set:html={s} />
+                  </li>
                 ))}
               </ol>
-              <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed" set:html={b.connectNote}></p>
+              <p
+                class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed"
+                set:html={b.connectNote}
+              />
               <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed mt-3">
                 Meridian reads only your own account activity and never places entry orders for you. {b.enforce}
               </p>
@@ -680,15 +1104,49 @@ const howToGraph = JSON.stringify({
                 <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Activate your license</h3>
               </div>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Open the <strong>License tab</strong></span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Paste your Whop license key</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Click <strong>Activate</strong></span></li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">1</span>
+                    <span>
+                      Open the <strong>License tab</strong>
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">2</span>
+                    <span>Paste your Whop license key</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">3</span>
+                    <span>
+                      Click <strong>Activate</strong>
+                    </span>
+                  </>
+                </li>
               </ol>
               <p class="text-zinc-600 leading-relaxed mb-2">If activation fails, check that:</p>
               <ul class="space-y-2 text-zinc-700">
-                <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>You copied the full key with no extra spaces</span></li>
-                <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>You're using the same Whop account that purchased the subscription</span></li>
-                <li class="flex gap-3"><span class="text-zinc-400">&bull;</span><span>Your machine has an active internet connection (one-time validation call)</span></li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="text-zinc-400">&bull;</span>
+                    <span>You copied the full key with no extra spaces</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="text-zinc-400">&bull;</span>
+                    <span>You're using the same Whop account that purchased the subscription</span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="text-zinc-400">&bull;</span>
+                    <span>Your machine has an active internet connection (one-time validation call)</span>
+                  </>
+                </li>
               </ul>
             </section>
 
@@ -696,17 +1154,51 @@ const howToGraph = JSON.stringify({
             <section class="rounded-2xl border border-zinc-200 bg-white p-7 md:p-9 scroll-mt-24">
               <div class="flex items-baseline gap-4 mb-5">
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">06</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Configure your trading profile</h3>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">
+                  Configure your trading profile
+                </h3>
               </div>
-              <p class="text-zinc-600 leading-relaxed mb-4">Open <strong>Settings</strong> and set your profile before going live.</p>
+              <p class="text-zinc-600 leading-relaxed mb-4">
+                Open <strong>Settings</strong> and set your profile before going live.
+              </p>
               <ol class="space-y-2.5 text-zinc-700 mb-4">
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">1</span><span>Set your normal trading <strong>size</strong> (typical contracts per trade)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">2</span><span>Set your <strong>session time window</strong> (or toggle it off for 24/7 monitoring)</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">3</span><span>Pick a <strong>response preset</strong> (Sensitive, Balanced, or Relaxed); advanced users can open <strong>Fine-tuning</strong> for finer control</span></li>
-                <li class="flex gap-3"><span class="font-bold text-emerald-600 tnum">4</span><span>Click <strong>Apply &amp; save</strong></span></li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">1</span>
+                    <span>
+                      Set your normal trading <strong>size</strong> (typical contracts per trade)
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">2</span>
+                    <span>
+                      Set your <strong>session time window</strong> (or toggle it off for 24/7 monitoring)
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">3</span>
+                    <span>
+                      Pick a <strong>response preset</strong> (Sensitive, Balanced, or Relaxed); advanced users can open{' '}
+                      <strong>Fine-tuning</strong> for finer control
+                    </span>
+                  </>
+                </li>
+                <li class="flex gap-3">
+                  <>
+                    <span class="font-bold text-emerald-600 tnum">4</span>
+                    <span>
+                      Click <strong>Apply &amp; save</strong>
+                    </span>
+                  </>
+                </li>
               </ol>
               <p class="text-sm text-zinc-600 border-l-2 border-emerald-500 pl-4 py-1 leading-relaxed">
-                Guard rules are configured in the <strong>Guard tab</strong> (Guard tier only) &mdash; off by default until you create them.
+                Guard rules are configured in the <strong>Guard tab</strong> (Guard tier only) &mdash; off by default
+                until you create them.
               </p>
             </section>
 
@@ -714,9 +1206,11 @@ const howToGraph = JSON.stringify({
             <section class="rounded-2xl border-2 border-emerald-500 bg-emerald-50/40 p-7 md:p-9 scroll-mt-24">
               <div class="flex items-baseline gap-4 mb-5">
                 <span class="text-2xl font-extrabold text-emerald-600 tnum">07</span>
-                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">Optional: connect a demo account first</h3>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-zinc-900">
+                  Optional: connect a demo account first
+                </h3>
               </div>
-              <p class="text-zinc-600 leading-relaxed" set:html={b.demoConnect}></p>
+              <p class="text-zinc-600 leading-relaxed" set:html={b.demoConnect} />
             </section>
           </div>
         </section>
@@ -727,43 +1221,93 @@ const howToGraph = JSON.stringify({
             <div data-reveal class="text-center mb-14">
               <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">TROUBLESHOOTING</p>
               <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Common issues.</h2>
-              <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">Quick fixes for the things new installs run into most.</p>
+              <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
+                Quick fixes for the things new installs run into most.
+              </p>
             </div>
 
             <div data-reveal class="grid md:grid-cols-2 gap-5">
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
                 <h3 class="font-semibold text-zinc-900 mb-3">No account is showing after connecting</h3>
                 <ol class="space-y-2 text-sm text-zinc-700 mb-3">
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">1</span><span>Confirm the account you want is active on {b.name}'s side</span></li>
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">2</span><span>Re-open the <strong>Connect</strong> screen and connect again</span></li>
-                  <li class="flex gap-2.5"><span class="font-bold text-emerald-600 tnum">3</span><span set:html={b.tsNoAccount}></span></li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">1</span>
+                      <span>Confirm the account you want is active on {b.name}'s side</span>
+                    </>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">2</span>
+                      <span>
+                        Re-open the <strong>Connect</strong> screen and connect again
+                      </span>
+                    </>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="font-bold text-emerald-600 tnum">3</span>
+                      <span set:html={b.tsNoAccount} />
+                    </>
+                  </li>
                 </ol>
                 <p class="text-sm text-zinc-500">If the issue continues, send a screenshot to support.</p>
               </div>
 
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
-                <h3 class="font-semibold text-zinc-900 mb-3" set:html={b.tsConnectTitle}></h3>
-                <p class="text-sm text-zinc-700" set:html={b.tsConnect}></p>
+                <h3 class="font-semibold text-zinc-900 mb-3" set:html={b.tsConnectTitle} />
+                <p class="text-sm text-zinc-700" set:html={b.tsConnect} />
               </div>
 
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
                 <h3 class="font-semibold text-zinc-900 mb-3">License activation fails</h3>
                 <ul class="space-y-1.5 text-sm text-zinc-700 mb-3">
-                  <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Check the full key copied with no extra spaces</span></li>
-                  <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Use the same Whop account that purchased the subscription</span></li>
-                  <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Confirm an active internet connection (one-time validation)</span></li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="text-zinc-400">&bull;</span>
+                      <span>Check the full key copied with no extra spaces</span>
+                    </>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="text-zinc-400">&bull;</span>
+                      <span>Use the same Whop account that purchased the subscription</span>
+                    </>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="text-zinc-400">&bull;</span>
+                      <span>Confirm an active internet connection (one-time validation)</span>
+                    </>
+                  </li>
                 </ul>
                 <p class="text-sm text-zinc-500">The same key works across NinjaTrader 8, Tradovate, and Ironbeam.</p>
               </div>
 
               <div class="rounded-2xl border border-zinc-200 bg-[#fafafa] p-7">
                 <h3 class="font-semibold text-zinc-900 mb-3">PSI shows Warning or Critical on the first trade</h3>
-                <p class="text-sm text-zinc-700 mb-2">Usually your profile isn't dialed in yet &mdash; defaults can be tight on a fresh install. Common causes:</p>
+                <p class="text-sm text-zinc-700 mb-2">
+                  Usually your profile isn't dialed in yet &mdash; defaults can be tight on a fresh install. Common
+                  causes:
+                </p>
                 <ul class="space-y-1.5 text-sm text-zinc-700 mb-3">
-                  <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Trading outside your configured session window</span></li>
-                  <li class="flex gap-2.5"><span class="text-zinc-400">&bull;</span><span>Position size above your profile's typical size</span></li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="text-zinc-400">&bull;</span>
+                      <span>Trading outside your configured session window</span>
+                    </>
+                  </li>
+                  <li class="flex gap-2.5">
+                    <>
+                      <span class="text-zinc-400">&bull;</span>
+                      <span>Position size above your profile's typical size</span>
+                    </>
+                  </li>
                 </ul>
-                <p class="text-sm text-zinc-500">Switch the response preset to <strong>Relaxed</strong> in Settings while you dial it in, or open <strong>Fine-tuning</strong> and lower the alert sensitivity.</p>
+                <p class="text-sm text-zinc-500">
+                  Switch the response preset to <strong>Relaxed</strong> in Settings while you dial it in, or open{' '}
+                  <strong>Fine-tuning</strong> and lower the alert sensitivity.
+                </p>
               </div>
             </div>
 
@@ -781,14 +1325,19 @@ const howToGraph = JSON.stringify({
     <div data-reveal class="rounded-2xl border-2 border-emerald-500 bg-white p-8 md:p-12 text-center shadow-sm">
       <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">NEED HELP?</p>
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">We'll get you running.</h2>
-      <p class="mt-4 text-zinc-600 leading-relaxed max-w-xl mx-auto">Email us &mdash; we respond as quickly as we can, and promise to reply within 24 hours.</p>
-      <a class="mt-6 inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-7 py-3.5 rounded-xl transition shadow-sm" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+      <p class="mt-4 text-zinc-600 leading-relaxed max-w-xl mx-auto">
+        Email us &mdash; we respond as quickly as we can, and promise to reply within 24 hours.
+      </p>
+      <a
+        class="mt-6 inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-7 py-3.5 rounded-xl transition shadow-sm"
+        href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a
+      >
     </div>
 
     <p class="mt-10 text-xs text-zinc-500 leading-relaxed max-w-3xl">
       <span class="font-semibold text-zinc-700">Risk notice.</span>
-      Meridian is a behavioral monitoring and risk-management tool. It does not provide trade signals, financial
-      advice, or profit guarantees. Test on a SIM or demo account before using Meridian live.
+      Meridian is a behavioral monitoring and risk-management tool. It does not provide trade signals, financial advice,
+      or profit guarantees. Test on a SIM or demo account before using Meridian live.
     </p>
   </section>
 
@@ -809,6 +1358,7 @@ const howToGraph = JSON.stringify({
   </style>
 
   <script>
+    // @ts-nocheck  (inline DOM script — types not checked; runtime unchanged)
     // Version selector: swap the visible install guide, keep it deep-linkable via
     // the URL hash (#ninjatrader / #tradovate / #ironbeam). Re-queries the DOM on
     // every call so it stays correct across Astro client navigations.

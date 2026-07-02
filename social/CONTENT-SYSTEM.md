@@ -23,16 +23,16 @@
 
 从源头解决不打补丁:症状(某篇文案不对)→ 找是哪一层缺了或错了 → 改那一层,不是改这一篇。
 
-| 层 | 文件 | 管什么 | 类比 YouTube |
-|---|---|---|---|
-| **0 事实** | `../../MERIDIAN.md` | 产品到底是什么(版本/价/功能/级名/隐私) | MERIDIAN.md |
-| **1 定位** | `brand/POSITIONING.md` | 我们说什么、对谁说(超集/thesis/买家/三层信息栈)。**写前必读,绝不从旧帖起稿** | RESEARCH 简报 + 目标链 |
-| **1 声音** | `brand/VOICE.md` | 读起来像什么 + **AI 腔图鉴**(逐句扫的硬闸) | STYLE.md 手艺层 |
-| **2 平台策略** | `reddit/ops/PLAYBOOK.md` | Reddit 的打法/节奏/安全/为什么留人手发 | PLAYBOOK.md |
-| **3 文体** | `reddit/ops/ARTIFACTS.md` | 每种内容的目标/读者/register/结构/范例(**查表第一步**) | STYLE §9.5 决策表 |
-| **4 学习** | `reddit/ops/LEARNINGS.md` | 每次纠正 → 一条永久规则(session 开始读) | LEARNINGS.md |
-| 范例 | `voice-samples.md` | 过了三闸的好样本库 | 素材库 |
-| 状态 | `reddit/ops/queue.md` / `log.md` | 待发队列 / 已发台账 | output 记录 |
+| 层             | 文件                             | 管什么                                                                       | 类比 YouTube           |
+| -------------- | -------------------------------- | ---------------------------------------------------------------------------- | ---------------------- |
+| **0 事实**     | `../../MERIDIAN.md`              | 产品到底是什么(版本/价/功能/级名/隐私)                                       | MERIDIAN.md            |
+| **1 定位**     | `brand/POSITIONING.md`           | 我们说什么、对谁说(超集/thesis/买家/三层信息栈)。**写前必读,绝不从旧帖起稿** | RESEARCH 简报 + 目标链 |
+| **1 声音**     | `brand/VOICE.md`                 | 读起来像什么 + **AI 腔图鉴**(逐句扫的硬闸)                                   | STYLE.md 手艺层        |
+| **2 平台策略** | `reddit/ops/PLAYBOOK.md`         | Reddit 的打法/节奏/安全/为什么留人手发                                       | PLAYBOOK.md            |
+| **3 文体**     | `reddit/ops/ARTIFACTS.md`        | 每种内容的目标/读者/register/结构/范例(**查表第一步**)                       | STYLE §9.5 决策表      |
+| **4 学习**     | `reddit/ops/LEARNINGS.md`        | 每次纠正 → 一条永久规则(session 开始读)                                      | LEARNINGS.md           |
+| 范例           | `voice-samples.md`               | 过了三闸的好样本库                                                           | 素材库                 |
+| 状态           | `reddit/ops/queue.md` / `log.md` | 待发队列 / 已发台账                                                          | output 记录            |
 
 ---
 
@@ -58,6 +58,7 @@
 ```
 
 **两类闸,别混:**
+
 - **硬闸**(第 5 步三条 + register):不过不发,无例外。等同 YouTube 的"hook 必 SHOW + 引用必核验"。
 - **软推导**(register/结构/长度):由 ARTIFACTS 按文体给默认,读起来对就行,内容可在不破坏文体目标下微调。
 
@@ -102,6 +103,7 @@
 → 立刻写进 `reddit/ops/LEARNINGS.md`(日期·症状·根因·永久规则·改了哪层)。
 
 **B. ★ Gary 自己写的东西**(他改我的稿、自己写一段评论/邮件、甩来一个他喜欢的样本)——**最高信号,他在直接示范目标声音**。程序(extraction):
+
 1. 当作金样本,不是一次性。
 2. **Diff 意图**:他做了什么我不会做的?和我的稿差在哪?
 3. **归类**这条教训:VOICE(怎么写)/ POSITIONING(说什么)/ ARTIFACTS(文体-register)/ 事实。
@@ -111,18 +113,21 @@
    (procedure 细节见 `brand/VOICE.md §7`。)
 
 **C. ★ GEO 审计结果**(`geo_audit.py` 每轮自动产出 → `reddit/ops/GEO-TARGETS.md`;见 `../GEO-INTEGRATION.md`)——**数据在直接告诉我们什么有效**。这是 self-improve 的另一半,最容易静默不发生,所以单列:
+
 1. **目标**:audit 吐出的 Lane A(AI 已引用的帖)/ Lane B(我们隐形的查询)= Reddit 选题来源(走打分≥3 + 起草闸)。
 2. **反馈**:~每月一条进 LEARNINGS——有没有 audit 引用了我们贡献过的帖?可见度/SoV 动了吗?哪个角度落地了?
 3. **回灌**:把"什么角度被引用"提炼成 COMMENT-ANATOMY §8 item 7(可引用性闸)或 targeting 的一条规则。
 4. **RETRACT**:死帖/已发帖在 `queue.md` 标 毙/已发,别让目标清单烂掉(append-only 会 rot)。
 
 ### 四个环节(缺一不可)
+
 - **捕获**:A 走 step 7,B 走上面 extraction。**铁律:每次 Gary 给反馈或写东西,当场捕获,不留到"以后"**——以后=蒸发。
 - **提炼**:每攒 ~5 条 LEARNINGS,或每开一个新内容冲刺前,跑一次 consolidation:把反复出现的纠正压成 VOICE 的病征 / ARTIFACTS 的行 / POSITIONING 的句 / 金样本,然后把原始条目标记 "distilled"。(类比 memory consolidation。)一堆未提炼的日志不是学习。
 - **召回**(最弱):缓解 = ①把最重要的学习做成**硬闸里的一条**(AI 腔图鉴),硬闸每篇必扫,想忘都忘不掉;②`MEMORY.md` 里有指针 memory(做社媒先读本系统 + LEARNINGS),会自动浮现;③本文件 step 0 写死"session 开始读 LEARNINGS"。**真理:别指望召回松散的笔记——把高价值学习升级成被强制执行的规则。**
 - **强制**:学到的东西,优先级 = 进硬闸 > 进 ARTIFACTS/POSITIONING 规格 > 进 LEARNINGS 笔记。越往上越不会被忘。
 
 ### 可选:强制捕获(hook)
+
 若要让"捕获"不靠我自觉,可在 `settings.json` 配一个 Stop hook:本回合若动过 `social/` 文件,收尾时提示"是否有该写进 LEARNINGS 的纠正?"。这是把软纪律变成硬提醒。默认没配(怕噪音);Gary 说要我就配。
 
 ---

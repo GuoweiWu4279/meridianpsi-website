@@ -96,12 +96,8 @@ const partnerKitCollection = defineCollection({
     section: z.string(),
     lastUpdated: z.string().optional(),
     order: z.number().default(99),
-    faqs: z
-      .array(z.object({ q: z.string(), a: z.string() }))
-      .optional(),
-    copyables: z
-      .array(z.object({ label: z.string(), content: z.string() }))
-      .optional(),
+    faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
+    copyables: z.array(z.object({ label: z.string(), content: z.string() })).optional(),
     quickActions: z
       .array(
         z.object({

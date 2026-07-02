@@ -1,7 +1,7 @@
 ---
 title: Hero
 section: hero
-lastUpdated: "2026-05-15"
+lastUpdated: '2026-05-15'
 order: 0
 quickActions:
   - title: Make a YouTube video

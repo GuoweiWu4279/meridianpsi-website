@@ -13,21 +13,31 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
 <Layout metadata={metadata}>
   <section class="py-16 px-6">
     <div class="max-w-xl mx-auto">
-
       <!-- Header -->
       <div class="text-center mb-12">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">YOUR ACCOUNT</p>
         <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 mb-3">Account</h1>
-        <p class="text-zinc-500 text-base">
-          Manage your Meridian subscription — billing, cancellation, and invoices.
-        </p>
+        <p class="text-zinc-500 text-base">Manage your Meridian subscription — billing, cancellation, and invoices.</p>
       </div>
 
       <!-- Portal CTA — primary card -->
-      <div class="rounded-2xl border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-50/30 p-8 text-center shadow-sm mb-6">
+      <div
+        class="rounded-2xl border-2 border-emerald-500 bg-gradient-to-b from-white to-emerald-50/30 p-8 text-center shadow-sm mb-6"
+      >
         <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-          <svg class="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          <svg
+            class="w-5 h-5 text-emerald-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
           </svg>
         </div>
         <h2 class="text-lg font-semibold text-zinc-900 mb-2">Manage your subscription</h2>
@@ -41,31 +51,42 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
           class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition-colors"
         >
           Go to account portal
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          <svg
+            class="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
           </svg>
         </a>
-        <p class="text-xs text-zinc-400 mt-4">
-          Opens Whop — sign in with the same email you used at checkout.
-        </p>
+        <p class="text-xs text-zinc-400 mt-4">Opens Whop — sign in with the same email you used at checkout.</p>
       </div>
 
       <!-- How to sign in -->
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 mb-6">
         <h3 class="text-sm font-semibold text-zinc-900 mb-4">How to access the portal</h3>
         <ol class="space-y-3">
-          {[
-            'Click "Go to account portal" above.',
-            'Log in with the email address you used when you subscribed.',
-            'You\'ll see your subscription, License Key, downloads, and billing options.',
-          ].map((step, i) => (
-            <li class="flex items-start gap-3 text-sm text-zinc-600">
-              <span class="mt-0.5 w-5 h-5 rounded-full bg-zinc-100 text-zinc-500 text-xs font-bold flex items-center justify-center shrink-0">
-                {i + 1}
-              </span>
-              {step}
-            </li>
-          ))}
+          {
+            [
+              'Click "Go to account portal" above.',
+              'Log in with the email address you used when you subscribed.',
+              "You'll see your subscription, License Key, downloads, and billing options.",
+            ].map((step, i) => (
+              <li class="flex items-start gap-3 text-sm text-zinc-600">
+                <span class="mt-0.5 w-5 h-5 rounded-full bg-zinc-100 text-zinc-500 text-xs font-bold flex items-center justify-center shrink-0">
+                  {i + 1}
+                </span>
+                {step}
+              </li>
+            ))
+          }
         </ol>
       </div>
 
@@ -73,23 +94,30 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 mb-6">
         <h3 class="text-sm font-semibold text-zinc-900 mb-4">What you can do in the portal</h3>
         <ul class="space-y-2.5">
-          {[
-            ['Cancel subscription', 'Cancel any time — no fees. Access continues until the end of your current period.'],
-            ['Update payment method', 'Change the card or payment method on file in Whop.'],
-            ['Download invoices', 'Access PDF receipts for every payment.'],
-          ].map(([action, detail]) => (
-            <li class="flex items-start gap-3 text-sm">
-              <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5"></span>
-              <span>
-                <span class="font-medium text-zinc-800">{action}</span>
-                <span class="text-zinc-500"> — {detail}</span>
-              </span>
-            </li>
-          ))}
+          {
+            [
+              [
+                'Cancel subscription',
+                'Cancel any time — no fees. Access continues until the end of your current period.',
+              ],
+              ['Update payment method', 'Change the card or payment method on file in Whop.'],
+              ['Download invoices', 'Access PDF receipts for every payment.'],
+            ].map(([action, detail]) => (
+              <li class="flex items-start gap-3 text-sm">
+                <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                <span>
+                  <span class="font-medium text-zinc-800">{action}</span>
+                  <span class="text-zinc-500"> — {detail}</span>
+                </span>
+              </li>
+            ))
+          }
         </ul>
         <p class="text-xs text-zinc-400 mt-4">
           To switch between monthly and annual billing, email{' '}
-          <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600">contactmeridianpsi@gmail.com</a>
+          <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600"
+            >contactmeridianpsi@gmail.com</a
+          >
           {' '}and we'll move you over.
         </p>
       </div>
@@ -98,10 +126,13 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
       <div class="rounded-2xl border border-zinc-200 bg-white p-6 mb-6">
         <h3 class="text-sm font-semibold text-zinc-900 mb-2">Get the latest build</h3>
         <p class="text-sm text-zinc-500 mb-4">
-          Download the current Meridian release for your platform (NinjaTrader 8, Tradovate, or Ironbeam) and see the full
-          version history. One License Key from your portal activates every platform.
+          Download the current Meridian release for your platform (NinjaTrader 8, Tradovate, or Ironbeam) and see the
+          full version history. One License Key from your portal activates every platform.
         </p>
-        <a href="/download" class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline">
+        <a
+          href="/download"
+          class="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:underline"
+        >
           Download for your platform &rarr;
         </a>
       </div>
@@ -110,9 +141,7 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
       <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 text-center">
         <p class="text-sm text-zinc-500">
           Don't have a subscription yet?{' '}
-          <a href="/pricing" class="text-emerald-700 font-medium hover:underline">
-            Start your 14-day free trial →
-          </a>
+          <a href="/pricing" class="text-emerald-700 font-medium hover:underline"> Start your 14-day free trial → </a>
         </p>
       </div>
 
@@ -125,7 +154,6 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
           contactmeridianpsi@gmail.com
         </a>
       </p>
-
     </div>
   </section>
 </Layout>

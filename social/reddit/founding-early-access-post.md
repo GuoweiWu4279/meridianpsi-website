@@ -38,4 +38,4 @@ The 14-day trial via Whop still applies to the NinjaTrader 8 add-on. If you want
 
 ---
 
-*Meridian is an Official NinjaTrader Ecosystem Vendor. Results depend on the trader, not the software.*
+_Meridian is an Official NinjaTrader Ecosystem Vendor. Results depend on the trader, not the software._

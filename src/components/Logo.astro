@@ -10,10 +10,7 @@ const name = SITE?.name ?? 'Meridian';
 
 // Horizontal layout: ECG wave on left, wordmark on right — naturally wide,
 // no background, currentColor wordmark follows theme automatically.
-const sizeClass =
-  variant === 'compact'
-    ? 'h-8 w-auto'
-    : 'h-11 md:h-12 w-auto';
+const sizeClass = variant === 'compact' ? 'h-8 w-auto' : 'h-11 md:h-12 w-auto';
 ---
 
 <svg
@@ -30,10 +27,9 @@ const sizeClass =
     stroke="#10b981"
     stroke-width="2.8"
     stroke-linecap="round"
-    stroke-linejoin="round"
-  />
+    stroke-linejoin="round"></path>
   <!-- Subtle divider -->
-  <line x1="96" y1="8" x2="96" y2="36" stroke="currentColor" stroke-width="0.75" opacity="0.2" />
+  <line x1="96" y1="8" x2="96" y2="36" stroke="currentColor" stroke-width="0.75" opacity="0.2"></line>
   <!-- Wordmark, right side -->
   <text
     x="106"
@@ -43,6 +39,6 @@ const sizeClass =
     font-size="13.5"
     font-weight="500"
     letter-spacing="3"
-    fill="currentColor"
-  >MERIDIAN</text>
+    fill="currentColor">MERIDIAN</text
+  >
 </svg>
