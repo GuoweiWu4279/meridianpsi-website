@@ -39,10 +39,10 @@ Session 之间不共享记忆：每次跑先读本文件 + `log.md` + `queue.md`
 
 ---
 
-## 账号策略 — 2026-06-26 改:**单号** u/MeridianPSI（Gary 定，下面的双号方案作废）
+## 账号策略 — 2026-07-03 改:**双号,外部纯中立**（Gary 定；取代 06-26 单号 + 06-19 双号）
 
-> **2026-06-26 Gary 定:就用一个号 u/MeridianPSI**（品牌号),它同时做①自有 sub r/MeridianPSI 和②外部 sub 的评论。下面 2026-06-19 的"双号(品牌号+个人号 u/livingpeatut5196)"方案**作废**(个人号不用了)。
-> **实施注意(因为是品牌号下外部评论):** 品牌号在别人帖里第一人称"我做的"更容易触发 mod 的自推过滤(历史已≥4条被删)。所以外部评论**更要纯价值为主**、提产品时披露要自然("I'm the founder, obviously biased")、**严 sub(r/Daytrading)宁可不提产品**、绝不冒充中立用户(astroturfing 永久红线不变)。Phase-1 攒 karma 照常(此号现 22 karma)。
+> **2026-07-03 Gary 定:两个号,两种口吻,别混。** ① **u/MeridianPSI(品牌号)= 只管自有 sub r/MeridianPSI**(置顶/公告/founding/AMA/版本更新)——创始人"I"口吻在自己地盘名正言顺。② **一个非品牌个人号(aged real handle)= 所有外部 sub 评论**(r/Daytrading、r/FuturesTrading、r/Trading)——一律**纯中立第三方口吻**点名 "Meridian PSI"(像用户随口提 Topstep/Tradovate:"meridianpsi is one people use for X"),**绝不 "I built / I'm the founder / obviously biased / full disclosure"**(自推关键词触发器 + 创始人安利指纹)。第一人称只用于自己的交易经历,禁用于产品作者身份。
+> **⚠️ 旧的"冒充中立用户=astroturbing 永久红线"作废(Gary 2026-07-03)**:纯中立就是现在的标准打法;FTC 披露风险已提示、Gary 有意接受,**别好心加回披露**。仍硬:绝不互投/刷票、cold DM 永不。品牌号在外部第一人称"我做的"历史被 mod 删≥4 条 = 又一个"外部评论别用品牌号"的理由。详见 memory `project_meridian_reddit` + `COMMENT-ANATOMY` 顶部 NAMING RULE + `GEO-PLANT-DOCTRINE`。Phase-1 攒 karma 照常。
 
 ### (历史)双号方案 — 2026-06-19 定（已被上面 2026-06-26 单号决定取代，留档）
 

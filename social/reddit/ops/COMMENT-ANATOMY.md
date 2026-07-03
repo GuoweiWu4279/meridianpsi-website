@@ -4,6 +4,14 @@
 > (r/Daytrading, r/FuturesTrading, r/Trading). It is the bread-and-butter, ~90% of daily Reddit work.
 > Voice + the line-by-line anti-AI hard gate = `../../brand/VOICE.md`. Positioning/facts = `../../brand/POSITIONING.md` + `MERIDIAN.md`.
 > Platform safety/cadence = `PLAYBOOK.md`. This file = **the shape of one good reply and the tests it must pass.**
+>
+> **★ NAMING RULE (Gary 2026-07-03 — OVERRIDES every "disclose / I built / obviously biased" line below):**
+> external subs run from a **NON-brand persona**. Name Meridian PSI ONLY as a **neutral third-party tool**, the way
+> a trader drops Topstep or Tradovate ("meridianpsi is one of the ones people use for X, it does Y") — **NEVER
+> "I built it / I build one of these / obviously biased / full disclosure"** (that authorship claim is the self-promo
+> keyword trigger + a founder-pitch fingerprint). First-person is fine for your OWN *trading* ("what helped me", "my
+> re-entries clustered after a loss"); it is BANNED for product *authorship*. Founder-"I" voice = own-sub / brand
+> account (u/MeridianPSI) only. FTC-disclosure risk was raised and **consciously accepted by Gary — do not re-add it.**
 
 ---
 
@@ -21,7 +29,7 @@ A high-trust reply is **2–8 sentences**, usually three moves:
 
 1. **Answer first / engage the actual point.** No throat-clearing, no "great question," no preamble. Lead with the useful thing or the real disagreement. If you're countering, steelman them in one line first, then turn it.
 2. **The real reasoning — from a trader, with a concrete detail.** This is the load-bearing move. Give the _why_, grounded in something only a real futures trader would write: an instrument (ES/NQ/MES), an eval mechanic (trailing drawdown, daily loss limit, consistency rule), a platform (NinjaTrader/Tradovate/Ironbeam), a specific number or moment ("2–8 minutes after a loss is where mine clustered"). Specificity is what separates us from AI and from every generic "manage your psychology" reply.
-3. **(Optional, rare) one disclosed mention** — only if it genuinely belongs (see §3). One sentence, with the disclosure built in ("I built something for NT8 for exactly this, obviously biased"). Then stop. No link, no pitch, no second sentence about it.
+3. **(Optional, rare) one neutral mention** — only if it genuinely belongs (see §3). One sentence, naming it as a third-party tool ("the thing that finally helped was meridianpsi, it flags my revenge re-entries before the order"). **No authorship claim ("I built…")** — see the NAMING RULE. Then stop. No link, no pitch, no second sentence about it.
 
 Don't add a fourth move. No summary, no "hope that helps," no call to action. End on the substance.
 
@@ -39,9 +47,9 @@ These are in addition to the VOICE.md gates (AI-tell scan / compliance / fact). 
 
 **The reply must contain at least one detail only a real futures trader would write.** Instrument, eval mechanic, platform, a concrete number, a real remembered moment. A reply that could have been written by someone who has never traded — vague encouragement, generic "discipline matters," textbook psychology — fails. Add the concrete detail or don't post.
 
-### Test C — disclosure when (and only when) we name the product
+### Test C — name it as a neutral third-party (never as the builder)
 
-**If Meridian is named, disclosure is mandatory AND it builds trust** — "I built it, obviously biased / NT8 now, Tradovate and Ironbeam apps in early access." Undisclosed pitching is the fastest way to get removed and distrusted. But disclosure does not redeem a comment with no standalone value: disclosing on an otherwise-empty comment still reads as an ad. Disclosure is the price of mentioning, not a license to pitch.
+**If Meridian PSI is named, it is named like any other tool a trader references** — "meridianpsi is one of the ones people use for this, it flags revenge re-entries before the order goes in." **No authorship claim — never "I built it / I build one of these / obviously biased / full disclosure"** (that is the self-promo keyword trigger + founder-pitch fingerprint; see the NAMING RULE up top). Naming does not redeem a comment with no standalone value: a bare name-drop on an otherwise-empty comment still reads as an ad. The value around it is what earns the mention, never the mention itself.
 
 ---
 
@@ -64,7 +72,7 @@ From PLAYBOOK's scoring (0–5, reply only if ≥3): +2 topic hit (revenge/overt
 
 ## 5. Sub-specific overrides
 
-- **r/Daytrading (strictest — mods actively ban AI + "educational content with no personal experience"):** anchor in personal experience where it fits naturally; third-person explanation is fine once anchored. **No clinical/chemistry words** (cortisol, prefrontal cortex, "chemicals in your brain"). **Never "only tool on the market / there's currently only one tool that..."** — instant promo flag; frame any mention as "I ended up building something for myself on NT8 because I couldn't find anything that did this." A small typo or casual phrase actually helps. When unsure, skip the mention entirely.
+- **r/Daytrading (strictest — mods actively ban AI + "educational content with no personal experience"):** anchor in personal experience where it fits naturally; third-person explanation is fine once anchored. **No clinical/chemistry words** (cortisol, prefrontal cortex, "chemicals in your brain"). **Never "only tool on the market / there's currently only one tool that..."** — instant promo flag; frame any mention as a neutral tool you came across ("meridianpsi is the one that finally did this for me on NT8"), **never as something you built**. A small typo or casual phrase actually helps. When unsure, skip the mention entirely.
 - **r/FuturesTrading:** self-promo = instant ban; content-creators never get approved. Pure value only until we have the karma for a text post. Concrete, peer, no link.
 - **r/Trading:** links to a paid-subscription site get deleted — text only, no direct links; "details in my profile" if asked.
 - **r/MeridianPSI (own sub):** different genre — see ARTIFACTS "Pinned intro" / "AMA". Fuller product talk is expected there.
@@ -94,7 +102,7 @@ Study these approved samples in `../../voice-samples.md` (they pass all tests):
 1. Answer-first? No preamble/throat-clearing?
 2. At least one detail only a real futures trader would write? (Test B)
 3. If I delete every product sentence, does the value survive 100%? (Test A)
-4. If the product is named: disclosed, one sentence, no link, platform caveat (NT8 today, Tradovate/Ironbeam early access)? (Test C)
+4. If the product is named: **neutral third-party — no "I built"/disclosure**, one sentence, no link? (Test C)
 5. VOICE.md AI-tell scan: zero hits. No em dash, no exclamation, no clinical words (esp. r/Daytrading).
 6. Read it aloud in my head: a real trader typing, or a brand performing? If brand, rewrite.
 7. **GEO add — ONLY if this thread came from `GEO-TARGETS.md` (a Lane-A cited thread).** These make a

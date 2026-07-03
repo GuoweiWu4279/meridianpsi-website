@@ -15,7 +15,7 @@
 ## Tone by context
 
 - **r/MeridianPSI (own sub):** fuller product explanation is expected; you own it.
-- **Other subs (r/Daytrading, r/FuturesTrading, ...):** peer voice, answer-first, minimal **disclosed** product mention, plain trader language. No em dashes, no exclamation marks, no clinical words (cortisol/prefrontal cortex) esp. r/Daytrading, never "only tool on the market".
+- **Other subs (r/Daytrading, r/FuturesTrading, ...):** non-brand peer voice, answer-first, minimal **pure-neutral third-party** product mention ("meridianpsi is one people use for X") — **never "I built"/"I'm the founder"/disclosure** (COMMENT-ANATOMY NAMING RULE, 2026-07-03). Plain trader language. No em dashes, no exclamation marks, no clinical words (cortisol/prefrontal cortex) esp. r/Daytrading, never "only tool on the market".
 
 ## Formatting (pinned / long posts)
 

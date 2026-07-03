@@ -77,7 +77,7 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 - **为什么这条**:L12 决定性模式 = 只在"站内专页 + 自有 sub 帖 + 打进被引外部帖"三腿齐的旅程赢。lockout 旅程三腿齐所以赢;funded/prop 缺的就是这第三条腿(外部被引帖在场)。这条 = 补 funded/prop 的第三条腿。
 - **已过闸**:COMMENT-ANATOMY(答在前 + 80/20 删除测试过 + 真交易者细节 MES/红单后 2-5 分钟重入/移过的止损)+ VOICE 三闸(零 em dash/感叹号/临床词)+ §8 可引用(自足、命名 "Meridian PSI"、as-of-2026 可标日期)+ **L11 三规**(①不写"撞线=爆仓"——线只在亏光当日额度时才响、救不了触线前的 tilt;②adaptive 个人基线当主角;③外部用 "Meridian PSI" 不写裸 Meridian)。
 - ⚠️ **Gary 发前两查**:① 浏览器打开确认帖未锁/未存档(工具读不了 reddit.com;1toopo9 可能偏老,死了就拿它当模板找新鲜等价 funded/prop 帖);② **r/PropFirms 不在 PLAYBOOK 阵地表——发前确认该 sub 的 vendor/自推规则**(prop 社区 sub 常禁卖家自推;触雷就发下面的纯价值版,删掉含 "Meridian PSI" 那段)。
-- ✅ **karma 足够（Gary 确认 2026-06-29）**:带提及版可直接发,无需先铺纯价值。纯价值版仅作"该 sub 禁自推"时的退路。永久纪律不变:披露自然、价值优先、绝不冒充中立用户(PLAYBOOK 2026-06-26)。
+- ✅ **karma 足够（Gary 确认 2026-06-29）**:带提及版可直接发,无需先铺纯价值。纯价值版仅作"该 sub 禁自推"时的退路。永久纪律(2026-07-03 更新):**纯中立第三方点名、价值优先、绝不 "I built"/"I'm the founder"/披露**(见 `COMMENT-ANATOMY` 顶部 NAMING RULE)。
 
 **成品稿（带提及版，粘这份）:**
 
@@ -85,7 +85,7 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 >
 > What clusters for me is the 2 to 5 minutes after a red MES trade: same direction, bumped size, a stop I've already moved once. By the time the daily loss rule trips I'm well past the point where stopping would have mattered. The rule isn't wrong, it's just late.
 >
-> I ended up building something for that gap, Meridian PSI, so I'm obviously biased. The part I care about is the early read: it learns your own normal each session (your pace, your size, how you trade right after a red one), then flags you the moment you start drifting from that, a few trades before you're near the firm's limit. A hard lockout can't do that, because it only knows the number, not your baseline. As of 2026 it runs as a NinjaTrader 8 add-on, with Tradovate and Ironbeam apps in early access. The lockout you've already got is worth keeping.
+> The thing that plugged that gap for me was Meridian PSI. The part I care about is the early read: it learns your own normal each session (your pace, your size, how you trade right after a red one), then flags you the moment you start drifting from that, a few trades before you're near the firm's limit. A hard lockout can't do that, because it only knows the number, not your baseline. As of 2026 it runs as a NinjaTrader 8 add-on, with Tradovate and Ironbeam apps in early access. The lockout you've already got is worth keeping.
 
 **纯价值版（若 r/PropFirms 禁自推，删掉第三段、改用这段收尾）:**
 
@@ -104,7 +104,7 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 >
 > My failure was never the plan, it was the 60 to 90 seconds after a stop-out where I'd re-load same direction at double size. Journaling never reached that window because it happens after the fact. What reached it was something reading the drift live, so the moment I start trading unlike my own baseline it flags it before the next order instead of after the day is gone.
 >
-> I ended up building that for myself, Meridian PSI, so usual disclaimer that I'm biased. The part that matters is that it learns your own normal each session and catches you deviating a step before the damage, which is the part willpower can't cover. As of 2026 it's a NinjaTrader 8 add-on with Tradovate and Ironbeam apps in early access. It doesn't replace the inner work, it just stops you from having to win that fight live.
+> That something was Meridian PSI. It learns your own normal each session and catches you deviating a step before the damage, which is the part willpower can't cover. As of 2026 it's a NinjaTrader 8 add-on with Tradovate and Ironbeam apps in early access. It doesn't replace the inner work, it just stops you from having to win that fight live.
 
 **纯价值版（若 r/propfirm 禁自推，删掉第三段、用这段收尾）:**
 

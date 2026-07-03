@@ -178,9 +178,9 @@ that roster:
   confessional threads, never start a promo post in an external sub.
 
 **Constraint honesty — the red lines cap the speed, on purpose.** Research supports tightening account-level ratio from
-PLAYBOOK's 70/30 toward **~95/5** (≈9–19 genuine helpful contributions per disclosed mention), ≤2 subs/day, ≤~10
-posts/week, never identical text across subs, one disclosed founder account, cold DM permanent-never. **The
-no-automation, founder-led, disclosed model is a GEO _asset_, not a tax** — it's exactly what survives Reddit's spam
+PLAYBOOK's 70/30 toward **~95/5** (≈9–19 genuine helpful contributions per neutral mention), ≤2 subs/day, ≤~10
+posts/week, never identical text across subs, one **non-brand account naming Meridian PSI in pure-neutral third-party voice** (NEVER "I built"/"I'm the founder"/disclosure — 2026-07-03), cold DM permanent-never. **The
+no-automation, founder-led, non-brand-neutral model is a GEO _asset_, not a tax** — it's exactly what survives Reddit's spam
 filter + CQS (a filtered comment can't be cited at all) and what the Sept-2025 correction rewarded. This loop is a
 **slow compounding** engine (8–12 quality threads/mo), not a traffic faucet (LEARNINGS L7). Do not let GEO ambition push
 the ratio or cadence past the red lines — a shadowban zeroes the whole corpus.

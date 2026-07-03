@@ -8,6 +8,8 @@ Add new samples at the top of each section. For each entry, include:
 
 > 学习用法:这是金样本库。**Gary 改我的稿/自己写的东西** → 按 `brand/VOICE.md §7` 榨成规则,并把样本贴进下面"★ Gary 的真实写作"区。
 > 普通已批准回复贴进各平台分区(如 Reddit)。
+>
+> **⚠️ 声音已变(2026-07-03):下面很多样本用 "I built Meridian / 创始人披露" 口吻 —— 那对_外部子版_评论已作废。** 现在外部评论一律**非品牌号 + 纯中立第三方**("meridianpsi is one of the ones people use for X, it does Y"),**绝不 "I built / I build one of these / I'm the founder / obviously biased / full disclosure"**(见 `reddit/ops/COMMENT-ANATOMY.md` 顶部 NAMING RULE + memory `project_meridian_reddit` + LEARNINGS L14)。这些 "I built" 样本**只对自有 sub / 品牌号的创始人帖有效**;用于外部时只学它们的**结构 / 具体交易细节 / 反 AI 腔**,产品提及重写成中立第三方。
 
 ---
 

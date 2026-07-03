@@ -1,0 +1,112 @@
+# GEO action queue — 2026-07-02  (ranked by leverage)
+
+> Auto-emitted by geo.py. Top rows = your week. Reddit source targets live in GEO-TARGETS.md;
+> entity fixes in GEO-ENTITY-DEFECTS.md. This queue routes the NEXT actions by lane.
+
+- DISPLACE · build /compare/meridian-vs-tradepit-ai — chatgpt names 'tradepit ai' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-shomerion — chatgpt names 'shomerion' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradesafe — chatgpt names 'tradesafe' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-bullatrade — chatgpt names 'bullatrade' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-cowri — chatgpt names 'cowri' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradeguard — chatgpt names 'tradeguard' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradlogica — chatgpt names 'tradlogica' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-ctmo — chatgpt names 'ctmo' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-edgetrader — chatgpt names 'edgetrader' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-riskreward-suite — chatgpt names 'riskreward suite' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-edge-trader-tools — chatgpt names 'edge trader tools' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-ntfxbook — chatgpt names 'ntfxbook' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-riskmaster — chatgpt names 'riskmaster' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-zentra — chatgpt names 'zentra' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradeemotion — chatgpt names 'tradeemotion' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradingmindlab — chatgpt names 'tradingmindlab' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-noeva — chatgpt names 'noeva' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tempera — chatgpt names 'tempera' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradereign — chatgpt names 'tradereign' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-edgewonk — chatgpt names 'edgewonk' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-lotsmith — chatgpt names 'lotsmith' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tierlock — chatgpt names 'tierlock' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-traderome — chatgpt names 'traderome' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-axiomsuite — chatgpt names 'axiomsuite' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-avoidtilt — chatgpt names 'avoidtilt' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-khomaapi — chatgpt names 'khomaapi' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-lossguardian — chatgpt names 'lossguardian' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-safentry — chatgpt names 'safentry' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-equitysafe — chatgpt names 'equitysafe' ×3 (cited)
+- DISPLACE · build /compare/meridian-vs-tradecontrollers — chatgpt names 'tradecontrollers' ×3 (cited)
+- ENTITY · 28 distinct false-claim(s) this run → fix llms.txt / schema / Wikidata (see GEO-ENTITY-DEFECTS.md)
+- DISPLACE · build /compare/meridian-vs-riskguard — chatgpt names 'riskguard' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-propmind — chatgpt names 'propmind' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-propguard — chatgpt names 'propguard' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-dealyfeely — chatgpt names 'dealyfeely' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-fundedshield — chatgpt names 'fundedshield' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-technests — chatgpt names 'technests' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-plancana — chatgpt names 'plancana' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-propcontrol — chatgpt names 'propcontrol' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-stolim — chatgpt names 'stolim' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-traidly — chatgpt names 'traidly' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-edgewise — chatgpt names 'edgewise' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-canopy — chatgpt names 'canopy' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-tradeos — chatgpt names 'tradeos' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-tradenrisk — chatgpt names 'tradenrisk' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-savemytrade — chatgpt names 'savemytrade' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-phihelm — chatgpt names 'phihelm' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-syncfutures — chatgpt names 'syncfutures' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-tradenexa — chatgpt names 'tradenexa' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-tradelock — chatgpt names 'tradelock' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-lotscale — chatgpt names 'lotscale' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-vyron — chatgpt names 'vyron' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-ctx — chatgpt names 'ctx' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-mindguard — chatgpt names 'mindguard' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-tradergrade — chatgpt names 'tradergrade' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-limitlock — chatgpt names 'limitlock' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-pnlmint — chatgpt names 'pnlmint' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-keelio — chatgpt names 'keelio' ×2 (cited)
+- DISPLACE · build /compare/meridian-vs-redline — chatgpt names 'redline' ×3
+- DISPLACE · build /compare/meridian-vs-autoclose-pro-guardian — chatgpt names 'autoclose pro guardian' ×3
+- CONTENT · we vanish before the 'which is best' turn for Tradovate revenge-trader (chatgpt, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Psychological-stability seeker (chatgpt, surv-T3 0.33) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Funded/prop tilt (chatgpt, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Skeptic anti-tool (chatgpt, surv-T3 0.33) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Tradezella-switcher (chatgpt, surv-T3 0.33) → /answers page for that intent
+- DISPLACE · build /compare/meridian-vs-tradingpal — gemini names 'tradingpal' ×3
+- DISPLACE · build /compare/meridian-vs-tradesyncer — gemini names 'tradesyncer' ×3
+- DISPLACE · build /compare/meridian-vs-edgewonk — gemini names 'edgewonk' ×3
+- DISPLACE · build /compare/meridian-vs-journalplus — gemini names 'journalplus' ×3
+- DISPLACE · build /compare/meridian-vs-plancana — gemini names 'plancana' ×3
+- DISPLACE · build /compare/meridian-vs-tradeguard — gemini names 'tradeguard' ×3
+- DISPLACE · build /compare/meridian-vs-riskmaster — gemini names 'riskmaster' ×3
+- DISPLACE · build /compare/meridian-vs-kosyguard — gemini names 'kosyguard' ×3
+- DISPLACE · build /compare/meridian-vs-tradersync — gemini names 'tradersync' ×3
+- DISPLACE · build /compare/meridian-vs-killswitch — gemini names 'killswitch' ×3
+- DISPLACE · build /compare/meridian-vs-tradervue — gemini names 'tradervue' ×3
+- DISPLACE · build /compare/meridian-vs-rizetrade — gemini names 'rizetrade' ×3
+- DISPLACE · build /compare/meridian-vs-tradeify — gemini names 'tradeify' ×3
+- DISPLACE · build /compare/meridian-vs-tradelock — gemini names 'tradelock' ×3
+- CONTENT · we vanish before the 'which is best' turn for Tradovate revenge-trader (gemini, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for NT8 discipline-seeker (gemini, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Lockout-after-losses (gemini, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Overtrading day-trader (gemini, surv-T3 0.0) → /answers page for that intent
+- CONTENT · we vanish before the 'which is best' turn for Skeptic anti-tool (gemini, surv-T3 0.0) → /answers page for that intent
+- DISPLACE · build /compare/meridian-vs-drawdown-guardian — chatgpt names 'drawdown guardian' ×2
+- DISPLACE · build /compare/meridian-vs-accountguard — chatgpt names 'accountguard' ×2
+- DISPLACE · build /compare/meridian-vs-mindguard — gemini names 'mindguard' ×2
+- DISPLACE · build /compare/meridian-vs-snapchart — gemini names 'snapchart' ×2
+- DISPLACE · build /compare/meridian-vs-tradepsych — gemini names 'tradepsych' ×2
+- DISPLACE · build /compare/meridian-vs-sizewise — gemini names 'sizewise' ×2
+- DISPLACE · build /compare/meridian-vs-drawdown-guardian — gemini names 'drawdown guardian' ×2
+- DISPLACE · build /compare/meridian-vs-tradesviz — gemini names 'tradesviz' ×2
+- DISPLACE · build /compare/meridian-vs-tradelo — gemini names 'tradelo' ×2
+- DISPLACE · build /compare/meridian-vs-tradeblocker — gemini names 'tradeblocker' ×2
+- DISPLACE · build /compare/meridian-vs-command-pad — gemini names 'command pad' ×2
+- DISPLACE · build /compare/meridian-vs-capitalise-ai — gemini names 'capitalise.ai' ×2
+- DISPLACE · build /compare/meridian-vs-emotionlock — gemini names 'emotionlock' ×2
+- DISPLACE · build /compare/meridian-vs-psyrule — gemini names 'psyrule' ×2
+- DISPLACE · build /compare/meridian-vs-tiltguard — gemini names 'tiltguard' ×2
+- DISPLACE · build /compare/meridian-vs-clickalgo — gemini names 'clickalgo' ×2
+- DISPLACE · build /compare/meridian-vs-emotion-tracker-analyzer — gemini names 'emotion tracker analyzer' ×2
+- DISPLACE · build /compare/meridian-vs-edgeflo — gemini names 'edgeflo' ×2
+- DISPLACE · build /compare/meridian-vs-topstepx — gemini names 'topstepx' ×2
+- DISPLACE · build /compare/meridian-vs-interactive-brokers — gemini names 'interactive brokers' ×2
+- DISPLACE · build /compare/meridian-vs-ovtlyr — gemini names 'ovtlyr' ×2
+- REDDIT · action the ❌/⚠️ source targets in GEO-TARGETS.md (disclosed comment + own-sub post)
+
