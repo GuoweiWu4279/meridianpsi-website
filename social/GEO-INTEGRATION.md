@@ -189,8 +189,8 @@ the ratio or cadence past the red lines — a shadowban zeroes the whole corpus.
 
 ## 5. Starter target list (from the 2026-06-25 multi-engine probe)
 
-Real threads the engines surface for our queries where a **disclosed founder comment can genuinely help** (within
-no-astroturf rules). **Before queuing any of these, Gary opens it in a browser to confirm it's not locked/archived and
+Real threads the engines surface for our queries where a **non-brand, pure-neutral comment can genuinely help** (name
+Meridian PSI like a user drops any tool, never "I built" — see `reddit/ops/COMMENT-ANATOMY.md` NAMING RULE). **Before queuing any of these, Gary opens it in a browser to confirm it's not locked/archived and
 is still live** (our tooling can't read reddit.com; several IDs look 2023–24 and may be stale — a stale thread still
 ranks/cites but necrobumping reads badly, so prefer it as a _template_ for finding the fresh equivalent).
 
@@ -240,7 +240,7 @@ build the fresh-thread search + the owned answer page. Full per-query data in `G
 ## 7. Dependencies + ownership
 
 - **★ (RESOLVED 2026-06-29) Phase-0 DONE + Lever 1 SHIPPED:** account setup complete, comment karma confirmed
-  sufficient (Gary), all 8 own-sub GEO answer posts live on r/MeridianPSI. Now executing Lever 2 (disclosed founder
+  sufficient (Gary), all 8 own-sub GEO answer posts live on r/MeridianPSI. Now executing Lever 2 (non-brand, pure-neutral
   comments in cited threads; first funded/prop + psych-stability drafts in `queue.md [5]/[6]`). Loop is unblocked + running.
 - **Gary-gated:** external publishing (directory listings, fixing the NT Ecosystem listing copy, Wikidata), any spend,
   outbound email. I draft everything; Gary does the publish/spend step.

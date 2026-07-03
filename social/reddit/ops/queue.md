@@ -128,3 +128,9 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 - Software Sunday #1 满血帖 — 等多平台公告时点对齐，年度 2 发之首
 - Reddit Pro Trends 关键词清单（NinjaTrader / prop firm / tilt / revenge trading / daily loss limit …）— 等 0c
 - **★ 线上回灌:核对 r/MeridianPSI 置顶帖** — v7 是 2026-06-10 发的(那时试用还是 7 天),06-14 改成 14 天。线上快照可能仍写 7-day。Gary 用浏览器打开线上置顶帖核对试用天数,若是 7-day 就按 `pinned-start-here.md`(已是 14-day)改那一段。(PLAYBOOK 线上回灌规则)
+
+**★ 待应用的文案决定(2026-07-03,Gary /wrap 时 defer,低优)：**
+
+- **侧栏 description 已定**（Gary 自己贴进 Reddit 侧栏设置，≤200 字符）：`Next-gen risk management for futures traders: catches revenge trading, oversizing, and tilt live, before you hit your limit, not after. NinjaTrader 8; Tradovate/Ironbeam. 14-day trial. meridianpsi.com`
+- **置顶帖开头**改成 next-gen / 亏损前介入开场（对齐侧栏 + 官网），尚未写进 `pinned-start-here.md`（拟：`Meridian is a new generation of risk management for futures traders. During a live session it reads how you are trading, scores it against your own baseline, and steps in the moment your discipline starts to slip, not after the loss.`）。
+- **`VOICE.md` 加豁免**：定位语言（new generation / before-the-loss）在 bio + 官方帖开场允许；in-thread 评论仍禁（Tell 3/8 保持）。

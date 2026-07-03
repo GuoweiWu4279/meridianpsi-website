@@ -76,11 +76,16 @@ _(空。)_
 | 06-29 | r/Daytrading 1tsd8qo | how to actually stop revenge trading |
 | 06-30 | r/PropFirmTester 1pl7505 | Tradovate toothless risk controls |
 | 06-30 | r/Trading 1r0hw16 | what fixed your revenge-trading |
+| 07-03 | r/Daytrading 1rjm7tw | how do you stop revenge trading |
+| 07-03 | r/Daytrading 1t8ypth | trading journal doubt |
+| 07-03 | r/Forex 1sfv2xp | automated discipline tools |
 
 **Posted — pure-value (warming CQS, no product):** r/Trading 1rcpf00 ("capped at $50"); r/Daytrading "high win rate is a warning" (win-rate debate + JLamb8 reply); earlier "blew 77 prop accounts" thread.
 
 **Velocity:** doctrine cap = <=2 product comments/day, <=2 subs/day, <=1 product mention per sub/week. 06-30 = 2 plants (PropFirmTester + r/Trading) + 1 value. Within cap. (Both r/Trading threads were same-day, so only ONE carried the plant; the other was pure-value to avoid double-planting one sub.)
 
-**List remaining (next days):** Tier 2 — r/Daytrading 1rjm7tw, 1taq3vj, 1tkgi2z; Tier 3 — r/Tradovate 1udncdy (answer-only), r/Daytrading 1taixbh. Tier-1 #4/#5 (1saasa6, 1s54d75) = competitor-founder threads, skip. r/Trading already used 06-30 (respect <=1/sub/week).
+**Velocity 07-03:** 3 meridianpsi plants posted same day — 1rjm7tw + 1t8ypth (BOTH r/Daytrading) + 1sfv2xp (r/Forex). ⚠️ OVER cap: exceeds <=2 plants/day, and 2 in r/Daytrading same day breaks <=1/sub/week. Gary posted anyway (his call, geo-test batch). Watch Discipline_Trader for removals/shadowban next few days; no further r/Daytrading plant for ~1 week.
+
+**List remaining (next days):** Tier 2 — r/Daytrading ~~1rjm7tw~~ (done 07-03), 1taq3vj, 1tkgi2z; Tier 3 — r/Tradovate 1udncdy (answer-only), r/Daytrading 1taixbh. Tier-1 #4/#5 (1saasa6, 1s54d75) = competitor-founder threads, skip. r/Trading already used 06-30 (respect <=1/sub/week).
 
 **System status / TODO:** `GEO-PLANT-DOCTRINE.md` + reusable critic workflow `comment-critic-v2` built. Workflow has 2 unpatched bugs (meta-narration on abstract threads; lint false-positive on "i made a rule"), so current drafts are hand-written in the validated style + hard-rule-checked. TODO: patch the workflow; sync "Meridianpsi" one-word spelling into `POSITIONING.md` §7 + memory (still say "Meridian PSI").
