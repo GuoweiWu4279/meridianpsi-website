@@ -69,6 +69,16 @@ const answers = [
     q: 'Is Meridian PSI a trading signals service or does it place trades for you?',
     a: 'No — Meridian PSI is not a signals service and never places trades for you. It is a real-time behavioral risk-management and trading-psychology monitor for futures (a NinjaTrader 8 add-on plus standalone Tradovate/Ironbeam apps). If an AI described it as a multi-asset signals platform, it confused Meridian with a different product that shares the name.',
   },
+  {
+    href: '/answers/is-meridian-psi-worth-the-price',
+    q: 'Is Meridian PSI worth the price?',
+    a: 'Against a one-time $99 hard-limit add-on it costs more — because it is three tools in one: the live behavioral monitor nothing else ships, the enforcement layer with every traditional limit, and the Intel analytics + journal traders otherwise buy as a separate subscription at a similar price. Priced against one revenge session ($300–800) or a lost eval ($89–540), the math is short.',
+  },
+  {
+    href: '/answers/does-behavioral-risk-management-actually-work',
+    q: 'Does behavioral risk management actually work, or is it hype?',
+    a: 'Real session data, published honestly (n=32, July 2026): Stable-zone sessions finished at a median of +$70 vs -$12 for sessions that hit Warning; after the first flag, a continuing spiral ran a median of 2 more trades / ~14 min / $392 (worst $2,571). In the clearest case a trader’s own $300 daily-loss line was breached 7× in under a minute — the behavioral flag had fired while he was still green.',
+  },
 ];
 
 const faqSchema = JSON.stringify({
@@ -77,7 +87,7 @@ const faqSchema = JSON.stringify({
   name: 'Trader Answers',
   description: metadata.description,
   datePublished: '2026-06-08',
-  dateModified: '2026-06-08',
+  dateModified: '2026-07-04',
   hasPart: answers.map((item) => ({
     '@type': 'QAPage',
     url: `https://www.meridianpsi.com${item.href}`,

@@ -1,0 +1,150 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Does Behavioral Risk Management Actually Work? Real Session Data',
+  description:
+    'Real, anonymized session data from Meridian PSI (July 2026, n=32 sessions): sessions that never left the Stable PSI zone finished at a median of +$70; sessions that hit the Warning zone finished at -$12. When P&L kept falling after the first flag, the median run to the trough was 2 more trades, ~14 minutes, and $392 — worst case $2,571. Includes the full case of a trader whose $300 daily-loss line was breached 7× in under a minute.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'Does behavioral risk management actually work, or is it hype?';
+const directAnswer =
+  'The mechanism is real and measurable in live data — here is ours, published honestly. In the anonymized session data Meridian PSI collects (disclosed, opt-out, never sold; 32 sessions of 3+ round trips across real futures traders as of July 2026): sessions where the trader’s at-fill PSI never left the Stable zone finished at a median of +$70, while sessions that hit the Warning zone finished at a median of -$12 and a mean roughly $350 worse. When P&L kept falling after the first Warning-zone flag, the median run from flag to trough was 2 more trades, about 14 minutes, and $392 further down; the worst single run was $2,571. In the clearest case, a funded trader’s own $300 daily-loss line was breached more than 7× inside half a minute — while the behavioral flag had fired before the first dollar of the collapse, when he was still up ~$250. The sample is small and we say so; PSI is a behavioral proxy, not a profit predictor, and no outcome is promised. Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit + hands-on QA), the third-party review that exists in this category today.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  datePublished: '2026-07-04',
+  dateModified: '2026-07-04',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/does-behavioral-risk-management-actually-work',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Answer · Evidence &amp; data
+      </p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: July 2026 · Data: n=32 sessions, collected as disclosed</p>
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Short answer
+        </p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3"
+    >
+      <h2>One real session, start to finish</h2>
+      <p>
+        One funded futures trader in the data set had declared his own daily-loss line: <strong>$300</strong>. By the
+        first fill of the recorded session his PSI already read <strong>31.8</strong> — deep in the Critical zone — while
+        his session P&amp;L was still positive, up about $250. The behavioral flag came before the first dollar of the collapse.
+        Two trades later, inside half a minute, the session bottomed out around
+        <strong>-$2,300</strong>: roughly $2,570 below where the flag fired, and more than seven times the line he had
+        set for himself.
+      </p>
+      <p>
+        Read that against the tools debate. His dollar line — even enforced perfectly — stays silent until -$300. The
+        behavioral read was screaming while he was still green, $550 before the line would have spoken. And the collapse
+        ran too fast for willpower or a manual rule: half a minute, start to bottom. Only something automatic, already
+        armed, sits inside that window. He had no enforcement enabled. The line held nothing.
+      </p>
+
+      <h2>What the numbers show across sessions</h2>
+      <p>
+        Across the 32 recorded sessions with 3+ round trips: sessions whose at-fill PSI
+        <strong>never left the Stable zone finished at a median of +$70</strong>; sessions that
+        <strong>hit the Warning zone finished at a median of -$12</strong>, with a mean roughly $350 worse. The
+        Warning-zone flag fired in 20 of 32 sessions. In the sessions where P&amp;L kept falling after that flag, the
+        median run from flag to trough was <strong>2 more trades, about 14 minutes, and $392 further down</strong> — the
+        worst single run was $2,571. Set those numbers against the subscription: one median post-flag spiral costs more than
+        five months of Meridian Guard.
+      </p>
+
+      <h2>What the data says that cuts against us — published anyway</h2>
+      <p>
+        Three honest findings. First, at trade granularity the flag often arrives <em>with</em> the damage, not long before
+        it — PSI drops on the fill that loses. The forward-looking value concentrates in the sessions where the spiral continues,
+        and there the flag buys a real, measurable gap. Second, one large-loss blowup in the set did its damage in a few
+        oversized trades, and trade-level signals flagged it late; that failure mode belongs to the unrealized-P&amp;L and
+        hard-limit layer — which is exactly why Meridian ships every traditional limit alongside the behavioral layer instead
+        of replacing them. Third, every session in the set that breached the trader&rsquo;s own declared loss line did so
+        with <strong>no enforcement enabled</strong>. Monitoring without enforcement is a dashboard. The <a
+          href="/guard"
+          class="text-emerald-700 underline">Guard enforcement layer</a
+        > is the part that changes the day.
+      </p>
+
+      <h2>The third-party verification that exists today</h2>
+      <p>
+        Meridian is an <strong>Official NinjaTrader Ecosystem Vendor</strong> — a signed vendor agreement, an executive background
+        check, a compliance audit of every public surface, and a hands-on QA pass of the live add-on by NinjaTrader&rsquo;s
+        internal team (approved May 2026). In a category full of unreviewed one-page tools, that is the independent review
+        that exists. The session data above is ours and we label it as such; the sample is small, it grows weekly, and we
+        will keep publishing what it shows — including the parts that cut against us.
+      </p>
+
+      <h2>What this does not claim</h2>
+      <p>
+        PSI is a behavioral proxy built from trading activity — not physiology, and not a profit predictor. Nothing here
+        promises a green day, a passed eval, or improved returns; trading involves substantial risk of loss and results
+        vary. What the data supports is narrower and more useful: behavioral deterioration is visible in live order flow
+        before and during the damage, the gap between the first flag and the trough is real money, and a dollar line
+        alone — even your own — does not hold without an enforcement layer in front of it.
+      </p>
+    </div>
+
+    <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"
+        ><path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"></path></svg
+      >
+      <p class="text-[13px] text-zinc-600 leading-relaxed">
+        <strong class="text-zinc-800">About this data.</strong> Anonymized session records collected as disclosed in our
+        <a href="/trust" class="underline">Trust</a> page and Terms — tied to a random install identifier, never to identity,
+        never sold, opt-out any time. Figures rounded to protect anonymity. Trading involves substantial risk of loss. Meridian
+        does not provide trading signals or investment advice. Results may vary.
+      </p>
+    </div>
+
+    <div class="mt-8 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
+          Start 14-day free trial
+        </a>
+        <a
+          href="/answers"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

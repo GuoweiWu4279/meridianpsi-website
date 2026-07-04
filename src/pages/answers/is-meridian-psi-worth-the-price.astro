@@ -1,0 +1,166 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Is Meridian PSI Worth the Price?',
+  description:
+    'Meridian Core is $49.99/mo and Meridian Guard is $69.99/mo (annual ≈ $39.99 and $55.99/mo), 14-day trial. Whether that is expensive depends on the comparison: against a one-time hard-limit add-on it costs more — because it is three tools in one: a live behavioral monitor, the enforcement layer, and the Intel analytics a journal subscription alone would cost you as much as. Priced against one revenge session ($300–800) or a lost eval ($89–540), the math changes.',
+  robots: { index: true, follow: true },
+};
+
+const question = 'Is Meridian PSI worth the price?';
+const directAnswer =
+  'Meridian Core is $49.99/mo ($479.90/yr, about $39.99/mo) and Meridian Guard is $69.99/mo ($671.90/yr, about $55.99/mo), with a 14-day trial. Whether that is expensive depends on what you compare it to. Against a one-time $99 hard-limit add-on it costs more — because it is not the same product: the subscription covers three layers in one license. A live behavioral monitor (seven signals scored into a real-time PSI against your own baseline), the Guard enforcement layer (every traditional limit, enforced at the order layer, plus Strict Lock), and the Intel/Stats analytics workspace with a built-in journal — the piece traders otherwise buy as a separate journal subscription at a similar monthly price. Priced against the problem instead of the category, the math is short: a single revenge session commonly runs $300–800 before a daily loss limit even fires, and a futures eval costs $89–540 and is gone the day you break its rules. One such session costs more than months of the subscription. Meridian does not promise to catch every one and it will not make you profitable — but the 14-day trial exists so your own Intel data, not the sticker price, makes the call.';
+
+const qaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  datePublished: '2026-07-04',
+  dateModified: '2026-07-04',
+  mainEntity: {
+    '@type': 'Question',
+    name: question,
+    text: question,
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: directAnswer,
+      url: 'https://www.meridianpsi.com/answers/is-meridian-psi-worth-the-price',
+    },
+  },
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={qaSchema} />
+
+  <article class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+    <header class="mb-10">
+      <p class="text-[11px] font-semibold tracking-[0.15em] uppercase mb-3" style="color:var(--aw-color-primary);">
+        Answer · Pricing &amp; value
+      </p>
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
+        {question}
+      </h1>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: July 2026</p>
+      <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
+        <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
+          Short answer
+        </p>
+        <p class="text-[15px] text-zinc-700 leading-relaxed">{directAnswer}</p>
+      </div>
+    </header>
+
+    <div
+      class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3"
+    >
+      <h2>What the subscription actually buys</h2>
+      <p>
+        Three layers, one product, one license across every supported platform. First, the live monitor: seven
+        behavioral signals — Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace, Hold Bias, Position
+        Overstay, Rule Violations — scored against your own adaptive baseline into a real-time
+        <strong>PSI (Psychological Stability Index)</strong>, updated within 100ms of every fill. Second, enforcement
+        (the Guard tier): six triggers across five response levels, from a quiet notify up to a Trading Pause or broker
+        disconnect, with Strict Lock so the tilted version of you cannot switch it off mid-session — plus every
+        traditional limit (daily loss, loss-streak, single-trade, drawdown, session time, Hard limits) enforced at the
+        order layer. Third, the review layer (<strong>Intel and Stats, included in Core</strong>): your discipline in
+        actual numbers, session by session, with a built-in journal and five years of local history.
+      </p>
+
+      <h2>Compared to what?</h2>
+      <p>
+        Most serious traders already pay a monthly subscription for a trading journal that covers a slice of the third
+        layer — after the fact. The one-time hard-limit add-ons cover a slice of the second layer, at the line. Nothing
+        else in the stack does the first layer at all. So the honest comparison is not &ldquo;Meridian vs. a $99
+        one-time tool&rdquo; — it is Meridian vs. the stack you would assemble to replace it: a journal subscription,
+        plus a risk add-on, plus a behavioral layer you cannot buy separately, because no one else ships one. Priced
+        that way, Core costs about what the journal alone does.
+      </p>
+
+      <h2>The math against the problem</h2>
+      <p>
+        Price the tool against the thing it is aimed at. A futures eval costs $89&ndash;540 and is gone the day you
+        break its rules. A single revenge session commonly runs $300&ndash;800 before a daily loss limit even speaks.
+        One of those sessions costs more than months of the subscription; the eval it takes down costs more still. Set
+        against that ledger, Guard is $69.99 a month — $55.99 on annual billing.
+      </p>
+      <p>
+        Our own published session data (n=32 real sessions, July 2026) puts numbers on that gap: when P&amp;L kept
+        falling after the first Warning-zone flag, the median run to the trough was 2 more trades, about 14 minutes, and <strong
+          >$392 further down</strong
+        > — one median post-flag spiral costs more than five months of Guard. The worst recorded run was $2,571, in a session
+        where the trader&rsquo;s own $300 daily-loss line was breached more than 7× in under a minute. Full data, including
+        what cuts against us:
+        <a href="/answers/does-behavioral-risk-management-actually-work" class="text-emerald-700 underline"
+          >does behavioral risk management actually work</a
+        >.
+      </p>
+
+      <h2>Why a $99 hard-limit tool doesn&rsquo;t make Meridian redundant</h2>
+      <p>
+        Keep the hard limits — Meridian ships them too, enforced at the order layer. The subscription pays for the part
+        a fixed rule cannot express. A $500 daily stop lets four revenge trades through before it fires; the Revenge
+        Entry signal flags the second one, while there is still session left to save. And the patterns that actually
+        drain accounts rarely fit an if/then rule: size that creeps up gradually instead of doubling, re-entries that
+        wait ninety seconds instead of ten, two losses that tilt you on a Tuesday and roll off you on a Friday. A fixed
+        rule needs you to predict your failure in advance and write it as a number. A baseline model just notices you
+        have stopped trading like yourself — and acts before the number is hit. The full comparison:
+        <a href="/answers/meridian-vs-daily-loss-limit" class="text-emerald-700 underline"
+          >Meridian vs. daily loss limit</a
+        >.
+      </p>
+
+      <h2>The part no journal shows you</h2>
+      <p>
+        Intel splits every session on two axes: how disciplined you were (PSI) and what you made (P&amp;L). A lucky
+        green day gets labeled what it is. A disciplined red day stops reading as failure. Over weeks it puts a dollar
+        figure on what your unstable stretches cost against your stable ones — broken down by time of day, instrument,
+        and signal. A P&amp;L journal cannot build this view, because it has no live behavioral engine to know which
+        trades you took while tilting. That is why the price is not really a risk-tool price: the same subscription is
+        the improvement loop, not just the brake. More on the workspace:
+        <a href="/history-intel" class="text-emerald-700 underline">History &amp; Intel</a>.
+      </p>
+
+      <h2>What the price does not buy</h2>
+      <p>
+        It will not make you profitable, and it does not claim to. PSI is a behavioral proxy built from your trading
+        activity — not physiology, and not a profit predictor. It cannot promise a green day, and it does not replace an
+        edge. What the price buys is the layer between &ldquo;trading normally&rdquo; and &ldquo;hitting your
+        number,&rdquo; plus the numbers to judge whether that layer is earning its keep for you. That judgment is what
+        the <a href="/pricing" class="text-emerald-700 underline">14-day trial</a> is for.
+      </p>
+    </div>
+
+    <div class="mt-12 flex items-start gap-3 rounded-xl border border-zinc-200 bg-zinc-50/80 px-5 py-4">
+      <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"
+        ><path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"></path></svg
+      >
+      <p class="text-[13px] text-zinc-600 leading-relaxed">
+        <strong class="text-zinc-800">Official NinjaTrader Ecosystem Vendor.</strong> Meridian is an approved NinjaTrader
+        Ecosystem vendor; it is not owned by or affiliated with NinjaTrader, Tradovate, or Ironbeam. Trading involves substantial
+        risk of loss. Meridian does not provide trading signals or investment advice. Results may vary.
+      </p>
+    </div>
+
+    <div class="mt-8 pt-10 border-t border-zinc-100">
+      <div class="flex flex-wrap gap-3">
+        <a
+          href="/pricing"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
+          style="background:var(--aw-color-primary);"
+        >
+          Start 14-day free trial
+        </a>
+        <a
+          href="/answers"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
+        >
+          More answers →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

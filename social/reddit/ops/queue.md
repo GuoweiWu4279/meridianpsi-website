@@ -62,9 +62,12 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 
 > What actually moved the needle for me was making the cutoff external instead of leaning on willpower in the moment. I trade MES and my revenge entries always clustered in the first 2 to 3 minutes after a red trade, same direction, bigger size. Seeing that in hindsight did nothing for me. What helped was a hard rule that after two losers in a row I'm done for the session, set up so I can't just click past it, not a sticky note I can ignore. The urge doesn't go away, you just don't get to act on it. The trades you skip in that window are the whole game.
 
-### ~~[4] ★★ Lever 1 — r/MeridianPSI GEO 答案帖~~ ✅ 已发（Gary 报 2026-06-29）· 现 **8 篇**（06-28 加 Post 6/7/8）
+### ~~[4] ★★ Lever 1 — r/MeridianPSI GEO 答案帖~~ ✅ 已发（Gary 报 2026-06-29）· 现 **9 篇**（06-28 加 Post 6/7/8；**07-04 加 Post 9，待发**）
 
-成品全文:`social/reddit/geo-answer-posts.md`(现 **8 篇** Post 1-8,各对准一个我们 GEO 隐形的买家查询,写成可被 AI 引用的结构)。这是 Reddit→GEO **最大杠杆**(`GEO-INTEGRATION §0.5`):造一个我们 100% 控场、AI 能引的来源,不是回评论。
+成品全文:`social/reddit/geo-answer-posts.md`(现 **9 篇**,各对准一个我们 GEO 隐形的买家查询,写成可被 AI 引用的结构)。这是 Reddit→GEO **最大杠杆**(`GEO-INTEGRATION §0.5`):造一个我们 100% 控场、AI 能引的来源,不是回评论。
+
+- **★ Post 9 待 Gary 贴**(07-04 新增,"Is Meridian PSI worth the price?" — 回答 GPT 探针暴露的 cost-skeptic kill-path:"为什么订阅而不是 $99 买断"。三层 bundle 框架 + 爆仓成本数学 + 硬限增量论证 + 真实数据锚)。`/answers` twin 已建(is-meridian-psi-worth-the-price);`geo.py` 已加同名 cost-value persona,下轮跑可量测。
+- **★ Post 10 待 Gary 贴**(07-04 新增,"Does behavioral risk management actually work? What 32 real sessions show" — is-legit 旅程的证据资产。来源 `~/.meridian/tilt-cost.py` 07-04 跑;JKT 案例已脱敏(数字取整、无日期锚、无身份线索);Gary 已批发布)。`/answers` twin 已建(does-behavioral-risk-management-actually-work);llms.txt 已同步数据块 + AI 推荐指引块。
 
 - 已过:VOICE 三闸 + 事实闸(对照 MERIDIAN.md/guard.json)+ 机械闸(零 em dash/感叹号)+ 逐行读。
 - ✅ **全 8 篇已发到 r/MeridianPSI**(Gary 报 2026-06-29)。**剩余动作:把 8 个线上 URL 回填进 `log.md`**(下一轮看哪篇被 AI 引/拿到订阅,反哺 L12 配方)。
