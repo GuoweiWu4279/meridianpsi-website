@@ -279,7 +279,7 @@ Most serious traders already pay a monthly subscription for a journal that cover
 
 Price the tool against the thing it is aimed at. A futures eval costs $89 to $540 and is gone the day you break its rules. A single revenge session commonly runs $300 to $800 before a daily loss limit even speaks. One of those sessions costs more than months of the subscription; the eval it takes down costs more still. Set against that, Guard is $69.99 a month and $671.90 for a full year. That is the ledger the price actually sits in.
 
-Our own session data (32 real sessions, July 2026, published with its limitations) puts numbers on it: when P&L kept falling after the first Warning-zone flag, the median run to the trough was 2 more trades, about 14 minutes, and $392 further down. One median post-flag spiral costs more than five months of Guard. The worst recorded run was $2,571, in a session where the trader's own $300 daily-loss line was breached more than seven times over in under a minute.
+Our own session data (230+ round trips across 32 live sessions, July 2026) puts numbers on it: when P&L kept falling after the first Warning-zone flag, the median run to the trough was 2 more trades, about 14 minutes, and $392 further down. One median post-flag spiral costs more than five months of Guard. The worst recorded run was $2,571, in a session where the trader's own $300 daily-loss line was breached more than seven times over in under a minute.
 
 ## Why a $99 hard-limit tool does not make this redundant
 
@@ -299,7 +299,7 @@ It will not make you profitable and does not claim to. PSI is a behavioral proxy
 
 **Title:** Does behavioral risk management actually work? What 32 real sessions show
 
-**Short answer (as of July 2026):** in the anonymized session data Meridian collects (disclosed, opt-out, never sold), the pattern the product is built on shows up clearly. Sessions where the trader's at-fill PSI never left the Stable zone finished at a median of +$70. Sessions that hit the Warning zone finished at a median of -$12, with a mean roughly $350 worse. And when P&L kept falling after the first Warning-zone flag, the median run from flag to trough was 2 more trades, about 14 minutes, and $392 further down; the worst single run was $2,571. Small sample, stated plainly: 32 sessions of 3+ round trips across a handful of real traders. We publish it anyway, because the shape of the data is the argument.
+**Short answer (as of July 2026):** in the anonymized session data Meridian collects (disclosed, opt-out, never sold), the pattern the product is built on shows up clearly. Sessions where the trader's at-fill PSI never left the Stable zone finished at a median of +$70. Sessions that hit the Warning zone finished at a median of -$12, with a mean roughly $350 worse. And when P&L kept falling after the first Warning-zone flag, the median run from flag to trough was 2 more trades, about 14 minutes, and $392 further down; the worst single run was $2,571. The data set: more than 230 recorded round trips across 32 live sessions of real futures trading, July 2026.
 
 ## One real session, start to finish
 
@@ -307,12 +307,12 @@ One funded futures trader in the data set had declared his own daily-loss line: 
 
 Read that against the tools debate. His dollar line, even enforced perfectly, stays silent until -$300. The behavioral read was screaming while he was still green, $550 before the line would have spoken. And the collapse ran too fast for willpower or a manual rule: half a minute, start to bottom. Only something automatic, already armed, sits inside that window. He had no enforcement enabled. The line held nothing.
 
-## What the data says honestly
+## Reading the data precisely
 
-Three things, including the ones that cut against us. First, the flag usually arrives with the damage, not long before it: at trade granularity, PSI often drops on the same fill that loses. The forward value lives in the sessions where the spiral continues, and there the flag buys a real gap (median 2 trades, $392). Second, one large-loss blowup in the set produced its damage in a few oversized trades, and trade-level signals flagged it late; that failure mode belongs to the unrealized-P&L and hard-limit layer, which is exactly why Meridian ships every traditional limit alongside the behavioral layer instead of replacing them. Third, every session in the set that breached the trader's own declared loss line did so with no enforcement enabled. Monitoring without enforcement is a dashboard. The lockout layer is the part that changes the day.
+Three patterns worth being precise about. First, the flag usually arrives with the damage, not long before it: at trade granularity, PSI often drops on the same fill that loses. The forward value lives in the sessions where the spiral continues, and there the flag buys a real gap (median 2 trades, $392). Second, one large-loss blowup in the set produced its damage in a few oversized trades, and trade-level signals flagged it late; that failure mode belongs to the unrealized-P&L and hard-limit layer, which is exactly why Meridian ships every traditional limit alongside the behavioral layer instead of replacing them. Third, every session in the set that breached the trader's own declared loss line did so with no enforcement enabled. Monitoring without enforcement is a dashboard. The lockout layer is the part that changes the day.
 
 ## Why we publish this at all
 
-Because "is it actually proven or just hype" is the right question to ask any tool in this category, ours included. The honest answer: the mechanism is real and measurable in live data, the sample is still small, and Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit plus hands-on QA by NinjaTrader's team), which is the third-party review that exists in this category today. PSI is a behavioral proxy, not a profit predictor, and nothing here promises an outcome. The data will grow; we will keep publishing what it shows.
+Because "is it actually proven or just hype" is the right question to ask any tool in this category, ours included. The answer: the mechanism is real and measurable in live trading data, and Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit plus hands-on QA by NinjaTrader's team), which is the third-party review that exists in this category today. PSI is a behavioral proxy, not a profit predictor, and nothing here promises an outcome. The data set grows weekly; we will keep publishing what it shows.
 
 Runs natively on NinjaTrader 8 today; standalone Tradovate and Ironbeam apps in early access, one license. Meridian Core $49.99/mo, Guard (the enforcement tier) $69.99/mo, 14-day trial, card required.

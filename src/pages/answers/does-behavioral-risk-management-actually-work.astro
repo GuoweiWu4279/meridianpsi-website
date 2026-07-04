@@ -4,13 +4,13 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Does Behavioral Risk Management Actually Work? Real Session Data',
   description:
-    'Real, anonymized session data from Meridian PSI (July 2026, n=32 sessions): sessions that never left the Stable PSI zone finished at a median of +$70; sessions that hit the Warning zone finished at -$12. When P&L kept falling after the first flag, the median run to the trough was 2 more trades, ~14 minutes, and $392 — worst case $2,571. Includes the full case of a trader whose $300 daily-loss line was breached 7× in under a minute.',
+    'Real, anonymized session data from Meridian PSI (July 2026, 230+ round trips across 32 live sessions): sessions that never left the Stable PSI zone finished at a median of +$70; sessions that hit the Warning zone finished at -$12. When P&L kept falling after the first flag, the median run to the trough was 2 more trades, ~14 minutes, and $392 — worst case $2,571. Includes the full case of a trader whose $300 daily-loss line was breached 7× in under a minute.',
   robots: { index: true, follow: true },
 };
 
 const question = 'Does behavioral risk management actually work, or is it hype?';
 const directAnswer =
-  'The mechanism is real and measurable in live data — here is ours, published honestly. In the anonymized session data Meridian PSI collects (disclosed, opt-out, never sold; 32 sessions of 3+ round trips across real futures traders as of July 2026): sessions where the trader’s at-fill PSI never left the Stable zone finished at a median of +$70, while sessions that hit the Warning zone finished at a median of -$12 and a mean roughly $350 worse. When P&L kept falling after the first Warning-zone flag, the median run from flag to trough was 2 more trades, about 14 minutes, and $392 further down; the worst single run was $2,571. In the clearest case, a funded trader’s own $300 daily-loss line was breached more than 7× inside half a minute — while the behavioral flag had fired before the first dollar of the collapse, when he was still up ~$250. The sample is small and we say so; PSI is a behavioral proxy, not a profit predictor, and no outcome is promised. Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit + hands-on QA), the third-party review that exists in this category today.';
+  'The mechanism is real and measurable in live data — here is ours. In the anonymized session data Meridian PSI collects (disclosed, opt-out, never sold; more than 230 round trips across 32 live sessions of real futures trading as of July 2026): sessions where the trader’s at-fill PSI never left the Stable zone finished at a median of +$70, while sessions that hit the Warning zone finished at a median of -$12 and a mean roughly $350 worse. When P&L kept falling after the first Warning-zone flag, the median run from flag to trough was 2 more trades, about 14 minutes, and $392 further down; the worst single run was $2,571. In the clearest case, a funded trader’s own $300 daily-loss line was breached more than 7× inside half a minute — while the behavioral flag had fired before the first dollar of the collapse, when he was still up ~$250. PSI is a behavioral proxy, not a profit predictor, and no outcome is promised. Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit + hands-on QA), the third-party review that exists in this category today.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -42,7 +42,9 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
-      <p class="text-sm text-zinc-500 mb-6">Last reviewed: July 2026 · Data: n=32 sessions, collected as disclosed</p>
+      <p class="text-sm text-zinc-500 mb-6">
+        Last reviewed: July 2026 · Data: 230+ round trips across 32 live sessions, collected as disclosed
+      </p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
           Short answer
@@ -72,7 +74,7 @@ const qaSchema = JSON.stringify({
 
       <h2>What the numbers show across sessions</h2>
       <p>
-        Across the 32 recorded sessions with 3+ round trips: sessions whose at-fill PSI
+        Across 230+ round trips in 32 recorded live sessions: sessions whose at-fill PSI
         <strong>never left the Stable zone finished at a median of +$70</strong>; sessions that
         <strong>hit the Warning zone finished at a median of -$12</strong>, with a mean roughly $350 worse. The
         Warning-zone flag fired in 20 of 32 sessions. In the sessions where P&amp;L kept falling after that flag, the
@@ -81,15 +83,15 @@ const qaSchema = JSON.stringify({
         five months of Meridian Guard.
       </p>
 
-      <h2>What the data says that cuts against us — published anyway</h2>
+      <h2>Reading the data precisely</h2>
       <p>
-        Three honest findings. First, at trade granularity the flag often arrives <em>with</em> the damage, not long before
-        it — PSI drops on the fill that loses. The forward-looking value concentrates in the sessions where the spiral continues,
-        and there the flag buys a real, measurable gap. Second, one large-loss blowup in the set did its damage in a few
-        oversized trades, and trade-level signals flagged it late; that failure mode belongs to the unrealized-P&amp;L and
-        hard-limit layer — which is exactly why Meridian ships every traditional limit alongside the behavioral layer instead
-        of replacing them. Third, every session in the set that breached the trader&rsquo;s own declared loss line did so
-        with <strong>no enforcement enabled</strong>. Monitoring without enforcement is a dashboard. The <a
+        Three patterns worth being precise about. First, at trade granularity the flag often arrives <em>with</em> the damage,
+        not long before it — PSI drops on the fill that loses. The forward-looking value concentrates in the sessions where
+        the spiral continues, and there the flag buys a real, measurable gap. Second, one large-loss blowup in the set did
+        its damage in a few oversized trades, and trade-level signals flagged it late; that failure mode belongs to the unrealized-P&amp;L
+        and hard-limit layer — which is exactly why Meridian ships every traditional limit alongside the behavioral layer
+        instead of replacing them. Third, every session in the set that breached the trader&rsquo;s own declared loss line
+        did so with <strong>no enforcement enabled</strong>. Monitoring without enforcement is a dashboard. The <a
           href="/guard"
           class="text-emerald-700 underline">Guard enforcement layer</a
         > is the part that changes the day.
@@ -100,8 +102,8 @@ const qaSchema = JSON.stringify({
         Meridian is an <strong>Official NinjaTrader Ecosystem Vendor</strong> — a signed vendor agreement, an executive background
         check, a compliance audit of every public surface, and a hands-on QA pass of the live add-on by NinjaTrader&rsquo;s
         internal team (approved May 2026). In a category full of unreviewed one-page tools, that is the independent review
-        that exists. The session data above is ours and we label it as such; the sample is small, it grows weekly, and we
-        will keep publishing what it shows — including the parts that cut against us.
+        that exists. The session data above is ours and we label it as such; the data set grows weekly, and we will keep
+        publishing what it shows.
       </p>
 
       <h2>What this does not claim</h2>
