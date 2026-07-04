@@ -21,9 +21,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { list, del, head } from '@vercel/blob';
+import { list, del, head, put } from '@vercel/blob';
 
 const PREFIX = 'research/';
+const SNAP_KEY = 'admin/usage-snapshot.json'; // processed usage report, published by ~/.meridian/usage.py publish
 
 function json(status: number, obj: unknown): Response {
   return new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
@@ -134,6 +135,22 @@ export const GET: APIRoute = async ({ request, url }) => {
     return json(200, { install, sessions: rows });
   }
 
+  if (action === 'snapshot') {
+    // The processed usage report (roster/stats/churn/signals) published by usage.py.
+    // Read the private blob server-side with the bearer token; the client never sees the blob URL.
+    try {
+      const h = await head(SNAP_KEY, { token });
+      const res = await fetch(h.url, { headers: { authorization: `Bearer ${token}` } });
+      const text = await res.text();
+      return new Response(text, {
+        status: 200,
+        headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+      });
+    } catch {
+      return json(404, { error: 'no snapshot yet — run: python usage.py publish' });
+    }
+  }
+
   return json(400, { error: 'unknown action' });
 };
 
@@ -164,6 +181,19 @@ export const POST: APIRoute = async ({ request }) => {
         { token }
       );
     return json(200, { deleted: victims.length, paths: victims.map((v) => v.pathname) });
+  }
+
+  if (body?.action === 'put-snapshot') {
+    if (!body.data || typeof body.data !== 'object') return json(400, { error: 'data object required' });
+    const payload = JSON.stringify(body.data);
+    await put(SNAP_KEY, payload, {
+      access: 'private', // PII (emails, P&L) — never a public blob URL; read only via this auth'd endpoint
+      token,
+      allowOverwrite: true,
+      addRandomSuffix: false,
+      contentType: 'application/json',
+    });
+    return json(200, { ok: true, bytes: payload.length });
   }
 
   return json(400, { error: 'unknown action' });

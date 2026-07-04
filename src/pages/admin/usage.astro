@@ -1,0 +1,262 @@
+---
+// src/pages/admin/usage.astro
+// Private usage dashboard — the "who's using Meridian / P&L / churn / signals" report
+// as a live web page. Static shell: ALL data flows through /api/admin/research?action=snapshot
+// (x-admin-key == RESEARCH_ADMIN_SECRET). The snapshot is published by ~/.meridian/usage.py publish
+// (near-real-time via a scheduled task). The key lives in the browser's localStorage only
+// (shared with /admin/research) — entered once, never rendered into the HTML.
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Usage — Admin</title>
+    <style>
+      :root {
+        --bg: #0b0b0d;
+        --panel: #161618;
+        --panel2: #1d1d20;
+        --line: #2a2a2e;
+        --fg: #ededf0;
+        --fg2: #a0a0a8;
+        --accent: #34d399;
+        --amber: #f5c451;
+        --danger: #f06a6a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; background: var(--bg); color: var(--fg);
+        font: 14px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      }
+      .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 20px 90px; }
+      h1 { font-size: 20px; margin: 0 0 4px; }
+      .sub { color: var(--fg2); font-size: 13px; margin: 0 0 18px; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+      input {
+        background: var(--panel2); border: 1px solid var(--line); color: var(--fg);
+        border-radius: 8px; padding: 9px 11px; font-size: 14px; width: 280px;
+      }
+      button {
+        background: var(--panel2); border: 1px solid var(--line); color: var(--fg);
+        border-radius: 8px; padding: 8px 13px; font-size: 13px; cursor: pointer;
+      }
+      button:hover { background: #26262a; }
+      button.primary { background: var(--accent); border-color: var(--accent); color: #06281c; font-weight: 600; }
+      button.sm { padding: 5px 10px; font-size: 12px; }
+      .topbar { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; flex-wrap: wrap; }
+      .muted { color: var(--fg2); }
+      .hidden { display: none; }
+      .err { color: var(--danger); margin-top: 10px; font-size: 13px; }
+      /* TL;DR stat strip */
+      .tldr { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+      .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; min-width: 110px; }
+      .stat b { display: block; font-size: 22px; line-height: 1.1; }
+      .stat span { color: var(--fg2); font-size: 12px; }
+      .section-h { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg2); margin: 26px 0 10px; }
+      /* user cards */
+      .user { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 15px 18px; margin-bottom: 11px; }
+      .user.trader { box-shadow: inset 3px 0 0 var(--accent); }
+      .user.churn { box-shadow: inset 3px 0 0 var(--amber); }
+      .user-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .name { font-size: 15px; font-weight: 600; }
+      .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+      .tag { border-radius: 20px; padding: 2px 9px; font-size: 11px; font-weight: 600; background: #2a2a2e; color: var(--fg2); white-space: nowrap; }
+      .tag.live { background: #0f3b2c; color: var(--accent); }
+      .tag.churn { background: #3a2f12; color: var(--amber); }
+      .tag.today { background: #13324a; color: #6cc4ff; }
+      .stats-row { display: flex; flex-wrap: wrap; gap: 16px 22px; margin: 9px 0 6px; font-size: 13px; }
+      .stats-row .k { color: var(--fg2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em; margin-right: 5px; }
+      .net.neg { color: var(--danger); font-weight: 700; }
+      .net.pos { color: var(--accent); font-weight: 700; }
+      .psi.low { color: var(--amber); font-weight: 700; }
+      .meta { color: var(--fg2); font-size: 12.5px; margin: 2px 0; }
+      .feats { color: var(--fg2); font-size: 12px; margin: 4px 0 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      .read { color: var(--fg); font-size: 13px; margin-top: 4px; }
+      .id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--fg2); }
+      ul.plain { margin: 0; padding-left: 18px; }
+      ul.plain li { margin: 4px 0; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--line); font-size: 13px; }
+      th { color: var(--fg2); font-weight: 500; font-size: 11px; text-transform: uppercase; }
+      td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Meridian — Usage</h1>
+      <p class="sub">
+        Who's using Meridian, how they trade, and who's slipping away. ·
+        <a href="/admin/research">raw sessions →</a>
+      </p>
+
+      <!-- Login gate (shared key with /admin/research) -->
+      <div id="login" class="card">
+        <div style="margin-bottom:10px;">Enter admin key <span class="muted">(remembered on this browser)</span></div>
+        <div style="display:flex; gap:10px;">
+          <input id="key" type="password" placeholder="RESEARCH_ADMIN_SECRET" autocomplete="off" />
+          <button class="primary" id="loginBtn">Unlock</button>
+        </div>
+        <div id="loginErr" class="err hidden"></div>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dash" class="hidden">
+        <div class="topbar">
+          <button class="sm" id="refreshBtn">↻ Refresh</button>
+          <button class="sm" id="logoutBtn">Forget key</button>
+          <span class="muted" id="stamp" style="font-size:12px;"></span>
+        </div>
+        <div id="body"></div>
+      </div>
+    </div>
+
+    <script is:inline>
+      const $ = (id) => document.getElementById(id);
+      const API = '/api/admin/research';
+      let KEY = localStorage.getItem('mpsi_admin_key') || '';
+      let timer = null;
+
+      const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+      const money = (n) => (n >= 0 ? '+' : '') + Number(n).toLocaleString();
+
+      async function fetchSnapshot() {
+        const res = await fetch(API + '?action=snapshot', { headers: { 'x-admin-key': KEY } });
+        if (res.status === 401) throw new Error('unauthorized');
+        if (res.status === 404) return null; // no snapshot published yet
+        return res.json();
+      }
+
+      function statTile(v, label) {
+        return `<div class="stat"><b>${esc(v)}</b><span>${esc(label)}</span></div>`;
+      }
+
+      function userCard(u) {
+        const isChurn = (u.flags || []).includes('流失中');
+        const isToday = (u.flags || []).includes('今天活跃');
+        const cls = 'user' + (isChurn ? ' churn' : u.tier === 'TRADER' ? ' trader' : '');
+        const tagHTML = (u.flags || [])
+          .map((f) => {
+            let c = 'tag';
+            if (f === '交易中') c += ' live';
+            else if (f === '流失中') c += ' churn';
+            else if (f === '今天活跃') c += ' today';
+            return `<span class="${c}">${esc(f)}</span>`;
+          })
+          .join('');
+        const netCls = 'net ' + (u.net < 0 ? 'neg' : 'pos');
+        const psiCls = 'psi' + (u.psi_low != null && u.psi_low <= 20 ? ' low' : '');
+        const winr = u.winrate != null ? u.winrate + '% win' : '—';
+        const acct = `${esc(u.mode)}/${esc(u.acctClass)}${u.vendor ? '/' + esc(u.vendor) : ''}`;
+        const feats = ['Intelligence', 'Journal', 'History', 'Guard', 'Settings']
+          .map((k) => `${k}×${(u.tabs || {})[k] || 0}`)
+          .join('  ');
+        return `
+        <div class="${cls}">
+          <div class="user-head">
+            <div class="name">${esc(u.label)}</div>
+            <div class="tags">${tagHTML}</div>
+          </div>
+          <div class="meta"><span class="id">${esc(u.install8)}</span> · tz ${esc(u.tz)} · ${acct}
+            · 在用 ${u.days_using}天 · 最后活跃 ${u.last_ago}天前</div>
+          ${u.note ? `<div class="meta">${esc(u.note)}</div>` : ''}
+          <div class="stats-row">
+            <span><span class="k">净P&L</span><span class="${netCls}">${money(u.net)}</span></span>
+            <span><span class="k">PSI最低</span><span class="${psiCls}">${u.psi_low ?? '?'}</span></span>
+            <span><span class="k">生涯</span>${u.sessions}会话 · ${u.rts}笔 · ${winr}</span>
+            <span><span class="k">本期</span>+${u.period_sessions}会话 · +${u.period_rts}笔</span>
+          </div>
+          <div class="feats">复盘: ${esc(feats)}</div>
+          <div class="read">${esc(u.read)}</div>
+        </div>`;
+      }
+
+      function render(d) {
+        const t = d.tldr;
+        const delta = (t.delta >= 0 ? '+' : '') + t.delta;
+        const churnCards = (d.changes.churned || [])
+          .map((c) => `<li>${esc(c.label)} <span class="id">(${esc(c.install8)})</span> — 静默 ${c.silent_days}天 · 生涯净 <span class="${c.net < 0 ? 'net neg' : 'net pos'}">${money(c.net)}</span></li>`)
+          .join('');
+        const byDay = (d.by_day || [])
+          .map((e) => `<tr><td>${esc(e.date)}</td><td class="num">${e.active}</td><td class="num">${e.sessions}</td><td class="num">${e.rts}</td></tr>`)
+          .join('');
+        const signals = (d.signals || []).map((s) => `<li>${esc(s)}</li>`).join('');
+        const devs = (d.devs || []).map((x) => `${esc(x.label)} (${esc(x.install8)})`).join(' · ');
+
+        $('body').innerHTML = `
+          <div class="tldr">
+            ${statTile(`${t.real} (${delta})`, '真实用户')}
+            ${statTile(t.trader, '交易中')}
+            ${statTile(t.trying, '刚装试用')}
+            ${statTile(t.active, '本期活跃')}
+            ${statTile(t.churning, '流失中')}
+            ${statTile(`${t.period_sessions}/${t.period_rts}`, '本期 会话/成交')}
+          </div>
+          <div class="muted" style="font-size:12px; margin-bottom:4px;">期间: ${esc(d.period_note)} · 库 ${d.lib.installs}装/${d.lib.objects}会话/${esc(d.lib.bytes_h)}</div>
+
+          <div class="section-h">谁在用 (按最近活跃)</div>
+          ${d.roster.length ? d.roster.map(userCard).join('') : '<div class="card muted">暂无真实用户。</div>'}
+
+          ${churnCards ? `<div class="section-h">⚠ 流失中 (可挽回)</div><ul class="plain">${churnCards}</ul>` : ''}
+
+          <div class="section-h">产品信号 / 建议</div>
+          <ul class="plain">${signals}</ul>
+
+          <div class="section-h">本期按天</div>
+          ${byDay ? `<div class="card"><table><thead><tr><th>日期</th><th class="num">活跃人</th><th class="num">会话</th><th class="num">成交</th></tr></thead><tbody>${byDay}</tbody></table></div>` : '<div class="muted">本期无新会话。</div>'}
+
+          ${devs ? `<div class="section-h">已排除 (你自己的测试机)</div><div class="muted" style="font-size:12px;">${devs}</div>` : ''}
+        `;
+      }
+
+      async function load() {
+        try {
+          const d = await fetchSnapshot();
+          $('dash').classList.remove('hidden');
+          $('login').classList.add('hidden');
+          if (!d) {
+            $('body').innerHTML = '<div class="card muted">还没有快照。在你的机器上跑一次:<br><code>cd ~/.meridian &amp;&amp; python -X utf8 usage.py publish</code><br>(之后由定时任务每 ~20 分钟自动发布。)</div>';
+            $('stamp').textContent = '';
+            return;
+          }
+          render(d);
+          $('stamp').textContent = '数据: ' + (d.generated_pt || d.generated_utc) + ' · 页面刷新 ' + new Date().toLocaleTimeString();
+        } catch (err) {
+          $('dash').classList.add('hidden');
+          $('login').classList.remove('hidden');
+          $('loginErr').textContent = 'Unauthorized — wrong key.';
+          $('loginErr').classList.remove('hidden');
+          localStorage.removeItem('mpsi_admin_key');
+          KEY = '';
+          if (timer) clearInterval(timer);
+        }
+      }
+
+      function start() {
+        load();
+        if (timer) clearInterval(timer);
+        timer = setInterval(load, 10 * 60 * 1000); // re-pull the latest published snapshot every 10 min
+      }
+
+      $('refreshBtn').onclick = load;
+      $('logoutBtn').onclick = () => {
+        localStorage.removeItem('mpsi_admin_key');
+        KEY = '';
+        if (timer) clearInterval(timer);
+        location.reload();
+      };
+      $('loginBtn').onclick = () => {
+        KEY = $('key').value.trim();
+        localStorage.setItem('mpsi_admin_key', KEY);
+        start();
+      };
+      $('key').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('loginBtn').click(); });
+      if (KEY) start();
+    </script>
+  </body>
+</html>
