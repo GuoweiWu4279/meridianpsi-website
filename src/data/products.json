@@ -3,7 +3,7 @@
   "legalNameNote": "Marketing name for the MeridianPSI product family: the NinjaTrader 8 add-on, and the standalone Meridian apps for Tradovate and Ironbeam accounts (early access).",
   "tagline": "Complete risk management for serious futures traders — every limit, plus the behavioral layer none of them have",
   "description": "Meridian is the complete risk manager for serious futures traders — a superset of any futures risk tool: every traditional limit a risk tool has (daily loss, P&L and drawdown caps, single-trade loss caps, loss-streak cutoff, plus optional Hard limits on size and order type enforced at submission) PLUS a real-time behavioral leading-indicator layer that tracks seven trading behaviors and computes a live PSI score on your machine — flagging tilt before a loss crosses a dollar line. It also includes a built-in journal, the Intel/Stats analytics workspace (equity curve, win rate, profit factor, expectancy, PSI × P&L, per-account), and 5 years of local history. Native in NinjaTrader 8 today; standalone apps for Tradovate and Ironbeam accounts in early access.",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "platform": "NinjaTrader 8 (64-bit) · Tradovate (early access) · Ironbeam (early access)",
   "platforms": [
     {

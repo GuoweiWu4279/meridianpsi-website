@@ -1,8 +1,8 @@
 {
-  "version": "1.5.5",
-  "releaseDate": "2026-06-26",
+  "version": "1.5.6",
+  "releaseDate": "2026-07-06",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.5.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.6.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.5 — Guard you can rely on. A timed pause now runs its full length and releases instead of silently re-locking, and a timed Disconnect auto-reconnects your broker the moment it ends. Guard acts the instant you cross a limit (the old activation 'grace' delay is gone) and no longer double-fires when a value just hovers at your threshold. NEW Hard limits: a real ceiling Guard physically enforces — cap contracts and block entry order types; a market order that slips over is trimmed straight back, and exits are never blocked. NEW per-account stats: split your Intel, Patterns and Debrief by account. Fixed: Guard could show as locked for active subscribers (now resolved by your subscription, not a fixed plan list); Settings could crash on open; Display & privacy contrast. Acknowledge rules block new entries by default, and alerts are tidier — one clear message per event. Closing or reducing a position is never blocked."
+  "notes": "v1.5.6 — Guard reads your losses right, and the monitor tells you WHY. FIXED — a 'consecutive losses' pause now fires on every qualifying loss, not just the first (a losing streak only climbs, so the old rule paused you once and went quiet through the rest); a break-even scratch no longer clears your streak. FIXED — hold-time tracking is accurate while a position is open (some multi-account setups showed 0), and unrealized P&L is read at your broker's true mark so 'unrealized P&L below' rules behave. NEW — the PSI monitor names the ONE thing driving your score in plain language ('Oversizing', 'Overtrading') the moment it starts to build, so you finally know why — and spoken alerts now have an on/off switch in Settings. Closing or reducing a position is never blocked."
 }
