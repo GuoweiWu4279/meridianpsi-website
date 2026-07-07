@@ -139,12 +139,18 @@ export const prerender = false;
       .day-date { color: var(--fg2); font-size: 11.5px; margin-top: 2px; }
       .day-sum { font-size: 12px; color: var(--fg2); margin-bottom: 7px; }
       .day-none { font-size: 12.5px; color: var(--fg3); padding: 1px 0; }
-      .day-u { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 13px; }
+      .day-u { padding: 5px 0; font-size: 13px; }
+      .day-u-top { display: flex; align-items: center; gap: 10px; }
       .day-u .ddot { width: 7px; height: 7px; border-radius: 50%; background: var(--fg3); flex-shrink: 0; }
       .day-u .ddot.live { background: var(--accent); }
       .day-u .dn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .day-u .da { color: var(--fg2); font-size: 12px; white-space: nowrap; }
       .day-u .dnet { width: 70px; text-align: right; font-weight: 600; }
+      .day-u-act { margin-left: 17px; margin-top: 3px; color: var(--fg3); font-size: 11.5px; line-height: 1.5; }
+      .day-u-act .tz { color: var(--fg2); }
+      .ptag { font-size: 10px; font-weight: 650; padding: 1px 6px; border-radius: 999px; margin-left: 7px; white-space: nowrap; }
+      .ptag.client { background: rgba(108,196,255,0.15); color: var(--blue); }
+      .pill.client { background: rgba(108,196,255,0.15); color: var(--blue); }
     </style>
   </head>
   <body>
@@ -207,7 +213,7 @@ export const prerender = false;
 
       function userCard(u) {
         const cls = 'u ' + ((u.flags || []).includes('流失中') ? 'churn' : u.tier === 'TRADER' ? 'trader' : '');
-        const pills = (u.flags || []).map(pill).join('');
+        const pills = (u.flags || []).map(pill).join('') + (u.platform === 'Client' ? '<span class="pill client">客户端</span>' : '');
         const noTrades = (u.rts || 0) === 0;
         const psiLow = u.psi_low != null && u.psi_low <= 20;
         const winr = u.winrate != null ? u.winrate + '% 胜' : '—';
@@ -248,19 +254,35 @@ export const prerender = false;
         </div>`;
       }
 
+      const TAB_ZH = { Session: '监控', Intelligence: '智能', Journal: '日志', History: '历史', Guard: 'Guard', Settings: '设置', Profile: '档案', License: '授权' };
+      function dur(m) { m = Math.round(m || 0); if (m < 60) return m + '分'; return Math.floor(m / 60) + '时' + (m % 60) + '分'; }
+
       function dailyHTML(days) {
         return days.map((day) => {
           const empty = day.users.length === 0;
           const relCls = day.rel === '今天' ? ' today' : '';
           const rows = day.users.map((u) => {
+            const client = u.platform === 'Client';
             const dot = u.tier === 'TRADER' ? ' live' : '';
+            const badge = client ? '<span class="ptag client">客户端</span>' : '';
             const act = u.rts > 0 ? `${u.sessions}会话 · ${u.rts}笔` : `${u.sessions}会话 · 未成交`;
             const net = u.rts > 0
               ? `<span class="dnet tnum ${netCls(u.net)}">${money(u.net)}</span>`
               : `<span class="dnet tnum" style="color:var(--fg3)">—</span>`;
-            return `<div class="day-u"><span class="ddot${dot}"></span><span class="dn">${esc(u.label)}</span><span class="da">${act}</span>${net}</div>`;
+            // what they actually did that day: duration + tabs opened + clicks + guard
+            const tabs = (u.tabs || []).map(([n, c]) => `${TAB_ZH[n] || n}×${c}`).join(' ');
+            const bits = [];
+            if (u.dur > 0) bits.push(`<span class="tz">用了 ${dur(u.dur)}</span>`);
+            if (tabs) bits.push('看了 ' + esc(tabs));
+            if (u.clicks > 0) bits.push('点击 ' + u.clicks);
+            if (u.guard > 0) bits.push('Guard ' + u.guard);
+            const detail = bits.length ? bits.join(' · ') : (client ? '回填历史 · 无实时会话' : '无明细');
+            return `<div class="day-u">
+              <div class="day-u-top"><span class="ddot${dot}"></span><span class="dn">${esc(u.label)}${badge}</span><span class="da">${act}</span>${net}</div>
+              <div class="day-u-act">${detail}</div>
+            </div>`;
           }).join('');
-          const sum = `<div class="day-sum">${day.users.length}人 · ${day.sessions}会话 · ${day.rts}笔 · 净 <span class="${netCls(day.net)}">${money(day.net)}</span></div>`;
+          const sum = `<div class="day-sum">${day.users.length}人 · ${day.sessions}会话 · ${day.rts}笔 · 净 <span class="${netCls(day.net)}">${money(day.net)}</span>${day.dur ? ' · 共 ' + dur(day.dur) : ''}</div>`;
           return `
           <div class="day${empty ? ' empty' : ''}">
             <div class="day-when"><div class="day-rel${relCls}">${esc(day.rel)}</div><div class="day-date">${esc(day.date)} ${esc(day.wd)}</div></div>
