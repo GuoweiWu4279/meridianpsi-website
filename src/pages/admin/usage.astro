@@ -228,7 +228,9 @@ export const prerender = false;
             </div>`;
 
         const feats = tabsSum === 0
-          ? `<div class="feats-empty">复盘功能未使用</div>`
+          ? (u.platform === 'Client'
+              ? `<div class="feats-empty">复盘功能 · 客户端未上报（仅 NT8 插件端可统计）</div>`
+              : `<div class="feats-empty">复盘功能未使用</div>`)
           : `<div class="feats">${featBars(u.tabs || {})}</div>`;
 
         return `
