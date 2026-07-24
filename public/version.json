@@ -1,8 +1,8 @@
 {
-  "version": "1.5.6",
-  "releaseDate": "2026-07-06",
+  "version": "1.5.7",
+  "releaseDate": "2026-07-23",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.6.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.7.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.6 — Guard reads your losses right, and the monitor tells you WHY. FIXED — a 'consecutive losses' pause now fires on every qualifying loss, not just the first (a losing streak only climbs, so the old rule paused you once and went quiet through the rest); a break-even scratch no longer clears your streak. FIXED — hold-time tracking is accurate while a position is open (some multi-account setups showed 0), and unrealized P&L is read at your broker's true mark so 'unrealized P&L below' rules behave. NEW — the PSI monitor names the ONE thing driving your score in plain language ('Oversizing', 'Overtrading') the moment it starts to build, so you finally know why — and spoken alerts now have an on/off switch in Settings. Closing or reducing a position is never blocked."
+  "notes": "v1.5.7 — Per-account daily stops. NEW — if you monitor more than one account, a 'session loss reaches $X' Guard rule now watches each account's OWN realised loss: when one account hits its limit, Guard stops that account (blocks its new entries, and closes it if you opted in) while your other accounts keep trading. Before, it added every account into one number, so a winning account could hide a losing one. Single-account behaviour is unchanged; PSI and your other Guard rules are unchanged. FIXED — no false 'no stop' warning on an ATM entry/stop race; a live data backfill no longer resets your session; quieter routine logs. Plus a plain-language pass over the app's text. Closing or reducing a position is never blocked."
 }
