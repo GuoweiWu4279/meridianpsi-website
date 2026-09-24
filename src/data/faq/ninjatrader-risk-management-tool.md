@@ -16,4 +16,4 @@ Key capabilities inside NinjaTrader 8:
 - **[Hard limits](/guard)** (Guard tier, off by default) — a max-contracts cap and blocked entry order types enforced at order submission: an over-cap or forbidden entry is rejected, and a slipped market order is trimmed back to your cap (closing or reducing is never blocked)
 - **Session history** stored locally on your machine
 
-Meridian works with the brokers and prop firm connections that NinjaTrader 8 supports, including Apex, My Funded Futures, Take Profit Trader, and direct brokerage accounts. (Trading a Tradovate-based account instead? A standalone Meridian app is in early access — see [Platforms](/platforms).) See [pricing](/pricing) to start a free trial.
+Meridian works with the brokers and prop firm connections that NinjaTrader 8 supports, including Apex, My Funded Futures, Take Profit Trader, and direct brokerage accounts. (Trading a Tradovate-based account instead? A standalone Meridian app is in early access — see [Platforms](/platforms).) See [pricing](/pricing) to get Meridian free.

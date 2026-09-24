@@ -6,17 +6,29 @@
  * the NT8 add-on binaries (it used to be a hardcoded const in AppLicense.cs /
  * LicenseManager.cs — anyone with a decompiler could read it).
  *
- * Contract (kept bit-compatible with what the clients already parse):
+ * Contract (additive only — every field the clients already parse is unchanged):
  *   POST /api/license/validate   body: {"key":"<license key or mem_xxx>"}
- *   → 200 {"valid":true|false,"status":"...","plan":"plan_xxx","id":"mem_xxx"}
+ *   → 200 {"valid":true|false,"status":"...","plan":"plan_xxx","id":"mem_xxx",
+ *          "product":"prod_xxx"}
  *   → 404 {"valid":false,"error":"license not found"}        (unknown key)
  *   → 400 {"valid":false,"error":"metadata mismatch"|"bad request"}
  *   → 502/503 on upstream/config trouble — clients treat any other non-success
  *     as OFFLINE and fall back to the 7-day grace window, never hard-deny.
  *
- * The success body is a SANITIZED subset: only valid/status/plan/id are
- * forwarded. The raw Whop membership object (customer email, discord, manage
- * URL, …) never leaves this function.
+ * `product` (added 2026-09-23, free-Core pivot) is the Whop product id and is
+ * the AUTHORITATIVE tier signal for the desktop app (AppLicense.TierName reads
+ * product first, then falls back to its hardcoded plan-id list). Without it, a
+ * Guard plan the client doesn't know yet (e.g. the $29.99/mo plan
+ * plan_oM9AnpJdVDpgg) resolves to Core. Resolution order:
+ *   1. Whop's `product` (string or {id})
+ *   2. `access_pass` (string or {id}) — the v2 name for the product
+ *   3. `product_id`
+ *   4. server-side plan → product map below (PLAN_TO_PRODUCT)
+ *   5. "" (client then falls back to its own plan list, default Core)
+ *
+ * The success body is a SANITIZED subset: only valid/status/plan/id/product
+ * are forwarded. The raw Whop membership object (customer email, discord,
+ * manage URL, …) never leaves this function.
  *
  * Environment variables (Vercel Project → Settings → Environment Variables):
  *   WHOP_API_KEY — Whop company API key with "Validate license keys"
@@ -29,6 +41,34 @@ import type { APIRoute } from 'astro';
 
 const WHOP_BASE = 'https://api.whop.com/api/v2/memberships';
 const UPSTREAM_TIMEOUT_MS = 10_000;
+
+// Whop product ids (stable while plans churn).
+const GUARD_PRODUCT = 'prod_1sWPRSzcJjAL5';
+const CORE_PRODUCT = 'prod_v1Y4P0lyJPHbT';
+
+// Fallback only — used when Whop's response carries no product field.
+// Includes retired/hidden plans on purpose: existing members still hold them.
+const PLAN_TO_PRODUCT: Record<string, string> = {
+  plan_oM9AnpJdVDpgg: GUARD_PRODUCT, // Guard $29.99/mo (current)
+  plan_ZHX4ySB65fahf: GUARD_PRODUCT, // Guard monthly (hidden, legacy members)
+  plan_frPOgHtDTvBkR: GUARD_PRODUCT, // Guard annual (hidden, legacy members)
+  plan_MGCcEbDRslnpn: GUARD_PRODUCT, // Guard (internal)
+  plan_ywOyNPvDxrxxV: CORE_PRODUCT, // Core free (current)
+  plan_4Z0XZqQl7TaDH: CORE_PRODUCT, // Core monthly (archived)
+  plan_JhWetoQ39OCNz: CORE_PRODUCT, // Core annual (archived)
+  plan_3g3DzRG6iLVr8: CORE_PRODUCT, // Core (internal)
+};
+
+// Accepts a bare id string or an object carrying `id`; anything else → ''.
+function idOf(v: unknown): string {
+  if (typeof v === 'string') return v;
+  if (v && typeof v === 'object' && typeof (v as { id?: unknown }).id === 'string') return (v as { id: string }).id;
+  return '';
+}
+
+function resolveProduct(m: Record<string, unknown> | null | undefined, plan: string): string {
+  return idOf(m?.product) || idOf(m?.access_pass) || idOf(m?.product_id) || PLAN_TO_PRODUCT[plan] || '';
+}
 
 function json(status: number, obj: unknown): Response {
   return new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
@@ -77,12 +117,14 @@ export const POST: APIRoute = async ({ request }) => {
   // Sanitize: forward only what the clients parse.
   try {
     const m = JSON.parse(text);
-    const plan = typeof m?.plan === 'string' ? m.plan : (m?.plan?.id ?? m?.plan_id ?? '');
+    const rawPlan = typeof m?.plan === 'string' ? m.plan : (m?.plan?.id ?? m?.plan_id ?? '');
+    const plan = typeof rawPlan === 'string' ? rawPlan : '';
     return json(200, {
       valid: m?.valid === true || m?.valid === 'true',
       status: typeof m?.status === 'string' ? m.status : '',
-      plan: typeof plan === 'string' ? plan : '',
+      plan,
       id: typeof m?.id === 'string' ? m.id : '',
+      product: resolveProduct(m, plan),
     });
   } catch {
     return json(502, { valid: false, error: 'upstream parse error' });

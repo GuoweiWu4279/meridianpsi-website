@@ -71,7 +71,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       <div class="flex items-center gap-2 md:hidden">
         {
           /* Mobile: secondary actions as quiet text links, the PRIMARY action as the
-            one emerald button. Rendering actions[0] blindly once buried the trial
+            one emerald button. Rendering actions[0] blindly once buried the primary
             CTA behind "Account" — the costliest mobile regression we've shipped. */
         }
         {
@@ -88,7 +88,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             ?.filter((a) => a.variant === 'primary')
             .map((a) => (
               <a href={a.href} class="btn btn-primary text-xs px-4 py-2">
-                {a.text}
+                {a.mobileText ?? a.text}
               </a>
             ))
         }
@@ -171,7 +171,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           actions?.length ? (
             <span class="ml-3 rtl:ml-0 rtl:mr-3 flex gap-2">
               {actions.map((btnProps) => (
-                <Button {...btnProps} />
+                <Button {...btnProps} mobileText={undefined} />
               ))}
             </span>
           ) : (

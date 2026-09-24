@@ -12,35 +12,25 @@ const metadata = {
   // Brand already leads the title — suppress the site-wide "— Meridian" suffix.
   title: 'Meridian Guard — Behavioral Trade Lockout for NinjaTrader 8, Tradovate & Ironbeam',
   ignoreTitleTemplate: true,
-  description: `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, an escalating enforcement ladder (five levels on NinjaTrader 8, six tiers on the standalone Tradovate & Ironbeam apps), standing Hard limits, and a Strict Lock your tilted self cannot switch off. After a 14-day free trial: $${usd(guardTier.monthlyPrice)}/mo or $${usd(guardTier.annualPrice)}/yr. Trading involves substantial risk.`,
+  description: `${geoHooks.meridianGuardHook} You write the rules when calm; Guard enforces them when you are not — six triggers, an escalating enforcement ladder (five levels on NinjaTrader 8, six tiers on the standalone Tradovate & Ironbeam apps), standing Hard limits, and a Strict Lock your tilted self cannot switch off. $${usd(guardTier.price)}/mo, cancel anytime; Meridian Core is free. Trading involves substantial risk.`,
   robots: { index: true, follow: true },
 };
 
-const guardCheckout = guardTier.monthlyCtaHref ?? 'https://whop.com/checkout/plan_ZHX4ySB65fahf';
+const guardCheckout = guardTier.ctaHref;
+const freeCheckout = coreTier.ctaHref;
+const guardPrice = usd(guardTier.price);
 
 const guardOffers = [
   {
     '@type': 'Offer',
-    name: 'Meridian Guard — monthly (after trial)',
-    price: usd(guardTier.monthlyPrice),
+    name: 'Meridian Guard — monthly',
+    price: usd(guardTier.price),
     priceCurrency: guardTier.currency,
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: usd(guardTier.monthlyPrice),
+      price: usd(guardTier.price),
       priceCurrency: guardTier.currency,
       billingDuration: 'P1M',
-    },
-  },
-  {
-    '@type': 'Offer',
-    name: 'Meridian Guard — annual (after trial)',
-    price: usd(guardTier.annualPrice),
-    priceCurrency: guardTier.currency,
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: usd(guardTier.annualPrice),
-      priceCurrency: guardTier.currency,
-      billingDuration: 'P1Y',
     },
   },
 ];
@@ -69,7 +59,7 @@ const guardSchemaJson = JSON.stringify({
     'Anonymous by design — no name, credentials, or funds collected',
   ],
   offers: guardOffers,
-  softwareVersion: '1.5.6',
+  softwareVersion: '1.5.7',
   requirements:
     'NinjaTrader 8 (64-bit) or the standalone Windows app for Tradovate/Ironbeam; Windows 10 or later, 4 GB RAM',
   publisher: {
@@ -117,9 +107,11 @@ const v2 = guardData.standalone;
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href={guardCheckout}
+          href={freeCheckout}
+          target="_blank"
+          rel="noopener"
           class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
-          >Start 14-day free trial</a
+          >{coreTier.ctaText}</a
         >
         <a
           href="#ladder"
@@ -128,7 +120,8 @@ const v2 = guardData.standalone;
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        No charge until day 14 &middot; ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime
+        On NinjaTrader 8, your first 7 days on a free license include Guard, no card &middot; Then ${guardPrice}/mo
+        &middot; Cancel anytime
       </p>
     </div>
     <div class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
@@ -822,11 +815,11 @@ const v2 = guardData.standalone;
           <div class="px-5 py-4 text-zinc-400"></div>
           <div class="px-5 py-4 border-l border-zinc-700/60">
             Meridian Core<br />
-            <span class="font-normal text-zinc-400 text-xs tnum">${usd(coreTier.monthlyPrice)}/mo</span>
+            <span class="font-normal text-zinc-400 text-xs tnum">{coreTier.priceLabel}</span>
           </div>
           <div class="px-5 py-4 border-l border-zinc-700/60 text-emerald-400">
             Meridian Guard<br />
-            <span class="font-normal text-emerald-400 text-xs tnum">${usd(guardTier.monthlyPrice)}/mo</span>
+            <span class="font-normal text-emerald-400 text-xs tnum">${usd(guardTier.price)}/mo</span>
           </div>
         </div>
         {
@@ -924,13 +917,15 @@ const v2 = guardData.standalone;
       </h2>
       <p class="mt-6 text-lg text-zinc-600">
         Everything in Meridian Core &mdash; the Intel Layer included &mdash; plus the Guard System, Hard limits, and
-        Strict Lock. 14-day free trial &mdash; no charge until day 14.
+        Strict Lock. ${usd(guardTier.price)} a month, cancel anytime.
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
           href={guardCheckout}
+          target="_blank"
+          rel="noopener"
           class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
-          >Start your 14-day free trial</a
+          >{guardTier.ctaText}</a
         >
         <a
           href="/platforms"
@@ -939,8 +934,8 @@ const v2 = guardData.standalone;
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        ${usd(guardTier.monthlyPrice)}/mo after trial &middot; Cancel anytime &middot; NinjaTrader 8, or standalone for
-        Tradovate &amp; Ironbeam
+        Meridian Core stays free &middot; Cancel Guard anytime &middot; NinjaTrader 8, or standalone for Tradovate &amp;
+        Ironbeam
       </p>
     </div>
   </section>

@@ -4,7 +4,7 @@ description: 'The terms governing your use of Meridian, the behavioral risk mana
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated: June 2026_
+_Last updated: September 2026_
 
 **IMPORTANT: This software is for informational and educational purposes only. Please read these Terms of Service carefully before purchasing or using Meridian.**
 
@@ -47,7 +47,7 @@ Meridian is an **Official NinjaTrader Ecosystem Vendor**, audited and approved b
 
 ## 9. Payments and Refunds
 
-All purchases include a 14-day free trial — no charge until day 14, cancel anytime. After that: a 14-day money-back guarantee on your first charge, and a full refund anytime Meridian won't run on a supported setup (NinjaTrader 8, or an early-access Tradovate/Ironbeam configuration). All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
+Meridian Core is free. Meridian Guard is a paid subscription, billed monthly from the day you subscribe; cancel anytime. For Guard: a 14-day money-back guarantee on your first charge, and a full refund anytime Guard won't run on a supported setup (NinjaTrader 8, or an early-access Tradovate/Ironbeam configuration). All purchases are subject to our [Refund Policy](/refund). Prices are in USD and subject to change with reasonable notice.
 
 ## 10. Updates and Changes
 

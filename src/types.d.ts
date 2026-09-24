@@ -184,6 +184,8 @@ export interface Disclaimer {
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
+  /** Shorter label for the cramped mobile header bar (Header.astro); falls back to `text`. */
+  mobileText?: string;
   icon?: string;
   classes?: Record<string, string>;
   type?: 'button' | 'submit' | 'reset';

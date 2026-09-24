@@ -18,7 +18,8 @@ const metadata = {
   robots: { index: true, follow: true },
 };
 
-const TRIAL = '/pricing';
+const FREE_CORE_CHECKOUT = 'https://whop.com/checkout/plan_ywOyNPvDxrxxV';
+const GUARD_CHECKOUT = 'https://whop.com/checkout/plan_oM9AnpJdVDpgg';
 
 /** JSON-LD must be injected via set:html — inline `{JSON.stringify({...})}` breaks because Astro treats inner `}` as closing the expression. Schema is a GEO asset; keep it. Mirrors psi-monitor.astro. */
 const pageJsonLd = {
@@ -98,9 +99,9 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href={TRIAL}
+          href={FREE_CORE_CHECKOUT}
           class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
-          >Start 14-day free trial</a
+          >Get Meridian free</a
         >
         <a
           href="#configure"
@@ -108,7 +109,11 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
           >See what you configure</a
         >
       </div>
-      <p class="mt-4 text-xs text-zinc-500">No charge until day 14 &middot; From $49.99/mo &middot; Cancel anytime</p>
+      <p class="mt-4 text-xs text-zinc-500">
+        Free forever, no card &middot; <a href={GUARD_CHECKOUT} class="underline underline-offset-2 hover:text-zinc-700"
+          >Guard $29.99/mo</a
+        > when you want enforcement &middot; Cancel anytime
+      </p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
       <div class="win">
@@ -444,14 +449,15 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </p>
       <div class="mt-9">
         <a
-          href={TRIAL}
+          href={FREE_CORE_CHECKOUT}
           class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
-          >Start your 14-day free trial</a
+          >Get Meridian free</a
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
-        early access
+        Free forever, no card &middot; <a href={GUARD_CHECKOUT} class="underline underline-offset-2 hover:text-zinc-700"
+          >Guard $29.99/mo</a
+        >, cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access
       </p>
     </div>
   </section>

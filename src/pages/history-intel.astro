@@ -24,7 +24,8 @@ const metadata = {
   robots: { index: true, follow: true },
 };
 
-const TRIAL = '/pricing';
+const coreTier = pricing.tiers.find((t) => t.id === 'meridian') ?? pricing.tiers[0];
+const FREE = coreTier.ctaHref;
 
 // Illustrative figures (clearly labeled below). The two-number PSI × P&L
 // contrast mirrors the homepage Intel section for a consistent claim.
@@ -131,9 +132,11 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href={TRIAL}
+          href={FREE}
+          target="_blank"
+          rel="noopener"
           class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
-          >Start 14-day free trial</a
+          >{coreTier.ctaText}</a
         >
         <a
           href="#correlation"
@@ -437,8 +440,8 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900">Included with every plan.</h2>
         <p class="mt-4 text-lg text-zinc-600 max-w-2xl mx-auto">
           Intel &amp; Patterns is the review half of the loop &mdash; monitor &middot; guard &middot; journal &middot;
-          <strong class="text-zinc-900">review</strong> &middot; improve &mdash; and it ships in every tier, Core included:
-          the monthly digest, weekday patterns, breakdowns, the Risk Brief, and the PSI &times; P&amp;L correlation.
+          <strong class="text-zinc-900">review</strong> &middot; improve &mdash; and it ships free with Meridian Core: the
+          monthly digest, weekday patterns, breakdowns, the Risk Brief, and the PSI &times; P&amp;L correlation.
         </p>
         <p class="mt-4 text-base text-zinc-500 max-w-2xl mx-auto">
           {guardTier.name} adds the enforcement layer on top &mdash; rules that enforce themselves, and Strict Lock &mdash;
@@ -451,7 +454,7 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
         <a href="/pricing" class="text-emerald-700 font-semibold hover:text-emerald-800 underline underline-offset-2"
           >pricing page</a
         >
-        — both start with a 14-day free trial.
+        — Core, with all of Intel, is free.
       </p>
     </div>
   </section>
@@ -468,14 +471,15 @@ const pageJsonLdHtml = JSON.stringify(pageJsonLd).replace(/</g, '\\u003c');
       </p>
       <div class="mt-9">
         <a
-          href={TRIAL}
+          href={FREE}
+          target="_blank"
+          rel="noopener"
           class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
-          >Start your 14-day free trial</a
+          >{coreTier.ctaText}</a
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        No charge until day 14 &middot; Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam
-        early access
+        Free, no card &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access
       </p>
     </div>
   </section>

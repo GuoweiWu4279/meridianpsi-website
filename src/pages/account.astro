@@ -3,11 +3,13 @@ import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
   title: 'Account',
-  description: 'Manage your Meridian subscription — cancel, update payment, or download invoices.',
+  description:
+    'Manage your Meridian license and Guard subscription — find your license key, cancel, update payment, or download invoices.',
   robots: { index: false, follow: true },
 };
 
 const portalUrl = 'https://whop.com/@me/settings/memberships';
+const freeLicenseUrl = 'https://whop.com/checkout/plan_ywOyNPvDxrxxV';
 ---
 
 <Layout metadata={metadata}>
@@ -17,7 +19,9 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
       <div class="text-center mb-12">
         <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-3">YOUR ACCOUNT</p>
         <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 mb-3">Account</h1>
-        <p class="text-zinc-500 text-base">Manage your Meridian subscription — billing, cancellation, and invoices.</p>
+        <p class="text-zinc-500 text-base">
+          Your Meridian license and Guard subscription — license key, billing, cancellation, and invoices.
+        </p>
       </div>
 
       <!-- Portal CTA — primary card -->
@@ -40,9 +44,10 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
               d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
           </svg>
         </div>
-        <h2 class="text-lg font-semibold text-zinc-900 mb-2">Manage your subscription</h2>
+        <h2 class="text-lg font-semibold text-zinc-900 mb-2">Manage your license and billing</h2>
         <p class="text-sm text-zinc-500 mb-6 max-w-sm mx-auto">
-          Cancel, update your payment method, download invoices, or view your License Key — all from your Whop account.
+          View your License Key, cancel Guard, update your payment method, or download invoices — all from your Whop
+          account.
         </p>
         <a
           href={portalUrl}
@@ -76,8 +81,8 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
           {
             [
               'Click "Go to account portal" above.',
-              'Log in with the email address you used when you subscribed.',
-              "You'll see your subscription, License Key, downloads, and billing options.",
+              'Log in with the email address you used at checkout.',
+              "You'll see your License Key, your Guard subscription if you have one, downloads, and billing options.",
             ].map((step, i) => (
               <li class="flex items-start gap-3 text-sm text-zinc-600">
                 <span class="mt-0.5 w-5 h-5 rounded-full bg-zinc-100 text-zinc-500 text-xs font-bold flex items-center justify-center shrink-0">
@@ -97,8 +102,8 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
           {
             [
               [
-                'Cancel subscription',
-                'Cancel any time — no fees. Access continues until the end of your current period.',
+                'Cancel Guard',
+                'Cancel any time — no fees. Guard stays on until the end of your current period; your free Core license keeps working.',
               ],
               ['Update payment method', 'Change the card or payment method on file in Whop.'],
               ['Download invoices', 'Access PDF receipts for every payment.'],
@@ -113,13 +118,6 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
             ))
           }
         </ul>
-        <p class="text-xs text-zinc-400 mt-4">
-          To switch between monthly and annual billing, email{' '}
-          <a href="mailto:contactmeridianpsi@gmail.com" class="underline hover:text-zinc-600"
-            >contactmeridianpsi@gmail.com</a
-          >
-          {' '}and we'll move you over.
-        </p>
       </div>
 
       <!-- Get the software — the other thing an existing customer comes here for -->
@@ -137,11 +135,13 @@ const portalUrl = 'https://whop.com/@me/settings/memberships';
         </a>
       </div>
 
-      <!-- No subscription yet -->
+      <!-- No license yet -->
       <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 text-center">
         <p class="text-sm text-zinc-500">
-          Don't have a subscription yet?{' '}
-          <a href="/pricing" class="text-emerald-700 font-medium hover:underline"> Start your 14-day free trial → </a>
+          Don't have a license yet?{' '}
+          <a href={freeLicenseUrl} target="_blank" rel="noopener" class="text-emerald-700 font-medium hover:underline">
+            Get Meridian free →
+          </a>
         </p>
       </div>
 

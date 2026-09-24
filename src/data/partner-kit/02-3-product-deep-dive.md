@@ -1,7 +1,7 @@
 ---
 title: Product Deep Dive
 section: get-started
-lastUpdated: '2026-05-14'
+lastUpdated: '2026-09-23'
 order: 3
 ---
 
@@ -92,7 +92,7 @@ Meridian includes an in-session Journal that compiles itself while you trade —
 - **Writes itself in the moment** — each fill, the live PSI at that fill, and one-tap mood tags (Great / Neutral / Frustrated) drop into the timeline as the session runs
 - **Quick notes, zero friction** — a one-line note per trade is optional; nothing is mandatory
 - **Compiles into the day's report** — the entries plus your "what went well / what to improve / focus for next session" reflection roll up into a single session journal you can review or copy
-- **Replaces a separate journaling app** — this is the "journal" leg of the one-subscription-replaces-three-tools value: risk enforcement (Guard) + this Journal + the Intel analytics workspace, in one product
+- **Replaces a separate journaling app** — this is the "journal" leg of the one-product-replaces-three-tools value: risk enforcement (Guard) + this Journal + the Intel analytics workspace, in one product
 
 ---
 

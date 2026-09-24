@@ -1,4 +1,7 @@
 import { getPermalink } from './utils/permalinks';
+import pricing from './data/pricing.json';
+
+const coreTier = pricing.tiers.find((t) => t.id === 'meridian') ?? pricing.tiers[0];
 
 // Header navigation data: edit here to change top nav and footer.
 //
@@ -58,9 +61,9 @@ export const headerData = {
   ],
   actions: [
     // Account = the manage-subscription door for existing users (Whop billing,
-    // cancel/unsubscribe, license). Lives next to the trial CTA on every page.
+    // cancel/unsubscribe, license). Lives next to the free-license CTA on every page.
     { text: 'Account', href: getPermalink('/account'), variant: 'secondary' },
-    { text: 'Start free trial', href: getPermalink('/pricing'), variant: 'primary' },
+    { text: coreTier.ctaText, mobileText: 'Get it free', href: coreTier.ctaHref, variant: 'primary' },
   ],
 };
 

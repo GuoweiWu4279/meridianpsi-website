@@ -13,4 +13,6 @@ Download the `.zip` from the [Download page](/download). **Do not extract it** â
    - Click the **hamburger icon (â˜°)** in the top-right of the HUD
 4. In the Dashboard, open the **License tab**, paste your Whop license key, click **Activate**
 
+No license yet? It's free: [get Meridian free](https://whop.com/checkout/plan_ywOyNPvDxrxxV) on Whop with just your email, no card, and copy the key from your Whop membership.
+
 **Important:** Meridian is an add-on, not a chart indicator. Do **not** look for it in the chart Indicators list. For the full walkthrough with screenshots, see the [Installation Guide](/installation-guide). For further help, see the [FAQ](/faq) or [contact us](/contact).

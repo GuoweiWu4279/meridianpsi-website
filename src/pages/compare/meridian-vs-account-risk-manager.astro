@@ -60,7 +60,7 @@ const faqItems = [
   },
   {
     q: 'Is a one-time license cheaper than Meridian over time?',
-    a: 'A buy-once price buys a frozen feature set: a static hard limit that never evolves. Meridian is one subscription that replaces three line items — real-time risk enforcement, behavioral monitoring, an in-session journal, and an analytics workspace (PSI × P&L, weekday patterns, hold-time and instrument breakdowns, pre-session brief) — and keeps improving while you own it. Against the real cost of a single blown funded account, the question was never the sticker price of a frozen tool versus a living one. It is whether a static dollar limit or a behavioral system that intervenes before the limit is what actually protects the account. Meridian is the one that does.',
+    a: 'A buy-once price buys a frozen feature set: a static hard limit that never evolves. Meridian Core — behavioral monitoring, an in-session journal, and an analytics workspace (PSI × P&L, weekday patterns, hold-time and instrument breakdowns, pre-session brief) — is free, and Meridian Guard adds real-time risk enforcement for $29.99 a month. Both keep improving while you use them. Against the real cost of a single blown funded account, the question was never the sticker price of a frozen tool versus a living one. It is whether a static dollar limit or a behavioral system that intervenes before the limit is what actually protects the account. Meridian is the one that does.',
   },
   {
     q: 'Which is better for prop-firm traders?',
@@ -111,9 +111,9 @@ const cellClass = (v: string, isMeridian: boolean) => {
           Every hard limit here reacts after you hit the number. Meridian acts before the order that gets you there — it
           reads the behavior producing the loss and steps in as it forms. It still enforces every floor these suites do
           (daily loss, single-trade loss, drawdown, loss streaks, session time), and adds the behavioral layer, an
-          in-session journal, and analytics in the same subscription. The copier and the multi-account dashboard are a
-          different job — order plumbing at the broker layer, not risk control. For protecting the account you actually
-          trade, Meridian is the tool.
+          in-session journal, and analytics. Those three are free in Meridian Core; enforcement is Meridian Guard at
+          $29.99/mo. The copier and the multi-account dashboard are a different job — order plumbing at the broker
+          layer, not risk control. For protecting the account you actually trade, Meridian is the tool.
         </p>
       </div>
     </header>
@@ -145,7 +145,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
         Meridian is an Official NinjaTrader Ecosystem Vendor.
       </p>
       <p>
-        It is also more than a risk tool. The same subscription is a full trading loop: an <strong
+        It is also more than a risk tool. The free Core tier is a full trading loop: an <strong
           >in-session journal</strong
         >
         that captures mood and notes in the moment and compiles them with your fills and PSI into a session report, and an
@@ -166,13 +166,13 @@ const cellClass = (v: string, isMeridian: boolean) => {
         cannot.
       </p>
 
-      <h2>One-time license vs subscription</h2>
+      <h2>One-time license vs free Core + Guard</h2>
       <p>
-        A buy-once license freezes the feature set the day you pay; Meridian is one subscription that replaces a risk
-        tool, a journaling app, and an analytics platform, and keeps improving while you use it. A trader who would
-        otherwise buy three separate tools is collapsing three bills into one. Set against the cost of a single blown
-        funded account, a living behavioral system that intervenes before the limit is the lower total cost, not the
-        higher one.
+        A buy-once license freezes the feature set the day you pay. Meridian replaces a risk tool, a journaling app, and
+        an analytics platform, and keeps improving while you use it: the journal and the analytics are free in Core, and
+        the risk tool is Guard at $29.99 a month. A trader who would otherwise buy three separate tools is down to one
+        bill. Set against the cost of a single blown funded account, a living behavioral system that intervenes before
+        the limit is the lower total cost, not the higher one.
       </p>
 
       <!-- Capability matrix -->
@@ -235,7 +235,7 @@ const cellClass = (v: string, isMeridian: boolean) => {
         >. For the full category map across native controls, hard-limit tools, and behavioral platforms, see
         <a href="/best-ninjatrader-risk-management-tools" class="text-emerald-800 underline underline-offset-2"
           >Best NinjaTrader 8 risk management tools (2026)</a
-        >. For everything in one subscription — monitor, guard, journal, review — see
+        >. For everything in one license — monitor, guard, journal, review — see
         <a href="/features" class="text-emerald-800 underline underline-offset-2">all features</a>.
       </p>
 
@@ -257,17 +257,17 @@ const cellClass = (v: string, isMeridian: boolean) => {
     <div class="mt-14 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
         <a
-          href="/pricing"
+          href="https://whop.com/checkout/plan_ywOyNPvDxrxxV"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
           style="background:var(--aw-color-primary);"
         >
-          Start 14-day free trial
+          Get Meridian free
         </a>
         <a
           href="/features"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border border-zinc-300 text-zinc-700 hover:border-zinc-500 transition-colors"
         >
-          Everything in one subscription →
+          Everything in one license →
         </a>
       </div>
     </div>

@@ -4,19 +4,19 @@ import Layout from '~/layouts/PageLayout.astro';
 const metadata = {
   title: 'Is Meridian PSI Worth the Price?',
   description:
-    'Meridian Core is $49.99/mo and Meridian Guard is $69.99/mo (annual ≈ $39.99 and $55.99/mo), 14-day trial. Whether that is expensive depends on the comparison: against a one-time hard-limit add-on it costs more — because it is three tools in one: a live behavioral monitor, the enforcement layer, and the Intel analytics a journal subscription alone would cost you as much as. Priced against one revenge session ($300–800) or a lost eval ($89–540), the math changes.',
+    'Meridian Core (the live behavioral monitor plus Intel analytics and a journal) is free, no card. Meridian Guard, the enforcement layer, is $29.99/mo, cancel anytime. So the price question is a Guard question: against a one-time hard-limit add-on it costs more over time, because it enforces on behavior as well as the dollar line. Priced against one revenge session ($300–800) or a lost eval ($89–540), the math changes.',
   robots: { index: true, follow: true },
 };
 
 const question = 'Is Meridian PSI worth the price?';
 const directAnswer =
-  'Meridian Core is $49.99/mo ($479.90/yr, about $39.99/mo) and Meridian Guard is $69.99/mo ($671.90/yr, about $55.99/mo), with a 14-day trial. Whether that is expensive depends on what you compare it to. Against a one-time $99 hard-limit add-on it costs more — because it is not the same product: the subscription covers three layers in one license. A live behavioral monitor (seven signals scored into a real-time PSI against your own baseline), the Guard enforcement layer (every traditional limit, enforced at the order layer, plus Strict Lock), and the Intel/Stats analytics workspace with a built-in journal — the piece traders otherwise buy as a separate journal subscription at a similar monthly price. Priced against the problem instead of the category, the math is short: a single revenge session commonly runs $300–800 before a daily loss limit even fires, and a futures eval costs $89–540 and is gone the day you break its rules. One such session costs more than months of the subscription. Meridian does not promise to catch every one and it will not make you profitable — but the 14-day trial exists so your own Intel data, not the sticker price, makes the call.';
+  'Meridian Core is free, with no card and no trial clock: the live behavioral monitor (seven signals scored into a real-time PSI against your own baseline) and the Intel/Stats analytics workspace with a built-in journal — the piece traders otherwise pay a separate journal subscription for. Meridian Guard, the enforcement layer (every traditional limit, enforced at the order layer, plus Strict Lock), is $29.99/mo, cancel anytime. So the price question is really a Guard question. Against a one-time $99 hard-limit add-on, Guard costs more over time — because it is not the same product: it enforces on the behavior as well as the dollar line. Priced against the problem instead of the category, the math is short: a single revenge session commonly runs $300–800 before a daily loss limit even fires, and a futures eval costs $89–540 and is gone the day you break its rules. One such session costs more than ten months of Guard. Meridian does not promise to catch every one and it will not make you profitable — but Core costs nothing to run, and on NinjaTrader 8 your first 7 days on a free license include Guard, no card, so your own Intel data, not the sticker price, makes the call.';
 
 const qaSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'QAPage',
   datePublished: '2026-07-04',
-  dateModified: '2026-07-04',
+  dateModified: '2026-09-23',
   mainEntity: {
     '@type': 'Question',
     name: question,
@@ -42,7 +42,7 @@ const qaSchema = JSON.stringify({
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-6">
         {question}
       </h1>
-      <p class="text-sm text-zinc-500 mb-6">Last reviewed: July 2026</p>
+      <p class="text-sm text-zinc-500 mb-6">Last reviewed: September 2026</p>
       <div class="rounded-2xl border border-emerald-200 px-6 py-5" style="background:#f0fdf4;">
         <p class="text-[11px] font-semibold tracking-[0.12em] uppercase mb-2" style="color:var(--aw-color-primary);">
           Short answer
@@ -54,16 +54,16 @@ const qaSchema = JSON.stringify({
     <div
       class="prose prose-zinc max-w-none prose-p:text-[17px] prose-p:leading-[1.85] prose-headings:font-bold prose-headings:text-zinc-900 prose-h2:text-[1.35rem] prose-h2:mt-10 prose-h2:mb-3"
     >
-      <h2>What the subscription actually buys</h2>
+      <h2>What is free, and what Guard adds</h2>
       <p>
-        Three layers, one product, one license across every supported platform. First, the live monitor: seven
-        behavioral signals — Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace, Hold Bias, Position
+        Three layers, one product, one license across every supported platform. First, the live monitor (free in Core):
+        seven behavioral signals — Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace, Hold Bias, Position
         Overstay, Rule Violations — scored against your own adaptive baseline into a real-time
         <strong>PSI (Psychological Stability Index)</strong>, updated within 100ms of every fill. Second, enforcement
-        (the Guard tier): six triggers across five response levels, from a quiet notify up to a Trading Pause or broker
-        disconnect, with Strict Lock so the tilted version of you cannot switch it off mid-session — plus every
-        traditional limit (daily loss, loss-streak, single-trade, drawdown, session time, Hard limits) enforced at the
-        order layer. Third, the review layer (<strong>Intel and Stats, included in Core</strong>): your discipline in
+        (the Guard tier, $29.99/mo): six triggers across five response levels, from a quiet notify up to a Trading Pause
+        or broker disconnect, with Strict Lock so the tilted version of you cannot switch it off mid-session — plus
+        every traditional limit (daily loss, loss-streak, single-trade, drawdown, session time, Hard limits) enforced at
+        the order layer. Third, the review layer (<strong>Intel and Stats, free in Core</strong>): your discipline in
         actual numbers, session by session, with a built-in journal and five years of local history.
       </p>
 
@@ -74,21 +74,22 @@ const qaSchema = JSON.stringify({
         else in the stack does the first layer at all. So the honest comparison is not &ldquo;Meridian vs. a $99
         one-time tool&rdquo; — it is Meridian vs. the stack you would assemble to replace it: a journal subscription,
         plus a risk add-on, plus a behavioral layer you cannot buy separately, because no one else ships one. Priced
-        that way, Core costs about what the journal alone does.
+        that way, the monitor and the review layer cost nothing: Core is free, and the only line item left is Guard at
+        $29.99 a month.
       </p>
 
       <h2>The math against the problem</h2>
       <p>
         Price the tool against the thing it is aimed at. A futures eval costs $89&ndash;540 and is gone the day you
         break its rules. A single revenge session commonly runs $300&ndash;800 before a daily loss limit even speaks.
-        One of those sessions costs more than months of the subscription; the eval it takes down costs more still. Set
-        against that ledger, Guard is $69.99 a month — $55.99 on annual billing.
+        One of those sessions costs more than ten months of Guard; the eval it takes down costs more still. Set against
+        that ledger, Guard is $29.99 a month, and the monitor that spots the session going wrong is free.
       </p>
       <p>
         Our own published session data (230+ round trips across 32 live sessions, July 2026) puts numbers on that gap:
         when P&amp;L kept falling after the first Warning-zone flag, the median run to the trough was 2 more trades,
-        about 14 minutes, and <strong>$392 further down</strong> — one median post-flag spiral costs more than five months
-        of Guard. The worst recorded run was $2,571, in a session where the trader&rsquo;s own $300 daily-loss line was breached
+        about 14 minutes, and <strong>$392 further down</strong> — one median post-flag spiral costs more than a year of
+        Guard. The worst recorded run was $2,571, in a session where the trader&rsquo;s own $300 daily-loss line was breached
         more than 7× in under a minute. The full data set:
         <a href="/answers/does-behavioral-risk-management-actually-work" class="text-emerald-700 underline"
           >does behavioral risk management actually work</a
@@ -97,13 +98,14 @@ const qaSchema = JSON.stringify({
 
       <h2>Why a $99 hard-limit tool doesn&rsquo;t make Meridian redundant</h2>
       <p>
-        Keep the hard limits — Meridian ships them too, enforced at the order layer. The subscription pays for the part
-        a fixed rule cannot express. A $500 daily stop lets four revenge trades through before it fires; the Revenge
-        Entry signal flags the second one, while there is still session left to save. And the patterns that actually
-        drain accounts rarely fit an if/then rule: size that creeps up gradually instead of doubling, re-entries that
-        wait ninety seconds instead of ten, two losses that tilt you on a Tuesday and roll off you on a Friday. A fixed
-        rule needs you to predict your failure in advance and write it as a number. A baseline model just notices you
-        have stopped trading like yourself — and acts before the number is hit. The full comparison:
+        Keep the hard limits — Meridian Guard ships them too, enforced at the order layer. The part a fixed rule cannot
+        express is the behavioral read, and that part is free in Core. A $500 daily stop lets four revenge trades
+        through before it fires; the Revenge Entry signal flags the second one, while there is still session left to
+        save. And the patterns that actually drain accounts rarely fit an if/then rule: size that creeps up gradually
+        instead of doubling, re-entries that wait ninety seconds instead of ten, two losses that tilt you on a Tuesday
+        and roll off you on a Friday. A fixed rule needs you to predict your failure in advance and write it as a
+        number. A baseline model just notices you have stopped trading like yourself — and acts before the number is
+        hit. The full comparison:
         <a href="/answers/meridian-vs-daily-loss-limit" class="text-emerald-700 underline"
           >Meridian vs. daily loss limit</a
         >.
@@ -115,18 +117,19 @@ const qaSchema = JSON.stringify({
         green day gets labeled what it is. A disciplined red day stops reading as failure. Over weeks it puts a dollar
         figure on what your unstable stretches cost against your stable ones — broken down by time of day, instrument,
         and signal. A P&amp;L journal cannot build this view, because it has no live behavioral engine to know which
-        trades you took while tilting. That is why the price is not really a risk-tool price: the same subscription is
-        the improvement loop, not just the brake. More on the workspace:
+        trades you took while tilting. That is why Intel ships in free Core: it is the improvement loop, and Guard adds
+        the brake. More on the workspace:
         <a href="/history-intel" class="text-emerald-700 underline">History &amp; Intel</a>.
       </p>
 
-      <h2>What the price does not buy</h2>
+      <h2>What neither tier buys</h2>
       <p>
         It will not make you profitable, and it does not claim to. PSI is a behavioral proxy built from your trading
         activity — not physiology, and not a profit predictor. It cannot promise a green day, and it does not replace an
-        edge. What the price buys is the layer between &ldquo;trading normally&rdquo; and &ldquo;hitting your
+        edge. What Meridian gives you is the layer between &ldquo;trading normally&rdquo; and &ldquo;hitting your
         number,&rdquo; plus the numbers to judge whether that layer is earning its keep for you. That judgment is what
-        the <a href="/pricing" class="text-emerald-700 underline">14-day trial</a> is for.
+        <a href="/pricing" class="text-emerald-700 underline">free Core</a> is for. On NinjaTrader 8, your first 7 days on
+        a free license include Guard, no card.
       </p>
     </div>
 
@@ -147,11 +150,11 @@ const qaSchema = JSON.stringify({
     <div class="mt-8 pt-10 border-t border-zinc-100">
       <div class="flex flex-wrap gap-3">
         <a
-          href="/pricing"
+          href="https://whop.com/checkout/plan_ywOyNPvDxrxxV"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white"
           style="background:var(--aw-color-primary);"
         >
-          Start 14-day free trial
+          Get Meridian free
         </a>
         <a
           href="/answers"

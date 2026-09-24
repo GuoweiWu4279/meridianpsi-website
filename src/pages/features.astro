@@ -15,15 +15,14 @@ import signalsData from '~/data/signals.json';
 const metadata = {
   title: 'Features — Everything Your Risk Tool Does, Plus Behavior',
   description:
-    'A new generation of risk management for futures traders: every other risk tool reacts after the loss — Meridian acts before the order, detecting seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) in real time against your own baseline. It still enforces every limit a traditional tool has — daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff. Native in NinjaTrader 8; Tradovate & Ironbeam in early access. 14-day free trial.',
+    'A new generation of risk management for futures traders: every other risk tool reacts after the loss — Meridian acts before the order, detecting seven trading behaviors (revenge entry, oversizing, stop manipulation, overtrading) in real time against your own baseline. It still enforces every limit a traditional tool has — daily loss, P&L and drawdown caps, single-trade loss cap, loss-streak cutoff. Native in NinjaTrader 8; Tradovate & Ironbeam in early access. Core is free; Guard is $29.99/mo.',
   robots: { index: true, follow: true },
 };
-
-const TRIAL = '/pricing';
 
 const signals = signalsData.signals;
 const core = pricing.tiers.find((t) => t.id === 'meridian')!;
 const guard = pricing.tiers.find((t) => t.id === 'guard')!;
+const FREE = core.ctaHref;
 
 // JSON-LD — GEO asset. SoftwareApplication featureList mirrors the superset so
 // answer engines associate Meridian with both limits AND behavior detection.
@@ -45,14 +44,14 @@ const featuresJsonLd = {
       offers: [
         {
           '@type': 'Offer',
-          name: `${core.name} — monthly (after trial)`,
-          price: core.monthlyPrice.toFixed(2),
+          name: `${core.name} — free`,
+          price: core.price.toFixed(2),
           priceCurrency: core.currency,
         },
         {
           '@type': 'Offer',
-          name: `${guard.name} — monthly (after trial)`,
-          price: guard.monthlyPrice.toFixed(2),
+          name: `${guard.name} — monthly`,
+          price: guard.price.toFixed(2),
           priceCurrency: guard.currency,
         },
       ],
@@ -135,9 +134,11 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
       </p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href={TRIAL}
+          href={FREE}
+          target="_blank"
+          rel="noopener"
           class="font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-6 py-3.5 rounded-xl transition shadow-sm"
-          >Start 14-day free trial</a
+          >{core.ctaText}</a
         >
         <a
           href="#superset"
@@ -146,8 +147,8 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        No charge until day 14 &middot; From <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/mo &middot;
-        NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access
+        Core free, no card &middot; Guard <span class="tnum">${guard.price.toFixed(2)}</span>/mo &middot; NinjaTrader 8
+        today &middot; Tradovate &amp; Ironbeam early access
       </p>
     </div>
     <div data-reveal class="max-w-5xl mx-auto px-6 pb-16 md:pb-20">
@@ -377,9 +378,11 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
       <p class="mt-6 text-lg text-zinc-600">Other risk tools react after the loss. Meridian acts before the order.</p>
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href={TRIAL}
+          href={FREE}
+          target="_blank"
+          rel="noopener"
           class="inline-block font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-xl text-lg transition shadow-sm"
-          >Start your 14-day free trial</a
+          >{core.ctaText}</a
         >
         <a
           href="/pricing"
@@ -388,8 +391,8 @@ const featuresJsonLdHtml = JSON.stringify(featuresJsonLd).replace(/</g, '\\u003c
         >
       </div>
       <p class="mt-4 text-xs text-zinc-500">
-        No charge until day 14 &middot; <span class="tnum">${core.monthlyPrice.toFixed(2)}</span>/month after &middot;
-        Cancel anytime &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access
+        Core free, no card &middot; Guard <span class="tnum">${guard.price.toFixed(2)}</span>/mo, cancel anytime
+        &middot; NinjaTrader 8 today &middot; Tradovate &amp; Ironbeam early access
       </p>
     </div>
   </section>

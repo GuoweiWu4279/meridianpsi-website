@@ -3,8 +3,8 @@
  *
  * Astro server endpoint (Vercel Function) — receives Whop membership
  * events and mirrors them to the NinjaTrader Ecosystem API so every
- * paying customer automatically gets an NT license without any manual
- * steps. Also sends a customer welcome email via Resend on first
+ * customer (free Core or paid Guard) automatically gets an NT license
+ * without any manual steps. Also sends a customer welcome email via Resend on first
  * activation.
  *
  * Why it lives here (and not at /api/whop-webhook.ts at the repo root):
@@ -250,6 +250,8 @@ async function sendWelcomeEmail(toEmail: string, firstName: string): Promise<voi
 
   const from = process.env.RESEND_FROM ?? 'onboarding@resend.dev';
 
+  // 2026-09-23: added the free-Core / Guard $29.99 paragraph (step 3) and
+  // "from checkout" wording for the free-Core pivot.
   // Copy approved by Gary 2026-06-10 (multi-platform rewrite; see
   // meridian-outreach/data/_customer_welcome_2026-06-10.md). Keep the manual
   // backfill copy (meridian-outreach/customer/welcome-message.js) in sync when
@@ -258,7 +260,7 @@ async function sendWelcomeEmail(toEmail: string, firstName: string): Promise<voi
   // The Settings/trading-profile step is the heart of onboarding.
   const text = `Hi ${firstName},
 
-Thank you for joining Meridian. This email takes you from purchase to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.
+Thank you for joining Meridian. This email takes you from checkout to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.
 
 ---
 
@@ -295,6 +297,8 @@ The full step-by-step guide is at https://www.meridianpsi.com/installation-guide
 This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.
 
 If you are on the Guard tier, set your rules in the Guard tab: choose the triggers you want watched and the response level for each. Nothing is enforced until you arm Guard, so you stay in full control of when it is active.
+
+Meridian Core is free. On NinjaTrader 8, your first 7 days on a free license include Guard, no card needed. To keep Guard after that, get it for $29.99/month at https://www.meridianpsi.com/pricing using the same Whop account, then paste the new key into the License tab.
 
 ---
 
@@ -334,7 +338,7 @@ www.Meridianpsi.com`;
         <img src="https://www.meridianpsi.com/meridian-logo.png" alt="Meridian" width="150" style="display:inline-block;height:auto;border:0;outline:none;" />
       </div>
       <p style="margin:0 0 16px;">Hi ${esc(firstName)},</p>
-      <p style="margin:0 0 16px;">Thank you for joining Meridian. This email takes you from purchase to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.</p>
+      <p style="margin:0 0 16px;">Thank you for joining Meridian. This email takes you from checkout to your first monitored session in about ten minutes. If anything is unclear or you get stuck, reply to this email (or write to contactmeridianpsi@gmail.com) and include the email address you used at checkout on Whop. We respond within 24 hours.</p>
       ${H('1) GET YOUR LICENSE KEY')}
       <ol style="margin:0 0 16px;padding-left:22px;">
         <li style="margin:0 0 8px;">Sign in at ${link('https://whop.com/@me/settings/memberships', 'whop.com/@me/settings/memberships')} using the same email you used at checkout.</li>
@@ -356,6 +360,7 @@ www.Meridianpsi.com`;
       ${H('3) SET UP YOUR TRADING PROFILE')}
       <p style="margin:0 0 16px;">This is the step that makes Meridian accurate for you, so please do not skip it. Open Settings and set your trading profile: position size limits, your session time window, and a response preset. Meridian measures everything against your own baseline rather than generic thresholds, and the profile is what anchors that baseline. It takes about two minutes.</p>
       <p style="margin:0 0 16px;">If you are on the Guard tier, set your rules in the Guard tab: choose the triggers you want watched and the response level for each. Nothing is enforced until you arm Guard, so you stay in full control of when it is active.</p>
+      <p style="margin:0 0 16px;">Meridian Core is free. On NinjaTrader 8, your first 7 days on a free license include Guard, no card needed. To keep Guard after that, get it for $29.99/month at ${link('https://www.meridianpsi.com/pricing', 'meridianpsi.com/pricing')} using the same Whop account, then paste the new key into the License tab.</p>
       ${H('4) BEFORE GOING LIVE')}
       <p style="margin:0 0 16px;">Recommended: connect a SIM or demo account first and place a few small practice trades, so you can watch the HUD and dashboard respond before real money is involved.</p>
       <p style="margin:0 0 16px;">On NinjaTrader 8 you can also turn on Test Mode (Meridian Dashboard &gt; Profile tab) to explore freely: PSI still runs in real time, but baseline recording is paused. Market Replay is handled in a separate context from your live baseline as well.</p>
@@ -427,16 +432,29 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
   // Determine license duration from the Whop plan.
   // Source of truth for these IDs is MERIDIAN.md §2 (and `pricing.json` /
   // `LicenseManager.cs` GuardPlanIds / CorePlanIds — all four must agree).
-  const GUARD_ANNUAL_PLAN = 'plan_frPOgHtDTvBkR'; // Guard Annual
-  const CORE_ANNUAL_PLAN = 'plan_JhWetoQ39OCNz'; // Core Annual
+  // Pricing since 2026-09-23: Core is free (plan_ywOyNPvDxrxxV, $0), Guard is
+  // $29.99/month (plan_oM9AnpJdVDpgg). The two annual plans below are hidden /
+  // archived but still held by existing members, so they stay recognised.
+  const GUARD_ANNUAL_PLAN = 'plan_frPOgHtDTvBkR'; // Guard Annual (hidden, legacy members)
+  const CORE_ANNUAL_PLAN = 'plan_JhWetoQ39OCNz'; // Core Annual (archived, legacy members)
+  const CORE_FREE_PLAN = 'plan_ywOyNPvDxrxxV'; // Core Free ($0, never renews)
   const isAnnual = whopPlanId === GUARD_ANNUAL_PLAN || whopPlanId === CORE_ANNUAL_PLAN;
+  const isFree = whopPlanId === CORE_FREE_PLAN;
 
   // NT Ecosystem API does NOT accept a "Monthly" / "Annual" enum like the
   // Vendor Dashboard UI does — it requires an explicit ISO-8601 UTC
   // `expirationDateUTC`. Compute one billing cycle from now to match Whop.
+  //
+  // Free plan: a $0 membership never fires a renewal/payment event, so a
+  // one-month mirror would silently lapse while the Whop membership (and the
+  // key the add-on actually checks) stays valid. Give it a far-future expiry
+  // instead; if the member leaves, `membership.deactivated` still expires it
+  // through expireNtLicense(), same as every other plan.
   const now = new Date();
   const expirationDate = new Date(now);
-  if (isAnnual) {
+  if (isFree) {
+    expirationDate.setUTCFullYear(expirationDate.getUTCFullYear() + 10);
+  } else if (isAnnual) {
     expirationDate.setUTCFullYear(expirationDate.getUTCFullYear() + 1);
   } else {
     expirationDate.setUTCMonth(expirationDate.getUTCMonth() + 1);
@@ -475,7 +493,7 @@ async function createNtLicense(email: string, whopPlanId?: string): Promise<bool
     throw new Error(`NT createLicense failed: HTTP ${response.status} — ${body}`);
   }
 
-  const cycle = isAnnual ? 'Annual' : 'Monthly';
+  const cycle = isFree ? 'Free' : isAnnual ? 'Annual' : 'Monthly';
   console.log(`[whop-webhook] NT license created for ${email} (${cycle}, expires ${expirationDateUTC})`);
   return true;
 }

@@ -7,21 +7,22 @@ import EcosystemVendorBadge from '~/components/widgets/EcosystemVendorBadge.astr
 import products from '~/data/products.json';
 
 const metadata = {
-  title: 'Start Free Trial',
-  description: 'Start your 14-day free trial of Meridian. Full access. Then $49.99/month. Cancel any time.',
+  title: 'Get Meridian Free',
+  description:
+    'Get Meridian Core free: the full real-time monitor and Intel workspace. No card, no trial countdown. Guard is $29.99/month.',
   robots: { index: false, follow: true },
 };
 
-const { price, trialDays } = products.pricing;
+const { guardPrice } = products.pricing;
 const checkoutUrl = products.purchase.checkoutUrl;
 const supportEmail = products.purchase.supportEmail;
 ---
 
 <Layout metadata={metadata}>
   <HeroText
-    tagline="Free trial"
-    title="Start your 14-day free trial"
-    subtitle={`Full access to Meridian Core. Then $${price}/month — cancel any time.`}
+    tagline="Free"
+    title="Get Meridian free"
+    subtitle="The full Meridian Core, yours to keep. No card, no trial countdown."
   />
 
   <section class="max-w-4xl mx-auto px-6 pb-20">
@@ -29,7 +30,7 @@ const supportEmail = products.purchase.supportEmail;
       <!-- Left: What you get + social proof -->
       <div class="space-y-6">
         <div>
-          <h2 class="text-sm font-semibold text-zinc-900 mb-4">What's included in your trial</h2>
+          <h2 class="text-sm font-semibold text-zinc-900 mb-4">What's included, free</h2>
           <ul class="space-y-3">
             {
               [
@@ -37,6 +38,7 @@ const supportEmail = products.purchase.supportEmail;
                 'All seven behavioral dimension trackers',
                 'Floating HUD overlay + full session Dashboard',
                 'Adaptive baselines that calibrate to your own patterns',
+                'Intel workspace — monthly digest, PSI × P&L, weekday patterns and the pre-session Risk Brief',
                 'Anonymous by design — Meridian never sees your name, broker credentials, or funds',
                 'Market Replay support to train without affecting your live baseline',
               ].map((item) => (
@@ -53,36 +55,21 @@ const supportEmail = products.purchase.supportEmail;
           </ul>
         </div>
 
-        <div class="rounded-xl bg-zinc-50 border border-zinc-200 p-5">
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            "been using it about 3 months. didn't realize how bad my overtrading was until i actually saw the numbers.
-            first week of data was kind of humbling"
-          </p>
-          <p class="text-xs text-zinc-400 mt-3 font-medium">— Anonymous, Futures day trader</p>
-        </div>
-
-        <div class="rounded-xl bg-zinc-50 border border-zinc-200 p-5">
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            "passed apex eval on my 3rd attempt. first two i blew up on days i genuinely should've just logged off. not
-            saying this is the reason but it helped me see the pattern"
-          </p>
-          <p class="text-xs text-zinc-400 mt-3 font-medium">— Anonymous, Prop firm trader</p>
-        </div>
       </div>
 
       <!-- Right: CTA card -->
       <div
         class="rounded-2xl border border-emerald-200/80 bg-gradient-to-b from-white to-emerald-50/30 px-8 py-10 shadow-md text-center sticky top-24"
       >
-        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">FREE TRIAL</p>
+        <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-4">MERIDIAN CORE</p>
         <div class="mb-2">
           <span class="text-5xl font-extrabold text-zinc-900">$0</span>
         </div>
-        <p class="text-sm text-zinc-500 mb-1">for {trialDays} days</p>
-        <p class="text-xs text-zinc-400 mb-8">then Meridian Core — ${price}/month · cancel before trial ends</p>
+        <p class="text-sm text-zinc-500 mb-1">free, for good</p>
+        <p class="text-xs text-zinc-400 mb-8">No card · no trial countdown</p>
 
         <Button variant="primary" href={checkoutUrl} class="w-full px-8 py-3.5 rounded-full font-semibold text-base">
-          Start free trial — {trialDays} days
+          Get Meridian free
         </Button>
 
         <div class="mt-6 space-y-2.5 text-xs text-zinc-500">
@@ -105,7 +92,7 @@ const supportEmail = products.purchase.supportEmail;
                 stroke-width="2"
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            No charge during the {trialDays}-day trial
+            No card needed
           </p>
           <p class="flex items-center justify-center gap-1.5">
             <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,12 +112,11 @@ const supportEmail = products.purchase.supportEmail;
 
         <div class="mt-8 pt-6 border-t border-zinc-100 space-y-1.5">
           <p class="text-xs text-zinc-400">
-            Want the enforcement layer? <a href="/pricing" class="text-emerald-700 font-medium hover:underline"
-              >Compare Core vs Guard →</a
-            >
+            Want the enforcement layer? Guard is ${guardPrice}/mo.
+            <a href="/pricing" class="text-emerald-700 font-medium hover:underline">Compare Core vs Guard →</a>
           </p>
           <p class="text-xs text-zinc-400">
-            Already subscribed? <a href="/download" class="text-emerald-700 font-medium hover:underline"
+            Already have a license? <a href="/download" class="text-emerald-700 font-medium hover:underline"
               >Go to downloads →</a
             >
           </p>

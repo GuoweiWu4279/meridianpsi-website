@@ -1,7 +1,7 @@
 ---
 title: Audience FAQ
 section: talking-points
-lastUpdated: '2026-05-14'
+lastUpdated: '2026-09-23'
 order: 3
 faqs:
   - q: 'Does it work on NinjaTrader 7?'
@@ -25,9 +25,9 @@ faqs:
   - q: 'Does it work during Market Replay?'
     a: 'Yes. Meridian monitors your behavior during Market Replay sessions as well. However, Replay data is tracked separately and does not affect your live trading baseline — the two session types are kept isolated.'
   - q: "What's the difference between Meridian Core and Meridian Guard?"
-    a: "Core includes real-time PSI monitoring, the seven behavioral signals, the floating HUD, the Session Journal, 5 years of local session history, and (since v1.5.0) the full Intel analytics workspace — monthly digest, PSI × P&L correlation, weekday patterns, breakdowns, and a personalized pre-session Risk Brief. Guard adds the enforcement layer: the Guard System — automated rules with six trigger conditions and an escalating response ladder — on NinjaTrader 8, five levels from a quiet notify up to a full broker disconnect; on the standalone Tradovate/Ironbeam apps, the six-tier Guard v2 up to a full-screen Cool-down Wall and a firewall-level order Cut — plus Strict Lock, the commitment switch your tilted self can't flip off mid-session (in-app; the one device-proof stop is the Tradovate eval/demo broker lock on the standalone apps)."
-  - q: 'Is there a free trial?'
-    a: "Yes — 14 days, credit card required at checkout. The trial auto-cancels if not converted; you won't be charged unless you actively keep the subscription after the trial ends."
+    a: "Core is free and includes real-time PSI monitoring, the seven behavioral signals, the floating HUD, the Session Journal, 5 years of local session history, and (since v1.5.0) the full Intel analytics workspace — monthly digest, PSI × P&L correlation, weekday patterns, breakdowns, and a personalized pre-session Risk Brief. Guard ($29.99/month, cancel anytime) adds the enforcement layer: the Guard System — automated rules with six trigger conditions and an escalating response ladder — on NinjaTrader 8, five levels from a quiet notify up to a full broker disconnect; on the standalone Tradovate/Ironbeam apps, the six-tier Guard v2 up to a full-screen Cool-down Wall and a firewall-level order Cut — plus Strict Lock, the commitment switch your tilted self can't flip off mid-session (in-app; the one device-proof stop is the Tradovate eval/demo broker lock on the standalone apps)."
+  - q: 'Is it free?'
+    a: 'Meridian Core is free — no card, no trial countdown. It covers the live PSI monitor, all seven behavioral signals, the HUD, the Journal, and the Intel analytics workspace. Guard, the enforcement layer, is $29.99/month and you can cancel anytime. On NinjaTrader 8, your first 7 days on a free license include Guard — no card.'
   - q: 'Does it work with prop firm accounts (APEX, TopStep, etc.)?'
     a: 'Yes. Meridian works with any brokerage or simulated account connected through NinjaTrader 8. Many traders use it specifically during prop firm evaluations, since the behavioral signals often start firing before the hard evaluation limits are reached.'
   - q: 'What happens if Guard disconnects me during a live trade?'

@@ -1,7 +1,7 @@
 ---
 title: What You Earn
 section: personal-details
-lastUpdated: '2026-06-01'
+lastUpdated: '2026-09-23'
 order: 2
 ---
 
@@ -11,27 +11,28 @@ A quick reminder of how the partnership pays — so the effort you put into cont
 
 ### The structure
 
-- **30% lifetime recurring** — you earn on every payment a subscriber makes, for as long as they stay subscribed. Not a one-time bounty. A subscriber who stays two years pays you for two years.
-- **10% permanent audience discount** — your promo code takes 10% off every renewal for your viewers, not just their first month. It's a real reason for them to use your link.
+- **Core is free for your audience** — no card, no trial countdown. That makes your recommendation an easy yes for a viewer: they install, see Meridian read their own session, and decide on Guard later.
+- **30% lifetime recurring on Guard** — Guard ($29.99/month) is the paid upgrade, and you earn on every Guard payment a subscriber makes, for as long as they stay subscribed. Not a one-time bounty. A subscriber who stays two years pays you for two years. Core is free, so it carries no commission.
+- **10% permanent audience discount** — your promo code takes 10% off every Guard renewal for your viewers, not just their first month. It's a real reason for them to use your link.
 - **Free Guard license** — yours for the duration of the partnership, so you can speak from real use.
 
-### One subscription, every platform — your whole audience counts
+### One license, every platform — your whole audience counts
 
-You are not limited to the NinjaTrader crowd. One Meridian subscription covers **NinjaTrader 8, Tradovate, and Ironbeam** — the same license, the same checkout, the same commission to you. NinjaTrader 8 is live today; the Tradovate and Ironbeam apps are in paid early access and roll into the same plan as they ship. So a viewer who trades a funded account through Tradovate is just as monetizable for you as a NinjaTrader user — you earn 30% either way. That is most of the prop-firm and futures audience, not a slice of it.
+You are not limited to the NinjaTrader crowd. One Meridian license covers **NinjaTrader 8, Tradovate, and Ironbeam** — the same license, the same checkout, the same commission to you. NinjaTrader 8 is live today; the Tradovate and Ironbeam apps are in early access on the same license. So a viewer who trades a funded account through Tradovate is just as monetizable for you as a NinjaTrader user — you earn 30% either way. That is most of the prop-firm and futures audience, not a slice of it.
 
 ---
 
 ### The recurring math
 
-Every active Guard subscriber pays you **$18.90/month** in recurring commission, for as long as they stay on the plan.
+Every active Guard subscriber pays you **$8.10/month** in recurring commission, for as long as they stay on the plan.
 
 | Active Guard subs | You earn / year |
 | ----------------- | --------------- |
-| 20                | **$4,536**      |
-| 100               | **$22,680**     |
-| 200               | **$45,360**     |
+| 20                | **$1,944**      |
+| 100               | **$9,720**      |
+| 200               | **$19,440**     |
 
-_Per-subscriber commission = $69.99 × 0.90 (discount) × 0.30 (commission) = $18.90/mo. Annual plans, Core plans, and churn shift the actual numbers. Illustrative — not an earnings guarantee._
+_Per-subscriber commission = $29.99 × 0.90 (discount) × 0.30 (commission) = $8.10/mo; per year = $8.10 × 12 × active subs. Core is free and earns no commission; churn shifts the actual numbers. Illustrative — not an earnings guarantee._
 
 ---
 
@@ -45,7 +46,7 @@ We reward partners who deliver. Hit a monthly threshold of **active, retained** 
 | **Silver** | 10+ (still active at day 30)  | **35% lifetime** |
 | **Gold**   | 25+ (still active at day 30)  | **40% lifetime** |
 
-"Active at day 30" means the subscriber stuck — we count real customers, not trial sign-ups that cancel. Once you reach a tier, the higher rate applies retroactively to your whole book for as long as you maintain it.
+"Active at day 30" means the subscriber stuck — we count paying Guard subscribers who stay, not free installs or sign-ups that cancel. Once you reach a tier, the higher rate applies retroactively to your whole book for as long as you maintain it.
 
 ---
 

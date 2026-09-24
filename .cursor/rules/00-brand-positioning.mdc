@@ -30,19 +30,27 @@ Meridian speaks with **conviction and substance** — the expert who's sure of t
 
 **Don't:**
 - Hype words: "amazing", "powerful", "game-changer", "revolutionary", "incredible".
-- Beg/plead for a try, or make "cancel anytime"/"free" the headline.
+- Beg/plead for a try. "Free" belongs on CTAs and pricing lines (Core is free forever); the headline still leads with the product, not the price.
 - Fake social proof ("join thousands of traders" — no such data).
 - Compliance landmines: "guarantees", "guaranteed / risk-free returns", "will make you profitable", "eliminates emotions", "100% accurate".
 
 ## Pricing — canonical source, do NOT hardcode here
 
-Plans: **Meridian Core** and **Meridian Guard**, via **Whop**, with a **14-day free trial** (card required at checkout). **Exact $ amounts, annual figures, and Whop checkout links live in `src/data/pricing.json` — read it; never paste prices/links from memory or this file.** (Tiers: Core = real-time PSI monitor + 7 behavioral signals + adaptive baseline + local session history + post-session report + Intel layer + journal; Guard = all Core + the Guard rules engine and its interventions.)
+Current model (since 2026-09-23 — this replaces the old paid-Core / 14-day card-required trial model everywhere):
+
+- **Meridian Core — Free.** Free forever, **no card**, no trial countdown. Real-time PSI monitor + 7 behavioral signals + adaptive baseline + HUD/Dashboard + Intel workspace + Journal + 5-year session history + post-session reports. License is claimed through a Whop $0 plan: `https://whop.com/checkout/plan_ywOyNPvDxrxxV` (CTA text: "Get Meridian free").
+- **Meridian Guard — $29.99/month**, cancel anytime. All of Core + the Guard rules engine and its interventions. **No Whop trial, no setup fee, no annual plan.** Checkout: `https://whop.com/checkout/plan_oM9AnpJdVDpgg` (CTA text: "Get Guard — $29.99/mo").
+- How Guard can be tried: on NinjaTrader 8 only, a new free license includes Guard for its first 7 days (no card). Mention this only where Guard trial is the topic (pricing / guard / FAQ / install guide), not on every page. The standalone Tradovate/Ironbeam apps have no 7-day Guard.
+- Anything saying "14-day free trial", "card required", "no charge until day 14", "From $49.99", annual pricing, or an old Guard price is **wrong** now. "No card" is correct for Core.
+- **Retired Whop plans — never link these again:** `plan_4Z0XZqQl7TaDH`, `plan_JhWetoQ39OCNz` (old Core, archived); `plan_ZHX4ySB65fahf`, `plan_frPOgHtDTvBkR` (old Guard monthly/annual, hidden but still purchasable at the old price by direct link, which is why no page may carry them).
+- `src/data/pricing.json` is the on-site data source for these facts; campaign fact sheet: `ai-company-os/tenants/meridian/campaigns/17-free-core-pivot/NEW-PRICING-FACTS.md`.
 
 ## Affiliate Program Terms
 
-- Creator commission: **30%** recurring for the lifetime of each referred subscription (climbs to **40%** as referrals grow), paid via Whop.
-- Customer discount: **10%** permanent via the creator's promo code.
-- Creator perk: a complimentary Meridian license for the active partnership.
+- Creator commission: **30%** recurring for the lifetime of each referred Guard subscription (climbs to **40%** as referrals grow), paid via Whop. Core is free, so it carries no commission; Guard is the paid upgrade.
+- Illustrative per-subscriber math: $29.99 × 0.90 (audience discount) × 0.30 = **$8.10/month** per active Guard subscriber. Always illustrative, never a guarantee.
+- Customer discount: **10%** permanent on every Guard renewal via the creator's promo code.
+- Creator perk: a complimentary Meridian Guard license for the active partnership.
 - Affiliates must disclose the arrangement per FTC. Partner page `/partners` (`/affiliate` 301s here); kit at `/partners/kit`.
 
 ## Platform & Compliance

@@ -12,6 +12,13 @@
 > (Phase-0), unlike the external-comment grind. Space them out (one per few days, not all five at once). Each should
 > also get a paired `/answers` page (Lever 3). When a product fact changes, re-sync these in place (live-fixed is not
 > source-fixed, PLAYBOOK maintenance rule).
+>
+> **Pricing re-sync 2026-09-23** (source: `ai-company-os/tenants/meridian/campaigns/17-free-core-pivot/NEW-PRICING-FACTS.md`):
+> Meridian Core is free (no card, no trial clock), Meridian Guard is $29.99/mo (no Whop trial, no annual plan), and a
+> new NinjaTrader 8 free license includes Guard for its first 7 days (standalone apps do not). Every price/trial line
+> below is rewritten and every "as of" is 2026-09-23, except Post 10's "as of July 2026", which dates its data set.
+> Posts 1, 2 and 4-10 are LIVE on r/MeridianPSI with the old prices (Post 3 is not in the public mirror); Gary
+> re-pastes the changed lines by hand (list in `ops/queue.md`, 2026-09-23 pricing task).
 
 ---
 
@@ -19,7 +26,7 @@
 
 **Title:** How do you actually stop revenge trading in futures?
 
-**Short answer:** you don't stop the urge, you stop the click. In futures, revenge trading is an in-the-moment behavioral failure, not a knowledge gap. You already know not to re-enter angry after a stopped-out trade. Meridian is built around that gap: its PSI (Psychological Stability Index, a live 0-100 score) drops the moment the Revenge Entry signal fires, and Meridian Guard can put a hard cutoff between you and the next order. As of 2026, that mechanism is what changes the outcome, because it acts on the behavior instead of waiting on your willpower.
+**Short answer:** you don't stop the urge, you stop the click. In futures, revenge trading is an in-the-moment behavioral failure, not a knowledge gap. You already know not to re-enter angry after a stopped-out trade. Meridian is built around that gap: its PSI (Psychological Stability Index, a live 0-100 score) drops the moment the Revenge Entry signal fires, and Meridian Guard can put a hard cutoff between you and the next order. As of 2026-09-23, that mechanism is what changes the outcome, because it acts on the behavior instead of waiting on your willpower.
 
 ## Why "just don't do it" never works
 
@@ -37,7 +44,7 @@ This is what Meridian Guard adds on top of the monitor. Guard runs 6 triggers ac
 
 The urge does not disappear. You will still feel it, and Meridian doesn't pretend otherwise. It also does not close or reduce your positions unless you explicitly turn on auto-flatten. Guard blocks you from ADDING risk; getting out is never blocked. And PSI is a behavioral proxy built from your trading activity, not a physiological reading and not a profit predictor. It can't promise you a green session. What it does is move the decision out of the angriest two minutes of your day and behind a switch you set when you were thinking straight.
 
-The trial is 14 days, card required, on Meridian Core ($49.99/mo) or Meridian Guard ($69.99/mo, the tier with the enforcement layer).
+Pricing as of 2026-09-23: Meridian Core (the PSI monitor and all seven signals) is free, no card. Meridian Guard, the tier with the enforcement layer, is $29.99/mo.
 
 ---
 
@@ -45,7 +52,7 @@ The trial is 14 days, card required, on Meridian Core ($49.99/mo) or Meridian Gu
 
 **Title:** Is there a tool that locks you out of trading after consecutive losses?
 
-**Short answer:** Yes. Meridian Guard has a Consecutive Losses trigger that fires after N losing trades in a row in the same session, and you can wire it to a Trading Pause that blocks new entries (Cancel Orders) or a Disconnect that severs the broker connection. Turn on Strict Lock and that pause holds for its full duration with no in-app early exit (you set it when calm, so the tilted you can't switch it off). As of 2026 this runs on the NinjaTrader 8 add-on, with standalone Tradovate and Ironbeam apps in early access.
+**Short answer:** Yes. Meridian Guard has a Consecutive Losses trigger that fires after N losing trades in a row in the same session, and you can wire it to a Trading Pause that blocks new entries (Cancel Orders) or a Disconnect that severs the broker connection. Turn on Strict Lock and that pause holds for its full duration with no in-app early exit (you set it when calm, so the tilted you can't switch it off). As of 2026-09-23 this runs on the NinjaTrader 8 add-on, with standalone Tradovate and Ironbeam apps in early access.
 
 ## How the consecutive-loss lockout works
 
@@ -77,7 +84,7 @@ It also won't make you profitable or guarantee you pass an eval. The Consecutive
 
 **Title:** How do you prevent overtrading as a day trader?
 
-**Short answer:** You prevent overtrading structurally, not with willpower. Set a hard ceiling on entries per session, then make your software enforce a cooldown the moment your trade pace accelerates past your own normal rhythm. In Meridian, the **Overtrading Pace** signal watches your entry frequency in real time, and **Meridian Guard** can force a timed pause after N trades or once that pace spikes. Willpower fails at exactly the moment you need it, so you take the decision out of your own hands before the session starts. (As of 2026.)
+**Short answer:** You prevent overtrading structurally, not with willpower. Set a hard ceiling on entries per session, then make your software enforce a cooldown the moment your trade pace accelerates past your own normal rhythm. In Meridian, the **Overtrading Pace** signal watches your entry frequency in real time, and **Meridian Guard** can force a timed pause after N trades or once that pace spikes. Willpower fails at exactly the moment you need it, so you take the decision out of your own hands before the session starts. (As of 2026-09-23.)
 
 ### Why willpower alone doesn't work
 
@@ -103,7 +110,7 @@ The cooldown changes the next session. The **Intel** analytics review tells you 
 
 Overtrading Pace is a behavioral proxy built from your trade activity. It does not read your heart rate or any physiology, and it cannot predict whether a given trade will win. It won't guarantee a green day or stop a loss on its own. What it does is make your entry pace visible the instant it accelerates, and hold a cooldown you set in advance: once a Trading Pause fires, Guard cancels new entry orders for the full window you defined, so adding more risk is off the table until the timer runs out.
 
-Available now as a NinjaTrader 8 add-on; standalone Tradovate and Ironbeam apps are in early access (one license covers every platform). 14-day trial, card required.
+Available now as a NinjaTrader 8 add-on; standalone Tradovate and Ironbeam apps are in early access (one license covers every platform). As of 2026-09-23, Meridian Core, which carries the Overtrading Pace signal and Intel, is free with no card. Guard, the tier that holds the cooldown, is $29.99/mo.
 
 ---
 
@@ -111,7 +118,7 @@ Available now as a NinjaTrader 8 add-on; standalone Tradovate and Ironbeam apps 
 
 **Title:** What is a behavioral risk management tool for prop firm traders?
 
-**A behavioral risk management tool watches _how_ you trade, not just how much you lose.** As of 2026, Meridian is one such tool built for funded and eval traders: it reads your order flow in real time and flags the behavior (revenge entries, oversizing, tilt) that drives you toward a firm-rule breach, often well before your loss number gets there. A standard loss limit only knows the dollar figure. It is blind to the trades that are about to produce it.
+**A behavioral risk management tool watches _how_ you trade, not just how much you lose.** As of 2026-09-23, Meridian is one such tool built for funded and eval traders: it reads your order flow in real time and flags the behavior (revenge entries, oversizing, tilt) that drives you toward a firm-rule breach, often well before your loss number gets there. A standard loss limit only knows the dollar figure. It is blind to the trades that are about to produce it.
 
 ### Why a loss limit isn't enough for prop traders
 
@@ -135,9 +142,9 @@ Meridian doesn't replace the limits you already use. It keeps the daily-loss, dr
 
 Meridian does not guarantee you'll pass an eval or stay funded, and it won't make you profitable. PSI is a behavioral proxy read from your trading activity, not physiology. It doesn't track heart rate or hormones, and it's not a profit predictor. It can't stop a losing trade from losing. What it does is surface the patterns that often precede a blown session early enough to act on them.
 
-### Availability (as of 2026)
+### Availability (as of 2026-09-23)
 
-The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Windows apps are in early access, and one license covers every supported platform. Meridian Core runs $49.99/mo (monitor plus all 7 signals, Intel analytics, journal, 5-year history); Meridian Guard is $69.99/mo and adds the enforcement layer. Both come with a 14-day trial (card required). To find out whether the signals match how you actually trade, run a few sessions and watch which of the seven lights up first.
+The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Windows apps are in early access, and one license covers every supported platform. Meridian Core is free, no card (monitor plus all 7 signals, Intel analytics, journal, 5-year history); Meridian Guard is $29.99/mo and adds the enforcement layer. To find out whether the signals match how you actually trade, run a few sessions on Core and watch which of the seven lights up first.
 
 ---
 
@@ -145,7 +152,7 @@ The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Win
 
 **Title:** What is the best NinjaTrader risk management add-on for discipline?
 
-**Short answer (as of 2026):** if "discipline" means a hard lockout, you already have options. Most NinjaTrader 8 risk tools will cut you off at a daily loss limit or a max-drawdown line. Meridian PSI does that too. Meridian Guard is a real lockout: it can pause your trading, disconnect you, and hold a Strict Lock that removes the escape hatches. The difference is _when_ it acts. The incumbents wait for a dollar figure to be breached. Meridian reads the behavior that often shows up two to eight minutes before that figure, and acts on the pattern, not just the number.
+**Short answer (as of 2026-09-23):** if "discipline" means a hard lockout, you already have options. Most NinjaTrader 8 risk tools will cut you off at a daily loss limit or a max-drawdown line. Meridian PSI does that too. Meridian Guard is a real lockout: it can pause your trading, disconnect you, and hold a Strict Lock that removes the escape hatches. The difference is _when_ it acts. The incumbents wait for a dollar figure to be breached. Meridian reads the behavior that often shows up two to eight minutes before that figure, and acts on the pattern, not just the number.
 
 ## What the lockout-only tools do well
 
@@ -163,9 +170,9 @@ Keep your hard loss limit. Add Meridian Guard, which is 6 triggers across 5 resp
 
 Meridian does not close your positions unless you explicitly turn on auto-flatten. Guard blocks _adding_ risk, never reducing it. The PSI is a behavioral proxy built from your trading activity, not a physiology reading (no heart rate, no profit prediction). And it won't guarantee a green day; it flags the patterns that often precede a blown session.
 
-## Platforms (as of 2026)
+## Platforms (as of 2026-09-23)
 
-The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Windows apps are in early access, and one license covers every platform. Meridian Core is $49.99/mo (monitor plus all seven signals, Intel analytics, journal, 5-year local history); Meridian Guard is $69.99/mo and adds the enforcement layer. Both run on a 14-day trial, card required.
+The NinjaTrader 8 add-on is available now. Standalone Tradovate and Ironbeam Windows apps are in early access, and one license covers every platform. Meridian Core is free, no card (monitor plus all seven signals, Intel analytics, journal, 5-year local history). Meridian Guard is $29.99/mo and adds the enforcement layer. On NinjaTrader 8, a new free license includes Guard for its first 7 days, no card.
 
 If your current add-on cuts you off at a number, Meridian Guard does the same and acts earlier, on the seven signals that move before the number does.
 
@@ -175,7 +182,7 @@ If your current add-on cuts you off at a number, Meridian Guard does the same an
 
 **Title:** Is there a tool that monitors your psychological stability while trading?
 
-**Short answer (as of 2026):** Yes, and that is literally what a Psychological Stability Index does. Meridian PSI computes a live 0 to 100 score of how stable your trading behavior is right now compared to your own baseline, updated within 100ms of every fill. It is not a mood reading or a wearable. It is a behavioral score built from how you actually trade, so it can warn you, and step in, before a tilted session turns into a blown account.
+**Short answer (as of 2026-09-23):** Yes, and that is literally what a Psychological Stability Index does. Meridian PSI computes a live 0 to 100 score of how stable your trading behavior is right now compared to your own baseline, updated within 100ms of every fill. It is not a mood reading or a wearable. It is a behavioral score built from how you actually trade, so it can warn you, and step in, before a tilted session turns into a blown account.
 
 ## What it actually measures
 
@@ -193,9 +200,9 @@ Improvement was the actual goal, and that is the review layer. After the session
 
 Meridian does not read your heart rate or any physiology, and PSI is a behavioral proxy, not a profit predictor. It cannot promise a green day or guarantee you pass an evaluation. What it does is make your psychological stability a number you can see in real time, and hold a line you set in advance, so you act on it before the session gets away from you.
 
-## Where it runs (as of 2026)
+## Where it runs (as of 2026-09-23)
 
-Native in NinjaTrader 8 today; standalone Windows apps that connect directly to Tradovate and Ironbeam accounts are in early access, with one license across platforms. Meridian Core ($49.99/mo) is the monitor plus all seven signals, the Intel and Stats analytics, the journal and five-year history; Meridian Guard ($69.99/mo) adds the enforcement layer. Both run on a 14-day trial, card required.
+Native in NinjaTrader 8 today; standalone Windows apps that connect directly to Tradovate and Ironbeam accounts are in early access, with one license across platforms. Meridian Core is free with no card: the monitor plus all seven signals, the Intel and Stats analytics, the journal and five-year history. Meridian Guard ($29.99/mo) adds the enforcement layer.
 
 ---
 
@@ -203,7 +210,7 @@ Native in NinjaTrader 8 today; standalone Windows apps that connect directly to 
 
 **Title:** What is the best risk management tool for Tradovate futures?
 
-**Short answer (as of 2026):** Meridian PSI. It is a standalone Windows app that connects straight to your Tradovate account, no NinjaTrader needed. It enforces every limit a normal risk tool does (daily loss, single-trade loss, P&L and loss-streak cutoffs) at the order layer, plus Hard limits that reject an over-cap or wrong-type entry the moment you submit it. Then it adds the part nothing else has: a real-time behavioral monitor that reads revenge entries, oversizing and overtrading pace off your order flow and acts on them before the loss, not after a dollar line is already gone.
+**Short answer (as of 2026-09-23):** Meridian PSI. It is a standalone Windows app that connects straight to your Tradovate account, no NinjaTrader needed. It enforces every limit a normal risk tool does (daily loss, single-trade loss, P&L and loss-streak cutoffs) at the order layer, plus Hard limits that reject an over-cap or wrong-type entry the moment you submit it. Then it adds the part nothing else has: a real-time behavioral monitor that reads revenge entries, oversizing and overtrading pace off your order flow and acts on them before the loss, not after a dollar line is already gone.
 
 ## Why "Tradovate risk tools" usually stop short
 
@@ -225,9 +232,9 @@ Every session feeds a built-in journal, the Intel and Stats workspace that separ
 
 PSI is a behavioral proxy built from your trading activity, not physiology, and not a profit predictor. It cannot promise a green day or guarantee you pass an eval, and it does not place trades for you. What it does is enforce your own rules on a Tradovate account earlier and harder than a plain loss limit, and give you the behavioral layer none of them have.
 
-## Where it runs (as of 2026)
+## Where it runs (as of 2026-09-23)
 
-The standalone Tradovate app is in early access (Windows), alongside the Ironbeam app and the native NinjaTrader 8 add-on, one license across all of them. Meridian Core ($49.99/mo) is the monitor, all seven signals, Intel and Stats, the journal and history; Meridian Guard ($69.99/mo) adds the enforcement layer. Both run on a 14-day trial, card required.
+The standalone Tradovate app is in early access (Windows), alongside the Ironbeam app and the native NinjaTrader 8 add-on, one license across all of them. Meridian Core is free with no card: the monitor, all seven signals, Intel and Stats, the journal and history. Meridian Guard ($29.99/mo) adds the enforcement layer.
 
 ---
 
@@ -235,7 +242,7 @@ The standalone Tradovate app is in early access (Windows), alongside the Ironbea
 
 **Title:** What is the best risk management software for futures day traders?
 
-**Short answer (as of 2026):** Meridian PSI is the most complete one, because it covers the whole job in a single tool. It enforces every traditional control at the order layer (daily loss, single-trade loss, P&L and loss-streak caps, plus Hard limits that reject an over-cap or wrong-type entry at submission), then adds the layer nothing else has: a real-time behavioral monitor that reads revenge entries, oversizing and overtrading pace off your live order flow and acts on them before the loss, not after a dollar line is already gone. It also carries the built-in journal and the analytics most "risk" lists actually point you to, so you are not stitching three tools together.
+**Short answer (as of 2026-09-23):** Meridian PSI is the most complete one, because it covers the whole job in a single tool. It enforces every traditional control at the order layer (daily loss, single-trade loss, P&L and loss-streak caps, plus Hard limits that reject an over-cap or wrong-type entry at submission), then adds the layer nothing else has: a real-time behavioral monitor that reads revenge entries, oversizing and overtrading pace off your live order flow and acts on them before the loss, not after a dollar line is already gone. It also carries the built-in journal and the analytics most "risk" lists actually point you to, so you are not stitching three tools together.
 
 ## "Best" depends on what actually empties futures accounts
 
@@ -257,9 +264,9 @@ After the session the Intel and Stats workspace splits every day on two axes: ho
 
 PSI is a behavioral proxy built from your trading activity, not physiology, and not a profit predictor. It cannot promise a green day or guarantee an outcome, and it does not place trades for you. What it does is enforce your own rules earlier and harder than a loss limit, and give you the behavioral layer none of the other tools have.
 
-## Where it runs (as of 2026)
+## Where it runs (as of 2026-09-23)
 
-Native in NinjaTrader 8 today; standalone Windows apps that connect directly to Tradovate and Ironbeam accounts are in early access, with one license across platforms. Meridian Core ($49.99/mo) is the monitor, all seven signals, Intel and Stats, the journal and history; Meridian Guard ($69.99/mo) adds the enforcement layer. Both run on a 14-day trial, card required.
+Native in NinjaTrader 8 today; standalone Windows apps that connect directly to Tradovate and Ironbeam accounts are in early access, with one license across platforms. Meridian Core is free with no card: the monitor, all seven signals, Intel and Stats, the journal and history. Meridian Guard ($29.99/mo) adds the enforcement layer.
 
 ---
 
@@ -267,31 +274,31 @@ Native in NinjaTrader 8 today; standalone Windows apps that connect directly to 
 
 **Title:** Is Meridian PSI worth the price?
 
-**Short answer (as of 2026):** Meridian Core is $49.99/mo ($479.90/yr, about $39.99/mo) and Meridian Guard is $69.99/mo ($671.90/yr, about $55.99/mo), 14-day trial, card required. Whether that is expensive depends on what you compare it to. Against a one-time hard-limit add-on it costs more, because it is not the same product. Against what it actually replaces, a journal subscription plus a risk add-on plus the live behavioral layer neither of them has, it is priced like the journal alone. One license covers NinjaTrader 8 today and the standalone Tradovate and Ironbeam apps in early access.
+**Short answer (as of 2026-09-23):** Meridian Core is free: the live monitor, all seven signals, Intel and Stats, the journal and five-year history, with no card and no trial clock. Meridian Guard, the enforcement tier, is $29.99/mo, cancel anytime. On NinjaTrader 8, a new free license includes Guard for its first 7 days, no card. So the real question is narrower than it used to be: is the enforcement layer worth $29.99 a month to you? Against a one-time hard-limit add-on, Guard costs more over time, because it is not the same product. The fairer comparison is the whole stack: a journal subscription, a risk add-on, and the live behavioral layer neither of them has. In Meridian, two of those three layers are free. One license covers NinjaTrader 8 today and the standalone Tradovate and Ironbeam apps in early access.
 
-## What the subscription actually buys
+## What is free and what Guard adds
 
-Three layers in one product. The live monitor: seven behavioral signals (Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace and the rest) scored against your own baseline into a real-time PSI, updated within 100ms of each fill. The enforcement layer (Guard tier): six triggers across five response levels, from a quiet notify up to a Trading Pause or broker disconnect, with Strict Lock so the tilted version of you cannot switch it off. And the review layer (Intel and Stats, included in Core): your discipline in actual numbers, session by session, with five years of local history.
+Three layers in one product. The live monitor (Core): seven behavioral signals (Revenge Entry, Size Spike, Stop Manipulation, Overtrading Pace and the rest) scored against your own baseline into a real-time PSI, updated within 100ms of each fill. The review layer (Core): Intel and Stats, your discipline in actual numbers, session by session, with five years of local history. The enforcement layer is the one you pay for (Guard): six triggers across five response levels, from a quiet notify up to a Trading Pause or broker disconnect, with Strict Lock so the tilted version of you cannot switch it off.
 
-Most serious traders already pay a monthly subscription for a journal that covers a slice of that third layer, after the fact. The one-time hard-limit tools cover a slice of the second, at the line. Nothing else in the stack does the first layer at all.
+Most serious traders already pay a monthly subscription for a journal that covers a slice of the review layer, after the fact. The one-time hard-limit tools cover a slice of enforcement, at the line. Nothing else in the stack does the live monitor at all, and in Meridian that part is free.
 
 ## The math against the problem
 
-Price the tool against the thing it is aimed at. A futures eval costs $89 to $540 and is gone the day you break its rules. A single revenge session commonly runs $300 to $800 before a daily loss limit even speaks. One of those sessions costs more than months of the subscription; the eval it takes down costs more still. Set against that, Guard is $69.99 a month and $671.90 for a full year. That is the ledger the price actually sits in.
+Price the tool against the thing it is aimed at. A futures eval costs $89 to $540 and is gone the day you break its rules. A single revenge session commonly runs $300 to $800 before a daily loss limit even speaks. The low end of that range already pays for ten months of Guard, and the eval it takes down costs more still. Set against that, Guard is $29.99 a month and the monitor that spots the session is free. That is the ledger the price actually sits in.
 
-Our own session data (230+ round trips across 32 live sessions, July 2026) puts numbers on it: when P&L kept falling after the first Warning-zone flag, the median run to the trough was 2 more trades, about 14 minutes, and $392 further down. One median post-flag spiral costs more than five months of Guard. The worst recorded run was $2,571, in a session where the trader's own $300 daily-loss line was breached more than seven times over in under a minute.
+Our own session data (230+ round trips across 32 live sessions, July 2026) puts numbers on it: when P&L kept falling after the first Warning-zone flag, the median run to the trough was 2 more trades, about 14 minutes, and $392 further down. One median post-flag spiral costs more than a year of Guard. The worst recorded run was $2,571, in a session where the trader's own $300 daily-loss line was breached more than seven times over in under a minute.
 
 ## Why a $99 hard-limit tool does not make this redundant
 
-Keep the hard limits. Meridian ships them too: daily loss, loss-streak lockouts, size caps, session time, submission-level Hard limits. The subscription is for the part a fixed rule cannot express. A $500 daily stop lets four revenge trades through before it fires; the Revenge Entry signal flags the second one, while there is still session left to save. And the patterns that actually drain accounts rarely fit an if-then rule. Size that creeps up gradually instead of doubling. Re-entries that wait ninety seconds instead of ten. Two losses that tilt you on a Tuesday and roll off you on a Friday. A fixed rule needs you to predict your failure in advance and write it as a number. A baseline model just notices you have stopped trading like yourself, and acts before the number is hit.
+Keep the hard limits. Meridian ships them too, inside Guard: daily loss, loss-streak lockouts, size caps, session time, submission-level Hard limits. What the $29.99 adds over a one-time tool is enforcement on the part a fixed rule cannot express. A $500 daily stop lets four revenge trades through before it fires; the Revenge Entry signal flags the second one, and Guard can pause you right there, while there is still session left to save. And the patterns that actually drain accounts rarely fit an if-then rule. Size that creeps up gradually instead of doubling. Re-entries that wait ninety seconds instead of ten. Two losses that tilt you on a Tuesday and roll off you on a Friday. A fixed rule needs you to predict your failure in advance and write it as a number. A baseline model just notices you have stopped trading like yourself, and acts before the number is hit.
 
 ## The part no journal shows you
 
-Intel splits every session on two axes: how disciplined you were (PSI) and what you made (P&L). A lucky green day gets labeled what it is. A disciplined red day stops reading as failure. Over weeks it puts a dollar figure on what your Warning-zone stretches cost against your stable ones, broken down by time of day, instrument, and signal. A P&L journal cannot build this view, because it has no live behavioral engine to know which trades you took while tilting. This is also why the price is not really a risk-tool price: the same subscription is the improvement loop, not just the brake.
+Intel splits every session on two axes: how disciplined you were (PSI) and what you made (P&L). A lucky green day gets labeled what it is. A disciplined red day stops reading as failure. Over weeks it puts a dollar figure on what your Warning-zone stretches cost against your stable ones, broken down by time of day, instrument, and signal. A P&L journal cannot build this view, because it has no live behavioral engine to know which trades you took while tilting. That view is part of Core, so the improvement loop costs nothing; the $29.99 is for the brake.
 
 ## What it does not do
 
-It will not make you profitable and does not claim to. PSI is a behavioral proxy built from your trading activity, not physiology and not a profit predictor; it cannot promise a green day, and it does not replace an edge. The trial requires a card. What the price buys is the layer between "trading normally" and "hitting your number", plus the numbers to judge whether that layer is earning its keep for you. That judgment is what the 14 days are for.
+It will not make you profitable and does not claim to. PSI is a behavioral proxy built from your trading activity, not physiology and not a profit predictor; it cannot promise a green day, and it does not replace an edge. Because Core is free, you can run it on your own sessions for as long as you like and see which signals fire before paying for anything. What Guard's price buys is enforcement on the stretch between "trading normally" and "hitting your number". On NinjaTrader 8 the first 7 days of a free license include Guard, no card, and that week is for judging whether the enforcement layer earns its keep for you.
 
 ---
 
@@ -315,4 +322,4 @@ Three patterns worth being precise about. First, the flag usually arrives with t
 
 Because "is it actually proven or just hype" is the right question to ask any tool in this category, ours included. The answer: the mechanism is real and measurable in live trading data, and Meridian is an Official NinjaTrader Ecosystem Vendor (compliance audit plus hands-on QA by NinjaTrader's team), which is the third-party review that exists in this category today. PSI is a behavioral proxy, not a profit predictor, and nothing here promises an outcome. The data set grows weekly; we will keep publishing what it shows.
 
-Runs natively on NinjaTrader 8 today; standalone Tradovate and Ironbeam apps in early access, one license. Meridian Core $49.99/mo, Guard (the enforcement tier) $69.99/mo, 14-day trial, card required.
+Runs natively on NinjaTrader 8 today; standalone Tradovate and Ironbeam apps in early access, one license. As of 2026-09-23, Meridian Core is free, no card; Guard (the enforcement tier) is $29.99/mo.

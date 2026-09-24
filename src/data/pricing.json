@@ -1,45 +1,43 @@
 {
-  "headline": "Start the trial. See what your sessions show.",
-  "subhead": "Fourteen days, full access. Your behavioral signals live from day one. No charge until the trial ends. One subscription covers every platform we support.",
+  "headline": "Core is free. Guard is $29.99 a month.",
+  "subhead": "The full real-time monitor and the Intel workspace cost nothing and need no card. Add Guard when you want rules that enforce themselves. One license covers every platform we support.",
   "tiers": [
     {
       "id": "meridian",
       "name": "Meridian Core",
-      "description": "The full real-time PSI monitor for active traders.",
-      "monthlyPrice": 49.99,
-      "annualPrice": 479.9,
-      "annualMonthly": 39.99,
-      "annualSavings": 120,
+      "description": "The full real-time PSI monitor and Intel workspace. Free.",
+      "price": 0,
+      "priceLabel": "Free",
+      "billing": "free",
+      "priceNote": "No card · no trial countdown · yours to keep",
       "currency": "USD",
-      "trialDays": 14,
       "badge": "",
       "highlight": false,
-      "monthlyCtaHref": "https://whop.com/checkout/plan_4Z0XZqQl7TaDH",
-      "annualCtaHref": "https://whop.com/checkout/plan_JhWetoQ39OCNz",
+      "ctaText": "Get Meridian free",
+      "ctaHref": "https://whop.com/checkout/plan_ywOyNPvDxrxxV",
       "features": [
         "Real-time PSI — updated after every fill",
         "Seven independent behavioral dimensions in one composite score",
         "Baselines calibrated from your own session history",
-        "Native NinjaTrader 8 add-on — plus standalone Tradovate & Ironbeam apps in early access, one license",
+        "Floating HUD, Dashboard and session Journal",
         "Intel workspace — monthly digest, PSI × P&L, weekday patterns, breakdowns & pre-session Risk Brief",
         "5-year session history and post-session reports",
-        "Cancel any time"
+        "Native NinjaTrader 8 add-on — plus standalone Tradovate & Ironbeam apps in early access, one license"
       ]
     },
     {
       "id": "guard",
       "name": "Meridian Guard",
       "description": "Automated enforcement layer for active traders.",
-      "monthlyPrice": 69.99,
-      "annualPrice": 671.9,
-      "annualMonthly": 55.99,
-      "annualSavings": 168,
+      "price": 29.99,
+      "priceLabel": "$29.99",
+      "billing": "month",
+      "priceNote": "Billed monthly · cancel anytime",
       "currency": "USD",
-      "trialDays": 14,
       "badge": "",
       "highlight": true,
-      "monthlyCtaHref": "https://whop.com/checkout/plan_ZHX4ySB65fahf",
-      "annualCtaHref": "https://whop.com/checkout/plan_frPOgHtDTvBkR",
+      "ctaText": "Get Guard — $29.99/mo",
+      "ctaHref": "https://whop.com/checkout/plan_oM9AnpJdVDpgg",
       "features": [
         "Everything in Meridian Core",
         "Guard System — rules that enforce themselves (6 triggers · 5 levels on NinjaTrader 8, 6 tiers on the standalone apps)",
@@ -51,5 +49,6 @@
       ]
     }
   ],
-  "footnote": "Meridian Core is billed at $49.99/month or $479.90/year after the 14-day free trial. Meridian Guard is billed at $69.99/month or $671.90/year after the 14-day free trial. Cancel any time before the trial ends and you will not be charged. One subscription covers every supported platform — NinjaTrader 8 today, Tradovate and Ironbeam in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
+  "manageHref": "https://whop.com/@me/settings/memberships",
+  "footnote": "Meridian Core is free: no card, no trial, no charge. Meridian Guard is billed at $29.99/month from the day you subscribe. Cancel Guard any time and you keep it through the period you have already paid for; your free Core license keeps working. One license covers every supported platform — NinjaTrader 8 today, Tradovate and Ironbeam in early access. Trading involves substantial risk of loss. Meridian does not provide trading signals or investment advice. Results may vary."
 }

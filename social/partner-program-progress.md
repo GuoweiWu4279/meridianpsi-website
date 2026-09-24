@@ -72,6 +72,7 @@ D1 Revenge Entry · D2 Stop Manipulation · D3 Size Spike · D4 Hold Bias · D5 
 1. **Hero** — H1 "Partner with Meridian." · subhead one-liner · "Apply now" + "See the details" CTAs
 2. **The Deal** — 3 cards (30% / 10% / Free) + earnings block:
    - Per-sub: $69.99 × 0.90 × 0.30 = **$18.90/mo recurring**
+   - 2026-09-23 起作废(上一行与下一行的 Tiers 按旧价算):$29.99 × 0.90 × 0.30 = $8.10/月(Guard 新价;Core 免费,不产生佣金)
    - Tiers: 20 subs → $4,536/yr · 100 subs → $22,680/yr · 200 subs → $45,360/yr
    - "How this scales" callout — 10K-view video × 1% conversion = 100 trial installs · industry trial-to-paid 30–60% · long-term partnership compounds across content cycles
 3. **Why this works** — 3 icon cards: Audience pays for NT8 software · Software not a guru · The trial does the convincing

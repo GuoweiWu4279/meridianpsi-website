@@ -4,7 +4,7 @@ platform: reddit
 subreddit: r/MeridianPSI
 post_type: pinned
 status: canonical
-last_updated: 2026-06-10
+last_updated: 2026-09-23
 author: Gary / MeridianPSI
 notes: |
   v5 (2026-06-10) — the canonical version. This is the FORMAT/GENRE fix:
@@ -18,6 +18,9 @@ notes: |
   MERIDIAN.md (Guard 5-level names, Strict Lock, honest v1.5 privacy, Intel-in-
   Core). Passed all three gates (VOICE.md AI-tell scan / compliance / fact).
   This post is the reference EXEMPLAR for the "Pinned intro" row in ops/ARTIFACTS.md.
+  PRICING RE-SYNC 2026-09-23: "Platforms and trust" paragraph rewritten for the new pricing (Core free,
+  no card; Guard $29.99/mo; 7 days of Guard on a new NT8 free license). The LIVE pinned post still says
+  "14-day free trial" and must be re-pasted by Gary (see ops/queue.md, 2026-09-23 pricing task).
   ✅ LIVE-SYNC CHECK — RESOLVED 2026-06-26: the live pinned snapshot HAD drifted — it still said
   "7-day free trial" plus several typos ("risk tool on the marker", "Most tool", "we watches the
   infrequencies", "We also uses", "then seeing it in real number"). Gary re-pasted a corrected
@@ -95,7 +98,7 @@ Meridian does not place trades and does not promise results. It watches what you
 
 **Platforms and trust**
 
-Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. There is a 14-day free trial.
+Meridian runs natively in NinjaTrader 8 today. Standalone apps for Tradovate and Ironbeam are in early access, and one license covers all of them. As of 2026-09-23, Meridian Core is free: the monitor, Intel and the journal, with no card and no trial clock. Meridian Guard adds the enforcement layer for $29.99 a month. On NinjaTrader 8, a new free license includes Guard for its first 7 days, so you can try it before paying anything.
 
 It is an Official NinjaTrader Ecosystem Vendor, audited by NinjaTrader's compliance, QA, and executive teams. It is local-first: your sessions, baselines, and journal live on your own machine, which is also why it runs inside prop firm environments.
 
@@ -122,3 +125,4 @@ _Risk disclosure: Trading futures involves substantial risk of loss and is not a
 | 2026-06-10 | v5: genre fix to product-explainer register. Passed VOICE.md gates.                                                                                                                                                                                                                                                                                                                 |
 | 2026-06-10 | v6: re-derived through the content system (loop + 3 gates).                                                                                                                                                                                                                                                                                                                         |
 | 2026-06-10 | v7 (canonical): merged Gary's own rewrite — gap-first opening + heart-rate metaphor (replaces the flat "one bad session" website thesis), brand "we" voice, bold superset ("everything they have, and something much better"), punchier section closers. His edit fed back into POSITIONING/VOICE/ARTIFACTS (LEARNINGS L5). The reference exemplar for ARTIFACTS.md "Pinned intro". |
+| 2026-09-23 | Pricing re-sync: "There is a 14-day free trial" replaced with Core free (no card) + Guard $29.99/mo + 7 days of Guard on a new NT8 free license. Live post needs Gary's manual re-paste of that paragraph. |

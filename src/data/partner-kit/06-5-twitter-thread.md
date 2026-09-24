@@ -1,7 +1,7 @@
 ---
 title: Twitter / X Thread
 section: content-templates
-lastUpdated: '2026-05-15'
+lastUpdated: '2026-09-23'
 order: 5
 copyables:
   - label: 'Tweet 1 of 7 — Hook'
@@ -17,7 +17,7 @@ copyables:
   - label: 'Tweet 6 of 7 — Privacy'
     content: "Your history stays on your machine.\n\nNo login, no personal accounts, no PII.\n\nWorks in live + Market Replay. Native on NT8 — Tradovate & Ironbeam apps in early access. Windows only."
   - label: 'Tweet 7 of 7 — CTA'
-    content: "14-day trial at the link below.\n\nCode [YOURCODE] is 10% off every renewal — not just the first month.\n\n[YOUR AFFILIATE LINK]\n\n(Affiliate link — I earn a commission if you sign up)"
+    content: "Meridian Core is free at the link below. No card.\n\nGuard, the enforcement layer, is $29.99/mo. Code [YOURCODE] is 10% off every renewal — not just the first month.\n\n[YOUR AFFILIATE LINK]\n\n(Affiliate link — I earn a commission if you sign up)"
 ---
 
 **Tips:**

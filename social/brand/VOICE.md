@@ -108,7 +108,7 @@
 每篇还要过这一遍(扫到就改):
 
 - 禁结果承诺:"will make you profitable" / "guaranteed" / "prevents blowups" / "eliminates emotions" / "reduces losses" / "keeps you in the [payout] group" / "100% protected"。
-- 禁:"risk-free"、"no credit card"(试用要绑卡)。
+- 禁:"risk-free"。(2026-09-23 起 Core 免费、不用卡,"free, no card" 是真话可以说;Guard $29.99/月、没有试用 —— 不许再写「14 天试用」「要绑卡」或旧价 $49.99/$69.99。)
 - 禁:"no telemetry / nothing ever leaves your machine"(v1.5.0 起不成立,见 POSITIONING §7)。
 - **★ 别主动 undercut 自己(Gary 2026-06-26 定,通则)**:营销/社媒/GEO/SEO 文案里**绝不主动抛没人问的负面**——不主动说我们收集/上传数据、不主动抛弱点/局限/"这可能不适合你"、不过度对冲、不自我消解、不替对手说好话。**说正面,然后打住。** 没人问,主动说 = 自己种疑虑、自损转化("谁他妈问你了")。
   - 隐私是最典型的一例:只写 "local-first"(数据在你机器上)就**停**,**别**提匿名研究/外呼/opt-out。

@@ -1,7 +1,7 @@
 ---
 title: What Not to Say
 section: compliance
-lastUpdated: '2026-05-01'
+lastUpdated: '2026-09-23'
 order: 2
 ---
 
@@ -19,7 +19,7 @@ These aren't arbitrary restrictions. Each one protects you from FTC liability or
 | "This will make you a better trader"                | Outcome claim                                                                                       | "Gives you real-time visibility into your behavioral patterns during the session"              |
 | "Proven trading results"                            | Makes an evidential claim that doesn't exist at a per-user level                                    | "Used by active NinjaTrader 8 traders who want behavioral feedback"                            |
 | "100% accurate"                                     | Nothing in trading is 100% accurate                                                                 | Remove — no qualifier makes this acceptable                                                    |
-| "Risk-free"                                         | It's a paid subscription after the free trial, and trading itself is never risk-free                | "14-day free trial — cancel anytime during the trial period"                                   |
+| "Risk-free"                                         | Guard is a paid subscription, and trading itself is never risk-free                                 | "Meridian Core is free; Guard is $29.99/month, cancel anytime"                                 |
 | "Works on all platforms"                            | NT8 native + Tradovate/Ironbeam early access, Windows only                                          | "Native in NinjaTrader 8; standalone Tradovate & Ironbeam apps in early access — Windows only" |
 
 ---

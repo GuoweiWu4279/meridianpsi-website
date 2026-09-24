@@ -4,6 +4,30 @@
 
 ---
 
+## ★ 2026-09-23 定价改版 —— 线上回灌(置顶,状态:待 Gary 手动改)
+
+新定价(2026-09-23 起,唯一口径 `ai-company-os/tenants/meridian/campaigns/17-free-core-pivot/NEW-PRICING-FACTS.md`):**Meridian Core 免费、不用卡;Meridian Guard $29.99/月,Whop 上没有试用、没有年付;NinjaTrader 8 上免费许可证前 7 天自带 Guard。** 源稿已全部改好,但下面这些位置已经在 Reddit 上线,线上还写着旧价 $49.99 / $69.99 和「14-day trial, card required」,只能 Gary 本人登录 u/MeridianPSI 手动编辑(帖子标题改不了,只改正文)。
+
+怎么查出来的:`log.md`(Post 1-8 与置顶帖已发)+ Arctic Shift 公开镜像 2026-09-23 实测(`arctic-shift.photon-reddit.com/api/posts/search?subreddit=MeridianPSI`,Post 1、4-10 存档正文里逐篇搜到旧价;置顶帖镜像只存了 05-04 初版,旧价依据是 `pinned-start-here.md` 记的 06-26 Gary 重贴 14-day 版)。镜像存的是发帖当时的正文,编辑过的帖以线上为准。
+
+| # | 线上位置 | 要换成的新文字在哪 |
+|---|---|---|
+| 1 | 置顶帖 "Start Here: What is Meridian PSI?" `reddit.com/r/MeridianPSI/comments/1t36tfc/` | `pinned-start-here.md` 的 **Platforms and trust** 第一段(把 "There is a 14-day free trial." 换成新的三句) |
+| 2 | Post 1 "How do you actually stop revenge trading in futures?" `/comments/1ug0aqn/` | `geo-answer-posts.md` Post 1 最后一行(以 "Pricing as of 2026-09-23" 开头) |
+| 3 | Post 4 "What is a behavioral risk management tool for prop firm traders?" `/comments/1uhrccv/`;Post 5 "What is the best NinjaTrader risk management add-on for discipline?" `/comments/1ui76i2/` | `geo-answer-posts.md` Post 4 的 **Availability** 段;Post 5 的 **Platforms** 段 |
+| 4 | Post 6 "Is there a tool that monitors your psychological stability while trading?" `/comments/1uib629/`;Post 7 "What is the best risk management tool for Tradovate futures?" `/comments/1uil57d/`;Post 8 "What is the best risk management software for futures day traders?" `/comments/1uj81cd/` | `geo-answer-posts.md` 这三篇各自的 **Where it runs** 段 |
+| 5 | Post 9 "Is Meridian PSI worth the price?" `/comments/1unl35o/`(整篇论证建立在旧价上) | `geo-answer-posts.md` Post 9 **整篇正文**(从 "Short answer" 到 "What it does not do" 段末),整篇替换 |
+| 6 | Post 10 "Does behavioral risk management actually work? What 32 real sessions show" `/comments/1unl3dy/` | `geo-answer-posts.md` Post 10 最后一行(以 "Runs natively on NinjaTrader 8 today" 开头) |
+| 7 | 侧栏 description(Mod Tools → Community settings → description) | 直接粘下面这段(193 字符): `Next-gen risk management for futures traders: catches revenge trading, oversizing, and tilt live, before you hit your limit. NT8; Tradovate/Ironbeam. Core free, Guard $29.99/mo. meridianpsi.com` |
+
+- 各篇短答里的 "as of 2026" 源稿已改成 "as of 2026-09-23";顺手改更好,只改价格段也不算错。
+- **Post 3**("How do you prevent overtrading as a day trader?"):`log.md` 记为已发,但公开镜像里找不到。Gary 打开 r/MeridianPSI 看一眼,在的话把最后一行换成 `geo-answer-posts.md` Post 3 最后一行。
+- **侧栏现状没实测到**:镜像只有 2026-06-29 的快照(还是更早那版长描述,不含试用天数);07-03 定的那句带 "14-day trial" 有没有贴上去不知道。不管现在是哪一版,都换成上面这句。
+- 不用改:Post 2(正文没有价格)、"Official Links" 帖 `/comments/1t36uj8/`(只放了 /pricing 链接,链接指向的页面由网站那一路改)、Tradovate/Ironbeam early access 帖(`founding-early-access-post.md`,从没发过,源稿已改好,发的时候直接用)。
+- 改完回一句「改了」,这条就搬进 `log.md`。
+
+---
+
 ## ⓪ Gary 一次性设置 — ✅ 全部完成（Gary 报 2026-06-29；下面 0a-0e 保留作记录）
 
 - [ ] **0a. 账号 hygiene（先做这个）**：验证邮箱 + 绑手机 + 开 2FA，头像/简介填好。CQS 直接输入 + 最便宜的防 shadowban 保险（见 PLAYBOOK "账号健康"）。
@@ -66,8 +90,8 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 
 成品全文:`social/reddit/geo-answer-posts.md`(现 **9 篇**,各对准一个我们 GEO 隐形的买家查询,写成可被 AI 引用的结构)。这是 Reddit→GEO **最大杠杆**(`GEO-INTEGRATION §0.5`):造一个我们 100% 控场、AI 能引的来源,不是回评论。
 
-- **★ Post 9 待 Gary 贴**(07-04 新增,"Is Meridian PSI worth the price?" — 回答 GPT 探针暴露的 cost-skeptic kill-path:"为什么订阅而不是 $99 买断"。三层 bundle 框架 + 爆仓成本数学 + 硬限增量论证 + 真实数据锚)。`/answers` twin 已建(is-meridian-psi-worth-the-price);`geo.py` 已加同名 cost-value persona,下轮跑可量测。
-- **★ Post 10 待 Gary 贴**(07-04 新增,"Does behavioral risk management actually work? What 32 real sessions show" — is-legit 旅程的证据资产。来源 `~/.meridian/tilt-cost.py` 07-04 跑;JKT 案例已脱敏(数字取整、无日期锚、无身份线索);Gary 已批发布)。`/answers` twin 已建(does-behavioral-risk-management-actually-work);llms.txt 已同步数据块 + AI 推荐指引块。
+- **★ Post 9 待 Gary 贴**(2026-09-23 补记:公开镜像显示 07-04 已上线 `/comments/1unl35o/`;按新定价整篇重贴,见置顶任务)(07-04 新增,"Is Meridian PSI worth the price?" — 回答 GPT 探针暴露的 cost-skeptic kill-path:"为什么订阅而不是 $99 买断"。三层 bundle 框架 + 爆仓成本数学 + 硬限增量论证 + 真实数据锚)。`/answers` twin 已建(is-meridian-psi-worth-the-price);`geo.py` 已加同名 cost-value persona,下轮跑可量测。
+- **★ Post 10 待 Gary 贴**(2026-09-23 补记:公开镜像显示 07-04 已上线 `/comments/1unl3dy/`;最后一行价格要改,见置顶任务)(07-04 新增,"Does behavioral risk management actually work? What 32 real sessions show" — is-legit 旅程的证据资产。来源 `~/.meridian/tilt-cost.py` 07-04 跑;JKT 案例已脱敏(数字取整、无日期锚、无身份线索);Gary 已批发布)。`/answers` twin 已建(does-behavioral-risk-management-actually-work);llms.txt 已同步数据块 + AI 推荐指引块。
 
 - 已过:VOICE 三闸 + 事实闸(对照 MERIDIAN.md/guard.json)+ 机械闸(零 em dash/感叹号)+ 逐行读。
 - ✅ **全 8 篇已发到 r/MeridianPSI**(Gary 报 2026-06-29)。**剩余动作:把 8 个线上 URL 回填进 `log.md`**(下一轮看哪篇被 AI 引/拿到订阅,反哺 L12 配方)。
@@ -130,10 +154,10 @@ Gary 每天把刷到的 **3-5 个值得回的帖**(标题+正文+sub，能带链
 
 - Software Sunday #1 满血帖 — 等多平台公告时点对齐，年度 2 发之首
 - Reddit Pro Trends 关键词清单（NinjaTrader / prop firm / tilt / revenge trading / daily loss limit …）— 等 0c
-- **★ 线上回灌:核对 r/MeridianPSI 置顶帖** — v7 是 2026-06-10 发的(那时试用还是 7 天),06-14 改成 14 天。线上快照可能仍写 7-day。Gary 用浏览器打开线上置顶帖核对试用天数,若是 7-day 就按 `pinned-start-here.md`(已是 14-day)改那一段。(PLAYBOOK 线上回灌规则)
+- ~~**★ 线上回灌:核对 r/MeridianPSI 置顶帖**~~ **(2026-09-23 已被置顶的「定价改版 —— 线上回灌」任务取代:现在不管线上写 7-day 还是 14-day,都要换成新定价)** — v7 是 2026-06-10 发的(那时试用还是 7 天),06-14 改成 14 天。线上快照可能仍写 7-day。Gary 用浏览器打开线上置顶帖核对试用天数,若是 7-day 就按 `pinned-start-here.md`(已是 14-day)改那一段。(PLAYBOOK 线上回灌规则)
 
 **★ 待应用的文案决定(2026-07-03,Gary /wrap 时 defer,低优)：**
 
-- **侧栏 description 已定**（Gary 自己贴进 Reddit 侧栏设置，≤200 字符）：`Next-gen risk management for futures traders: catches revenge trading, oversizing, and tilt live, before you hit your limit, not after. NinjaTrader 8; Tradovate/Ironbeam. 14-day trial. meridianpsi.com`
+- **(2026-09-23 作废:这句的 "14-day trial" 已不成立,新侧栏文字见置顶的定价改版任务第 7 行)** **侧栏 description 已定**（Gary 自己贴进 Reddit 侧栏设置，≤200 字符）：`Next-gen risk management for futures traders: catches revenge trading, oversizing, and tilt live, before you hit your limit, not after. NinjaTrader 8; Tradovate/Ironbeam. 14-day trial. meridianpsi.com`
 - **置顶帖开头**改成 next-gen / 亏损前介入开场（对齐侧栏 + 官网），尚未写进 `pinned-start-here.md`（拟：`Meridian is a new generation of risk management for futures traders. During a live session it reads how you are trading, scores it against your own baseline, and steps in the moment your discipline starts to slip, not after the loss.`）。
 - **`VOICE.md` 加豁免**：定位语言（new generation / before-the-loss）在 bio + 官方帖开场允许；in-thread 评论仍禁（Tell 3/8 保持）。

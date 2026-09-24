@@ -76,7 +76,7 @@
 - **成本数学**(funded 楔子,现网已用,FTC 安全的定性版):
   - 一个 eval = $89–540,失败就没了
   - 一个 revenge session = $300–800,外加它能爆掉的 funded 账户
-  - Meridian = $49.99 一个月
+  - Meridian:监控 + Intel(Core)免费;强制层 Guard = $29.99 一个月(2026-09-23 起)
   - 定性事实(可引,但精确数字需 Gary 批):大量 funded trader 拿不到有意义的 payout,而且夺走账户的通常不是策略,是一个 session。
 - ⚠️ **不能承诺"Meridian 让你留在拿 payout 的那批人"**(结果承诺,FTC 红线)。只陈述现实 + 它监控造成爆仓的那件事。
 
@@ -96,7 +96,7 @@
 
 ## 6. 我们是什么 / 不是什么
 
-**是**:实时心理稳定监控(在行为上开火,不在 P&L 上);监控 + 强制(Guard)+ 复盘(Intel)的完整闭环;本地优先;NT8 原生 + Tradovate/Ironbeam 独立 App(early access),一个订阅全平台。
+**是**:实时心理稳定监控(在行为上开火,不在 P&L 上);监控 + 强制(Guard)+ 复盘(Intel)的完整闭环;本地优先;NT8 原生 + Tradovate/Ironbeam 独立 App(early access),一个许可证全平台。
 
 **不是**:不是信号、不是课程/导师/Discord、不是仓位计算器、不是 guru 产品、不是单纯的日志(我们有日志,但产品是实时行为监控)。我们不发战绩/不晒 P&L/不露脸。
 
@@ -105,7 +105,7 @@
 ## 7. 当前事实锚点(细节以 MERIDIAN.md 为准,这里只放最常用的)
 
 - 版本:v1.5.5 已发布(细节以 MERIDIAN.md 为准)。
-- 价:Core $49.99 / Guard $69.99,14 天试用(**要绑卡**,绝不说 "no credit card")。
+- 价(2026-09-23 起,唯一口径 = `ai-company-os/tenants/meridian/campaigns/17-free-core-pivot/NEW-PRICING-FACTS.md`):**Meridian Core 免费**(永久、不用卡、没有试用倒计时;"free, no card" 是真话,可以说)· **Meridian Guard $29.99/月**(随时取消;Whop 上没有试用、没有年付)。怎么试 Guard:**NinjaTrader 8 上,免费许可证第一次激活后的前 7 天自带 Guard**,不用卡;桌面版(Tradovate/Ironbeam early access)没有这 7 天。旧价 $49.99 / $69.99 / 年付、"14-day trial"、"card required" 全部作废,不许再写。
 - 两档边界(**v1.5.0 起反转**):Intel 分析进了 **Core**;Guard 档只 gate 强制层(规则引擎 + Strict Lock)+ priority support。旧的"Intel 仅 Guard"已废。
 - Guard 五级(**仅 NT8**):**Notify · Risk Alert · Acknowledge · Trading Pause · Disconnect**(旧名 Alert/Countdown/Risk Alert Mode 已废)。standalone(Tradovate/Ironbeam)是**六档**:Notify · Alert · Acknowledge · Pause · **Cool-down Wall · Cut**(没有 broker Disconnect 档,别把"disconnect your broker"安到 standalone 上)。**"un-bypassable" 只配一处**:Tradovate eval/demo 上 standalone 写的 broker-level liquidate-only 锁(唯一 device-proof);app/OS 层只说"当场关不掉",别说"can't be bypassed"。**Hard limits**(最大手数 + 禁单类型,Guard 档默认关)NT8 与 standalone 都有。
 - PSI 四区:Stable(88-100)/ Caution(72-87)/ Warning(55-71)/ Critical(0-54)。

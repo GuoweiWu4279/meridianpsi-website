@@ -57,8 +57,8 @@ Use the pre-built classes — do NOT recreate buttons with raw Tailwind:
 
 ```html
 <!-- Primary CTA -->
-<a class="btn btn-primary">Download Free Trial</a>
-<a class="btn btn-primary btn-lg">Download Free Trial</a>
+<a class="btn btn-primary">Download free</a>
+<a class="btn btn-primary btn-lg">Get Meridian free</a>
 
 <!-- Secondary -->
 <a class="btn btn-secondary">Learn More</a>

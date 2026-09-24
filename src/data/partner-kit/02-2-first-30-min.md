@@ -1,7 +1,7 @@
 ---
 title: Your First 30 Minutes
 section: get-started
-lastUpdated: '2026-06-17'
+lastUpdated: '2026-09-23'
 order: 2
 ---
 
@@ -59,4 +59,4 @@ The first session baseline is thin — Meridian doesn't have much history to com
 
 ---
 
-**One thing to notice:** Market Replay sessions are tracked in a separate context and don't affect your live baseline. You can run as many replay sessions as you want during your trial without skewing the data that matters.
+**One thing to notice:** Market Replay sessions are tracked in a separate context and don't affect your live baseline. You can run as many replay sessions as you want without skewing the data that matters.
