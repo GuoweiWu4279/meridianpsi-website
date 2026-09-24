@@ -1,8 +1,8 @@
 {
-  "version": "1.5.7",
-  "releaseDate": "2026-07-23",
+  "version": "1.5.8",
+  "releaseDate": "2026-09-24",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.7.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.8.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.7 — Per-account daily stops. NEW — if you monitor more than one account, a 'session loss reaches $X' Guard rule now watches each account's OWN realised loss: when one account hits its limit, Guard stops that account (blocks its new entries, and closes it if you opted in) while your other accounts keep trading. Before, it added every account into one number, so a winning account could hide a losing one. Single-account behaviour is unchanged; PSI and your other Guard rules are unchanged. FIXED — no false 'no stop' warning on an ATM entry/stop race; a live data backfill no longer resets your session; quieter routine logs. Plus a plain-language pass over the app's text. Closing or reducing a position is never blocked."
+  "notes": "v1.5.8 — Meridian Core is now free. The unlock screen and License page now say so: get a free license key (email only, no card), paste it in, and Core unlocks; Guard is free for your first 7 days on a new free license, then $29.99 a month. License activation now checks your key through meridianpsi.com (allow www.meridianpsi.com if your firewall restricts hosts). PSI, baselines, Guard rules and history are unchanged. Closing or reducing a position is never blocked."
 }
