@@ -1,8 +1,8 @@
 {
-  "version": "1.5.8",
-  "releaseDate": "2026-10-03",
+  "version": "1.6.0",
+  "releaseDate": "2026-10-20",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.5.8.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.6.0.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.5.8 — Meridian Core is now free. The unlock screen and License page now say so: get a free license key (email only, no card), paste it in, and Core unlocks; Guard is free for your first 7 days on a new free license, then $29.99 a month. License activation now checks your key through meridianpsi.com (allow www.meridianpsi.com if your firewall restricts hosts). PSI, baselines, Guard rules and history are unchanged. Closing or reducing a position is never blocked."
+  "notes": "v1.6.0 — Guard now judges you, one trade at a time: every rule is checked on every trade (even during a pause), a trade copied to several accounts counts once, and two new Hard limits — Max trades per day and Wait after each trade. Trading more than one account? Your daily loss now counts you, not each account. Your rules load exactly as you saved them; closing or reducing a position is never blocked."
 }
