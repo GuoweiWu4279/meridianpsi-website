@@ -13,7 +13,7 @@ Your affiliate link, promo code, and free Guard license were sent in the welcome
 
 **What each item is:**
 
-**Affiliate link** — Your unique Whop URL in the format `whop.com/meridian/?a=yourname`. Anyone who completes checkout through this link is automatically attributed to you. Share it in video descriptions, pinned comments, your link-in-bio, and anywhere else your audience looks for links.
+**Affiliate link** — Your unique Whop URL in the format `whop.com/meridian-18e1/?a=yourname`. Anyone who completes checkout through this link is automatically attributed to you. Share it in video descriptions, pinned comments, your link-in-bio, and anywhere else your audience looks for links.
 
 **Promo code** — A separate 10%-off code in your name (e.g. `YOURNAME10`). Your audience enters this at checkout for a permanent 10% discount on every renewal, not just the first month. Attribution and the discount are two independent mechanisms — both tracked separately in your Whop affiliate panel.
 

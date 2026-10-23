@@ -18,7 +18,7 @@ Great — welcome to the program.
 Here's everything you need to get started:
 
 YOUR AFFILIATE LINK
-whop.com/meridian/?a=[creatorname]
+whop.com/meridian-18e1/?a=[creatorname]
 Anyone who completes checkout through this link is automatically attributed to you — permanent, no expiry window.
 
 YOUR PROMO CODE
@@ -53,7 +53,7 @@ garycaffrey@meridian-partnership.com
 
 ## Operational checklist (do before sending)
 
-- [ ] Replace `[creatorname]` in the affiliate link with their actual handle (lowercase, no spaces — match the format `whop.com/meridian/?a=handle`)
+- [ ] Replace `[creatorname]` in the affiliate link with their actual handle (lowercase, no spaces — match the format `whop.com/meridian-18e1/?a=handle`)
 - [ ] Replace `[CREATORNAME10]` with their promo code (typically uppercase channel name or handle + "10")
 - [ ] Replace `[FirstName]` in the kit URL with their actual first name (for the personalized greeting on the kit page)
 - [ ] Set up the Whop affiliate link before sending — don't send the email and then set it up later; the link must be live when they click it
