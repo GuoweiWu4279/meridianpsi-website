@@ -7,7 +7,7 @@
 | Creator commission | 30% recurring — every billing cycle for the lifetime of the subscription                   |
 | Audience discount  | 10% permanent — on every renewal, not just the first purchase                              |
 | Creator benefit    | Free Meridian Guard license for the duration of the active partnership                     |
-| Attribution        | Unique affiliate link (`whop.com/meridian/?a=creatorname`) — permanent, no cookie window   |
+| Attribution        | Unique affiliate link (`whop.com/meridian-18e1/?a=creatorname`) — permanent, no cookie window   |
 | Discount code      | Separate 10%-off promo code for audience use at checkout (independent of attribution)      |
 | Payout cadence     | Monthly via Whop affiliate panel (standard 30-day waiting period from purchase to release) |
 | Program type       | Invited creators only                                                                      |
