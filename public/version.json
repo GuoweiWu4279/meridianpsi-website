@@ -1,8 +1,8 @@
 {
-  "version": "1.6.0",
-  "releaseDate": "2026-10-23",
+  "version": "1.6.1",
+  "releaseDate": "2026-10-30",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.6.0.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.6.1.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.6.0 — Guard now judges you, one trade at a time: every rule is checked on every trade (even during a pause), a trade copied to several accounts counts once, and two new Hard limits — Max trades per day and Wait after each trade. Trading more than one account? Your daily loss now counts you, not each account. Your rules load exactly as you saved them; closing or reducing a position is never blocked."
+  "notes": "v1.6.1 — Two fixes for Guard locks that cross 5 PM New York. A timed disconnect that ends after 5 PM New York now reconnects NinjaTrader by itself when it ends, as at any other time of day; a disconnect that runs to the 5 PM close (rest of day) still leaves NinjaTrader offline until you reconnect. A timed pause that runs past 5 PM New York is shown as a pause with its end time, not \"locked for the day\". Closing or reducing a position is never blocked."
 }
