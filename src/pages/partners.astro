@@ -446,6 +446,8 @@ const finePrintItems = [
 
         <form action={formspreeEndpoint} method="POST" class="space-y-5" id="partner-form" data-reveal>
           <input type="hidden" name="_subject" value="Partner Application" />
+          <!-- Spam trap: Formspree drops any submission where this hidden field is filled (bots fill every field). -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
