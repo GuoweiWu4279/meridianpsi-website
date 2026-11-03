@@ -21,7 +21,7 @@
       },
       "cta": "Try PropFirmConnector",
       "url": "https://propfirmconnector.com/?coupon=MERIDIAN#pricing",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://propfirmconnector.com/?ref=pfc-30d5bcbca0f665cb&coupon=MERIDIAN#pricing",
       "source": "propfirmconnector.com home page (product, FAQ, pricing, affiliate FAQ) and /recommended-tools/, read 2026-11-03 20:34 UTC",
       "checked": "2026-11-03"
     },
@@ -33,7 +33,7 @@
       "category": "Trading practice",
       "headline": "Practice the plan before real money is on it.",
       "summary": "The Forge teaches a strategy in lessons, then puts you in a simulator that plays a session out candle by candle and stops when it is time to decide: long, short, or stay out. You drag your entry, stop and target onto the chart, and every practice trade is scored on whether you followed your rules, never on profit. A winner that broke a rule still loses points; sitting out a bad session correctly scores 100%.",
-      "fit": "The Forge builds the habit of trading your rules before the session. Meridian holds you to them during it, live, on your real account.",
+      "fit": "The Forge builds the habit of trading your rules before the session. Meridian enforces your risk limits during it, live, on your real account.",
       "facts": [
         "Free plan: 40+ Foundations lessons and 25+ drills, no card",
         "Four strategies, each with a free practice trade",
