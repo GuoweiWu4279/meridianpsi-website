@@ -1,0 +1,50 @@
+{
+  "_note": "Partner tools listed on /recommended-tools. To add a partner, add one object here. Every fact must be read off the partner's own site first; record where in `source` and when in `checked`. To switch a partner to an affiliate link, fill `affiliateUrl` only; the page uses it over `url` automatically.",
+  "lastChecked": "November 2026",
+  "partners": [
+    {
+      "id": "propfirmconnector",
+      "name": "PropFirmConnector",
+      "stage": "Connect",
+      "category": "NinjaTrader 8 add-on",
+      "headline": "Every Rithmic prop account, in one NinjaTrader.",
+      "summary": "NinjaTrader 8 natively allows one active Rithmic connection at a time, and some Rithmic prop-firm account types have no native NinjaTrader connection at all. PropFirmConnector adds a connection path for any Rithmic prop-firm or live Rithmic broker account, and runs several of them side by side in a single NinjaTrader instance.",
+      "fit": "Meridian runs inside NinjaTrader 8. PropFirmConnector is how prop accounts on Rithmic get into that same NinjaTrader, all at once, instead of one install or one VPS per account.",
+      "facts": [
+        "Any Rithmic prop-firm or live Rithmic broker account",
+        "Unlimited simultaneous Rithmic accounts on both plans",
+        "Monthly $49 or Lifetime $499, each with a 7-day free trial"
+      ],
+      "offer": {
+        "code": "MERIDIAN",
+        "detail": "$100 off Lifetime, or $10 off every monthly payment."
+      },
+      "cta": "Try PropFirmConnector",
+      "url": "https://propfirmconnector.com/?coupon=MERIDIAN#pricing",
+      "affiliateUrl": null,
+      "source": "propfirmconnector.com home page (product, FAQ, pricing, affiliate FAQ) and /recommended-tools/, read 2026-11-03 20:34 UTC",
+      "checked": "2026-11-03"
+    },
+    {
+      "id": "the-forge",
+      "name": "The Forge",
+      "by": "Steady Edge Trading",
+      "stage": "Practice",
+      "category": "Trading practice",
+      "headline": "Practice the plan before real money is on it.",
+      "summary": "The Forge teaches a strategy in lessons, then puts you in a simulator that plays a session out candle by candle and stops when it is time to decide: long, short, or stay out. You drag your entry, stop and target onto the chart, and every practice trade is scored on whether you followed your rules, never on profit. A winner that broke a rule still loses points; sitting out a bad session correctly scores 100%.",
+      "fit": "The Forge builds the habit of trading your rules before the session. Meridian holds you to them during it, live, on your real account.",
+      "facts": [
+        "Free plan: 40+ Foundations lessons and 25+ drills, no card",
+        "Four strategies, each with a free practice trade",
+        "Forge Pro $79/mo, with a 7-day free trial"
+      ],
+      "offer": null,
+      "cta": "Start The Forge free",
+      "url": "https://steadyedgetrading.com/",
+      "affiliateUrl": null,
+      "source": "steadyedgetrading.com home page (How it works, pricing, FAQ) and /forge/, read 2026-11-03 20:34 UTC",
+      "checked": "2026-11-03"
+    }
+  ]
+}

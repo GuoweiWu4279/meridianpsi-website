@@ -87,7 +87,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           actions
             ?.filter((a) => a.variant === 'primary')
             .map((a) => (
-              <a href={a.href} class="btn btn-primary text-xs px-4 py-2">
+              <a href={a.href} class="btn btn-primary text-xs px-4 py-2 whitespace-nowrap">
                 {a.mobileText ?? a.text}
               </a>
             ))

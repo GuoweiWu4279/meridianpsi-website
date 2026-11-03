@@ -1,0 +1,243 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import partnerTools from '~/data/partner-tools.json';
+
+const metadata = {
+  title: 'Recommended Partner Tools for NinjaTrader 8 Traders',
+  description:
+    'Two partner tools Meridian recommends: PropFirmConnector puts every Rithmic prop account into one NinjaTrader 8 (code MERIDIAN saves $100 on Lifetime), and The Forge by Steady Edge Trading scores practice trades on your rules, not profit.',
+  robots: { index: true, follow: true },
+};
+
+const partners = partnerTools.partners.map((p) => ({ ...p, href: p.affiliateUrl ?? p.url }));
+const pfc = partners.find((p) => p.id === 'propfirmconnector');
+const forge = partners.find((p) => p.id === 'the-forge');
+
+const day = [
+  {
+    n: '01',
+    stage: 'Connect',
+    name: 'PropFirmConnector',
+    line: 'Get every Rithmic prop account into one NinjaTrader 8.',
+    href: '#propfirmconnector',
+  },
+  {
+    n: '02',
+    stage: 'Practice',
+    name: 'The Forge',
+    line: 'Practice your plan on simulated sessions until following it is a habit.',
+    href: '#the-forge',
+  },
+  {
+    n: '03',
+    stage: 'Trade',
+    name: 'Meridian',
+    line: 'Hold the line live: behavioral signals, risk limits and Guard while the session is on.',
+    href: '/what-is-meridian-psi',
+    own: true,
+  },
+];
+
+const disclosure =
+  'These are Meridian partners. If you buy through a link or code on this page, we may earn a commission. It never raises the price you pay.';
+
+const faqItems = [
+  {
+    q: 'How do I use the MERIDIAN code on PropFirmConnector?',
+    a: `Type MERIDIAN into the "Apply a code" field at PropFirmConnector checkout; the link on this page also carries the code over. ${pfc?.offer?.detail ?? ''} Both PropFirmConnector plans start with a 7-day free trial.`,
+  },
+  {
+    q: 'Is The Forge free?',
+    a: 'Yes. The Free plan has 40+ Foundations lessons, 25+ drills and a free practice trade for every strategy, with no card. Forge Pro, with every strategy and every practice trade, is $79 a month after a 7-day free trial.',
+  },
+  {
+    q: 'Does Meridian earn money from these links?',
+    a: `${disclosure} PropFirmConnector and Steady Edge Trading are independent companies; their prices and offers are set by them.`,
+  },
+  {
+    q: 'Why does a risk-management tool recommend other tools?',
+    a: 'Each one covers a different part of the same trading day. PropFirmConnector gets your accounts connected, The Forge is practice before the session, and Meridian is the live session itself. None of the three does the job of another.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-11-03',
+  dateModified: '2026-11-03',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replace(/</g, '\\u003c');
+---
+
+<Layout metadata={metadata}>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <!-- ───────────────────────── HERO ───────────────────────── -->
+  <section class="halo">
+    <div class="max-w-4xl mx-auto px-6 pt-20 md:pt-24 pb-14 md:pb-16 text-center" data-reveal>
+      <p class="eyebrow text-[11px] font-bold text-emerald-700 mb-5">Partner tools</p>
+      <h1
+        class="max-w-3xl mx-auto text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.06] [text-wrap:balance]"
+      >
+        Tools for the rest of your trading day.
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-zinc-600 leading-relaxed">
+        Meridian holds the line while the session is on. These two partners handle what comes before it: getting every
+        prop account into NinjaTrader, and practicing your plan.
+      </p>
+      <p class="mt-6 max-w-xl mx-auto text-sm text-zinc-500 leading-relaxed">{disclosure}</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── ONE DAY, THREE JOBS ───────────────────────── -->
+  <section class="max-w-5xl mx-auto px-6 pb-16 md:pb-20" data-reveal>
+    <ol class="grid md:grid-cols-3 gap-4">
+      {
+        day.map((d) => (
+          <li>
+            <a
+              href={d.href}
+              class:list={[
+                'flex h-full flex-col rounded-2xl border p-6 transition-colors',
+                d.own
+                  ? 'border-emerald-300 bg-emerald-50/50 hover:border-emerald-400'
+                  : 'border-zinc-200 bg-white hover:border-emerald-300',
+              ]}
+            >
+              <span class="flex items-center gap-2 mb-4">
+                <span class="text-xs font-bold text-zinc-400 tnum">{d.n}</span>
+                <span
+                  class:list={[
+                    'text-[10px] font-bold uppercase tracking-[0.14em] px-2 py-0.5 rounded-full',
+                    d.own ? 'bg-emerald-600 text-white' : 'bg-zinc-100 text-zinc-600',
+                  ]}
+                >
+                  {d.stage}
+                </span>
+              </span>
+              <span class="text-lg font-bold text-zinc-900 mb-1.5">{d.name}</span>
+              <span class="text-sm text-zinc-600 leading-relaxed">{d.line}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ───────────────────────── PARTNERS ───────────────────────── -->
+  <section class="border-y border-zinc-200 bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-20 md:py-24 space-y-8">
+      {
+        partners.map((p) => (
+          <article
+            id={p.id}
+            class="scroll-mt-24 rounded-3xl border border-zinc-200 bg-[#fafafa] overflow-hidden"
+            data-reveal
+          >
+            <div class="grid grid-cols-1 md:grid-cols-5">
+              <div class="md:col-span-3 p-7 md:p-10">
+                <div class="flex flex-wrap items-center gap-2 mb-5">
+                  <span class="text-[10px] font-bold uppercase tracking-[0.14em] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                    {p.stage}
+                  </span>
+                  <span class="text-xs text-zinc-500">{p.category}</span>
+                </div>
+                <h2 class="text-[1.75rem] sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">{p.name}</h2>
+                {p.by && <p class="mt-1 text-sm text-zinc-500">by {p.by}</p>}
+                <p class="mt-4 text-lg font-semibold text-zinc-800 leading-snug">{p.headline}</p>
+                <p class="mt-4 text-zinc-600 leading-relaxed">{p.summary}</p>
+                <div class="mt-6 border-l-2 border-emerald-500 pl-4">
+                  <p class="text-zinc-800 leading-relaxed">{p.fit}</p>
+                </div>
+              </div>
+
+              <div class="md:col-span-2 border-t md:border-t-0 md:border-l border-zinc-200 bg-white p-7 md:p-8 flex flex-col">
+                <ul class="space-y-3">
+                  {p.facts.map((f) => (
+                    <li class="flex items-start gap-3 text-sm text-zinc-700">
+                      <svg
+                        class="w-4 h-4 mt-0.5 text-emerald-600 shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="leading-relaxed">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {p.offer && (
+                  <div class="mt-6 rounded-2xl border border-dashed border-emerald-400 bg-emerald-50/60 px-5 py-4">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-800">Code</p>
+                    <p class="mt-1 font-mono text-2xl font-bold tracking-wider text-zinc-900">{p.offer.code}</p>
+                    <p class="mt-1 text-sm text-zinc-600 leading-relaxed">{p.offer.detail}</p>
+                  </div>
+                )}
+
+                <div class="mt-6 md:mt-auto md:pt-6">
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="sponsored noopener"
+                    class="flex w-full items-center justify-center gap-2 font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-5 py-3.5 rounded-xl transition shadow-sm"
+                  >
+                    {p.cta}
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5h5v5m0-5L10 14M19 14v5H5V5h5"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ───────────────────────── FAQ ───────────────────────── -->
+  <section class="max-w-3xl mx-auto px-6 py-20 md:py-24">
+    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-8">Common questions</h2>
+    <dl class="space-y-7">
+      {
+        faqItems.map(({ q, a }) => (
+          <div>
+            <dt class="font-semibold text-zinc-900 text-lg mb-2">{q}</dt>
+            <dd class="text-zinc-600 leading-relaxed">{a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="text-xs text-zinc-400 mt-12 pt-6 border-t border-zinc-100 leading-relaxed">
+      Partner details checked against each partner&rsquo;s own site, {partnerTools.lastChecked}. Prices and offers are
+      set by {pfc?.name} and {forge?.by}. Recommending Meridian to your own audience? See the
+      <a href="/partners" class="underline hover:text-zinc-600">Partner Program</a>.
+    </p>
+  </section>
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Get Meridian free', href: 'https://whop.com/checkout/plan_ywOyNPvDxrxxV' },
+      { text: 'How Meridian works', href: '/what-is-meridian-psi' },
+    ]}
+  >
+    <Fragment slot="tagline">NinjaTrader 8 · Windows</Fragment>
+    <Fragment slot="title">The live session is Meridian&rsquo;s part.</Fragment>
+    <Fragment slot="subtitle"
+      >Free forever, no card · Guard $29.99/mo · NinjaTrader 8 today · Tradovate &amp; Ironbeam early access</Fragment
+    >
+  </CallToAction>
+</Layout>
