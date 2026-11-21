@@ -1,8 +1,8 @@
 {
-  "version": "1.6.1",
-  "releaseDate": "2026-10-30",
+  "version": "1.7.0",
+  "releaseDate": "2026-11-21",
   "download": "https://www.meridianpsi.com/download",
-  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.6.1.zip",
+  "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.7.0.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.6.1 — Two fixes for Guard locks that cross 5 PM New York. A timed disconnect that ends after 5 PM New York now reconnects NinjaTrader by itself when it ends, as at any other time of day; a disconnect that runs to the 5 PM close (rest of day) still leaves NinjaTrader offline until you reconnect. A timed pause that runs past 5 PM New York is shown as a pause with its end time, not \"locked for the day\". Closing or reducing a position is never blocked."
+  "notes": "v1.7.0 — Today's direction, a new line in Guard's Hard limits: set Long only or Short only for the trading day, on all instruments or one. A new entry the other way is cancelled; if it fills before the cancel lands, Guard closes right away only what that order opened. Closing or reducing is never blocked and a position you already held is never closed. It can only be made stricter during the day and clears at 5 PM New York. Includes the 1.6.1 fixes for locks that run past 5 PM New York."
 }
