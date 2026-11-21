@@ -12,8 +12,12 @@
  *
  * v1 has no `valid` flag. A membership grants access when its status is one of
  * VALID_STATUSES — Whop's own list for license checks
- * (docs.whop.com/supported-business-models/saas.md#license-key-integration), the same
- * three statuses v2's `valid` was true for. past_due stays out, as before.
+ * (docs.whop.com/supported-business-models/saas.md#license-key-integration) plus
+ * past_due, which Whop's guide says to add "if you let customers keep access while Whop
+ * retries a failed renewal". We do (decided 2026-11-20): Guard is a risk tool, and a card
+ * hiccup must not pull a trader's protection mid-session while Whop is still retrying.
+ * When the retries fail Whop cancels the membership itself (James: failed 11-11, canceled
+ * 11-14), and access ends then.
  *
  * The response the clients parse (NT8 add-on LicenseManager.cs, desktop AppLicense.cs)
  * is unchanged:
@@ -30,7 +34,7 @@ export const WHOP_MEMBERSHIPS_URL = 'https://api.whop.com/api/v1/memberships';
 export const WHOP_API_VERSION = '2026-08-21-1';
 export const UPSTREAM_TIMEOUT_MS = 10_000;
 
-export const VALID_STATUSES: ReadonlySet<string> = new Set(['active', 'trialing', 'completed']);
+export const VALID_STATUSES: ReadonlySet<string> = new Set(['active', 'trialing', 'completed', 'past_due']);
 
 // Whop product ids (stable while plans churn).
 export const GUARD_PRODUCT = 'prod_1sWPRSzcJjAL5';

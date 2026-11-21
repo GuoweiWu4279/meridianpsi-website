@@ -52,12 +52,13 @@ const member = (status, extra = {}) => ({
   expect('never calls v2', !/\/v2\//.test(c.url), c.url);
 }
 
-// 2. Access statuses → valid:true; the rest → valid:false (Whop's list; past_due stays out).
-for (const s of ['active', 'trialing', 'completed']) {
+// 2. Access statuses → valid:true; the rest → valid:false. Whop's list plus past_due
+//    (access kept while Whop retries a failed renewal; decided 2026-11-20).
+for (const s of ['active', 'trialing', 'completed', 'past_due']) {
   const r = await checkLicense('KEY-1', 'k', fakeWhop(200, member(s)));
   expect(`${s} → 200 valid:true`, r.status === 200 && r.body.valid === true, JSON.stringify(r));
 }
-for (const s of ['canceled', 'expired', 'past_due', 'drafted', 'unresolved']) {
+for (const s of ['canceled', 'expired', 'drafted', 'unresolved']) {
   const r = await checkLicense('KEY-1', 'k', fakeWhop(200, member(s)));
   expect(
     `${s} → 200 valid:false status=${s}`,
@@ -66,8 +67,8 @@ for (const s of ['canceled', 'expired', 'past_due', 'drafted', 'unresolved']) {
   );
 }
 expect(
-  'VALID_STATUSES is exactly active/trialing/completed',
-  [...VALID_STATUSES].sort().join() === 'active,completed,trialing'
+  'VALID_STATUSES is exactly active/trialing/completed/past_due',
+  [...VALID_STATUSES].sort().join() === 'active,completed,past_due,trialing'
 );
 
 // 3. Body is sanitized: only valid/status/plan/id/product, with the ids the clients read.
