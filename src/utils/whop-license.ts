@@ -94,20 +94,34 @@ export async function checkLicense(
     return { status: 502, body: { valid: false, error: 'upstream unreachable' } }; // client → offline grace
   }
 
-  if (resp.status === 404) return { status: 404, body: { valid: false, error: 'license not found' } };
+  // Whop announces a retirement months ahead with Deprecation / Sunset headers on every response
+  // of the doomed route. Nobody saw them for v2, so the first sign was a customer locked out.
+  // Pass them through (additive fields; clients ignore unknown keys) so the health check
+  // (ai-company-os hooks/meridian-license-recall.mjs) can warn before the date.
+  const notice = upstreamNotice(resp.headers);
+
+  if (resp.status === 404) return { status: 404, body: { valid: false, error: 'license not found', ...notice } };
 
   // Anything else that isn't a success (401/403 = OUR key, 410 = retired route, 429, 5xx)
   // is our side's trouble — never punish the customer for it.
-  if (!resp.ok) return { status: 502, body: { valid: false, error: 'upstream error', upstream_status: resp.status } };
+  if (!resp.ok) {
+    return { status: 502, body: { valid: false, error: 'upstream error', upstream_status: resp.status, ...notice } };
+  }
 
   let m: Record<string, unknown>;
   try {
     m = JSON.parse(text);
   } catch {
-    return { status: 502, body: { valid: false, error: 'upstream parse error', upstream_status: resp.status } };
+    return {
+      status: 502,
+      body: { valid: false, error: 'upstream parse error', upstream_status: resp.status, ...notice },
+    };
   }
   if (!m || typeof m !== 'object' || typeof m.status !== 'string') {
-    return { status: 502, body: { valid: false, error: 'upstream parse error', upstream_status: resp.status } };
+    return {
+      status: 502,
+      body: { valid: false, error: 'upstream parse error', upstream_status: resp.status, ...notice },
+    };
   }
 
   // Sanitize: forward only what the clients parse. The raw membership (customer email,
@@ -121,6 +135,18 @@ export async function checkLicense(
       plan,
       id: typeof m.id === 'string' ? m.id : '',
       product: productOf(m, plan),
+      ...notice,
     },
   };
+}
+
+/** Whop's retirement signals, if any: `Deprecation: @<unix seconds>`, `Sunset: <HTTP date>`. */
+export function upstreamNotice(headers: Headers): Record<string, string> {
+  const clean = (v: string | null) => (v ? v.replace(/[^\x20-\x7e]/g, '').slice(0, 100) : '');
+  const out: Record<string, string> = {};
+  const sunset = clean(headers.get('sunset'));
+  const deprecation = clean(headers.get('deprecation'));
+  if (sunset) out.upstream_sunset = sunset;
+  if (deprecation) out.upstream_deprecation = deprecation;
+  return out;
 }

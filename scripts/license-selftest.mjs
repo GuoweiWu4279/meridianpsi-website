@@ -15,12 +15,12 @@ function expect(name, cond, detail = '') {
 }
 
 // A fake fetch that records the request and answers with a canned response.
-function fakeWhop(status, body) {
+function fakeWhop(status, body, headers = {}) {
   const calls = [];
   const fn = async (url, init) => {
     calls.push({ url: String(url), init });
     if (status === 'throw') throw new Error('network down');
-    return new Response(typeof body === 'string' ? body : JSON.stringify(body), { status });
+    return new Response(typeof body === 'string' ? body : JSON.stringify(body), { status, headers });
   };
   fn.calls = calls;
   return fn;
@@ -129,6 +129,29 @@ for (const s of [401, 403, 410, 429, 500, 503]) {
   );
   const q = await checkLicense('KEY-1', 'k', fakeWhop(200, { hello: 'world' }));
   expect('JSON 200 without status → 502 (never a silent valid:false)', q.status === 502, JSON.stringify(q));
+}
+
+// 6b. Whop's retirement signals (Deprecation / Sunset headers) reach the health check.
+{
+  const hdr = { Sunset: 'Fri, 13 Nov 2026 00:00:00 GMT', Deprecation: '@1789948800' };
+  const r = await checkLicense('NOPE', 'k', fakeWhop(404, { error: { type: 'not_found' } }, hdr));
+  expect(
+    'Sunset + Deprecation passed through on 404',
+    r.status === 404 && r.body.upstream_sunset === hdr.Sunset && r.body.upstream_deprecation === hdr.Deprecation,
+    JSON.stringify(r)
+  );
+  const ok = await checkLicense('KEY-1', 'k', fakeWhop(200, member('active'), hdr));
+  expect(
+    'Sunset passed through on 200, contract fields intact',
+    ok.body.valid === true && !!ok.body.upstream_sunset,
+    JSON.stringify(ok)
+  );
+  const none = await checkLicense('KEY-1', 'k', fakeWhop(200, member('active')));
+  expect(
+    'no notice fields when Whop sends none',
+    !('upstream_sunset' in none.body) && !('upstream_deprecation' in none.body),
+    JSON.stringify(none)
+  );
 }
 
 // 7. Live: the real Whop answers an unknown key with 404 — proves the route exists and our key can read memberships.
