@@ -47,6 +47,7 @@ const guardSchemaJson = JSON.stringify({
   url: 'https://www.meridianpsi.com/guard',
   featureList: [
     'Six trigger conditions: PSI Below, Consecutive Losses, Session P&L Below, Unrealized P&L Below, Single Trade Loss, Session Time Over',
+    'Price condition (NinjaTrader 8 add-on only): stop yourself when an instrument reaches a level you set (at or below / at or above) with Acknowledge, Trading Pause or Disconnect only — it fires once per crossing, needs live NinjaTrader prices, and never fires without them',
     'Five response levels on NinjaTrader 8: Notify (L1), Risk Alert (L2, a non-blocking persistent banner), Acknowledge (L3, the level that blocks the entry), Trading Pause (L4), Disconnect (L5)',
     'Six-tier ladder on the standalone Tradovate/Ironbeam apps: Notify, Alert, Acknowledge, Pause, Cool-down Wall, Cut',
     'Trading Pause (L4): blocks new entries by cancelling orders while staying connected; Disconnect (L5): severs the broker connection',
