@@ -132,6 +132,7 @@ export const footerData = {
         { text: 'Glossary', href: getPermalink('/glossary') },
         { text: 'About', href: getPermalink('/about') },
         { text: 'Partner Program', href: getPermalink('/partners') },
+        { text: 'Recommended Partner Tools', href: getPermalink('/recommended-tools') },
       ],
     },
     {

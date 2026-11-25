@@ -295,6 +295,8 @@ const matrix = [
       <p class="mt-10 text-sm font-semibold text-zinc-800">Not sure Meridian fits your setup? Ask first.</p>
       <form action="https://formspree.io/f/xaqalank" method="POST" class="mt-4 max-w-md mx-auto text-left space-y-4">
         <input type="hidden" name="subject" value="Early access setup check" />
+        <!-- Spam trap: Formspree drops any submission where this hidden field is filled (bots fill every field). -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
         <div>
           <label for="fs-email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
           <input
