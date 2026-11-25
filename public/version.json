@@ -1,8 +1,8 @@
 {
   "version": "1.7.0",
-  "releaseDate": "2026-11-21",
+  "releaseDate": "2026-11-25",
   "download": "https://www.meridianpsi.com/download",
   "downloadUrl": "https://www.meridianpsi.com/downloads/MeridianPSI_V1.7.0.zip",
   "releasesUrl": "https://www.meridianpsi.com/download",
-  "notes": "v1.7.0 — Today's direction, a new line in Guard's Hard limits: set Long only or Short only for the trading day, on all instruments or one. A new entry the other way is cancelled; if it fills before the cancel lands, Guard closes right away only what that order opened. Closing or reducing is never blocked and a position you already held is never closed. It can only be made stricter during the day and clears at 5 PM New York. Includes the 1.6.1 fixes for locks that run past 5 PM New York."
+  "notes": "v1.7.0 — Today's direction, a new line in Guard's Hard limits: set Long only or Short only for the trading day, on all instruments or one. A new entry the other way is cancelled; if it fills before the cancel lands, Guard closes right away only what that order opened. Closing or reducing is never blocked and a position you already held is never closed. It can only be made stricter during the day and clears at 5 PM New York. Includes the 1.6.1 fixes for locks that run past 5 PM New York. Also new: a Price condition — Guard can stop you (Acknowledge, Pause or Disconnect) when an instrument reaches a level you set; it needs live NinjaTrader prices."
 }
